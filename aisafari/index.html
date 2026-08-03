@@ -23,8 +23,10 @@
 <meta name="twitter:description" content="A hands-on expedition through the AI jungle.">
 <meta name="twitter:image" content="https://grateful.gg/aisafari/cover.jpg">
 
-<!-- Humans go to the real event; crawlers read the tags above first. -->
-<meta http-equiv="refresh" content="0; url=https://app.grateful.gg/aisafari">
+<!-- Humans go to the real event via JS; crawlers (no JS) STAY here and read the tags
+     above. A meta http-equiv=refresh would send link-preview bots to app.grateful.gg,
+     whose og:image is a 2.1MB PNG that iMessage will not render - which is exactly why
+     the thumbnail was blank. Do not reintroduce it. -->
 <script>location.replace("https://app.grateful.gg/aisafari");</script>
 <link rel="canonical" href="https://app.grateful.gg/aisafari">
 <style>
