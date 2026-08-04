@@ -21,9 +21,15 @@
 <meta name="twitter:description" content="Building a better future together - learn to build with AI.">
 <meta name="twitter:image" content="https://grateful.gg/ai/cover.jpg">
 
-<!-- Humans go to the real event; crawlers read the tags above first. -->
+<!-- Humans go to the real event; crawlers read the tags above first.
+     The card below must never flash: we hide the document and jump before
+     first paint, and only reveal it if the redirect is blocked (in-app
+     browsers, JS off) so there is always a tappable way through. -->
 <meta http-equiv="refresh" content="0; url=https://app.grateful.gg/ai/adam">
 <script>location.replace("https://app.grateful.gg/ai/adam");</script>
+<style>html{visibility:hidden}</style>
+<noscript><style>html{visibility:visible}</style></noscript>
+<script>setTimeout(function(){document.documentElement.style.visibility='visible';},1200);</script>
 <link rel="canonical" href="https://app.grateful.gg/ai/adam">
 <style>
   body{margin:0;font-family:Georgia,'Libre Bodoni',serif;color:#26211b;
