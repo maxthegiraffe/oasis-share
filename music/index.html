@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Music · Grateful Labs</title>
+<meta name="description" content="Four new songs every morning, made overnight.">
+<meta property="og:title" content="Daily Music">
+<meta property="og:description" content="Four new songs every morning, made overnight.">
+<meta property="og:type" content="music.playlist">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Libre+Bodoni:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0d0b; --panel:#1a1613; --panel2:#221c18;
+    --ink:#f5efe6; --muted:#a1948a; --line:#332a24;
+    --accent:#e8825a; --accent2:#f0b429; --giraffe:#c9a227;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:32px 20px 80px}
+  header{padding:28px 0 8px;border-bottom:1px solid var(--line);margin-bottom:28px}
+  h1{
+    font-family:'Libre Bodoni',Georgia,serif; font-weight:400;
+    font-size:clamp(34px,8vw,52px); line-height:1.05; margin:0 0 10px;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .date{color:var(--muted);font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+  .lede{color:var(--muted);font-size:15px;line-height:1.6;margin:14px 0 0}
+
+  .vibe{margin:0 0 30px}
+  .vibe-head{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+  .vibe-name{
+    font-family:'Libre Bodoni',Georgia,serif;font-size:21px;font-weight:600;margin:0;
+  }
+  .vibe-tag{
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:3px 9px;
+  }
+  .vibe-note{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 14px}
+
+  .track{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;margin:0 0 10px;
+  }
+  .track.primary{background:var(--panel2);border-color:#4a3a2e}
+  .track-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .track-title{font-weight:500;font-size:16px;flex:1;min-width:0}
+  .take{
+    font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:2px 8px;white-space:nowrap;
+  }
+  .take.pick{color:var(--accent2);border-color:#5c4620}
+  .dur{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  audio{width:100%;height:36px;display:block}
+  .heart{
+    background:none;border:1px solid var(--line);color:var(--muted);
+    border-radius:999px;width:32px;height:32px;cursor:pointer;font-size:14px;
+    line-height:1;transition:.15s;flex:none;
+  }
+  .heart:hover{border-color:var(--accent)}
+  .heart.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  footer{
+    margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13px;line-height:1.7;
+  }
+  footer a{color:var(--accent)}
+  @media (max-width:520px){ .wrap{padding:20px 16px 64px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="date">Thursday, August 6, 2026</div>
+  <h1>Daily <em>Music</em></h1>
+  <p class="lede">Four songs made overnight, two takes each. The starred take is the one in your email. Nothing here has been heard by anyone else.</p>
+</header>
+
+<section class="vibe">
+  <div class="vibe-head"><h2 class="vibe-name">Ner Shacharit</h2><span class="vibe-tag">Morning ritual</span></div>
+  <p class="vibe-note">A slow wordless niggun. Solo voice on a hum, then acoustic guitar and upright bass. Built for the walk before you talk to anyone.</p>
+
+  <div class="track primary">
+    <div class="track-top">
+      <span class="track-title">Ner Shacharit</span>
+      <span class="take pick">★ take 1</span><span class="dur">3:29</span>
+      <button class="heart" data-id="a600df95">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/a600df95-e396-4a15-a7e8-e9792b452cf1.mp3"></audio>
+  </div>
+
+  <div class="track">
+    <div class="track-top">
+      <span class="track-title">Ner Shacharit</span>
+      <span class="take">take 2</span><span class="dur">2:58</span>
+      <button class="heart" data-id="56fd51c0">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/56fd51c0-7555-4487-8323-d69ad6063bb9.mp3"></audio>
+  </div>
+</section>
+
+<section class="vibe">
+  <div class="vibe-head"><h2 class="vibe-name">Slow Glass Room</h2><span class="vibe-tag">Focus</span></div>
+  <p class="vibe-note">72 BPM ambient, no vocals. Rhodes and analog pads carry the first two minutes before any pulse arrives. The longest of the four.</p>
+
+  <div class="track primary">
+    <div class="track-top">
+      <span class="track-title">Slow Glass Room</span>
+      <span class="take pick">★ take 1</span><span class="dur">4:59</span>
+      <button class="heart" data-id="759e6c34">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/759e6c34-175d-4ba4-a4ae-929d92d7e662.mp3"></audio>
+  </div>
+
+  <div class="track">
+    <div class="track-top">
+      <span class="track-title">Slow Glass Room</span>
+      <span class="take">take 2</span><span class="dur">4:39</span>
+      <button class="heart" data-id="6f314363">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/6f314363-da8b-4d07-b017-665a829ee60a.mp3"></audio>
+  </div>
+</section>
+
+<section class="vibe">
+  <div class="vibe-head"><h2 class="vibe-name">Shuk After Midnight</h2><span class="vibe-tag">Wildcard</span></div>
+  <p class="vibe-note">Klezmer house. Minor-key clarinet over four-on-the-floor, stomping claps, a violin that keeps climbing. The roulette landed well.</p>
+
+  <div class="track primary">
+    <div class="track-top">
+      <span class="track-title">Shuk After Midnight</span>
+      <span class="take pick">★ take 1</span><span class="dur">2:38</span>
+      <button class="heart" data-id="0df6c270">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/0df6c270-11d1-495d-b3e7-7c87562ecc29.mp3"></audio>
+  </div>
+
+  <div class="track">
+    <div class="track-top">
+      <span class="track-title">Shuk After Midnight</span>
+      <span class="take">take 2</span><span class="dur">2:43</span>
+      <button class="heart" data-id="fee4e422">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/fee4e422-9240-43d9-8543-03cbe6f12151.mp3"></audio>
+  </div>
+</section>
+
+<section class="vibe">
+  <div class="vibe-head"><h2 class="vibe-name">Clouds And Dirt</h2><span class="vibe-tag">Giraffe</span></div>
+  <p class="vibe-note">Gratitude folk-pop with a gang-vocal chorus. Heads in the clouds, feet on the ground. Commercially cleared, so this one can sit under Oasis content.</p>
+
+  <div class="track primary">
+    <div class="track-top">
+      <span class="track-title">Clouds And Dirt</span>
+      <span class="take pick">★ take 1</span><span class="dur">3:05</span>
+      <button class="heart" data-id="a4fb416a">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/a4fb416a-3147-4f56-9402-9250f90d6852.mp3"></audio>
+  </div>
+
+  <div class="track">
+    <div class="track-top">
+      <span class="track-title">Clouds And Dirt</span>
+      <span class="take">take 2</span><span class="dur">3:49</span>
+      <button class="heart" data-id="df9b5b53">♥</button>
+    </div>
+    <audio controls preload="none" src="https://cdn1.suno.ai/df9b5b53-944e-4da8-858f-817ef8eb3432.mp3"></audio>
+  </div>
+</section>
+
+<footer>
+  8 takes · 40 Suno credits · 2,840 remaining this cycle.<br>
+  Hearts are saved on this device and tune tomorrow's prompts.<br>
+  Every MP3 is also archived locally at <code>~/.claude/tools/suno-daily/library/</code>.
+</footer>
+
+</div>
+
+<script>
+  const KEY = 'gl-daily-music-hearts';
+  const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+  document.querySelectorAll('.heart').forEach(function (b) {
+    if (saved.indexOf(b.dataset.id) > -1) b.classList.add('on');
+    b.addEventListener('click', function () {
+      b.classList.toggle('on');
+      const cur = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const i = cur.indexOf(b.dataset.id);
+      if (i > -1) cur.splice(i, 1); else cur.push(b.dataset.id);
+      localStorage.setItem(KEY, JSON.stringify(cur));
+    });
+  });
+  // Only one track plays at a time
+  const players = document.querySelectorAll('audio');
+  players.forEach(function (a) {
+    a.addEventListener('play', function () {
+      players.forEach(function (o) { if (o !== a) o.pause(); });
+    });
+  });
+</script>
+</body>
+</html>
