@@ -53,12 +53,15 @@ h1{font-weight:700;line-height:.84;letter-spacing:-.035em;font-size:clamp(2.5rem
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#fff}
 
-.dates{margin-top:20px;font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:700;letter-spacing:-.01em}
+.dates{margin-top:20px;font-size:clamp(1rem,2vw,1.25rem);font-weight:700;letter-spacing:-.005em;opacity:.75}
 
 .getbox{border:2px solid var(--ink);padding:26px 24px}
-.getlist{list-style:none;margin:16px 0 0}
-.getlist li{padding:16px 0;border-bottom:1px solid var(--hair-2);font-size:clamp(16px,2vw,19px);font-weight:700;letter-spacing:-.01em}
-.getlist li:last-child{border-bottom:0;padding-bottom:0}
+.getlist{list-style:none;margin:16px 0 0;counter-reset:get}
+.getlist > li{position:relative;padding:16px 0 16px 34px;border-bottom:1px solid var(--hair-2);
+  font-size:clamp(16px,2vw,19px);font-weight:700;letter-spacing:-.01em}
+.getlist > li:before{counter-increment:get;content:counter(get);position:absolute;left:0;top:17px;
+  font-size:15px;font-weight:700;color:var(--pink)}
+.getlist > li:last-child{border-bottom:0;padding-bottom:0}
 .getlist li span{display:block;font-size:12px;font-weight:700;text-transform:uppercase;
   letter-spacing:.16em;opacity:.5;margin-top:4px}
 .getnote{margin-top:18px;padding-top:16px;border-top:1px solid var(--hair-2);
@@ -161,6 +164,30 @@ h2{font-weight:700;font-size:clamp(2rem,5.5vw,3.6rem);line-height:.95;letter-spa
 .saved{margin-top:22px;padding:14px 16px;background:rgba(236,72,153,.14);
   font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#f9a8d4}
 
+/* value rows */
+.bigrow{display:grid;gap:32px;grid-template-columns:1fr}
+@media(min-width:900px){.bigrow{grid-template-columns:1.6fr 1fr;gap:48px}}
+.big{font-size:clamp(1.4rem,3.4vw,2.15rem);font-weight:700;line-height:1.18;letter-spacing:-.025em}
+.big em{font-style:normal}
+.bigp{margin-top:18px;font-size:15.5px;line-height:1.65;opacity:.75;max-width:40em}
+.bigp b{opacity:1}
+.statcol{display:grid;gap:1px;background:var(--hair-2);border:1px solid var(--hair-2);align-content:start}
+.stat{background:var(--paper);padding:20px 22px}
+.stat b{display:block;font-size:clamp(1.8rem,4.6vw,2.6rem);font-weight:700;line-height:1;
+  letter-spacing:-.03em;color:var(--pink);margin-bottom:6px}
+.stat span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;opacity:.55;line-height:1.4;display:block}
+
+/* instructor cards */
+.people{display:grid;gap:1px;background:var(--hair-2);border:1px solid var(--hair-2)}
+@media(min-width:760px){.people{grid-template-columns:1fr 1fr}}
+.person{background:var(--paper);padding:26px 24px}
+.person h3{font-size:clamp(17px,2.2vw,21px);font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.pname{display:block;margin:10px 0 12px;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--pink)}
+.pname i{font-style:normal;color:var(--ink);opacity:.5}
+.person p{font-size:14.5px;line-height:1.65;opacity:.75}
+.person p.tbd{opacity:.35;font-style:italic}
+
 .grid3{display:grid;gap:1px;background:var(--hair-2);border:1px solid var(--hair-2)}
 @media(min-width:720px){.grid3{grid-template-columns:repeat(3,1fr)}}
 .cell{background:var(--paper);padding:28px 24px}
@@ -216,8 +243,8 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
         <span style="flex:1;border-top:1px solid var(--hair)"></span>
       </div>
       <h1 id="h1"></h1>
-      <p class="dates">September 25 &ndash; December 13 &middot; Venice, California</p>
-      <p class="claimline">Whether you're employed, self-employed, or both, this puts you in the top <em class="glow">0.01%</em> of AI in the world.</p>
+      <p class="dates">September 25 &ndash; December 13</p>
+      <p class="claimline">Whether you're employed, self-employed, or both, this puts you in the top <em class="glow">0.01%</em> of leaders in the world.</p>
       <div class="hbtns">
         <button class="btn" id="heroCta">Secure your spot &mdash; $600 &#8599;</button>
         <a class="btn ghost" href="#calendar">See the calendar</a>
@@ -226,7 +253,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
     <div>
       <div class="getbox">
         <span class="micro pinkmicro">What you get</span>
-        <ul class="getlist">
+        <ol class="getlist">
           <li>Benza's AgentOS Bootcamp <span>Level 1 or 2</span></li>
           <li>1-Day Bootcamps <span>Pick two</span>
             <ol class="sublist">
@@ -236,7 +263,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
               <li>Mastering AI Video Creation <i>w/ Adi</i></li>
             </ol></li>
           <li>Weekly mastermind calls <span>Small group, matched by intake</span></li>
-        </ul>
+        </ol>
         <p class="getnote">Gatherings in Venice, California</p>
       </div>
     </div>
@@ -275,8 +302,79 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
 </div>
 
 <div class="wrap">
+<section>
+  <div class="shead"><span class="micro pinkmicro">01</span><h2>Benza's AgentOS Bootcamp</h2></div>
+  <p class="lede">Two full days, Level 1 or Level 2. One weekend is included with tuition, and you can stack more at half price.</p>
+
+  <div class="bigrow">
+    <div class="bigmain">
+      <p class="big">You leave with a working system of agents that Benza values at over <em class="glow">$30,000</em> &mdash; not slides, not a reading list. A Porsche engine, installed.</p>
+      <p class="bigp">The full Agentic OS comes with it, plus a guided virtual install so it's already running before you leave the setup wizard. The bootcamp has been a gamechanger for <b>60+ students</b> so far.</p>
+      <p class="bigp"><b>Benza Maman</b> is the #1 AI instructor on Udemy with over 500,000 students, and has built AI literacy programs for Samsung, Apple, Pepsi and Nike.</p>
+    </div>
+    <div class="statcol">
+      <div class="stat"><b>$30k+</b><span>Value of the agent system you build</span></div>
+      <div class="stat"><b>60+</b><span>Students through the bootcamp</span></div>
+      <div class="stat"><b>500k+</b><span>Benza's students on Udemy</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="micro pinkmicro">02</span><h2>1-Day Bootcamps</h2></div>
+  <p class="lede">Learn from leading voices in the AI world. Four full-day intensives, any level. Two are included, alumni get a third free, and you can add more at $500 each.</p>
+
+  <div class="people">
+    <div class="person">
+      <h3>Vibe Code Your Wildest Dreams</h3>
+      <span class="pname">Dom Coryell &middot; <i>Head of AI Growth, Shopify</i></span>
+      <p>Shows builders how to describe an app out loud and watch it actually ship, no code required. Founded Talkable (YC, 500 Startups) before leading AI growth at Shopify.</p>
+    </div>
+    <div class="person">
+      <h3>Product Management for Non-Technical Founders</h3>
+      <span class="pname">Danielle</span>
+      <p class="tbd">Bio to come.</p>
+    </div>
+    <div class="person">
+      <h3>Build the AI System That Runs Your Life</h3>
+      <span class="pname">Marco Hansell &middot; <i>AI Life Alignment</i></span>
+      <p>Runs live builds on using AI to get your goals, habits and whole life into alignment. Hosts the AI Life Alignment station at the Safari.</p>
+    </div>
+    <div class="person">
+      <h3>Mastering AI Video Creation</h3>
+      <span class="pname">Adi Sideman &middot; <i>Founder, Popcorn</i></span>
+      <p>Founder of Popcorn, bringing deep entrepreneurial and community-building experience to AI video, prompt to finished cut.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="micro pinkmicro">03</span><h2>Weekly mastermind calls</h2></div>
+  <p class="lede">The part that compounds. Every week, all semester.</p>
+  <div class="bigrow">
+    <div class="bigmain">
+      <p class="big">You are <em class="glow">matched</em> to a small group from an intake form, so you're never the only one in the room with your problem.</p>
+      <p class="bigp">Small group format, not a webinar. Everyone in your group is at a comparable level and working on comparable problems, so the hour is spent on your actual build instead of on catching people up.</p>
+      <p class="bigp">Each week carries one theme, and the weekly themes build toward the month's 1-day bootcamp. Miss a week and the next one still lands.</p>
+    </div>
+    <div class="statcol">
+      <div class="stat"><b>Weekly</b><span>Every week of the semester</span></div>
+      <div class="stat"><b>Small</b><span>Group format, not a webinar</span></div>
+      <div class="stat"><b>Matched</b><span>Grouped by intake form</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="micro pinkmicro">Also</span><h2>And everything else</h2></div>
+  <div class="grid3">
+    <div class="cell"><div class="k">&#9733;</div><h3>Safari Fest</h3><p>December 13. An all-day and evening festival to close the semester. Included, not a separate ticket.</p></div>
+    <div class="cell"><div class="k">&#8734;</div><h3>Exclusive gatherings</h3><p>No public tickets. Every gathering this fall is for AI Campus students and their approved guests.</p></div>
+    <div class="cell"><div class="k">&#9633;</div><h3>Venice, California</h3><p>Every in-person gathering happens in Venice. The mastermind calls are remote, so the semester works wherever you are.</p></div>
+  </div>
+</section>
 <section id="build">
-  <div class="shead"><span class="micro pinkmicro">01</span><h2>Build your semester</h2></div>
+  <div class="shead"><span class="micro pinkmicro">04</span><h2>Build your semester</h2></div>
   <p class="lede">Pick what you want. The price moves as you go.</p>
 
   <div class="step">
@@ -320,23 +418,12 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   </div>
 </section>
 
-<section>
-  <div class="shead"><span class="micro pinkmicro">02</span><h2>Every seat includes</h2></div>
-  <p class="lede">Regardless of what you picked above.</p>
-  <div class="grid3">
-    <div class="cell"><div class="k">01</div><h3>Benza's AgentOS Bootcamp</h3><p>Level 1 or Level 2, two full days, plus the full Agentic OS with a guided virtual install so it's running before you leave the setup wizard. It's a Porsche engine. Stack more weekends at half price.</p></div>
-    <div class="cell"><div class="k">02</div><h3>1-Day Bootcamps</h3><p>Two of four, your choice, with the option to add more. Dom, Danielle, Marco and Adi. Alumni get a third free.</p></div>
-    <div class="cell"><div class="k">03</div><h3>Weekly mastermind calls</h3><p>Small group format. You're matched to your group from an intake form, so you're working alongside people at your level on comparable problems.</p></div>
-    <div class="cell"><div class="k">&#9733;</div><h3>Safari Fest</h3><p>December 13. An all-day and evening festival to close the semester. Included, not a separate ticket.</p></div>
-    <div class="cell"><div class="k">&#8734;</div><h3>Exclusive gatherings</h3><p>No public tickets. Every gathering this fall is for AI Campus students and their approved guests.</p></div>
-  </div>
-</section>
 </div>
 
 <div class="creamsec" id="calendar">
   <div class="wrap">
     <section style="border:0">
-      <div class="shead"><span class="micro" style="color:var(--pink)">03</span><h2>The calendar</h2></div>
+      <div class="shead"><span class="micro" style="color:var(--pink)">05</span><h2>The calendar</h2></div>
       <p class="lede">September through December. Mastermind calls weekly, bootcamps every other week.</p>
       <div class="cal" id="cal"></div>
     </section>
