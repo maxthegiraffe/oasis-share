@@ -187,7 +187,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
         <div class="fact"><dt>Runs</dt><dd>Sep 25 &ndash; Dec 13</dd></div>
         <div class="fact"><dt>Weekly</dt><dd>Wednesday afternoons</dd></div>
         <div class="fact"><dt>Sundays</dt><dd>Every other week</dd></div>
-        <div class="fact"><dt>Where</dt><dd>The Kinn + Primal</dd></div>
+        <div class="fact"><dt>Where</dt><dd>Venice, California</dd></div>
         <div class="fact"><dt>Tuition</dt><dd><s style="opacity:.4">$5,000</s> &nbsp;$3,600</dd></div>
         <div class="fact"><dt>Seats</dt><dd>100, then it closes</dd></div>
       </dl>
@@ -202,13 +202,13 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
 
   <div class="step">
     <div class="sn"><b>Step 1</b><h3>Your bootcamp weekend</h3></div>
-    <p class="hint">One included with tuition. Level 1 is the foundation, Level 2 goes deeper. All at The Kinn, taught by Benza.</p>
+    <p class="hint">One included with tuition. Level 1 is the foundation, Level 2 goes deeper. All in Venice, taught by Benza.</p>
     <div class="opts" id="benza"></div>
   </div>
 
   <div class="step">
     <div class="sn"><b>Step 2</b><h3>Your Sunday workshops</h3></div>
-    <p class="hint">Two included. Each additional one is $500. Sundays at Primal, open to any level.</p>
+    <p class="hint">Two included. Each additional one is $500. Sundays in Venice, open to any level.</p>
     <div class="opts" id="sundays"></div>
   </div>
 
@@ -284,19 +284,19 @@ var SUNDAYS=[
   {id:'s5',t:'Session',who:'Max',d:'Date TBA',tba:true}
 ];
 var CAL=[
-  {d:'Sep 25–26',dow:'Fri–Sat',t:'Bootcamp with Benza',s:'The Kinn',lv:1},
+  {d:'Sep 25–26',dow:'Fri–Sat',t:'Bootcamp with Benza',s:'Venice, California',lv:1},
   {d:'Sep 30',dow:'Wed',t:'Mastermind begins',s:'Weekly, Wednesday afternoons'},
-  {d:'Oct 4',dow:'Sun',t:'Vibe Code with Dom',s:'Primal · any level'},
-  {d:'Oct 10–11',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'The Kinn',lv:1},
-  {d:'Oct 18',dow:'Sun',t:'Product Management with Danielle',s:'Primal · any level'},
-  {d:'Oct 24–25',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'The Kinn',lv:1},
-  {d:'Nov 1',dow:'Sun',t:'Recess with Marco',s:'Primal · any level'},
-  {d:'Nov 7–8',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'The Kinn',lv:2},
-  {d:'Nov 15',dow:'Sun',t:'Session with Adi',s:'Primal · any level'},
-  {d:'Nov 21–22',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'The Kinn',lv:2},
+  {d:'Oct 4',dow:'Sun',t:'Vibe Code with Dom',s:'Venice · any level'},
+  {d:'Oct 10–11',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'Venice, California',lv:1},
+  {d:'Oct 18',dow:'Sun',t:'Product Management with Danielle',s:'Venice · any level'},
+  {d:'Oct 24–25',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'Venice, California',lv:1},
+  {d:'Nov 1',dow:'Sun',t:'Recess with Marco',s:'Venice · any level'},
+  {d:'Nov 7–8',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'Venice, California',lv:2},
+  {d:'Nov 15',dow:'Sun',t:'Session with Adi',s:'Venice · any level'},
+  {d:'Nov 21–22',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'Venice, California',lv:2},
   {gw:'Gratitude Week'},
-  {d:'Nov 29',dow:'Sun',t:'Friendsgiving',s:'Primal'},
-  {d:'Dec 5–6',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'The Kinn',lv:2},
+  {d:'Nov 29',dow:'Sun',t:'Friendsgiving',s:'Venice, California'},
+  {d:'Dec 5–6',dow:'Sat–Sun',t:'Bootcamp with Benza',s:'Venice, California',lv:2},
   {d:'Dec 13',dow:'Sun',t:'SAFARI FEST',s:'All day and evening · included',fest:true}
 ];
 
@@ -326,7 +326,7 @@ function renderBenza(){
     return '<button class="opt'+(on?' on':'')+'" data-b="'+b.id+'">'+
       '<span class="mk">'+CHK+'</span>'+
       '<span class="ob"><span class="ol">'+b.d+'</span>'+
-      '<span class="od">'+b.dow+' &middot; The Kinn</span></span>'+
+      '<span class="od">'+b.dow+' &middot; Venice</span></span>'+
       '<span class="chip c-l'+b.lv+'">Level '+b.lv+'</span></button>';
   }).join('');
 }
@@ -339,7 +339,7 @@ function renderSundays(){
     return '<button class="opt'+(on?' on':'')+'" data-s="'+s.id+'">'+
       '<span class="mk">'+CHK+'</span>'+
       '<span class="ob"><span class="ol">'+s.t+' &middot; '+s.who+'</span>'+
-      '<span class="od">'+s.d+(s.tba?'':' &middot; Primal')+'</span></span>'+chip+'</button>';
+      '<span class="od">'+s.d+(s.tba?'':' &middot; Venice')+'</span></span>'+chip+'</button>';
   }).join('');
 }
 function renderCal(){
