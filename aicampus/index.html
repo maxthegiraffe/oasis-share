@@ -42,7 +42,7 @@ header.top{display:flex;align-items:center;justify-content:space-between;padding
 .hero{padding-top:16px;padding-bottom:56px}
 .hgrid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start}
 @media(min-width:1024px){.hgrid{grid-template-columns:7fr 5fr;gap:40px}}
-h1{font-weight:700;line-height:.82;letter-spacing:-.03em;font-size:clamp(3.4rem,11vw,9rem);min-height:2.1em}
+h1{font-weight:700;line-height:.84;letter-spacing:-.035em;font-size:clamp(2.5rem,7.6vw,6.2rem);min-height:2.1em}
 .hsub{margin-top:24px;max-width:32em;font-size:clamp(16px,2vw,19px);line-height:1.6}
 .hsub b{font-weight:700}
 .hbtns{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
@@ -57,6 +57,12 @@ h1{font-weight:700;line-height:.82;letter-spacing:-.03em;font-size:clamp(3.4rem,
 .fact{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--hair-2)}
 .fact dt{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;opacity:.55;flex:0 0 auto}
 .fact dd{font-size:15px;font-weight:600;text-align:right}
+
+/* claim */
+.claim{padding:8px 0 44px}
+.claim p{font-size:clamp(1.5rem,4.4vw,2.9rem);font-weight:700;line-height:1.12;
+  letter-spacing:-.025em;max-width:17em}
+.claim em{font-style:normal}
 
 /* rising price */
 .ladder{border:2px solid var(--ink);padding:26px 24px;margin-top:8px}
@@ -181,11 +187,11 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   <div class="hgrid">
     <div>
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-        <span class="micro pinkmicro">Fall Semester 2026</span>
+        <span class="micro pinkmicro">AI Campus &middot; Fall Semester 2026</span>
         <span style="flex:1;border-top:1px solid var(--hair)"></span>
       </div>
       <h1 id="h1"></h1>
-      <p class="hsub"><b>Become an AI Leader.</b> Learn from experts in the Grateful Giraffe community and build with your head in the clouds, feet on the ground, and a big heart.</p>
+      <p class="hsub">Learn from experts in the Grateful Giraffe community and build with your head in the clouds, feet on the ground, and a big heart.</p>
       <div class="hbtns">
         <button class="btn" id="heroCta">Secure your spot &mdash; $600 &#8599;</button>
         <a class="btn ghost" href="#calendar">See the calendar</a>
@@ -201,6 +207,12 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
         <div class="fact"><dt>Deposit</dt><dd>$600 holds your spot</dd></div>
       </dl>
     </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="claim">
+    <p>Whether you're employed, self-employed, or both, this puts you in the top <em class="glow">0.01%</em> of AI in the world.</p>
   </div>
 </div>
 
@@ -346,17 +358,22 @@ var CHK='<svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.2l3 3 6-6.4" strok
 var $=function(i){return document.getElementById(i)};
 var money=function(n){return '$'+n.toLocaleString('en-US')};
 
-/* headline: "AI" glows, and "US" inside CAMPUS glows — AI ... US */
+/* headline: BECOME AN / AI LEADER. — the "AI" glows pink */
 (function(){
-  var L1=[{c:'A',g:1},{c:'I',g:1}];
-  var L2=['C','A','M','P','U','S','.'].map(function(c,i){return {c:c,g:(i===4||i===5)}});
+  function chars(s,glowFrom,glowTo){
+    return s.split('').map(function(c,i){
+      return {c:(c===' '?'&nbsp;':c), g:(glowFrom!=null && i>=glowFrom && i<=glowTo)};
+    });
+  }
+  var L1=chars('BECOME AN');
+  var L2=chars('AI LEADER.',0,1);      // glow the A and the I
   var h=$('h1'), out='', i=0, seq=L1.concat([{br:1}]).concat(L2);
   function step(){
     if(i>=seq.length){h.innerHTML=out+'<span class="caret">&nbsp;</span>';return;}
     var x=seq[i++];
     out += x.br ? '<br>' : (x.g?'<span class="glow">':'<span>')+x.c+'</span>';
     h.innerHTML=out+'<span class="caret">&nbsp;</span>';
-    setTimeout(step, x.br?300:55);
+    setTimeout(step, x.br?280:42);
   }
   setTimeout(step,200);
 })();
