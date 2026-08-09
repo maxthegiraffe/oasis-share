@@ -63,6 +63,13 @@ h1{font-weight:700;line-height:.84;letter-spacing:-.035em;font-size:clamp(2.5rem
   letter-spacing:.16em;opacity:.5;margin-top:4px}
 .getnote{margin-top:18px;padding-top:16px;border-top:1px solid var(--hair-2);
   font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;opacity:.5}
+.sublist{list-style:none;margin:10px 0 0;counter-reset:sub}
+.sublist li{display:flex;gap:9px;padding:6px 0;border:0;font-size:13.5px;font-weight:500;
+  line-height:1.35;letter-spacing:0;opacity:.75}
+.sublist li:before{counter-increment:sub;content:counter(sub);color:var(--pink);
+  font-weight:700;font-size:11px;flex:0 0 auto;padding-top:2px}
+.sublist li i{font-style:normal;opacity:.6;white-space:nowrap}
+.ol em{font-style:normal;font-weight:500;opacity:.6;white-space:nowrap}
 
 /* claim line in hero */
 .claimline{margin-top:18px;max-width:24em;font-size:clamp(1.05rem,2.2vw,1.4rem);
@@ -220,9 +227,15 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
       <div class="getbox">
         <span class="micro pinkmicro">What you get</span>
         <ul class="getlist">
-          <li>Weekly mastermind calls</li>
           <li>Benza's AgentOS Bootcamp <span>Level 1 or 2</span></li>
-          <li>Two 1-day bootcamps</li>
+          <li>1-Day Bootcamps <span>Pick two</span>
+            <ol class="sublist">
+              <li>Vibe Code Your Wildest Dreams <i>w/ Dom</i></li>
+              <li>Product Management for Non-Technical Founders <i>w/ Danielle</i></li>
+              <li>Build the AI System That Runs Your Life <i>w/ Marco</i></li>
+              <li>Mastering AI Video Creation <i>w/ Adi</i></li>
+            </ol></li>
+          <li>Weekly mastermind calls <span>Small group, matched by intake</span></li>
         </ul>
         <p class="getnote">Gatherings in Venice, California</p>
       </div>
@@ -273,7 +286,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   </div>
 
   <div class="step">
-    <div class="sn"><b>Step 2</b><h3>Your 1-day bootcamps</h3></div>
+    <div class="sn"><b>Step 2</b><h3>1-Day Bootcamps</h3></div>
     <p class="hint">Two included, and you can add two more at $500 each. Alumni get a third free. All in Venice, open to any level.</p>
     <div class="opts" id="sundays"></div>
   </div>
@@ -311,10 +324,9 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   <div class="shead"><span class="micro pinkmicro">02</span><h2>Every seat includes</h2></div>
   <p class="lede">Regardless of what you picked above.</p>
   <div class="grid3">
-    <div class="cell"><div class="k">OS</div><h3>Benza's Agentic OS</h3><p>The full operating system, with a guided virtual install so it's running before you leave the setup wizard. It's a Porsche engine.</p></div>
-    <div class="cell"><div class="k">&#8635;</div><h3>Weekly mastermind calls</h3><p>Small group format. You're matched to your group from an intake form, so you're working alongside people at your level on comparable problems.</p></div>
-    <div class="cell"><div class="k">01</div><h3>Benza's AgentOS Bootcamp</h3><p>Level 1 and Level 2. One included, and you can stack more at half price.</p></div>
-    <div class="cell"><div class="k">02</div><h3>1-day bootcamps</h3><p>Two of four, your choice, with the option to add more. Dom, Danielle, Marco and Adi. Alumni get a third free.</p></div>
+    <div class="cell"><div class="k">01</div><h3>Benza's AgentOS Bootcamp</h3><p>Level 1 or Level 2, two full days, plus the full Agentic OS with a guided virtual install so it's running before you leave the setup wizard. It's a Porsche engine. Stack more weekends at half price.</p></div>
+    <div class="cell"><div class="k">02</div><h3>1-Day Bootcamps</h3><p>Two of four, your choice, with the option to add more. Dom, Danielle, Marco and Adi. Alumni get a third free.</p></div>
+    <div class="cell"><div class="k">03</div><h3>Weekly mastermind calls</h3><p>Small group format. You're matched to your group from an intake form, so you're working alongside people at your level on comparable problems.</p></div>
     <div class="cell"><div class="k">&#9733;</div><h3>Safari Fest</h3><p>December 13. An all-day and evening festival to close the semester. Included, not a separate ticket.</p></div>
     <div class="cell"><div class="k">&#8734;</div><h3>Exclusive gatherings</h3><p>No public tickets. Every gathering this fall is for AI Campus students and their approved guests.</p></div>
   </div>
@@ -361,21 +373,21 @@ var BENZA=[
   {id:'b6',d:'Dec 5–6',dow:'Sat–Sun',lv:2}
 ];
 var DAYS=[
-  {id:'s1',t:'Vibe Code',who:'Dom',d:'Oct 4'},
-  {id:'s2',t:'Product Management',who:'Danielle',d:'Oct 18'},
-  {id:'s3',t:'Recess',who:'Marco',d:'Nov 1'},
-  {id:'s4',t:'1-Day Bootcamp',who:'Adi',d:'Nov 15'}
+  {id:'s1',t:'Vibe Code Your Wildest Dreams',who:'Dom',d:'Oct 4'},
+  {id:'s2',t:'Product Management for Non-Technical Founders',who:'Danielle',d:'Oct 18'},
+  {id:'s3',t:'Build the AI System That Runs Your Life',who:'Marco',d:'Nov 1'},
+  {id:'s4',t:'Mastering AI Video Creation',who:'Adi',d:'Nov 15'}
 ];
 var CAL=[
   {d:'Sep 25–26',dow:'Fri–Sat',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
   {d:'Sep 30',dow:'Wed',t:'Mastermind calls begin',s:'Weekly · small group'},
-  {d:'Oct 4',dow:'Sun',t:'Vibe Code with Dom',s:'1-day bootcamp · any level'},
+  {d:'Oct 4',dow:'Sun',t:'Vibe Code Your Wildest Dreams w/ Dom',s:'1-day bootcamp · any level'},
   {d:'Oct 10–11',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
-  {d:'Oct 18',dow:'Sun',t:'Product Management with Danielle',s:'1-day bootcamp · any level'},
+  {d:'Oct 18',dow:'Sun',t:'Product Management for Non-Technical Founders w/ Danielle',s:'1-day bootcamp · any level'},
   {d:'Oct 24–25',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
-  {d:'Nov 1',dow:'Sun',t:'Recess with Marco',s:'1-day bootcamp · any level'},
+  {d:'Nov 1',dow:'Sun',t:'Build the AI System That Runs Your Life w/ Marco',s:'1-day bootcamp · any level'},
   {d:'Nov 7–8',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:2},
-  {d:'Nov 15',dow:'Sun',t:'1-Day Bootcamp with Adi',s:'1-day bootcamp · any level'},
+  {d:'Nov 15',dow:'Sun',t:'Mastering AI Video Creation w/ Adi',s:'1-day bootcamp · any level'},
   {d:'Nov 21–22',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:2},
   {gw:'Gratitude Week'},
   {d:'Nov 29',dow:'Sun',t:'Friendsgiving',s:'Venice, California'},
@@ -429,7 +441,7 @@ function renderDays(){
                   : '';
     return '<button class="opt'+(on?' on':'')+'" data-s="'+s.id+'">'+
       '<span class="mk">'+CHK+'</span>'+
-      '<span class="ob"><span class="ol">'+s.t+' &middot; '+s.who+'</span>'+
+      '<span class="ob"><span class="ol">'+s.t+' <em>w/ '+s.who+'</em></span>'+
       '<span class="od">'+s.d+' &middot; 1-day &middot; any level</span></span>'+chip+'</button>';
   }).join('');
 }
