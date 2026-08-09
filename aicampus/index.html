@@ -216,6 +216,19 @@ h2{font-weight:700;font-size:clamp(2rem,5.5vw,3.6rem);line-height:.95;letter-spa
 .gw{padding:22px 0;text-align:center;font-size:12px;font-weight:700;
   text-transform:uppercase;letter-spacing:.32em;color:var(--pink);border-bottom:1px solid rgba(38,33,27,.1)}
 
+/* locked-until-paid */
+.lockbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(236,72,153,.08);
+  border-left:4px solid var(--pink);padding:16px 18px;margin-bottom:30px;font-size:14.5px;font-weight:600}
+.lockico{color:var(--pink);font-size:10px}
+.lockcta{margin-left:auto;background:var(--pink);color:#fff;border:0;font-family:inherit;
+  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+  padding:11px 18px;cursor:pointer;transition:.15s}
+.lockcta:hover{background:var(--ink)}
+.locked .opts{opacity:.55}
+.locked .opt{cursor:pointer}
+.locked .opt:hover{background:rgba(236,72,153,.06)}
+.locked .mk{border-color:rgba(15,15,15,.3)}
+
 /* deposit modal */
 .modal{position:fixed;inset:0;background:rgba(15,15,15,.55);z-index:100;
   display:none;align-items:center;justify-content:center;padding:20px}
@@ -388,7 +401,13 @@ footer{padding:52px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
 
 <section id="build">
   <div class="shead"><h2>Build your semester</h2></div>
-  <p class="lede">Pick what you want. The price moves as you go.</p>
+  <p class="lede" id="buildLede">Put down your deposit, then choose your sessions. They're held for you as soon as it's in.</p>
+
+  <div class="lockbar" id="lockBar">
+    <span class="lockico">&#9679;</span>
+    <span>Sessions unlock as soon as your deposit is in.</span>
+    <button class="lockcta" id="lockCta">Put down your deposit</button>
+  </div>
 
   <div class="step">
     <div class="sn"><b>Step 1</b><h3>Your AgentOS Bootcamp</h3></div>
@@ -468,7 +487,7 @@ footer{padding:52px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
     <button class="mx" data-close aria-label="Close">&times;</button>
     <span class="micro pinkmicro">Secure your spot</span>
     <h3 id="mTitle">Put down your deposit to secure your spots</h3>
-    <p class="mp">Your selections are held once the deposit is in. Everything else can be sorted later.</p>
+    <p class="mp">Put your deposit down first, then pick your sessions. Here's what you'll choose:</p>
     <div class="mpicks" id="mPicks"></div>
     <div class="mdue">
       <span class="micro">Due today</span>
@@ -532,7 +551,14 @@ var CAL=[
   {d:'Dec 13',dow:'Sun',t:'SAFARI FEST',s:'All day and evening · included',fest:true}
 ];
 
-var state={benza:null,days:[],mm:null,alum:false,plan:'sunday'}; // nothing pre-selected
+var PAID_KEY='aicampus_paid';
+function isPaid(){
+  try{
+    if(/[?&]paid=1/.test(location.search)){ localStorage.setItem(PAID_KEY,'1'); }
+    return localStorage.getItem(PAID_KEY)==='1';
+  }catch(e){ return /[?&]paid=1/.test(location.search); }
+}
+var state={benza:null,days:[],mm:null,alum:false,plan:'sunday',paid:isPaid()};
 var CHK='<svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.2l3 3 6-6.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 var $=function(i){return document.getElementById(i)};
 var money=function(n){return '$'+n.toLocaleString('en-US')};
@@ -661,23 +687,23 @@ function render(){
   $('barNote').textContent=barSub;
   if($('planSel').value!==state.plan) $('planSel').value=state.plan;
   $('alumSw').className='tog'+(state.alum?' on':'');
+  var buildSec=$('build');
+  if(buildSec){
+    buildSec.classList.toggle('locked', !state.paid);
+    var lb=$('lockBar'); if(lb) lb.style.display = state.paid ? 'none' : 'flex';
+    var bl=$('buildLede');
+    if(bl) bl.textContent = state.paid
+      ? 'Your deposit is in. Pick your sessions below, they are held for you.'
+      : "Put down your deposit, then choose your sessions. They're held for you as soon as it's in.";
+  }
 }
 
 function openModal(){
-  var c=calc(), rows=[];
-  var b=BENZA.filter(function(x){return x.id===state.benza})[0];
-  if(b) rows.push(['Bootcamp','<b>'+b.d+'</b> <span>Level '+b.lv+'</span>']);
-  state.days.forEach(function(id){
-    var d=DAYS.filter(function(x){return x.id===id})[0];
-    rows.push(['1-Day','<b>'+d.who+'</b> <span>'+d.d+'</span>']);
-  });
-  if(state.mm){
-    var m=MM.filter(function(x){return x.id===state.mm})[0];
-    rows.push(['Mastermind','<b>'+m.t+'</b>']);
-  }
-  $('mPicks').innerHTML = rows.length
-    ? rows.map(function(r){return '<div class="mpick"><i>'+r[0]+'</i><span>'+r[1]+'</span></div>';}).join('')
-    : '';
+  var c=calc();
+  $('mPicks').innerHTML=
+    '<div class="mpick"><i>1</i><span>Your <b>AgentOS Bootcamp</b> weekend</span></div>'+
+    '<div class="mpick"><i>2</i><span>Two <b>1-Day Bootcamps</b></span></div>'+
+    '<div class="mpick"><i>3</i><span>Your <b>mastermind night</b></span></div>';
   $('mDep').textContent = state.plan==='full' ? money(c.total) : money(c.dep);
   $('mSub').textContent = state.plan==='full'
     ? 'Paid in full, rate locked'
@@ -696,20 +722,22 @@ document.addEventListener('click',function(e){
   var acc=e.target.closest('.acchead');
   if(acc){ acc.parentNode.classList.toggle('open'); return; }
 
-  var b=e.target.closest('[data-b]');
-  if(b){state.benza=b.getAttribute('data-b');render();openModal();return;}
-
-  var s=e.target.closest('[data-s]');
-  if(s){var id=s.getAttribute('data-s'),i=state.days.indexOf(id);
-    if(i>-1)state.days.splice(i,1); else state.days.push(id);
-    render();if(i===-1)openModal();return;}
-
-  var m=e.target.closest('[data-m]');
-  if(m){state.mm=m.getAttribute('data-m');render();openModal();return;}
+  var pick=e.target.closest('[data-b],[data-s],[data-m]');
+  if(pick){
+    if(!state.paid){ openModal(); return; }      // locked until the deposit is in
+    if(pick.hasAttribute('data-b')){ state.benza=pick.getAttribute('data-b'); }
+    else if(pick.hasAttribute('data-m')){ state.mm=pick.getAttribute('data-m'); }
+    else {
+      var id=pick.getAttribute('data-s'), i=state.days.indexOf(id);
+      if(i>-1)state.days.splice(i,1); else state.days.push(id);
+    }
+    render(); return;
+  }
 
   if(e.target.closest('[data-close]')||e.target.classList.contains('modal')){closeModal();return;}
 
   if(e.target.closest('#alumSw')){state.alum=!state.alum;render();return;}
+  if(e.target.closest('#lockCta')){openModal();return;}
   if(e.target.closest('#heroCta')||e.target.closest('#cta2')){
     $('build').scrollIntoView({behavior:'smooth'});return;}
 
