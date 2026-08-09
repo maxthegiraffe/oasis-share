@@ -64,23 +64,35 @@ h1{font-weight:700;line-height:.84;letter-spacing:-.035em;font-size:clamp(2.5rem
 .getnote{margin-top:18px;padding-top:16px;border-top:1px solid var(--hair-2);
   font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;opacity:.5}
 
-/* claim */
-.claim{padding:8px 0 44px}
-.claim p{font-size:clamp(1.5rem,4.4vw,2.9rem);font-weight:700;line-height:1.12;
-  letter-spacing:-.025em;max-width:17em}
-.claim em{font-style:normal}
+/* claim line in hero */
+.claimline{margin-top:18px;max-width:24em;font-size:clamp(1.05rem,2.2vw,1.4rem);
+  font-weight:700;line-height:1.3;letter-spacing:-.015em}
+.claimline em{font-style:normal}
 
-/* rising price */
+/* group photo — shown whole, never cropped */
+.shot{max-width:1180px;margin:8px auto 48px;padding:0 24px}
+@media(min-width:640px){.shot{padding:0 40px}}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{margin-top:12px;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.2em;opacity:.45}
+
+/* price */
 .ladder{border:2px solid var(--ink);padding:26px 24px;margin-top:8px}
 .ladhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-.ladnow b{display:block;font-size:clamp(2.6rem,7vw,3.8rem);font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--pink)}
-.ladend{text-align:right}
-.ladend b{display:block;font-size:clamp(1.5rem,4vw,2rem);font-weight:700;line-height:1;letter-spacing:-.02em;opacity:.35}
-.track{height:10px;background:var(--hair-2);margin:22px 0 12px;position:relative}
-.track i{position:absolute;left:0;top:0;bottom:0;background:var(--pink)}
-.tracklab{display:flex;justify-content:space-between;font-size:11px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.16em;opacity:.5}
-.ladnote{margin-top:16px;font-size:14.5px;line-height:1.6;opacity:.8}
+.ladnow{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:8px}
+.ladnow s{font-size:clamp(1.3rem,3.4vw,1.9rem);font-weight:700;opacity:.35;text-decoration-thickness:3px}
+.ladnow b{font-size:clamp(2.8rem,8vw,4.4rem);font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--pink)}
+.tiers{display:grid;gap:1px;background:var(--hair-2);border:1px solid var(--hair-2);margin-top:24px}
+@media(min-width:560px){.tiers{grid-template-columns:1fr 1fr}}
+.tier{background:var(--paper);padding:18px 20px}
+.tier.hot{background:var(--ink);color:var(--paper)}
+.tier .micro{display:block;opacity:.55;font-size:11px}
+.tier.hot .micro{color:var(--pink);opacity:1}
+.tier b{display:block;font-size:clamp(1.7rem,4.6vw,2.3rem);font-weight:700;letter-spacing:-.025em;margin:6px 0 3px}
+.tier .tleft{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;opacity:.5}
+.tier.hot .tleft{color:var(--pink);opacity:1}
+.tier.spent{opacity:.4}
+.ladnote{margin-top:20px;font-size:14.5px;line-height:1.6;opacity:.8}
 .ladnote b{color:var(--pink)}
 
 section{padding:60px 0;border-top:1px solid var(--hair)}
@@ -197,8 +209,8 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
         <span style="flex:1;border-top:1px solid var(--hair)"></span>
       </div>
       <h1 id="h1"></h1>
-      <p class="dates">September 25 &ndash; December 13</p>
-      <p class="hsub">Welcome to a once-in-a-lifetime opportunity to be in a community at the bleeding edge of AI tools and best practices.</p>
+      <p class="dates">September 25 &ndash; December 13 &middot; Venice, California</p>
+      <p class="claimline">Whether you're employed, self-employed, or both, this puts you in the top <em class="glow">0.01%</em> of AI in the world.</p>
       <div class="hbtns">
         <button class="btn" id="heroCta">Secure your spot &mdash; $600 &#8599;</button>
         <a class="btn ghost" href="#calendar">See the calendar</a>
@@ -209,7 +221,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
         <span class="micro pinkmicro">What you get</span>
         <ul class="getlist">
           <li>Weekly mastermind calls</li>
-          <li>Benza's 2-day Bootcamp <span>Level 1 or 2</span></li>
+          <li>Benza's AgentOS Bootcamp <span>Level 1 or 2</span></li>
           <li>Two 1-day bootcamps</li>
         </ul>
         <p class="getnote">Gatherings in Venice, California</p>
@@ -218,27 +230,34 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   </div>
 </div>
 
-<div class="wrap">
-  <div class="claim">
-    <p>Whether you're employed, self-employed, or both, this puts you in the top <em class="glow">0.01%</em> of AI in the world.</p>
-  </div>
-</div>
+<figure class="shot">
+  <img src="https://media.base44.com/images/public/69882c256690d6f8c4ce18bf/cee18e770_image.png"
+       alt="The AI Bootcamp community" loading="lazy" width="1024" height="682">
+  <figcaption>The AI Bootcamp community</figcaption>
+</figure>
 
 <div class="wrap" style="padding-bottom:8px">
   <div class="ladder">
+    <span class="micro pinkmicro">AI Safari&ndash;only price</span>
     <div class="ladhead">
       <div class="ladnow">
-        <span class="micro pinkmicro">Tuition right now</span>
-        <b id="ladNow">$3,600</b>
-      </div>
-      <div class="ladend">
-        <span class="micro" style="opacity:.5">At seat 100</span>
-        <b>$5,000</b>
+        <s id="ladList">$5,000</s>
+        <b id="ladNow">$3,000</b>
       </div>
     </div>
-    <div class="track"><i id="ladBar" style="width:2%"></i></div>
-    <div class="tracklab"><span id="ladSeat">Seat 1 of 100</span><span>100 seats</span></div>
-    <p class="ladnote">Tuition rises with <b>every additional student</b> &mdash; about $14 a seat, from $3,600 up to $5,000 when the room is full. Your $600 deposit locks the price on the day you put it down.</p>
+    <div class="tiers">
+      <div class="tier hot" id="tierEarly">
+        <span class="micro">First 10 seats</span>
+        <b>$3,000</b>
+        <span class="tleft" id="earlyLeft">10 left</span>
+      </div>
+      <div class="tier" id="tierStd">
+        <span class="micro">Everyone else</span>
+        <b>$3,600</b>
+        <span class="tleft">Safari price</span>
+      </div>
+    </div>
+    <p class="ladnote">Tuition is <b>$5,000</b> once the semester opens. Everyone at the AI Safari gets it for <b>$3,600</b>, and the first 10 people to put a deposit down get it for <b>$3,000</b>. Your $600 deposit locks whichever price you see.</p>
   </div>
 </div>
 
@@ -248,7 +267,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   <p class="lede">Pick what you want. The price moves as you go.</p>
 
   <div class="step">
-    <div class="sn"><b>Step 1</b><h3>Benza's 2-day bootcamp</h3></div>
+    <div class="sn"><b>Step 1</b><h3>Benza's AgentOS Bootcamp</h3></div>
     <p class="hint">One included with tuition. Level 1 is the foundation, Level 2 goes deeper. Two full days in Venice, taught by Benza.</p>
     <div class="opts" id="benza"></div>
   </div>
@@ -267,7 +286,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   </div>
 
   <div class="receipt">
-    <div class="rl"><span>Fall tuition <span class="m">today's price</span></span><span id="rBase">$3,600</span></div>
+    <div class="rl"><span>Fall tuition <span class="m" id="rBaseLbl">first-10 price</span></span><span id="rBase">$3,600</span></div>
     <div class="rl" id="rAlumRow" style="display:none"><span>Alumni &amp; gifted credit</span><span id="rAlum">&minus;$360</span></div>
     <div class="rl" id="rExtraRow" style="display:none"><span>Extra bootcamps <span class="m" id="rExtraN"></span></span><span id="rExtra">$0</span></div>
     <div class="rl tot"><span>Your total</span><span class="tv" id="rTotal">$3,600</span></div>
@@ -294,7 +313,7 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
   <div class="grid3">
     <div class="cell"><div class="k">OS</div><h3>Benza's Agentic OS</h3><p>The full operating system, with a guided virtual install so it's running before you leave the setup wizard. It's a Porsche engine.</p></div>
     <div class="cell"><div class="k">&#8635;</div><h3>Weekly mastermind calls</h3><p>Small group format. You're matched to your group from an intake form, so you're working alongside people at your level on comparable problems.</p></div>
-    <div class="cell"><div class="k">01</div><h3>Benza's bootcamp</h3><p>Level 1 and Level 2. One weekend included, and you can stack more at half price.</p></div>
+    <div class="cell"><div class="k">01</div><h3>Benza's AgentOS Bootcamp</h3><p>Level 1 and Level 2. One included, and you can stack more at half price.</p></div>
     <div class="cell"><div class="k">02</div><h3>1-day bootcamps</h3><p>Two of four, your choice, with the option to add more. Dom, Danielle, Marco and Adi. Alumni get a third free.</p></div>
     <div class="cell"><div class="k">&#9733;</div><h3>Safari Fest</h3><p>December 13. An all-day and evening festival to close the semester. Included, not a separate ticket.</p></div>
     <div class="cell"><div class="k">&#8734;</div><h3>Exclusive gatherings</h3><p>No public tickets. Every gathering this fall is for AI Campus students and their approved guests.</p></div>
@@ -323,12 +342,15 @@ footer{padding:56px 0;text-align:center;font-size:13px;opacity:.55;border-top:1p
 
 <script>
 /* ---- pricing constants: change these in one place ---- */
-var START=3600, END=5000, CAP=100;
-var ENROLLED=0;                 // seats already taken — raises tuition
+var LIST=5000;                  // struck-through full price
+var SAFARI=3600;                // AI Safari-only price, everyone
+var EARLY=3000, EARLY_SEATS=10; // first 10 deposits
+var EARLY_CLAIMED=0;            // <-- bump this as early seats sell
 var ALUM_CREDIT=360, EXTRA=500, DEPOSIT=600;
 var INCLUDED=2, ALUM_BONUS=1;   // alumni get a 3rd 1-day bootcamp free
 
-function tuition(){ return START + Math.round((END-START)/CAP*Math.min(ENROLLED,CAP)); }
+function earlyLeft(){ return Math.max(0, EARLY_SEATS-EARLY_CLAIMED); }
+function tuition(){ return earlyLeft()>0 ? EARLY : SAFARI; }
 
 var BENZA=[
   {id:'b1',d:'Sep 25–26',dow:'Fri–Sat',lv:1},
@@ -345,19 +367,19 @@ var DAYS=[
   {id:'s4',t:'1-Day Bootcamp',who:'Adi',d:'Nov 15'}
 ];
 var CAL=[
-  {d:'Sep 25–26',dow:'Fri–Sat',t:'Benza bootcamp',s:'Venice, California',lv:1},
+  {d:'Sep 25–26',dow:'Fri–Sat',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
   {d:'Sep 30',dow:'Wed',t:'Mastermind calls begin',s:'Weekly · small group'},
   {d:'Oct 4',dow:'Sun',t:'Vibe Code with Dom',s:'1-day bootcamp · any level'},
-  {d:'Oct 10–11',dow:'Sat–Sun',t:'Benza bootcamp',s:'Venice, California',lv:1},
+  {d:'Oct 10–11',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
   {d:'Oct 18',dow:'Sun',t:'Product Management with Danielle',s:'1-day bootcamp · any level'},
-  {d:'Oct 24–25',dow:'Sat–Sun',t:'Benza bootcamp',s:'Venice, California',lv:1},
+  {d:'Oct 24–25',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:1},
   {d:'Nov 1',dow:'Sun',t:'Recess with Marco',s:'1-day bootcamp · any level'},
-  {d:'Nov 7–8',dow:'Sat–Sun',t:'Benza bootcamp',s:'Venice, California',lv:2},
+  {d:'Nov 7–8',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:2},
   {d:'Nov 15',dow:'Sun',t:'1-Day Bootcamp with Adi',s:'1-day bootcamp · any level'},
-  {d:'Nov 21–22',dow:'Sat–Sun',t:'Benza bootcamp',s:'Venice, California',lv:2},
+  {d:'Nov 21–22',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:2},
   {gw:'Gratitude Week'},
   {d:'Nov 29',dow:'Sun',t:'Friendsgiving',s:'Venice, California'},
-  {d:'Dec 5–6',dow:'Sat–Sun',t:'Benza bootcamp',s:'Venice, California',lv:2},
+  {d:'Dec 5–6',dow:'Sat–Sun',t:'AgentOS Bootcamp',s:'Venice, California',lv:2},
   {d:'Dec 13',dow:'Sun',t:'SAFARI FEST',s:'All day and evening · included',fest:true}
 ];
 
@@ -421,11 +443,11 @@ function renderCal(){
   }).join('');
 }
 function renderLadder(){
+  var n=earlyLeft();
   $('ladNow').textContent=money(tuition());
-  var pct=Math.max(2,Math.min(100,ENROLLED/CAP*100));
-  $('ladBar').style.width=pct+'%';
-  $('ladSeat').textContent = ENROLLED>=CAP
-    ? 'Room is full' : 'Seat '+(ENROLLED+1)+' of '+CAP;
+  $('earlyLeft').textContent = n>0 ? n+' left' : 'Gone';
+  $('tierEarly').className = 'tier'+(n>0?' hot':' spent');
+  $('tierStd').className   = 'tier'+(n>0?'':' hot');
 }
 function calc(){
   var base=tuition();
@@ -449,7 +471,7 @@ function render(){
   $('rBal').textContent=money(c.bal);
   $('p3').textContent=money(Math.ceil(c.bal/3));
   $('p6').textContent=money(Math.ceil(c.bal/6));
-  $('saved').textContent='You save '+money(END-(c.base-c.alum))+' off the '+money(END)+' full-room price';
+  $('saved').textContent='You save '+money(LIST-(c.base-c.alum))+' off the '+money(LIST)+' list price';
   $('barPrice').textContent=money(c.dep);
   $('barNote').textContent='deposit · '+money(c.total)+' total';
   $('alumSw').className='tog'+(state.alum?' on':'');
@@ -467,7 +489,7 @@ document.addEventListener('click',function(e){
     var c=calc(), b2=BENZA.filter(function(x){return x.id===state.benza})[0];
     var names=state.days.map(function(id){
       return DAYS.filter(function(x){return x.id===id})[0].who;}).join(', ');
-    alert('Your semester\n\nBenza bootcamp: '+b2.d+' (Level '+b2.lv+')\n1-day bootcamps: '+(names||'none selected')+
+    alert('Your semester\n\nAgentOS Bootcamp: '+b2.d+' (Level '+b2.lv+')\n1-day bootcamps: '+(names||'none selected')+
       (state.alum?'\nAlumni bonus applied':'')+'\n\nTotal: '+money(c.total)+
       '\nDue today: '+money(c.dep)+' deposit\n\nCheckout is not wired yet.');
   }
