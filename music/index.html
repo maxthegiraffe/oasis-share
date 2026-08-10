@@ -77,6 +77,37 @@
     margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
     color:var(--muted);font-size:13px;line-height:1.7;
   }
+  .mix{
+    background:linear-gradient(160deg,#2a1f18,#1a1613);
+    border:1px solid #4a3a2e;border-radius:18px;padding:22px 20px;margin:0 0 34px;
+  }
+  .mix-eyebrow{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);
+    margin-bottom:8px;
+  }
+  .mix-title{
+    font-family:'Libre Bodoni',Georgia,serif;font-weight:400;font-style:italic;
+    font-size:clamp(24px,6vw,32px);margin:0 0 10px;color:var(--ink);
+  }
+  .mix-note{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 16px}
+  .mix-list{
+    list-style:none;counter-reset:m;padding:0;margin:18px 0 0;
+    border-top:1px solid var(--line);
+  }
+  .mix-list li{
+    counter-increment:m;display:flex;align-items:baseline;gap:10px;
+    padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted);
+  }
+  .mix-list li::before{
+    content:counter(m);font-variant-numeric:tabular-nums;color:#6b5d53;
+    font-size:12px;min-width:16px;
+  }
+  .mix-list li span{margin-left:auto;font-variant-numeric:tabular-nums;font-size:13px}
+  .mix-list li.peak{color:var(--accent2)}
+  .mix-list li.peak::after{
+    content:'peak';font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    border:1px solid #5c4620;border-radius:999px;padding:2px 7px;margin-left:10px;
+  }
   @media (max-width:520px){ .wrap{padding:20px 16px 64px} }
 </style>
 </head>
@@ -88,6 +119,23 @@
   <h1>Daily <em>Music</em></h1>
   <p class="lede">Two rounds today. Four songs each, two takes apiece, sixteen tracks in total. The starred take is my pick. Nothing here has been heard by anyone else.</p>
 </header>
+
+<section class="mix">
+  <div class="mix-eyebrow">The mix · 27:12</div>
+  <h2 class="mix-title">Slow, then loud, then slow</h2>
+  <p class="mix-note">All eight first takes as one continuous arc. Opens on solo piano at its quietest, climbs across five tracks, peaks on the klezmer house, then comes down through gospel to a morning guitar. Crossfaded, loudness-matched, no gaps.</p>
+  <audio controls preload="none" src="daily-mix-2026-08-06.mp3"></audio>
+  <ol class="mix-list">
+    <li>Paper Thread <span>2:45</span></li>
+    <li>Slow Glass Room <span>4:59</span></li>
+    <li>Ner Shacharit <span>3:29</span></li>
+    <li>Addis Dusk Drift <span>3:30</span></li>
+    <li>Clouds And Dirt <span>3:05</span></li>
+    <li class="peak">Shuk After Midnight <span>2:38</span></li>
+    <li>Showed Up <span>4:25</span></li>
+    <li>Boker Tov, תודה <span>3:08</span></li>
+  </ol>
+</section>
 
 <div class="round"><span class="round-label">Round 2 · newest</span><span class="round-rule"></span></div>
 
@@ -198,7 +246,7 @@
 </section>
 
 <footer>
-  16 takes across 2 rounds · 80 Suno credits · 2,800 remaining this cycle.<br>
+  The mix is 128k for streaming; the 256k master lives on your Mac.<br>16 takes across 2 rounds · 80 Suno credits · 2,800 remaining this cycle.<br>
   Hearts are saved on this device and tune tomorrow's prompts.<br>
   Every MP3 is archived locally at <code>~/.claude/tools/suno-daily/library/</code>.
 </footer>
