@@ -432,6 +432,10 @@ var SEG=[["Founder", 45.5, "Max Marine holds 5,000,000 shares. Sole director and
 function seg(i){var d=SEG[i];
  document.getElementById('segbox').innerHTML='<b>'+d[0]+' &middot; '+d[1]+'%</b> '+d[2];
  document.querySelectorAll('.cap .row').forEach(function(r,j){r.classList.toggle('sel',j===i)});}
+function closev(f){
+ var v=f.querySelector('video'); if(v){try{v.pause()}catch(e){}}
+ if(f._hls){try{f._hls.destroy()}catch(e){} f._hls=null;}
+ f.classList.remove('on'); f.innerHTML=f.dataset.snap;}
 function playv(f){
  if(f.classList.contains('on')){ // second tap toggles sound
   var v=f.querySelector('video'); if(v){v.muted=!v.muted;
