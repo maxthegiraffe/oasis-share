@@ -481,4 +481,39 @@ function upd(){var t=+document.getElementById('rTicket').value,r=+document.getEl
   var im=t.querySelectorAll('img'); if(im.length<2)return; var n=0;
   setTimeout(function(){setInterval(function(){im[n].classList.remove('on');n=(n+1)%im.length;im[n].classList.add('on');},4200);},i*700);});
  mile('2026');seg(2);dd(0,0);blkT=setInterval(function(){var q=ddQ+1,s2=ddS;if(q>=DD[s2][1].length){q=0;s2=(s2+1)%DD.length;}dd(s2,q);},7000);})();
+</script><script>
+(function(){
+ var svg=document.querySelector('svg[aria-label*="Top price"]');
+ if(!svg)return;
+ var DUR=4200;
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var polys=[].slice.call(svg.querySelectorAll('polyline'));
+ var dots=[].slice.call(svg.querySelectorAll('circle')).filter(function(c){return !c.closest('.yrb')});
+ var yrs=[].slice.call(svg.querySelectorAll('.yrb'));
+ var ends=[].slice.call(svg.querySelectorAll('text')).filter(function(t){return +t.getAttribute('x')>706});
+ function prep(){
+  polys.forEach(function(p){var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;});
+  dots.concat(ends).forEach(function(e){e.style.opacity=0;e.style.transition='opacity .45s ease'});
+  yrs.forEach(function(g){g.style.opacity=0;g.style.transition='opacity .55s ease, transform .55s ease';g.style.transform='translateY(10px)'});
+ }
+ function run(){
+  polys.forEach(function(p){p.style.transition='stroke-dashoffset '+DUR+'ms cubic-bezier(.45,0,.25,1)';});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+   polys.forEach(function(p){p.style.strokeDashoffset=0;});});});
+  dots.forEach(function(c){
+   var f=(+c.getAttribute('cx')-74)/(700-74);
+   setTimeout(function(){c.style.opacity=1},Math.max(0,f*DUR-150));});
+  yrs.forEach(function(g,i){
+   setTimeout(function(){g.style.opacity=1;g.style.transform='translateY(0)'},i*(DUR/4)*0.98+250);});
+  ends.forEach(function(t){setTimeout(function(){t.style.opacity=1},DUR-100);});
+  setTimeout(function(){if(typeof mile==='function')mile('2026');},DUR+150);
+ }
+ if(reduce)return;
+ var fired=false;
+ var io=new IntersectionObserver(function(en){
+  en.forEach(function(e){if(e.isIntersecting&&!fired){fired=true;prep();
+   requestAnimationFrame(function(){run()});io.disconnect();}});
+ },{threshold:0.45});
+ io.observe(svg);
+})();
 </script></body></html>
