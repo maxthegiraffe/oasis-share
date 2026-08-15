@@ -156,7 +156,6 @@ h2{text-wrap:balance}
 </table>
 <div class="thesis"><b>Too profitable for the venture game. Too unconventional for the banks.</b>
 Giraffes have been underfunded for a generation - not because they fail, but because they succeed at the wrong size for venture. That is the gap this studio exists to fill.</div>
-</div>
 <div class="founders">
 <div class="fcard"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/97873835b_76814065-BDD4-4AF1-BBCA-9CAB1AB87B12.jpeg" alt="Max Marine">
 <div class="fmeta"><h4>Max Marine</h4><p class="frole">CEO &amp; co-founder</p>
@@ -485,7 +484,7 @@ function upd(){var t=+document.getElementById('rTicket').value,r=+document.getEl
 (function(){
  var svg=document.querySelector('svg[aria-label*="Top price"]');
  if(!svg)return;
- var DUR=4200;
+ var DUR=10000;
  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
  var polys=[].slice.call(svg.querySelectorAll('polyline'));
  var dots=[].slice.call(svg.querySelectorAll('circle')).filter(function(c){return !c.closest('.yrb')});
@@ -504,9 +503,10 @@ function upd(){var t=+document.getElementById('rTicket').value,r=+document.getEl
    var f=(+c.getAttribute('cx')-74)/(700-74);
    setTimeout(function(){c.style.opacity=1},Math.max(0,f*DUR-150));});
   yrs.forEach(function(g,i){
-   setTimeout(function(){g.style.opacity=1;g.style.transform='translateY(0)'},i*(DUR/4)*0.98+250);});
+   var y=g.getAttribute('data-y');
+   setTimeout(function(){g.style.opacity=1;g.style.transform='translateY(0)';
+    if(typeof mile==='function')mile(y);},i*(DUR/4)*0.98+250);});
   ends.forEach(function(t){setTimeout(function(){t.style.opacity=1},DUR-100);});
-  setTimeout(function(){if(typeof mile==='function')mile('2026');},DUR+150);
  }
  if(reduce)return;
  var fired=false;
