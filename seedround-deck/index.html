@@ -309,13 +309,13 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 .hint{font-weight:400;opacity:.6;font-size:.8em}table.hist caption{caption-side:bottom;text-align:left;font-size:10.5px;opacity:.55;padding-top:9px}
 
 /* ---- scroll opener ---- */
-.op-portal{position:relative;height:400vh}
-.op-stick{position:sticky;top:0;height:100vh;overflow:hidden;background:#120c08}
+.op-portal{position:relative;height:280vh}
+.op-stick{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
 .op-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity}
 .op-mark{position:absolute;left:0;bottom:0;padding:0 0 5vh 6vw;pointer-events:none;will-change:opacity;z-index:4}
-.op-mark h1{margin:0;font-weight:700;letter-spacing:-.03em;line-height:.84;font-size:clamp(2.2rem,7vw,5.4rem);color:#f7eddc;text-shadow:0 3px 28px rgba(0,0,0,.55)}
+.op-mark h1{margin:0;font-weight:700;letter-spacing:-.03em;line-height:.84;font-size:clamp(2.2rem,7vw,5.4rem);color:var(--ink)}
 .op-mark h1 .glow{color:var(--accent)}
-.op-mark .op-cue{margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(247,237,220,.62)}
+.op-mark .op-cue{margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(15,15,15,.5)}
 .op-mark .op-cue i{display:block;font-style:normal;margin-top:10px;font-size:15px;animation:opbob 1.9s ease-in-out infinite}
 @keyframes opbob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
 .op-house{position:absolute;inset:0;background:#07060a;opacity:0;will-change:opacity;z-index:3}
@@ -329,15 +329,15 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
  font-family:var(--ff);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;backdrop-filter:blur(8px)}
 .op-play:hover{border-color:var(--accent)}
 .op-play .op-tri{width:0;height:0;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
-.op-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:5;will-change:opacity}
+.op-flash{position:absolute;inset:0;background:#07060a;opacity:0;pointer-events:none;z-index:5;will-change:opacity}
 .op-fade{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none;transition:opacity 1.1s ease;z-index:9}
 .op-skip{position:fixed;right:18px;top:18px;z-index:40;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
  color:rgba(255,255,255,.9);background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);border-radius:999px;
  padding:9px 15px;text-decoration:none;backdrop-filter:blur(6px)}
 .op-skip:hover{border-color:var(--accent)}
-.op-hold{position:absolute;inset:0;background:#120c08;transition:opacity .45s;z-index:8}
+.op-hold{position:absolute;inset:0;background:var(--paper);transition:opacity .45s;z-index:8}
 #opdeckstart{display:block;position:relative}
-@media(max-width:700px){.op-portal{height:340vh}}
+@media(max-width:700px){.op-portal{height:240vh}}
 @media (prefers-reduced-motion:reduce){.op-portal{height:100vh}.op-vid{display:none}.op-house{opacity:1}}
 </style></head><body>
 <div id="glopener">
@@ -356,7 +356,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 </div></section>
 </div>
 <a id="opdeckstart"></a>
-<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 3:05PM</span></span></div>
+<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 3:54PM</span></span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
 <h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
@@ -1007,7 +1007,7 @@ var raf=0;
 function paint(){
   var r=P.getBoundingClientRect(), s=P.offsetHeight-window.innerHeight;
   var p=s<=0?0:Math.min(.999,Math.max(0,-r.top/s));
-  if(!reduced && v1.duration){var t=seg(p,0,.78)*v1.duration;
+  if(!reduced && v1.duration){var q=seg(p,0,.78); q=q<.45?q*.78:(.351+(q-.45)*1.667); if(q>1)q=1; var t=q*v1.duration;
     if(Math.abs(v1.currentTime-t)>0.008) v1.currentTime=t;}
   mark.style.opacity=(1-seg(p,0,.16)).toFixed(3);
   var open=ss(seg(p,.78,.93));
