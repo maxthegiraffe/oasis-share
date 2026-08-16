@@ -329,6 +329,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
  font-family:var(--ff);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;backdrop-filter:blur(8px)}
 .op-play:hover{border-color:var(--accent)}
 .op-play .op-tri{width:0;height:0;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.op-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:5;will-change:opacity}
 .op-fade{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none;transition:opacity 1.1s ease;z-index:9}
 .op-skip{position:fixed;right:18px;top:18px;z-index:40;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
  color:rgba(255,255,255,.9);background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);border-radius:999px;
@@ -342,19 +343,20 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 <div id="glopener">
 <a class="op-skip" href="#opdeckstart">Skip to the deck</a>
 <section class="op-portal" id="opportal"><div class="op-stick">
-  <video id="opv1" class="op-vid" muted playsinline preload="auto" src="reel.mp4" data-mobile="reel-mobile.mp4"></video>
+  <video id="opv1" class="op-vid" muted playsinline preload="auto" src="opener.mp4" data-mobile="opener-mobile.mp4"></video>
   <div class="op-house" id="ophouse"><div class="op-screenwrap"><div class="op-screen" id="opscreen">
     <video id="opfilm" playsinline preload="metadata" src="sizzler-placeholder.mp4"></video>
     <button class="op-play" id="opplay"><span class="op-tri"></span>Play the sizzler</button>
   </div></div></div>
   <div class="op-mark" id="opmark"><h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
     <div class="op-cue">Scroll - the reel is yours to pull<i>&#8595;</i></div></div>
+  <div class="op-flash" id="opflash"></div>
   <div class="op-fade" id="opfade"></div>
   <div class="op-hold" id="ophold"></div>
 </div></section>
 </div>
 <a id="opdeckstart"></a>
-<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 2:16PM</span></span></div>
+<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 2:53PM</span></span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
 <h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
@@ -994,7 +996,7 @@ upd();})();
 var P=document.getElementById('opportal');if(!P)return;
 var v1=document.getElementById('opv1'),house=document.getElementById('ophouse'),
     film=document.getElementById('opfilm'),play=document.getElementById('opplay'),
-    mark=document.getElementById('opmark'),fade=document.getElementById('opfade'),hold=document.getElementById('ophold');
+    flash=document.getElementById('opflash'),mark=document.getElementById('opmark'),fade=document.getElementById('opfade'),hold=document.getElementById('ophold');
 var seg=function(p,a,b){return Math.min(1,Math.max(0,(p-a)/(b-a)));};
 var ss=function(t){return t*t*(3-2*t);};
 var reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -1005,12 +1007,13 @@ var raf=0;
 function paint(){
   var r=P.getBoundingClientRect(), s=P.offsetHeight-window.innerHeight;
   var p=s<=0?0:Math.min(.999,Math.max(0,-r.top/s));
-  if(!reduced && v1.duration){var t=seg(p,0,.80)*v1.duration;
+  if(!reduced && v1.duration){var t=seg(p,0,.78)*v1.duration;
     if(Math.abs(v1.currentTime-t)>0.008) v1.currentTime=t;}
   mark.style.opacity=(1-seg(p,0,.16)).toFixed(3);
-  var open=ss(seg(p,.74,.94));
+  var open=ss(seg(p,.78,.93));
+  flash.style.opacity=(ss(seg(p,.68,.80))*(1-seg(p,.82,.94))).toFixed(3);
   house.style.opacity=open.toFixed(3);
-  play.style.opacity=ss(seg(p,.86,.97)).toFixed(3);
+  play.style.opacity=ss(seg(p,.88,.98)).toFixed(3);
   play.style.pointerEvents=p>.88?'auto':'none';
 }
 window.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(paint);},{passive:true});
