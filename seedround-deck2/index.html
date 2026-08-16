@@ -277,7 +277,7 @@ details.sub>summary::before{content:"+ ";font-weight:700}
 details.sub[open]>summary::before{content:"\2212 "}
 details.sub>summary:hover{opacity:1;color:var(--accent)}
 details.sub .mkt,details.sub .note{margin-top:9px}
-</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 10:30PM</span></span></div>
+</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 10:40PM</span></span></div>
 
 <div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential</span></div>
 
@@ -587,25 +587,23 @@ No playbook, no infrastructure, no capital designed for their shape.</div>
 </section>
 
 <section><div class="k">13 &middot; The round</div>
-<h2>A ROLLING SAFE. THE CAP RISES AS IT FILLS.</h2>
+<h2>THE $6M CAP CLOSES THIS FRIDAY.</h2>
 <div class="thesis"><b>We do not need this money.</b>
 2026 is our first profitable year. The studio funds itself, the events fund themselves, and the platform is built and paid for. We are raising because the community should own the upside in what comes next - not because the lights go out without it.</div>
 <div class="lead"><b>Sign today at the $6M cap.</b> Every $100K raised lifts it 10%.</div>
 <div class="safe">
   <div class="safehead">
     <div><em>Your ticket</em><strong id="sTicket">$18,000</strong></div>
-    <div><em>In the round when you sign</em><strong id="sIn">$250,000</strong></div>
-    <div><em>Cap when you sign</em><strong id="sCap">$6M</strong></div>
-    <div class="hot"><em>Implied ownership at cap</em><strong id="sOwn">0.300%</strong></div>
+    <div><em>Cap, this tranche</em><strong>$6M</strong></div>
+    <div class="hot"><em>You own</em><strong id="sOwn">0.300%</strong></div>
+    <div><em>Closes</em><strong>Aug 21</strong></div>
   </div>
   <label class="sl"><span>Your ticket &mdash; $1,800 to $18,000</span>
     <input id="rTicket" type="range" min="1800" max="18000" step="1800" value="18000"></label>
-  <label class="sl"><span>Total invested when you sign &mdash; $250K today &rarr; $1M at the close</span>
-    <input id="rRaised" type="range" min="250000" max="1000000" step="50000" value="250000"></label>
   <div class="safefoot">
-    <div><em>Implied % today</em><b id="fNow">0.300%</b></div>
-    <div><em>Implied % at the close</em><b id="fEnd">0.171%</b></div>
-    <div class="hot"><em>Today vs the close</em><b id="fAdv">1.75x</b><em>implied ownership</em></div>
+    <div><em>If we are worth $18M</em><b id="r3">$54,000</b><em>3x</em></div>
+    <div><em>If we are worth $60M</em><b id="r10">$180,000</b><em>10x</em></div>
+    <div class="hot"><em>If we are worth $120M</em><b id="r20">$360,000</b><em>20x</em></div>
   </div>
 </div>
 
@@ -706,19 +704,7 @@ function playv(f){
  if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=src;v.addEventListener('loadedmetadata',go,{once:true});}
  else if(window.Hls&&Hls.isSupported()){var h=new Hls();f._hls=h;h.loadSource(src);h.attachMedia(v);h.on(Hls.Events.MANIFEST_PARSED,go);}
 }
-(function(){var BASE=6000000,RISE=600000,STEP=100000,IN0=250000,CLOSE=1000000;
-function capAt(r){return BASE+RISE*((r-IN0)/STEP);}
-function upd(){var t=+document.getElementById('rTicket').value,r=+document.getElementById('rRaised').value;
- var cap=capAt(r);
- document.getElementById('sTicket').textContent='$'+t.toLocaleString();
- document.getElementById('sIn').textContent='$'+r.toLocaleString();
- document.getElementById('sCap').textContent='$'+(cap/1000000).toFixed(2).replace(/\.?0+$/,'')+'M';
- document.getElementById('sOwn').textContent=(t/cap*100).toFixed(3)+'%';
- document.getElementById('fNow').textContent=(t/capAt(IN0)*100).toFixed(3)+'%';
- document.getElementById('fEnd').textContent=(t/capAt(CLOSE)*100).toFixed(3)+'%';
- document.getElementById('fAdv').textContent=(capAt(CLOSE)/capAt(IN0)).toFixed(2)+'x';}
- var a=document.getElementById('rTicket'),b=document.getElementById('rRaised');
- a.addEventListener('input',upd);b.addEventListener('input',upd);upd();})();
+
 (function(){document.querySelectorAll('.strip .tile').forEach(function(t,i){
   var im=t.querySelectorAll('img'); if(im.length<2)return; var n=0;
   setTimeout(function(){setInterval(function(){im[n].classList.remove('on');n=(n+1)%im.length;im[n].classList.add('on');},4200);},i*700);});
@@ -802,5 +788,16 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){setTimeout(function(){var g=document.getElementById('gflash');g.classList.add('on');setTimeout(function(){g.classList.remove('on');},2100);},2050);}
 io.disconnect();}});},{threshold:.35});
 io.observe(w);})();
+</script>
+<script>
+(function(){var a=document.getElementById('rTicket');if(!a)return;
+function m(n){return '$'+n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function upd(){var t=+a.value,pct=t/6000000;
+ document.getElementById('sTicket').textContent=m(t);
+ document.getElementById('sOwn').textContent=(pct*100).toFixed(3)+'%';
+ document.getElementById('r3').textContent=m(Math.round(pct*18000000));
+ document.getElementById('r10').textContent=m(Math.round(pct*60000000));
+ document.getElementById('r20').textContent=m(Math.round(pct*120000000));}
+a.addEventListener('input',upd);upd();})();
 </script>
 </body></html>
