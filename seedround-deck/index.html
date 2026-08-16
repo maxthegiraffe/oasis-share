@@ -247,7 +247,8 @@ h2{text-wrap:balance}
 
 <section><div class="k">04 &middot; Traction</div>
 <h2>THREE SEASONS OF ACTUALS.</h2>
-<div class="chartwrap"><svg viewBox="0 0 760 400" style="width:100%;height:auto;margin-top:26px" role="img" aria-label="2026 revenue by season, composed by line">
+<div class="pills" id="finyr"><button class="pill2" onclick="fy('2022')">2022</button><button class="pill2" onclick="fy('2023')">2023</button><button class="pill2" onclick="fy('2024')">2024</button><button class="pill2" onclick="fy('2025')">2025</button><button class="pill2 sel" onclick="fy('2026')">2026</button></div>
+<div id="y2026"><div class="chartwrap"><svg viewBox="0 0 760 400" style="width:100%;height:auto;margin-top:26px" role="img" aria-label="2026 revenue by season, composed by line">
 <defs><pattern id="nvh" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><rect width="6" height="6" fill="#ec4899" opacity=".28"/><line x1="0" y1="0" x2="0" y2="6" stroke="#ec4899" stroke-width="2.4"/></pattern></defs>
 <g stroke="rgba(128,128,128,.22)" stroke-width="1">
 <line x1="86" y1="340" x2="712" y2="340"/>
@@ -297,7 +298,8 @@ h2{text-wrap:balance}
 <text x="628.0" y="377" font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Sep 21 - Dec 21</text>
 <text x="628.0" y="392" font-size="10" fill="rgba(128,128,128,.8)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1.1">PROJECTED</text>
 </svg></div>
-<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:12px"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#ec4899;display:inline-block;border-radius:3px"></i>AI education</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#6d5bb8;display:inline-block;border-radius:3px"></i>Membership</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#b8862e;display:inline-block;border-radius:3px"></i>Sponsorship</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#2e9e6f;display:inline-block;border-radius:3px"></i>Events</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;display:inline-block;border-radius:3px;background:repeating-linear-gradient(45deg,#ec4899 0 2px,rgba(236,72,153,.25) 2px 6px)"></i>New ventures</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:12px"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#ec4899;display:inline-block;border-radius:3px"></i>AI education</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#6d5bb8;display:inline-block;border-radius:3px"></i>Membership</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#b8862e;display:inline-block;border-radius:3px"></i>Sponsorship</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#2e9e6f;display:inline-block;border-radius:3px"></i>Events</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;display:inline-block;border-radius:3px;background:repeating-linear-gradient(45deg,#ec4899 0 2px,rgba(236,72,153,.25) 2px 6px)"></i>New ventures</span></div></div>
+<div id="yhist" style="display:none"></div>
 <p class="note">Equinox to equinox, gross, recognized at delivery. Winter and spring closed. Summer has five weeks to run; the dashed line marks $97K recognized to date.</p>
 </section>
 
@@ -552,4 +554,14 @@ function upd(){var t=+document.getElementById('rTicket').value,r=+document.getEl
  },{threshold:0.45});
  io.observe(svg);
 })();
+</script><script>var FIN={"2022": {"total": 215939, "rows": [["NFT mint (received in ETH)", 215939, "#8a8a8a"]], "note": "The founding-era NFT mint. The books hold one revenue line for 2022 - no category detail exists."}, "2023": {"total": 174757, "rows": [["Events & tickets", 79191, "#2e9e6f"], ["ETH proceeds & misc", 53504, "#8a8a8a"], ["Membership", 36862, "#6d5bb8"], ["Sponsorship", 5200, "#b8862e"]], "note": "'ETH proceeds & misc' is largely Coinbase liquidation trailing the 2022 mint - treasury, not operating revenue."}, "2024": {"total": 198741, "rows": [["Events & tickets", 118389, "#2e9e6f"], ["Membership", 63145, "#6d5bb8"], ["Sponsorship", 15900, "#b8862e"], ["Other", 1307, "#8a8a8a"]], "note": "First clean operating year: 92% of revenue from events and membership."}, "2025": {"total": 166794, "rows": [["Events & tickets", 94901, "#2e9e6f"], ["Membership", 67813, "#6d5bb8"], ["Other", 4080, "#8a8a8a"]], "note": "Expenses fell 38% year over year; June 2025 was the first profitable month."}};
+function fy(y){
+ document.querySelectorAll('#finyr .pill2').forEach(function(b){b.classList.toggle('sel',b.textContent===y)});
+ var cur=document.getElementById('y2026'),hist=document.getElementById('yhist');
+ if(y==='2026'){cur.style.display='';hist.style.display='none';return;}
+ cur.style.display='none';hist.style.display='';
+ var d=FIN[y],mx=d.rows[0][1];
+ hist.innerHTML='<p class="bqq" style="font-size:24px">$'+d.total.toLocaleString()+' <span>total revenue &middot; '+y+' &middot; CPA-reconciled</span></p>'+
+  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>$'+Math.round(r[1]/1000)+'K</b></div>'}).join('')+
+  '<p class="note">'+d.note+'</p>';}
 </script></body></html>
