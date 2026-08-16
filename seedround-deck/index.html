@@ -367,7 +367,6 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 <text x="660.0" y="272" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1">PROFITABLE</text>
 </svg>
 <p class="note">Revenue generated per $1 of expense. Below the line the company consumes capital; above it, the company funds itself. We crossed in 2026 - the year we launched our first joint venture.</p>
-<p class="note">Equinox to equinox, gross, recognized at delivery. Winter and spring closed. Summer has five weeks to run; the dashed line marks $97K recognized to date.</p>
 </section>
 
 
@@ -649,8 +648,7 @@ function fy(y){
   '<div class="effwrap"><div class="eff'+(eff>=1?' good':'')+'"><em>Economic efficiency</em><b>$'+eff.toFixed(2)+'</b><span>revenue per $1 spent</span></div>'+
    '<div class="eff"><em>Revenue per month</em><b>'+f(mo)+'</b><span>'+(y==='2026'?'7.5 months to date':'12 months')+'</span></div></div>'+
   '<h4 class="ylab">Where the revenue came from</h4>'+
-  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>'+Math.round(r[1]/1000)+'K</b></div>'}).join('')+qchart(y)+
-  '<p class="note">'+d.note+(d.est?' 2026 revenue is Stripe actuals through Aug 14; expenses are an internal estimate - the books close in December.':'')+'</p>';
+  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>'+Math.round(r[1]/1000)+'K</b></div>'}).join('');
  document.getElementById('y2026').style.display=(y==='2026'?'':'none');
 }
 fy('2026');
