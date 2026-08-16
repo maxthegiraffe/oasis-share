@@ -155,6 +155,12 @@ h2{text-wrap:balance}
 .eff.good b{color:var(--accent)}
 .eff span{font-size:11.5px;opacity:.7}
 h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;font-weight:700;margin-top:26px}
+
+.qrow{display:flex;align-items:flex-end;gap:14px;height:190px;margin-top:14px;max-width:520px}
+.qb{flex:1;display:flex;flex-direction:column;justify-content:flex-end;text-align:center}
+.qb i{display:block;background:var(--accent);border-radius:3px 3px 0 0;min-height:3px}
+.qb b{font-size:13px;font-weight:700;margin-bottom:6px}
+.qb em{font-style:normal;font-size:11px;font-weight:700;margin-top:7px;opacity:.7}
 </style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential</span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
@@ -607,7 +613,20 @@ function upd(){var t=+document.getElementById('rTicket').value,r=+document.getEl
  },{threshold:0.45});
  io.observe(svg);
 })();
-</script><script>var FIN={"2022": {"rev": 215939, "exp": 307670, "months": 12, "est": false, "rows": [["NFT mint (received in ETH)", 215939, "#8a8a8a"]], "note": "The founding-era mint. The books hold one revenue line for 2022 - no category detail exists."}, "2023": {"rev": 174757, "exp": 264095, "months": 12, "est": false, "rows": [["Events &amp; tickets", 79191, "#2e9e6f"], ["ETH proceeds &amp; misc", 53504, "#8a8a8a"], ["Membership", 36862, "#6d5bb8"], ["Sponsorship", 5200, "#b8862e"]], "note": "Tower House opens. Events become the channel. 'ETH proceeds' is Coinbase liquidation trailing the mint - treasury, not operating revenue."}, "2024": {"rev": 198741, "exp": 324310, "months": 12, "est": false, "rows": [["Events &amp; tickets", 118389, "#2e9e6f"], ["Membership", 63145, "#6d5bb8"], ["Sponsorship", 15900, "#b8862e"], ["Other", 1307, "#8a8a8a"]], "note": "The most expensive year we ever ran. 92% of revenue from events and membership - a real operating business, carrying too much overhead."}, "2025": {"rev": 166794, "exp": 200211, "months": 12, "est": false, "rows": [["Events &amp; tickets", 94901, "#2e9e6f"], ["Membership", 67813, "#6d5bb8"], ["Other", 4080, "#8a8a8a"]], "note": "We cut expenses 38% in a single year. June 2025 was the first profitable month. The loss shrank to a fifth of the prior year."}, "2026": {"rev": 188475, "exp": 140000, "months": 7.5, "est": true, "rows": [["AI education", 80307, "#ec4899"], ["Events &amp; tickets", 42163, "#2e9e6f"], ["Membership", 39936, "#6d5bb8"], ["Sponsorship", 25545, "#b8862e"], ["Other", 524, "#8a8a8a"]], "note": "The first profitable year - and AI School is the reason. Strip it out and 2026 is a $32K loss. Expenses include the revenue share paid to our partner."}};
+</script><script>var QTRS={"2022": null, "2023": {"q": [36999, 36590, 36208, 63127], "partial": [0], "note": "Q1 covers Jan-Mar only; the Dec 2022 tail is unrecoverable from the books."}, "2024": {"q": [55466, 65771, 31537, 38304], "partial": [], "note": ""}, "2025": {"q": [38764, 48779, 43129, 39635], "partial": [], "note": ""}, "2026": {"q": [20569, 71147, 96758, null], "partial": [2], "note": "Q3 still has five weeks to run; Q4 has not started."}};
+function qchart(y){
+ var d=QTRS[y];
+ if(!d) return '<h4 class="ylab">By quarter</h4><p class="note">2022 revenue exists in the books as a single ETH-denominated line with no transaction dates - it cannot be split by quarter.</p>';
+ var vals=d.q.filter(function(v){return v!==null}),mx=Math.max.apply(null,vals);
+ var bars=d.q.map(function(v,i){
+  if(v===null) return '<div class="qb"><i style="height:2px;background:var(--hair)"></i><em>Q'+(i+1)+'</em><b>&mdash;</b></div>';
+  var part=d.partial.indexOf(i)>-1;
+  return '<div class="qb"><b>$'+Math.round(v/1000)+'K</b><i style="height:'+Math.max(3,v/mx*130)+'px'+
+   (part?';background:repeating-linear-gradient(45deg,var(--accent) 0 5px,rgba(236,72,153,.35) 5px 10px)':'')+'"></i><em>Q'+(i+1)+(part?'*':'')+'</em></div>';}).join('');
+ return '<h4 class="ylab">By quarter &middot; equinox to equinox</h4><div class="qrow">'+bars+'</div>'+
+  (d.note?'<p class="note">* '+d.note+'</p>':'');
+}
+var FIN={"2022": {"rev": 215939, "exp": 307670, "months": 12, "est": false, "rows": [["NFT mint (received in ETH)", 215939, "#8a8a8a"]], "note": "The founding-era mint. The books hold one revenue line for 2022 - no category detail exists."}, "2023": {"rev": 174757, "exp": 264095, "months": 12, "est": false, "rows": [["Events &amp; tickets", 79191, "#2e9e6f"], ["ETH proceeds &amp; misc", 53504, "#8a8a8a"], ["Membership", 36862, "#6d5bb8"], ["Sponsorship", 5200, "#b8862e"]], "note": "Tower House opens. Events become the channel. 'ETH proceeds' is Coinbase liquidation trailing the mint - treasury, not operating revenue."}, "2024": {"rev": 198741, "exp": 324310, "months": 12, "est": false, "rows": [["Events &amp; tickets", 118389, "#2e9e6f"], ["Membership", 63145, "#6d5bb8"], ["Sponsorship", 15900, "#b8862e"], ["Other", 1307, "#8a8a8a"]], "note": "The most expensive year we ever ran. 92% of revenue from events and membership - a real operating business, carrying too much overhead."}, "2025": {"rev": 166794, "exp": 200211, "months": 12, "est": false, "rows": [["Events &amp; tickets", 94901, "#2e9e6f"], ["Membership", 67813, "#6d5bb8"], ["Other", 4080, "#8a8a8a"]], "note": "We cut expenses 38% in a single year. June 2025 was the first profitable month. The loss shrank to a fifth of the prior year."}, "2026": {"rev": 188475, "exp": 140000, "months": 7.5, "est": true, "rows": [["AI education", 80307, "#ec4899"], ["Events &amp; tickets", 42163, "#2e9e6f"], ["Membership", 39936, "#6d5bb8"], ["Sponsorship", 25545, "#b8862e"], ["Other", 524, "#8a8a8a"]], "note": "The first profitable year - and AI School is the reason. Strip it out and 2026 is a $32K loss. Expenses include the revenue share paid to our partner."}};
 function fy(y){
  document.querySelectorAll('#finyr .pill2').forEach(function(b){b.classList.toggle('sel',b.textContent===y)});
  var d=FIN[y],net=d.rev-d.exp,eff=d.rev/d.exp,mo=d.rev/d.months,mx=d.rows[0][1];
@@ -622,7 +641,7 @@ function fy(y){
   '<div class="effwrap"><div class="eff'+(eff>=1?' good':'')+'"><em>Economic efficiency</em><b>$'+eff.toFixed(2)+'</b><span>revenue per $1 spent</span></div>'+
    '<div class="eff"><em>Revenue per month</em><b>'+f(mo)+'</b><span>'+(y==='2026'?'7.5 months to date':'12 months')+'</span></div></div>'+
   '<h4 class="ylab">Where the revenue came from</h4>'+
-  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>'+Math.round(r[1]/1000)+'K</b></div>'}).join('')+
+  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>'+Math.round(r[1]/1000)+'K</b></div>'}).join('')+qchart(y)+
   '<p class="note">'+d.note+(d.est?' 2026 revenue is Stripe actuals through Aug 14; expenses are an internal estimate - the books close in December.':'')+'</p>';
  document.getElementById('y2026').style.display=(y==='2026'?'':'none');
 }
