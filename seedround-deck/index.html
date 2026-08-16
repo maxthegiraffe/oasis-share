@@ -162,13 +162,13 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 .qb b{font-size:13px;font-weight:700;margin-bottom:6px}
 .qb em{font-style:normal;font-size:11px;font-weight:700;margin-top:7px;opacity:.7}
 
-.twall figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:8px;color:#fff;text-align:center;line-height:1.2}
-.twall figcaption b{display:block;font-size:10.5px;font-weight:700}
-.twall figcaption em{display:block;font-style:normal;font-size:9px;opacity:.85;margin-top:2px}
-.twall .tq{position:absolute;left:10px;right:10px;bottom:44px;z-index:3;color:#fff;font-size:12px;line-height:1.35;font-weight:600;text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.9)}
+.twall figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:12px 10px;color:#fff;text-align:center;line-height:1.2}
+.twall figcaption b{display:block;font-size:14px;font-weight:700}
+.twall figcaption em{display:block;font-style:normal;font-size:11px;opacity:.88;margin-top:3px}
+.twall .tq{position:absolute;left:14px;right:14px;bottom:62px;z-index:3;color:#fff;font-size:12px;line-height:1.35;font-weight:600;text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.9)}
 
-.twall{grid-template-columns:repeat(7,1fr);max-height:none}
-.twall.collapsed .tcard:nth-child(n+8){display:none}
+.twall{grid-template-columns:repeat(3,1fr);max-height:none}
+.twall.collapsed .tcard:nth-child(n+4){display:none}
 .morebtn{margin-top:14px;background:none;border:1.5px solid var(--hair);color:var(--ink);font-family:var(--ff);
  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:99px;cursor:pointer}
 .morebtn:hover{border-color:var(--accent);color:var(--accent)}
@@ -205,7 +205,27 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 .prod[open]{padding-bottom:16px}
 .prod .n{margin-top:4px}
 .prod .n b{font-size:25px}
-</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 9:32PM</span></span></div>
+
+.ecbar{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
+.ecgo .ecbar{animation:ecgrow .75s cubic-bezier(.2,.85,.25,1) forwards}
+@keyframes ecgrow{to{transform:scaleY(1)}}
+.ecgo .ecline{animation:ecdraw 1.5s ease-out .55s forwards}
+@keyframes ecdraw{to{stroke-dashoffset:0}}
+.ecdot,.eclab,.ecbl{opacity:0}
+.ecgo .ecdot,.ecgo .eclab{animation:ecfade .45s ease forwards}
+.ecgo .ecbl{animation:ecfade .5s ease .15s forwards}
+@keyframes ecfade{to{opacity:1}}
+.ecgo .eclast{animation:ecfade .45s ease forwards,ecpulse 1.6s ease-out 1.9s}
+@keyframes ecpulse{0%{filter:drop-shadow(0 0 0 var(--accent))}35%{filter:drop-shadow(0 0 16px var(--accent))}100%{filter:drop-shadow(0 0 0 var(--accent))}}
+.eckey{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:12px}
+.eckey span{display:inline-flex;align-items:center;gap:7px}
+.eckey .kb{width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block}
+.eckey .kl{width:20px;height:0;border-top:3.5px solid var(--accent);border-radius:2px;display:inline-block}
+#gflash{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;background:radial-gradient(circle at 72% 46%,rgba(236,72,153,.5),rgba(236,72,153,0) 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23b8862e' fill-opacity='0.85'%3E%3Cpath d='M14 10 L46 5 L60 30 L40 52 L11 40 Z'/%3E%3Cpath d='M78 12 L112 17 L121 44 L93 56 L73 35 Z'/%3E%3Cpath d='M24 68 L54 63 L68 91 L43 112 L17 95 Z'/%3E%3Cpath d='M88 74 L120 79 L129 108 L100 121 L80 99 Z'/%3E%3C/g%3E%3C/svg%3E")}
+#gflash.on{animation:gflash 1.9s ease-out forwards}
+@keyframes gflash{0%{opacity:0;transform:scale(1.08)}20%{opacity:.92}58%{opacity:.7}100%{opacity:0;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.ecbar,.ecline,.ecdot,.eclab,.ecbl,.eclast{animation:none!important;transform:none!important;stroke-dashoffset:0!important;opacity:1!important}#gflash{display:none}}
+</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 9:49PM</span></span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
 <h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
@@ -245,63 +265,63 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 </section>
 
 <section><div class="k">02 &middot; How we got here</div>
-<h2>THE ROOM GOT BIGGER AND EVERY SEAT GOT MORE VALUABLE.</h2>
+<h2>THE PRICES WENT UP. THEY KEPT COMING.</h2>
 <div class="lead">Same community. Every year we were worth more to it. <b>Click a year.</b></div>
-<div class="chartwrap"><svg viewBox="0 0 900 250" style="width:100%;height:auto;margin-top:18px" role="img" aria-label="Top price by category and year">
+<div class="chartwrap"><svg viewBox="0 0 900 405" style="width:100%;height:auto;margin-top:18px" role="img" aria-label="Top price by category and year">
 <g stroke="rgba(128,128,128,.25)">
-<line x1="74" y1="150.9" x2="700" y2="150.9"/>
-<line x1="74" y1="97.1" x2="700" y2="97.1"/>
-<line x1="74" y1="73.9" x2="700" y2="73.9"/>
-<line x1="74" y1="20.0" x2="700" y2="20.0"/>
-<line x1="74" y1="168" x2="700" y2="168"/></g>
-<g font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="67" y="154.4">$100</text>
-<text x="67" y="100.6">$500</text>
-<text x="67" y="77.4">$1,000</text>
-<text x="67" y="23.5">$5,000</text>
-<text x="67" y="171.5">$0</text></g>
-<polyline fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"  points="74.0,137.3 230.5,114.1 387.0,97.1 543.5,84.8 700.0,73.9"/>
-<circle cx="74.0" cy="137.3" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="114.1" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="97.1" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="84.8" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="73.9" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<polyline fill="none" stroke="rgba(128,128,128,.75)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" points="74.0,168.0 230.5,162.8 387.0,150.9 543.5,81.3 700.0,50.7"/>
-<circle cx="74.0" cy="168.0" r="4.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="162.8" r="4.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="150.9" r="4.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="81.3" r="4.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="50.7" r="4.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"  points="74.0,168.0 230.5,97.1 387.0,73.9 543.5,65.1 700.0,20.0"/>
-<circle cx="74.0" cy="168.0" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="97.1" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="73.9" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="65.1" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="20.0" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<text x="710" y="23.5" font-size="11" font-weight="700" fill="var(--accent)" font-family="var(--ff)">$5,000 &middot; Sponsorship</text>
-<text x="710" y="53.7" font-size="10.5" fill="rgba(128,128,128,.9)" font-family="var(--ff)">$2,000 &middot; Event pass</text>
-<text x="710" y="84.9" font-size="10.5" font-weight="700" font-family="var(--ff)">$999 &middot; Membership</text>
+<line x1="74" y1="244.5" x2="700" y2="244.5"/>
+<line x1="74" y1="157.3" x2="700" y2="157.3"/>
+<line x1="74" y1="119.7" x2="700" y2="119.7"/>
+<line x1="74" y1="32.4" x2="700" y2="32.4"/>
+<line x1="74" y1="272.2" x2="700" y2="272.2"/></g>
+<g font-size="11.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
+<text x="67" y="250.1">$100</text>
+<text x="67" y="163.0">$500</text>
+<text x="67" y="125.4">$1,000</text>
+<text x="67" y="38.1">$5,000</text>
+<text x="67" y="277.8">$0</text></g>
+<polyline fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"  points="74.0,222.4 230.5,184.8 387.0,157.3 543.5,137.4 700.0,119.7"/>
+<circle cx="74.0" cy="222.4" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="230.5" cy="184.8" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="387.0" cy="157.3" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="543.5" cy="137.4" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="700.0" cy="119.7" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
+<polyline fill="none" stroke="rgba(128,128,128,.75)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" points="74.0,272.2 230.5,263.7 387.0,244.5 543.5,131.7 700.0,82.1"/>
+<circle cx="74.0" cy="272.2" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="230.5" cy="263.7" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="387.0" cy="244.5" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="543.5" cy="131.7" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="700.0" cy="82.1" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
+<polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"  points="74.0,272.2 230.5,157.3 387.0,119.7 543.5,105.5 700.0,32.4"/>
+<circle cx="74.0" cy="272.2" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="230.5" cy="157.3" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="387.0" cy="119.7" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="543.5" cy="105.5" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+<circle cx="700.0" cy="32.4" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+<text x="710" y="38.1" font-size="13" font-weight="700" fill="var(--accent)" font-family="var(--ff)">$5,000 &middot; Sponsorship</text>
+<text x="710" y="87.0" font-size="12.5" fill="rgba(128,128,128,.9)" font-family="var(--ff)">$2,000 &middot; Event pass</text>
+<text x="710" y="137.5" font-size="12.5" font-weight="700" font-family="var(--ff)">$999 &middot; Membership</text>
 <g class="yrb" data-y="2022" onclick="mile('2022')" style="cursor:pointer">
-<circle cx="74.0" cy="202" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="74.0" y="206" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--ff)">2022</text>
-<text x="74.0" y="234" font-size="9" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">100 MEMBERS</text></g>
+<circle cx="74.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
+<text x="74.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2022</text>
+<text x="74.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">100 MEMBERS</text></g>
 <g class="yrb" data-y="2023" onclick="mile('2023')" style="cursor:pointer">
-<circle cx="230.5" cy="202" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="230.5" y="206" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--ff)">2023</text>
-<text x="230.5" y="234" font-size="9" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">500 MEMBERS</text></g>
+<circle cx="230.5" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
+<text x="230.5" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2023</text>
+<text x="230.5" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">500 MEMBERS</text></g>
 <g class="yrb" data-y="2024" onclick="mile('2024')" style="cursor:pointer">
-<circle cx="387.0" cy="202" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="387.0" y="206" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--ff)">2024</text>
-<text x="387.0" y="234" font-size="9" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">800 MEMBERS</text></g>
+<circle cx="387.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
+<text x="387.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2024</text>
+<text x="387.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">800 MEMBERS</text></g>
 <g class="yrb" data-y="2025" onclick="mile('2025')" style="cursor:pointer">
-<circle cx="543.5" cy="202" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="543.5" y="206" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--ff)">2025</text>
-<text x="543.5" y="234" font-size="9" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">900 MEMBERS</text></g>
+<circle cx="543.5" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
+<text x="543.5" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2025</text>
+<text x="543.5" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">900 MEMBERS</text></g>
 <g class="yrb" data-y="2026" onclick="mile('2026')" style="cursor:pointer">
-<circle cx="700.0" cy="202" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="700.0" y="206" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--ff)">2026</text>
-<text x="700.0" y="234" font-size="9" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">1,000 MEMBERS</text></g>
-<polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,137.3 230.5,114.1 387.0,97.1 543.5,84.8 700.0,73.9" style="cursor:help;pointer-events:stroke"><title>Lifetime membership price: $150 at the founding in 2022, $999 today.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,168.0 230.5,162.8 387.0,150.9 543.5,81.3 700.0,50.7" style="cursor:help;pointer-events:stroke"><title>Top event pass sold that year, including two-day bootcamp passes: free early events to $2,000 in 2026.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,168.0 230.5,97.1 387.0,73.9 543.5,65.1 700.0,20.0" style="cursor:help;pointer-events:stroke"><title>Top sponsorship package sold that year: none until 2023, $5,000 Premier AI Partner in 2026.</title></polyline></svg></div>
+<circle cx="700.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
+<text x="700.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2026</text>
+<text x="700.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">1,000 MEMBERS</text></g>
+<polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,222.4 230.5,184.8 387.0,157.3 543.5,137.4 700.0,119.7" style="cursor:help;pointer-events:stroke"><title>Lifetime membership price: $150 at the founding in 2022, $999 today.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,272.2 230.5,263.7 387.0,244.5 543.5,131.7 700.0,82.1" style="cursor:help;pointer-events:stroke"><title>Top event pass sold that year, including two-day bootcamp passes: free early events to $2,000 in 2026.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,272.2 230.5,157.3 387.0,119.7 543.5,105.5 700.0,32.4" style="cursor:help;pointer-events:stroke"><title>Top sponsorship package sold that year: none until 2023, $5,000 Premier AI Partner in 2026.</title></polyline></svg></div>
 <p class="mtitle" id="mtitle"></p>
 <div class="mgal" id="mgal"></div>
 <p class="mstory" id="mstory"></p>
@@ -316,48 +336,58 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 <ul><li>Udemy&rsquo;s #1 AI instructor, 500,000+ students taught</li><li>Co-built and taught all four cohorts</li><li>Revenue-share partner today; an equity swap converting that share into ownership is in negotiation</li></ul></div></div>
 <h3>What graduates said, on camera</h3>
 <div class="tgrid twall collapsed" data-rows="1"><figure class="tcard" data-uid="325845e782acb4acdad8d47ce436345b" data-name="Marco Hansell" data-role="Founder, Satori Media" data-q="I received all of the value in the first two hours, times one hundred." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/325845e782acb4acdad8d47ce436345b/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Marco Hansell</b><em>Founder, Satori Media</em></figcaption></figure><figure class="tcard" data-uid="80c4ec4f34e7487344b6d81f25053a08" data-name="Silke" data-role="Digital Business Strategist" data-q="You will not believe this, but you learn so much in two days." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/80c4ec4f34e7487344b6d81f25053a08/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Silke</b><em>Digital Business Strategist</em></figcaption></figure><figure class="tcard" data-uid="ddd02c6864eed3b658106c39cc742a34" data-name="Dom" data-role="Founder, Happy Hoots" data-q="Benza just did a really good job of making it approachable and having it work for each individual person." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ddd02c6864eed3b658106c39cc742a34/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Dom</b><em>Founder, Happy Hoots</em></figcaption></figure><figure class="tcard" data-uid="0bca733dee65c74320068f3d3b091b54" data-name="Alexis" data-role="Medical Reflexologist" data-q="Our agents are now working for us. So heck yeah." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0bca733dee65c74320068f3d3b091b54/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alexis</b><em>Medical Reflexologist</em></figcaption></figure><figure class="tcard" data-uid="65a9e7aa07e07ca5e62a682ecd9b42db" data-name="Alex Chan" data-role="Co-Founder, Human Wellness Center" data-q="This is not something you could do by yourself. Once you get it installed, it's pretty freaking amazing." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/65a9e7aa07e07ca5e62a682ecd9b42db/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alex Chan</b><em>Co-Founder, Human Wellness Center</em></figcaption></figure><figure class="tcard" data-uid="ca28b860893db4ab66dc664720537791" data-name="Jamie" data-role="Founder, Rewild Breathwork" data-q="Claude is the structure, and within structure is freedom." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ca28b860893db4ab66dc664720537791/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Jamie</b><em>Founder, Rewild Breathwork</em></figcaption></figure><figure class="tcard" data-uid="782b8ae76bb11d3eee7d722598f7c5c9" data-name="Mike" data-role="Real Estate" data-q="Benza is a real pro - super patient, got everyone customized and dialed in with what they were building." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/782b8ae76bb11d3eee7d722598f7c5c9/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Mike</b><em>Real Estate</em></figcaption></figure><figure class="tcard" data-uid="f18fa96531f4e6981027bab61c0f1d59" data-name="Joey" data-role="Gastroenterologist" data-q="The AI Bootcamp has been pivotal. Benza is an incredible instructor." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f18fa96531f4e6981027bab61c0f1d59/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Joey</b><em>Gastroenterologist</em></figcaption></figure><figure class="tcard" data-uid="eb8394d1416901f8b4a85bfe03b0e9b4" data-name="Ryan Seaman" data-role="Entrepreneur" data-q="I've done things this weekend I didn't know were possible. I wouldn't know how to do eighty percent of what I just figured out." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/eb8394d1416901f8b4a85bfe03b0e9b4/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Ryan Seaman</b><em>Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="260971671a4def38b5c1a4f9594880e0" data-name="Mary" data-role="Healthcare Practitioner" data-q="I was so intimidated and scared of AI. Claude is tracking everything for me. It's been so easy. I'm shocked, actually." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/260971671a4def38b5c1a4f9594880e0/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Mary</b><em>Healthcare Practitioner</em></figcaption></figure><figure class="tcard" data-uid="d3da5e9401114c14c249d4c866fcb046" data-name="Alexis Adam" data-role="Luxury Photographer" data-q="It's amazing how much it's opened up my mind. Honestly, I'd recommend it to everyone." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/d3da5e9401114c14c249d4c866fcb046/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alexis Adam</b><em>Luxury Photographer</em></figcaption></figure><figure class="tcard" data-uid="052863bc5d3d77f1f0fbf76bf1cf60cf" data-name="Maya" data-role="Nonprofit Founder" data-q="What are you afraid of? It can only get better from here." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/052863bc5d3d77f1f0fbf76bf1cf60cf/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Maya</b><em>Nonprofit Founder</em></figcaption></figure><figure class="tcard" data-uid="08dc976d9c1a1cb67a5b9800e0123c3b" data-name="Brian Palacios" data-role="Entrepreneur" data-q="My friend said: oh, that's a REAL bootcamp. You're actually learning how to do real stuff." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/08dc976d9c1a1cb67a5b9800e0123c3b/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Brian Palacios</b><em>Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="5efd95037fa3b8f0e2345f5f2cd059e7" data-name="Brianna Rhue" data-role="Co-Founder, Dr. Contact Lens" data-q="I'm already looking back at my own business and saying: wow, I had a human doing that?" onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5efd95037fa3b8f0e2345f5f2cd059e7/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Brianna Rhue</b><em>Co-Founder, Dr. Contact Lens</em></figcaption></figure><figure class="tcard" data-uid="af2c750b568bca5707c9faa383eacc8a" data-name="Yonatan" data-role="Breathwork & Healing Practitioner" data-q="I have a three-month-old now. I want the business to run itself so I can spend more time with my family." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/af2c750b568bca5707c9faa383eacc8a/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Yonatan</b><em>Breathwork & Healing Practitioner</em></figcaption></figure><figure class="tcard" data-uid="27ccb61365e877c3fa2cc787754d0670" data-name="Awais Spall" data-role="Founder, Integrative Oasis" data-q="The amount of parts of my life that can become integrated into this, almost like a life operating system." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/27ccb61365e877c3fa2cc787754d0670/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Awais Spall</b><em>Founder, Integrative Oasis</em></figcaption></figure><figure class="tcard" data-uid="e446d67024ae79e7a945c11ebe8560ba" data-name="Amir" data-role="Founder, Digital Marketing Agency" data-q="I was surprised by how much I didn't know, although I consider myself to be quite technical." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e446d67024ae79e7a945c11ebe8560ba/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Amir</b><em>Founder, Digital Marketing Agency</em></figcaption></figure><figure class="tcard" data-uid="349a3a959022dae80c2045f9e6733125" data-name="Alan Corvalla" data-role="Actor & Creative Entrepreneur" data-q="I honestly think it's for everyone, and I'm not even trying to sell the product." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/349a3a959022dae80c2045f9e6733125/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alan Corvalla</b><em>Actor & Creative Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="16b649c6dbb950d927a10393b87238ec" data-name="Tommy Sobel" data-role="Limiting-Belief Coach" data-q="I really feel like this collapsed time, and it's going to allow me to buy back a lot of time." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/16b649c6dbb950d927a10393b87238ec/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Tommy Sobel</b><em>Limiting-Belief Coach</em></figcaption></figure><figure class="tcard" data-uid="f0d4fad9c6662a99d84f5be5ab0e0bd2" data-name="Dewey Arpinar" data-role="Wellness & Jewelry Founder" data-q="I got over my fear of AI and feel so empowered." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f0d4fad9c6662a99d84f5be5ab0e0bd2/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Dewey Arpinar</b><em>Wellness & Jewelry Founder</em></figcaption></figure><figure class="tcard" data-uid="31847968e81b0b483c9a7017f05fee53" data-name="Samantha Coker" data-role="CEO, Rich Nuts" data-q="I'm astonished at how much I can really just ask Claude to tell me." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/31847968e81b0b483c9a7017f05fee53/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Samantha Coker</b><em>CEO, Rich Nuts</em></figcaption></figure></div>
-<button class="morebtn" onclick="this.previousElementSibling.classList.remove('collapsed');moreT(this)">See more (14)</button>
-<p class="note">21 of the 67. Every clip is a graduate of a cohort we ran, recorded the day it ended.</p>
-<p>Every seat came from the community or a referral. Nothing about this launch was outsourced: our rooms, our list, our platform, his curriculum.</p>
+<button class="morebtn" onclick="tmore3(this)">See more</button>
 </section>
 
 <section><div class="k">04 &middot; Traction</div>
 <h2>WE CROSSED INTO PROFIT THIS YEAR.</h2>
-<h4 class="ylab">Economic efficiency, year by year</h4>
-<svg viewBox="0 0 760 290" style="width:100%;height:auto;margin-top:22px" role="img" aria-label="Economic efficiency by year: revenue per dollar spent">
-<defs><linearGradient id="effg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+<h4 class="ylab">Revenue per month, and revenue per $1 spent</h4>
+<div class="chartwrap ecwrap"><svg viewBox="0 0 790 300" style="width:100%;height:auto;margin-top:22px" role="img" aria-label="Revenue per month and revenue per dollar spent, by year">
 <g stroke="rgba(128,128,128,.2)">
-<line x1="88" y1="166.0" x2="660" y2="166.0"/>
-<line x1="88" y1="100.0" x2="660" y2="100.0"/>
-<line x1="88" y1="34.0" x2="660" y2="34.0"/>
+<line x1="92" y1="250.0" x2="690" y2="250.0"/>
+<line x1="92" y1="204.3" x2="690" y2="204.3"/>
+<line x1="92" y1="158.6" x2="690" y2="158.6"/>
+<line x1="92" y1="112.9" x2="690" y2="112.9"/>
 </g>
 <g font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="79" y="169.5">$0.50</text>
-<text x="79" y="103.5">$1.00</text>
-<text x="79" y="37.5">$1.50</text>
+<text x="83" y="253.5">$0K</text>
+<text x="83" y="207.8">$10K</text>
+<text x="83" y="162.1">$20K</text>
+<text x="83" y="116.4">$30K</text>
 </g>
-<line x1="88" y1="100.0" x2="660" y2="100.0" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="668" y="104.0" font-size="10" font-weight="700" font-family="var(--ff)" fill="var(--ink)">BREAK-EVEN</text>
-<polygon points="88,232 88.0,139.4 231.0,144.7 374.0,151.1 517.0,122.0 660.0,54.3 660,232" fill="url(#effg)"/>
-<polyline fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="88.0,139.4 231.0,144.7 374.0,151.1 517.0,122.0 660.0,54.3"/>
-<circle cx="88.0" cy="139.4" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text x="88.0" y="123.4" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.70</text>
-<text x="88.0" y="254" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2022</text>
-<circle cx="231.0" cy="144.7" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text x="231.0" y="128.7" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.66</text>
-<text x="231.0" y="254" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2023</text>
-<circle cx="374.0" cy="151.1" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text x="374.0" y="135.1" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.61</text>
-<text x="374.0" y="254" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2024</text>
-<circle cx="517.0" cy="122.0" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text x="517.0" y="106.0" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.83</text>
-<text x="517.0" y="254" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2025</text>
-<circle cx="660.0" cy="54.3" r="7" fill="var(--accent)" stroke="var(--accent)" stroke-width="3"/>
-<text x="660.0" y="38.3" font-size="14" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--accent)">$1.35</text>
-<text x="660.0" y="254" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2026</text>
-<text x="660.0" y="272" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1">PROFITABLE</text>
-</svg>
-<p class="note">Revenue generated per $1 of expense. Below the line the company consumes capital; above it, the company funds itself. We crossed in 2026 - the year we launched our first joint venture.</p>
+<rect class="ecbar" style="animation-delay:0.00s" x="114.8" y="167.7" width="74" height="82.3" rx="4" fill="rgba(128,128,128,.32)"><title>2022 &middot; $17,990 revenue per month</title></rect>
+<text class="eclab" style="animation-delay:0.45s" x="151.8" y="158.7" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$18.0K</text>
+<rect class="ecbar" style="animation-delay:0.08s" x="234.4" y="183.4" width="74" height="66.6" rx="4" fill="rgba(128,128,128,.32)"><title>2023 &middot; $14,560 revenue per month</title></rect>
+<text class="eclab" style="animation-delay:0.53s" x="271.4" y="174.4" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$14.6K</text>
+<rect class="ecbar" style="animation-delay:0.16s" x="354.0" y="174.3" width="74" height="75.7" rx="4" fill="rgba(128,128,128,.32)"><title>2024 &middot; $16,560 revenue per month</title></rect>
+<text class="eclab" style="animation-delay:0.61s" x="391.0" y="165.3" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$16.6K</text>
+<rect class="ecbar" style="animation-delay:0.24s" x="473.6" y="186.5" width="74" height="63.5" rx="4" fill="rgba(128,128,128,.32)"><title>2025 &middot; $13,900 revenue per month</title></rect>
+<text class="eclab" style="animation-delay:0.69s" x="510.6" y="177.5" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$13.9K</text>
+<rect class="ecbar" style="animation-delay:0.32s" x="593.2" y="135.1" width="74" height="114.9" rx="4" fill="var(--accent)"><title>2026 &middot; $25,130 revenue per month</title></rect>
+<text class="eclab" style="animation-delay:0.77s" x="630.2" y="126.1" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$25.1K</text>
+<line class="ecbl" x1="92" y1="82.5" x2="690" y2="82.5" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 4"/>
+<text class="ecbl" x="698" y="86.5" font-size="10" font-weight="700" font-family="var(--ff)" fill="var(--ink)">BREAK-EVEN</text>
+<polyline class="ecline" style="stroke-dasharray:501;stroke-dashoffset:501" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="151.8,114.2 271.4,118.4 391.0,123.6 510.6,100.2 630.2,45.7"/>
+<circle class="ecdot" style="animation-delay:1.00s" cx="151.8" cy="114.2" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
+<text class="ecdot" style="animation-delay:1.00s" x="151.8" y="100.2" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.70</text>
+<text x="151.8" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2022</text>
+<circle class="ecdot" style="animation-delay:1.22s" cx="271.4" cy="118.4" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
+<text class="ecdot" style="animation-delay:1.22s" x="271.4" y="104.4" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.66</text>
+<text x="271.4" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2023</text>
+<circle class="ecdot" style="animation-delay:1.44s" cx="391.0" cy="123.6" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
+<text class="ecdot" style="animation-delay:1.44s" x="391.0" y="109.6" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.61</text>
+<text x="391.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2024</text>
+<circle class="ecdot" style="animation-delay:1.66s" cx="510.6" cy="100.2" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
+<text class="ecdot" style="animation-delay:1.66s" x="510.6" y="86.2" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.83</text>
+<text x="510.6" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2025</text>
+<circle class="ecdot eclast" style="animation-delay:1.88s" cx="630.2" cy="45.7" r="7" fill="var(--accent)" stroke="var(--accent)" stroke-width="3"/>
+<text class="ecdot" style="animation-delay:1.88s" x="630.2" y="31.7" font-size="14" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--accent)">$1.35</text>
+<text x="630.2" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2026</text>
+<text x="630.2" y="288" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">7.5 months</text>
+<text class="ecdot" style="animation-delay:1.9s" x="630.2" y="15.3" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1">PROFITABLE</text>
+</svg></div>
+<div class="eckey"><span><i class="kb"></i>Revenue per month</span><span><i class="kl"></i>Revenue per $1 spent</span></div>
+<p class="note">Bars are revenue per month. The line is revenue generated per $1 of expense - below it the company consumes capital, above it the company funds itself. We crossed in 2026, the year we launched our first joint venture.</p>
 <h4 class="ylab">The climb, quarter by quarter</h4>
 <div id="y2026"><div class="chartwrap"><svg viewBox="0 0 760 400" style="width:100%;height:auto;margin-top:26px" role="img" aria-label="2026 revenue by season, composed by line">
 <defs><pattern id="nvh" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><rect width="6" height="6" fill="#ec4899" opacity=".28"/><line x1="0" y1="0" x2="0" y2="6" stroke="#ec4899" stroke-width="2.4"/></pattern></defs>
@@ -413,9 +443,6 @@ h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.
 
 <div class="q">$21K &rarr; $71K &rarr; $97K. Q3 is 2.2x the same quarter last year, with five weeks still to run.</div>
 <p><b>We project at least 3x in the fall</b> as the Oasis and Gigi launch as paid offerings, alongside AI School, events and sponsorships.</p>
-<div class="pills" id="finyr"><button class="pill2" onclick="fy('2022')">2022</button><button class="pill2" onclick="fy('2023')">2023</button><button class="pill2" onclick="fy('2024')">2024</button><button class="pill2" onclick="fy('2025')">2025</button><button class="pill2 sel" onclick="fy('2026')">2026</button></div>
-<div id="yhist"></div>
-<h4 class="ylab">As trust compounds, monetization expands</h4>
 
 
 </section>
@@ -704,25 +731,6 @@ function qchart(y){
  return '<h4 class="ylab">By quarter &middot; equinox to equinox</h4><div class="qrow">'+bars+'</div>'+
   (d.note?'<p class="note">* '+d.note+'</p>':'');
 }
-var FIN={"2022": {"rev": 215939, "exp": 307670, "months": 12, "est": false, "rows": [["NFT mint (received in ETH)", 215939, "#8a8a8a"]], "note": "The founding-era mint. The books hold one revenue line for 2022 - no category detail exists."}, "2023": {"rev": 174757, "exp": 264095, "months": 12, "est": false, "rows": [["Events &amp; tickets", 79191, "#2e9e6f"], ["ETH proceeds &amp; misc", 53504, "#8a8a8a"], ["Membership", 36862, "#6d5bb8"], ["Sponsorship", 5200, "#b8862e"]], "note": "Tower House opens. Events become the channel. 'ETH proceeds' is Coinbase liquidation trailing the mint - treasury, not operating revenue."}, "2024": {"rev": 198741, "exp": 324310, "months": 12, "est": false, "rows": [["Events &amp; tickets", 118389, "#2e9e6f"], ["Membership", 63145, "#6d5bb8"], ["Sponsorship", 15900, "#b8862e"], ["Other", 1307, "#8a8a8a"]], "note": "The most expensive year we ever ran. 92% of revenue from events and membership - a real operating business, carrying too much overhead."}, "2025": {"rev": 166794, "exp": 200211, "months": 12, "est": false, "rows": [["Events &amp; tickets", 94901, "#2e9e6f"], ["Membership", 67813, "#6d5bb8"], ["Other", 4080, "#8a8a8a"]], "note": "We cut expenses 38% in a single year. June 2025 was the first profitable month. The loss shrank to a fifth of the prior year."}, "2026": {"rev": 188475, "exp": 140000, "months": 7.5, "est": true, "rows": [["AI education", 80307, "#ec4899"], ["Events &amp; tickets", 42163, "#2e9e6f"], ["Membership", 39936, "#6d5bb8"], ["Sponsorship", 25545, "#b8862e"], ["Other", 524, "#8a8a8a"]], "note": "The first profitable year - and AI School is the reason. Strip it out and 2026 is a $32K loss. Expenses include the revenue share paid to our partner."}};
-function fy(y){
- document.querySelectorAll('#finyr .pill2').forEach(function(b){b.classList.toggle('sel',b.textContent===y)});
- var d=FIN[y],net=d.rev-d.exp,eff=d.rev/d.exp,mo=d.rev/d.months,mx=d.rows[0][1];
- var scale=Math.max(d.rev,d.exp);
- var f=function(n){var v=Math.round(Math.abs(n)).toLocaleString();return (n<0?'-$':'$')+v};
- document.getElementById('yhist').innerHTML=
-  '<div class="pl">'+
-   '<div class="plrow"><span>Revenue</span><div class="atrack"><i style="width:'+(d.rev/scale*100)+'%;background:var(--ink)"></i></div><b>'+f(d.rev)+'</b></div>'+
-   '<div class="plrow"><span>Expenses'+(d.est?' <em>est.</em>':'')+'</span><div class="atrack"><i style="width:'+(d.exp/scale*100)+'%;background:rgba(128,128,128,.5)"></i></div><b>'+f(d.exp)+'</b></div>'+
-   '<div class="plnet '+(net>0?'good':'')+'"><span>'+(net>0?'Net profit':'Net loss')+'</span><b>'+(net>0?'+':'')+f(net)+'</b></div>'+
-  '</div>'+
-  '<div class="effwrap"><div class="eff'+(eff>=1?' good':'')+'"><em>Economic efficiency</em><b>$'+eff.toFixed(2)+'</b><span>revenue per $1 spent</span></div>'+
-   '<div class="eff"><em>Revenue per month</em><b>'+f(mo)+'</b><span>'+(y==='2026'?'7.5 months to date':'12 months')+'</span></div></div>'+
-  '<h4 class="ylab">Where the revenue came from</h4>'+
-  d.rows.map(function(r){return '<div class="abar"><span>'+r[0]+'</span><div class="atrack"><i style="width:'+(r[1]/mx*100)+'%;background:'+r[2]+'"></i></div><b>'+Math.round(r[1]/1000)+'K</b></div>'}).join('');
- document.getElementById('y2026').style.display=(y==='2026'?'':'none');
-}
-fy('2026');
 </script><script>function playt(f){
  if(f.classList.contains('on')){var v=f.querySelector('video');if(v){v.muted=!v.muted;}return;}
  document.querySelectorAll('.twall .tcard.on').forEach(function(o){o.classList.remove('on');o.innerHTML=o.dataset.snap;});
@@ -736,18 +744,21 @@ fy('2026');
  function go(){var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=true;v.play().catch(function(){})})}
  if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=src;v.addEventListener('loadedmetadata',go,{once:true});}
  else if(window.Hls&&Hls.isSupported()){var h=new Hls();h.loadSource(src);h.attachMedia(v);h.on(Hls.Events.MANIFEST_PARSED,go);}
-}</script><script>function moreT(b){var g=document.querySelector('.twall');
- var rows=+(g.dataset.rows||1)+1, per=window.innerWidth<760?3:7, max=g.querySelectorAll('.tcard').length;
- g.dataset.rows=rows;
- g.querySelectorAll('.tcard').forEach(function(c,i){if(i<rows*per)c.style.display='';});
- if(rows*per>=max){b.style.display='none';}
- else{b.textContent='See more ('+(max-rows*per)+')';}}
+}</script><script>
 </script><script>(function(){
  var im=document.querySelectorAll('.wf'); if(im.length<2) return; var n=0;
  setInterval(function(){im[n].style.opacity=0;n=(n+1)%im.length;im[n].style.opacity=1;},3400);
-})();</script><script>(function(){var g=document.querySelector('.twall');if(!g)return;
- var b=document.querySelector('.morebtn');if(!b)return;
- function per(){return window.innerWidth<760?3:7}
- function sync(){var max=g.querySelectorAll('.tcard').length,shown=(+(g.dataset.rows||1))*per();
-  if(shown>=max){b.style.display='none'}else{b.style.display='';b.textContent='See more ('+(max-shown)+')'}}
- g.dataset.rows=1; sync(); window.addEventListener('resize',sync);})();</script></body></html>
+})();</script><script></script><script>
+function tmore3(b){var g=b.previousElementSibling;g.classList.remove('collapsed');
+var c=g.querySelectorAll('.tcard');var n=(parseInt(g.dataset.show||'3',10))+3;g.dataset.show=n;
+for(var i=0;i<c.length;i++){c[i].style.display=(i<n)?'':'none';}
+if(n>=c.length){b.style.display='none';}}
+(function(){var w=document.querySelector('.ecwrap');if(!w)return;
+if(!document.getElementById('gflash')){var d=document.createElement('div');d.id='gflash';d.setAttribute('aria-hidden','true');document.body.appendChild(d);}
+var fired=false;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!fired){fired=true;w.classList.add('ecgo');
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){setTimeout(function(){var g=document.getElementById('gflash');g.classList.add('on');setTimeout(function(){g.classList.remove('on');},2100);},2050);}
+io.disconnect();}});},{threshold:.35});
+io.observe(w);})();
+</script>
+</body></html>
