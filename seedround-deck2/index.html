@@ -277,7 +277,22 @@ details.sub>summary::before{content:"+ ";font-weight:700}
 details.sub[open]>summary::before{content:"\2212 "}
 details.sub>summary:hover{opacity:1;color:var(--accent)}
 details.sub .mkt,details.sub .note{margin-top:9px}
-</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 10:40PM</span></span></div>
+
+.sim{border:1px solid var(--hair);border-radius:12px;padding:18px;margin-top:16px}
+.simpre{display:flex;gap:8px;margin-bottom:16px}
+.simpre button{font-family:var(--ff);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid var(--hair);background:none;color:var(--ink);cursor:pointer}
+.simpre button.on{border-color:var(--accent);color:var(--accent)}
+label.simrow{display:grid;grid-template-columns:150px 1fr 74px;align-items:center;gap:12px;margin-bottom:9px;font-size:12.5px}
+label.simrow b{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+label.sl2{display:block;margin-top:14px;font-size:12.5px}
+label.sl2 span{display:block;margin-bottom:5px;opacity:.8}
+label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
+.simout{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--hair)}
+.simout em{display:block;font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:5px}
+.simout b{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
+.simout .hot b{color:var(--accent)}
+@media(max-width:700px){label.simrow{grid-template-columns:110px 1fr 64px;font-size:11.5px}.simout{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 15, 10:59PM</span></span></div>
 
 <div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential</span></div>
 
@@ -574,8 +589,25 @@ No playbook, no infrastructure, no capital designed for their shape.</div>
 <tr><td>Grateful Research</td><td>&mdash;</td><td>$210K</td><td>$1.35M</td></tr>
 <tr class="tot"><td><b>Free cash flow, 2028</b></td><td><b>$96K</b></td><td><b>$937K</b></td><td><b>$6.91M</b></td></tr>
 </table>
-<p class="note">Scenarios, not forecasts. Every assumption is stated as arithmetic you can check. The bear case is what happens if nothing new works and the existing businesses simply continue; the bull case requires the Oasis to sell outside our own community, which it has never done. The whole company is capped at $6M today.</p>
+<h3>Play with it yourself</h3>
+<p class="what">Drag any division to any number between its bear and bull case. Set your own multiple. Put in your own ticket. <b>Scenario only - not a projection.</b></p>
+<div class="sim">
+  <div class="simpre"><button type="button" data-p="0">Bear</button><button type="button" data-p="1" class="on">Base</button><button type="button" data-p="2">Bull</button></div>
+  <div id="simrows"></div>
+  <label class="sl sl2"><span>Multiple on free cash flow &mdash; <b id="mVal">12x</b></span><input id="mRange" type="range" min="6" max="20" step="1" value="12"></label>
+  <label class="sl sl2"><span>Your ticket at the $6M cap &mdash; <b id="tVal">$18,000</b> for <b id="pVal">0.300%</b></span><input id="tRange" type="range" min="1800" max="18000" step="1800" value="18000"></label>
+  <div class="simout">
+    <div><em>Free cash flow, 2028</em><b id="oFcf">&mdash;</b></div>
+    <div><em>Company worth</em><b id="oVal">&mdash;</b></div>
+    <div><em>Your stake</em><b id="oStake">&mdash;</b></div>
+    <div class="hot"><em>Return</em><b id="oRet">&mdash;</b></div>
+  </div>
+</div>
+<p class="note">* Scenario only, not a projection. Nothing here is a promise of a return, and every number moves when the assumptions move.</p>
 <div class="founders">
+<h3>Why us</h3>
+<p class="what">Max Marine spent over a decade in finance and earned his CFA charter in 18 months. Seven of those years were inside Israeli venture capital - at iAngels and lool - specializing in Israeli technology startups that needed help crossing the Atlantic. He wrote <i>Raising Your Seed Round</i> in 2017.</p>
+<p class="what">Since founding Grateful Labs and Grateful Giraffes he has been building one thesis: <b>community ownership is an efficiency, not a nicety.</b> People working toward common goals from shared values do more with less - cheaper acquisition, longer retention, fewer meetings, and a cap table that shows up when you need it. He designed the membership and equity model, and built the first versions of the Oasis and Gigi himself.</p>
 <div class="fcard"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/97873835b_76814065-BDD4-4AF1-BBCA-9CAB1AB87B12.jpeg" alt="Max Marine">
 <div class="fmeta"><h4>Max Marine</h4><p class="frole">CEO &amp; co-founder</p>
 <ul><li>Seven years in Israeli venture capital</li><li>CFA charterholder</li><li>Author of <i>Raising Your Seed Round</i></li><li>Built the first versions of The Oasis and Gigi himself</li></ul></div></div>
@@ -799,5 +831,35 @@ function upd(){var t=+a.value,pct=t/6000000;
  document.getElementById('r10').textContent=m(Math.round(pct*60000000));
  document.getElementById('r20').textContent=m(Math.round(pct*120000000));}
 a.addEventListener('input',upd);upd();})();
+</script>
+<script>
+(function(){var host=document.getElementById('simrows');if(!host)return;
+var D=[['AI School',54000,271000,1040000],['The Oasis',0,225000,2700000],['Gigi',12000,126000,1500000],
+       ['Grateful Giraffes Events',30000,105000,320000],['Grateful Research',0,210000,1350000]];
+function m(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function k(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':'$'+Math.round(n/1000)+'K';}
+D.forEach(function(d,i){
+ var row=document.createElement('label');row.className='simrow';
+ row.innerHTML='<span>'+d[0]+'</span><input type="range" data-i="'+i+'" min="'+d[1]+'" max="'+d[3]+'" step="'+Math.max(1000,Math.round((d[3]-d[1])/100))+'" value="'+d[2]+'"><b></b>';
+ host.appendChild(row);});
+var rs=[].slice.call(host.querySelectorAll('input')),mr=document.getElementById('mRange'),tr=document.getElementById('tRange');
+function upd(){var tot=0;
+ rs.forEach(function(r,i){var v=+r.value;tot+=v;r.parentNode.querySelector('b').textContent=k(v);});
+ var mult=+mr.value,t=+tr.value,pct=t/6000000,val=tot*mult,stake=val*pct;
+ document.getElementById('mVal').textContent=mult+'x';
+ document.getElementById('tVal').textContent=m(t);
+ document.getElementById('pVal').textContent=(pct*100).toFixed(3)+'%';
+ document.getElementById('oFcf').textContent=k(tot);
+ document.getElementById('oVal').textContent=k(val);
+ document.getElementById('oStake').textContent=m(stake);
+ document.getElementById('oRet').textContent=(stake/t).toFixed(1)+'x';}
+rs.concat([mr,tr]).forEach(function(r){r.addEventListener('input',upd);});
+[].slice.call(document.querySelectorAll('.simpre button')).forEach(function(b){
+ b.addEventListener('click',function(){
+  var p=+b.dataset.p;
+  document.querySelectorAll('.simpre button').forEach(function(x){x.classList.remove('on');});
+  b.classList.add('on');
+  rs.forEach(function(r,i){r.value=D[i][p===0?1:(p===1?2:3)];});upd();});});
+upd();})();
 </script>
 </body></html>
