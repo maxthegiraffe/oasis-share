@@ -44,7 +44,7 @@ td.big{font-size:24px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
 .tgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:20px}
 .gcard{margin:0;position:relative;cursor:pointer;aspect-ratio:3/4;overflow:hidden;background:#0a1018;border-radius:6px}
 .gcard img,.gcard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.gcard .veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,12,20,.85) 0%,rgba(8,12,20,.4) 26%,rgba(8,12,20,0) 55%)}
+.gcard .veil,.tcard .veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,12,20,.85) 0%,rgba(8,12,20,.4) 26%,rgba(8,12,20,0) 55%)}
 .gcard .pill{position:absolute;bottom:34px;right:8px;z-index:4;pointer-events:none;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);color:#fff;font-size:9.5px;padding:4px 9px;border-radius:99px;opacity:0;transition:opacity .3s}
 .gcard:hover .pill,.gcard.on .pill{opacity:1}
 .gcard figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:6px 8px 8px;color:#fff;font-size:10.5px;font-weight:600;text-align:center}
@@ -339,6 +339,13 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 #opdeckstart{display:block;position:relative}
 @media(max-width:700px){.op-portal{height:240vh}}
 @media (prefers-reduced-motion:reduce){.op-portal{height:100vh}.op-vid{display:none}.op-house{opacity:1}}
+
+/* Testimonial cards never had a base rule. Their figcaption and veil are
+   position:absolute, so with no positioned ancestor they resolved against the
+   page and the white caption ('Marco Hansell') floated over the hero on scroll. */
+.tcard{margin:0;position:relative;cursor:pointer;aspect-ratio:3/4;overflow:hidden;background:#0a1018;border-radius:6px}
+.tcard img{width:100%;height:100%;object-fit:cover;display:block}
+.tcard .pl{margin-top:0}
 </style></head><body>
 <div id="glopener">
 <a class="op-skip" href="#opdeckstart">Skip to the deck</a>
@@ -356,7 +363,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 </div></section>
 </div>
 <a id="opdeckstart"></a>
-<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 4:11PM</span></span></div>
+<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 5:57PM</span></span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
 <h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
@@ -374,8 +381,6 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 <h2>(Grateful) <span class="glow">Giraffes</span>, not unicorns.</h2>
 
 <div class="lead" style="color:var(--accent);font-weight:600">Head in the clouds. Feet on the ground. Big hearts.</div>
-<p class="catdef">While living in San Francisco, Max coined a new kind of entrepreneurship. The <b>unicorn</b> elevated a rare mythical creature and ended up standing for hype over substance, as one so-called unicorn after another came apart under scrutiny. That VC-backed model produces big winners and sore losers, and Max spent years inside it.</p>
-<p class="catdef">What he understood in San Francisco is that the <b>Giraffe</b> is the evolution of the unicorn: an entrepreneur with a powerful vision, a strong connection to the earth, and a big heart. We are grateful to be surrounded by so many of them in this community.</p>
 <table class="gvu">
 <tr><th></th><th>&#129426; Giraffes</th><th>&#129412; Unicorns</th></tr>
 <tr><td>Capital</td><td>Patient, right-sized capital aligned with the business.</td><td>Large rounds designed around venture-scale returns.</td></tr>
@@ -386,8 +391,6 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 
 <div class="founders">
 <h3>Why us</h3>
-<p class="what">Max Marine spent over a decade in finance and earned his CFA charter in 18 months. Seven of those years were inside Israeli venture capital - at iAngels and lool - specializing in Israeli technology startups that needed help crossing the Atlantic. He wrote <i>Raising Your Seed Round</i> in 2017.</p>
-<p class="what">Since founding Grateful Labs and Grateful Giraffes he has been building one thesis: <b>community ownership is a powerful competitive advantage that can create long-lasting, AI-proof businesses.</b> People working toward common goals from shared values do more with less - cheaper acquisition, longer retention, fewer meetings, and a cap table that shows up when you need it. He designed the membership and equity model, and built the first versions of the Oasis and Gigi himself.</p>
 <div class="founder"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/97873835b_76814065-BDD4-4AF1-BBCA-9CAB1AB87B12.jpeg" alt="Max Marine">
 <div class="fbody"><h4>Max Marine</h4><p class="frole">CEO &amp; co-founder</p><ul class="acc"><li>CFA charterholder, earned in 18 months</li><li>Seven years in Israeli venture capital - iAngels, lool</li><li>Author of <i>Raising Your Seed Round</i> (2017)</li><li>Designed the membership and equity model</li><li>Built the first versions of the Oasis and Gigi himself</li></ul></div></div>
 <div class="founder"><img src="https://springceremony.lovable.app/lovable-uploads/89bed132-6e55-4a7d-a159-491ba64a6ed8.png" alt="Julian Melcer">
