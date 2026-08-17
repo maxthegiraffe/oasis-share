@@ -312,7 +312,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 .op-portal{position:relative;height:280vh}
 .op-stick{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
 .op-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity}
-.op-mark{position:absolute;left:0;bottom:0;padding:0 0 5vh 6vw;pointer-events:none;will-change:opacity;z-index:4}
+.op-mark{position:absolute;left:0;bottom:0;padding:0 0 5vh 6vw;pointer-events:none;will-change:opacity;z-index:9}
 .op-mark h1{margin:0;font-weight:700;letter-spacing:-.03em;line-height:.84;font-size:clamp(2.2rem,7vw,5.4rem);color:var(--ink)}
 .op-mark h1 .glow{color:var(--accent)}
 .op-mark .op-cue{margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(15,15,15,.5)}
@@ -337,7 +337,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 .op-skip:hover{border-color:var(--accent)}
 .op-hold{position:absolute;inset:0;background:var(--paper);transition:opacity .45s;z-index:8}
 #opdeckstart{display:block;position:relative}
-@media(max-width:700px){.op-portal{height:240vh}}
+@media(max-width:700px){.op-portal{height:460vh}}
 @media (prefers-reduced-motion:reduce){.op-portal{height:100vh}.op-vid{display:none}.op-house{opacity:1}}
 
 /* Testimonial cards never had a base rule. Their figcaption and veil are
@@ -363,7 +363,7 @@ label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
 </div></section>
 </div>
 <a id="opdeckstart"></a>
-<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 16, 6:04PM</span></span></div>
+<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 17, 10:08AM</span></span></div>
 
 <section><div class="k">Seed round 2026 &middot; Confidential</div>
 <h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
@@ -1005,6 +1005,10 @@ var seg=function(p,a,b){return Math.min(1,Math.max(0,(p-a)/(b-a)));};
 var ss=function(t){return t*t*(3-2*t);};
 var reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 if(matchMedia('(max-width:768px)').matches && v1.dataset.mobile) v1.src=v1.dataset.mobile;
+function uncover(){hold.style.opacity=0;setTimeout(function(){hold.style.display='none';},480);paint();}
+v1.addEventListener('loadedmetadata',uncover);
+setTimeout(uncover,2500);
+try{v1.load();}catch(e){}
 v1.addEventListener('loadeddata',function(){hold.style.opacity=0;
   setTimeout(function(){hold.style.display='none';},480);paint();});
 var raf=0;
