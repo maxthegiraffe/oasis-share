@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Under $100 · Grateful Giraffes</title>
+<meta name="description" content="61 giraffe prints, posters, and small works, every one under one hundred dollars.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="Under $100 · Grateful Giraffes">
+<meta property="og:description" content="61 giraffe prints, posters, and small works, every one under one hundred dollars.">
+<meta property="og:url" content="https://grateful.gg/gallery1">
+<meta property="og:image" content="https://grateful.gg/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Under $100 · Grateful Giraffes">
+<meta name="twitter:description" content="61 giraffe prints, posters, and small works, every one under one hundred dollars.">
+<meta name="twitter:image" content="https://grateful.gg/og-default.jpg">
+<link rel="canonical" href="https://grateful.gg/gallery1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Libre Bodoni',Georgia,serif;color:#1c1917;background:linear-gradient(135deg,#fffbeb 0%,#fff7ed 50%,#fefce8 100%);min-height:100vh}
+  a{color:inherit}
+  .hero{position:relative;padding:88px 24px;text-align:center;background:linear-gradient(135deg,#78350f 0%,#9a3412 55%,#713f12 100%);color:#fff}
+  .hero .kicker{margin:0 0 18px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:#fcd34d}
+  .hero h1{margin:0;font-size:clamp(40px,7vw,72px);font-weight:700;line-height:1.05}
+  .hero .rule{width:56px;height:1px;background:#fbbf24;margin:22px auto}
+  .hero p.lede{max-width:720px;margin:0 auto;font-size:clamp(17px,2.2vw,21px);line-height:1.6;color:rgba(255,255,255,.82)}
+  .hero .switch{margin:26px 0 0;font-size:14px;color:rgba(255,255,255,.7)}
+  .hero .switch a{color:#fcd34d;text-decoration:none;border-bottom:1px solid rgba(252,211,77,.5)}
+  .bar{position:sticky;top:0;z-index:30;padding:14px 24px;background:rgba(255,251,235,.95);backdrop-filter:blur(6px);border-bottom:1px solid #fde68a}
+  .bar .inner{max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+  .chip{appearance:none;border:1px solid #fde68a;background:#fff;color:#78350f;font:inherit;font-size:14px;font-weight:500;padding:7px 16px;border-radius:999px;cursor:pointer;transition:all .15s}
+  .chip:hover{background:#fffbeb}
+  .chip[aria-pressed="true"]{background:#b45309;color:#fff;border-color:#b45309;box-shadow:0 2px 6px rgba(120,53,15,.25)}
+  select.sort{font:inherit;font-size:14px;color:#78350f;background:#fff;border:1px solid #fde68a;border-radius:999px;padding:7px 12px}
+  main{padding:56px 24px 40px}
+  .wrap{max-width:1152px;margin:0 auto}
+  .count{text-align:center;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(146,64,14,.6);margin:0 0 36px}
+  .empty{text-align:center;color:#78716c;padding:48px 0;display:none}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+  .card{background:#fff;border:1px solid #fef3c7;border-radius:24px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+  .card:hover{box-shadow:0 18px 40px rgba(120,53,15,.16);transform:translateY(-2px)}
+  .card .art{position:relative;display:block;aspect-ratio:4/5;background:#fffbeb;overflow:hidden}
+  .card .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .num{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(255,251,235,.92);color:#92400e}
+  .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .artist{margin:0 0 4px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#d97706}
+  .title{margin:0;font-size:16px;font-weight:700;line-height:1.3;color:#1c1917}
+  .meta{margin:4px 0 0;font-size:12px;color:#78716c}
+  .price{margin:0;font-size:24px;font-weight:700;color:#92400e}
+  .desc{margin:0;font-size:14px;line-height:1.6;color:#57534e;flex:1}
+  footer{padding:56px 24px;text-align:center;border-top:1px solid #fde68a}
+  footer p{max-width:640px;margin:0 auto 10px;font-size:13px;color:rgba(120,53,15,.55);line-height:1.6}
+  footer a{color:#b45309}
+  /* chooser */
+  .choose{max-width:960px;margin:0 auto;padding:64px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+  .door{display:block;text-decoration:none;background:#fff;border:1px solid #fef3c7;border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:box-shadow .2s,transform .2s}
+  .door:hover{box-shadow:0 22px 48px rgba(120,53,15,.18);transform:translateY(-3px)}
+  .door .strip{display:grid;grid-template-columns:repeat(3,1fr);aspect-ratio:3/1.6;background:#fffbeb}
+  .door .strip img{width:100%;height:100%;object-fit:cover;display:block}
+  .door .info{padding:26px 28px 30px}
+  .door .roman{margin:0 0 6px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#d97706}
+  .door h2{margin:0 0 8px;font-size:28px;font-weight:700;color:#1c1917}
+  .door p{margin:0;font-size:15px;line-height:1.6;color:#57534e}
+  .door .go{display:inline-block;margin-top:18px;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,#d97706,#ea580c);color:#fff;font-weight:600;font-size:15px}
+  @media (max-width:640px){.hero{padding:64px 20px}main{padding:40px 16px}.grid{gap:16px}.choose{padding:40px 16px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">Grateful Giraffes · Giraffe Gallery I</p>
+  <h1>Under $100</h1>
+  <div class="rule"></div>
+  <p class="lede">61 giraffe prints, posters, and small works, every one under one hundred dollars.</p>
+  <p class="switch">Looking for something else? <a href="/gallery2">Gallery II, $100 and up &rarr;</a></p>
+</header>
+
+<nav class="bar" aria-label="Filters">
+  <div class="inner">
+    <div class="row" id="styles">
+      <button class="chip" data-style="all" aria-pressed="true">All styles</button>
+      <button class="chip" data-style="realistic" aria-pressed="false">Realistic</button>
+      <button class="chip" data-style="abstract" aria-pressed="false">Abstract</button>
+      <button class="chip" data-style="whimsical" aria-pressed="false">Whimsical</button>
+      <button class="chip" data-style="minimalist" aria-pressed="false">Minimalist</button>
+      <button class="chip" data-style="watercolor" aria-pressed="false">Watercolor</button>
+      <button class="chip" data-style="nursery" aria-pressed="false">Nursery</button>
+      <button class="chip" data-style="pop" aria-pressed="false">Pop Art</button>
+      <button class="chip" data-style="vintage" aria-pressed="false">Vintage</button>
+      <button class="chip" data-style="african" aria-pressed="false">African</button>
+      <button class="chip" data-style="photography" aria-pressed="false">Photography</button>
+      <select class="sort" id="sort" aria-label="Sort pieces">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <p class="count" id="count"></p>
+    <p class="empty" id="empty">No pieces match that style here. Try another, or visit <a href="/gallery2">Gallery II, $100 and up</a>.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<footer>
+  <p>61 pieces from $7.20 to $97.50. Prices in USD and subject to change; each work is by an independent artist and availability is not guaranteed.</p>
+  <p>Giraffe Gallery I · <a href="/giraffeartgallery">All galleries</a> · <a href="https://app.grateful.gg/">Grateful Giraffes Community</a></p>
+</footer>
+
+<script id="pieces" type="application/json">[{"id":"art-003","title":"Giraffe on the Savannah - 18 x 24 Original Oil Painting on Canvas","artist":"Sylvia Leffler Shunk (loveahorse)","price":78,"medium":"Original oil on canvas","style":"realistic","dimensions":"18 x 24 in","description":"Signed one-of-a-kind oil of a lone giraffe standing over a tree-dotted savanna, painted in a traditional realist style.","image":"/gallery-assets/art-003.jpg","n":1},{"id":"art-005","title":"Giraffe Watercolor Print, Baby Giraffe Nursery Art","artist":"JamesRiverStudios","price":18,"medium":"Giclée print from original watercolor","style":"watercolor","dimensions":"5x7 to 16x20 in","description":"Soft watercolor portrait of a baby giraffe, printed on archival velvet fine-art paper and signed on the back.","image":"/gallery-assets/art-005.jpg","n":2},{"id":"art-006","title":"Black And White Portrait Of A Giraffe","artist":"Design Pics","price":82.8,"medium":"Photograph","style":"photography","dimensions":null,"description":"Close-up monochrome photo of a giraffe with head tilted, showing its serene expression and spotted pattern.","image":"/gallery-assets/art-006.jpg","n":3},{"id":"art-007","title":"Twisty Giraffe","artist":"Ampersand Design Studio","price":42,"medium":"Graphic art print on cotton rag paper","style":"pop","dimensions":"5\" x 7\" (up to 48\" x 70\")","description":"Bold, bright hand-drawn giraffe with a twisting neck; a quirky graphic statement piece for kids' rooms.","image":"/gallery-assets/art-007.jpg","n":4},{"id":"art-008","title":"Cute Giraffe Poster","artist":"ArsFerrum","price":53.99,"medium":"Metal print","style":"nursery","dimensions":"17.7 x 12.6 in (M)","description":"A soft, animation-inspired giraffe character printed on magnet-mounted metal, made for a kids' room wall.","image":"/gallery-assets/art-008.jpg","n":5},{"id":"art-009","title":"Giraffe","artist":"PhotoINC Studio","price":73.91,"medium":"Canvas print","style":"photography","dimensions":null,"description":"A head-on black-and-white photographic portrait that puts you eye to eye with a giraffe, on stretched canvas.","image":"/gallery-assets/art-009.jpg","n":6},{"id":"art-010","title":"Africa Safari Giraffe Watercolor Painting Poster","artist":"Carson's Canvas","price":46.12,"medium":"Poster","style":"watercolor","dimensions":"20 x 16 in","description":"A watercolor giraffe wandering a Kenyan lakeshore with flamingos in the distance, as a giclee poster.","image":"/gallery-assets/art-010.jpg","n":7},{"id":"art-011","title":"Peek-A-Boo Giraffe Print","artist":"Studio print","price":33.08,"medium":"Poster","style":"photography","dimensions":"12 x 16 in","description":"A curious giraffe peers through an airplane window in this playful photo poster with a white border.","image":"/gallery-assets/art-011.jpg","n":8},{"id":"art-012","title":"Rollerskating Giraffe","artist":"Jonas Loose","price":7.73,"medium":"Poster","style":"whimsical","dimensions":null,"description":"A photo-collage giraffe glides along in striped socks and pink roller skates on a mint-green background.","image":"/gallery-assets/art-012.jpg","n":9},{"id":"art-014","title":"Galaxy Giraffe Art Print","artist":"Andy Westface","price":36,"medium":"Art print","style":"whimsical","dimensions":"8\" x 10\" to 30\" x 40\"","description":"A playful giraffe whose neck fades from rainbow stripes into a starry night-sky body, set on a soft cream ground.","image":"/gallery-assets/art-014.jpg","n":10},{"id":"art-015","title":"Space Giraffe Art Print","artist":"MankaKasha","price":28.48,"medium":"Art print","style":"watercolor","dimensions":"12 x 16 in to 24 x 32 in","description":"A hand-drawn ink and watercolor giraffe stretching its neck up into a swirling purple-blue galaxy of stars.","image":"/gallery-assets/art-015.jpg","n":11},{"id":"art-022","title":"Abstract Giraffe Impressionist Original Wall Art 14x11 Canvas Acrylic","artist":"Pamela Bible Fine Art","price":97.5,"medium":"Original acrylic on canvas","style":"abstract","dimensions":"14 x 11 in","description":"Loose, impressionistic acrylic giraffe with bold brushwork and a painterly abstract background.","image":"/gallery-assets/art-022.jpg","n":12},{"id":"art-023","title":"USIXA Giraffe Canvas Wall Art - Animal Head from Open Window, Black and White","artist":"USIXA","price":37.73,"medium":"Framed canvas print","style":"minimalist","dimensions":"16 x 24 in","description":"Black-and-white giraffe peeking through an open window, a clean minimalist look for modern rooms.","image":"/gallery-assets/art-023.jpg","n":13},{"id":"art-024","title":"Abstract Giraffe Wall Art - Giraffe No. 1 (Carl Mitzki)","artist":"SunshineMoonPrints","price":40.75,"medium":"Giclée print on paper or canvas","style":"abstract","dimensions":"Multiple sizes","description":"Bold yellow-and-orange abstract giraffe with loose, painterly shapes suited to boho or contemporary rooms.","image":"/gallery-assets/art-024.jpg","n":14},{"id":"art-025","title":"Purple Giraffes","artist":"Vicki Jauron","price":19.2,"medium":"Photograph","style":"photography","dimensions":null,"description":"Mother and baby giraffe silhouetted against a moody, purple-toned Masai Mara sky with rays of light.","image":"/gallery-assets/art-025.jpg","n":15},{"id":"art-026","title":"Marmoreal Giraffe","artist":"Kacey Kendrick Wagner","price":42,"medium":"Graphic art print on cotton rag paper","style":"abstract","dimensions":"5\" x 7\" (up to 48\" x 70\")","description":"Giraffe whose spots are reimagined as terrazzo and marble stone chips, in a sophisticated muted palette.","image":"/gallery-assets/art-026.jpg","n":16},{"id":"art-027","title":"Giraffe Family","artist":"Teddy Verneuil","price":53.99,"medium":"Metal print","style":"watercolor","dimensions":"17.7 x 12.6 in (M)","description":"Two giraffes emerge from loose washes of gold, pink and violet in a dreamy watercolor-style metal print.","image":"/gallery-assets/art-027.jpg","n":17},{"id":"art-029","title":"Baby Giraffe Cute Poster / Print","artist":"Janna Salak Designs","price":42.88,"medium":"Poster","style":"nursery","dimensions":"24 x 24 in","description":"A bright, friendly baby giraffe illustration printed as a square giclee poster for nurseries and playrooms.","image":"/gallery-assets/art-029.jpg","n":18},{"id":"art-030","title":"Bubblegum Giraffe Print","artist":"Studio print","price":9.32,"medium":"Poster","style":"pop","dimensions":"5 x 7 in","description":"A giraffe blows a blue bubblegum bubble against a candy-pink background in this fun pastel art print.","image":"/gallery-assets/art-030.jpg","n":19},{"id":"art-031","title":"Giraffe","artist":"Monika Strigel","price":7.73,"medium":"Poster","style":"minimalist","dimensions":null,"description":"A stark black-and-white giraffe portrait against white space, a clean minimalist statement poster.","image":"/gallery-assets/art-031.jpg","n":20},{"id":"art-033","title":"THIRSTY GIRAFFE Framed Art Print","artist":"Paul Fuentes","price":90,"medium":"Framed print","style":"pop","dimensions":"10\" x 10\" to 36\" x 36\"","description":"A giraffe in pink heart sunglasses sips through a curly pink straw wrapped around its neck, framed against blush pink.","image":"/gallery-assets/art-033.jpg","n":21},{"id":"art-034","title":"Giraffe and the Cello Poster","artist":"PariKonanur","price":17.41,"medium":"Poster","style":"whimsical","dimensions":"11.7 x 13.6 in to 23.4 x 27.2 in","description":"A cheerful cartoon giraffe plays a cello beneath leafy green trees on a sunny yellow background.","image":"/gallery-assets/art-034.jpg","n":22},{"id":"art-040","title":"Giraffe Sunset Savanna Africa Impressionist Art Acrylic 8x8 Canvas","artist":"VLP Creations","price":24,"medium":"Original acrylic on canvas","style":"african","dimensions":"8 x 8 in","description":"Small original acrylic of a giraffe silhouetted against a glowing African sunset sky.","image":"/gallery-assets/art-040.jpg","n":23},{"id":"art-041","title":"Framed Giraffe Canvas Wall Art - Funny Giraffe with Yellow Flowers","artist":"Baby Plum","price":11.88,"medium":"Stretched canvas print on wood frame","style":"whimsical","dimensions":"12 x 16 in","description":"Playful watercolor-style giraffe wearing yellow flowers, printed on canvas for a kids' bath or bedroom.","image":"/gallery-assets/art-041.jpg","n":24},{"id":"art-042","title":"Giraffe Original Art Painting on Canvas","artist":"IngitasArt","price":84,"medium":"Original acrylic on stretched canvas","style":"whimsical","dimensions":"20 x 16 x 0.7 in","description":"Hand-painted, signed acrylic giraffe on cotton canvas that ships ready to hang with a sawtooth hanger.","image":"/gallery-assets/art-042.jpg","n":25},{"id":"art-043","title":"Abstract Green Giraffe Minimalist Painting","artist":"Joanna Szmerdt","price":21.6,"medium":"Watercolor painting","style":"minimalist","dimensions":null,"description":"Soft, abstract giraffe silhouette rendered in layered shades of green watercolor, suited to modern nurseries.","image":"/gallery-assets/art-043.jpg","n":26},{"id":"art-044","title":"Giraffe","artist":"Jerry Winick","price":54,"medium":"Pencil drawing, limited edition print","style":"realistic","dimensions":"5\" x 7\" (up to 48\" x 70\")","description":"Painterly graphite portrait of a giraffe from the artist's animal series, drawn entirely in pencil.","image":"/gallery-assets/art-044.jpg","n":27},{"id":"art-045","title":"Neon Giraffe","artist":"Ammar Zain","price":53.99,"medium":"Metal print","style":"pop","dimensions":"17.7 x 12.6 in (M)","description":"A giraffe rendered in glowing neon tones for a bold, contemporary pop-art wall piece on metal.","image":"/gallery-assets/art-045.jpg","n":28},{"id":"art-046","title":"Simply Giraffe","artist":"Magali Modoux","price":57.41,"medium":"Canvas print","style":"african","dimensions":null,"description":"A folk-art giraffe stands among patterned leaves and warm red stripes in this African-inspired canvas.","image":"/gallery-assets/art-046.jpg","n":29},{"id":"art-047","title":"Inspirational Giraffe Quote Stand Tall Even Alone Poster","artist":"raindwops","price":22.31,"medium":"Poster","style":"whimsical","dimensions":"12 x 16 in","description":"A playful giraffe paired with a stand-tall motivational quote, printed on semi-gloss poster paper.","image":"/gallery-assets/art-047.jpg","n":30},{"id":"art-049","title":"Giraffe Baby Watercolor Art Print","artist":"Olechka","price":36,"medium":"Art print","style":"watercolor","dimensions":"8\" x 10\" to 30\" x 40\"","description":"A wide-eyed baby giraffe portrait painted in loose watercolor with pastel splatters drifting around it.","image":"/gallery-assets/art-049.jpg","n":31},{"id":"art-050","title":"Royal Giraffe Wearing Crown Blue Canvas Print","artist":"Jeff Bartels","price":61.68,"medium":"Canvas print","style":"pop","dimensions":"8 x 10.2 in to 12 x 15.3 in","description":"A big-eyed baby giraffe wears a jeweled gold crown against a deep teal backdrop in this digital portrait.","image":"/gallery-assets/art-050.jpg","n":32},{"id":"art-055","title":"Viktor Bevanda Giraffe Colorful Pop Art Canvas 8x10","artist":"Viktor Bevanda","price":21,"medium":"Signed acrylic painting on canvas","style":"pop","dimensions":"8 x 10 in","description":"Brightly colored pop-art giraffe head by Brazilian artist Viktor Bevanda, signed and unframed.","image":"/gallery-assets/art-055.jpg","n":33},{"id":"art-056","title":"Rinsiken Giraffe Wall Art Canvas - Mother and Baby Giraffe Safari Nursery Decor","artist":"Rinsiken","price":21.59,"medium":"Framed canvas print, ready to hang","style":"nursery","dimensions":"12 x 16 in","description":"Gentle mother-and-baby giraffe in soft neutral tones designed for calm nursery and kids' room walls.","image":"/gallery-assets/art-056.jpg","n":34},{"id":"art-058","title":"Baby Giraffe Watercolor","artist":"Olga Shvartsur","price":26.4,"medium":"Watercolor painting","style":"watercolor","dimensions":null,"description":"Playful watercolor portrait of a wide-eyed baby giraffe set against a colorful splashed background.","image":"/gallery-assets/art-058.jpg","n":35},{"id":"art-059","title":"Baby Animal Friends: Giraffe","artist":"Jieun K Rasband","price":42,"medium":"Watercolor painting, limited edition print","style":"nursery","dimensions":"5\" x 7\" (up to 48\" x 70\")","description":"Delicate watercolor of a calm, gentle baby giraffe, painted specifically for baby nurseries.","image":"/gallery-assets/art-059.jpg","n":36},{"id":"art-060","title":"Abstract Giraffe Art","artist":"Artificial Inspiration","price":53.99,"medium":"Metal print","style":"abstract","dimensions":"17.7 x 12.6 in (M)","description":"A giraffe broken into bold abstract shapes and color, printed on a magnet-mounted metal plate.","image":"/gallery-assets/art-060.jpg","n":37},{"id":"art-062","title":"FAUNA / Giraffe Poster","artist":"Daniel Coulmann","price":18,"medium":"Poster","style":"minimalist","dimensions":null,"description":"A flat, textured giraffe face in warm ochre and brown fills a mustard-yellow field with a calm, modern feel.","image":"/gallery-assets/art-062.jpg","n":38},{"id":"art-063","title":"Giraffe Rapper Framed Art Print","artist":"taiprints","price":95.24,"medium":"Framed print","style":"whimsical","dimensions":"8 x 11.3 in to 16 x 22.7 in","description":"A giraffe in an L.A. cap and braids grips a microphone, styled as hip-hop MC 'Giro Flow' and shown in a white frame.","image":"/gallery-assets/art-063.jpg","n":39},{"id":"art-068","title":"Giraffe Photo Canvas - Africa Wildlife Giraffe Wall Art","artist":"Capital Canvas Prints","price":41.99,"medium":"Photographic print on stretched canvas","style":"photography","dimensions":null,"description":"Wildlife photograph of an African giraffe printed on gallery canvas, made to order in the US.","image":"/gallery-assets/art-068.jpg","n":40},{"id":"art-069","title":"Vintage Bow Giraffe Nursery Oval Wall Art, Grey Striped Canvas Print Framed","artist":"XSTWLJ","price":19.19,"medium":"Framed oval canvas print","style":"vintage","dimensions":"8.6 x 11.4 in","description":"Retro-styled giraffe with a bow on grey stripes, presented in an elegant oval frame.","image":"/gallery-assets/art-069.jpg","n":41},{"id":"art-070","title":"Giraffe Nursery Print, Baby Jungle Animals","artist":"LaSardinaRosa","price":17.46,"medium":"Giclée print of original illustration","style":"nursery","dimensions":"5x7 to 16x20 in","description":"Cheerful gender-neutral baby giraffe illustration from an Italian studio, sold unframed for nursery walls.","image":"/gallery-assets/art-070.jpg","n":42},{"id":"art-071","title":"Giraffe Pattern","artist":"Jeanne Woods","price":24,"medium":"Photograph","style":"abstract","dimensions":null,"description":"Tight photographic crop of a giraffe's hide, turning its natural spot pattern into an abstract composition.","image":"/gallery-assets/art-071.jpg","n":43},{"id":"art-072","title":"Look! Giraffe!","artist":"Maja Cunningham","price":42,"medium":"Acrylic block print, limited edition print","style":"whimsical","dimensions":"5\" x 7\" (up to 48\" x 70\")","description":"Charming giraffe block print made with acrylic paint and hand-carved potato stamps, from an animal series.","image":"/gallery-assets/art-072.jpg","n":44},{"id":"art-074","title":"Giraffes - Sepia Palette Art Print","artist":"Cat Coquillette","price":36,"medium":"Art print","style":"vintage","dimensions":"8\" x 10\" to 30\" x 40\"","description":"Three tall giraffes rendered in sepia and metallic gold tones with patterned, folk-inspired markings on white.","image":"/gallery-assets/art-074.jpg","n":45},{"id":"art-075","title":"Giraffe Bathtub Vintage Bathroom Art Canvas Print","artist":"BWWallArt","price":56.94,"medium":"Canvas print","style":"photography","dimensions":"8 x 12 in to 20 x 30 in","description":"A black-and-white photo-style scene of a giraffe soaking in a clawfoot bathtub amid floating bubbles.","image":"/gallery-assets/art-075.jpg","n":46},{"id":"art-079","title":"Giraffe Nursery Decor Poster - Giraffe Art Photo Print on Canvas","artist":"P&L Art (rachelart)","price":26.39,"medium":"Canvas print on stretched wood bars","style":"nursery","dimensions":null,"description":"Soft giraffe portrait stretched on 1.25-inch wood bars, sized for a nursery or kids' room wall.","image":"/gallery-assets/art-079.jpg","n":47},{"id":"art-080","title":"ARTZGX Colorful Giraffe Canvas Wall Art - Giraffe Graffiti Painting Abstract Portrait","artist":"ARTZGX","price":86.39,"medium":"Canvas print on solid wood frame","style":"abstract","dimensions":"20 x 30 in","description":"Graffiti-inspired giraffe portrait bursting with splashed color on a stretched canvas.","image":"/gallery-assets/art-080.jpg","n":48},{"id":"art-081","title":"Giraffe Print Africa Wildlife Black and White Photography Triptych","artist":"LeAnnStamper","price":54,"medium":"Photography print on luster paper, canvas, or metal","style":"photography","dimensions":"Multiple sizes, 3-panel triptych","description":"Monochrome wildlife photograph of giraffes taken in Tanzania, offered as a three-panel triptych.","image":"/gallery-assets/art-081.jpg","n":49},{"id":"art-082","title":"Giraffe Painting","artist":"Rachel Stribbling","price":31.2,"medium":"Oil painting","style":"realistic","dimensions":"8 x 12 in","description":"Detailed, realistic oil portrait of a giraffe by a wildlife artist, rich in texture and warm color.","image":"/gallery-assets/art-082.jpg","n":50},{"id":"art-084","title":"Modern giraffe print Framed Art Print","artist":"Agne Kubiliene","price":78,"medium":"Framed print","style":"abstract","dimensions":"8\" x 10\" to 36\" x 36\"","description":"An all-over giraffe-spot pattern in rich browns and cream, matted and framed for a graphic, modern statement.","image":"/gallery-assets/art-084.jpg","n":51},{"id":"art-085","title":"Giraffe II Poster","artist":"Gluecknika","price":17.41,"medium":"Poster","style":"abstract","dimensions":"11.7 x 16.4 in to 33.1 x 46.4 in","description":"A bold cubist-style giraffe in red, orange and cobalt blue, digitally reworked from an original painting.","image":"/gallery-assets/art-085.jpg","n":52},{"id":"art-089","title":"Vintage 1974 Gaylord Stevens Giraffe Framed Artwork Mid Century Modern Safari","artist":"Gaylord Stevens","price":53.99,"medium":"Vintage matted print on canvas paper","style":"vintage","dimensions":"11 x 14 in matted (5 x 7 in image)","description":"Signed 1974 mid-century giraffe print in a period mat, a genuine vintage safari-decor find.","image":"/gallery-assets/art-089.jpg","n":53},{"id":"art-090","title":"Floral Giraffe Canvas Wall Art Framed Watercolor Nursery Artwork 8x10","artist":"ZQTAKOE (Zenchi Wall Art)","price":16.66,"medium":"Framed canvas print, black wood frame","style":"watercolor","dimensions":"8 x 10 in","description":"Watercolor giraffe in oversized glasses and a blush floral crown, framed in black wood.","image":"/gallery-assets/art-090.jpg","n":54},{"id":"art-091","title":"Black and White Giraffes Framed Fine Art Print","artist":"CanvasArtEspresso","price":51.17,"medium":"Framed giclée photography print","style":"photography","dimensions":"Multiple sizes, framed","description":"A tower of giraffes under a dramatic cloudy sky, rendered in monochrome and delivered professionally framed.","image":"/gallery-assets/art-091.jpg","n":55},{"id":"art-092","title":"Medieval Giraffe","artist":"Madame Memento","price":19.2,"medium":"Mixed media collage","style":"vintage","dimensions":null,"description":"Whimsical giraffe dressed as a medieval jester with a hobbyhorse, collaged onto an antique dictionary page.","image":"/gallery-assets/art-092.jpg","n":56},{"id":"art-094","title":"Giraffe Safari Canvas Print","artist":"Gale Switzer","price":84,"medium":"Canvas print","style":"african","dimensions":"8\" x 10\" to 36\" x 36\"","description":"A repeating safari pattern of giraffes among palm trees and gold polka dots, stretched on a gallery canvas.","image":"/gallery-assets/art-094.jpg","n":57},{"id":"art-095","title":"Giraffe Art Print","artist":"littlemandyart","price":26.26,"medium":"Art print","style":"nursery","dimensions":"12 x 12 in to 30 x 30 in","description":"A simple, smiling cartoon baby giraffe in flat yellow and brown on a soft cream square, ideal for a kids' room.","image":"/gallery-assets/art-095.jpg","n":58},{"id":"art-097","title":"Giraffe Nursery Art Print, Mother and Baby (Suzi Eszterhas)","artist":"BabyAnimalPrints","price":7.2,"medium":"Photography print on luster paper","style":"realistic","dimensions":"8x10 to 30x40 in","description":"Tender mother-and-calf giraffe photograph by award-winning wildlife photographer Suzi Eszterhas.","image":"/gallery-assets/art-097.jpg","n":59},{"id":"art-098","title":"Giraffe Family","artist":"Camille Lopez","price":31.2,"medium":"Photograph","style":"photography","dimensions":null,"description":"A cluster of giraffes gathered closely together, necks and spotted coats forming a harmonious group scene.","image":"/gallery-assets/art-098.jpg","n":60},{"id":"art-100","title":"Pop Art Giraffe Canvas Print","artist":"DesignandDyeShop","price":21.24,"medium":"Canvas gallery wrap print","style":"pop","dimensions":"Multiple sizes","description":"Saturated pop-art giraffe printed on artist-grade cotton canvas with a closed MDF back, ready to hang.","image":"/gallery-assets/art-100.jpg","n":61}]</script>
+<script>
+(function () {
+  var PIECES = JSON.parse(document.getElementById('pieces').textContent);
+  var state = { style: 'all', sort: 'featured' };
+  var grid = document.getElementById('grid'), count = document.getElementById('count'), empty = document.getElementById('empty');
+  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var money = function (n) { return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); };
+  function visible() {
+    var list = PIECES.filter(function (p) { return state.style === 'all' || p.style === state.style; });
+    if (state.sort === 'price-asc') list = list.slice().sort(function (a, b) { return a.price - b.price; });
+    if (state.sort === 'price-desc') list = list.slice().sort(function (a, b) { return b.price - a.price; });
+    return list;
+  }
+  function card(p, i) {
+    return '<article class="card">' +
+      '<div class="art"><img src="' + esc(p.image) + '" alt="' + esc(p.title + ' by ' + p.artist) + '" loading="lazy" width="900" height="1125">' +
+      '<span class="num">No. ' + esc(p.n) + '</span></div>' +
+      '<div class="body">' +
+        '<div><p class="artist">' + esc(p.artist) + '</p><h3 class="title">' + esc(p.title) + '</h3>' +
+        '<p class="meta">' + esc(p.medium) + (p.dimensions ? ' · ' + esc(p.dimensions) : '') + '</p></div>' +
+        '<p class="price">' + money(p.price) + '</p>' +
+        '<p class="desc">' + esc(p.description) + '</p>' +
+      '</div></article>';
+  }
+  function render() {
+    var list = visible();
+    grid.innerHTML = list.map(card).join('');
+    count.textContent = list.length + ' piece' + (list.length === 1 ? '' : 's') + ' · Artists around the world';
+    empty.style.display = list.length ? 'none' : 'block';
+  }
+  document.getElementById('styles').addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-style]'); if (!btn) return;
+    state.style = btn.getAttribute('data-style');
+    Array.prototype.forEach.call(document.querySelectorAll('#styles button[data-style]'), function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    render();
+  });
+  document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$100 and up · Grateful Giraffes</title>
+<meta name="description" content="39 original paintings, limited editions, and collector pieces, from one hundred dollars up.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="$100 and up · Grateful Giraffes">
+<meta property="og:description" content="39 original paintings, limited editions, and collector pieces, from one hundred dollars up.">
+<meta property="og:url" content="https://grateful.gg/gallery2">
+<meta property="og:image" content="https://grateful.gg/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$100 and up · Grateful Giraffes">
+<meta name="twitter:description" content="39 original paintings, limited editions, and collector pieces, from one hundred dollars up.">
+<meta name="twitter:image" content="https://grateful.gg/og-default.jpg">
+<link rel="canonical" href="https://grateful.gg/gallery2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Libre Bodoni',Georgia,serif;color:#1c1917;background:linear-gradient(135deg,#fffbeb 0%,#fff7ed 50%,#fefce8 100%);min-height:100vh}
+  a{color:inherit}
+  .hero{position:relative;padding:88px 24px;text-align:center;background:linear-gradient(135deg,#78350f 0%,#9a3412 55%,#713f12 100%);color:#fff}
+  .hero .kicker{margin:0 0 18px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:#fcd34d}
+  .hero h1{margin:0;font-size:clamp(40px,7vw,72px);font-weight:700;line-height:1.05}
+  .hero .rule{width:56px;height:1px;background:#fbbf24;margin:22px auto}
+  .hero p.lede{max-width:720px;margin:0 auto;font-size:clamp(17px,2.2vw,21px);line-height:1.6;color:rgba(255,255,255,.82)}
+  .hero .switch{margin:26px 0 0;font-size:14px;color:rgba(255,255,255,.7)}
+  .hero .switch a{color:#fcd34d;text-decoration:none;border-bottom:1px solid rgba(252,211,77,.5)}
+  .bar{position:sticky;top:0;z-index:30;padding:14px 24px;background:rgba(255,251,235,.95);backdrop-filter:blur(6px);border-bottom:1px solid #fde68a}
+  .bar .inner{max-width:1152px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+  .chip{appearance:none;border:1px solid #fde68a;background:#fff;color:#78350f;font:inherit;font-size:14px;font-weight:500;padding:7px 16px;border-radius:999px;cursor:pointer;transition:all .15s}
+  .chip:hover{background:#fffbeb}
+  .chip[aria-pressed="true"]{background:#b45309;color:#fff;border-color:#b45309;box-shadow:0 2px 6px rgba(120,53,15,.25)}
+  select.sort{font:inherit;font-size:14px;color:#78350f;background:#fff;border:1px solid #fde68a;border-radius:999px;padding:7px 12px}
+  main{padding:56px 24px 40px}
+  .wrap{max-width:1152px;margin:0 auto}
+  .count{text-align:center;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(146,64,14,.6);margin:0 0 36px}
+  .empty{text-align:center;color:#78716c;padding:48px 0;display:none}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+  .card{background:#fff;border:1px solid #fef3c7;border-radius:24px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+  .card:hover{box-shadow:0 18px 40px rgba(120,53,15,.16);transform:translateY(-2px)}
+  .card .art{position:relative;display:block;aspect-ratio:4/5;background:#fffbeb;overflow:hidden}
+  .card .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .num{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(255,251,235,.92);color:#92400e}
+  .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .artist{margin:0 0 4px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#d97706}
+  .title{margin:0;font-size:16px;font-weight:700;line-height:1.3;color:#1c1917}
+  .meta{margin:4px 0 0;font-size:12px;color:#78716c}
+  .price{margin:0;font-size:24px;font-weight:700;color:#92400e}
+  .desc{margin:0;font-size:14px;line-height:1.6;color:#57534e;flex:1}
+  footer{padding:56px 24px;text-align:center;border-top:1px solid #fde68a}
+  footer p{max-width:640px;margin:0 auto 10px;font-size:13px;color:rgba(120,53,15,.55);line-height:1.6}
+  footer a{color:#b45309}
+  /* chooser */
+  .choose{max-width:960px;margin:0 auto;padding:64px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+  .door{display:block;text-decoration:none;background:#fff;border:1px solid #fef3c7;border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:box-shadow .2s,transform .2s}
+  .door:hover{box-shadow:0 22px 48px rgba(120,53,15,.18);transform:translateY(-3px)}
+  .door .strip{display:grid;grid-template-columns:repeat(3,1fr);aspect-ratio:3/1.6;background:#fffbeb}
+  .door .strip img{width:100%;height:100%;object-fit:cover;display:block}
+  .door .info{padding:26px 28px 30px}
+  .door .roman{margin:0 0 6px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#d97706}
+  .door h2{margin:0 0 8px;font-size:28px;font-weight:700;color:#1c1917}
+  .door p{margin:0;font-size:15px;line-height:1.6;color:#57534e}
+  .door .go{display:inline-block;margin-top:18px;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,#d97706,#ea580c);color:#fff;font-weight:600;font-size:15px}
+  @media (max-width:640px){.hero{padding:64px 20px}main{padding:40px 16px}.grid{gap:16px}.choose{padding:40px 16px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">Grateful Giraffes · Giraffe Gallery II</p>
+  <h1>$100 and up</h1>
+  <div class="rule"></div>
+  <p class="lede">39 original paintings, limited editions, and collector pieces, from one hundred dollars up.</p>
+  <p class="switch">Looking for something else? <a href="/gallery1">Gallery I, under $100 &rarr;</a></p>
+</header>
+
+<nav class="bar" aria-label="Filters">
+  <div class="inner">
+    <div class="row" id="styles">
+      <button class="chip" data-style="all" aria-pressed="true">All styles</button>
+      <button class="chip" data-style="realistic" aria-pressed="false">Realistic</button>
+      <button class="chip" data-style="abstract" aria-pressed="false">Abstract</button>
+      <button class="chip" data-style="whimsical" aria-pressed="false">Whimsical</button>
+      <button class="chip" data-style="minimalist" aria-pressed="false">Minimalist</button>
+      <button class="chip" data-style="watercolor" aria-pressed="false">Watercolor</button>
+      <button class="chip" data-style="nursery" aria-pressed="false">Nursery</button>
+      <button class="chip" data-style="pop" aria-pressed="false">Pop Art</button>
+      <button class="chip" data-style="vintage" aria-pressed="false">Vintage</button>
+      <button class="chip" data-style="african" aria-pressed="false">African</button>
+      <button class="chip" data-style="photography" aria-pressed="false">Photography</button>
+      <select class="sort" id="sort" aria-label="Sort pieces">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <p class="count" id="count"></p>
+    <p class="empty" id="empty">No pieces match that style here. Try another, or visit <a href="/gallery1">Gallery I, under $100</a>.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<footer>
+  <p>39 pieces from $141.60 to $83,400.00. Prices in USD and subject to change; each work is by an independent artist and availability is not guaranteed.</p>
+  <p>Giraffe Gallery II · <a href="/giraffeartgallery">All galleries</a> · <a href="https://app.grateful.gg/">Grateful Giraffes Community</a></p>
+</footer>
+
+<script id="pieces" type="application/json">[{"id":"art-001","title":"Following Giraffe","artist":"Paul Nash","price":229.2,"medium":"Photograph, C-type print","style":"photography","dimensions":"40.64 x 60.96 cm","description":"Wildlife photograph of a giraffe on the move, printed as a photographic C-type print.","image":"/gallery-assets/art-001.jpg","n":1},{"id":"art-002","title":"The Watchtower Giraffe","artist":"Paul Brandwein","price":1080,"medium":"Acrylic on canvas","style":"abstract","dimensions":"20 x 16 in","description":"Thick impasto giraffe rendered as an architectural sentinel in warm tones against cool hues.","image":"/gallery-assets/art-002.jpg","n":2},{"id":"art-004","title":"Framed Canvas Wall Art Modern Pop Art Giraffe with Pink Hibiscus","artist":"Generic (XingTai TuFeng)","price":142.8,"medium":"Framed canvas print, black frame","style":"pop","dimensions":"24 x 36 in","description":"Monochrome photorealistic giraffe portrait with a single vivid pink hibiscus behind its ear.","image":"/gallery-assets/art-004.jpg","n":3},{"id":"art-013","title":"Giraffe","artist":"Jennifer Doehring","price":6672,"medium":"Original acrylic on canvas","style":"african","dimensions":"18 W x 24 H x 2 D in","description":"Bold expressionist giraffe painted after the artist's safari through Tanzania and Kenya.","image":"/gallery-assets/art-013.jpg","n":4},{"id":"art-016","title":"Orange Giraffe","artist":"John McCabe","price":360,"medium":"Acrylic on canvas board","style":"whimsical","dimensions":"12 x 12 in","description":"A grinning orange giraffe crashes a group portrait of men in hats in this playful small acrylic.","image":"/gallery-assets/art-016.jpg","n":5},{"id":"art-017","title":"Two Giraffe on Violet Splash","artist":"Josh Brown","price":4440,"medium":"Acrylic on canvas","style":"minimalist","dimensions":"46 x 30 x 2.5 in","description":"Two graphic giraffe silhouettes set against a bold violet splash in a clean contemporary composition.","image":"/gallery-assets/art-017.jpg","n":6},{"id":"art-018","title":"Giraffe Profile","artist":"David Katzner","price":900,"medium":"Color photography, hand-signed","style":"photography","dimensions":"16 x 24 x 0.25 in","description":"Color photograph of a giraffe in profile, taken in Tanzania's Serengeti.","image":"/gallery-assets/art-018.jpg","n":7},{"id":"art-019","title":"The Giraffe Who Wanted to be a Swan","artist":"Carl Moore","price":1014,"medium":"Hand-embellished limited edition print (edition of 25) on Hahnemuhle paper","style":"whimsical","dimensions":"54 x 53 cm","description":"Tongue-in-cheek print of a giraffe posing as a swan, from Moore's series of animals impersonating other animals.","image":"/gallery-assets/art-019.jpg","n":8},{"id":"art-020","title":"Giraffe","artist":"Corinne Hamer","price":304.8,"medium":"Acrylic on canvas","style":"realistic","dimensions":"30.48 x 40.64 cm","description":"Photorealistic acrylic portrait of a giraffe on a compact canvas.","image":"/gallery-assets/art-020.jpg","n":9},{"id":"art-021","title":"The Flabbergasted Giraffe","artist":"Nathalie Gribinski","price":2160,"medium":"Oil and felt markers on canvas","style":"whimsical","dimensions":"24 x 20 in","description":"Orange giraffe at the centre of a fantastical, character-filled scene from the Tourlicoulis series.","image":"/gallery-assets/art-021.jpg","n":10},{"id":"art-028","title":"Colorful Giraffe","artist":"Yubis Guzman","price":146.51,"medium":"Canvas print","style":"pop","dimensions":null,"description":"A vibrant, saturated giraffe painting reproduced as a ready-to-hang gallery-wrapped canvas.","image":"/gallery-assets/art-028.jpg","n":11},{"id":"art-032","title":"Giraffe - original acrylic painting on canvas","artist":"Aliaksandra Tsesarskaya","price":3960,"medium":"Original acrylic on canvas","style":"abstract","dimensions":"31.4 W x 39.3 H x 0.3 D in","description":"Large abstract-expressionist giraffe in white, rose, blue, violet and yellow, themed around freedom and protection.","image":"/gallery-assets/art-032.jpg","n":12},{"id":"art-035","title":"Sweet Eyes","artist":"Sally Adams","price":3840,"medium":"Acrylic on stretched canvas","style":"realistic","dimensions":"48 x 24 in","description":"Tall vertical portrait of a doe-eyed giraffe calf nibbling a vine in turquoise, chartreuse and amber tones.","image":"/gallery-assets/art-035.jpg","n":13},{"id":"art-036","title":"Lazy Lovers (2018) Expressionist Giraffe Portrait","artist":"Brian Keith Stephens","price":20400,"medium":"Oil on cotton canvas","style":"abstract","dimensions":"60 x 38 in","description":"Two elongated giraffes lean tenderly into each other in a large, loosely brushed expressionist canvas.","image":"/gallery-assets/art-036.jpg","n":14},{"id":"art-037","title":"Quarry with Giraffe","artist":"Nick Brandt","price":36000,"medium":"Archival pigment print, limited edition, framed","style":"photography","dimensions":"38 x 99 in","description":"Panoramic image from Brandt's Inherit the Dust series placing a life-size giraffe portrait inside a working quarry.","image":"/gallery-assets/art-037.jpg","n":15},{"id":"art-038","title":"Giraffe - Red List","artist":"Stefanie Rogge","price":2090.4,"medium":"Acrylic and graphite on canvas","style":"abstract","dimensions":"100 x 120 cm","description":"Large expressive, gestural acrylic and graphite work referencing the giraffe's endangered status.","image":"/gallery-assets/art-038.jpg","n":16},{"id":"art-039","title":"Giraffe","artist":"Rosie Tretter","price":396,"medium":"Pastel and coloured pencil on paper","style":"watercolor","dimensions":"12 x 8 in","description":"Small, vibrant giraffe study in watercolour-like washes and delicate coloured-pencil lines.","image":"/gallery-assets/art-039.jpg","n":17},{"id":"art-048","title":"Funny Giraffe","artist":"Liubov Kuptsova","price":2640,"medium":"Original oil on canvas","style":"whimsical","dimensions":"27.6 W x 39.4 H x 0.1 D in","description":"Playful young giraffe in vivid color set against a calm, monochrome background.","image":"/gallery-assets/art-048.jpg","n":18},{"id":"art-051","title":"Colorful giraffe","artist":"Ernest Carneado Ferreri","price":1704,"medium":"Acrylic on canvas","style":"pop","dimensions":"21.26 x 28.35 in","description":"Half-length giraffe portrait rendered in saturated, vivid color with striking expressive eyes.","image":"/gallery-assets/art-051.jpg","n":19},{"id":"art-052","title":"Tauramachie Surrealiste The Giraffe on Fire","artist":"Salvador Dalí","price":30000,"medium":"Etching on Japon paper, hand-signed, edition 64/100 (1970)","style":"vintage","dimensions":"20 x 26 in","description":"Rare hand-signed 1970 Dalí etching of his burning-giraffe motif from the Tauramachie Surrealiste suite.","image":"/gallery-assets/art-052.jpg","n":20},{"id":"art-053","title":"Giraffe Wearing a Scarf","artist":"Louise Brown","price":534,"medium":"Acrylic on canvas","style":"whimsical","dimensions":"40.64 x 50.8 cm","description":"Playful, gestural acrylic of a giraffe bundled up in a scarf.","image":"/gallery-assets/art-053.jpg","n":21},{"id":"art-054","title":"Little Giraffe","artist":"Maria Kireev","price":804,"medium":"Acrylic on wood","style":"pop","dimensions":"12 x 10 in","description":"Bold comic-meets-pop acrylic of a giraffe in quirky glasses, painted on a wood panel.","image":"/gallery-assets/art-054.jpg","n":22},{"id":"art-057","title":"Original Giraffe Oil Painting: African Animal Art","artist":"AllaCreativityArt","price":141.6,"medium":"Original palette-knife oil on wooden panel","style":"african","dimensions":"8 x 12 in","description":"Thick impasto oil giraffe built up with a palette knife in vivid, textured color on a small wood panel.","image":"/gallery-assets/art-057.jpg","n":23},{"id":"art-061","title":"Giants of Grace - Sofia the Giraffe","artist":"Carolyn Judge","price":2322,"medium":"Original watercolor on paper","style":"watercolor","dimensions":"15 W x 22 H x 0.1 D in","description":"Wildlife watercolor of a giraffe pausing to share a quiet moment with two small birds.","image":"/gallery-assets/art-061.jpg","n":24},{"id":"art-064","title":"Giraffe","artist":"Madalena Zampassi","price":840,"medium":"Oil on canvas","style":"minimalist","dimensions":"23.63 x 11.82 in","description":"Slim vertical oil with a crisp, pared-back giraffe silhouette designed for modern interiors.","image":"/gallery-assets/art-064.jpg","n":25},{"id":"art-065","title":"UNTITLED (GIRAFFE)","artist":"Alexander Calder","price":83400,"medium":"Crayon and pencil on cut-out paper mounted on board (1966)","style":"abstract","dimensions":"26.75 x 35.6 in (framed)","description":"Unique 1966 Calder crayon drawing of a giraffe, registered with the Calder Foundation.","image":"/gallery-assets/art-065.jpg","n":26},{"id":"art-066","title":"Paintbox Giraffe","artist":"Rebecca Vincent","price":304.8,"medium":"Acrylic and hand-painted collage on paper","style":"pop","dimensions":"19 x 25 cm","description":"Small mixed-media collage giraffe built from hand-painted paper in bright paintbox colours.","image":"/gallery-assets/art-066.jpg","n":27},{"id":"art-067","title":"Mom and Baby Giraffes","artist":"Heni Sandoval","price":900,"medium":"Acrylic on watercolour paper","style":"african","dimensions":"15 x 20 in","description":"Mother and calf from the artist's African animal series, built up in layered, scratched-back acrylic.","image":"/gallery-assets/art-067.jpg","n":28},{"id":"art-073","title":"Pop giraffe (yellow, blue, orange)","artist":"Nywa Art Project","price":2175.6,"medium":"Photography, color on canvas","style":"pop","dimensions":"19.7 W x 19.7 H x 0.1 D in","description":"Digitally manipulated pop-art photograph of a giraffe saturated in yellow, blue and orange.","image":"/gallery-assets/art-073.jpg","n":29},{"id":"art-076","title":"Giraffe #3","artist":"Brad Wilson","price":2400,"medium":"Archival pigment print, limited edition of 15","style":"photography","dimensions":"19.69 x 29.14 in (50 x 74 cm)","description":"Studio portrait of a giraffe emerging from a black backdrop, from Wilson's Affinity animal series.","image":"/gallery-assets/art-076.jpg","n":30},{"id":"art-077","title":"Welcome Little Giraffe","artist":"Tiffany Budd","price":991.2,"medium":"Acrylic on deep-edge canvas","style":"nursery","dimensions":"30 x 100 cm","description":"Tall, illustrative acrylic of a young giraffe on a slim 100cm canvas, suited to a nursery wall.","image":"/gallery-assets/art-077.jpg","n":31},{"id":"art-078","title":"Giraffe in controluce","artist":"Mario Cattaneo","price":672,"medium":"Acrylic on canvas","style":"minimalist","dimensions":"28 x 20 in","description":"Backlit giraffe silhouettes walking toward the horizon under a warm, hazy sky.","image":"/gallery-assets/art-078.jpg","n":32},{"id":"art-083","title":"Giraffe","artist":"Amogha Venus","price":1212,"medium":"Original paper collage with acrylic","style":"abstract","dimensions":"11.8 W x 16.5 H x 0.1 D in","description":"One-of-a-kind collage layering paper and paint into a symbolic, abstract giraffe.","image":"/gallery-assets/art-083.jpg","n":33},{"id":"art-086","title":"Giraffe in grass","artist":"Joachim Schmeisser","price":3621.6,"medium":"Archival pigment print, edition 7/12, framed","style":"photography","dimensions":"23.63 x 23.63 in (60 x 60 cm)","description":"Black-and-white photograph of a giraffe resting in tall grass beneath Mount Kenya.","image":"/gallery-assets/art-086.jpg","n":34},{"id":"art-087","title":"Colourful Giraffe Painting","artist":"Sandy Broenimann","price":540,"medium":"Japanese watercolour on Arches paper","style":"watercolor","dimensions":"20 x 20 cm","description":"Square watercolour giraffe in luminous purples, blues and turquoise on Arches satin paper.","image":"/gallery-assets/art-087.jpg","n":35},{"id":"art-088","title":"Giraffe Portrait Rost","artist":"Gabriele Müller","price":2088,"medium":"Acrylic on canvas","style":"vintage","dimensions":"16 x 12 in","description":"Vintage-realistic giraffe portrait in bold colour set against a rusty, weathered background.","image":"/gallery-assets/art-088.jpg","n":36},{"id":"art-093","title":"Poolside Giraffe | Limited Edition (S)","artist":"Paul Fuentes","price":948,"medium":"Limited edition giclée print on paper","style":"photography","dimensions":"21.7 W x 27.6 H x 0.1 D in","description":"Pastel-toned photograph of a giraffe beside a pool, channeling mid-century endless-summer nostalgia.","image":"/gallery-assets/art-093.jpg","n":37},{"id":"art-096","title":"The King's Camelopard","artist":"Charles Frederick de Brocktorff","price":51121.2,"medium":"Watercolor, pencil and gold paint on paper (1827)","style":"vintage","dimensions":"14.49 x 10.99 in","description":"An 1827 watercolor of the young Nubian giraffe sent to King George IV, painted during its stopover in Malta.","image":"/gallery-assets/art-096.jpg","n":38},{"id":"art-099","title":"Giraffe","artist":"Alexander Bijev","price":831.6,"medium":"Original acrylic on paper","style":"abstract","dimensions":"27.6 W x 39.4 H x 0.2 D in","description":"Loose abstract-expressionist acrylic that suggests a giraffe through gestural marks and color.","image":"/gallery-assets/art-099.jpg","n":39}]</script>
+<script>
+(function () {
+  var PIECES = JSON.parse(document.getElementById('pieces').textContent);
+  var state = { style: 'all', sort: 'featured' };
+  var grid = document.getElementById('grid'), count = document.getElementById('count'), empty = document.getElementById('empty');
+  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var money = function (n) { return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); };
+  function visible() {
+    var list = PIECES.filter(function (p) { return state.style === 'all' || p.style === state.style; });
+    if (state.sort === 'price-asc') list = list.slice().sort(function (a, b) { return a.price - b.price; });
+    if (state.sort === 'price-desc') list = list.slice().sort(function (a, b) { return b.price - a.price; });
+    return list;
+  }
+  function card(p, i) {
+    return '<article class="card">' +
+      '<div class="art"><img src="' + esc(p.image) + '" alt="' + esc(p.title + ' by ' + p.artist) + '" loading="lazy" width="900" height="1125">' +
+      '<span class="num">No. ' + esc(p.n) + '</span></div>' +
+      '<div class="body">' +
+        '<div><p class="artist">' + esc(p.artist) + '</p><h3 class="title">' + esc(p.title) + '</h3>' +
+        '<p class="meta">' + esc(p.medium) + (p.dimensions ? ' · ' + esc(p.dimensions) : '') + '</p></div>' +
+        '<p class="price">' + money(p.price) + '</p>' +
+        '<p class="desc">' + esc(p.description) + '</p>' +
+      '</div></article>';
+  }
+  function render() {
+    var list = visible();
+    grid.innerHTML = list.map(card).join('');
+    count.textContent = list.length + ' piece' + (list.length === 1 ? '' : 's') + ' · Artists around the world';
+    empty.style.display = list.length ? 'none' : 'block';
+  }
+  document.getElementById('styles').addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-style]'); if (!btn) return;
+    state.style = btn.getAttribute('data-style');
+    Array.prototype.forEach.call(document.querySelectorAll('#styles button[data-style]'), function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    render();
+  });
+  document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+  render();
+})();
+</script>
+</body>
+</html>
