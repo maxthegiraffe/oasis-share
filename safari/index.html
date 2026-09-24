@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Safari · Grateful Giraffes</title>
+<meta name="description" content="A home for the herd: five zones under one roof, test-fit in ten west-side spaces. Explore them in 3D.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="The Safari · a home for the herd">
+<meta property="og:description" content="Basecamp, Savanna, Oasis, Acacia and Canopy, test-fit in ten west-side spaces. Explore them in 3D.">
+<meta property="og:url" content="https://grateful.gg/safari/">
+<meta property="og:image" content="https://grateful.gg/safari/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/safari/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Concept rendering of a skylit community space with a giraffe mural">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Safari · a home for the herd">
+<meta name="twitter:description" content="Five zones under one roof, test-fit in ten spaces. Explore them in 3D.">
+<meta name="twitter:image" content="https://grateful.gg/safari/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400&family=DM+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#26211b;--soft:#6b6158;--pink:#be185d;--line:rgba(38,33,27,.12);--card:rgba(255,250,244,.94)}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#f3e7da;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif}
+  #scene{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:none}
+  .brand{position:fixed;left:20px;top:18px;z-index:5;width:min(400px,calc(100vw - 40px))}
+  .brand .eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+  .brand h1{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:clamp(34px,4.6vw,52px);line-height:1;margin:6px 0 10px}
+  .space{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;box-shadow:0 8px 24px rgba(38,33,27,.10)}
+  .space .top{display:flex;align-items:center;gap:8px}
+  .space .top button{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;color:var(--ink)}
+  .space .top select{flex:1;min-width:0;font:600 15px 'DM Sans',sans-serif;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
+  .space .meta{font-size:13px;color:var(--soft);margin:10px 2px 2px;line-height:1.5}
+  .space ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#4a4138;line-height:1.5}
+  .bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+    padding:7px;background:rgba(255,250,244,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;
+    box-shadow:0 10px 30px rgba(38,33,27,.12);max-width:calc(100vw - 20px)}
+  .bar button{font:600 14px 'DM Sans',sans-serif;border:0;border-radius:999px;padding:9px 13px;cursor:pointer;background:transparent;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .bar button:hover{background:rgba(38,33,27,.06)}
+  .bar button.on{background:var(--ink);color:#fbf3ea}
+  .bar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(38,33,27,.25)}
+  .bar .sep{width:1px;background:var(--line);margin:4px 2px}
+  .tag{position:fixed;z-index:4;transform:translate(-50%,-100%);cursor:pointer;user-select:none;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:6px 12px 7px;text-align:center;box-shadow:0 6px 18px rgba(38,33,27,.14);transition:opacity .2s ease;white-space:nowrap}
+  .tag b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:18px;font-weight:600;line-height:1.1}
+  .tag span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  .tag i{position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:#fffaf4;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+  .tag.dim{opacity:.35}
+  .tag.lvl{cursor:default;background:#26211b;color:#fbf3ea;padding:5px 10px}.tag.lvl b{font-size:14px;font-family:'DM Sans',sans-serif}.tag.lvl i{background:#26211b;border:0}
+  .panel{position:fixed;right:18px;top:18px;bottom:86px;width:min(390px,calc(100vw - 36px));z-index:7;background:rgba(255,250,244,.97);
+    border:1px solid var(--line);border-radius:22px;box-shadow:0 16px 44px rgba(38,33,27,.18);overflow:auto;transform:translateX(120%);transition:transform .35s ease}
+  .panel.open{transform:none}
+  .panel img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:22px 22px 0 0;background:#e9dccb}
+  .panel .in{padding:18px 20px 20px}
+  .panel .z{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+  .panel h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:40px;line-height:1;margin:6px 0 10px}
+  .panel p{margin:0 0 12px;color:#4a4138;font-size:15px;line-height:1.55}
+  .panel ul{margin:0 0 14px;padding-left:18px;color:#4a4138;font-size:14px;line-height:1.6}
+  .panel .row{display:flex;gap:8px}
+  .panel .row button{flex:1;font:600 14px 'DM Sans',sans-serif;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;cursor:pointer;color:var(--ink)}
+  .panel .x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,250,244,.92);font-size:20px;cursor:pointer;color:var(--ink)}
+  .panel .cap{font-size:12px;color:var(--soft);margin-top:12px;line-height:1.5}
+  .hint{position:fixed;left:20px;bottom:22px;z-index:3;font-size:12px;color:var(--soft);max-width:250px;line-height:1.5}
+  .load{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:#f3e7da;transition:opacity .5s ease}
+  .load div{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;color:var(--soft)}
+  .load.gone{opacity:0;pointer-events:none}
+  .fold{display:none}
+  @media (max-width:1100px){.hint{display:none}}
+  @media (max-width:760px){
+    .brand{left:10px;top:10px;width:calc(100vw - 20px)}.brand h1{font-size:30px;margin:2px 0 6px}
+    .space{padding:8px 10px}.space ul{display:none}.space .meta{margin-top:6px}
+    .hint{display:none}
+    .bar{bottom:10px;gap:1px;padding:5px}.bar button{padding:8px 9px;font-size:13px}.bar .lbl{display:none}
+    .panel{left:8px;right:8px;width:auto;top:auto;bottom:70px;max-height:58vh;transform:translateY(130%)}
+    .panel.open{transform:none}
+    .tag b{font-size:14px}.tag span{display:none}
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="scene" aria-label="3D concept model of the Safari campus"></canvas>
+<div class="load" id="load"><div>Raising the roof…</div></div>
+
+<div class="brand">
+  <div class="eyebrow">Grateful Giraffes · Concept</div>
+  <h1>The Safari</h1>
+  <div class="space">
+    <div class="top">
+      <button id="sPrev" aria-label="Previous space">‹</button>
+      <select id="sPick" aria-label="Choose a space"></select>
+      <button id="sNext" aria-label="Next space">›</button>
+    </div>
+    <div class="meta" id="sMeta"></div>
+    <ul id="sFacts"></ul>
+  </div>
+</div>
+
+<div id="tags"></div>
+
+<aside class="panel" id="panel" aria-live="polite">
+  <button class="x" id="close" aria-label="Close">×</button>
+  <img id="pimg" alt="">
+  <div class="in">
+    <div class="z" id="pz"></div>
+    <h2 id="ph"></h2>
+    <p id="pp"></p>
+    <ul id="pl"></ul>
+    <div class="row"><button id="prev">← Previous</button><button id="next">Next →</button></div>
+    <div class="cap">Concept image, AI-generated. The 3D layout is a schematic test-fit on an assumed footprint, not the building&#8217;s real plan.</div>
+  </div>
+</aside>
+
+<nav class="bar" id="bar">
+  <button id="bOverview" class="on">Overview</button>
+  <button id="bTour">▶ <span class="lbl">Tour</span></button>
+  <span class="sep"></span>
+  <button data-zone="basecamp"><i class="dot" style="background:#f3e6d6"></i><span class="lbl">Basecamp</span></button>
+  <button data-zone="savanna"><i class="dot" style="background:#f6c89b"></i><span class="lbl">Savanna</span></button>
+  <button data-zone="oasis"><i class="dot" style="background:#9fdccd"></i><span class="lbl">Oasis</span></button>
+  <button data-zone="acacia"><i class="dot" style="background:#cfdc9a"></i><span class="lbl">Acacia</span></button>
+  <button data-zone="canopy"><i class="dot" style="background:#c8bdf5"></i><span class="lbl">Canopy</span></button>
+  <span class="sep"></span>
+  <button id="bWalls" title="Raise or lower the walls">Walls</button>
+</nav>
+<div class="hint">Ten west-side spaces, each test-fit with the same five zones. Schematic concepts, not final designs. Drag to orbit, scroll or pinch to zoom.</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const SPACES = [{"n":1,"hood":"Del Rey","sf":6500,"W":100,"D":65,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":0,"w":25,"d":14},{"zone":"acacia","name":"Acacia","fn":"Glass offices","x":25,"z":0,"w":30,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":14,"w":55,"d":51},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":27,"d":24},{"zone":"wc","name":"WC","fn":"","x":82,"z":0,"w":18,"d":12},{"zone":"canopy","name":"Canopy","fn":"Studio","x":82,"z":12,"w":18,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":55,"z":24,"w":45,"d":19},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":55,"z":43,"w":45,"d":22}],"rooms2":[],"outdoor":[{"label":"Private patio \u00b7 outdoor salon","x":0,"z":65,"w":55,"d":18}],"outdoor2":[],"street":"T","facts":["Brand-new creative conversion, a private \"mini campus\"","17-ft exposed ceilings, oversized skylights","Upgraded kitchen, floor-to-ceiling glass offices"]},{"n":2,"hood":"Santa Monica","sf":6130,"W":102,"D":60,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":25,"d":18},{"zone":"oasis","name":"Oasis","fn":"Street caf\u00e9 & bar","x":0,"z":18,"w":25,"d":42},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":25,"z":0,"w":47,"d":60},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":72,"z":0,"w":30,"d":22},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":72,"z":22,"w":30,"d":20},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":72,"z":42,"w":18,"d":18},{"zone":"wc","name":"WC","fn":"","x":90,"z":42,"w":12,"d":18}],"rooms2":[],"outdoor":[{"label":"Sidewalk seating","x":-18,"z":0,"w":18,"d":60}],"outdoor2":[],"street":"L","facts":["Ground floor, built for retail or restaurant use","20-ft exposed ceilings","Street frontage on Lincoln Blvd"]},{"n":3,"hood":"Culver City","sf":5060,"W":92,"D":55,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":50,"d":42},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":74,"z":0,"w":18,"d":13},{"zone":"acacia","name":"Acacia","fn":"Office","x":74,"z":13,"w":18,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":25,"w":24,"d":17},{"zone":"wc","name":"WC","fn":"","x":74,"z":25,"w":18,"d":17},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":42,"w":22,"d":13},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":22,"z":42,"w":44,"d":13},{"zone":"oasis","name":"Oasis","fn":"Bar","x":66,"z":42,"w":26,"d":13}],"rooms2":[],"outdoor":[{"label":"Private patio","x":92,"z":5,"w":16,"d":40}],"outdoor2":[],"street":"B","facts":["Ground floor, polished concrete, glass walls","High exposed ceilings, natural light","Private breakout rooms and an open kitchen"]},{"n":4,"hood":"Culver City","sf":6428,"W":98,"D":66,"twoFloor":false,"rooms":[{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":0,"z":0,"w":26,"d":40},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":40,"w":26,"d":26},{"zone":"canopy","name":"Canopy","fn":"Studio","x":26,"z":0,"w":16,"d":26},{"zone":"acacia","name":"Acacia","fn":"Offices","x":42,"z":0,"w":16,"d":14},{"zone":"wc","name":"WC","fn":"","x":42,"z":14,"w":16,"d":12},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":26,"z":26,"w":32,"d":26},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":26,"z":52,"w":32,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":58,"z":0,"w":40,"d":66}],"rooms2":[],"outdoor":[{"label":"Patio \u00b7 to the park","x":98,"z":10,"w":15,"d":46}],"outdoor2":[],"street":"B","facts":["Flexible creative layout on the ground floor","Kitchen with stainless appliances","Outdoor patio; building signage available"]},{"n":5,"hood":"Playa Vista","sf":6500,"W":130,"D":50,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":30,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":16,"w":30,"d":34},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":30,"z":0,"w":26,"d":26},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":30,"z":26,"w":26,"d":14},{"zone":"wc","name":"WC","fn":"","x":30,"z":40,"w":26,"d":10},{"zone":"acacia","name":"Acacia","fn":"Pods","x":56,"z":0,"w":18,"d":50},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":74,"z":0,"w":56,"d":50}],"rooms2":[],"outdoor":[{"label":"Roll-up door \u00b7 yard","x":130,"z":8,"w":20,"d":34}],"outdoor2":[],"street":"L","facts":["Open warehouse floor, concrete, skylights","Ground-level roll-up loading doors at the rear","West of the 405 on Jefferson"]},{"n":6,"hood":"Culver City","sf":7016,"W":116,"D":60,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":58,"d":44},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":44,"w":20,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":44,"w":38,"d":16},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":58,"z":0,"w":30,"d":24},{"zone":"canopy","name":"Canopy","fn":"Studio","x":88,"z":0,"w":28,"d":12},{"zone":"wc","name":"WC","fn":"","x":88,"z":12,"w":28,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":58,"z":24,"w":40,"d":36},{"zone":"acacia","name":"Acacia","fn":"Offices","x":98,"z":24,"w":18,"d":36}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["Ground floor, finishing an adaptive-reuse conversion","New custom steel doors and windows","Near the Expo Line; quick to the 10"]},{"n":7,"hood":"Del Rey","sf":6903,"W":99,"D":70,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Suites A + B","x":0,"z":0,"w":50,"d":52},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":0,"z":52,"w":50,"d":18},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":50,"z":0,"w":25,"d":12},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":12,"w":25,"d":28},{"zone":"canopy","name":"Canopy","fn":"Studio","x":50,"z":40,"w":25,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":52,"w":25,"d":18},{"zone":"acacia","name":"Acacia","fn":"Suite D pods","x":75,"z":0,"w":24,"d":52},{"zone":"wc","name":"WC","fn":"","x":75,"z":52,"w":24,"d":18}],"rooms2":[],"outdoor":[{"label":"Outdoor patio","x":0,"z":70,"w":50,"d":13}],"outdoor2":[],"street":"T","facts":["Whole building, up to 5 creative suites","Kitchen and conference room in place","Internet included; polished concrete"]},{"n":8,"hood":"Marina del Rey","sf":3435,"W":69,"D":50,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":38,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":38,"d":10},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":38,"z":0,"w":31,"d":16},{"zone":"acacia","name":"Acacia","fn":"Desks & offices","x":38,"z":16,"w":19,"d":34},{"zone":"oasis","name":"Oasis","fn":"Bar & caf\u00e9","x":57,"z":16,"w":12,"d":24},{"zone":"wc","name":"WC","fn":"","x":57,"z":40,"w":12,"d":10}],"rooms2":[],"outdoor":[{"label":"Shared patio","x":69,"z":6,"w":14,"d":36}],"outdoor2":[],"street":"B","facts":["Loft-style creative office, 1st floor","4 offices, conference room, open area, kitchen","Shared shaded patio next door"]},{"n":9,"hood":"Venice","sf":5425,"W":95,"D":57,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":55,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":20,"d":17},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":40,"w":35,"d":17},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":79,"z":0,"w":16,"d":12},{"zone":"acacia","name":"Acacia","fn":"Office","x":79,"z":12,"w":16,"d":13},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":55,"z":25,"w":24,"d":16},{"zone":"oasis","name":"Oasis","fn":"Recovery","x":79,"z":25,"w":16,"d":16},{"zone":"acacia","name":"Acacia","fn":"Offices","x":55,"z":41,"w":24,"d":16},{"zone":"wc","name":"WC","fn":"","x":79,"z":41,"w":16,"d":16}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["1st-floor creative or work/live loft","6 offices, 2 conference rooms, open area, kitchen","Around the corner from Abbot Kinney"]},{"n":10,"hood":"Venice","sf":5800,"W":58,"D":50,"twoFloor":true,"rooms":[{"zone":"oasis","name":"Oasis","fn":"Lounge & caf\u00e9","x":0,"z":0,"w":30,"d":28},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":30,"z":0,"w":28,"d":28},{"zone":"basecamp","name":"Basecamp","fn":"Reception","x":0,"z":28,"w":24,"d":22},{"zone":"acacia","name":"Acacia","fn":"Offices","x":24,"z":28,"w":18,"d":22},{"zone":"oasis","name":"Oasis","fn":"Kitchenette","x":42,"z":28,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":40,"w":16,"d":10}],"rooms2":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":42,"d":50},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":42,"z":0,"w":16,"d":26},{"zone":"oasis","name":"Oasis","fn":"Bar","x":42,"z":26,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":38,"w":16,"d":12}],"outdoor":[],"outdoor2":[{"label":"Patio","x":0,"z":50,"w":42,"d":14}],"street":"L","facts":["Renovated creative office on two floors","Large open area upstairs; big second-floor patio","Bullpens, conference room, 2 kitchenettes"]}];
+
+const ZONES = {
+  basecamp:{name:'Basecamp', verb:'Arrive', color:0xf3e6d6, text:'Walk in, check in and get your Safari passport stamped. The gallery wall holds the faces of the herd.'},
+  savanna:{name:'Savanna', verb:'Gather', color:0xf6c89b, text:'The main stage. Salons, demo days, Evenings of Gratitude and the Safari itself happen here.'},
+  oasis:{name:'Oasis', verb:'Restore', color:0x9fdccd, text:'Café and bar, kitchen, recovery and bodywork. Where the herd slows down.'},
+  acacia:{name:'Acacia', verb:'Build', color:0xcfdc9a, text:'Home of the Acacia accelerator: founder pods of eight, desks and glass offices.'},
+  canopy:{name:'Canopy', verb:'Learn', color:0xc8bdf5, text:'AI School under a hanging garden, with a studio where the space allows.'},
+};
+const ORDER = ['basecamp','savanna','oasis','acacia','canopy'];
+const WC_COLOR = 0xbdb5ac, WALL_H = 14, LOW = .3;
+
+// ---------- renderer, scene, controls ----------
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf3e7da); scene.fog = new THREE.Fog(0xf3e7da, 260, 520);
+const camera = new THREE.PerspectiveCamera(38, 1, 1, 1200);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true; controls.dampingFactor = .08; controls.maxPolarAngle = 1.42; controls.minDistance = 20; controls.maxDistance = 320;
+controls.autoRotateSpeed = .45;
+scene.add(new THREE.HemisphereLight(0xfff4e6, 0xc9b49a, .85));
+const sun = new THREE.DirectionalLight(0xfff0dc, 1.9);
+sun.position.set(-70, 120, -50); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, {left:-120, right:120, top:120, bottom:-120, near:10, far:360}); sun.shadow.bias = -0.0005;
+scene.add(sun);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshStandardMaterial({color:0xe8dac7, roughness:.95}));
+ground.rotation.x = -Math.PI/2; ground.position.y = -.02; ground.receiveShadow = true; scene.add(ground);
+
+// ---------- shared materials and textures ----------
+const matCache = {};
+function mat(color, o={}) {
+  const k = color + JSON.stringify(o);
+  return matCache[k] ||= new THREE.MeshStandardMaterial({color, roughness:o.r ?? .85, metalness:o.m ?? 0, transparent:o.t != null, opacity:o.t ?? 1,
+    emissive:o.e ?? 0x000000, emissiveIntensity:o.ei ?? 1, side:o.ds ? THREE.DoubleSide : THREE.FrontSide, depthWrite:o.t == null || o.t > .6});
+}
+function canvasTex(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
+const TEX = {
+  mural: canvasTex(1400, 440, (g, w, h) => {
+    const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#f59e6b'); s.addColorStop(.55,'#f4a3b8'); s.addColorStop(1,'#c9a7ee'); g.fillStyle = s; g.fillRect(0,0,w,h);
+    g.fillStyle = 'rgba(255,236,190,.9)'; g.beginPath(); g.arc(w*.78, h*.58, 46, 0, 7); g.fill();
+    g.fillStyle = '#9fbf6e'; g.fillRect(0, h*.84, w, h*.16);
+    g.strokeStyle = '#6b3f22'; g.lineWidth = 16; g.beginPath(); g.moveTo(w*.45, h*.86); g.lineTo(w*.46, h*.46); g.stroke();
+    g.lineWidth = 9; [[.46,.5,.38,.36],[.46,.48,.55,.35],[.46,.55,.52,.42]].forEach(([a,b,c,d])=>{g.beginPath();g.moveTo(w*a,h*b);g.lineTo(w*c,h*d);g.stroke();});
+    g.fillStyle = '#4f7a3a'; g.beginPath(); g.ellipse(w*.465, h*.3, w*.16, h*.1, 0, 0, 7); g.fill();
+    const giraffe = (x, s) => { g.fillStyle = '#e8a93c'; g.fillRect(x-28*s, h*.62, 56*s, 26*s);
+      g.beginPath(); g.moveTo(x+18*s, h*.63); g.lineTo(x+30*s, h*.62-90*s); g.lineTo(x+40*s, h*.62-88*s); g.lineTo(x+30*s, h*.64); g.closePath(); g.fill();
+      g.fillRect(x+26*s, h*.62-102*s, 26*s, 14*s); for (const lx of [-24,-14,12,22]) g.fillRect(x+lx*s, h*.62+24*s, 6*s, 46*s);
+      g.fillStyle = '#9a5b1f'; for (let i=0;i<7;i++) g.fillRect(x-22*s + (i%4)*13*s, h*.625 + Math.floor(i/4)*11*s, 7*s, 7*s); };
+    giraffe(w*.18, 1.1); giraffe(w*.29, .9); giraffe(w*.64, 1.2); giraffe(w*.86, .8); }),
+  screen: canvasTex(512, 256, (g,w,h) => { const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#fbbf24'); s.addColorStop(.5,'#f472b6'); s.addColorStop(1,'#8b5cf6'); g.fillStyle=s; g.fillRect(0,0,w,h); }),
+  code: canvasTex(512, 256, (g,w,h) => { g.fillStyle='#16202a'; g.fillRect(0,0,w,h); const cs=['#8bd5ff','#f9a8d4','#fde68a','#a7f3d0','#c4b5fd'];
+    for (let i=0;i<14;i++){ g.fillStyle=cs[i%5]; g.fillRect(24+(i%3)*18, 18+i*16, 80+((i*53)%260), 8); } }),
+};
+const glowMat = map => new THREE.MeshStandardMaterial({map, emissive:0xffffff, emissiveMap:map, emissiveIntensity:.85});
+const MAT = { mural:new THREE.MeshStandardMaterial({map:TEX.mural, roughness:.9}), screen:glowMat(TEX.screen), code:glowMat(TEX.code),
+  bulb:new THREE.MeshStandardMaterial({color:0xffe2a8, emissive:0xffc46b, emissiveIntensity:2.2}) };
+const WOOD = 0xd9b27c, CHAIR = 0x2e3431, GLASS = {t:.22, r:.05, m:.1};
+
+// ---------- world building ----------
+let world, S, tags = {}, floorMeshes = {}, wallMeshes = [], zoneRooms = {}, current = null;
+const tagWrap = document.getElementById('tags');
+
+function build(space) {
+  if (world) { world.traverse(o => o.geometry && o.geometry.dispose()); scene.remove(world); }
+  world = new THREE.Group(); scene.add(world);
+  S = space; tags = {}; floorMeshes = {}; wallMeshes = []; zoneRooms = {}; tagWrap.innerHTML = '';
+  const levels = [{rooms:space.rooms, outdoor:space.outdoor, dx:0, name:space.twoFloor ? 'Level 1' : null}];
+  if (space.twoFloor) levels.push({rooms:space.rooms2, outdoor:space.outdoor2, dx:space.W + 16, name:'Level 2'});
+  const spanW = space.W + (space.twoFloor ? space.W + 16 : 0);
+  const OX = spanW/2, OZ = space.D/2;
+  const P = (x, z) => [x - OX, z - OZ];
+
+  // helpers bound to this layout
+  const box = (x, z, w, d, h, color, y=0, o={}) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), o.material || mat(color, o));
+    const [px, pz] = P(x + w/2, z + d/2); m.position.set(px, y + h/2, pz); m.castShadow = o.cast ?? true; m.receiveShadow = true; world.add(m); return m; };
+  const cyl = (x, z, r, h, color, y=0, o={}) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(o.rt ?? r, r, h, o.seg ?? 18), mat(color, o));
+    const [px, pz] = P(x, z); m.position.set(px, y + h/2, pz); m.castShadow = true; m.receiveShadow = true; world.add(m); return m; };
+  const plane = (w, h, material, x, y, z, rotY=0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), material);
+    const [px, pz] = P(x, z); m.position.set(px, y, pz); m.rotation.y = rotY; world.add(m); return m; };
+  const instanced = (geo, material, pts) => { const im = new THREE.InstancedMesh(geo, material, pts.length); const m = new THREE.Matrix4();
+    pts.forEach(([x,y,z], i) => { const [px, pz] = P(x, z); m.makeTranslation(px, y, pz); im.setMatrixAt(i, m); });
+    im.castShadow = true; world.add(im); return im; };
+  const chairs = pts => instanced(new THREE.BoxGeometry(1.4, 1.6, 1.3), mat(CHAIR), pts.map(([x,z]) => [x, LOW + .8, z]));
+  const planter = (x, z, s=1) => { cyl(x, z, .9*s, 1.4*s, 0xc2703d, LOW); const b = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5*s, 0), mat(0x5b9447));
+    const [px, pz] = P(x, z); b.position.set(px, 2.6*s + LOW, pz); b.castShadow = true; world.add(b); };
+  const palm = (x, z, h=9, s=1) => { const g = new THREE.Group();
+    const t = new THREE.Mesh(new THREE.CylinderGeometry(.22*s,.35*s,h,8), mat(0x8b6a4a)); t.position.y = h/2; t.castShadow = true; g.add(t);
+    for (let i=0;i<7;i++) { const f = new THREE.Mesh(new THREE.ConeGeometry(.9*s, 5*s, 5), mat(0x4f8f3f)); f.geometry.translate(0, 2.5*s, 0);
+      f.position.y = h; f.rotation.set(0, i*(Math.PI*2/7), Math.PI/2.4, 'YXZ'); f.castShadow = true; g.add(f); }
+    const [px, pz] = P(x, z); g.position.set(px, LOW, pz); world.add(g); };
+  const giraffe = (x, z, s=1, rot=0) => { const g = new THREE.Group(), tan = mat(0xdca24c, {r:.6}), spot = mat(0x8a531d, {r:.7});
+    const add = (geo, m, px, py, pz, rz=0) => { const o = new THREE.Mesh(geo, m); o.position.set(px, py, pz); o.rotation.z = rz; o.castShadow = true; g.add(o); };
+    add(new THREE.BoxGeometry(3.2, 1.6, 1.4), tan, 0, 5.2, 0);
+    for (const [lx,lz] of [[-1.2,-.45],[-1.2,.45],[1.2,-.45],[1.2,.45]]) add(new THREE.CylinderGeometry(.18,.14,4.4,8), tan, lx, 2.2, lz);
+    add(new THREE.CylinderGeometry(.32,.45,4.4,10), tan, 1.9, 7.4, 0, -.42); add(new THREE.BoxGeometry(1.5,.7,.7), tan, 2.9, 9.4, 0);
+    for (let i=0;i<8;i++) add(new THREE.BoxGeometry(.5,.08,.5), spot, -1.2 + (i%4)*.8, 6.02, -.35 + Math.floor(i/4)*.7);
+    g.scale.setScalar(s); g.rotation.y = rot; const [px, pz] = P(x, z); g.position.set(px, LOW, pz); world.add(g); };
+
+  for (const L of levels) {
+    const dx = L.dx, W = space.W, D = space.D, rooms = L.rooms.map(r => ({...r, x:r.x + dx}));
+    const outs = L.outdoor.map(o => ({...o, x:o.x + dx}));
+    // street
+    if (!space.twoFloor || dx === 0) {
+      const st = space.street;
+      if (st === 'T') { box(dx-40, -26, spanW+80, 14, .05, 0x4a443e, 0, {cast:false}); box(dx-40, -12, spanW+80, 12, .12, 0xd9cfc2, 0, {cast:false}); }
+      if (st === 'B') { box(dx-40, D+12+(outs.some(o=>o.z>=D)?20:0), spanW+80, 14, .05, 0x4a443e, 0, {cast:false}); box(dx-40, D+(outs.some(o=>o.z>=D)?20:0), spanW+80, 12, .12, 0xd9cfc2, 0, {cast:false}); }
+      if (st === 'L') { const off = outs.some(o => o.x < dx) ? 20 : 0; box(dx-26-off, -40, 14, D+80, .05, 0x4a443e, 0, {cast:false}); box(dx-12-off, -40, 12, D+80, .12, 0xd9cfc2, 0, {cast:false}); }
+    }
+    // outdoor decks
+    for (const o of outs) { box(o.x, o.z, o.w, o.d, .25, 0xc59c72, 0, {cast:false});
+      for (let i = o.x; i < o.x + o.w; i += 2.2) box(i, o.z, .12, o.d, .27, 0xae8660, 0, {cast:false});
+      const cols = Math.max(1, Math.floor(o.w/13)), rows = Math.max(1, Math.floor(o.d/12));
+      for (let a=0;a<cols;a++) for (let b=0;b<rows;b++) { const x = o.x + (a+.5)*o.w/cols, z = o.z + (b+.5)*o.d/rows;
+        if (o.w < 14 || o.d < 12) { planter(x, z, .8); continue; }
+        cyl(x, z, 2, .2, 0xf1e6d6, 2.6); cyl(x, z, .12, 6.5, 0x5a4a3a, LOW);
+        const u = new THREE.Mesh(new THREE.ConeGeometry(4, 1.8, 16), mat([0xf9a8d4,0xfdba74,0xc4b5fd,0xfde68a][(a+b)%4], {ds:true}));
+        const [px, pz] = P(x, z); u.position.set(px, 7.4, pz); u.castShadow = true; world.add(u); }
+      if (o.w >= 30 && o.d >= 12) giraffe(o.x + o.w - 6, o.z + o.d/2, 1.1, 2.4);
+    }
+    // slab + floors
+    box(dx, 0, W, D, .3, 0xcfc8bf, 0, {cast:false, r:.35});
+    for (const r of rooms) { const col = r.zone === 'wc' ? WC_COLOR : ZONES[r.zone].color;
+      const m = box(r.x+.25, r.z+.25, r.w-.5, r.d-.5, .06, col, LOW, {cast:false, r:.6}); (floorMeshes[r.zone] ||= []).push(m);
+      if (r.zone !== 'wc') (zoneRooms[r.zone] ||= []).push({...r, level:L}); }
+    // walls
+    const wall = (x1, z1, x2, z2, glass) => { const vert = x1 === x2, len = vert ? z2 - z1 : x2 - x1; if (len < .5) return;
+      const g = new THREE.Mesh(new THREE.BoxGeometry(vert ? .7 : len, WALL_H, vert ? len : .7), glass ? mat(0xbfe3ee, GLASS) : mat(0xf4efe8, {r:.9}));
+      const [px, pz] = P((x1+x2)/2, (z1+z2)/2); g.position.set(px, WALL_H/2 + LOW, pz); g.castShadow = !glass; g.receiveShadow = true; world.add(g); wallMeshes.push(g); };
+    const touchesOutdoor = (side, a, b) => outs.some(o => side === 'T' ? (o.z + o.d <= 0.01 && o.x < b && o.x + o.w > a)
+      : side === 'B' ? (o.z >= D - .01 && o.x < b && o.x + o.w > a) : side === 'L' ? (o.x + o.w <= dx + .01 && o.z < b && o.z + o.d > a)
+      : (o.x >= dx + W - .01 && o.z < b && o.z + o.d > a));
+    const streetSide = (!space.twoFloor || dx === 0) ? space.street : null;
+    for (const side of ['T','B','L','R']) {
+      for (const r of rooms) {
+        let seg = null;
+        if (side === 'T' && r.z === 0) seg = [r.x, 0, r.x + r.w, 0];
+        if (side === 'B' && r.z + r.d === D) seg = [r.x, D, r.x + r.w, D];
+        if (side === 'L' && r.x === dx) seg = [dx, r.z, dx, r.z + r.d];
+        if (side === 'R' && r.x + r.w === dx + W) seg = [dx + W, r.z, dx + W, r.z + r.d];
+        if (!seg) continue;
+        const [a, b] = side === 'T' || side === 'B' ? [seg[0], seg[2]] : [seg[1], seg[3]];
+        const glass = (streetSide === side && (r.zone === 'basecamp' || r.zone === 'oasis')) || (r.zone !== 'wc' && touchesOutdoor(side, a, b));
+        wall(seg[0], seg[1], seg[2], seg[3], glass);
+      }
+    }
+    for (let i=0;i<rooms.length;i++) for (let j=i+1;j<rooms.length;j++) {
+      const a = rooms[i], b = rooms[j]; let seg = null;
+      const zo = [Math.max(a.z, b.z), Math.min(a.z + a.d, b.z + b.d)], xo = [Math.max(a.x, b.x), Math.min(a.x + a.w, b.x + b.w)];
+      if ((a.x + a.w === b.x || b.x + b.w === a.x) && zo[1] - zo[0] > .5) { const x = a.x + a.w === b.x ? b.x : a.x; seg = [x, zo[0], x, zo[1]]; }
+      if ((a.z + a.d === b.z || b.z + b.d === a.z) && xo[1] - xo[0] > .5) { const z = a.z + a.d === b.z ? b.z : a.z; seg = [xo[0], z, xo[1], z]; }
+      if (!seg) continue;
+      const zs = [a.zone, b.zone], office = r => r.zone === 'acacia' && /ffice|onf/i.test(r.fn);
+      if (zs.includes('wc')) wall(...seg, false);
+      else if (zs.includes('canopy') || office(a) || office(b)) wall(...seg, true);
+    }
+    // furniture
+    for (const r of rooms) furnish(r, dx);
+    if (L.name) { const el = document.createElement('div'); el.className = 'tag lvl'; el.innerHTML = `<b>${L.name}</b><i></i>`; tagWrap.appendChild(el);
+      const [px, pz] = P(dx + W/2, -2); tags['lvl' + dx] = {el, p:new THREE.Vector3(px, WALL_H + 4, pz), lvl:true}; }
+  }
+  // surroundings
+  const around = [[-10,-6],[spanW+10,-6],[-10,space.D+6],[spanW+10,space.D+6],[spanW/2,space.D+30],[-14,space.D/2]];
+  around.forEach(([x,z],i) => palm(x, z, 16 + (i%3)*3, 1.3));
+
+  function furnish(r, dx) {
+    const {x, z, w, d, zone, fn} = r, f = (fn || '').toLowerCase(), cx = x + w/2, cz = z + d/2, area = w*d;
+    const W = space.W, D = space.D, outs = (dx ? space.outdoor2 : space.outdoor).map(o => ({...o, x:o.x + dx}));
+    const nearOut = side => outs.some(o => side === 'T' ? (o.z + o.d <= .01 && o.x < x + w && o.x + o.w > x) : side === 'B' ? (o.z >= D - .01 && o.x < x + w && o.x + o.w > x)
+      : side === 'L' ? (o.x + o.w <= dx + .01 && o.z < z + d && o.z + o.d > z) : (o.x >= dx + W - .01 && o.z < z + d && o.z + o.d > z));
+    // a solid exterior wall this room owns, for murals: [side, length]
+    const solidSides = ['T','B','L','R'].filter(sd => (sd === 'T' ? z === 0 : sd === 'B' ? z + d === D : sd === 'L' ? x === dx : x + w === dx + W) && !nearOut(sd)
+      && !((!space.twoFloor || dx === 0) && space.street === sd && (zone === 'basecamp' || zone === 'oasis')));
+    const muralOn = (skip, maxLen, hgt) => { const opts = solidSides.filter(sd => sd !== skip).map(sd => [sd, sd === 'T' || sd === 'B' ? w : d]).sort((a, b) => b[1] - a[1]);
+      if (!opts.length) return; const [sd, len] = opts[0], L2 = Math.min(len - 4, maxLen); if (L2 < 8) return; const hh = L2*.315;
+      if (sd === 'T') plane(L2, hh, MAT.mural, cx, hgt, z + .45, 0); if (sd === 'B') plane(L2, hh, MAT.mural, cx, hgt, z + d - .45, Math.PI);
+      if (sd === 'L') plane(L2, hh, MAT.mural, x + .45, hgt, cz, Math.PI/2); if (sd === 'R') plane(L2, hh, MAT.mural, x + w - .45, hgt, cz, -Math.PI/2); };
+    if (zone === 'savanna') {
+      const alongX = w >= d, span = Math.min((alongX ? d : w) - 6, 26);
+      if (alongX) { box(x+1, cz - span/2, 7, span, 1.5, WOOD, LOW, {r:.7}); plane(Math.min(span, 18), 8, MAT.screen, x + .45, 8.2 + LOW, cz, Math.PI/2); muralOn('L', 34, 8); }
+      else { box(cx - span/2, z+1, span, 7, 1.5, WOOD, LOW, {r:.7}); plane(Math.min(span, 18), 8, MAT.screen, cx, 8.2 + LOW, z + .45, 0); muralOn('T', 34, 8); }
+      const seats = [];
+      if (alongX) { for (let sx = x + 12; sx <= Math.min(x + w - 5, x + 40); sx += 3.6) for (let sz = cz - span/2; sz <= cz + span/2; sz += 2.6) seats.push([sx, sz]); }
+      else { for (let sz = z + 12; sz <= Math.min(z + d - 5, z + 40); sz += 3.6) for (let sx = cx - span/2; sx <= cx + span/2; sx += 2.6) seats.push([sx, sz]); }
+      instanced(new THREE.BoxGeometry(1.4, 1.6, 1.3), mat(0x9a7a5e), seats.slice(0, 130).map(([a, b]) => [a, LOW + .8, b]));
+      const bulbs = []; const n = Math.max(2, Math.round((alongX ? w : d)/9));
+      for (let i=0;i<n;i++) { if (alongX) { const lz = z + (i+.5)*d/n; for (let bx = x+2; bx <= x+w-2; bx += 2.5) { const t = (bx-x)/w; bulbs.push([bx, 12.6 - Math.sin(t*Math.PI)*1.4, lz]); } }
+        else { const lx = x + (i+.5)*w/n; for (let bz = z+2; bz <= z+d-2; bz += 2.5) { const t = (bz-z)/d; bulbs.push([lx, 12.6 - Math.sin(t*Math.PI)*1.4, bz]); } } }
+      instanced(new THREE.SphereGeometry(.22, 8, 6), MAT.bulb, bulbs);
+    }
+    if (zone === 'basecamp') {
+      const dl = Math.min(10, w - 6); box(cx - dl/2, z + d*.45, dl, 2.4, 3.6, 0xd6a870, LOW, {r:.6});
+      box(x + w - 7, z + .8, Math.min(6, w - 2), 1.4, 6, 0xc79a66, LOW);
+      for (let rr=0; rr<3; rr++) for (let c=0; c<Math.min(4, Math.floor((d-2)/2.6)); c++) box(x + .36, z + 1.5 + c*2.6, .12, 1.8, 1.4, 0x2a2622, 4 + rr*2.2, {cast:false});
+      giraffe(x + w - 3.5, z + d - 3, Math.min(.9, d/15), -2.2);
+    }
+    if (zone === 'canopy' && f.includes('class')) {
+      const rowsAlongX = w >= d;
+      if (rowsAlongX) { plane(Math.min(12, w-4), 6, MAT.code, cx, 7.5 + LOW, z + .5, 0);
+        for (let tz = z + 6; tz <= z + d - 4; tz += 5) { box(x + 2.5, tz, w - 5, 2.2, 2.6, WOOD, LOW, {r:.6}); const pts = []; for (let sx = x + 3.8; sx <= x + w - 3.2; sx += 2.6) pts.push([sx, tz + 3.2]); chairs(pts); } }
+      else { plane(Math.min(12, d-4), 6, MAT.code, x + .5, 7.5 + LOW, cz, Math.PI/2);
+        for (let tx = x + 6; tx <= x + w - 4; tx += 5) { box(tx, z + 2.5, 2.2, d - 5, 2.6, WOOD, LOW, {r:.6}); const pts = []; for (let sz = z + 3.8; sz <= z + d - 3.2; sz += 2.6) pts.push([tx + 3.2, sz]); chairs(pts); } }
+      const leaves = []; for (let lx = x + 2; lx <= x + w - 2; lx += 2.6) for (let lz = z + 2; lz <= z + d - 2; lz += 2.6) leaves.push([lx + (Math.random()-.5), 10.4 + Math.random()*1.2, lz + (Math.random()-.5)]);
+      const im = instanced(new THREE.IcosahedronGeometry(.95, 0), mat(0x5f9a4a, {r:.9}), leaves);
+    }
+    if (zone === 'canopy' && !f.includes('class')) {
+      cyl(cx, cz, Math.min(2.6, Math.min(w, d)/4), 2.6, WOOD, LOW);
+      for (const [mx, mz] of [[cx-2, cz-1],[cx+2, cz+1]]) { cyl(mx, mz, .06, 4.2, 0x222222, LOW); const s = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), mat(0x333333,{m:.4,r:.4})); const [px,pz] = P(mx,mz); s.position.set(px, 4.7, pz); world.add(s); }
+      const n = Math.max(1, Math.floor((w-2)/4)); for (let i=0;i<n;i++) box(x + 1.5 + i*4, z + .5, 3, .3, 3, [0xf472b6,0xfb923c,0x8b5cf6,0x2dd4bf][i%4], 5, {cast:false});
+    }
+    if (zone === 'acacia') {
+      if (/ffice|onf/i.test(fn)) {
+        const alongX = w >= d, len = alongX ? w : d, n = Math.max(1, Math.round(len/10)), cell = len/n;
+        for (let i=0;i<n;i++) { const ox = alongX ? x + i*cell : x, oz = alongX ? z : z + i*cell, cw = alongX ? cell : w, cd = alongX ? d : cell;
+          box(ox + cw/2 - 3, oz + cd/2 - 1.3, 6, 2.6, 2.6, WOOD, LOW); chairs([[ox + cw/2 - 1.5, oz + cd/2 + 2.2],[ox + cw/2 + 1.5, oz + cd/2 + 2.2]]);
+          if (i > 0) { const g = new THREE.Mesh(new THREE.BoxGeometry(alongX ? .3 : w, WALL_H, alongX ? d : .3), mat(0xbfe3ee, GLASS));
+            const [px, pz] = P(alongX ? ox : x + w/2, alongX ? z + d/2 : oz); g.position.set(px, WALL_H/2 + LOW, pz); world.add(g); wallMeshes.push(g); } }
+      } else {
+        const podW = 10, podD = 3.6, px0 = 14, pz0 = 9.5;
+        const nx = Math.max(1, Math.floor((w - 2)/px0)), nz = Math.max(1, Math.floor((d - 2)/pz0));
+        for (let a=0; a<nx; a++) for (let b=0; b<nz; b++) {
+          const pcx = x + (a+.5)*w/nx, pcz = z + (b+.5)*d/nz, pw = Math.min(podW, w/nx - 3);
+          box(pcx - pw/2, pcz - podD/2, pw, podD, 2.6, WOOD, LOW, {r:.6});
+          const pts = []; for (let sx = pcx - pw/2 + 1.3; sx <= pcx + pw/2 - 1; sx += 2.6) { pts.push([sx, pcz - podD/2 - 1]); pts.push([sx, pcz + podD/2 + 1]); } chairs(pts);
+        }
+        muralOn(null, 18, 7);
+      }
+    }
+    if (zone === 'oasis') {
+      const kitchenOnly = f.includes('kitchen') && !/café|cafe|bar|lounge/.test(f);
+      if (kitchenOnly) { box(x + .8, z + .8, w - 1.6, 2.4, 3.2, 0xe8e2d8, LOW); box(x + .8, z + .8, 2.4, d - 1.6, 3.2, 0xe8e2d8, LOW);
+        if (w > 12 && d > 10) box(cx - 3, cz - 1.5, 6, 3, 3.2, WOOD, LOW); return; }
+      if (f.includes('recovery') && !/café|cafe|bar/.test(f)) { box(x + 2, z + 2, 2.4, 5, 2.2, 0xf5efe6, LOW); if (w > 9) box(x + w - 4.4, z + 2, 2.4, 5, 2.2, 0xf5efe6, LOW);
+        plane(w - 1, 9, mat(0xf9b6c8, {t:.55, ds:true}), cx, 4.8 + LOW, z + d - 1.2, 0); return; }
+      const rmin = Math.min(w, d), r = Math.min(6.5, (rmin - 5)/2);
+      if (r >= 2.5) { const bx = x + r + 2, bz = z + r + 2;
+        for (let i=0;i<=12;i++) { const a = -Math.PI*.1 + i*(Math.PI*.7/12); const sx = bx + Math.cos(a)*r, sz = bz + Math.sin(a)*r;
+          const seg = box(sx - .9, sz - .9, 1.8, 1.8, 3.6, 0xd6a870, LOW, {r:.5}); seg.rotation.y = -a; }
+        const st = []; for (let i=0;i<5;i++) { const a = i*(Math.PI*.6/4); st.push([bx + Math.cos(a)*(r+2), bz + Math.sin(a)*(r+2)]); }
+        st.forEach(([sx, sz]) => cyl(sx, sz, .6, 2.6, CHAIR, LOW)); }
+      else { box(x + 1, z + 1, w - 2, 2, 3.6, 0xd6a870, LOW); const st = []; for (let sx = x + 2; sx <= x + w - 2; sx += 2.6) st.push([sx, z + 4.2]); st.forEach(([sx, sz]) => cyl(sx, sz, .6, 2.6, CHAIR, LOW)); }
+      if (area >= 650 && rmin >= 14) { const pr = Math.min(4.2, rmin/5), pxc = x + w - pr - 3, pzc = z + d - pr - 3;
+        const pond = new THREE.Mesh(new THREE.CylinderGeometry(pr, pr, .25, 36), mat(0x5fb3c4, {r:.1, m:.2})); const [ppx, ppz] = P(pxc, pzc); pond.position.set(ppx, .45, ppz); world.add(pond);
+        const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(pr*.33, 0), mat(0x9d968d)); rock.position.set(ppx + .6, 1.2, ppz - .4); rock.castShadow = true; world.add(rock);
+        palm(pxc - pr - .5, pzc - .5, 7, .8); palm(pxc + .5, pzc - pr - .5, 8, .85); }
+      if (area >= 500) { const sw = Math.min(7, w/3); box(x + 2, z + d - 3.4, sw, 2.6, 1.6, 0xe7a1b6, LOW); box(x + 2, z + d - 1.4, sw, .8, 2.8, 0xe7a1b6, LOW);
+        if (w > 24) { box(x + sw + 4, z + d - 3.4, sw, 2.6, 1.6, 0xe7a1b6, LOW); box(x + sw + 4, z + d - 1.4, sw, .8, 2.8, 0xe7a1b6, LOW); } }
+      if (f.includes('recovery') && area >= 700) { box(x + w - 4, z + 1.5, 2.4, 5, 2.2, 0xf5efe6, LOW); plane(8, 9, mat(0xf9b6c8, {t:.55, ds:true}), x + w - 6.5, 4.8 + LOW, z + 4, Math.PI/2); }
+    }
+    if (area > 160 && zone !== 'wc') planter(x + 1.8, z + 1.8, .7);
+  }
+
+  // tags (one per zone, on its largest room)
+  for (const k of ORDER) {
+    const rs = zoneRooms[k]; if (!rs) continue; const big = rs.reduce((m, r) => r.w*r.d > m.w*m.d ? r : m);
+    const el = document.createElement('div'); el.className = 'tag'; el.innerHTML = `<b>${ZONES[k].name}</b><span>${ZONES[k].verb}</span><i></i>`;
+    el.addEventListener('click', e => { e.stopPropagation(); select(k); }); tagWrap.appendChild(el);
+    const [px, pz] = P(big.x + big.w/2, big.z + big.d/2); tags[k] = {el, p:new THREE.Vector3(px, 17, pz), look:new THREE.Vector3(px, 2, pz), size:Math.sqrt(big.w*big.d)};
+  }
+  const extent = Math.max(spanW, space.D, 88);
+  S.overview = {pos:[extent*.62, extent*.82, extent*1.08], look:[0, 0, space.D*.08]};
+  sun.shadow.camera.left = sun.shadow.camera.bottom = -extent; sun.shadow.camera.right = sun.shadow.camera.top = extent; sun.shadow.camera.updateProjectionMatrix();
+  setWalls(wallsTall);
+}
+
+// ---------- stats per zone for the panel ----------
+function zoneStats(k) {
+  const all = [...S.rooms, ...(S.rooms2 || [])], tot = all.reduce((a, r) => a + r.w*r.d, 0);
+  const sf = r => Math.round(r.w*r.d*S.sf/tot/10)*10, rs = all.filter(r => r.zone === k), area = rs.reduce((a, r) => a + sf(r), 0);
+  const out = [`${area.toLocaleString()} sq ft${rs.length > 1 ? ` across ${rs.length} rooms` : ''}`];
+  if (k === 'savanna') out.push(`About ${Math.floor(area/14/5)*5} standing or ${Math.floor(area/22/5)*5} seated`);
+  if (k === 'canopy') { const c = rs.filter(r => /lass/.test(r.fn)).reduce((a, r) => a + Math.floor(sf(r)/24), 0); if (c) out.push(`${c} classroom seats`); if (rs.some(r => /tudio/.test(r.fn))) out.push('A podcast and content studio'); }
+  if (k === 'acacia') out.push(`About ${rs.reduce((a, r) => a + Math.floor(sf(r)/60), 0)} founder seats`);
+  if (k === 'oasis') { const c = rs.filter(r => !/itchen/.test(r.fn) || /bar|café/i.test(r.fn)).reduce((a, r) => a + Math.floor(sf(r)/25), 0); if (c) out.push(`About ${c} café and lounge seats`); }
+  const fns = [...new Set(rs.map(r => r.fn).filter(Boolean))]; if (fns.length) out.push(fns.join(' · '));
+  return out;
+}
+
+// ---------- UI ----------
+const pick = document.getElementById('sPick');
+SPACES.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `Space ${s.n} · ${s.hood}`; pick.appendChild(o); });
+let idx = 0, wallsTall = false, touring = null, anim = null;
+function loadSpace(i) {
+  idx = (i + SPACES.length) % SPACES.length; pick.value = idx; current = null; stopTour();
+  document.getElementById('panel').classList.remove('open');
+  const s = SPACES[idx]; build(s);
+  document.getElementById('sMeta').textContent = `${s.sf.toLocaleString()} sq ft${s.twoFloor ? ' on two floors' : ''} · one of ten spaces we test-fit`;
+  document.getElementById('sFacts').innerHTML = s.facts.map(f => `<li>${f}</li>`).join('');
+  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.id === 'bOverview' || (b.id === 'bWalls' && !wallsTall)));
+  camera.position.copy(ovPos()); controls.target.set(...S.overview.look); controls.autoRotate = true;
+  history.replaceState(null, '', `?space=${s.n}`);
+}
+const ovPos = () => { const k = camera.aspect < 1 ? Math.min(2.3, 1.2/camera.aspect) : 1; return new THREE.Vector3(...S.overview.pos).multiplyScalar(k); };
+function setWalls(tall) { wallsTall = tall; wallMeshes.forEach(w => { w.scale.y = tall ? 1 : .32; w.position.y = (tall ? WALL_H : WALL_H*.32)/2 + LOW; });
+  document.getElementById('bWalls').classList.toggle('on', !tall); }
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+function fly(pos, look, dur=1400) { anim = {t0:performance.now(), dur, p0:camera.position.clone(), l0:controls.target.clone(), p1:pos.clone(), l1:look.clone()}; controls.autoRotate = false; }
+function select(k, fromTour=false) {
+  if (!tags[k]) return; if (!fromTour) stopTour(); current = k; const z = ZONES[k];
+  const img = document.getElementById('pimg'); img.src = `img/${k}.jpg`; img.alt = `Concept image of ${z.name}`;
+  document.getElementById('pz').textContent = `Space ${S.n} · Zone ${ORDER.indexOf(k)+1} of 5 · ${z.verb}`;
+  document.getElementById('ph').textContent = z.name; document.getElementById('pp').textContent = z.text;
+  document.getElementById('pl').innerHTML = zoneStats(k).map(x => `<li>${x}</li>`).join('');
+  document.getElementById('panel').classList.add('open');
+  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.dataset.zone === k || (b.id === 'bTour' && !!touring) || (b.id === 'bWalls' && !wallsTall)));
+  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { const c = zk === 'wc' ? WC_COLOR : ZONES[zk].color; m.material = mat(c, zk === k ? {e:c, ei:.35, r:.6} : {r:.6}); });
+  const t = tags[k], s = Math.min(70, Math.max(32, t.size*1.5)); fly(t.look.clone().add(new THREE.Vector3(s*.55, s*.8, s*.95)), t.look);
+}
+function overview() {
+  stopTour(); current = null; document.getElementById('panel').classList.remove('open');
+  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { m.material = mat(zk === 'wc' ? WC_COLOR : ZONES[zk].color, {r:.6}); });
+  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.id === 'bOverview' || (b.id === 'bWalls' && !wallsTall)));
+  fly(ovPos(), new THREE.Vector3(...S.overview.look)); setTimeout(() => { if (!current && !touring) controls.autoRotate = true; }, 1500);
+}
+function step(d) { const avail = ORDER.filter(k => tags[k]); const i = current ? avail.indexOf(current) : -1; select(avail[(i + d + avail.length) % avail.length]); }
+function startTour() { if (touring) return stopTour(); const avail = ORDER.filter(k => tags[k]); let i = 0;
+  const go = () => { select(avail[i % avail.length], true); i++; }; touring = setInterval(go, 5200); go(); document.getElementById('bTour').classList.add('on'); }
+function stopTour() { if (touring) { clearInterval(touring); touring = null; } document.getElementById('bTour').classList.remove('on'); }
+
+document.getElementById('bOverview').onclick = overview;
+document.getElementById('bTour').onclick = startTour;
+document.getElementById('bWalls').onclick = () => setWalls(!wallsTall);
+document.querySelectorAll('[data-zone]').forEach(b => b.onclick = () => select(b.dataset.zone));
+document.getElementById('close').onclick = overview;
+document.getElementById('prev').onclick = () => step(-1);
+document.getElementById('next').onclick = () => step(1);
+document.getElementById('sPrev').onclick = () => loadSpace(idx - 1);
+document.getElementById('sNext').onclick = () => loadSpace(idx + 1);
+pick.onchange = () => loadSpace(+pick.value);
+controls.addEventListener('start', () => { anim = null; controls.autoRotate = false; stopTour(); });
+addEventListener('keydown', e => { if (e.target.tagName === 'SELECT') return; if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); if (e.key === 'Escape') overview(); });
+
+const v = new THREE.Vector3();
+function placeTags() { const w = canvas.clientWidth, h = canvas.clientHeight;
+  for (const [k, t] of Object.entries(tags)) { v.copy(t.p).project(camera); t.el.style.display = v.z < 1 ? '' : 'none';
+    t.el.style.left = ((v.x + 1)/2*w) + 'px'; t.el.style.top = ((1 - v.y)/2*h) + 'px'; if (!t.lvl) t.el.classList.toggle('dim', !!current && current !== k); } }
+function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.fov = w < 760 ? 52 : 38; camera.updateProjectionMatrix(); }
+addEventListener('resize', resize); resize();
+function tick(now) {
+  if (anim) { const t = Math.min(1, (now - anim.t0)/anim.dur), k = ease(t); camera.position.lerpVectors(anim.p0, anim.p1, k); controls.target.lerpVectors(anim.l0, anim.l1, k); if (t >= 1) anim = null; }
+  controls.update(); renderer.render(scene, camera); placeTags(); requestAnimationFrame(tick);
+}
+const q = new URLSearchParams(location.search), qs = +q.get('space');
+loadSpace(qs >= 1 && qs <= SPACES.length ? qs - 1 : 0);
+requestAnimationFrame(tick);
+setTimeout(() => document.getElementById('load').classList.add('gone'), 350);
+if (q.get('zone') && ZONES[q.get('zone')]) setTimeout(() => select(q.get('zone')), 700);
+</script>
+</body>
+</html>
