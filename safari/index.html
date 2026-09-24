@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Safari · Grateful Giraffes</title>
-<meta name="description" content="A home for the herd: five zones under one roof, test-fit in ten west-side spaces. Explore them in 3D.">
+<meta name="description" content="Ten west-side spaces, each test-fit as The Safari: Basecamp, Savanna, Oasis, Acacia and Canopy. Tour them.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Grateful Giraffes">
 <meta property="og:title" content="The Safari · a home for the herd">
-<meta property="og:description" content="Basecamp, Savanna, Oasis, Acacia and Canopy, test-fit in ten west-side spaces. Explore them in 3D.">
+<meta property="og:description" content="Ten west-side spaces, each test-fit with five zones. Tour them.">
 <meta property="og:url" content="https://grateful.gg/safari/">
 <meta property="og:image" content="https://grateful.gg/safari/cover.jpg">
 <meta property="og:image:secure_url" content="https://grateful.gg/safari/cover.jpg">
@@ -18,128 +18,206 @@
 <meta property="og:image:alt" content="Concept rendering of a skylit community space with a giraffe mural">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Safari · a home for the herd">
-<meta name="twitter:description" content="Five zones under one roof, test-fit in ten spaces. Explore them in 3D.">
+<meta name="twitter:description" content="Ten west-side spaces, each test-fit with five zones. Tour them.">
 <meta name="twitter:image" content="https://grateful.gg/safari/cover.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400&family=DM+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#26211b;--soft:#6b6158;--pink:#be185d;--line:rgba(38,33,27,.12);--card:rgba(255,250,244,.94)}
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;overflow:hidden;background:#f3e7da;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif}
-  #scene{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:none}
-  .brand{position:fixed;left:20px;top:18px;z-index:5;width:min(400px,calc(100vw - 40px))}
-  .brand .eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
-  .brand h1{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:clamp(34px,4.6vw,52px);line-height:1;margin:6px 0 10px}
-  .space{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;box-shadow:0 8px 24px rgba(38,33,27,.10)}
-  .space .top{display:flex;align-items:center;gap:8px}
-  .space .top button{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;color:var(--ink)}
-  .space .top select{flex:1;min-width:0;font:600 15px 'DM Sans',sans-serif;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
-  .space .meta{font-size:13px;color:var(--soft);margin:10px 2px 2px;line-height:1.5}
-  .space ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#4a4138;line-height:1.5}
-  .bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
-    padding:7px;background:rgba(255,250,244,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;
-    box-shadow:0 10px 30px rgba(38,33,27,.12);max-width:calc(100vw - 20px)}
-  .bar button{font:600 14px 'DM Sans',sans-serif;border:0;border-radius:999px;padding:9px 13px;cursor:pointer;background:transparent;color:var(--ink);display:flex;align-items:center;gap:7px}
-  .bar button:hover{background:rgba(38,33,27,.06)}
-  .bar button.on{background:var(--ink);color:#fbf3ea}
-  .bar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(38,33,27,.25)}
-  .bar .sep{width:1px;background:var(--line);margin:4px 2px}
-  .tag{position:fixed;z-index:4;transform:translate(-50%,-100%);cursor:pointer;user-select:none;background:var(--card);border:1px solid var(--line);
-    border-radius:14px;padding:6px 12px 7px;text-align:center;box-shadow:0 6px 18px rgba(38,33,27,.14);transition:opacity .2s ease;white-space:nowrap}
-  .tag b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:18px;font-weight:600;line-height:1.1}
-  .tag span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
-  .tag i{position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:#fffaf4;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
-  .tag.dim{opacity:.35}
-  .tag.lvl{cursor:default;background:#26211b;color:#fbf3ea;padding:5px 10px}.tag.lvl b{font-size:14px;font-family:'DM Sans',sans-serif}.tag.lvl i{background:#26211b;border:0}
-  .panel{position:fixed;right:18px;top:18px;bottom:86px;width:min(390px,calc(100vw - 36px));z-index:7;background:rgba(255,250,244,.97);
-    border:1px solid var(--line);border-radius:22px;box-shadow:0 16px 44px rgba(38,33,27,.18);overflow:auto;transform:translateX(120%);transition:transform .35s ease}
-  .panel.open{transform:none}
-  .panel img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:22px 22px 0 0;background:#e9dccb}
-  .panel .in{padding:18px 20px 20px}
-  .panel .z{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
-  .panel h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:40px;line-height:1;margin:6px 0 10px}
-  .panel p{margin:0 0 12px;color:#4a4138;font-size:15px;line-height:1.55}
-  .panel ul{margin:0 0 14px;padding-left:18px;color:#4a4138;font-size:14px;line-height:1.6}
-  .panel .row{display:flex;gap:8px}
-  .panel .row button{flex:1;font:600 14px 'DM Sans',sans-serif;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;cursor:pointer;color:var(--ink)}
-  .panel .x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,250,244,.92);font-size:20px;cursor:pointer;color:var(--ink)}
-  .panel .cap{font-size:12px;color:var(--soft);margin-top:12px;line-height:1.5}
-  .hint{position:fixed;left:20px;bottom:22px;z-index:3;font-size:12px;color:var(--soft);max-width:250px;line-height:1.5}
-  .load{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:#f3e7da;transition:opacity .5s ease}
-  .load div{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;color:var(--soft)}
-  .load.gone{opacity:0;pointer-events:none}
-  .fold{display:none}
-  @media (max-width:1100px){.hint{display:none}}
-  @media (max-width:760px){
-    .brand{left:10px;top:10px;width:calc(100vw - 20px)}.brand h1{font-size:30px;margin:2px 0 6px}
-    .space{padding:8px 10px}.space ul{display:none}.space .meta{margin-top:6px}
-    .hint{display:none}
-    .bar{bottom:10px;gap:1px;padding:5px}.bar button{padding:8px 9px;font-size:13px}.bar .lbl{display:none}
-    .panel{left:8px;right:8px;width:auto;top:auto;bottom:70px;max-height:58vh;transform:translateY(130%)}
-    .panel.open{transform:none}
-    .tag b{font-size:14px}.tag span{display:none}
-  }
+:root{
+  --ink:#26211b; --soft:#6b6158; --muted:#8a7f74; --pink:#be185d; --line:rgba(38,33,27,.13);
+  --card:rgba(255,250,244,.95); --solid:#fffaf4; --ground:#f3e7da; --chip:#f6ece1; --btn:#ffffff;
+  --good:#3f7a3a; --warn:#b45309; --bad:#b4233a; --stage:#f3e7da;
+  --shadow:0 10px 30px rgba(38,33,27,.14);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ink:#f6ece1; --soft:#cbbcab; --muted:#a8998a; --pink:#f9a8d4; --line:rgba(246,236,225,.14);
+  --card:rgba(33,28,23,.93); --solid:#211c17; --ground:#171310; --chip:#2c251f; --btn:#2c251f;
+  --good:#8fd18a; --warn:#fbbf6b; --bad:#fb8a9c; --stage:#1c1713; --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --ink:#f6ece1; --soft:#cbbcab; --muted:#a8998a; --pink:#f9a8d4; --line:rgba(246,236,225,.14);
+  --card:rgba(33,28,23,.93); --solid:#211c17; --ground:#171310; --chip:#2c251f; --btn:#2c251f;
+  --good:#8fd18a; --warn:#fbbf6b; --bad:#fb8a9c; --stage:#1c1713; --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark; }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--ground);color:var(--ink);font-family:'DM Sans',system-ui,-apple-system,sans-serif}
+button,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.serif{font-family:'Libre Bodoni',Georgia,'Times New Roman',serif}
+
+/* stage */
+#stage{position:fixed;inset:0;background:var(--stage);overflow:hidden}
+#stage img{position:absolute;inset:0;width:100%;height:100%;max-width:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;transform-origin:50% 55%}
+#stage img.on{opacity:1}
+#stage img.kb{animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+#stage .scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,16,12,.38) 0%,rgba(20,16,12,0) 26%,rgba(20,16,12,0) 58%,rgba(20,16,12,.55) 100%)}
+#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+body.plan #stage img,body.plan #stage .scrim{display:none}
+
+/* brand + space card */
+.brand{position:fixed;left:18px;top:calc(16px + env(safe-area-inset-top,0px));z-index:5;width:min(390px,calc(100vw - 36px))}
+.brand .eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fde2ec;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.brand h1{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:clamp(32px,4.4vw,50px);line-height:1;margin:4px 0 10px;color:#fffaf4;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+body.plan .brand .eyebrow{color:var(--pink);text-shadow:none} body.plan .brand h1{color:var(--ink);text-shadow:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.space{padding:12px 14px}
+.space .row{display:flex;align-items:center;gap:8px}
+.icon{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--btn);color:var(--ink);cursor:pointer;font-size:16px;line-height:1}
+.space select{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--btn)}
+.space .addr{margin:10px 2px 0;font-weight:700;font-size:15px}
+.space .sub{margin:2px 2px 0;font-size:13px;color:var(--soft);line-height:1.45;font-variant-numeric:tabular-nums}
+.space .acts{display:flex;gap:8px;margin-top:10px}
+.pillbtn{font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--btn);color:var(--ink);border-radius:999px;padding:7px 12px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.pillbtn.primary{background:var(--ink);color:var(--solid);border-color:var(--ink)}
+
+/* caption */
+.caption{position:fixed;left:18px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:5;width:min(460px,calc(100vw - 36px));padding:16px 18px}
+.caption .eb{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+.caption h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:34px;line-height:1.05;margin:6px 0 8px;text-wrap:balance}
+.caption p{margin:0 0 8px;color:var(--soft);font-size:15px;line-height:1.5}
+.caption ul{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--ink);font-variant-numeric:tabular-nums}
+.caption .cap{margin-top:8px;font-size:11px;color:var(--muted)}
+
+/* bottom bar */
+.bar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;padding:6px;border-radius:999px;max-width:calc(100vw - 20px)}
+.bar button{font-size:14px;font-weight:600;border:0;border-radius:999px;padding:9px 12px;cursor:pointer;background:transparent;color:var(--ink);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.bar button:hover{background:var(--chip)}
+.bar button.on{background:var(--ink);color:var(--solid)}
+.bar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(38,33,27,.25)}
+.bar .sep{width:1px;background:var(--line);margin:4px 2px}
+
+/* 3D tags */
+.tag{position:fixed;z-index:4;transform:translate(-50%,-100%);cursor:pointer;user-select:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 12px 7px;text-align:center;box-shadow:var(--shadow);white-space:nowrap;color:var(--ink)}
+.tag b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:18px;font-weight:600;line-height:1.1}
+.tag span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.tag i{position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:var(--solid);border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+.tag.dim{opacity:.35}
+.tag.lvl{cursor:default;background:#26211b;color:#fbf3ea;padding:5px 10px}.tag.lvl b{font-size:14px;font-family:'DM Sans',sans-serif}.tag.lvl i{background:#26211b;border:0}
+body:not(.plan) #tags{display:none}
+
+/* drawer */
+.drawer{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(560px,calc(100vw - 28px));z-index:8;
+  background:var(--solid);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(20,16,12,.28);display:flex;flex-direction:column;transform:translateX(115%);transition:transform .35s ease}
+.drawer.open{transform:none}
+.drawer header{padding:16px 18px 0;display:flex;gap:10px;align-items:flex-start}
+.drawer header .t{flex:1;min-width:0}
+.drawer header .eb{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+.drawer header h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:28px;line-height:1.1;margin:4px 0 0;text-wrap:balance}
+.tabs{display:flex;gap:4px;padding:12px 18px 0;border-bottom:1px solid var(--line)}
+.tabs button{font-size:14px;font-weight:600;border:0;background:transparent;color:var(--soft);padding:10px 12px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--pink)}
+.dbody{overflow:auto;padding:16px 18px 22px;flex:1}
+.dbody h3{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:20px;margin:18px 0 8px}
+.dbody h3:first-child{margin-top:0}
+.dbody p{margin:0 0 10px;color:var(--soft);font-size:14px;line-height:1.55}
+.dbody ul{margin:0 0 6px;padding-left:18px;font-size:14px;line-height:1.6}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;font-size:14px;font-variant-numeric:tabular-nums}
+.kv dt{color:var(--soft)} .kv dd{margin:0;text-align:right;font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:6px}
+.tile{background:var(--chip);border-radius:14px;padding:12px 14px}
+.tile .v{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile .l{font-size:12px;color:var(--soft);margin-top:4px;line-height:1.35}
+.neg{color:var(--bad)} .pos{color:var(--good)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:5px 10px;background:var(--chip);color:var(--ink)}
+.chip.s-Strong{box-shadow:inset 0 0 0 1.5px var(--good)} .chip.s-Good{box-shadow:inset 0 0 0 1.5px var(--good)}
+.chip.s-OK,.chip.s-Stretch,.chip.s-Unknown{box-shadow:inset 0 0 0 1.5px var(--warn)} .chip.s-Weak{box-shadow:inset 0 0 0 1.5px var(--bad)}
+.tbl{overflow-x:auto;margin:0 0 6px}
+.tbl table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{text-align:left;white-space:normal}
+.tbl th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);font-weight:700}
+.tbl tr.total td{font-weight:700;border-bottom:0;border-top:1.5px solid var(--ink)}
+.tbl tr.click{cursor:pointer} .tbl tr.click:hover td{background:var(--chip)} .tbl tr.cur td{background:var(--chip)}
+.tbl .basis{display:block;font-size:11px;color:var(--muted);font-weight:400}
+.map{width:100%;height:220px;border:0;border-radius:14px;display:block;margin:0 0 10px;background:var(--chip)}
+.fine{font-size:12px!important;color:var(--muted)!important}
+.private{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border-radius:12px;padding:10px 12px;font-size:12px;color:var(--soft);margin:0 0 12px;line-height:1.45}
+.load{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:var(--ground);transition:opacity .5s ease}
+.load div{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;color:var(--soft)}
+.load.gone{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion: reduce){#stage img{transition:none}#stage img.kb{animation:none}.drawer{transition:none}}
+@media (max-width:760px){
+  .brand{left:10px;top:calc(10px + env(safe-area-inset-top,0px));width:calc(100vw - 20px)} .brand h1{font-size:28px;margin:2px 0 6px}
+  .space{padding:9px 10px} .space .sub{display:none} .space .addr{margin-top:6px;font-size:14px}
+  .caption{left:10px;width:calc(100vw - 20px);bottom:calc(74px + env(safe-area-inset-bottom,0px));padding:12px 14px} .caption h2{font-size:26px} .caption ul{display:none} .caption p{font-size:14px;margin:0}
+  .bar{bottom:calc(10px + env(safe-area-inset-bottom,0px));gap:0;padding:4px}.bar button{padding:8px 8px;font-size:13px}.bar .lbl{display:none}
+  .drawer{left:8px;right:8px;width:auto;top:calc(8px + env(safe-area-inset-top,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));transform:translateY(115%)} .drawer.open{transform:none}
+  .tag b{font-size:14px}.tag span{display:none}
+}
 </style>
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-} }
-</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
-<canvas id="scene" aria-label="3D concept model of the Safari campus"></canvas>
+<div id="stage" aria-live="polite">
+  <img id="imgA" alt="">
+  <img id="imgB" alt="">
+  <div class="scrim"></div>
+</div>
+<canvas id="scene" hidden aria-label="3D test-fit of the selected space"></canvas>
 <div class="load" id="load"><div>Raising the roof…</div></div>
 
 <div class="brand">
   <div class="eyebrow">Grateful Giraffes · Concept</div>
   <h1>The Safari</h1>
-  <div class="space">
-    <div class="top">
-      <button id="sPrev" aria-label="Previous space">‹</button>
+  <div class="card space">
+    <div class="row">
+      <button class="icon" id="sPrev" aria-label="Previous space">‹</button>
       <select id="sPick" aria-label="Choose a space"></select>
-      <button id="sNext" aria-label="Next space">›</button>
+      <button class="icon" id="sNext" aria-label="Next space">›</button>
     </div>
-    <div class="meta" id="sMeta"></div>
-    <ul id="sFacts"></ul>
+    <div class="addr" id="sAddr"></div>
+    <div class="sub" id="sSub"></div>
+    <div class="acts">
+      <button class="pillbtn primary" id="bDetails">Property details</button>
+      <a class="pillbtn" id="bMap" href="#" target="_blank" rel="noopener">Map ↗</a>
+    </div>
   </div>
 </div>
 
 <div id="tags"></div>
 
-<aside class="panel" id="panel" aria-live="polite">
-  <button class="x" id="close" aria-label="Close">×</button>
-  <img id="pimg" alt="">
-  <div class="in">
-    <div class="z" id="pz"></div>
-    <h2 id="ph"></h2>
-    <p id="pp"></p>
-    <ul id="pl"></ul>
-    <div class="row"><button id="prev">← Previous</button><button id="next">Next →</button></div>
-    <div class="cap">Concept image, AI-generated. The 3D layout is a schematic test-fit on an assumed footprint, not the building&#8217;s real plan.</div>
-  </div>
-</aside>
+<section class="card caption" id="caption">
+  <div class="eb" id="cEb"></div>
+  <h2 id="cH"></h2>
+  <p id="cP"></p>
+  <ul id="cL"></ul>
+  <div class="cap" id="cCap">Concept image, AI-generated from this listing&#8217;s features. Not a photo of the building.</div>
+</section>
 
-<nav class="bar" id="bar">
+<nav class="card bar" id="bar" aria-label="Tour">
   <button id="bOverview" class="on">Overview</button>
-  <button id="bTour">▶ <span class="lbl">Tour</span></button>
-  <span class="sep"></span>
   <button data-zone="basecamp"><i class="dot" style="background:#f3e6d6"></i><span class="lbl">Basecamp</span></button>
   <button data-zone="savanna"><i class="dot" style="background:#f6c89b"></i><span class="lbl">Savanna</span></button>
   <button data-zone="oasis"><i class="dot" style="background:#9fdccd"></i><span class="lbl">Oasis</span></button>
   <button data-zone="acacia"><i class="dot" style="background:#cfdc9a"></i><span class="lbl">Acacia</span></button>
   <button data-zone="canopy"><i class="dot" style="background:#c8bdf5"></i><span class="lbl">Canopy</span></button>
   <span class="sep"></span>
-  <button id="bWalls" title="Raise or lower the walls">Walls</button>
+  <button id="bTour">▶ <span class="lbl">Tour</span></button>
+  <button id="bMode" title="Switch between photos and the 3D plan">3D plan</button>
+  <button id="bWalls" title="Raise or lower the walls" hidden>Walls</button>
 </nav>
-<div class="hint">Ten west-side spaces, each test-fit with the same five zones. Schematic concepts, not final designs. Drag to orbit, scroll or pinch to zoom.</div>
+
+<aside class="drawer" id="drawer" aria-label="Property details">
+  <header>
+    <div class="t"><div class="eb" id="dEb"></div><h2 id="dH"></h2></div>
+    <button class="icon" id="dClose" aria-label="Close details">×</button>
+  </header>
+  <div class="tabs" role="tablist">
+    <button data-tab="listing" class="on" role="tab">Listing</button>
+    <button data-tab="numbers" role="tab" id="tabNumbers">Budget &amp; NOI</button>
+    <button data-tab="all" role="tab">All ten</button>
+  </div>
+  <div class="dbody" id="dBody"></div>
+</aside>
 
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-const SPACES = [{"n":1,"hood":"Del Rey","sf":6500,"W":100,"D":65,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":0,"w":25,"d":14},{"zone":"acacia","name":"Acacia","fn":"Glass offices","x":25,"z":0,"w":30,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":14,"w":55,"d":51},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":27,"d":24},{"zone":"wc","name":"WC","fn":"","x":82,"z":0,"w":18,"d":12},{"zone":"canopy","name":"Canopy","fn":"Studio","x":82,"z":12,"w":18,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":55,"z":24,"w":45,"d":19},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":55,"z":43,"w":45,"d":22}],"rooms2":[],"outdoor":[{"label":"Private patio \u00b7 outdoor salon","x":0,"z":65,"w":55,"d":18}],"outdoor2":[],"street":"T","facts":["Brand-new creative conversion, a private \"mini campus\"","17-ft exposed ceilings, oversized skylights","Upgraded kitchen, floor-to-ceiling glass offices"]},{"n":2,"hood":"Santa Monica","sf":6130,"W":102,"D":60,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":25,"d":18},{"zone":"oasis","name":"Oasis","fn":"Street caf\u00e9 & bar","x":0,"z":18,"w":25,"d":42},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":25,"z":0,"w":47,"d":60},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":72,"z":0,"w":30,"d":22},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":72,"z":22,"w":30,"d":20},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":72,"z":42,"w":18,"d":18},{"zone":"wc","name":"WC","fn":"","x":90,"z":42,"w":12,"d":18}],"rooms2":[],"outdoor":[{"label":"Sidewalk seating","x":-18,"z":0,"w":18,"d":60}],"outdoor2":[],"street":"L","facts":["Ground floor, built for retail or restaurant use","20-ft exposed ceilings","Street frontage on Lincoln Blvd"]},{"n":3,"hood":"Culver City","sf":5060,"W":92,"D":55,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":50,"d":42},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":74,"z":0,"w":18,"d":13},{"zone":"acacia","name":"Acacia","fn":"Office","x":74,"z":13,"w":18,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":25,"w":24,"d":17},{"zone":"wc","name":"WC","fn":"","x":74,"z":25,"w":18,"d":17},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":42,"w":22,"d":13},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":22,"z":42,"w":44,"d":13},{"zone":"oasis","name":"Oasis","fn":"Bar","x":66,"z":42,"w":26,"d":13}],"rooms2":[],"outdoor":[{"label":"Private patio","x":92,"z":5,"w":16,"d":40}],"outdoor2":[],"street":"B","facts":["Ground floor, polished concrete, glass walls","High exposed ceilings, natural light","Private breakout rooms and an open kitchen"]},{"n":4,"hood":"Culver City","sf":6428,"W":98,"D":66,"twoFloor":false,"rooms":[{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":0,"z":0,"w":26,"d":40},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":40,"w":26,"d":26},{"zone":"canopy","name":"Canopy","fn":"Studio","x":26,"z":0,"w":16,"d":26},{"zone":"acacia","name":"Acacia","fn":"Offices","x":42,"z":0,"w":16,"d":14},{"zone":"wc","name":"WC","fn":"","x":42,"z":14,"w":16,"d":12},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":26,"z":26,"w":32,"d":26},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":26,"z":52,"w":32,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":58,"z":0,"w":40,"d":66}],"rooms2":[],"outdoor":[{"label":"Patio \u00b7 to the park","x":98,"z":10,"w":15,"d":46}],"outdoor2":[],"street":"B","facts":["Flexible creative layout on the ground floor","Kitchen with stainless appliances","Outdoor patio; building signage available"]},{"n":5,"hood":"Playa Vista","sf":6500,"W":130,"D":50,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":30,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":16,"w":30,"d":34},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":30,"z":0,"w":26,"d":26},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":30,"z":26,"w":26,"d":14},{"zone":"wc","name":"WC","fn":"","x":30,"z":40,"w":26,"d":10},{"zone":"acacia","name":"Acacia","fn":"Pods","x":56,"z":0,"w":18,"d":50},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":74,"z":0,"w":56,"d":50}],"rooms2":[],"outdoor":[{"label":"Roll-up door \u00b7 yard","x":130,"z":8,"w":20,"d":34}],"outdoor2":[],"street":"L","facts":["Open warehouse floor, concrete, skylights","Ground-level roll-up loading doors at the rear","West of the 405 on Jefferson"]},{"n":6,"hood":"Culver City","sf":7016,"W":116,"D":60,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":58,"d":44},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":44,"w":20,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":44,"w":38,"d":16},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":58,"z":0,"w":30,"d":24},{"zone":"canopy","name":"Canopy","fn":"Studio","x":88,"z":0,"w":28,"d":12},{"zone":"wc","name":"WC","fn":"","x":88,"z":12,"w":28,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":58,"z":24,"w":40,"d":36},{"zone":"acacia","name":"Acacia","fn":"Offices","x":98,"z":24,"w":18,"d":36}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["Ground floor, finishing an adaptive-reuse conversion","New custom steel doors and windows","Near the Expo Line; quick to the 10"]},{"n":7,"hood":"Del Rey","sf":6903,"W":99,"D":70,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Suites A + B","x":0,"z":0,"w":50,"d":52},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":0,"z":52,"w":50,"d":18},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":50,"z":0,"w":25,"d":12},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":12,"w":25,"d":28},{"zone":"canopy","name":"Canopy","fn":"Studio","x":50,"z":40,"w":25,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":52,"w":25,"d":18},{"zone":"acacia","name":"Acacia","fn":"Suite D pods","x":75,"z":0,"w":24,"d":52},{"zone":"wc","name":"WC","fn":"","x":75,"z":52,"w":24,"d":18}],"rooms2":[],"outdoor":[{"label":"Outdoor patio","x":0,"z":70,"w":50,"d":13}],"outdoor2":[],"street":"T","facts":["Whole building, up to 5 creative suites","Kitchen and conference room in place","Internet included; polished concrete"]},{"n":8,"hood":"Marina del Rey","sf":3435,"W":69,"D":50,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":38,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":38,"d":10},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":38,"z":0,"w":31,"d":16},{"zone":"acacia","name":"Acacia","fn":"Desks & offices","x":38,"z":16,"w":19,"d":34},{"zone":"oasis","name":"Oasis","fn":"Bar & caf\u00e9","x":57,"z":16,"w":12,"d":24},{"zone":"wc","name":"WC","fn":"","x":57,"z":40,"w":12,"d":10}],"rooms2":[],"outdoor":[{"label":"Shared patio","x":69,"z":6,"w":14,"d":36}],"outdoor2":[],"street":"B","facts":["Loft-style creative office, 1st floor","4 offices, conference room, open area, kitchen","Shared shaded patio next door"]},{"n":9,"hood":"Venice","sf":5425,"W":95,"D":57,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":55,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":20,"d":17},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":40,"w":35,"d":17},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":79,"z":0,"w":16,"d":12},{"zone":"acacia","name":"Acacia","fn":"Office","x":79,"z":12,"w":16,"d":13},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":55,"z":25,"w":24,"d":16},{"zone":"oasis","name":"Oasis","fn":"Recovery","x":79,"z":25,"w":16,"d":16},{"zone":"acacia","name":"Acacia","fn":"Offices","x":55,"z":41,"w":24,"d":16},{"zone":"wc","name":"WC","fn":"","x":79,"z":41,"w":16,"d":16}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["1st-floor creative or work/live loft","6 offices, 2 conference rooms, open area, kitchen","Around the corner from Abbot Kinney"]},{"n":10,"hood":"Venice","sf":5800,"W":58,"D":50,"twoFloor":true,"rooms":[{"zone":"oasis","name":"Oasis","fn":"Lounge & caf\u00e9","x":0,"z":0,"w":30,"d":28},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":30,"z":0,"w":28,"d":28},{"zone":"basecamp","name":"Basecamp","fn":"Reception","x":0,"z":28,"w":24,"d":22},{"zone":"acacia","name":"Acacia","fn":"Offices","x":24,"z":28,"w":18,"d":22},{"zone":"oasis","name":"Oasis","fn":"Kitchenette","x":42,"z":28,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":40,"w":16,"d":10}],"rooms2":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":42,"d":50},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":42,"z":0,"w":16,"d":26},{"zone":"oasis","name":"Oasis","fn":"Bar","x":42,"z":26,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":38,"w":16,"d":12}],"outdoor":[],"outdoor2":[{"label":"Patio","x":0,"z":50,"w":42,"d":14}],"street":"L","facts":["Renovated creative office on two floors","Large open area upstairs; big second-floor patio","Bullpens, conference room, 2 kitchenettes"]}];
+const FIN = false;
+const PUBLIC_MAP = true;
+const SPACES = [{"n":1,"hood":"Del Rey","sf":6500,"W":100,"D":65,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":0,"w":25,"d":14},{"zone":"acacia","name":"Acacia","fn":"Glass offices","x":25,"z":0,"w":30,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":14,"w":55,"d":51},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":27,"d":24},{"zone":"wc","name":"WC","fn":"","x":82,"z":0,"w":18,"d":12},{"zone":"canopy","name":"Canopy","fn":"Studio","x":82,"z":12,"w":18,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":55,"z":24,"w":45,"d":19},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":55,"z":43,"w":45,"d":22}],"rooms2":[],"outdoor":[{"label":"Private patio \u00b7 outdoor salon","x":0,"z":65,"w":55,"d":18}],"outdoor2":[],"street":"T","facts":["Brand-new creative conversion, a private \"mini campus\"","17-ft exposed ceilings, oversized skylights","Upgraded kitchen, floor-to-ceiling glass offices","Large private patio; free valet, 2.5/1,000 at $150"],"id":"panama","addr":"12820 Panama Street","city":"Los Angeles","zip":"90066","lat":33.9847401,"lng":-118.4264972,"askMo":18958,"psf":35,"lease":"Direct lease","rentYr":227500,"rentNote":"Listed asking rent","watch":["Confirm the owner allows events and assembly use"],"moves":["Savanna fills the skylit floor and opens to the patio","Glass offices become Canopy and Acacia offices","The Oasis caf\u00e9 and recovery lounge sit by the kitchen"],"scores":{"Layout":"Strong","Events":"Strong","Parking":"Good","Budget":"Good"},"caps":{"savanna_sf":2800,"standing":200,"seated":125,"canopy":27,"acacia":21,"oasis":39}},{"n":2,"hood":"Santa Monica","sf":6130,"W":102,"D":60,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":25,"d":18},{"zone":"oasis","name":"Oasis","fn":"Street caf\u00e9 & bar","x":0,"z":18,"w":25,"d":42},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":25,"z":0,"w":47,"d":60},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":72,"z":0,"w":30,"d":22},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":72,"z":22,"w":30,"d":20},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":72,"z":42,"w":18,"d":18},{"zone":"wc","name":"WC","fn":"","x":90,"z":42,"w":12,"d":18}],"rooms2":[],"outdoor":[{"label":"Sidewalk seating","x":-18,"z":0,"w":18,"d":60}],"outdoor2":[],"street":"L","facts":["Ground floor, built for retail or restaurant use","20-ft exposed ceilings","Street frontage on Lincoln Blvd","Room for outdoor seating; about 61 parking spaces"],"id":"lincoln","addr":"1315 Lincoln Boulevard","city":"Santa Monica","zip":"90401","lat":34.020737,"lng":-118.492351,"askMo":null,"psf":null,"lease":"Direct lease \u00b7 price on request","rentYr":361700,"rentNote":"Asking rent not listed; assumed at the Santa Monica median of $59 per sq ft a year","watch":["No asking rent listed; Santa Monica rents run high","Check how much restaurant plumbing and venting remains"],"moves":["The Oasis is the street caf\u00e9 on Lincoln, with sidewalk seats","Basecamp greets people at the front door","Savanna runs under the 20-ft ceiling; the old kitchen feeds the Oasis"],"scores":{"Layout":"Strong","Events":"Strong","Parking":"Strong","Budget":"Unknown"},"caps":{"savanna_sf":2820,"standing":200,"seated":125,"canopy":27,"acacia":10,"oasis":42}},{"n":3,"hood":"Culver City","sf":5060,"W":92,"D":55,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":50,"d":42},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":74,"z":0,"w":18,"d":13},{"zone":"acacia","name":"Acacia","fn":"Office","x":74,"z":13,"w":18,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":25,"w":24,"d":17},{"zone":"wc","name":"WC","fn":"","x":74,"z":25,"w":18,"d":17},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":42,"w":22,"d":13},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":22,"z":42,"w":44,"d":13},{"zone":"oasis","name":"Oasis","fn":"Bar","x":66,"z":42,"w":26,"d":13}],"rooms2":[],"outdoor":[{"label":"Private patio","x":92,"z":5,"w":16,"d":40}],"outdoor2":[],"street":"B","facts":["Ground floor, polished concrete, glass walls","High exposed ceilings, natural light","Private breakout rooms and an open kitchen","Private on-site parking and outdoor patio"],"id":"wjefferson","addr":"5930 West Jefferson Boulevard","city":"Los Angeles","zip":"90016","lat":34.02126459999999,"lng":-118.3769122,"askMo":20240,"psf":48,"lease":"Direct lease","rentYr":242900,"rentNote":"Listed asking rent","watch":["Smallest strong fit: Savanna holds about 150 standing"],"moves":["Savanna takes the open floor; the Oasis bar opens to the patio","Breakout rooms become the Canopy classroom and studio","Acacia desks line the glass front on Jefferson"],"scores":{"Layout":"Strong","Events":"Good","Parking":"Strong","Budget":"Stretch"},"caps":{"savanna_sf":2100,"standing":150,"seated":95,"canopy":25,"acacia":12,"oasis":13}},{"n":4,"hood":"Culver City","sf":6428,"W":98,"D":66,"twoFloor":false,"rooms":[{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":0,"z":0,"w":26,"d":40},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":40,"w":26,"d":26},{"zone":"canopy","name":"Canopy","fn":"Studio","x":26,"z":0,"w":16,"d":26},{"zone":"acacia","name":"Acacia","fn":"Offices","x":42,"z":0,"w":16,"d":14},{"zone":"wc","name":"WC","fn":"","x":42,"z":14,"w":16,"d":12},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":26,"z":26,"w":32,"d":26},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":26,"z":52,"w":32,"d":14},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":58,"z":0,"w":40,"d":66}],"rooms2":[],"outdoor":[{"label":"Patio \u00b7 to the park","x":98,"z":10,"w":15,"d":46}],"outdoor2":[],"street":"B","facts":["Flexible creative layout on the ground floor","Kitchen with stainless appliances","Outdoor patio; building signage available","Next to a park, walk to Westfield Culver City"],"id":"greenvalley","addr":"5875 Green Valley Cir","city":"Culver City","zip":"90230","lat":33.9836138,"lng":-118.3891531,"askMo":18748,"psf":35,"lease":"Direct lease \u00b7 Suite 100","rentYr":225000,"rentNote":"Listed asking rent","watch":["It is an office park: confirm events are allowed","Ask about evening and weekend parking"],"moves":["Savanna runs the full depth and opens to the park-side patio","The Oasis sits at the center, between Savanna and Acacia","Canopy and Acacia take the quiet west side"],"scores":{"Layout":"Strong","Events":"Good","Parking":"Good","Budget":"Good"},"caps":{"savanna_sf":2620,"standing":185,"seated":115,"canopy":27,"acacia":20,"oasis":33}},{"n":5,"hood":"Playa Vista","sf":6500,"W":130,"D":50,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":30,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":16,"w":30,"d":34},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":30,"z":0,"w":26,"d":26},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":30,"z":26,"w":26,"d":14},{"zone":"wc","name":"WC","fn":"","x":30,"z":40,"w":26,"d":10},{"zone":"acacia","name":"Acacia","fn":"Pods","x":56,"z":0,"w":18,"d":50},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":74,"z":0,"w":56,"d":50}],"rooms2":[],"outdoor":[{"label":"Roll-up door \u00b7 yard","x":130,"z":8,"w":20,"d":34}],"outdoor2":[],"street":"L","facts":["Open warehouse floor, concrete, skylights","Ground-level roll-up loading doors at the rear","West of the 405 on Jefferson","On-site parking for about six cars"],"id":"warehouse","addr":"11910-12 Jefferson Boulevard","city":"Culver City","zip":"90230","lat":33.9849945,"lng":-118.4028323,"askMo":12458,"psf":23,"lease":"Direct lease","rentYr":149500,"rentNote":"Listed asking rent","watch":["Bare shell: highest build-out cost, new restrooms and HVAC","Six parking spots; needs valet or a partner lot for events"],"moves":["Savanna fills the back, roll-up door open to the yard","The Oasis is a front caf\u00e9 off Jefferson; Basecamp at the door","Acacia is a row of founder pods between Savanna and Canopy"],"scores":{"Layout":"Strong","Events":"Strong","Parking":"Weak","Budget":"Strong"},"caps":{"savanna_sf":2800,"standing":200,"seated":125,"canopy":28,"acacia":15,"oasis":40}},{"n":6,"hood":"Culver City","sf":7016,"W":116,"D":60,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":58,"d":44},{"zone":"basecamp","name":"Basecamp","fn":"Check-in","x":0,"z":44,"w":20,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":44,"w":38,"d":16},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":58,"z":0,"w":30,"d":24},{"zone":"canopy","name":"Canopy","fn":"Studio","x":88,"z":0,"w":28,"d":12},{"zone":"wc","name":"WC","fn":"","x":88,"z":12,"w":28,"d":12},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":58,"z":24,"w":40,"d":36},{"zone":"acacia","name":"Acacia","fn":"Offices","x":98,"z":24,"w":18,"d":36}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["Ground floor, finishing an adaptive-reuse conversion","New custom steel doors and windows","Near the Expo Line; quick to the 10","On-site parking, 2/1,000 stacked"],"id":"blackwelder","addr":"5920-5924 Blackwelder Street","city":"Culver City","zip":"90232","lat":34.0308267,"lng":-118.37477,"askMo":24556,"psf":42,"lease":"Sublease","rentYr":294700,"rentNote":"Listed asking rent","watch":["A sublease: learn the master lease end date"],"moves":["5920 is Savanna, with Basecamp and the Oasis bar out front","5924 is the daily side: Canopy and Acacia","Two addresses split events from daily work cleanly"],"scores":{"Layout":"Strong","Events":"Strong","Parking":"Good","Budget":"Stretch"},"caps":{"savanna_sf":2570,"standing":180,"seated":115,"canopy":30,"acacia":34,"oasis":24}},{"n":7,"hood":"Del Rey","sf":6903,"W":99,"D":70,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Suites A + B","x":0,"z":0,"w":50,"d":52},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9, bar, recovery","x":0,"z":52,"w":50,"d":18},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":50,"z":0,"w":25,"d":12},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":12,"w":25,"d":28},{"zone":"canopy","name":"Canopy","fn":"Studio","x":50,"z":40,"w":25,"d":12},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":50,"z":52,"w":25,"d":18},{"zone":"acacia","name":"Acacia","fn":"Suite D pods","x":75,"z":0,"w":24,"d":52},{"zone":"wc","name":"WC","fn":"","x":75,"z":52,"w":24,"d":18}],"rooms2":[],"outdoor":[{"label":"Outdoor patio","x":0,"z":70,"w":50,"d":13}],"outdoor2":[],"street":"T","facts":["Whole building, up to 5 creative suites","Kitchen and conference room in place","Internet included; polished concrete","Outdoor patio, exposed ceilings"],"id":"redwood","addr":"4081 Redwood Avenue","city":"Los Angeles","zip":"90066","lat":33.9912891,"lng":-118.4410389,"askMo":24735,"psf":43,"lease":"Direct lease \u00b7 whole building","rentYr":296800,"rentNote":"Listed asking rent","watch":["Joining suites means removing a demising wall"],"moves":["Two suites join into Savanna; the Oasis opens onto the patio","Suite D becomes Acacia, a floor of founder pods","Or lease three suites (about 4,000 sq ft) to fit the budget"],"scores":{"Layout":"Good","Events":"Good","Parking":"Unknown","Budget":"Stretch"},"caps":{"savanna_sf":2590,"standing":180,"seated":115,"canopy":29,"acacia":20,"oasis":35}},{"n":8,"hood":"Marina del Rey","sf":3435,"W":69,"D":50,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":38,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":38,"d":10},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":38,"z":0,"w":31,"d":16},{"zone":"acacia","name":"Acacia","fn":"Desks & offices","x":38,"z":16,"w":19,"d":34},{"zone":"oasis","name":"Oasis","fn":"Bar & caf\u00e9","x":57,"z":16,"w":12,"d":24},{"zone":"wc","name":"WC","fn":"","x":57,"z":40,"w":12,"d":10}],"rooms2":[],"outdoor":[{"label":"Shared patio","x":69,"z":6,"w":14,"d":36}],"outdoor2":[],"street":"B","facts":["Loft-style creative office, 1st floor","4 offices, conference room, open area, kitchen","Shared shaded patio next door","9 parking spaces at $75 each"],"id":"delrey","addr":"4052 Del Rey Avenue","city":"Marina del Rey","zip":"90292","lat":33.9898067,"lng":-118.4455848,"askMo":10018,"psf":35,"lease":"Direct lease \u00b7 NNN about $0.65/sf","rentYr":147000,"rentNote":"Listed asking rent plus about $0.65 per sq ft a month in building charges","watch":["Too small for 150: Savanna holds about 105 standing","Shared patio, so outdoor events need the neighbors"],"moves":["A compact campus: Savanna takes the open loft floor","The Oasis sits by the shared patio; Canopy in the conference room","Offices open up into Acacia desks"],"scores":{"Layout":"OK","Events":"Weak","Parking":"Weak","Budget":"Strong"},"caps":{"savanna_sf":1510,"standing":105,"seated":65,"canopy":20,"acacia":10,"oasis":11}},{"n":9,"hood":"Venice","sf":5425,"W":95,"D":57,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":55,"d":40},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":40,"w":20,"d":17},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":40,"w":35,"d":17},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":55,"z":0,"w":24,"d":25},{"zone":"canopy","name":"Canopy","fn":"Studio","x":79,"z":0,"w":16,"d":12},{"zone":"acacia","name":"Acacia","fn":"Office","x":79,"z":12,"w":16,"d":13},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":55,"z":25,"w":24,"d":16},{"zone":"oasis","name":"Oasis","fn":"Recovery","x":79,"z":25,"w":16,"d":16},{"zone":"acacia","name":"Acacia","fn":"Offices","x":55,"z":41,"w":24,"d":16},{"zone":"wc","name":"WC","fn":"","x":79,"z":41,"w":16,"d":16}],"rooms2":[],"outdoor":[],"outdoor2":[],"street":"B","facts":["1st-floor creative or work/live loft","6 offices, 2 conference rooms, open area, kitchen","Around the corner from Abbot Kinney","Garage parking, about 2 per 1,000 sq ft"],"id":"electric","addr":"1201-1291 Electric Avenue","city":"Los Angeles","zip":"90291","lat":33.99187550000001,"lng":-118.4692079,"askMo":28481,"psf":63,"lease":"Direct lease","rentYr":341800,"rentNote":"Listed asking rent","watch":["Residential neighbors: sound and late events"],"moves":["Savanna in the open area; the Oasis caf\u00e9 faces Electric Ave","The Oasis adds a recovery room for bodywork","Offices become Acacia founder offices; conference rooms, Canopy"],"scores":{"Layout":"Good","Events":"OK","Parking":"Good","Budget":"Weak"},"caps":{"savanna_sf":2200,"standing":155,"seated":100,"canopy":25,"acacia":9,"oasis":33}},{"n":10,"hood":"Venice","sf":5800,"W":58,"D":50,"twoFloor":true,"rooms":[{"zone":"oasis","name":"Oasis","fn":"Lounge & caf\u00e9","x":0,"z":0,"w":30,"d":28},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":30,"z":0,"w":28,"d":28},{"zone":"basecamp","name":"Basecamp","fn":"Reception","x":0,"z":28,"w":24,"d":22},{"zone":"acacia","name":"Acacia","fn":"Offices","x":24,"z":28,"w":18,"d":22},{"zone":"oasis","name":"Oasis","fn":"Kitchenette","x":42,"z":28,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":40,"w":16,"d":10}],"rooms2":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":42,"d":50},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":42,"z":0,"w":16,"d":26},{"zone":"oasis","name":"Oasis","fn":"Bar","x":42,"z":26,"w":16,"d":12},{"zone":"wc","name":"WC","fn":"","x":42,"z":38,"w":16,"d":12}],"outdoor":[],"outdoor2":[{"label":"Patio","x":0,"z":50,"w":42,"d":14}],"street":"L","facts":["Renovated creative office on two floors","Large open area upstairs; big second-floor patio","Bullpens, conference room, 2 kitchenettes","300+ network drops, two fiber lines"],"id":"lincoln845","addr":"845 Lincoln Boulevard","city":"Los Angeles","zip":"90291","lat":33.9985026,"lng":-118.4625585,"askMo":29000,"psf":60,"lease":"Direct lease \u00b7 two floors","rentYr":348000,"rentNote":"Listed asking rent","watch":["An upstairs Savanna needs two exits and likely an elevator"],"moves":["Upstairs: Savanna and Canopy, just like the Safari","Downstairs: Basecamp, the Oasis caf\u00e9 and Acacia pods","Savanna opens onto the second-floor patio"],"scores":{"Layout":"Good","Events":"OK","Parking":"Unknown","Budget":"Weak"},"caps":{"savanna_sf":2100,"standing":150,"seated":95,"canopy":17,"acacia":19,"oasis":40}}];
 
 const ZONES = {
   basecamp:{name:'Basecamp', verb:'Arrive', color:0xf3e6d6, text:'Walk in, check in and get your Safari passport stamped. The gallery wall holds the faces of the herd.'},
@@ -149,51 +227,46 @@ const ZONES = {
   canopy:{name:'Canopy', verb:'Learn', color:0xc8bdf5, text:'AI School under a hanging garden, with a studio where the space allows.'},
 };
 const ORDER = ['basecamp','savanna','oasis','acacia','canopy'];
+const VIEWS = ['hero', ...ORDER];
 const WC_COLOR = 0xbdb5ac, WALL_H = 14, LOW = .3;
+const $ = s => document.querySelector(s);
 
-// ---------- renderer, scene, controls ----------
-const canvas = document.getElementById('scene');
+// ---------- 3D setup (used by the 3D plan view) ----------
+const canvas = $('#scene');
 const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf3e7da); scene.fog = new THREE.Fog(0xf3e7da, 260, 520);
+const stageColor = () => (getComputedStyle(document.documentElement).getPropertyValue('--stage').trim() || '#f3e7da');
+scene.background = new THREE.Color(stageColor()); scene.fog = new THREE.Fog(scene.background, 260, 520);
 const camera = new THREE.PerspectiveCamera(38, 1, 1, 1200);
 const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true; controls.dampingFactor = .08; controls.maxPolarAngle = 1.42; controls.minDistance = 20; controls.maxDistance = 320;
-controls.autoRotateSpeed = .45;
+controls.enableDamping = true; controls.dampingFactor = .08; controls.maxPolarAngle = 1.42; controls.minDistance = 20; controls.maxDistance = 320; controls.autoRotateSpeed = .45;
 scene.add(new THREE.HemisphereLight(0xfff4e6, 0xc9b49a, .85));
 const sun = new THREE.DirectionalLight(0xfff0dc, 1.9);
 sun.position.set(-70, 120, -50); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
-Object.assign(sun.shadow.camera, {left:-120, right:120, top:120, bottom:-120, near:10, far:360}); sun.shadow.bias = -0.0005;
-scene.add(sun);
+Object.assign(sun.shadow.camera, {left:-120, right:120, top:120, bottom:-120, near:10, far:360}); sun.shadow.bias = -0.0005; scene.add(sun);
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshStandardMaterial({color:0xe8dac7, roughness:.95}));
 ground.rotation.x = -Math.PI/2; ground.position.y = -.02; ground.receiveShadow = true; scene.add(ground);
-
-// ---------- shared materials and textures ----------
 const matCache = {};
-function mat(color, o={}) {
-  const k = color + JSON.stringify(o);
+function mat(color, o={}) { const k = color + JSON.stringify(o);
   return matCache[k] ||= new THREE.MeshStandardMaterial({color, roughness:o.r ?? .85, metalness:o.m ?? 0, transparent:o.t != null, opacity:o.t ?? 1,
-    emissive:o.e ?? 0x000000, emissiveIntensity:o.ei ?? 1, side:o.ds ? THREE.DoubleSide : THREE.FrontSide, depthWrite:o.t == null || o.t > .6});
-}
+    emissive:o.e ?? 0x000000, emissiveIntensity:o.ei ?? 1, side:o.ds ? THREE.DoubleSide : THREE.FrontSide, depthWrite:o.t == null || o.t > .6}); }
 function canvasTex(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
 const TEX = {
   mural: canvasTex(1400, 440, (g, w, h) => {
     const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#f59e6b'); s.addColorStop(.55,'#f4a3b8'); s.addColorStop(1,'#c9a7ee'); g.fillStyle = s; g.fillRect(0,0,w,h);
-    g.fillStyle = 'rgba(255,236,190,.9)'; g.beginPath(); g.arc(w*.78, h*.58, 46, 0, 7); g.fill();
-    g.fillStyle = '#9fbf6e'; g.fillRect(0, h*.84, w, h*.16);
+    g.fillStyle = 'rgba(255,236,190,.9)'; g.beginPath(); g.arc(w*.78, h*.58, 46, 0, 7); g.fill(); g.fillStyle = '#9fbf6e'; g.fillRect(0, h*.84, w, h*.16);
     g.strokeStyle = '#6b3f22'; g.lineWidth = 16; g.beginPath(); g.moveTo(w*.45, h*.86); g.lineTo(w*.46, h*.46); g.stroke();
     g.lineWidth = 9; [[.46,.5,.38,.36],[.46,.48,.55,.35],[.46,.55,.52,.42]].forEach(([a,b,c,d])=>{g.beginPath();g.moveTo(w*a,h*b);g.lineTo(w*c,h*d);g.stroke();});
     g.fillStyle = '#4f7a3a'; g.beginPath(); g.ellipse(w*.465, h*.3, w*.16, h*.1, 0, 0, 7); g.fill();
-    const giraffe = (x, s) => { g.fillStyle = '#e8a93c'; g.fillRect(x-28*s, h*.62, 56*s, 26*s);
-      g.beginPath(); g.moveTo(x+18*s, h*.63); g.lineTo(x+30*s, h*.62-90*s); g.lineTo(x+40*s, h*.62-88*s); g.lineTo(x+30*s, h*.64); g.closePath(); g.fill();
+    const gi = (x, s) => { g.fillStyle = '#e8a93c'; g.fillRect(x-28*s, h*.62, 56*s, 26*s); g.beginPath(); g.moveTo(x+18*s, h*.63); g.lineTo(x+30*s, h*.62-90*s); g.lineTo(x+40*s, h*.62-88*s); g.lineTo(x+30*s, h*.64); g.closePath(); g.fill();
       g.fillRect(x+26*s, h*.62-102*s, 26*s, 14*s); for (const lx of [-24,-14,12,22]) g.fillRect(x+lx*s, h*.62+24*s, 6*s, 46*s);
       g.fillStyle = '#9a5b1f'; for (let i=0;i<7;i++) g.fillRect(x-22*s + (i%4)*13*s, h*.625 + Math.floor(i/4)*11*s, 7*s, 7*s); };
-    giraffe(w*.18, 1.1); giraffe(w*.29, .9); giraffe(w*.64, 1.2); giraffe(w*.86, .8); }),
+    gi(w*.18, 1.1); gi(w*.29, .9); gi(w*.64, 1.2); gi(w*.86, .8); }),
   screen: canvasTex(512, 256, (g,w,h) => { const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#fbbf24'); s.addColorStop(.5,'#f472b6'); s.addColorStop(1,'#8b5cf6'); g.fillStyle=s; g.fillRect(0,0,w,h); }),
   code: canvasTex(512, 256, (g,w,h) => { g.fillStyle='#16202a'; g.fillRect(0,0,w,h); const cs=['#8bd5ff','#f9a8d4','#fde68a','#a7f3d0','#c4b5fd'];
     for (let i=0;i<14;i++){ g.fillStyle=cs[i%5]; g.fillRect(24+(i%3)*18, 18+i*16, 80+((i*53)%260), 8); } }),
@@ -202,6 +275,7 @@ const glowMat = map => new THREE.MeshStandardMaterial({map, emissive:0xffffff, e
 const MAT = { mural:new THREE.MeshStandardMaterial({map:TEX.mural, roughness:.9}), screen:glowMat(TEX.screen), code:glowMat(TEX.code),
   bulb:new THREE.MeshStandardMaterial({color:0xffe2a8, emissive:0xffc46b, emissiveIntensity:2.2}) };
 const WOOD = 0xd9b27c, CHAIR = 0x2e3431, GLASS = {t:.22, r:.05, m:.1};
+let idx = 0, mode = 'photos', wallsTall = false, touring = null, anim = null, built = -1, view = 'hero';
 
 // ---------- world building ----------
 let world, S, tags = {}, floorMeshes = {}, wallMeshes = [], zoneRooms = {}, current = null;
@@ -409,7 +483,7 @@ function build(space) {
   setWalls(wallsTall);
 }
 
-// ---------- stats per zone for the panel ----------
+
 function zoneStats(k) {
   const all = [...S.rooms, ...(S.rooms2 || [])], tot = all.reduce((a, r) => a + r.w*r.d, 0);
   const sf = r => Math.round(r.w*r.d*S.sf/tot/10)*10, rs = all.filter(r => r.zone === k), area = rs.reduce((a, r) => a + sf(r), 0);
@@ -422,75 +496,213 @@ function zoneStats(k) {
   return out;
 }
 
-// ---------- UI ----------
-const pick = document.getElementById('sPick');
-SPACES.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `Space ${s.n} · ${s.hood}`; pick.appendChild(o); });
-let idx = 0, wallsTall = false, touring = null, anim = null;
-function loadSpace(i) {
-  idx = (i + SPACES.length) % SPACES.length; pick.value = idx; current = null; stopTour();
-  document.getElementById('panel').classList.remove('open');
-  const s = SPACES[idx]; build(s);
-  document.getElementById('sMeta').textContent = `${s.sf.toLocaleString()} sq ft${s.twoFloor ? ' on two floors' : ''} · one of ten spaces we test-fit`;
-  document.getElementById('sFacts').innerHTML = s.facts.map(f => `<li>${f}</li>`).join('');
-  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.id === 'bOverview' || (b.id === 'bWalls' && !wallsTall)));
-  camera.position.copy(ovPos()); controls.target.set(...S.overview.look); controls.autoRotate = true;
-  history.replaceState(null, '', `?space=${s.n}`);
+
+
+// ---------- formatting ----------
+const money = n => (n < 0 ? '−$' : '$') + Math.abs(Math.round(n)).toLocaleString('en-US');
+const short = n => { const a = Math.abs(n), s = n < 0 ? '−$' : '$'; return a >= 1e6 ? s + (a/1e6).toFixed(2).replace(/0$/,'') + 'M' : s + Math.round(a/1e3) + 'K'; };
+const cls = n => n < 0 ? 'neg' : 'pos';
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.addr}, ${s.city}, CA ${s.zip}`);
+const imgFor = (s, v) => `img/${s.id}_${v}.jpg`;
+
+// ---------- photos ----------
+const A = $('#imgA'), B = $('#imgB'); let front = A;
+function showImg(src, fallback, alt) {
+  const back = front === A ? B : A;
+  back.onerror = () => { back.onerror = null; back.src = fallback; };
+  back.onload = () => { back.classList.remove('kb'); void back.offsetWidth; back.classList.add('on', 'kb'); front.classList.remove('on'); front = back; hideLoad(); };
+  back.alt = alt; back.src = src;
 }
+let loaded = false; function hideLoad() { if (!loaded) { loaded = true; $('#load').classList.add('gone'); } }
+setTimeout(hideLoad, 2500);
+
+// ---------- caption ----------
+function moveFor(s, k) { const n = ZONES[k].name.toLowerCase(); return (s.moves || []).find(m => m.toLowerCase().includes(n)); }
+function setCaption() {
+  const s = SPACES[idx];
+  if (view === 'hero') {
+    $('#cEb').textContent = `Space ${s.n} of 10 · ${s.hood}`;
+    $('#cH').textContent = s.addr;
+    $('#cP').textContent = `${s.facts[0]}. All five zones inside: Basecamp, Savanna, Oasis, Acacia and Canopy.`;
+    $('#cL').innerHTML = [`${s.sf.toLocaleString()} sq ft · ${s.lease}`, `Asking ${s.askMo ? money(s.askMo) + ' a month' : 'rent on request'}`,
+      `Savanna holds about ${s.caps.standing} standing or ${s.caps.seated} seated`].map(x => `<li>${esc(x)}</li>`).join('');
+    $('#cCap').textContent = 'Concept cutaway, AI-generated from this listing’s features. Not the building’s real plan.';
+  } else {
+    const z = ZONES[view];
+    $('#cEb').textContent = `Space ${s.n} · Zone ${ORDER.indexOf(view) + 1} of 5 · ${z.verb}`;
+    $('#cH').textContent = z.name;
+    $('#cP').textContent = moveFor(s, view) ? moveFor(s, view) + '.' : z.text;
+    $('#cL').innerHTML = zoneStats(view).map(x => `<li>${esc(x)}</li>`).join('');
+    $('#cCap').textContent = 'Concept image, AI-generated from this listing’s features. Not a photo of the building.';
+  }
+  if (mode === 'plan') $('#cCap').textContent = 'Schematic 3D test-fit on an assumed rectangular footprint. Not the building’s real plan.';
+}
+
+// ---------- views, tour, modes ----------
+function markBar() { document.querySelectorAll('#bar [data-zone]').forEach(b => b.classList.toggle('on', b.dataset.zone === view));
+  $('#bOverview').classList.toggle('on', view === 'hero'); $('#bTour').classList.toggle('on', !!touring); $('#bWalls').classList.toggle('on', !wallsTall); }
+function setView(v, fromTour=false) {
+  if (!fromTour) stopTour();
+  view = v; const s = SPACES[idx];
+  setCaption(); markBar();
+  if (mode === 'photos') showImg(imgFor(s, v), `img/${v}.jpg`, v === 'hero' ? `Concept cutaway of ${s.addr}` : `Concept image of ${ZONES[v].name} at ${s.addr}`);
+  else plan3d(v);
+}
+function select(k) { setView(k); }            // called by 3D tags
+function startTour() { if (touring) { stopTour(); markBar(); return; } let i = Math.max(0, VIEWS.indexOf(view));
+  const go = () => { setView(VIEWS[i % VIEWS.length], true); i++; }; touring = setInterval(go, 5600); go(); markBar(); }
+function stopTour() { if (touring) { clearInterval(touring); touring = null; } }
+function step(d) { const i = VIEWS.indexOf(view); setView(VIEWS[(i + d + VIEWS.length) % VIEWS.length]); }
+
+function setWalls(tall) { wallsTall = tall; wallMeshes.forEach(w => { w.scale.y = tall ? 1 : .32; w.position.y = (tall ? WALL_H : WALL_H*.32)/2 + LOW; }); markBar(); }
 const ovPos = () => { const k = camera.aspect < 1 ? Math.min(2.3, 1.2/camera.aspect) : 1; return new THREE.Vector3(...S.overview.pos).multiplyScalar(k); };
-function setWalls(tall) { wallsTall = tall; wallMeshes.forEach(w => { w.scale.y = tall ? 1 : .32; w.position.y = (tall ? WALL_H : WALL_H*.32)/2 + LOW; });
-  document.getElementById('bWalls').classList.toggle('on', !tall); }
 const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
 function fly(pos, look, dur=1400) { anim = {t0:performance.now(), dur, p0:camera.position.clone(), l0:controls.target.clone(), p1:pos.clone(), l1:look.clone()}; controls.autoRotate = false; }
-function select(k, fromTour=false) {
-  if (!tags[k]) return; if (!fromTour) stopTour(); current = k; const z = ZONES[k];
-  const img = document.getElementById('pimg'); img.src = `img/${k}.jpg`; img.alt = `Concept image of ${z.name}`;
-  document.getElementById('pz').textContent = `Space ${S.n} · Zone ${ORDER.indexOf(k)+1} of 5 · ${z.verb}`;
-  document.getElementById('ph').textContent = z.name; document.getElementById('pp').textContent = z.text;
-  document.getElementById('pl').innerHTML = zoneStats(k).map(x => `<li>${x}</li>`).join('');
-  document.getElementById('panel').classList.add('open');
-  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.dataset.zone === k || (b.id === 'bTour' && !!touring) || (b.id === 'bWalls' && !wallsTall)));
-  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { const c = zk === 'wc' ? WC_COLOR : ZONES[zk].color; m.material = mat(c, zk === k ? {e:c, ei:.35, r:.6} : {r:.6}); });
-  const t = tags[k], s = Math.min(70, Math.max(32, t.size*1.5)); fly(t.look.clone().add(new THREE.Vector3(s*.55, s*.8, s*.95)), t.look);
+function plan3d(v) {
+  if (built !== idx) { build(SPACES[idx]); built = idx; camera.position.copy(ovPos()); controls.target.set(...S.overview.look); }
+  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { const c = zk === 'wc' ? WC_COLOR : ZONES[zk].color; m.material = mat(c, zk === v ? {e:c, ei:.35, r:.6} : {r:.6}); });
+  if (v === 'hero' || !tags[v]) { fly(ovPos(), new THREE.Vector3(...S.overview.look)); setTimeout(() => { if (view === 'hero' && !touring && mode === 'plan') controls.autoRotate = true; }, 1500); }
+  else { const t = tags[v], sz = Math.min(70, Math.max(32, t.size*1.5)); fly(t.look.clone().add(new THREE.Vector3(sz*.55, sz*.8, sz*.95)), t.look); }
 }
-function overview() {
-  stopTour(); current = null; document.getElementById('panel').classList.remove('open');
-  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { m.material = mat(zk === 'wc' ? WC_COLOR : ZONES[zk].color, {r:.6}); });
-  document.querySelectorAll('.bar button').forEach(b => b.classList.toggle('on', b.id === 'bOverview' || (b.id === 'bWalls' && !wallsTall)));
-  fly(ovPos(), new THREE.Vector3(...S.overview.look)); setTimeout(() => { if (!current && !touring) controls.autoRotate = true; }, 1500);
+function setMode(m) {
+  mode = m; document.body.classList.toggle('plan', m === 'plan'); canvas.hidden = m !== 'plan'; $('#bWalls').hidden = m !== 'plan';
+  $('#bMode').textContent = m === 'plan' ? 'Photos' : '3D plan';
+  if (m === 'plan') { scene.background.set(stageColor()); resize(); }
+  setView(view, !!touring);
 }
-function step(d) { const avail = ORDER.filter(k => tags[k]); const i = current ? avail.indexOf(current) : -1; select(avail[(i + d + avail.length) % avail.length]); }
-function startTour() { if (touring) return stopTour(); const avail = ORDER.filter(k => tags[k]); let i = 0;
-  const go = () => { select(avail[i % avail.length], true); i++; }; touring = setInterval(go, 5200); go(); document.getElementById('bTour').classList.add('on'); }
-function stopTour() { if (touring) { clearInterval(touring); touring = null; } document.getElementById('bTour').classList.remove('on'); }
 
-document.getElementById('bOverview').onclick = overview;
-document.getElementById('bTour').onclick = startTour;
-document.getElementById('bWalls').onclick = () => setWalls(!wallsTall);
-document.querySelectorAll('[data-zone]').forEach(b => b.onclick = () => select(b.dataset.zone));
-document.getElementById('close').onclick = overview;
-document.getElementById('prev').onclick = () => step(-1);
-document.getElementById('next').onclick = () => step(1);
-document.getElementById('sPrev').onclick = () => loadSpace(idx - 1);
-document.getElementById('sNext').onclick = () => loadSpace(idx + 1);
-pick.onchange = () => loadSpace(+pick.value);
-controls.addEventListener('start', () => { anim = null; controls.autoRotate = false; stopTour(); });
-addEventListener('keydown', e => { if (e.target.tagName === 'SELECT') return; if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); if (e.key === 'Escape') overview(); });
+// ---------- spaces ----------
+const pick = $('#sPick');
+SPACES.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${s.n}. ${s.addr} · ${s.hood}`; pick.appendChild(o); });
+function loadSpace(i, keepView=false) {
+  idx = (i + SPACES.length) % SPACES.length; pick.value = idx; const s = SPACES[idx]; S = s;
+  $('#sAddr').textContent = `${s.addr}, ${s.city} ${s.zip}`;
+  $('#sSub').textContent = `${s.hood} · ${s.sf.toLocaleString()} sq ft · ${s.askMo ? money(s.askMo) + '/mo asking' : 'rent on request'}`;
+  $('#bMap').href = mapsUrl(s);
+  for (const v of VIEWS) { const im = new Image(); im.src = imgFor(s, v); }       // warm the cache for the tour
+  if (mode === 'plan') { built = -1; }
+  setView(keepView ? view : 'hero', keepView && !!touring);
+  if ($('#drawer').classList.contains('open')) renderDrawer();
+  try { history.replaceState(null, '', location.pathname + location.search.replace(/[?&]space=\d+/, '') + '#s' + s.n); } catch (e) {}
+}
 
-const v = new THREE.Vector3();
+// ---------- details drawer ----------
+let tab = 'listing';
+function tbl(head, rows, opts={}) {
+  return `<div class="tbl"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+function listingHTML(s) {
+  const c = s.caps, map = PUBLIC_MAP ? `<iframe class="map" title="Map of ${esc(s.addr)}" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${s.lng-.008},${s.lat-.005},${s.lng+.008},${s.lat+.005}&layer=mapnik&marker=${s.lat},${s.lng}"></iframe>` : '';
+  return `<h3>Location</h3>${map}<p><b style="color:var(--ink)">${esc(s.addr)}</b><br>${esc(s.city)}, CA ${esc(s.zip)} · ${esc(s.hood)}</p>
+  <p><a class="pillbtn" href="${mapsUrl(s)}" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
+  <h3>The listing</h3><dl class="kv">
+    <dt>Size</dt><dd>${s.sf.toLocaleString()} sq ft</dd>
+    <dt>Asking rent a month</dt><dd>${s.askMo ? money(s.askMo) : 'On request'}</dd>
+    <dt>Rent a year${s.askMo ? '' : ' (assumed)'}</dt><dd>${money(s.rentYr)}</dd>
+    <dt>A year, per sq ft</dt><dd>${s.psf ? '$' + s.psf : '$59 (assumed)'}</dd>
+    <dt>Lease</dt><dd>${esc(s.lease)}</dd></dl>
+  <p class="fine" style="margin-top:8px">${esc(s.rentNote)}.</p>
+  <h3>Highlights</h3><ul>${s.facts.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+  <h3>What The Safari fits here</h3><div class="tiles">
+    <div class="tile"><div class="v">${c.standing} / ${c.seated}</div><div class="l">Savanna, standing / seated</div></div>
+    <div class="tile"><div class="v">${c.canopy}</div><div class="l">Canopy classroom seats</div></div>
+    <div class="tile"><div class="v">${c.acacia}</div><div class="l">Acacia founder seats</div></div>
+    <div class="tile"><div class="v">${c.oasis}</div><div class="l">Oasis café and lounge seats</div></div></div>
+  <h3>Fit</h3><div class="chips">${Object.entries(s.scores).map(([k, v]) => `<span class="chip s-${esc(v)}">${esc(k)}: ${esc(v)}</span>`).join('')}</div>
+  ${s.watch.length ? `<h3>Watch-outs</h3><ul>${s.watch.map(w => `<li>${esc(w)}</li>`).join('')}</ul>` : ''}
+  <p class="fine" style="margin-top:14px">Listing data from SquareFoot, pulled Sept 23 2026. Asking terms change or get withdrawn; confirm with the listing broker. Zone capacities come from a schematic test-fit, not the building&#8217;s real plan.</p>`;
+}
+function numbersHTML(s) {
+  const b = s.scenarios.base, y = s.years;
+  const pay = p => p == null ? 'Not at this case' : p > 10 ? 'Over 10 years' : p + ' years';
+  const budgetRows = Object.entries(s.budget).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${money(v)}</td></tr>`).concat(`<tr class="total"><td>Total to open</td><td>${money(s.budgetTotal)}</td></tr>`);
+  const lineRows = Object.entries(s.lines).map(([k, v]) => `<tr><td>${esc(k)}<span class="basis">${esc(v.basis)}</span></td><td>${money(v.value)}</td></tr>`);
+  const pl = lineRows.concat(
+    `<tr class="total"><td>Revenue</td><td>${money(b.revenue)}</td></tr>`,
+    `<tr><td>Program costs and card fees</td><td class="neg">${money(-b.variable)}</td></tr>`,
+    `<tr><td>Rent</td><td class="neg">${money(-b.rent)}</td></tr>`,
+    `<tr><td>Team: general manager, ops lead, cleaning and security</td><td class="neg">${money(-b.staff)}</td></tr>`,
+    `<tr><td>Utilities, insurance, maintenance, software</td><td class="neg">${money(-b.opex)}</td></tr>`,
+    `<tr class="total"><td>NOI</td><td class="${cls(b.noi)}">${money(b.noi)}</td></tr>`);
+  const sc = ['conservative', 'base', 'upside'].map(k => { const v = s.scenarios[k];
+    return `<tr><td>${k[0].toUpperCase() + k.slice(1)}<span class="basis">${k === 'conservative' ? '55% of base demand' : k === 'base' ? 'The case above' : '1.7× base demand'}</span></td><td>${money(v.revenue)}</td><td class="${cls(v.noi)}">${money(v.noi)}</td></tr>`; });
+  const yr = [['Revenue', p => money(p.revenue)], ['Costs', p => money(-(p.variable + p.rent + p.staff + p.opex))], ['NOI', p => `<span class="${cls(p.noi)}">${money(p.noi)}</span>`]]
+    .map(([n, f]) => `<tr><td>${n}</td>${y.map(p => `<td>${f(p)}</td>`).join('')}</tr>`)
+    .concat(`<tr class="total"><td>Cumulative, after the startup budget</td>${s.cumulative.map(c => `<td class="${cls(c)}">${money(c)}</td>`).join('')}</tr>`);
+  return `<div class="private">Private working numbers. Share them person to person, never on a public page, a list or a stage.</div>
+  <div class="tiles">
+    <div class="tile"><div class="v">${short(s.budgetTotal)}</div><div class="l">To open, including a 4-month reserve</div></div>
+    <div class="tile"><div class="v ${cls(y[1].noi)}">${short(y[1].noi)}</div><div class="l">Year-2 NOI, base case</div></div>
+    <div class="tile"><div class="v ${cls(s.scenarios.upside.noi)}">${short(s.scenarios.upside.noi)}</div><div class="l">Stabilized NOI, upside case</div></div>
+    <div class="tile"><div class="v" style="font-size:18px">${pay(s.payback)}</div><div class="l">Payback at base · ${pay(s.paybackUpside)} at upside</div></div></div>
+  <h3>Startup budget</h3>${tbl(['Item', 'Amount'], budgetRows)}
+  <p class="fine">Build-out rated ${s.buildout}: $${s.gross} per sq ft gross, less ${s.allowance ? '$' + s.allowance + ' per sq ft landlord allowance' : 'no allowance (sublease)'}. A contractor bid replaces this.</p>
+  <h3>A stabilized year, base case</h3>${tbl(['Line', 'Per year'], pl)}
+  <p class="fine">Break-even revenue with this cost structure: ${money(s.breakeven)} a year.</p>
+  <h3>Three cases</h3>${tbl(['Case', 'Revenue', 'NOI'], sc)}
+  <h3>Three-year projection, base case</h3>${tbl(['', 'Year 1', 'Year 2', 'Year 3'], yr)}
+  <h3>How these numbers work</h3><ul>
+    <li>NOI here is operating profit after rent, before depreciation, interest and taxes.</li>
+    <li>Year 1 runs at 65% of base demand while the calendar fills; year 3 at 112%. Rent, team and operations rise 3% a year.</li>
+    <li>Revenue scales with this space&#8217;s capacity: classroom seats set cohort size, Savanna size sets event guests, sponsorship and rental rates.</li>
+    <li>Venice and Santa Monica carry a 15% premium on tickets and rentals and $450 desks.</li>
+    <li>Team is a general manager ($85K) and ops lead ($60K) with 20% burden, plus a $24K cleaning and security contract. You and the current team are not in these costs.</li>
+    <li>Estimates, not a forecast or financial advice. Membership, rentals and desks have no history yet.</li></ul>`;
+}
+function allHTML() {
+  const head = ['Space', 'Sq ft', 'Rent / yr'].concat(FIN ? ['To open', 'Yr-2 NOI', 'Upside NOI'] : ['Savanna']);
+  const rows = SPACES.map((s, i) => `<tr class="click${i === idx ? ' cur' : ''}" data-i="${i}"><td><b>${s.n}. ${esc(s.addr)}</b><span class="basis">${esc(s.hood)}</span></td><td>${s.sf.toLocaleString()}</td><td>${money(s.rentYr)}${s.askMo ? '' : '*'}</td>` +
+    (FIN ? `<td>${short(s.budgetTotal)}</td><td class="${cls(s.years[1].noi)}">${short(s.years[1].noi)}</td><td class="${cls(s.scenarios.upside.noi)}">${short(s.scenarios.upside.noi)}</td>` : `<td>${s.caps.standing}</td>`) + '</tr>');
+  return `<p>Tap a row to open that space.</p>${tbl(head, rows)}<p class="fine">* Rent not listed; assumed at the Santa Monica median of $59 per sq ft a year.${FIN ? ' NOI is base case unless marked upside.' : ' Savanna shows standing capacity.'}</p>`;
+}
+function renderDrawer() {
+  const s = SPACES[idx];
+  $('#dEb').textContent = `Space ${s.n} of 10 · ${s.hood}`; $('#dH').textContent = s.addr;
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  $('#dBody').innerHTML = tab === 'numbers' && FIN ? numbersHTML(s) : tab === 'all' ? allHTML() : listingHTML(s);
+  $('#dBody').scrollTop = 0;
+  $('#dBody').querySelectorAll('tr.click').forEach(r => r.onclick = () => { loadSpace(+r.dataset.i); });
+}
+if (!FIN) $('#tabNumbers').hidden = true;
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.tab; renderDrawer(); });
+$('#bDetails').onclick = () => { $('#drawer').classList.add('open'); renderDrawer(); };
+$('#dClose').onclick = () => $('#drawer').classList.remove('open');
+
+// ---------- wiring ----------
+$('#bOverview').onclick = () => setView('hero');
+document.querySelectorAll('#bar [data-zone]').forEach(b => b.onclick = () => setView(b.dataset.zone));
+$('#bTour').onclick = startTour;
+$('#bMode').onclick = () => setMode(mode === 'plan' ? 'photos' : 'plan');
+$('#bWalls').onclick = () => setWalls(!wallsTall);
+$('#sPrev').onclick = () => loadSpace(idx - 1, true);
+$('#sNext').onclick = () => loadSpace(idx + 1, true);
+pick.onchange = () => loadSpace(+pick.value, true);
+controls.addEventListener('start', () => { anim = null; controls.autoRotate = false; stopTour(); markBar(); });
+addEventListener('keydown', e => { if (e.target.tagName === 'SELECT') return;
+  if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); if (e.key === 'Escape') $('#drawer').classList.remove('open'); });
+
+const v3 = new THREE.Vector3();
 function placeTags() { const w = canvas.clientWidth, h = canvas.clientHeight;
-  for (const [k, t] of Object.entries(tags)) { v.copy(t.p).project(camera); t.el.style.display = v.z < 1 ? '' : 'none';
-    t.el.style.left = ((v.x + 1)/2*w) + 'px'; t.el.style.top = ((1 - v.y)/2*h) + 'px'; if (!t.lvl) t.el.classList.toggle('dim', !!current && current !== k); } }
+  for (const [k, t] of Object.entries(tags)) { v3.copy(t.p).project(camera); t.el.style.display = v3.z < 1 ? '' : 'none';
+    t.el.style.left = ((v3.x + 1)/2*w) + 'px'; t.el.style.top = ((1 - v3.y)/2*h) + 'px'; if (!t.lvl) t.el.classList.toggle('dim', view !== 'hero' && view !== k); } }
 function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.fov = w < 760 ? 52 : 38; camera.updateProjectionMatrix(); }
 addEventListener('resize', resize); resize();
 function tick(now) {
-  if (anim) { const t = Math.min(1, (now - anim.t0)/anim.dur), k = ease(t); camera.position.lerpVectors(anim.p0, anim.p1, k); controls.target.lerpVectors(anim.l0, anim.l1, k); if (t >= 1) anim = null; }
-  controls.update(); renderer.render(scene, camera); placeTags(); requestAnimationFrame(tick);
+  if (mode === 'plan') {
+    if (anim) { const t = Math.min(1, (now - anim.t0)/anim.dur), k = ease(t); camera.position.lerpVectors(anim.p0, anim.p1, k); controls.target.lerpVectors(anim.l0, anim.l1, k); if (t >= 1) anim = null; }
+    controls.update(); renderer.render(scene, camera); placeTags();
+  }
+  requestAnimationFrame(tick);
 }
-const q = new URLSearchParams(location.search), qs = +q.get('space');
-loadSpace(qs >= 1 && qs <= SPACES.length ? qs - 1 : 0);
 requestAnimationFrame(tick);
-setTimeout(() => document.getElementById('load').classList.add('gone'), 350);
-if (q.get('zone') && ZONES[q.get('zone')]) setTimeout(() => select(q.get('zone')), 700);
+
+const hashN = +((location.hash.match(/^#s(\d+)$/) || [])[1] || 0), queryN = +(new URLSearchParams(location.search).get('space') || 0);
+const startN = hashN || queryN;
+loadSpace(startN >= 1 && startN <= SPACES.length ? startN - 1 : 0);
+addEventListener('hashchange', () => { const n = +((location.hash.match(/^#s(\d+)$/) || [])[1] || 0); if (n >= 1 && n <= SPACES.length && n - 1 !== idx) loadSpace(n - 1); });
+const qz = new URLSearchParams(location.search).get('zone'); if (qz && ZONES[qz]) setTimeout(() => setView(qz), 400);
+
 </script>
 </body>
 </html>
