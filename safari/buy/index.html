@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buy The Safari · Grateful Giraffes</title>
+<meta name="description" content="Ten west-side buildings for sale, each test-fit as The Safari. Tour them and see what owning each one takes: price, loan, cash in and IRR.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="Buy The Safari · a home the herd owns">
+<meta property="og:description" content="Ten west-side buildings for sale, each test-fit with five zones. Tour them.">
+<meta property="og:url" content="https://grateful.gg/safari/buy/">
+<meta property="og:image" content="https://grateful.gg/safari/buy/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/safari/buy/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Concept rendering of a skylit community space with a giraffe mural">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Buy The Safari · a home the herd owns">
+<meta name="twitter:description" content="Ten west-side buildings for sale, each test-fit with five zones. Tour them.">
+<meta name="twitter:image" content="https://grateful.gg/safari/buy/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400&family=DM+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#26211b; --soft:#6b6158; --muted:#8a7f74; --pink:#be185d; --line:rgba(38,33,27,.13);
+  --card:rgba(255,250,244,.95); --solid:#fffaf4; --ground:#f3e7da; --chip:#f6ece1; --btn:#ffffff;
+  --good:#3f7a3a; --warn:#b45309; --bad:#b4233a; --stage:#f3e7da;
+  --shadow:0 10px 30px rgba(38,33,27,.14);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ink:#f6ece1; --soft:#cbbcab; --muted:#a8998a; --pink:#f9a8d4; --line:rgba(246,236,225,.14);
+  --card:rgba(33,28,23,.93); --solid:#211c17; --ground:#171310; --chip:#2c251f; --btn:#2c251f;
+  --good:#8fd18a; --warn:#fbbf6b; --bad:#fb8a9c; --stage:#1c1713; --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --ink:#f6ece1; --soft:#cbbcab; --muted:#a8998a; --pink:#f9a8d4; --line:rgba(246,236,225,.14);
+  --card:rgba(33,28,23,.93); --solid:#211c17; --ground:#171310; --chip:#2c251f; --btn:#2c251f;
+  --good:#8fd18a; --warn:#fbbf6b; --bad:#fb8a9c; --stage:#1c1713; --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark; }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--ground);color:var(--ink);font-family:'DM Sans',system-ui,-apple-system,sans-serif}
+button,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.serif{font-family:'Libre Bodoni',Georgia,'Times New Roman',serif}
+
+/* stage */
+#stage{position:fixed;inset:0;background:var(--stage);overflow:hidden}
+#stage img{position:absolute;inset:0;width:100%;height:100%;max-width:100%;object-fit:cover;opacity:0;will-change:transform,opacity}
+#stage img.hero{transition:opacity .6s ease, transform 1s cubic-bezier(.6,0,.25,1)}
+#stage img.hero.fit{object-fit:contain}
+#stage img.zone{transition:opacity .9s ease, transform 1.4s cubic-bezier(.2,.7,.2,1);transform:scale(1.14)}
+#stage img.on{opacity:1}
+#stage img.zone.on{transform:scale(1)}
+#stage img.zone.exact,#stage img.zone.exact.on{transform:none;transition:opacity .55s ease}
+#stage img.zone.drift{transform:scale(1.05);transition:opacity .9s ease, transform 9s ease-out}
+#stage .scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,16,12,.38) 0%,rgba(20,16,12,0) 26%,rgba(20,16,12,0) 58%,rgba(20,16,12,.55) 100%)}
+#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+body.plan #stage img,body.plan #stage .scrim,body.plan #spots{display:none}
+
+/* brand + space card */
+.brand{position:fixed;left:18px;top:calc(16px + env(safe-area-inset-top,0px));z-index:5;width:min(390px,calc(100vw - 36px))}
+.brand .eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fde2ec;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.brand h1{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:clamp(32px,4.4vw,50px);line-height:1;margin:4px 0 10px;color:#fffaf4;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+body.plan .brand .eyebrow{color:var(--pink);text-shadow:none} body.plan .brand h1{color:var(--ink);text-shadow:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.space{padding:12px 14px}
+.space .row{display:flex;align-items:center;gap:8px}
+.icon{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--btn);color:var(--ink);cursor:pointer;font-size:16px;line-height:1}
+.space select{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--btn)}
+.space .addr{margin:10px 2px 0;font-weight:700;font-size:15px}
+.space .sub{margin:2px 2px 0;font-size:13px;color:var(--soft);line-height:1.45;font-variant-numeric:tabular-nums}
+.space .acts{display:flex;gap:8px;margin-top:10px}
+.pillbtn{font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--btn);color:var(--ink);border-radius:999px;padding:7px 12px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.pillbtn.primary{background:var(--ink);color:var(--solid);border-color:var(--ink)}
+
+/* caption */
+.caption{position:fixed;left:18px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:5;width:min(400px,calc(100vw - 36px));padding:16px 18px}
+.caption .eb{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+.caption h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:34px;line-height:1.05;margin:6px 0 8px;text-wrap:balance}
+.caption p{margin:0 0 8px;color:var(--soft);font-size:15px;line-height:1.5}
+.caption ul{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--ink);font-variant-numeric:tabular-nums}
+.caption .cap{margin-top:8px;font-size:11px;color:var(--muted)}
+
+/* bottom bar */
+.bar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;padding:6px;border-radius:999px;max-width:calc(100vw - 20px)}
+.bar button{font-size:14px;font-weight:600;border:0;border-radius:999px;padding:9px 12px;cursor:pointer;background:transparent;color:var(--ink);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.bar button:hover{background:var(--chip)}
+.bar button.on{background:var(--ink);color:var(--solid)}
+.bar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(38,33,27,.25)}
+.bar .sep{width:1px;background:var(--line);margin:4px 2px}
+
+/* 3D tags */
+.tag{position:fixed;z-index:4;transform:translate(-50%,-100%);cursor:pointer;user-select:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 12px 7px;text-align:center;box-shadow:var(--shadow);white-space:nowrap;color:var(--ink)}
+.tag b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:18px;font-weight:600;line-height:1.1}
+.tag span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.tag i{position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:var(--solid);border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+.tag.dim{opacity:.35}
+.tag.lvl{cursor:default;background:#26211b;color:#fbf3ea;padding:5px 10px}.tag.lvl b{font-size:14px;font-family:'DM Sans',sans-serif}.tag.lvl i{background:#26211b;border:0}
+body:not(.plan) #tags{display:none}
+
+/* drawer */
+.drawer{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(560px,calc(100vw - 28px));z-index:8;
+  background:var(--solid);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(20,16,12,.28);display:flex;flex-direction:column;transform:translateX(115%);transition:transform .35s ease}
+.drawer.open{transform:none}
+.drawer header{padding:16px 18px 0;display:flex;gap:10px;align-items:flex-start}
+.drawer header .t{flex:1;min-width:0}
+.drawer header .eb{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+.drawer header h2{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:28px;line-height:1.1;margin:4px 0 0;text-wrap:balance}
+.tabs{display:flex;gap:4px;padding:12px 18px 0;border-bottom:1px solid var(--line)}
+.tabs button{font-size:14px;font-weight:600;border:0;background:transparent;color:var(--soft);padding:10px 12px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--pink)}
+.dbody{overflow:auto;padding:16px 18px 22px;flex:1}
+.dbody h3{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:20px;margin:18px 0 8px}
+.dbody h3:first-child{margin-top:0}
+.dbody p{margin:0 0 10px;color:var(--soft);font-size:14px;line-height:1.55}
+.dbody ul{margin:0 0 6px;padding-left:18px;font-size:14px;line-height:1.6}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;font-size:14px;font-variant-numeric:tabular-nums}
+.kv dt{color:var(--soft)} .kv dd{margin:0;text-align:right;font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:6px}
+.tile{background:var(--chip);border-radius:14px;padding:12px 14px}
+.tile .v{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile .l{font-size:12px;color:var(--soft);margin-top:4px;line-height:1.35}
+.neg{color:var(--bad)} .pos{color:var(--good)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:5px 10px;background:var(--chip);color:var(--ink)}
+.chip.s-Strong{box-shadow:inset 0 0 0 1.5px var(--good)} .chip.s-Good{box-shadow:inset 0 0 0 1.5px var(--good)}
+.chip.s-OK,.chip.s-Stretch,.chip.s-Unknown{box-shadow:inset 0 0 0 1.5px var(--warn)} .chip.s-Weak{box-shadow:inset 0 0 0 1.5px var(--bad)}
+.tbl{overflow-x:auto;margin:0 0 6px}
+.tbl table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{text-align:left;white-space:normal}
+.tbl th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);font-weight:700}
+.tbl tr.total td{font-weight:700;border-bottom:0;border-top:1.5px solid var(--ink)}
+.tbl tr.click{cursor:pointer} .tbl tr.click:hover td{background:var(--chip)} .tbl tr.cur td{background:var(--chip)}
+.tbl .basis{display:block;font-size:11px;color:var(--muted);font-weight:400}
+.map{width:100%;height:220px;border:0;border-radius:14px;display:block;margin:0 0 10px;background:var(--chip)}
+.fine{font-size:12px!important;color:var(--muted)!important}
+.private{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border-radius:12px;padding:10px 12px;font-size:12px;color:var(--soft);margin:0 0 12px;line-height:1.45}
+.load{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:var(--ground);transition:opacity .5s ease}
+.load div{font-family:'Libre Bodoni',Georgia,serif;font-size:24px;color:var(--soft)}
+.load.gone{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion: reduce){#stage img{transition:none}#stage img.kb{animation:none}.drawer{transition:none}}
+@media (max-width:760px){
+  .brand{left:10px;top:calc(10px + env(safe-area-inset-top,0px));width:calc(100vw - 20px)} .brand h1{font-size:28px;margin:2px 0 6px}
+  .space{padding:9px 10px} .space .sub{display:none} .space .addr{margin-top:6px;font-size:14px}
+  .caption{left:10px;width:calc(100vw - 20px);bottom:calc(74px + env(safe-area-inset-bottom,0px));padding:12px 14px} .caption h2{font-size:26px} .caption ul{display:none} .caption p{font-size:14px;margin:0}
+  .bar{bottom:calc(10px + env(safe-area-inset-bottom,0px));gap:0;padding:4px}.bar button{padding:8px 8px;font-size:13px}.bar .lbl{display:none}
+  .drawer{left:8px;right:8px;width:auto;top:calc(8px + env(safe-area-inset-top,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));transform:translateY(115%)} .drawer.open{transform:none}
+  .tag b{font-size:14px}.tag span{display:none}
+}
+
+/* zone markers on the overview */
+#spots{position:absolute;inset:0;pointer-events:none;transition:opacity .35s ease}
+#spots.gone{opacity:0}
+.spot{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer;border:0;background:transparent;padding:0;display:flex;align-items:center;gap:8px;color:var(--ink)}
+.spot .ring{width:22px;height:22px;border-radius:50%;background:var(--zc);border:3px solid #fffaf4;box-shadow:0 0 0 0 rgba(255,250,244,.8),0 4px 14px rgba(20,16,12,.35);animation:pulse 2.4s ease-out infinite;flex:none}
+.spot .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 10px;box-shadow:var(--shadow);white-space:nowrap;text-align:left;line-height:1.15}
+.spot .pill b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:17px;font-weight:600}
+.spot .pill span{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.spot:hover .pill,.spot:focus-visible .pill{border-color:var(--ink)}
+.spot:hover .ring{transform:scale(1.15)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,250,244,.85),0 4px 14px rgba(20,16,12,.35)}70%{box-shadow:0 0 0 16px rgba(255,250,244,0),0 4px 14px rgba(20,16,12,.35)}100%{box-shadow:0 0 0 0 rgba(255,250,244,0),0 4px 14px rgba(20,16,12,.35)}}
+.bar .grp{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:center}
+.bar .where{font-size:13px;font-weight:700;padding:0 6px;min-width:120px;text-align:center;font-variant-numeric:tabular-nums}
+/* projections */
+.verdict{border-radius:14px;padding:12px 14px;margin:0 0 12px;font-size:14px;line-height:1.5;background:var(--chip)}
+.verdict b{display:block;font-family:'Libre Bodoni',Georgia,serif;font-size:19px;font-weight:600;margin-bottom:2px}
+.verdict.ok{box-shadow:inset 4px 0 0 var(--good)} .verdict.warn{box-shadow:inset 4px 0 0 var(--warn)} .verdict.bad{box-shadow:inset 4px 0 0 var(--bad)}
+.tbl td.over{color:var(--bad);font-weight:700}
+.tbl td.muted{color:var(--muted)}
+.chart{width:100%;height:auto;display:block;margin:4px 0 6px}
+.chart text{font-family:'DM Sans',system-ui,sans-serif;font-size:11px;fill:var(--soft)}
+.chart .lab{font-weight:700;font-size:11px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin:0 0 8px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.levers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 6px}
+@media (max-width:760px){ .spot .pill span{display:none} .spot .pill{padding:5px 10px} .spot .pill b{font-size:14px} .bar .where{min-width:0} .levers{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ .spot .ring{animation:none} #stage img.hero,#stage img.zone{transition:opacity .2s linear} }
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+<div id="stage">
+  <img id="heroA" class="hero" alt="">
+  <img id="heroB" class="hero" alt="">
+  <img id="zA" class="zone" alt="">
+  <img id="zB" class="zone" alt="">
+  <div class="scrim"></div>
+  <div id="spots" aria-label="Zones in this space"></div>
+</div>
+<canvas id="scene" hidden aria-label="3D test-fit of the selected space"></canvas>
+<div class="load" id="load"><div>Raising the roof…</div></div>
+
+<div class="brand">
+  <div class="eyebrow">Grateful Giraffes · Buy a home</div>
+  <h1>The Safari</h1>
+  <div class="card space">
+    <div class="row">
+      <button class="icon" id="sPrev" aria-label="Previous space">‹</button>
+      <select id="sPick" aria-label="Choose a space"></select>
+      <button class="icon" id="sNext" aria-label="Next space">›</button>
+    </div>
+    <div class="addr" id="sAddr"></div>
+    <div class="sub" id="sSub"></div>
+    <div class="acts">
+      <button class="pillbtn primary" id="bDetails">Property &amp; projections</button>
+      <a class="pillbtn" id="bMap" href="#" target="_blank" rel="noopener">Map ↗</a>
+      <a class="pillbtn" id="bSwap" href="../">Lease options</a>
+    </div>
+  </div>
+</div>
+
+<div id="tags"></div>
+
+<section class="card caption" id="caption" aria-live="polite">
+  <div class="eb" id="cEb"></div>
+  <h2 id="cH"></h2>
+  <p id="cP"></p>
+  <ul id="cL"></ul>
+  <div class="cap" id="cCap"></div>
+</section>
+
+<nav class="card bar" id="bar" aria-label="Tour controls">
+  <div class="grp" id="gOverview">
+    <button id="bPrevSpace" aria-label="Previous space">‹ <span class="lbl">Prev space</span></button>
+    <button id="bTour">▶ <span class="lbl">Tour</span></button>
+    <button id="bMode" title="Switch between photos and the 3D plan">3D plan</button>
+    <button id="bWalls" title="Raise or lower the walls" hidden>Walls</button>
+    <button id="bNextSpace" aria-label="Next space"><span class="lbl">Next space</span> ›</button>
+  </div>
+  <div class="grp" id="gZone" hidden>
+    <button id="bBack">⤢ <span class="lbl">Zoom out</span></button>
+    <button id="bPause" hidden>❚❚ <span class="lbl">Pause</span></button>
+    <button id="bPrevZone" aria-label="Previous zone">‹</button>
+    <span class="where" id="zWhere"></span>
+    <button id="bNextZone" aria-label="Next zone">›</button>
+    <button id="bInside">↘ <span class="lbl">Step inside</span></button>
+    <button id="bNextSpace2"><span class="lbl">Next space</span> →</button>
+  </div>
+</nav>
+
+<aside class="drawer" id="drawer" aria-label="Property and projections">
+  <header>
+    <div class="t"><div class="eb" id="dEb"></div><h2 id="dH"></h2></div>
+    <button class="icon" id="dClose" aria-label="Close details">×</button>
+  </header>
+  <div class="tabs" role="tablist">
+    <button data-tab="numbers" class="on" role="tab">Projections</button>
+    <button data-tab="listing" role="tab">Listing</button>
+    <button data-tab="all" role="tab">All ten</button>
+  </div>
+  <div class="dbody" id="dBody"></div>
+</aside>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const FIN = true;
+const PUBLIC_MAP = true;
+const SPACES = [{"n":1,"hood":"Venice","sf":9516,"W":157,"D":79,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":24,"d":18},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":18,"w":24,"d":61},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":24,"z":0,"w":60,"d":79},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":84,"z":0,"w":34,"d":32},{"zone":"canopy","name":"Canopy","fn":"Studio","x":118,"z":0,"w":20,"d":32},{"zone":"wc","name":"WC","fn":"","x":138,"z":0,"w":19,"d":20},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":84,"z":32,"w":54,"d":47},{"zone":"acacia","name":"Acacia","fn":"Offices","x":138,"z":20,"w":19,"d":59}],"rooms2":[],"outdoor":[{"label":"Event courtyard \u00b7 35-car lot","x":0,"z":79,"w":84,"d":22}],"outdoor2":[],"street":"L","facts":["Single-story brick building, about 14-ft clear","Major upgrades by the previous Fortune 10 tech tenant","35 on-site parking spaces, rare in Venice","Walk to Rose Ave, Abbot Kinney and Main St Santa Monica"],"id":"main248","addr":"248 Main Street","city":"Venice","zip":"90291","lat":33.99682,"lng":-118.4778,"lot":13982,"year_built":1959,"zoning":"LA M1, Venice Coastal Zone","type":"Stand-alone brick creative HQ","price":8995000,"priceNote":null,"ppsf":945,"listing":"https://www.loopnet.com/Listing/248-Main-St-Venice-CA/41361265/","source":"LoopNet / Showcase (CBRE)","watch":["Coastal Zone: a change to event use likely needs a Coastal Development Permit","Priciest per foot of the ten ($945)","14-ft ceiling is adequate, not dramatic"],"moves":["Savanna takes the middle of the brick floor, 60 by 79 feet","The Oasis caf\u00e9 opens at the Main St door beside Basecamp","Canopy and Acacia fill the renovated offices at the back"],"cond":"light","scores":{"Layout":"Strong","Events":"Strong","Parking":"Strong","Price":"Stretch"},"caps":{"savanna_sf":3640,"standing":255,"seated":165,"canopy":34,"acacia":46,"oasis":44},"lines":{"AI bootcamps":{"value":336000,"basis":"12 cohorts \u00d7 20 students \u00d7 $1,400"},"Event tickets":{"value":93800,"basis":"24 events \u00d7 115 guests \u00d7 $34"},"Sponsorship":{"value":76500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":158400,"basis":"6 outside bookings a month \u00d7 $2,200"},"Coworking desks":{"value":172800,"basis":"32 desks \u00d7 $450 a month"}},"own":{"debt":704600,"tax":107900,"insurance":16700,"maintenance":19000,"occupancy":848200,"principalY1":135100,"netOccupancy":713100,"rentEquivalent":571000},"fixed":{"staff":198000,"opex":170845,"ownership":143600,"debt":704600,"total":1217000},"loan":{"amount":8497900,"rate":0.0675,"years":25,"downPct":0.15,"payment":704600},"project":9997500,"equity":2417000,"uses":{"Purchase price":8995000,"Closing, loan fees, inspections (3%)":269800,"Build-out and assembly code work":666100,"Contingency (10%)":66600,"Furniture, AV and sound":190300,"Pre-opening: loan payments during build, permits, launch":321400,"Operating reserve (4 months)":405700},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":8497900,"Equity: down payment":1499600,"Equity: furniture, pre-opening, reserve":917400},"scenarios":{"conservative":{"revenue":539800,"variable":110400,"staff":198000,"opex":206500,"tax":107900,"noi":-83000,"debt":704600,"cash":-787600},"base":{"revenue":981500,"variable":200700,"staff":198000,"opex":206500,"tax":107900,"noi":268400,"debt":704600,"cash":-436200},"upside":{"revenue":1668600,"variable":341300,"staff":198000,"opex":206500,"tax":107900,"noi":814900,"debt":704600,"cash":110300}},"dscr":0.38,"breakeven":1529900,"planRevenue":1718500,"path":{"target":150000,"blendedVar":0.205,"baseRevenue":981500,"breakevenLift":56,"planLift":75,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":32},"breakeven":{"cohorts":19,"events":37,"members":125,"rentals":9,"desks":50},"plan":{"cohorts":21,"events":42,"members":140,"rentals":11,"desks":56},"ceiling":{"cohorts":24,"events":52,"members":360,"rentals":12,"desks":46}},"students":20,"guests":115,"rate":2200},"priceBreakeven":3837700,"lowDebt":{"conservative":{"irr":-14.0,"equity":5822600,"debt":424000,"cash":-507000},"base":{"irr":-1.7,"equity":5822600,"debt":424000,"cash":-155600},"upside":{"irr":9.5,"equity":5822600,"debt":424000,"cash":390900},"plan":{"irr":8.1,"equity":5822600,"debt":424000,"cash":430600}},"proj5":{"conservative":[{"revenue":350900,"variable":71800,"staff":198000,"opex":206500,"tax":107900,"noi":-233300,"debt":704600,"cash":-937900,"year":1,"cumulative":-3354900},{"revenue":539800,"variable":110400,"staff":203900,"opex":212700,"tax":110100,"noi":-97300,"debt":704600,"cash":-801900,"year":2,"cumulative":-4156800},{"revenue":604600,"variable":123700,"staff":210100,"opex":219100,"tax":112300,"noi":-60500,"debt":704600,"cash":-765100,"year":3,"cumulative":-4921900},{"revenue":647800,"variable":132500,"staff":216400,"opex":225700,"tax":114500,"noi":-41200,"debt":704600,"cash":-745800,"year":4,"cumulative":-5667700},{"revenue":674800,"variable":138000,"staff":222900,"opex":232500,"tax":116800,"noi":-35300,"debt":704600,"cash":-739900,"year":5,"cumulative":-6407600}],"base":[{"revenue":638000,"variable":130500,"staff":198000,"opex":206500,"tax":107900,"noi":-4900,"debt":704600,"cash":-709500,"year":1,"cumulative":-3126500},{"revenue":981500,"variable":200700,"staff":203900,"opex":212700,"tax":110100,"noi":254100,"debt":704600,"cash":-450500,"year":2,"cumulative":-3577000},{"revenue":1099300,"variable":224800,"staff":210100,"opex":219100,"tax":112300,"noi":333100,"debt":704600,"cash":-371500,"year":3,"cumulative":-3948500},{"revenue":1177800,"variable":240900,"staff":216400,"opex":225700,"tax":114500,"noi":380400,"debt":704600,"cash":-324200,"year":4,"cumulative":-4272700},{"revenue":1226900,"variable":250900,"staff":222900,"opex":232500,"tax":116800,"noi":403900,"debt":704600,"cash":-300700,"year":5,"cumulative":-4573400}],"upside":[{"revenue":1084600,"variable":221800,"staff":198000,"opex":206500,"tax":107900,"noi":350300,"debt":704600,"cash":-354300,"year":1,"cumulative":-2771300},{"revenue":1668600,"variable":341300,"staff":203900,"opex":212700,"tax":110100,"noi":800600,"debt":704600,"cash":96000,"year":2,"cumulative":-2675300},{"revenue":1868900,"variable":382200,"staff":210100,"opex":219100,"tax":112300,"noi":945200,"debt":704600,"cash":240600,"year":3,"cumulative":-2434700},{"revenue":2002300,"variable":409500,"staff":216400,"opex":225700,"tax":114500,"noi":1036300,"debt":704600,"cash":331700,"year":4,"cumulative":-2103000},{"revenue":2085800,"variable":426600,"staff":222900,"opex":232500,"tax":116800,"noi":1087100,"debt":704600,"cash":382500,"year":5,"cumulative":-1720500}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-48.9,"moic":-1.0,"value5":9361400,"loan5":7721700,"saleNet":1171600,"cash5":-3990600,"equityBuilt":776200,"appreciation":0.0},"base":{"irr":-11.0,"moic":0.35,"value5":10852400,"loan5":7721700,"saleNet":2588100,"cash5":-2156400,"equityBuilt":776200,"appreciation":0.03},"upside":{"irr":12.7,"moic":1.85,"value5":11665900,"loan5":7721700,"saleNet":3361000,"cash5":696500,"equityBuilt":776200,"appreciation":0.045},"plan":{"irr":10.0,"moic":1.61,"value5":10852400,"loan5":7721700,"saleNet":2588100,"cash5":903600,"equityBuilt":776200,"appreciation":0.03}}}},{"n":2,"hood":"Mar Vista","sf":7565,"W":109,"D":86,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":22,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":16,"w":22,"d":40},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":0,"z":56,"w":22,"d":30},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":22,"z":0,"w":52,"d":86},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":74,"z":0,"w":35,"d":30},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":74,"z":30,"w":35,"d":36},{"zone":"wc","name":"WC","fn":"","x":74,"z":66,"w":15,"d":20},{"zone":"canopy","name":"Canopy","fn":"Studio","x":89,"z":66,"w":20,"d":20}],"rooms2":[],"outdoor":[{"label":"Patio off the parking lot","x":0,"z":86,"w":74,"d":18}],"outdoor2":[],"street":"L","facts":["One open bow-truss volume, formerly Mrs. Gooch\u2019s natural foods market","Big street windows on a signalized corner","21 to 25 surface parking spaces on a 17,927 sq ft lot","Vacant, available immediately"],"id":"centinela3472","addr":"3472 South Centinela Avenue","city":"Los Angeles","zip":"90066","lat":34.01077,"lng":-118.43874,"lot":17927,"year_built":1946,"zoning":"LA (Q)C1-1VL","type":"Bow-truss former market and showroom","price":7000000,"priceNote":"Price reflects land value; seller had plans for 34 units","ppsf":925,"listing":"https://www.crexi.com/properties/2447244/california-3472-centinela-ave","source":"Crexi / LoopNet (WESTMAC)","watch":["(Q)C1 is LA\u2019s tightest commercial zone: confirm event use and any CUP before offering","Price includes development land value"],"moves":["Savanna runs the full depth under the bow trusses","The Oasis caf\u00e9 sits in the corner windows on Centinela","Canopy and Acacia take the back third of the floor"],"cond":"medium","scores":{"Layout":"Strong","Events":"Strong","Parking":"Strong","Price":"Stretch"},"caps":{"savanna_sf":3610,"standing":255,"seated":160,"canopy":35,"acacia":16,"oasis":28},"lines":{"AI bootcamps":{"value":352800,"basis":"12 cohorts \u00d7 21 students \u00d7 $1,400"},"Event tickets":{"value":82800,"basis":"24 events \u00d7 115 guests \u00d7 $30"},"Sponsorship":{"value":76500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":137500,"basis":"6 outside bookings a month \u00d7 $1,910"},"Coworking desks":{"value":52800,"basis":"11 desks \u00d7 $400 a month"}},"own":{"debt":572600,"tax":84000,"insurance":13200,"maintenance":15100,"occupancy":684900,"principalY1":109800,"netOccupancy":575100,"rentEquivalent":348000},"fixed":{"staff":198000,"opex":144019,"ownership":112300,"debt":572600,"total":1026900},"loan":{"amount":6906600,"rate":0.0675,"years":25,"downPct":0.15,"payment":572600},"project":8125400,"equity":1980700,"uses":{"Purchase price":7000000,"Closing, loan fees, inspections (3%)":210000,"Build-out and assembly code work":832200,"Contingency (10%)":83200,"Furniture, AV and sound":151300,"Pre-opening: loan payments during build, permits, launch":268300,"Operating reserve (4 months)":342300},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":6906600,"Equity: down payment":1218800,"Equity: furniture, pre-opening, reserve":761900},"scenarios":{"conservative":{"revenue":465500,"variable":103300,"staff":198000,"opex":172300,"tax":84000,"noi":-92100,"debt":572600,"cash":-664700},"base":{"revenue":846400,"variable":187900,"staff":198000,"opex":172300,"tax":84000,"noi":204200,"debt":572600,"cash":-368400},"upside":{"revenue":1438900,"variable":319400,"staff":198000,"opex":172300,"tax":84000,"noi":665200,"debt":572600,"cash":92600}},"dscr":0.36,"breakeven":1319900,"planRevenue":1512700,"path":{"target":150000,"blendedVar":0.222,"baseRevenue":846400,"breakevenLift":56,"planLift":79,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":11},"breakeven":{"cohorts":19,"events":37,"members":125,"rentals":9,"desks":17},"plan":{"cohorts":21,"events":43,"members":143,"rentals":11,"desks":20},"ceiling":{"cohorts":24,"events":52,"members":176,"rentals":12,"desks":16}},"students":21,"guests":115,"rate":1910},"priceBreakeven":2644600,"lowDebt":{"conservative":{"irr":-15.5,"equity":4748600,"debt":344600,"cash":-436700},"base":{"irr":-2.7,"equity":4748600,"debt":344600,"cash":-140400},"upside":{"irr":9.0,"equity":4748600,"debt":344600,"cash":320600},"plan":{"irr":8.1,"equity":4748600,"debt":344600,"cash":378000}},"proj5":{"conservative":[{"revenue":302600,"variable":67200,"staff":198000,"opex":172300,"tax":84000,"noi":-218900,"debt":572600,"cash":-791500,"year":1,"cumulative":-2772200},{"revenue":465500,"variable":103300,"staff":203900,"opex":177500,"tax":85700,"noi":-104900,"debt":572600,"cash":-677500,"year":2,"cumulative":-3449700},{"revenue":521400,"variable":115700,"staff":210100,"opex":182800,"tax":87400,"noi":-74600,"debt":572600,"cash":-647200,"year":3,"cumulative":-4096900},{"revenue":558600,"variable":124000,"staff":216400,"opex":188300,"tax":89100,"noi":-59200,"debt":572600,"cash":-631800,"year":4,"cumulative":-4728700},{"revenue":581900,"variable":129200,"staff":222900,"opex":193900,"tax":90900,"noi":-55000,"debt":572600,"cash":-627600,"year":5,"cumulative":-5356300}],"base":[{"revenue":550200,"variable":122100,"staff":198000,"opex":172300,"tax":84000,"noi":-26300,"debt":572600,"cash":-598900,"year":1,"cumulative":-2579600},{"revenue":846400,"variable":187900,"staff":203900,"opex":177500,"tax":85700,"noi":191400,"debt":572600,"cash":-381200,"year":2,"cumulative":-2960800},{"revenue":948000,"variable":210400,"staff":210100,"opex":182800,"tax":87400,"noi":257300,"debt":572600,"cash":-315300,"year":3,"cumulative":-3276100},{"revenue":1015700,"variable":225500,"staff":216400,"opex":188300,"tax":89100,"noi":296400,"debt":572600,"cash":-276200,"year":4,"cumulative":-3552300},{"revenue":1058000,"variable":234900,"staff":222900,"opex":193900,"tax":90900,"noi":315400,"debt":572600,"cash":-257200,"year":5,"cumulative":-3809500}],"upside":[{"revenue":935300,"variable":207600,"staff":198000,"opex":172300,"tax":84000,"noi":273400,"debt":572600,"cash":-299200,"year":1,"cumulative":-2279900},{"revenue":1438900,"variable":319400,"staff":203900,"opex":177500,"tax":85700,"noi":652400,"debt":572600,"cash":79800,"year":2,"cumulative":-2200100},{"revenue":1611600,"variable":357700,"staff":210100,"opex":182800,"tax":87400,"noi":773600,"debt":572600,"cash":201000,"year":3,"cumulative":-1999100},{"revenue":1726700,"variable":383300,"staff":216400,"opex":188300,"tax":89100,"noi":849600,"debt":572600,"cash":277000,"year":4,"cumulative":-1722100},{"revenue":1798600,"variable":399300,"staff":222900,"opex":193900,"tax":90900,"noi":891700,"debt":572600,"cash":319100,"year":5,"cumulative":-1403000}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-56.0,"moic":-1.12,"value5":7457700,"loan5":6275700,"saleNet":809100,"cash5":-3375600,"equityBuilt":630900,"appreciation":0.0},"base":{"irr":-13.4,"moic":0.23,"value5":8645500,"loan5":6275700,"saleNet":1937500,"cash5":-1828800,"equityBuilt":630900,"appreciation":0.03},"upside":{"irr":11.6,"moic":1.75,"value5":9293700,"loan5":6275700,"saleNet":2553200,"cash5":577700,"equityBuilt":630900,"appreciation":0.045},"plan":{"irr":9.9,"moic":1.59,"value5":8645500,"loan5":6275700,"saleNet":1937500,"cash5":877300,"equityBuilt":630900,"appreciation":0.03}}}},{"n":3,"hood":"Santa Monica","sf":7778,"W":153,"D":57,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":58,"d":57},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":58,"z":0,"w":20,"d":20},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":58,"z":20,"w":34,"d":37},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":78,"z":0,"w":45,"d":20},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":92,"z":20,"w":31,"d":37},{"zone":"acacia","name":"Acacia","fn":"Offices","x":123,"z":0,"w":30,"d":30},{"zone":"wc","name":"WC","fn":"","x":123,"z":30,"w":30,"d":12},{"zone":"canopy","name":"Canopy","fn":"Studio","x":123,"z":42,"w":30,"d":15}],"rooms2":[],"outdoor":[{"label":"Gated lot and event yard","x":0,"z":57,"w":92,"d":20}],"outdoor2":[],"street":"T","facts":["Rare single-story creative space with skylights","Gated campus on two parcels with 21 parking spaces","Signage on Olympic Blvd","Near two E Line stations and the 10"],"id":"olympic1500","addr":"1500 Olympic Boulevard","city":"Santa Monica","zip":"90404","lat":34.02053,"lng":-118.47912,"lot":15021,"year_built":1977,"zoning":"Santa Monica industrial / Olympic corridor (listing: M1)","type":"Single-story creative office in a gated compound","price":5795000,"priceNote":null,"ppsf":745,"listing":"https://www.loopnet.com/Listing/1500-Olympic-Blvd-Santa-Monica-CA/41097892/","source":"LoopNet / Showcase","watch":["Occupancy not stated: confirm it can be delivered vacant","Santa Monica usually requires a use permit for assembly","57-ft-wide floor limits the hall\u2019s shape"],"moves":["Savanna takes the west end under the skylights","Basecamp and the Oasis caf\u00e9 meet at the gated entry","Canopy classrooms and Acacia desks line the east wing"],"cond":"light","scores":{"Layout":"Good","Events":"Good","Parking":"Good","Price":"Good"},"caps":{"savanna_sf":2950,"standing":210,"seated":130,"canopy":42,"acacia":26,"oasis":44},"lines":{"AI bootcamps":{"value":420000,"basis":"12 cohorts \u00d7 25 students \u00d7 $1,400"},"Event tickets":{"value":76700,"basis":"24 events \u00d7 94 guests \u00d7 $34"},"Sponsorship":{"value":63000,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":130300,"basis":"6 outside bookings a month \u00d7 $1,810"},"Coworking desks":{"value":97200,"basis":"18 desks \u00d7 $450 a month"}},"own":{"debt":462800,"tax":69500,"insurance":13600,"maintenance":15600,"occupancy":561500,"principalY1":88700,"netOccupancy":472800,"rentEquivalent":466700},"fixed":{"staff":198000,"opex":146948,"ownership":98700,"debt":462800,"total":906400},"loan":{"amount":5582500,"rate":0.0675,"years":25,"downPct":0.15,"payment":462800},"project":6567700,"equity":1669900,"uses":{"Purchase price":5795000,"Closing, loan fees, inspections (3%)":173800,"Build-out and assembly code work":544500,"Contingency (10%)":54400,"Furniture, AV and sound":155600,"Pre-opening: loan payments during build, permits, launch":227000,"Operating reserve (4 months)":302100},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":5582500,"Equity: down payment":985200,"Equity: furniture, pre-opening, reserve":684700},"scenarios":{"conservative":{"revenue":512200,"variable":112700,"staff":198000,"opex":176100,"tax":69500,"noi":-44200,"debt":462800,"cash":-507000},"base":{"revenue":931200,"variable":204900,"staff":198000,"opex":176100,"tax":69500,"noi":282700,"debt":462800,"cash":-180100},"upside":{"revenue":1583100,"variable":348300,"staff":198000,"opex":176100,"tax":69500,"noi":791100,"debt":462800,"cash":328300}},"dscr":0.61,"breakeven":1162100,"planRevenue":1354500,"path":{"target":150000,"blendedVar":0.22,"baseRevenue":931200,"breakevenLift":25,"planLift":45,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":18},"breakeven":{"cohorts":15,"events":30,"members":100,"rentals":7,"desks":22},"plan":{"cohorts":17,"events":35,"members":116,"rentals":9,"desks":26},"ceiling":{"cohorts":24,"events":52,"members":280,"rentals":12,"desks":26}},"students":25,"guests":94,"rate":1810},"priceBreakeven":3664600,"lowDebt":{"conservative":{"irr":-14.1,"equity":3907200,"debt":278500,"cash":-322700},"base":{"irr":0.5,"equity":3907200,"debt":278500,"cash":4200},"upside":{"irr":14.8,"equity":3907200,"debt":278500,"cash":512600},"plan":{"irr":8.7,"equity":3907200,"debt":278500,"cash":334300}},"proj5":{"conservative":[{"revenue":332900,"variable":73200,"staff":198000,"opex":176100,"tax":69500,"noi":-184000,"debt":462800,"cash":-646800,"year":1,"cumulative":-2316700},{"revenue":512200,"variable":112700,"staff":203900,"opex":181400,"tax":70900,"noi":-56800,"debt":462800,"cash":-519600,"year":2,"cumulative":-2836300},{"revenue":573600,"variable":126200,"staff":210100,"opex":186900,"tax":72300,"noi":-21800,"debt":462800,"cash":-484600,"year":3,"cumulative":-3320900},{"revenue":614600,"variable":135200,"staff":216400,"opex":192500,"tax":73800,"noi":-3200,"debt":462800,"cash":-466000,"year":4,"cumulative":-3786900},{"revenue":640200,"variable":140900,"staff":222900,"opex":198300,"tax":75200,"noi":3000,"debt":462800,"cash":-459800,"year":5,"cumulative":-4246700}],"base":[{"revenue":605300,"variable":133200,"staff":198000,"opex":176100,"tax":69500,"noi":28500,"debt":462800,"cash":-434300,"year":1,"cumulative":-2104200},{"revenue":931200,"variable":204900,"staff":203900,"opex":181400,"tax":70900,"noi":270100,"debt":462800,"cash":-192700,"year":2,"cumulative":-2296900},{"revenue":1043000,"variable":229500,"staff":210100,"opex":186900,"tax":72300,"noi":344300,"debt":462800,"cash":-118500,"year":3,"cumulative":-2415400},{"revenue":1117500,"variable":245900,"staff":216400,"opex":192500,"tax":73800,"noi":389000,"debt":462800,"cash":-73800,"year":4,"cumulative":-2489200},{"revenue":1164000,"variable":256100,"staff":222900,"opex":198300,"tax":75200,"noi":411600,"debt":462800,"cash":-51200,"year":5,"cumulative":-2540400}],"upside":[{"revenue":1029000,"variable":226400,"staff":198000,"opex":176100,"tax":69500,"noi":358900,"debt":462800,"cash":-103900,"year":1,"cumulative":-1773800},{"revenue":1583100,"variable":348300,"staff":203900,"opex":181400,"tax":70900,"noi":778500,"debt":462800,"cash":315700,"year":2,"cumulative":-1458100},{"revenue":1773100,"variable":390100,"staff":210100,"opex":186900,"tax":72300,"noi":913700,"debt":462800,"cash":450900,"year":3,"cumulative":-1007200},{"revenue":1899700,"variable":418000,"staff":216400,"opex":192500,"tax":73800,"noi":999100,"debt":462800,"cash":536300,"year":4,"cumulative":-470900},{"revenue":1978900,"variable":435400,"staff":222900,"opex":198300,"tax":75200,"noi":1047100,"debt":462800,"cash":584300,"year":5,"cumulative":113400}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-47.9,"moic":-0.93,"value5":6094400,"loan5":5072600,"saleNet":717100,"cash5":-2576800,"equityBuilt":509900,"appreciation":0.0},"base":{"irr":-6.1,"moic":0.64,"value5":7065100,"loan5":5072600,"saleNet":1639300,"cash5":-870500,"equityBuilt":509900,"appreciation":0.03},"upside":{"irr":23.1,"moic":2.53,"value5":7594800,"loan5":5072600,"saleNet":2142500,"cash5":1783300,"equityBuilt":509900,"appreciation":0.045},"plan":{"irr":11.1,"moic":1.67,"value5":7065100,"loan5":5072600,"saleNet":1639300,"cash5":852500,"equityBuilt":509900,"appreciation":0.03}}}},{"n":4,"hood":"West LA","sf":11000,"W":80,"D":66,"twoFloor":true,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":52,"d":66},{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":52,"z":0,"w":28,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":52,"z":16,"w":28,"d":34},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":52,"z":50,"w":16,"d":16},{"zone":"wc","name":"WC","fn":"","x":68,"z":50,"w":12,"d":16}],"rooms2":[{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":0,"w":36,"d":30},{"zone":"canopy","name":"Canopy","fn":"Studio","x":0,"z":30,"w":36,"d":20},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":36,"z":0,"w":44,"d":40},{"zone":"acacia","name":"Acacia","fn":"Offices","x":0,"z":50,"w":36,"d":16},{"zone":"oasis","name":"Oasis","fn":"Recovery lounge","x":36,"z":40,"w":28,"d":26},{"zone":"wc","name":"WC","fn":"","x":64,"z":40,"w":16,"d":26}],"outdoor":[{"label":"Gated lot \u00b7 19 spaces","x":0,"z":66,"w":60,"d":16}],"outdoor2":[],"street":"L","facts":["Arched bow-truss ceilings, exposed brick, polished concrete (2017 renovation)","Two floors of about 5,300 sq ft each","Two kitchens, four restrooms, a loading door","19 gated parking spaces; half a mile to the E Line"],"id":"sepulveda2254","addr":"2254 South Sepulveda Boulevard","city":"Los Angeles","zip":"90064","lat":34.03944,"lng":-118.43712,"lot":11761,"year_built":1941,"zoning":"LA M2 (near Expo/Sepulveda station)","type":"Bow-truss creative loft, two floors","price":5250000,"priceNote":"Recently cut from $5.57M","ppsf":477,"listing":"https://www.loopnet.com/Listing/2254-S-Sepulveda-Blvd-Los-Angeles-CA/37033883/","source":"LoopNet","watch":["Each floor is about 5,300 sq ft, so the hall tops out near 200 standing","On the market 14 months: room to negotiate, or an issue to find"],"moves":["Savanna fills the ground floor under the bow trusses","The Oasis caf\u00e9 greets people at the Sepulveda door with Basecamp","Canopy and Acacia take the whole second floor"],"cond":"light","scores":{"Layout":"Good","Events":"Good","Parking":"Good","Price":"Strong"},"caps":{"savanna_sf":3580,"standing":255,"seated":160,"canopy":46,"acacia":40,"oasis":69},"lines":{"AI bootcamps":{"value":420000,"basis":"12 cohorts \u00d7 25 students \u00d7 $1,400"},"Event tickets":{"value":82800,"basis":"24 events \u00d7 115 guests \u00d7 $30"},"Sponsorship":{"value":76500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":137500,"basis":"6 outside bookings a month \u00d7 $1,910"},"Coworking desks":{"value":134400,"basis":"28 desks \u00d7 $400 a month"}},"own":{"debt":440800,"tax":63000,"insurance":19200,"maintenance":22000,"occupancy":545000,"principalY1":84500,"netOccupancy":460500,"rentEquivalent":550000},"fixed":{"staff":198000,"opex":191250,"ownership":104200,"debt":440800,"total":934200},"loan":{"amount":5316300,"rate":0.0675,"years":25,"downPct":0.15,"payment":440800},"project":6254500,"equity":1688900,"uses":{"Purchase price":5250000,"Closing, loan fees, inspections (3%)":157500,"Build-out and assembly code work":770000,"Contingency (10%)":77000,"Furniture, AV and sound":220000,"Pre-opening: loan payments during build, permits, launch":219300,"Operating reserve (4 months)":311400},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":5316300,"Equity: down payment":938200,"Equity: furniture, pre-opening, reserve":750700},"scenarios":{"conservative":{"revenue":547400,"variable":117300,"staff":198000,"opex":232400,"tax":63000,"noi":-63400,"debt":440800,"cash":-504200},"base":{"revenue":995200,"variable":213200,"staff":198000,"opex":232400,"tax":63000,"noi":288500,"debt":440800,"cash":-152300},"upside":{"revenue":1691900,"variable":362500,"staff":198000,"opex":232400,"tax":63000,"noi":835900,"debt":440800,"cash":395100}},"dscr":0.65,"breakeven":1189000,"planRevenue":1379900,"path":{"target":150000,"blendedVar":0.214,"baseRevenue":995200,"breakevenLift":19,"planLift":39,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":28},"breakeven":{"cohorts":14,"events":29,"members":96,"rentals":7,"desks":33},"plan":{"cohorts":17,"events":33,"members":111,"rentals":8,"desks":39},"ceiling":{"cohorts":24,"events":52,"members":436,"rentals":12,"desks":40}},"students":25,"guests":115,"rate":1910},"priceBreakeven":3450200,"lowDebt":{"conservative":{"irr":-15.9,"equity":3819400,"debt":265200,"cash":-328600},"base":{"irr":-0.1,"equity":3819400,"debt":265200,"cash":23300},"upside":{"irr":15.5,"equity":3819400,"debt":265200,"cash":570700},"plan":{"irr":7.7,"equity":3819400,"debt":265200,"cash":325600}},"proj5":{"conservative":[{"revenue":355800,"variable":76200,"staff":198000,"opex":232400,"tax":63000,"noi":-213900,"debt":440800,"cash":-654700,"year":1,"cumulative":-2343600},{"revenue":547400,"variable":117300,"staff":203900,"opex":239400,"tax":64300,"noi":-77500,"debt":440800,"cash":-518300,"year":2,"cumulative":-2861900},{"revenue":613100,"variable":131400,"staff":210100,"opex":246600,"tax":65500,"noi":-40500,"debt":440800,"cash":-481300,"year":3,"cumulative":-3343200},{"revenue":656800,"variable":140700,"staff":216400,"opex":254000,"tax":66900,"noi":-21100,"debt":440800,"cash":-461900,"year":4,"cumulative":-3805100},{"revenue":684200,"variable":146600,"staff":222900,"opex":261600,"tax":68200,"noi":-15100,"debt":440800,"cash":-455900,"year":5,"cumulative":-4261000}],"base":[{"revenue":646900,"variable":138600,"staff":198000,"opex":232400,"tax":63000,"noi":14800,"debt":440800,"cash":-426000,"year":1,"cumulative":-2114900},{"revenue":995200,"variable":213200,"staff":203900,"opex":239400,"tax":64300,"noi":274400,"debt":440800,"cash":-166400,"year":2,"cumulative":-2281300},{"revenue":1114600,"variable":238800,"staff":210100,"opex":246600,"tax":65500,"noi":353600,"debt":440800,"cash":-87200,"year":3,"cumulative":-2368500},{"revenue":1194300,"variable":255900,"staff":216400,"opex":254000,"tax":66900,"noi":401200,"debt":440800,"cash":-39600,"year":4,"cumulative":-2408100},{"revenue":1244000,"variable":266500,"staff":222900,"opex":261600,"tax":68200,"noi":424800,"debt":440800,"cash":-16000,"year":5,"cumulative":-2424100}],"upside":[{"revenue":1099700,"variable":235600,"staff":198000,"opex":232400,"tax":63000,"noi":370600,"debt":440800,"cash":-70200,"year":1,"cumulative":-1759100},{"revenue":1691900,"variable":362500,"staff":203900,"opex":239400,"tax":64300,"noi":821800,"debt":440800,"cash":381000,"year":2,"cumulative":-1378100},{"revenue":1894900,"variable":406000,"staff":210100,"opex":246600,"tax":65500,"noi":966700,"debt":440800,"cash":525900,"year":3,"cumulative":-852200},{"revenue":2030200,"variable":435000,"staff":216400,"opex":254000,"tax":66900,"noi":1058000,"debt":440800,"cash":617200,"year":4,"cumulative":-235000},{"revenue":2114800,"variable":453100,"staff":222900,"opex":261600,"tax":68200,"noi":1109100,"debt":440800,"cash":668300,"year":5,"cumulative":433300}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-54.8,"moic":-1.01,"value5":5673500,"loan5":4830700,"saleNet":559100,"cash5":-2572100,"equityBuilt":485600,"appreciation":0.0},"base":{"irr":-7.3,"moic":0.59,"value5":6577100,"loan5":4830700,"saleNet":1417600,"cash5":-735200,"equityBuilt":485600,"appreciation":0.03},"upside":{"irr":24.3,"moic":2.56,"value5":7070200,"loan5":4830700,"saleNet":1886000,"cash5":2122200,"equityBuilt":485600,"appreciation":0.045},"plan":{"irr":9.0,"moic":1.52,"value5":6577100,"loan5":4830700,"saleNet":1417600,"cash5":842600,"equityBuilt":485600,"appreciation":0.03}}}},{"n":5,"hood":"Del Rey","sf":7620,"W":100,"D":78,"twoFloor":false,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":50,"d":48},{"zone":"basecamp","name":"Basecamp","fn":"Corner entry","x":50,"z":0,"w":22,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":72,"z":0,"w":28,"d":30},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":50,"z":16,"w":22,"d":32},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":0,"z":48,"w":40,"d":30},{"zone":"acacia","name":"Acacia","fn":"Offices","x":40,"z":48,"w":32,"d":30},{"zone":"oasis","name":"Oasis","fn":"Lounge","x":72,"z":30,"w":28,"d":24},{"zone":"wc","name":"WC","fn":"","x":72,"z":54,"w":12,"d":24},{"zone":"canopy","name":"Canopy","fn":"Studio","x":84,"z":54,"w":16,"d":24}],"rooms2":[],"outdoor":[{"label":"Corner patio","x":100,"z":0,"w":16,"d":40}],"outdoor2":[],"street":"L","facts":["Corner building with 163 ft of frontage on Centinela","Existing creative office build-out","Narrow bays, easy to split into rooms","Vacant; listed Aug 2026"],"id":"centinela5454","addr":"5454 South Centinela Avenue","city":"Los Angeles","zip":"90066","lat":33.98302,"lng":-118.41085,"lot":13068,"year_built":1946,"zoning":"LA C1-1 (room to add up to about 19,600 sq ft)","type":"Freestanding single-story creative office","price":5000000,"priceNote":null,"ppsf":656,"listing":"https://www.loopnet.com/Listing/5454-S-Centinela-Ave-Los-Angeles-CA/41663537/","source":"LoopNet (CBRE)","watch":["C1 zoning: confirm assembly use early with ZIMAS and LADBS","L-shaped bays make one big room hard","12 parking spaces"],"moves":["Savanna takes the long west wing for about 100 seated","The Oasis caf\u00e9 holds the corner of Centinela and Lucile","Acacia and Canopy fill the narrow bays"],"cond":"medium","scores":{"Layout":"OK","Events":"Good","Parking":"Weak","Price":"Good"},"caps":{"savanna_sf":2340,"standing":165,"seated":105,"canopy":28,"acacia":34,"oasis":58},"lines":{"AI bootcamps":{"value":285600,"basis":"12 cohorts \u00d7 17 students \u00d7 $1,400"},"Event tickets":{"value":53300,"basis":"24 events \u00d7 74 guests \u00d7 $30"},"Sponsorship":{"value":49500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":89300,"basis":"6 outside bookings a month \u00d7 $1,240"},"Coworking desks":{"value":115200,"basis":"24 desks \u00d7 $400 a month"}},"own":{"debt":427900,"tax":60000,"insurance":13300,"maintenance":15200,"occupancy":516400,"principalY1":82000,"netOccupancy":434400,"rentEquivalent":350500},"fixed":{"staff":198000,"opex":144775,"ownership":88500,"debt":427900,"total":859200},"loan":{"amount":5161200,"rate":0.0675,"years":25,"downPct":0.15,"payment":427900},"project":6072000,"equity":1561700,"uses":{"Purchase price":5000000,"Closing, loan fees, inspections (3%)":150000,"Build-out and assembly code work":838200,"Contingency (10%)":83800,"Furniture, AV and sound":152400,"Pre-opening: loan payments during build, permits, launch":212100,"Operating reserve (4 months)":286400},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":5161200,"Equity: down payment":910800,"Equity: furniture, pre-opening, reserve":650900},"scenarios":{"conservative":{"revenue":405300,"variable":82900,"staff":198000,"opex":173300,"tax":60000,"noi":-108900,"debt":427900,"cash":-536800},"base":{"revenue":736900,"variable":150700,"staff":198000,"opex":173300,"tax":60000,"noi":154900,"debt":427900,"cash":-273000},"upside":{"revenue":1252700,"variable":256100,"staff":198000,"opex":173300,"tax":60000,"noi":565300,"debt":427900,"cash":137400}},"dscr":0.36,"breakeven":1080000,"planRevenue":1268500,"path":{"target":150000,"blendedVar":0.204,"baseRevenue":736900,"breakevenLift":47,"planLift":72,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":24},"breakeven":{"cohorts":18,"events":35,"members":117,"rentals":9,"desks":35},"plan":{"cohorts":21,"events":41,"members":138,"rentals":10,"desks":41},"ceiling":{"cohorts":24,"events":52,"members":368,"rentals":12,"desks":34}},"students":17,"guests":74,"rate":1240},"priceBreakeven":1772800,"lowDebt":{"conservative":{"irr":-17.8,"equity":3630100,"debt":257500,"cash":-366400},"base":{"irr":-3.6,"equity":3630100,"debt":257500,"cash":-102600},"upside":{"irr":9.7,"equity":3630100,"debt":257500,"cash":307800},"plan":{"irr":8.1,"equity":3630100,"debt":257500,"cash":320400}},"proj5":{"conservative":[{"revenue":263400,"variable":53900,"staff":198000,"opex":173300,"tax":60000,"noi":-221700,"debt":427900,"cash":-649600,"year":1,"cumulative":-2211300},{"revenue":405300,"variable":82900,"staff":203900,"opex":178500,"tax":61200,"noi":-121200,"debt":427900,"cash":-549100,"year":2,"cumulative":-2760400},{"revenue":453900,"variable":92800,"staff":210100,"opex":183800,"tax":62400,"noi":-95200,"debt":427900,"cash":-523100,"year":3,"cumulative":-3283500},{"revenue":486300,"variable":99400,"staff":216400,"opex":189300,"tax":63700,"noi":-82500,"debt":427900,"cash":-510400,"year":4,"cumulative":-3793900},{"revenue":506600,"variable":103600,"staff":222900,"opex":195000,"tax":64900,"noi":-79800,"debt":427900,"cash":-507700,"year":5,"cumulative":-4301600}],"base":[{"revenue":479000,"variable":97900,"staff":198000,"opex":173300,"tax":60000,"noi":-50200,"debt":427900,"cash":-478100,"year":1,"cumulative":-2039800},{"revenue":736900,"variable":150700,"staff":203900,"opex":178500,"tax":61200,"noi":142600,"debt":427900,"cash":-285300,"year":2,"cumulative":-2325100},{"revenue":825300,"variable":168700,"staff":210100,"opex":183800,"tax":62400,"noi":200200,"debt":427900,"cash":-227700,"year":3,"cumulative":-2552800},{"revenue":884200,"variable":180800,"staff":216400,"opex":189300,"tax":63700,"noi":234100,"debt":427900,"cash":-193800,"year":4,"cumulative":-2746600},{"revenue":921100,"variable":188300,"staff":222900,"opex":195000,"tax":64900,"noi":249900,"debt":427900,"cash":-178000,"year":5,"cumulative":-2924600}],"upside":[{"revenue":814200,"variable":166500,"staff":198000,"opex":173300,"tax":60000,"noi":216500,"debt":427900,"cash":-211400,"year":1,"cumulative":-1773100},{"revenue":1252700,"variable":256100,"staff":203900,"opex":178500,"tax":61200,"noi":552900,"debt":427900,"cash":125000,"year":2,"cumulative":-1648100},{"revenue":1403000,"variable":286800,"staff":210100,"opex":183800,"tax":62400,"noi":659800,"debt":427900,"cash":231900,"year":3,"cumulative":-1416200},{"revenue":1503200,"variable":307300,"staff":216400,"opex":189300,"tax":63700,"noi":726500,"debt":427900,"cash":298600,"year":4,"cumulative":-1117600},{"revenue":1565800,"variable":320100,"staff":222900,"opex":195000,"tax":64900,"noi":762900,"debt":427900,"cash":335000,"year":5,"cumulative":-782600}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-65.6,"moic":-1.25,"value5":5461000,"loan5":4689800,"saleNet":498200,"cash5":-2739900,"equityBuilt":471400,"appreciation":0.0},"base":{"irr":-15.2,"moic":0.16,"value5":6330800,"loan5":4689800,"saleNet":1324500,"cash5":-1362900,"equityBuilt":471400,"appreciation":0.03},"upside":{"irr":12.9,"moic":1.82,"value5":6805400,"loan5":4689800,"saleNet":1775400,"cash5":779100,"equityBuilt":471400,"appreciation":0.045},"plan":{"irr":9.8,"moic":1.57,"value5":6330800,"loan5":4689800,"saleNet":1324500,"cash5":845000,"equityBuilt":471400,"appreciation":0.03}}}},{"n":6,"hood":"Culver City","sf":12000,"W":99,"D":65,"twoFloor":true,"rooms":[{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":0,"w":56,"d":65},{"zone":"basecamp","name":"Basecamp","fn":"Lobby","x":56,"z":0,"w":43,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":56,"z":16,"w":43,"d":30},{"zone":"wc","name":"WC","fn":"","x":56,"z":46,"w":15,"d":19},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":71,"z":46,"w":28,"d":19}],"rooms2":[{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":0,"w":40,"d":32},{"zone":"canopy","name":"Canopy","fn":"Studio","x":0,"z":32,"w":40,"d":33},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":40,"z":0,"w":59,"d":40},{"zone":"acacia","name":"Acacia","fn":"Glass offices","x":40,"z":40,"w":40,"d":25},{"zone":"wc","name":"WC","fn":"","x":80,"z":40,"w":19,"d":25}],"outdoor":[{"label":"Parking \u00b7 40 spaces","x":0,"z":65,"w":99,"d":22}],"outdoor2":[],"street":"T","facts":["Two 6,000 sq ft floors with windows on all four sides","40 parking spaces, the most of the ten","Glass-walled offices, open bullpen, renovated kitchen","Vacant; lowest price per foot in Culver City ($375)"],"id":"bristol6059","addr":"6059 Bristol Parkway","city":"Culver City","zip":"90230","lat":33.98598,"lng":-118.38767,"lot":10559,"year_built":1980,"zoning":"Culver City CRB (commercial regional)","type":"Freestanding two-story office building","price":4495000,"priceNote":null,"ppsf":375,"listing":"https://www.loopnet.com/Listing/6059-Bristol-Pky-Culver-City-CA/37524186/","source":"LoopNet / Showcase","watch":["A 1980 office building with no industrial character","Ceiling height and columns unknown until a tour","Assembly on the ground floor may need sprinkler and exit upgrades"],"moves":["Savanna replaces the ground-floor glass offices","The Oasis caf\u00e9 and Basecamp share the lobby","Canopy and Acacia take the second floor with its balconies"],"cond":"medium","scores":{"Layout":"Good","Events":"Good","Parking":"Strong","Price":"Strong"},"caps":{"savanna_sf":3390,"standing":240,"seated":150,"canopy":49,"acacia":51,"oasis":48},"lines":{"AI bootcamps":{"value":420000,"basis":"12 cohorts \u00d7 25 students \u00d7 $1,400"},"Event tickets":{"value":77800,"basis":"24 events \u00d7 108 guests \u00d7 $30"},"Sponsorship":{"value":72000,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":129600,"basis":"6 outside bookings a month \u00d7 $1,800"},"Coworking desks":{"value":172800,"basis":"36 desks \u00d7 $400 a month"}},"own":{"debt":428600,"tax":53900,"insurance":21000,"maintenance":24000,"occupancy":527500,"principalY1":82200,"netOccupancy":445300,"rentEquivalent":576000},"fixed":{"staff":198000,"opex":205000,"ownership":98900,"debt":428600,"total":930500},"loan":{"amount":5169500,"rate":0.0675,"years":25,"downPct":0.15,"payment":428600},"project":6081800,"equity":1675300,"uses":{"Purchase price":4495000,"Closing, loan fees, inspections (3%)":134800,"Build-out and assembly code work":1320000,"Contingency (10%)":132000,"Furniture, AV and sound":240000,"Pre-opening: loan payments during build, permits, launch":212800,"Operating reserve (4 months)":310200},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":5169500,"Equity: down payment":912300,"Equity: furniture, pre-opening, reserve":763000},"scenarios":{"conservative":{"revenue":558900,"variable":116800,"staff":198000,"opex":250000,"tax":53900,"noi":-59800,"debt":428600,"cash":-488400},"base":{"revenue":1016200,"variable":212400,"staff":198000,"opex":250000,"tax":53900,"noi":301900,"debt":428600,"cash":-126700},"upside":{"revenue":1727500,"variable":361000,"staff":198000,"opex":250000,"tax":53900,"noi":864500,"debt":428600,"cash":435900}},"dscr":0.7,"breakeven":1176400,"planRevenue":1366000,"path":{"target":150000,"blendedVar":0.209,"baseRevenue":1016200,"breakevenLift":16,"planLift":34,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":36},"breakeven":{"cohorts":14,"events":28,"members":93,"rentals":7,"desks":42},"plan":{"cohorts":16,"events":32,"members":108,"rentals":8,"desks":48},"ceiling":{"cohorts":24,"events":52,"members":396,"rentals":12,"desks":51}},"students":25,"guests":108,"rate":1800},"priceBreakeven":2996300,"lowDebt":{"conservative":{"irr":-18.3,"equity":3747000,"debt":257900,"cash":-317700},"base":{"irr":-1.4,"equity":3747000,"debt":257900,"cash":44000},"upside":{"irr":15.3,"equity":3747000,"debt":257900,"cash":606600},"plan":{"irr":6.2,"equity":3747000,"debt":257900,"cash":320700}},"proj5":{"conservative":[{"revenue":363300,"variable":75900,"staff":198000,"opex":250000,"tax":53900,"noi":-214500,"debt":428600,"cash":-643100,"year":1,"cumulative":-2318400},{"revenue":558900,"variable":116800,"staff":203900,"opex":257500,"tax":55000,"noi":-74300,"debt":428600,"cash":-502900,"year":2,"cumulative":-2821300},{"revenue":626000,"variable":130800,"staff":210100,"opex":265200,"tax":56100,"noi":-36200,"debt":428600,"cash":-464800,"year":3,"cumulative":-3286100},{"revenue":670700,"variable":140200,"staff":216400,"opex":273200,"tax":57200,"noi":-16200,"debt":428600,"cash":-444800,"year":4,"cumulative":-3730900},{"revenue":698600,"variable":146000,"staff":222900,"opex":281400,"tax":58300,"noi":-10000,"debt":428600,"cash":-438600,"year":5,"cumulative":-4169500}],"base":[{"revenue":660500,"variable":138000,"staff":198000,"opex":250000,"tax":53900,"noi":20600,"debt":428600,"cash":-408000,"year":1,"cumulative":-2083300},{"revenue":1016200,"variable":212400,"staff":203900,"opex":257500,"tax":55000,"noi":287400,"debt":428600,"cash":-141200,"year":2,"cumulative":-2224500},{"revenue":1138100,"variable":237900,"staff":210100,"opex":265200,"tax":56100,"noi":368900,"debt":428600,"cash":-59700,"year":3,"cumulative":-2284200},{"revenue":1219400,"variable":254900,"staff":216400,"opex":273200,"tax":57200,"noi":417800,"debt":428600,"cash":-10800,"year":4,"cumulative":-2295000},{"revenue":1270200,"variable":265500,"staff":222900,"opex":281400,"tax":58300,"noi":442200,"debt":428600,"cash":13600,"year":5,"cumulative":-2281400}],"upside":[{"revenue":1122900,"variable":234700,"staff":198000,"opex":250000,"tax":53900,"noi":386300,"debt":428600,"cash":-42300,"year":1,"cumulative":-1717600},{"revenue":1727500,"variable":361000,"staff":203900,"opex":257500,"tax":55000,"noi":850000,"debt":428600,"cash":421400,"year":2,"cumulative":-1296200},{"revenue":1934800,"variable":404400,"staff":210100,"opex":265200,"tax":56100,"noi":999000,"debt":428600,"cash":570400,"year":3,"cumulative":-725800},{"revenue":2073000,"variable":433300,"staff":216400,"opex":273200,"tax":57200,"noi":1093000,"debt":428600,"cash":664400,"year":4,"cumulative":-61400},{"revenue":2159300,"variable":451300,"staff":222900,"opex":281400,"tax":58300,"noi":1145500,"debt":428600,"cash":716900,"year":5,"cumulative":655500}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-77.2,"moic":-1.15,"value5":5221000,"loan5":4697300,"saleNet":262600,"cash5":-2494200,"equityBuilt":472200,"appreciation":0.0},"base":{"irr":-10.6,"moic":0.45,"value5":6052600,"loan5":4697300,"saleNet":1052600,"cash5":-606100,"equityBuilt":472200,"appreciation":0.03},"upside":{"irr":24.0,"moic":2.46,"value5":6506300,"loan5":4697300,"saleNet":1483700,"cash5":2330800,"equityBuilt":472200,"appreciation":0.045},"plan":{"irr":5.8,"moic":1.31,"value5":6052600,"loan5":4697300,"saleNet":1052600,"cash5":838300,"equityBuilt":472200,"appreciation":0.03}}}},{"n":7,"hood":"Culver City","sf":4868,"W":107,"D":46,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Corner door","x":0,"z":0,"w":18,"d":16},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":16,"w":18,"d":30},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":18,"z":0,"w":50,"d":46},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":68,"z":0,"w":24,"d":26},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":92,"z":0,"w":15,"d":46},{"zone":"wc","name":"WC","fn":"","x":68,"z":26,"w":12,"d":20},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":80,"z":26,"w":12,"d":20}],"rooms2":[],"outdoor":[{"label":"Rear lot \u00b7 roll-up door","x":18,"z":46,"w":74,"d":14}],"outdoor2":[],"street":"T","facts":["True bow-truss shell, about 21-ft roof","Ground-level roll-up door","Corner lot with rear parking","Month-to-month tenants, so it can be delivered vacant quickly"],"id":"washington13000","addr":"13000 West Washington Boulevard","city":"Los Angeles","zip":"90066","lat":33.99405,"lng":-118.43992,"lot":7640,"year_built":1952,"zoning":"Culver City CG (commercial general)","type":"Bow-truss retail / light-industrial","price":3495000,"priceNote":"Listed Sept 18 2026","ppsf":718,"listing":"https://www.loopnet.com/Listing/13000-W-Washington-Blvd-Los-Angeles-CA/42258102/","source":"LoopNet","watch":["Smallest of the ten: all five zones are tight","Parking count not stated, though Culver City has no minimums"],"moves":["Savanna fills the bow-truss middle for about 100 seated","The Oasis caf\u00e9 takes the Washington Blvd corner","Canopy and Acacia sit at the back by the roll-up door"],"cond":"medium","scores":{"Layout":"OK","Events":"Good","Parking":"Weak","Price":"Strong"},"caps":{"savanna_sf":2270,"standing":160,"seated":100,"canopy":25,"acacia":11,"oasis":21},"lines":{"AI bootcamps":{"value":252000,"basis":"12 cohorts \u00d7 15 students \u00d7 $1,400"},"Event tickets":{"value":51800,"basis":"24 events \u00d7 72 guests \u00d7 $30"},"Sponsorship":{"value":48000,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":86400,"basis":"6 outside bookings a month \u00d7 $1,200"},"Coworking desks":{"value":38400,"basis":"8 desks \u00d7 $400 a month"}},"own":{"debt":295200,"tax":41900,"insurance":8500,"maintenance":9700,"occupancy":355300,"principalY1":56600,"netOccupancy":298700,"rentEquivalent":233700},"fixed":{"staff":198000,"opex":106935,"ownership":60100,"debt":295200,"total":660200},"loan":{"amount":3560600,"rate":0.0675,"years":25,"downPct":0.15,"payment":295200},"project":4188900,"equity":1106000,"uses":{"Purchase price":3495000,"Closing, loan fees, inspections (3%)":104800,"Build-out and assembly code work":535500,"Contingency (10%)":53600,"Furniture, AV and sound":97400,"Pre-opening: loan payments during build, permits, launch":160200,"Operating reserve (4 months)":220100},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":3560600,"Equity: down payment":628300,"Equity: furniture, pre-opening, reserve":477700},"scenarios":{"conservative":{"revenue":341400,"variable":73600,"staff":198000,"opex":125100,"tax":41900,"noi":-97300,"debt":295200,"cash":-392500},"base":{"revenue":620600,"variable":133800,"staff":198000,"opex":125100,"tax":41900,"noi":121800,"debt":295200,"cash":-173400},"upside":{"revenue":1055100,"variable":227500,"staff":198000,"opex":125100,"tax":41900,"noi":462500,"debt":295200,"cash":167300}},"dscr":0.41,"breakeven":841800,"planRevenue":1033000,"path":{"target":150000,"blendedVar":0.216,"baseRevenue":620600,"breakevenLift":36,"planLift":66,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":8},"breakeven":{"cohorts":16,"events":33,"members":109,"rentals":8,"desks":11},"plan":{"cohorts":20,"events":40,"members":133,"rentals":10,"desks":13},"ceiling":{"cohorts":24,"events":52,"members":128,"rentals":12,"desks":11}},"students":15,"guests":72,"rate":1200},"priceBreakeven":1444000,"lowDebt":{"conservative":{"irr":-18.4,"equity":2533000,"debt":177600,"cash":-274900},"base":{"irr":-2.8,"equity":2533000,"debt":177600,"cash":-55800},"upside":{"irr":12.2,"equity":2533000,"debt":177600,"cash":284900},"plan":{"irr":9.8,"equity":2533000,"debt":177600,"cash":267600}},"proj5":{"conservative":[{"revenue":221900,"variable":47800,"staff":198000,"opex":125100,"tax":41900,"noi":-191000,"debt":295200,"cash":-486200,"year":1,"cumulative":-1592200},{"revenue":341400,"variable":73600,"staff":203900,"opex":128900,"tax":42700,"noi":-107800,"debt":295200,"cash":-403000,"year":2,"cumulative":-1995200},{"revenue":382300,"variable":82400,"staff":210100,"opex":132800,"tax":43600,"noi":-86500,"debt":295200,"cash":-381700,"year":3,"cumulative":-2376900},{"revenue":409600,"variable":88300,"staff":216400,"opex":136700,"tax":44500,"noi":-76300,"debt":295200,"cash":-371500,"year":4,"cumulative":-2748400},{"revenue":426700,"variable":92000,"staff":222900,"opex":140800,"tax":45400,"noi":-74400,"debt":295200,"cash":-369600,"year":5,"cumulative":-3118000}],"base":[{"revenue":403400,"variable":87000,"staff":198000,"opex":125100,"tax":41900,"noi":-48600,"debt":295200,"cash":-343800,"year":1,"cumulative":-1449800},{"revenue":620600,"variable":133800,"staff":203900,"opex":128900,"tax":42700,"noi":111200,"debt":295200,"cash":-184000,"year":2,"cumulative":-1633800},{"revenue":695100,"variable":149900,"staff":210100,"opex":132800,"tax":43600,"noi":158800,"debt":295200,"cash":-136400,"year":3,"cumulative":-1770200},{"revenue":744800,"variable":160600,"staff":216400,"opex":136700,"tax":44500,"noi":186600,"debt":295200,"cash":-108600,"year":4,"cumulative":-1878800},{"revenue":775800,"variable":167300,"staff":222900,"opex":140800,"tax":45400,"noi":199500,"debt":295200,"cash":-95700,"year":5,"cumulative":-1974500}],"upside":[{"revenue":685800,"variable":147900,"staff":198000,"opex":125100,"tax":41900,"noi":172900,"debt":295200,"cash":-122300,"year":1,"cumulative":-1228300},{"revenue":1055100,"variable":227500,"staff":203900,"opex":128900,"tax":42700,"noi":452000,"debt":295200,"cash":156800,"year":2,"cumulative":-1071500},{"revenue":1181700,"variable":254800,"staff":210100,"opex":132800,"tax":43600,"noi":540500,"debt":295200,"cash":245300,"year":3,"cumulative":-826200},{"revenue":1266100,"variable":273000,"staff":216400,"opex":136700,"tax":44500,"noi":595500,"debt":295200,"cash":300300,"year":4,"cumulative":-525900},{"revenue":1318900,"variable":284400,"staff":222900,"opex":140800,"tax":45400,"noi":625400,"debt":295200,"cash":330200,"year":5,"cumulative":-195700}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-64.2,"moic":-1.29,"value5":3789600,"loan5":3235400,"saleNet":364700,"cash5":-2012000,"equityBuilt":325200,"appreciation":0.0},"base":{"irr":-13.1,"moic":0.26,"value5":4393100,"loan5":3235400,"saleNet":938100,"cash5":-868500,"equityBuilt":325200,"appreciation":0.03},"upside":{"irr":17.9,"moic":2.15,"value5":4722500,"loan5":3235400,"saleNet":1251000,"cash5":910300,"equityBuilt":325200,"appreciation":0.045},"plan":{"irr":13.2,"moic":1.79,"value5":4393100,"loan5":3235400,"saleNet":938100,"cash5":819800,"equityBuilt":325200,"appreciation":0.03}}}},{"n":8,"hood":"Culver City","sf":14503,"W":128,"D":91,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Lobby","x":0,"z":0,"w":26,"d":20},{"zone":"acacia","name":"Acacia","fn":"Offices","x":0,"z":20,"w":26,"d":40},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":0,"z":60,"w":26,"d":31},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":26,"z":0,"w":40,"d":30},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":26,"z":30,"w":40,"d":30},{"zone":"canopy","name":"Canopy","fn":"Classroom 2","x":26,"z":60,"w":40,"d":31},{"zone":"wc","name":"WC","fn":"","x":66,"z":0,"w":14,"d":20},{"zone":"oasis","name":"Oasis","fn":"Recovery lounge","x":80,"z":0,"w":48,"d":20},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":66,"z":20,"w":62,"d":56},{"zone":"oasis","name":"Oasis","fn":"Garden lounge","x":66,"z":76,"w":62,"d":15}],"rooms2":[],"outdoor":[{"label":"Garden and lounge","x":0,"z":91,"w":70,"d":20}],"outdoor2":[],"street":"T","facts":["12- to 20-ft ceilings with skylights","Back warehouse with 20-ft ceilings, a natural event hall","Offices, lobby, full kitchen and open areas already built","Outdoor garden and lounge areas; renovated 2015"],"id":"playa11240","addr":"11240 Playa Court","city":"Culver City","zip":"90230","lat":33.99157,"lng":-118.38998,"lot":23586,"year_built":1965,"zoning":"Culver City IL (light industrial)","type":"Renovated creative studio and warehouse compound","price":11995000,"priceNote":"On the market 19 months","ppsf":827,"listing":"https://www.loopnet.com/Listing/11240-Playa-Ct-Culver-City-CA/34785407/","source":"LoopNet / Zacuto Group","watch":["At the $12M ceiling of the search","About 8 on-site parking spaces","Occupancy not stated"],"moves":["Savanna moves into the 20-ft back warehouse","The Oasis caf\u00e9 and garden lounge wrap the full kitchen","Acacia and Canopy take the existing offices up front"],"cond":"light","scores":{"Layout":"Strong","Events":"Strong","Parking":"Weak","Price":"Stretch"},"caps":{"savanna_sf":4320,"standing":305,"seated":195,"canopy":105,"acacia":45,"oasis":152},"lines":{"AI bootcamps":{"value":420000,"basis":"12 cohorts \u00d7 25 students \u00d7 $1,400"},"Event tickets":{"value":98600,"basis":"24 events \u00d7 137 guests \u00d7 $30"},"Sponsorship":{"value":90000,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":164900,"basis":"6 outside bookings a month \u00d7 $2,290"},"Coworking desks":{"value":148800,"basis":"31 desks \u00d7 $400 a month"}},"own":{"debt":949400,"tax":143900,"insurance":25400,"maintenance":29000,"occupancy":1147700,"principalY1":182000,"netOccupancy":965700,"rentEquivalent":696100},"fixed":{"staff":198000,"opex":239416,"ownership":198300,"debt":949400,"total":1585100},"loan":{"amount":11450800,"rate":0.0675,"years":25,"downPct":0.15,"payment":949400},"project":13471500,"equity":3257100,"uses":{"Purchase price":11995000,"Closing, loan fees, inspections (3%)":359800,"Build-out and assembly code work":1015200,"Contingency (10%)":101500,"Furniture, AV and sound":290100,"Pre-opening: loan payments during build, permits, launch":417900,"Operating reserve (4 months)":528400},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":11450800,"Equity: down payment":2020700,"Equity: furniture, pre-opening, reserve":1236400},"scenarios":{"conservative":{"revenue":586500,"variable":124900,"staff":198000,"opex":293800,"tax":143900,"noi":-174100,"debt":949400,"cash":-1123500},"base":{"revenue":1066300,"variable":227100,"staff":198000,"opex":293800,"tax":143900,"noi":203500,"debt":949400,"cash":-745900},"upside":{"revenue":1812700,"variable":386000,"staff":198000,"opex":293800,"tax":143900,"noi":791000,"debt":949400,"cash":-158400}},"dscr":0.21,"breakeven":2014000,"planRevenue":2204600,"path":{"target":150000,"blendedVar":0.213,"baseRevenue":1066300,"breakevenLift":89,"planLift":107,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":31},"breakeven":{"cohorts":23,"events":45,"members":151,"rentals":11,"desks":59},"plan":{"cohorts":25,"events":50,"members":165,"rentals":12,"desks":64},"ceiling":{"cohorts":24,"events":52,"members":788,"rentals":12,"desks":45}},"students":25,"guests":137,"rate":2290},"priceBreakeven":3176900,"lowDebt":{"conservative":{"irr":-15.2,"equity":7846000,"debt":571300,"cash":-745400},"base":{"irr":-3.9,"equity":7846000,"debt":571300,"cash":-367800},"upside":{"irr":5.8,"equity":7846000,"debt":571300,"cash":219700},"plan":{"irr":7.4,"equity":7846000,"debt":571300,"cash":528100}},"proj5":{"conservative":[{"revenue":381200,"variable":81200,"staff":198000,"opex":293800,"tax":143900,"noi":-335700,"debt":949400,"cash":-1285100,"year":1,"cumulative":-4542200},{"revenue":586500,"variable":124900,"staff":203900,"opex":302600,"tax":146800,"noi":-191800,"debt":949400,"cash":-1141200,"year":2,"cumulative":-5683400},{"revenue":656900,"variable":139900,"staff":210100,"opex":311700,"tax":149700,"noi":-154500,"debt":949400,"cash":-1103900,"year":3,"cumulative":-6787300},{"revenue":703800,"variable":149900,"staff":216400,"opex":321100,"tax":152700,"noi":-136200,"debt":949400,"cash":-1085600,"year":4,"cumulative":-7872900},{"revenue":733100,"variable":156100,"staff":222900,"opex":330700,"tax":155800,"noi":-132300,"debt":949400,"cash":-1081700,"year":5,"cumulative":-8954600}],"base":[{"revenue":693100,"variable":147600,"staff":198000,"opex":293800,"tax":143900,"noi":-90200,"debt":949400,"cash":-1039600,"year":1,"cumulative":-4296700},{"revenue":1066300,"variable":227100,"staff":203900,"opex":302600,"tax":146800,"noi":185900,"debt":949400,"cash":-763500,"year":2,"cumulative":-5060200},{"revenue":1194300,"variable":254300,"staff":210100,"opex":311700,"tax":149700,"noi":268500,"debt":949400,"cash":-680900,"year":3,"cumulative":-5741100},{"revenue":1279600,"variable":272500,"staff":216400,"opex":321100,"tax":152700,"noi":317000,"debt":949400,"cash":-632400,"year":4,"cumulative":-6373500},{"revenue":1332900,"variable":283900,"staff":222900,"opex":330700,"tax":155800,"noi":339700,"debt":949400,"cash":-609700,"year":5,"cumulative":-6983200}],"upside":[{"revenue":1178300,"variable":250900,"staff":198000,"opex":293800,"tax":143900,"noi":291600,"debt":949400,"cash":-657800,"year":1,"cumulative":-3914900},{"revenue":1812700,"variable":386000,"staff":203900,"opex":302600,"tax":146800,"noi":773400,"debt":949400,"cash":-176000,"year":2,"cumulative":-4090900},{"revenue":2030300,"variable":432400,"staff":210100,"opex":311700,"tax":149700,"noi":926400,"debt":949400,"cash":-23000,"year":3,"cumulative":-4113900},{"revenue":2175300,"variable":463300,"staff":216400,"opex":321100,"tax":152700,"noi":1021900,"debt":949400,"cash":72500,"year":4,"cumulative":-4041400},{"revenue":2265900,"variable":482600,"staff":222900,"opex":330700,"tax":155800,"noi":1074100,"debt":949400,"cash":124700,"year":5,"cumulative":-3916700}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":-54.0,"moic":-1.12,"value5":12553400,"loan5":10404900,"saleNet":1520800,"cash5":-5697500,"equityBuilt":1045900,"appreciation":0.0},"base":{"irr":-16.0,"moic":0.07,"value5":14552800,"loan5":10404900,"saleNet":3420300,"cash5":-3726100,"equityBuilt":1045900,"appreciation":0.03},"upside":{"irr":5.0,"moic":1.33,"value5":15643800,"loan5":10404900,"saleNet":4456700,"cash5":-659600,"equityBuilt":1045900,"appreciation":0.045},"plan":{"irr":8.3,"moic":1.5,"value5":14552800,"loan5":10404900,"saleNet":3420300,"cash5":950300,"equityBuilt":1045900,"appreciation":0.03}}}},{"n":9,"hood":"Inglewood","sf":9045,"W":120,"D":76,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Front door","x":0,"z":0,"w":20,"d":26},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":20,"z":0,"w":40,"d":26},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":0,"z":26,"w":64,"d":50},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":60,"z":0,"w":30,"d":26},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":90,"z":0,"w":30,"d":40},{"zone":"acacia","name":"Acacia","fn":"Offices","x":64,"z":26,"w":26,"d":30},{"zone":"wc","name":"WC","fn":"","x":64,"z":56,"w":14,"d":20},{"zone":"oasis","name":"Oasis","fn":"Kitchen","x":78,"z":56,"w":12,"d":20},{"zone":"canopy","name":"Canopy","fn":"Studio","x":90,"z":40,"w":30,"d":36}],"rooms2":[],"outdoor":[{"label":"Rear lot \u00b7 12 spaces","x":0,"z":76,"w":64,"d":16}],"outdoor2":[],"street":"T","facts":["Bow-truss roof, 12-ft ceilings, mezzanine","10.8-ft roll-up door","85 to 120 ft of windowed Manchester Blvd frontage","Blocks from the Kia Forum, SoFi and Intuit Dome"],"id":"manchester521","addr":"521-525 East Manchester Boulevard","city":"Inglewood","zip":"90301","lat":33.9613,"lng":-118.34755,"lot":13918,"year_built":1951,"zoning":"Inglewood C2","type":"Bow-truss retail and warehouse","price":2850000,"priceNote":null,"ppsf":315,"listing":"https://www.loopnet.com/Listing/521-525-E-Manchester-Blvd-Inglewood-CA/41013199/","source":"LoopNet / Crexi","watch":["12 parking spaces, and stadium event days jam the streets","Retail to assembly is a change of occupancy","Current tenant status not confirmed"],"moves":["Savanna runs along the back under the bow trusses","The Oasis caf\u00e9 fills the Manchester windows","Acacia and Canopy take the east end"],"cond":"heavy","scores":{"Layout":"Good","Events":"Good","Parking":"Weak","Price":"Strong"},"caps":{"savanna_sf":3170,"standing":225,"seated":140,"canopy":32,"acacia":31,"oasis":41},"lines":{"AI bootcamps":{"value":319200,"basis":"12 cohorts \u00d7 19 students \u00d7 $1,400"},"Event tickets":{"value":72700,"basis":"24 events \u00d7 101 guests \u00d7 $30"},"Sponsorship":{"value":67500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":121700,"basis":"6 outside bookings a month \u00d7 $1,690"},"Coworking desks":{"value":105600,"basis":"22 desks \u00d7 $400 a month"}},"own":{"debt":319100,"tax":34200,"insurance":15800,"maintenance":18100,"occupancy":387200,"principalY1":61200,"netOccupancy":326000,"rentEquivalent":325600},"fixed":{"staff":198000,"opex":164369,"ownership":68100,"debt":319100,"total":749600},"loan":{"amount":3848300,"rate":0.0675,"years":25,"downPct":0.15,"payment":319100},"project":4527400,"equity":1277900,"uses":{"Purchase price":2850000,"Closing, loan fees, inspections (3%)":85500,"Build-out and assembly code work":1447200,"Contingency (10%)":144700,"Furniture, AV and sound":180900,"Pre-opening: loan payments during build, permits, launch":168000,"Operating reserve (4 months)":249900},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":3848300,"Equity: down payment":679100,"Equity: furniture, pre-opening, reserve":598800},"scenarios":{"conservative":{"revenue":456900,"variable":96200,"staff":198000,"opex":198300,"tax":34200,"noi":-69800,"debt":319100,"cash":-388900},"base":{"revenue":830700,"variable":174900,"staff":198000,"opex":198300,"tax":34200,"noi":225400,"debt":319100,"cash":-93700},"upside":{"revenue":1412200,"variable":297300,"staff":198000,"opex":198300,"tax":34200,"noi":684500,"debt":319100,"cash":365400}},"dscr":0.71,"breakeven":949400,"planRevenue":1139400,"path":{"target":150000,"blendedVar":0.21,"baseRevenue":830700,"breakevenLift":14,"planLift":37,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":22},"breakeven":{"cohorts":14,"events":27,"members":91,"rentals":7,"desks":25},"plan":{"cohorts":16,"events":33,"members":110,"rentals":8,"desks":30},"ceiling":{"cohorts":24,"events":52,"members":288,"rentals":12,"desks":31}},"students":19,"guests":101,"rate":1690},"priceBreakeven":1742500,"lowDebt":{"conservative":{"irr":-22.4,"equity":2820100,"debt":192000,"cash":-261800},"base":{"irr":-3.5,"equity":2820100,"debt":192000,"cash":33400},"upside":{"irr":14.9,"equity":2820100,"debt":192000,"cash":492500},"plan":{"irr":5.7,"equity":2820100,"debt":192000,"cash":277100}},"proj5":{"conservative":[{"revenue":297000,"variable":62500,"staff":198000,"opex":198300,"tax":34200,"noi":-196000,"debt":319100,"cash":-515100,"year":1,"cumulative":-1793000},{"revenue":456900,"variable":96200,"staff":203900,"opex":204200,"tax":34900,"noi":-82300,"debt":319100,"cash":-401400,"year":2,"cumulative":-2194400},{"revenue":511700,"variable":107700,"staff":210100,"opex":210300,"tax":35600,"noi":-52000,"debt":319100,"cash":-371100,"year":3,"cumulative":-2565500},{"revenue":548300,"variable":115400,"staff":216400,"opex":216700,"tax":36300,"noi":-36400,"debt":319100,"cash":-355500,"year":4,"cumulative":-2921000},{"revenue":571100,"variable":120200,"staff":222900,"opex":223200,"tax":37000,"noi":-32100,"debt":319100,"cash":-351200,"year":5,"cumulative":-3272200}],"base":[{"revenue":540000,"variable":113700,"staff":198000,"opex":198300,"tax":34200,"noi":-4200,"debt":319100,"cash":-323300,"year":1,"cumulative":-1601200},{"revenue":830700,"variable":174900,"staff":203900,"opex":204200,"tax":34900,"noi":212800,"debt":319100,"cash":-106300,"year":2,"cumulative":-1707500},{"revenue":930400,"variable":195800,"staff":210100,"opex":210300,"tax":35600,"noi":278600,"debt":319100,"cash":-40500,"year":3,"cumulative":-1748000},{"revenue":996800,"variable":209800,"staff":216400,"opex":216700,"tax":36300,"noi":317700,"debt":319100,"cash":-1400,"year":4,"cumulative":-1749400},{"revenue":1038400,"variable":218600,"staff":222900,"opex":223200,"tax":37000,"noi":336800,"debt":319100,"cash":17700,"year":5,"cumulative":-1731700}],"upside":[{"revenue":917900,"variable":193200,"staff":198000,"opex":198300,"tax":34200,"noi":294200,"debt":319100,"cash":-24900,"year":1,"cumulative":-1302800},{"revenue":1412200,"variable":297300,"staff":203900,"opex":204200,"tax":34900,"noi":671900,"debt":319100,"cash":352800,"year":2,"cumulative":-950000},{"revenue":1581700,"variable":332900,"staff":210100,"opex":210300,"tax":35600,"noi":792700,"debt":319100,"cash":473600,"year":3,"cumulative":-476400},{"revenue":1694600,"variable":356700,"staff":216400,"opex":216700,"tax":36300,"noi":868600,"debt":319100,"cash":549500,"year":4,"cumulative":73100},{"revenue":1765200,"variable":371600,"staff":222900,"opex":223200,"tax":37000,"noi":910600,"debt":319100,"cash":591500,"year":5,"cumulative":664600}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":null,"moic":-1.39,"value5":3646000,"loan5":3496800,"saleNet":-33100,"cash5":-1994300,"equityBuilt":351500,"appreciation":0.0},"base":{"irr":-16.0,"moic":0.25,"value5":4226700,"loan5":3496800,"saleNet":518500,"cash5":-453800,"equityBuilt":351500,"appreciation":0.03},"upside":{"irr":23.5,"moic":2.36,"value5":4543500,"loan5":3496800,"saleNet":819500,"cash5":1942500,"equityBuilt":351500,"appreciation":0.045},"plan":{"irr":4.7,"moic":1.24,"value5":4226700,"loan5":3496800,"saleNet":518500,"cash5":818400,"equityBuilt":351500,"appreciation":0.03}}}},{"n":10,"hood":"Hawthorne","sf":10320,"W":133,"D":85,"twoFloor":false,"rooms":[{"zone":"basecamp","name":"Basecamp","fn":"Corner door","x":0,"z":0,"w":24,"d":20},{"zone":"oasis","name":"Oasis","fn":"Caf\u00e9 & bar","x":0,"z":20,"w":24,"d":65},{"zone":"savanna","name":"Savanna","fn":"Stage & events","x":24,"z":0,"w":54,"d":85},{"zone":"canopy","name":"Canopy","fn":"Classroom","x":78,"z":0,"w":30,"d":34},{"zone":"canopy","name":"Canopy","fn":"Studio","x":108,"z":0,"w":25,"d":20},{"zone":"wc","name":"WC","fn":"","x":108,"z":20,"w":25,"d":14},{"zone":"acacia","name":"Acacia","fn":"Desks & pods","x":78,"z":34,"w":55,"d":30},{"zone":"acacia","name":"Acacia","fn":"Offices","x":78,"z":64,"w":30,"d":21},{"zone":"oasis","name":"Oasis","fn":"Recovery lounge","x":108,"z":64,"w":25,"d":21}],"rooms2":[],"outdoor":[{"label":"Lot \u00b7 21 spaces","x":0,"z":85,"w":78,"d":18}],"outdoor2":[],"street":"L","facts":["Open, column-free floor with about 15-ft clear height","Delivered 100% vacant","21 on-site spaces; signalized corner on Hawthorne Blvd","Minutes from SoFi, LAX and SpaceX"],"id":"hawthorne13441","addr":"13441 Hawthorne Boulevard","city":"Hawthorne","zip":"90250","lat":33.91009,"lng":-118.35309,"lot":15502,"year_built":1955,"zoning":"Hawthorne HAC2 (commercial)","type":"Freestanding column-free retail box","price":2450000,"priceNote":"Listed Aug 26 2026","ppsf":237,"listing":"https://www.loopnet.com/Listing/13441-Hawthorne-Blvd-Hawthorne-CA/41891962/","source":"LoopNet / Crexi","watch":["Farthest from the west-side core","A plain 1955 retail box with no character to start from","Hawthorne may require a CUP for assembly"],"moves":["Savanna takes the column-free heart of the box","The Oasis caf\u00e9 runs along the Hawthorne Blvd windows","Acacia, Canopy and a recovery lounge fill the back"],"cond":"heavy","scores":{"Layout":"Strong","Events":"Strong","Parking":"Good","Price":"Strong"},"caps":{"savanna_sf":4190,"standing":295,"seated":190,"canopy":38,"acacia":34,"oasis":75},"lines":{"AI bootcamps":{"value":386400,"basis":"12 cohorts \u00d7 23 students \u00d7 $1,400"},"Event tickets":{"value":95800,"basis":"24 events \u00d7 133 guests \u00d7 $30"},"Sponsorship":{"value":88500,"basis":"Scaled to Savanna capacity from $60K at 200 guests"},"House membership":{"value":144000,"basis":"80 members \u00d7 $150 a month"},"Venue rentals":{"value":159100,"basis":"6 outside bookings a month \u00d7 $2,210"},"Coworking desks":{"value":115200,"basis":"24 desks \u00d7 $400 a month"}},"own":{"debt":305800,"tax":29400,"insurance":18100,"maintenance":20600,"occupancy":373900,"principalY1":58600,"netOccupancy":315300,"rentEquivalent":330200},"fixed":{"staff":198000,"opex":181900,"ownership":68100,"debt":305800,"total":753800},"loan":{"amount":3688800,"rate":0.0675,"years":25,"downPct":0.15,"payment":305800},"project":4339800,"equity":1271500,"uses":{"Purchase price":2450000,"Closing, loan fees, inspections (3%)":73500,"Build-out and assembly code work":1651200,"Contingency (10%)":165100,"Furniture, AV and sound":206400,"Pre-opening: loan payments during build, permits, launch":162800,"Operating reserve (4 months)":251300},"sources":{"SBA 504 loan (85% of purchase, closing and build-out)":3688800,"Equity: down payment":651000,"Equity: furniture, pre-opening, reserve":620500},"scenarios":{"conservative":{"revenue":543900,"variable":117000,"staff":198000,"opex":220600,"tax":29400,"noi":-21000,"debt":305800,"cash":-326800},"base":{"revenue":989000,"variable":212700,"staff":198000,"opex":220600,"tax":29400,"noi":328300,"debt":305800,"cash":22500},"upside":{"revenue":1681300,"variable":361500,"staff":198000,"opex":220600,"tax":29400,"noi":871700,"debt":305800,"cash":565900}},"dscr":1.07,"breakeven":960300,"planRevenue":1151400,"path":{"target":150000,"blendedVar":0.215,"baseRevenue":989000,"breakevenLift":-3,"planLift":16,"drivers":{"base":{"cohorts":12,"events":24,"members":80,"rentals":6,"desks":24},"breakeven":{"cohorts":12,"events":23,"members":78,"rentals":6,"desks":23},"plan":{"cohorts":14,"events":28,"members":93,"rentals":7,"desks":28},"ceiling":{"cohorts":24,"events":52,"members":436,"rentals":12,"desks":34}},"students":23,"guests":133,"rate":2210},"priceBreakeven":2715700,"lowDebt":{"conservative":{"irr":-21.9,"equity":2749800,"debt":184000,"cash":-205000},"base":{"irr":-0.5,"equity":2749800,"debt":184000,"cash":144300},"upside":{"irr":21.1,"equity":2749800,"debt":184000,"cash":687700},"plan":{"irr":4.5,"equity":2749800,"debt":184000,"cash":271800}},"proj5":{"conservative":[{"revenue":353600,"variable":76000,"staff":198000,"opex":220600,"tax":29400,"noi":-170500,"debt":305800,"cash":-476300,"year":1,"cumulative":-1747800},{"revenue":543900,"variable":117000,"staff":203900,"opex":227200,"tax":30000,"noi":-34200,"debt":305800,"cash":-340000,"year":2,"cumulative":-2087800},{"revenue":609200,"variable":131000,"staff":210100,"opex":234000,"tax":30600,"noi":3500,"debt":305800,"cash":-302300,"year":3,"cumulative":-2390100},{"revenue":652700,"variable":140400,"staff":216400,"opex":241100,"tax":31200,"noi":23800,"debt":305800,"cash":-282000,"year":4,"cumulative":-2672100},{"revenue":679900,"variable":146200,"staff":222900,"opex":248300,"tax":31800,"noi":30800,"debt":305800,"cash":-275000,"year":5,"cumulative":-2947100}],"base":[{"revenue":642800,"variable":138200,"staff":198000,"opex":220600,"tax":29400,"noi":56600,"debt":305800,"cash":-249200,"year":1,"cumulative":-1520700},{"revenue":989000,"variable":212700,"staff":203900,"opex":227200,"tax":30000,"noi":315200,"debt":305800,"cash":9400,"year":2,"cumulative":-1511300},{"revenue":1107700,"variable":238200,"staff":210100,"opex":234000,"tax":30600,"noi":394800,"debt":305800,"cash":89000,"year":3,"cumulative":-1422300},{"revenue":1186800,"variable":255200,"staff":216400,"opex":241100,"tax":31200,"noi":443000,"debt":305800,"cash":137200,"year":4,"cumulative":-1285100},{"revenue":1236200,"variable":265800,"staff":222900,"opex":248300,"tax":31800,"noi":467400,"debt":305800,"cash":161600,"year":5,"cumulative":-1123500}],"upside":[{"revenue":1092800,"variable":235000,"staff":198000,"opex":220600,"tax":29400,"noi":409800,"debt":305800,"cash":104000,"year":1,"cumulative":-1167500},{"revenue":1681300,"variable":361500,"staff":203900,"opex":227200,"tax":30000,"noi":858600,"debt":305800,"cash":552800,"year":2,"cumulative":-614700},{"revenue":1883000,"variable":404900,"staff":210100,"opex":234000,"tax":30600,"noi":1003400,"debt":305800,"cash":697600,"year":3,"cumulative":82900},{"revenue":2017500,"variable":433800,"staff":216400,"opex":241100,"tax":31200,"noi":1095100,"debt":305800,"cash":789300,"year":4,"cumulative":872200},{"revenue":2101600,"variable":451900,"staff":222900,"opex":248300,"tax":31800,"noi":1146700,"debt":305800,"cash":840900,"year":5,"cumulative":1713100}]},"returns":{"sellingCost":0.05,"improveKept":0.5,"cases":{"conservative":{"irr":null,"moic":-1.25,"value5":3358200,"loan5":3351900,"saleNet":-161600,"cash5":-1675600,"equityBuilt":336900,"appreciation":0.0},"base":{"irr":-9.0,"moic":0.59,"value5":3893000,"loan5":3351900,"saleNet":346500,"cash5":148000,"equityBuilt":336900,"appreciation":0.03},"upside":{"irr":35.4,"moic":3.04,"value5":4184900,"loan5":3351900,"saleNet":623800,"cash5":2984600,"equityBuilt":336900,"appreciation":0.045},"plan":{"irr":2.3,"moic":1.11,"value5":3893000,"loan5":3351900,"saleNet":346500,"cash5":813500,"equityBuilt":336900,"appreciation":0.03}}}}];
+const SPOTS = {"main248": {"basecamp": [30, 70], "savanna": [50, 47], "oasis": [30, 42], "canopy": [75, 43], "acacia": [72, 63]}, "centinela3472": {"basecamp": [40, 68], "savanna": [57, 47], "oasis": [27, 50], "canopy": [87, 42], "acacia": [72, 60]}, "olympic1500": {"basecamp": [83, 62], "savanna": [30, 45], "oasis": [46, 54], "canopy": [68, 37], "acacia": [88, 43]}, "sepulveda2254": {"basecamp": [58, 65], "savanna": [28, 40], "oasis": [43, 52], "canopy": [63, 48], "acacia": [85, 45]}, "centinela5454": {"basecamp": [14, 45], "savanna": [38, 38], "oasis": [68, 55], "canopy": [55, 45], "acacia": [27, 55]}, "bristol6059": {"basecamp": [65, 70], "savanna": [28, 45], "oasis": [40, 58], "canopy": [63, 40], "acacia": [85, 28]}, "washington13000": {"basecamp": [58, 74], "savanna": [48, 45], "oasis": [32, 55], "canopy": [78, 53], "acacia": [82, 70]}, "playa11240": {"basecamp": [30, 74], "savanna": [72, 45], "oasis": [46, 72], "canopy": [35, 40], "acacia": [48, 32]}, "manchester521": {"basecamp": [20, 65], "savanna": [38, 47], "oasis": [55, 35], "canopy": [80, 48], "acacia": [72, 65]}, "hawthorne13441": {"basecamp": [40, 76], "savanna": [35, 45], "oasis": [52, 57], "canopy": [75, 47], "acacia": [73, 68]}};
+const CROPS = {"main248": {"basecamp": [0.12, 0.52, 0.36, 0.36], "savanna": [0.32, 0.29, 0.36, 0.36], "oasis": [0.12, 0.24, 0.36, 0.36], "canopy": [0.57, 0.25, 0.36, 0.36], "acacia": [0.54, 0.45, 0.36, 0.36]}, "centinela3472": {"basecamp": [0.22, 0.5, 0.36, 0.36], "savanna": [0.39, 0.29, 0.36, 0.36], "oasis": [0.09, 0.32, 0.36, 0.36], "canopy": [0.64, 0.24, 0.36, 0.36], "acacia": [0.54, 0.42, 0.36, 0.36]}, "olympic1500": {"basecamp": [0.64, 0.44, 0.36, 0.36], "savanna": [0.12, 0.27, 0.36, 0.36], "oasis": [0.28, 0.36, 0.36, 0.36], "canopy": [0.5, 0.19, 0.36, 0.36], "acacia": [0.64, 0.25, 0.36, 0.36]}, "sepulveda2254": {"basecamp": [0.4, 0.47, 0.36, 0.36], "savanna": [0.1, 0.22, 0.36, 0.36], "oasis": [0.25, 0.34, 0.36, 0.36], "canopy": [0.45, 0.3, 0.36, 0.36], "acacia": [0.64, 0.27, 0.36, 0.36]}, "centinela5454": {"basecamp": [0, 0.27, 0.36, 0.36], "savanna": [0.2, 0.2, 0.36, 0.36], "oasis": [0.5, 0.37, 0.36, 0.36], "canopy": [0.37, 0.27, 0.36, 0.36], "acacia": [0.09, 0.37, 0.36, 0.36]}, "bristol6059": {"basecamp": [0.47, 0.52, 0.36, 0.36], "savanna": [0.1, 0.27, 0.36, 0.36], "oasis": [0.22, 0.4, 0.36, 0.36], "canopy": [0.45, 0.22, 0.36, 0.36], "acacia": [0.64, 0.1, 0.36, 0.36]}, "washington13000": {"basecamp": [0.4, 0.56, 0.36, 0.36], "savanna": [0.3, 0.27, 0.36, 0.36], "oasis": [0.14, 0.37, 0.36, 0.36], "canopy": [0.6, 0.35, 0.36, 0.36], "acacia": [0.64, 0.52, 0.36, 0.36]}, "playa11240": {"basecamp": [0.12, 0.56, 0.36, 0.36], "savanna": [0.54, 0.27, 0.36, 0.36], "oasis": [0.28, 0.54, 0.36, 0.36], "canopy": [0.17, 0.22, 0.36, 0.36], "acacia": [0.3, 0.14, 0.36, 0.36]}, "manchester521": {"basecamp": [0.02, 0.47, 0.36, 0.36], "savanna": [0.2, 0.29, 0.36, 0.36], "oasis": [0.37, 0.17, 0.36, 0.36], "canopy": [0.62, 0.3, 0.36, 0.36], "acacia": [0.54, 0.47, 0.36, 0.36]}, "hawthorne13441": {"basecamp": [0.22, 0.58, 0.36, 0.36], "savanna": [0.17, 0.27, 0.36, 0.36], "oasis": [0.34, 0.39, 0.36, 0.36], "canopy": [0.57, 0.29, 0.36, 0.36], "acacia": [0.55, 0.5, 0.36, 0.36]}};
+
+const ZONES = {
+  basecamp:{name:'Basecamp', verb:'Arrive', color:0xf3e6d6, text:'Walk in, check in and get your Safari passport stamped. The gallery wall holds the faces of the herd.'},
+  savanna:{name:'Savanna', verb:'Gather', color:0xf6c89b, text:'The main stage. Salons, demo days, Evenings of Gratitude and the Safari itself happen here.'},
+  oasis:{name:'Oasis', verb:'Restore', color:0x9fdccd, text:'Café and bar, kitchen, recovery and bodywork. Where the herd slows down.'},
+  acacia:{name:'Acacia', verb:'Build', color:0xcfdc9a, text:'Home of the Acacia accelerator: founder pods of eight, desks and glass offices.'},
+  canopy:{name:'Canopy', verb:'Learn', color:0xc8bdf5, text:'AI School under a hanging garden, with a studio where the space allows.'},
+};
+const ORDER = ['basecamp','savanna','oasis','acacia','canopy'];
+const VIEWS = ['hero', ...ORDER];
+const WC_COLOR = 0xbdb5ac, WALL_H = 14, LOW = .3;
+const $ = s => document.querySelector(s);
+
+// ---------- 3D setup (used by the 3D plan view) ----------
+const canvas = $('#scene');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
+const stageColor = () => (getComputedStyle(document.documentElement).getPropertyValue('--stage').trim() || '#f3e7da');
+scene.background = new THREE.Color(stageColor()); scene.fog = new THREE.Fog(scene.background, 260, 520);
+const camera = new THREE.PerspectiveCamera(38, 1, 1, 1200);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true; controls.dampingFactor = .08; controls.maxPolarAngle = 1.42; controls.minDistance = 20; controls.maxDistance = 320; controls.autoRotateSpeed = .45;
+scene.add(new THREE.HemisphereLight(0xfff4e6, 0xc9b49a, .85));
+const sun = new THREE.DirectionalLight(0xfff0dc, 1.9);
+sun.position.set(-70, 120, -50); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, {left:-120, right:120, top:120, bottom:-120, near:10, far:360}); sun.shadow.bias = -0.0005; scene.add(sun);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshStandardMaterial({color:0xe8dac7, roughness:.95}));
+ground.rotation.x = -Math.PI/2; ground.position.y = -.02; ground.receiveShadow = true; scene.add(ground);
+const matCache = {};
+function mat(color, o={}) { const k = color + JSON.stringify(o);
+  return matCache[k] ||= new THREE.MeshStandardMaterial({color, roughness:o.r ?? .85, metalness:o.m ?? 0, transparent:o.t != null, opacity:o.t ?? 1,
+    emissive:o.e ?? 0x000000, emissiveIntensity:o.ei ?? 1, side:o.ds ? THREE.DoubleSide : THREE.FrontSide, depthWrite:o.t == null || o.t > .6}); }
+function canvasTex(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
+const TEX = {
+  mural: canvasTex(1400, 440, (g, w, h) => {
+    const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#f59e6b'); s.addColorStop(.55,'#f4a3b8'); s.addColorStop(1,'#c9a7ee'); g.fillStyle = s; g.fillRect(0,0,w,h);
+    g.fillStyle = 'rgba(255,236,190,.9)'; g.beginPath(); g.arc(w*.78, h*.58, 46, 0, 7); g.fill(); g.fillStyle = '#9fbf6e'; g.fillRect(0, h*.84, w, h*.16);
+    g.strokeStyle = '#6b3f22'; g.lineWidth = 16; g.beginPath(); g.moveTo(w*.45, h*.86); g.lineTo(w*.46, h*.46); g.stroke();
+    g.lineWidth = 9; [[.46,.5,.38,.36],[.46,.48,.55,.35],[.46,.55,.52,.42]].forEach(([a,b,c,d])=>{g.beginPath();g.moveTo(w*a,h*b);g.lineTo(w*c,h*d);g.stroke();});
+    g.fillStyle = '#4f7a3a'; g.beginPath(); g.ellipse(w*.465, h*.3, w*.16, h*.1, 0, 0, 7); g.fill();
+    const gi = (x, s) => { g.fillStyle = '#e8a93c'; g.fillRect(x-28*s, h*.62, 56*s, 26*s); g.beginPath(); g.moveTo(x+18*s, h*.63); g.lineTo(x+30*s, h*.62-90*s); g.lineTo(x+40*s, h*.62-88*s); g.lineTo(x+30*s, h*.64); g.closePath(); g.fill();
+      g.fillRect(x+26*s, h*.62-102*s, 26*s, 14*s); for (const lx of [-24,-14,12,22]) g.fillRect(x+lx*s, h*.62+24*s, 6*s, 46*s);
+      g.fillStyle = '#9a5b1f'; for (let i=0;i<7;i++) g.fillRect(x-22*s + (i%4)*13*s, h*.625 + Math.floor(i/4)*11*s, 7*s, 7*s); };
+    gi(w*.18, 1.1); gi(w*.29, .9); gi(w*.64, 1.2); gi(w*.86, .8); }),
+  screen: canvasTex(512, 256, (g,w,h) => { const s = g.createLinearGradient(0,0,0,h); s.addColorStop(0,'#fbbf24'); s.addColorStop(.5,'#f472b6'); s.addColorStop(1,'#8b5cf6'); g.fillStyle=s; g.fillRect(0,0,w,h); }),
+  code: canvasTex(512, 256, (g,w,h) => { g.fillStyle='#16202a'; g.fillRect(0,0,w,h); const cs=['#8bd5ff','#f9a8d4','#fde68a','#a7f3d0','#c4b5fd'];
+    for (let i=0;i<14;i++){ g.fillStyle=cs[i%5]; g.fillRect(24+(i%3)*18, 18+i*16, 80+((i*53)%260), 8); } }),
+};
+const glowMat = map => new THREE.MeshStandardMaterial({map, emissive:0xffffff, emissiveMap:map, emissiveIntensity:.85});
+const MAT = { mural:new THREE.MeshStandardMaterial({map:TEX.mural, roughness:.9}), screen:glowMat(TEX.screen), code:glowMat(TEX.code),
+  bulb:new THREE.MeshStandardMaterial({color:0xffe2a8, emissive:0xffc46b, emissiveIntensity:2.2}) };
+const WOOD = 0xd9b27c, CHAIR = 0x2e3431, GLASS = {t:.22, r:.05, m:.1};
+let idx = 0, mode = 'photos', wallsTall = false, touring = null, anim = null, built = -1, view = 'hero';
+
+// ---------- world building ----------
+let world, S, tags = {}, floorMeshes = {}, wallMeshes = [], zoneRooms = {}, current = null;
+const tagWrap = document.getElementById('tags');
+
+function build(space) {
+  if (world) { world.traverse(o => o.geometry && o.geometry.dispose()); scene.remove(world); }
+  world = new THREE.Group(); scene.add(world);
+  S = space; tags = {}; floorMeshes = {}; wallMeshes = []; zoneRooms = {}; tagWrap.innerHTML = '';
+  const levels = [{rooms:space.rooms, outdoor:space.outdoor, dx:0, name:space.twoFloor ? 'Level 1' : null}];
+  if (space.twoFloor) levels.push({rooms:space.rooms2, outdoor:space.outdoor2, dx:space.W + 16, name:'Level 2'});
+  const spanW = space.W + (space.twoFloor ? space.W + 16 : 0);
+  const OX = spanW/2, OZ = space.D/2;
+  const P = (x, z) => [x - OX, z - OZ];
+
+  // helpers bound to this layout
+  const box = (x, z, w, d, h, color, y=0, o={}) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), o.material || mat(color, o));
+    const [px, pz] = P(x + w/2, z + d/2); m.position.set(px, y + h/2, pz); m.castShadow = o.cast ?? true; m.receiveShadow = true; world.add(m); return m; };
+  const cyl = (x, z, r, h, color, y=0, o={}) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(o.rt ?? r, r, h, o.seg ?? 18), mat(color, o));
+    const [px, pz] = P(x, z); m.position.set(px, y + h/2, pz); m.castShadow = true; m.receiveShadow = true; world.add(m); return m; };
+  const plane = (w, h, material, x, y, z, rotY=0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), material);
+    const [px, pz] = P(x, z); m.position.set(px, y, pz); m.rotation.y = rotY; world.add(m); return m; };
+  const instanced = (geo, material, pts) => { const im = new THREE.InstancedMesh(geo, material, pts.length); const m = new THREE.Matrix4();
+    pts.forEach(([x,y,z], i) => { const [px, pz] = P(x, z); m.makeTranslation(px, y, pz); im.setMatrixAt(i, m); });
+    im.castShadow = true; world.add(im); return im; };
+  const chairs = pts => instanced(new THREE.BoxGeometry(1.4, 1.6, 1.3), mat(CHAIR), pts.map(([x,z]) => [x, LOW + .8, z]));
+  const planter = (x, z, s=1) => { cyl(x, z, .9*s, 1.4*s, 0xc2703d, LOW); const b = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5*s, 0), mat(0x5b9447));
+    const [px, pz] = P(x, z); b.position.set(px, 2.6*s + LOW, pz); b.castShadow = true; world.add(b); };
+  const palm = (x, z, h=9, s=1) => { const g = new THREE.Group();
+    const t = new THREE.Mesh(new THREE.CylinderGeometry(.22*s,.35*s,h,8), mat(0x8b6a4a)); t.position.y = h/2; t.castShadow = true; g.add(t);
+    for (let i=0;i<7;i++) { const f = new THREE.Mesh(new THREE.ConeGeometry(.9*s, 5*s, 5), mat(0x4f8f3f)); f.geometry.translate(0, 2.5*s, 0);
+      f.position.y = h; f.rotation.set(0, i*(Math.PI*2/7), Math.PI/2.4, 'YXZ'); f.castShadow = true; g.add(f); }
+    const [px, pz] = P(x, z); g.position.set(px, LOW, pz); world.add(g); };
+  const giraffe = (x, z, s=1, rot=0) => { const g = new THREE.Group(), tan = mat(0xdca24c, {r:.6}), spot = mat(0x8a531d, {r:.7});
+    const add = (geo, m, px, py, pz, rz=0) => { const o = new THREE.Mesh(geo, m); o.position.set(px, py, pz); o.rotation.z = rz; o.castShadow = true; g.add(o); };
+    add(new THREE.BoxGeometry(3.2, 1.6, 1.4), tan, 0, 5.2, 0);
+    for (const [lx,lz] of [[-1.2,-.45],[-1.2,.45],[1.2,-.45],[1.2,.45]]) add(new THREE.CylinderGeometry(.18,.14,4.4,8), tan, lx, 2.2, lz);
+    add(new THREE.CylinderGeometry(.32,.45,4.4,10), tan, 1.9, 7.4, 0, -.42); add(new THREE.BoxGeometry(1.5,.7,.7), tan, 2.9, 9.4, 0);
+    for (let i=0;i<8;i++) add(new THREE.BoxGeometry(.5,.08,.5), spot, -1.2 + (i%4)*.8, 6.02, -.35 + Math.floor(i/4)*.7);
+    g.scale.setScalar(s); g.rotation.y = rot; const [px, pz] = P(x, z); g.position.set(px, LOW, pz); world.add(g); };
+
+  for (const L of levels) {
+    const dx = L.dx, W = space.W, D = space.D, rooms = L.rooms.map(r => ({...r, x:r.x + dx}));
+    const outs = L.outdoor.map(o => ({...o, x:o.x + dx}));
+    // street
+    if (!space.twoFloor || dx === 0) {
+      const st = space.street;
+      if (st === 'T') { box(dx-40, -26, spanW+80, 14, .05, 0x4a443e, 0, {cast:false}); box(dx-40, -12, spanW+80, 12, .12, 0xd9cfc2, 0, {cast:false}); }
+      if (st === 'B') { box(dx-40, D+12+(outs.some(o=>o.z>=D)?20:0), spanW+80, 14, .05, 0x4a443e, 0, {cast:false}); box(dx-40, D+(outs.some(o=>o.z>=D)?20:0), spanW+80, 12, .12, 0xd9cfc2, 0, {cast:false}); }
+      if (st === 'L') { const off = outs.some(o => o.x < dx) ? 20 : 0; box(dx-26-off, -40, 14, D+80, .05, 0x4a443e, 0, {cast:false}); box(dx-12-off, -40, 12, D+80, .12, 0xd9cfc2, 0, {cast:false}); }
+    }
+    // outdoor decks
+    for (const o of outs) { box(o.x, o.z, o.w, o.d, .25, 0xc59c72, 0, {cast:false});
+      for (let i = o.x; i < o.x + o.w; i += 2.2) box(i, o.z, .12, o.d, .27, 0xae8660, 0, {cast:false});
+      const cols = Math.max(1, Math.floor(o.w/13)), rows = Math.max(1, Math.floor(o.d/12));
+      for (let a=0;a<cols;a++) for (let b=0;b<rows;b++) { const x = o.x + (a+.5)*o.w/cols, z = o.z + (b+.5)*o.d/rows;
+        if (o.w < 14 || o.d < 12) { planter(x, z, .8); continue; }
+        cyl(x, z, 2, .2, 0xf1e6d6, 2.6); cyl(x, z, .12, 6.5, 0x5a4a3a, LOW);
+        const u = new THREE.Mesh(new THREE.ConeGeometry(4, 1.8, 16), mat([0xf9a8d4,0xfdba74,0xc4b5fd,0xfde68a][(a+b)%4], {ds:true}));
+        const [px, pz] = P(x, z); u.position.set(px, 7.4, pz); u.castShadow = true; world.add(u); }
+      if (o.w >= 30 && o.d >= 12) giraffe(o.x + o.w - 6, o.z + o.d/2, 1.1, 2.4);
+    }
+    // slab + floors
+    box(dx, 0, W, D, .3, 0xcfc8bf, 0, {cast:false, r:.35});
+    for (const r of rooms) { const col = r.zone === 'wc' ? WC_COLOR : ZONES[r.zone].color;
+      const m = box(r.x+.25, r.z+.25, r.w-.5, r.d-.5, .06, col, LOW, {cast:false, r:.6}); (floorMeshes[r.zone] ||= []).push(m);
+      if (r.zone !== 'wc') (zoneRooms[r.zone] ||= []).push({...r, level:L}); }
+    // walls
+    const wall = (x1, z1, x2, z2, glass) => { const vert = x1 === x2, len = vert ? z2 - z1 : x2 - x1; if (len < .5) return;
+      const g = new THREE.Mesh(new THREE.BoxGeometry(vert ? .7 : len, WALL_H, vert ? len : .7), glass ? mat(0xbfe3ee, GLASS) : mat(0xf4efe8, {r:.9}));
+      const [px, pz] = P((x1+x2)/2, (z1+z2)/2); g.position.set(px, WALL_H/2 + LOW, pz); g.castShadow = !glass; g.receiveShadow = true; world.add(g); wallMeshes.push(g); };
+    const touchesOutdoor = (side, a, b) => outs.some(o => side === 'T' ? (o.z + o.d <= 0.01 && o.x < b && o.x + o.w > a)
+      : side === 'B' ? (o.z >= D - .01 && o.x < b && o.x + o.w > a) : side === 'L' ? (o.x + o.w <= dx + .01 && o.z < b && o.z + o.d > a)
+      : (o.x >= dx + W - .01 && o.z < b && o.z + o.d > a));
+    const streetSide = (!space.twoFloor || dx === 0) ? space.street : null;
+    for (const side of ['T','B','L','R']) {
+      for (const r of rooms) {
+        let seg = null;
+        if (side === 'T' && r.z === 0) seg = [r.x, 0, r.x + r.w, 0];
+        if (side === 'B' && r.z + r.d === D) seg = [r.x, D, r.x + r.w, D];
+        if (side === 'L' && r.x === dx) seg = [dx, r.z, dx, r.z + r.d];
+        if (side === 'R' && r.x + r.w === dx + W) seg = [dx + W, r.z, dx + W, r.z + r.d];
+        if (!seg) continue;
+        const [a, b] = side === 'T' || side === 'B' ? [seg[0], seg[2]] : [seg[1], seg[3]];
+        const glass = (streetSide === side && (r.zone === 'basecamp' || r.zone === 'oasis')) || (r.zone !== 'wc' && touchesOutdoor(side, a, b));
+        wall(seg[0], seg[1], seg[2], seg[3], glass);
+      }
+    }
+    for (let i=0;i<rooms.length;i++) for (let j=i+1;j<rooms.length;j++) {
+      const a = rooms[i], b = rooms[j]; let seg = null;
+      const zo = [Math.max(a.z, b.z), Math.min(a.z + a.d, b.z + b.d)], xo = [Math.max(a.x, b.x), Math.min(a.x + a.w, b.x + b.w)];
+      if ((a.x + a.w === b.x || b.x + b.w === a.x) && zo[1] - zo[0] > .5) { const x = a.x + a.w === b.x ? b.x : a.x; seg = [x, zo[0], x, zo[1]]; }
+      if ((a.z + a.d === b.z || b.z + b.d === a.z) && xo[1] - xo[0] > .5) { const z = a.z + a.d === b.z ? b.z : a.z; seg = [xo[0], z, xo[1], z]; }
+      if (!seg) continue;
+      const zs = [a.zone, b.zone], office = r => r.zone === 'acacia' && /ffice|onf/i.test(r.fn);
+      if (zs.includes('wc')) wall(...seg, false);
+      else if (zs.includes('canopy') || office(a) || office(b)) wall(...seg, true);
+    }
+    // furniture
+    for (const r of rooms) furnish(r, dx);
+    if (L.name) { const el = document.createElement('div'); el.className = 'tag lvl'; el.innerHTML = `<b>${L.name}</b><i></i>`; tagWrap.appendChild(el);
+      const [px, pz] = P(dx + W/2, -2); tags['lvl' + dx] = {el, p:new THREE.Vector3(px, WALL_H + 4, pz), lvl:true}; }
+  }
+  // surroundings
+  const around = [[-10,-6],[spanW+10,-6],[-10,space.D+6],[spanW+10,space.D+6],[spanW/2,space.D+30],[-14,space.D/2]];
+  around.forEach(([x,z],i) => palm(x, z, 16 + (i%3)*3, 1.3));
+
+  function furnish(r, dx) {
+    const {x, z, w, d, zone, fn} = r, f = (fn || '').toLowerCase(), cx = x + w/2, cz = z + d/2, area = w*d;
+    const W = space.W, D = space.D, outs = (dx ? space.outdoor2 : space.outdoor).map(o => ({...o, x:o.x + dx}));
+    const nearOut = side => outs.some(o => side === 'T' ? (o.z + o.d <= .01 && o.x < x + w && o.x + o.w > x) : side === 'B' ? (o.z >= D - .01 && o.x < x + w && o.x + o.w > x)
+      : side === 'L' ? (o.x + o.w <= dx + .01 && o.z < z + d && o.z + o.d > z) : (o.x >= dx + W - .01 && o.z < z + d && o.z + o.d > z));
+    // a solid exterior wall this room owns, for murals: [side, length]
+    const solidSides = ['T','B','L','R'].filter(sd => (sd === 'T' ? z === 0 : sd === 'B' ? z + d === D : sd === 'L' ? x === dx : x + w === dx + W) && !nearOut(sd)
+      && !((!space.twoFloor || dx === 0) && space.street === sd && (zone === 'basecamp' || zone === 'oasis')));
+    const muralOn = (skip, maxLen, hgt) => { const opts = solidSides.filter(sd => sd !== skip).map(sd => [sd, sd === 'T' || sd === 'B' ? w : d]).sort((a, b) => b[1] - a[1]);
+      if (!opts.length) return; const [sd, len] = opts[0], L2 = Math.min(len - 4, maxLen); if (L2 < 8) return; const hh = L2*.315;
+      if (sd === 'T') plane(L2, hh, MAT.mural, cx, hgt, z + .45, 0); if (sd === 'B') plane(L2, hh, MAT.mural, cx, hgt, z + d - .45, Math.PI);
+      if (sd === 'L') plane(L2, hh, MAT.mural, x + .45, hgt, cz, Math.PI/2); if (sd === 'R') plane(L2, hh, MAT.mural, x + w - .45, hgt, cz, -Math.PI/2); };
+    if (zone === 'savanna') {
+      const alongX = w >= d, span = Math.min((alongX ? d : w) - 6, 26);
+      if (alongX) { box(x+1, cz - span/2, 7, span, 1.5, WOOD, LOW, {r:.7}); plane(Math.min(span, 18), 8, MAT.screen, x + .45, 8.2 + LOW, cz, Math.PI/2); muralOn('L', 34, 8); }
+      else { box(cx - span/2, z+1, span, 7, 1.5, WOOD, LOW, {r:.7}); plane(Math.min(span, 18), 8, MAT.screen, cx, 8.2 + LOW, z + .45, 0); muralOn('T', 34, 8); }
+      const seats = [];
+      if (alongX) { for (let sx = x + 12; sx <= Math.min(x + w - 5, x + 40); sx += 3.6) for (let sz = cz - span/2; sz <= cz + span/2; sz += 2.6) seats.push([sx, sz]); }
+      else { for (let sz = z + 12; sz <= Math.min(z + d - 5, z + 40); sz += 3.6) for (let sx = cx - span/2; sx <= cx + span/2; sx += 2.6) seats.push([sx, sz]); }
+      instanced(new THREE.BoxGeometry(1.4, 1.6, 1.3), mat(0x9a7a5e), seats.slice(0, 130).map(([a, b]) => [a, LOW + .8, b]));
+      const bulbs = []; const n = Math.max(2, Math.round((alongX ? w : d)/9));
+      for (let i=0;i<n;i++) { if (alongX) { const lz = z + (i+.5)*d/n; for (let bx = x+2; bx <= x+w-2; bx += 2.5) { const t = (bx-x)/w; bulbs.push([bx, 12.6 - Math.sin(t*Math.PI)*1.4, lz]); } }
+        else { const lx = x + (i+.5)*w/n; for (let bz = z+2; bz <= z+d-2; bz += 2.5) { const t = (bz-z)/d; bulbs.push([lx, 12.6 - Math.sin(t*Math.PI)*1.4, bz]); } } }
+      instanced(new THREE.SphereGeometry(.22, 8, 6), MAT.bulb, bulbs);
+    }
+    if (zone === 'basecamp') {
+      const dl = Math.min(10, w - 6); box(cx - dl/2, z + d*.45, dl, 2.4, 3.6, 0xd6a870, LOW, {r:.6});
+      box(x + w - 7, z + .8, Math.min(6, w - 2), 1.4, 6, 0xc79a66, LOW);
+      for (let rr=0; rr<3; rr++) for (let c=0; c<Math.min(4, Math.floor((d-2)/2.6)); c++) box(x + .36, z + 1.5 + c*2.6, .12, 1.8, 1.4, 0x2a2622, 4 + rr*2.2, {cast:false});
+      giraffe(x + w - 3.5, z + d - 3, Math.min(.9, d/15), -2.2);
+    }
+    if (zone === 'canopy' && f.includes('class')) {
+      const rowsAlongX = w >= d;
+      if (rowsAlongX) { plane(Math.min(12, w-4), 6, MAT.code, cx, 7.5 + LOW, z + .5, 0);
+        for (let tz = z + 6; tz <= z + d - 4; tz += 5) { box(x + 2.5, tz, w - 5, 2.2, 2.6, WOOD, LOW, {r:.6}); const pts = []; for (let sx = x + 3.8; sx <= x + w - 3.2; sx += 2.6) pts.push([sx, tz + 3.2]); chairs(pts); } }
+      else { plane(Math.min(12, d-4), 6, MAT.code, x + .5, 7.5 + LOW, cz, Math.PI/2);
+        for (let tx = x + 6; tx <= x + w - 4; tx += 5) { box(tx, z + 2.5, 2.2, d - 5, 2.6, WOOD, LOW, {r:.6}); const pts = []; for (let sz = z + 3.8; sz <= z + d - 3.2; sz += 2.6) pts.push([tx + 3.2, sz]); chairs(pts); } }
+      const leaves = []; for (let lx = x + 2; lx <= x + w - 2; lx += 2.6) for (let lz = z + 2; lz <= z + d - 2; lz += 2.6) leaves.push([lx + (Math.random()-.5), 10.4 + Math.random()*1.2, lz + (Math.random()-.5)]);
+      const im = instanced(new THREE.IcosahedronGeometry(.95, 0), mat(0x5f9a4a, {r:.9}), leaves);
+    }
+    if (zone === 'canopy' && !f.includes('class')) {
+      cyl(cx, cz, Math.min(2.6, Math.min(w, d)/4), 2.6, WOOD, LOW);
+      for (const [mx, mz] of [[cx-2, cz-1],[cx+2, cz+1]]) { cyl(mx, mz, .06, 4.2, 0x222222, LOW); const s = new THREE.Mesh(new THREE.SphereGeometry(.35,10,8), mat(0x333333,{m:.4,r:.4})); const [px,pz] = P(mx,mz); s.position.set(px, 4.7, pz); world.add(s); }
+      const n = Math.max(1, Math.floor((w-2)/4)); for (let i=0;i<n;i++) box(x + 1.5 + i*4, z + .5, 3, .3, 3, [0xf472b6,0xfb923c,0x8b5cf6,0x2dd4bf][i%4], 5, {cast:false});
+    }
+    if (zone === 'acacia') {
+      if (/ffice|onf/i.test(fn)) {
+        const alongX = w >= d, len = alongX ? w : d, n = Math.max(1, Math.round(len/10)), cell = len/n;
+        for (let i=0;i<n;i++) { const ox = alongX ? x + i*cell : x, oz = alongX ? z : z + i*cell, cw = alongX ? cell : w, cd = alongX ? d : cell;
+          box(ox + cw/2 - 3, oz + cd/2 - 1.3, 6, 2.6, 2.6, WOOD, LOW); chairs([[ox + cw/2 - 1.5, oz + cd/2 + 2.2],[ox + cw/2 + 1.5, oz + cd/2 + 2.2]]);
+          if (i > 0) { const g = new THREE.Mesh(new THREE.BoxGeometry(alongX ? .3 : w, WALL_H, alongX ? d : .3), mat(0xbfe3ee, GLASS));
+            const [px, pz] = P(alongX ? ox : x + w/2, alongX ? z + d/2 : oz); g.position.set(px, WALL_H/2 + LOW, pz); world.add(g); wallMeshes.push(g); } }
+      } else {
+        const podW = 10, podD = 3.6, px0 = 14, pz0 = 9.5;
+        const nx = Math.max(1, Math.floor((w - 2)/px0)), nz = Math.max(1, Math.floor((d - 2)/pz0));
+        for (let a=0; a<nx; a++) for (let b=0; b<nz; b++) {
+          const pcx = x + (a+.5)*w/nx, pcz = z + (b+.5)*d/nz, pw = Math.min(podW, w/nx - 3);
+          box(pcx - pw/2, pcz - podD/2, pw, podD, 2.6, WOOD, LOW, {r:.6});
+          const pts = []; for (let sx = pcx - pw/2 + 1.3; sx <= pcx + pw/2 - 1; sx += 2.6) { pts.push([sx, pcz - podD/2 - 1]); pts.push([sx, pcz + podD/2 + 1]); } chairs(pts);
+        }
+        muralOn(null, 18, 7);
+      }
+    }
+    if (zone === 'oasis') {
+      const kitchenOnly = f.includes('kitchen') && !/café|cafe|bar|lounge/.test(f);
+      if (kitchenOnly) { box(x + .8, z + .8, w - 1.6, 2.4, 3.2, 0xe8e2d8, LOW); box(x + .8, z + .8, 2.4, d - 1.6, 3.2, 0xe8e2d8, LOW);
+        if (w > 12 && d > 10) box(cx - 3, cz - 1.5, 6, 3, 3.2, WOOD, LOW); return; }
+      if (f.includes('recovery') && !/café|cafe|bar/.test(f)) { box(x + 2, z + 2, 2.4, 5, 2.2, 0xf5efe6, LOW); if (w > 9) box(x + w - 4.4, z + 2, 2.4, 5, 2.2, 0xf5efe6, LOW);
+        plane(w - 1, 9, mat(0xf9b6c8, {t:.55, ds:true}), cx, 4.8 + LOW, z + d - 1.2, 0); return; }
+      const rmin = Math.min(w, d), r = Math.min(6.5, (rmin - 5)/2);
+      if (r >= 2.5) { const bx = x + r + 2, bz = z + r + 2;
+        for (let i=0;i<=12;i++) { const a = -Math.PI*.1 + i*(Math.PI*.7/12); const sx = bx + Math.cos(a)*r, sz = bz + Math.sin(a)*r;
+          const seg = box(sx - .9, sz - .9, 1.8, 1.8, 3.6, 0xd6a870, LOW, {r:.5}); seg.rotation.y = -a; }
+        const st = []; for (let i=0;i<5;i++) { const a = i*(Math.PI*.6/4); st.push([bx + Math.cos(a)*(r+2), bz + Math.sin(a)*(r+2)]); }
+        st.forEach(([sx, sz]) => cyl(sx, sz, .6, 2.6, CHAIR, LOW)); }
+      else { box(x + 1, z + 1, w - 2, 2, 3.6, 0xd6a870, LOW); const st = []; for (let sx = x + 2; sx <= x + w - 2; sx += 2.6) st.push([sx, z + 4.2]); st.forEach(([sx, sz]) => cyl(sx, sz, .6, 2.6, CHAIR, LOW)); }
+      if (area >= 650 && rmin >= 14) { const pr = Math.min(4.2, rmin/5), pxc = x + w - pr - 3, pzc = z + d - pr - 3;
+        const pond = new THREE.Mesh(new THREE.CylinderGeometry(pr, pr, .25, 36), mat(0x5fb3c4, {r:.1, m:.2})); const [ppx, ppz] = P(pxc, pzc); pond.position.set(ppx, .45, ppz); world.add(pond);
+        const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(pr*.33, 0), mat(0x9d968d)); rock.position.set(ppx + .6, 1.2, ppz - .4); rock.castShadow = true; world.add(rock);
+        palm(pxc - pr - .5, pzc - .5, 7, .8); palm(pxc + .5, pzc - pr - .5, 8, .85); }
+      if (area >= 500) { const sw = Math.min(7, w/3); box(x + 2, z + d - 3.4, sw, 2.6, 1.6, 0xe7a1b6, LOW); box(x + 2, z + d - 1.4, sw, .8, 2.8, 0xe7a1b6, LOW);
+        if (w > 24) { box(x + sw + 4, z + d - 3.4, sw, 2.6, 1.6, 0xe7a1b6, LOW); box(x + sw + 4, z + d - 1.4, sw, .8, 2.8, 0xe7a1b6, LOW); } }
+      if (f.includes('recovery') && area >= 700) { box(x + w - 4, z + 1.5, 2.4, 5, 2.2, 0xf5efe6, LOW); plane(8, 9, mat(0xf9b6c8, {t:.55, ds:true}), x + w - 6.5, 4.8 + LOW, z + 4, Math.PI/2); }
+    }
+    if (area > 160 && zone !== 'wc') planter(x + 1.8, z + 1.8, .7);
+  }
+
+  // tags (one per zone, on its largest room)
+  for (const k of ORDER) {
+    const rs = zoneRooms[k]; if (!rs) continue; const big = rs.reduce((m, r) => r.w*r.d > m.w*m.d ? r : m);
+    const el = document.createElement('div'); el.className = 'tag'; el.innerHTML = `<b>${ZONES[k].name}</b><span>${ZONES[k].verb}</span><i></i>`;
+    el.addEventListener('click', e => { e.stopPropagation(); select(k); }); tagWrap.appendChild(el);
+    const [px, pz] = P(big.x + big.w/2, big.z + big.d/2); tags[k] = {el, p:new THREE.Vector3(px, 17, pz), look:new THREE.Vector3(px, 2, pz), size:Math.sqrt(big.w*big.d)};
+  }
+  const extent = Math.max(spanW, space.D, 88);
+  S.overview = {pos:[extent*.62, extent*.82, extent*1.08], look:[0, 0, space.D*.08]};
+  sun.shadow.camera.left = sun.shadow.camera.bottom = -extent; sun.shadow.camera.right = sun.shadow.camera.top = extent; sun.shadow.camera.updateProjectionMatrix();
+  setWalls(wallsTall);
+}
+
+
+function zoneStats(k) {
+  const all = [...S.rooms, ...(S.rooms2 || [])], tot = all.reduce((a, r) => a + r.w*r.d, 0);
+  const sf = r => Math.round(r.w*r.d*S.sf/tot/10)*10, rs = all.filter(r => r.zone === k), area = rs.reduce((a, r) => a + sf(r), 0);
+  const out = [`${area.toLocaleString()} sq ft${rs.length > 1 ? ` across ${rs.length} rooms` : ''}`];
+  if (k === 'savanna') out.push(`About ${Math.floor(area/14/5)*5} standing or ${Math.floor(area/22/5)*5} seated`);
+  if (k === 'canopy') { const c = rs.filter(r => /lass/.test(r.fn)).reduce((a, r) => a + Math.floor(sf(r)/24), 0); if (c) out.push(`${c} classroom seats`); if (rs.some(r => /tudio/.test(r.fn))) out.push('A podcast and content studio'); }
+  if (k === 'acacia') out.push(`About ${rs.reduce((a, r) => a + Math.floor(sf(r)/60), 0)} founder seats`);
+  if (k === 'oasis') { const c = rs.filter(r => !/itchen/.test(r.fn) || /bar|café/i.test(r.fn)).reduce((a, r) => a + Math.floor(sf(r)/25), 0); if (c) out.push(`About ${c} café and lounge seats`); }
+  const fns = [...new Set(rs.map(r => r.fn).filter(Boolean))]; if (fns.length) out.push(fns.join(' · '));
+  return out;
+}
+
+
+
+// ---------- formatting ----------
+const money = n => (n < 0 ? '−$' : '$') + Math.abs(Math.round(n)).toLocaleString('en-US');
+const short = n => { const a = Math.abs(n), s = n < 0 ? '−$' : '$'; return a >= 1e6 ? s + (a/1e6).toFixed(2).replace(/0$/,'') + 'M' : s + Math.round(a/1e3) + 'K'; };
+const cls = n => n < 0 ? 'neg' : 'pos';
+const pct = v => v == null ? 'Loses money' : `${v > 0 ? '' : ''}${v.toFixed(0)}%`;
+const pcls = v => v == null || v < 0 ? 'neg' : 'pos';
+const moic = v => v < 0 ? 'Needs more cash' : `${v.toFixed(2)}×`;
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.addr}, ${s.city}, CA ${s.zip}`);
+const imgFor = (s, v) => `img/${s.id}_${v}.jpg`;
+const ZC = {basecamp:'#f3e6d6', savanna:'#f6c89b', oasis:'#9fdccd', acacia:'#cfdc9a', canopy:'#c8bdf5'};
+
+// ---------- stage: overview hero, zoomed detail, eye-level view ----------
+const heroes = [$('#heroA'), $('#heroB')], zones = [$('#zA'), $('#zB')], spots = $('#spots');
+let heroFront = heroes[0], zoneFront = zones[0], busy = false, sub = 'detail';
+const fitHero = () => innerWidth / innerHeight < 1.25;
+function heroRect() { const W = innerWidth, H = innerHeight, iw = 16, ih = 9;
+  const sc = fitHero() ? Math.min(W/iw, H/ih) : Math.max(W/iw, H/ih), dw = iw*sc, dh = ih*sc; return {x:(W - dw)/2, y:(H - dh)/2, w:dw, h:dh}; }
+function spotXY(k) { const p = (SPOTS[SPACES[idx].id] || {})[k] || [50, 50], r = heroRect(); return [r.x + p[0]/100*r.w, r.y + p[1]/100*r.h]; }
+function cropTransform(k) {                                    // the transform that makes this zone's crop fill the screen
+  const c = (CROPS[SPACES[idx].id] || {})[k], r = heroRect(), W = innerWidth, H = innerHeight;
+  if (!c) { const [x, y] = spotXY(k); return `translate(${W/2 - 2.8*x}px,${H/2 - 2.8*y}px) scale(2.8)`; }
+  const sx = r.x + c[0]*r.w, sy = r.y + c[1]*r.h, sw = c[2]*r.w, sh = c[3]*r.h, S = Math.max(W/sw, H/sh);
+  return `translate(${W/2 - S*(sx + sw/2)}px,${H/2 - S*(sy + sh/2)}px) scale(${S})`;
+}
+const IDENT = 'translate(0px,0px) scale(1)';
+function drawSpots() {
+  spots.innerHTML = '';
+  for (const k of ORDER) { const [x, y] = spotXY(k), b = document.createElement('button'); b.className = 'spot'; b.style.left = x + 'px'; b.style.top = y + 'px';
+    b.style.setProperty('--zc', ZC[k]); b.setAttribute('aria-label', `Zoom into ${ZONES[k].name}, ${ZONES[k].verb}`);
+    b.innerHTML = `<i class="ring"></i><span class="pill"><b>${ZONES[k].name}</b><span>${ZONES[k].verb}</span></span>`;
+    b.onclick = () => { stopTour(); goZone(k); }; spots.appendChild(b); }
+}
+const wait = ms => new Promise(r => setTimeout(r, ms));
+function loadInto(img, src, fallback) { return new Promise(res => { img.onload = () => res(); img.onerror = () => { img.onerror = null; img.src = fallback; }; img.src = src; if (img.complete && img.naturalWidth) res(); }); }
+let loaded = false; function hideLoad() { if (!loaded) { loaded = true; $('#load').classList.add('gone'); } }
+setTimeout(hideLoad, 2500);
+const detailSrc = (s, k) => `img/${s.id}_${k}_detail.jpg`, eyeSrc = (s, k) => `img/${s.id}_${k}_eye.jpg`;
+
+async function showHero(space) {                              // crossfade to a space's overview
+  const back = heroFront === heroes[0] ? heroes[1] : heroes[0];
+  back.style.transition = 'none'; back.style.transformOrigin = '0 0'; back.style.transform = IDENT; back.classList.toggle('fit', fitHero());
+  await loadInto(back, imgFor(space, 'hero'), 'img/hero.jpg'); void back.offsetWidth; back.style.transition = '';
+  back.classList.add('on'); heroFront.classList.remove('on'); heroFront = back; hideLoad();
+  zones.forEach(z => z.classList.remove('on', 'drift', 'exact')); drawSpots(); spots.classList.remove('gone');
+}
+async function showZoneImg(src, fallback, exact) {             // crossfade the zone layer
+  const z = zoneFront === zones[0] ? zones[1] : zones[0];
+  z.classList.remove('drift', 'on'); z.classList.toggle('exact', exact); void z.offsetWidth;
+  await loadInto(z, src, fallback);
+  z.classList.add('on'); if (zoneFront !== z) zoneFront.classList.remove('on', 'drift'); zoneFront = z;
+  if (!exact) setTimeout(() => { if (zoneFront === z && sub === 'inside') z.classList.add('drift'); }, 1500);
+}
+async function zoomIntoZone(k) {                              // overview → the zone's crop fills the screen → sharpen
+  const s = SPACES[idx], h = heroFront; sub = 'detail';
+  const pre = new Image(); pre.src = detailSrc(s, k);
+  spots.classList.add('gone'); h.style.transformOrigin = '0 0'; h.style.transform = cropTransform(k);
+  await wait(950);
+  await showZoneImg(detailSrc(s, k), imgFor(s, k), true); h.classList.remove('on');
+  const e = new Image(); e.src = eyeSrc(s, k);                   // warm the eye-level view
+}
+async function stepInside(k) { sub = 'inside'; syncControls(); setCaption(); setHash(); const s = SPACES[idx]; await showZoneImg(eyeSrc(s, k), imgFor(s, k), false); }
+async function stepBack(k) { sub = 'detail'; syncControls(); setCaption(); setHash(); const s = SPACES[idx]; await showZoneImg(detailSrc(s, k), imgFor(s, k), true); }
+async function zoomOut(fromK) {                               // the crop pulls back out to the whole overview
+  const h = heroFront; h.style.transition = 'none'; h.style.transformOrigin = '0 0'; h.style.transform = cropTransform(fromK); void h.offsetWidth; h.style.transition = '';
+  h.classList.add('on');
+  if (sub === 'inside') { zoneFront.classList.remove('on', 'drift'); await wait(80); }
+  else zones.forEach(z => z.classList.remove('on', 'drift'));
+  await wait(60); h.style.transform = IDENT; sub = 'detail';
+  setTimeout(() => { if (view === 'hero') { drawSpots(); spots.classList.remove('gone'); } }, 900);
+}
+
+// ---------- caption ----------
+function moveFor(s, k) { const n = ZONES[k].name.toLowerCase(); return (s.moves || []).find(m => m.toLowerCase().includes(n)); }
+function setCaption() {
+  const s = SPACES[idx];
+  if (view === 'hero') {
+    const p = s.path, base = s.scenarios.base.noi;
+    $('#cEb').textContent = `Building ${s.n} of 10 · ${s.hood}`;
+    $('#cH').textContent = s.addr;
+    $('#cP').textContent = 'Tap a zone to step inside. Zoom back out to see the whole Safari here.';
+    $('#cL').innerHTML = [`${s.sf.toLocaleString()} sq ft · ${short(s.price)} asking · $${s.ppsf}/sq ft`,
+      s.scenarios.base.cash >= 0 ? `Covers its loan at base demand: ${money(s.scenarios.base.cash)} a year after payments` : `Covers the loan with ${s.path.breakevenLift}% more revenue than base${s.priceBreakeven ? `, or at a ${short(s.priceBreakeven)} price` : ''}`,
+      `5-yr IRR: ${pct(s.returns.cases.base.irr)} base · ${pct(s.returns.cases.upside.irr)} upside · ${short(s.equity)} cash in`].map(x => `<li>${esc(x)}</li>`).join('');
+    $('#cCap').textContent = mode === 'plan' ? 'Schematic 3D test-fit on an assumed rectangular footprint. Not the building’s real plan.' : 'Concept cutaway, AI-generated from this listing’s features. Not the building’s real plan.';
+  } else {
+    const z = ZONES[view];
+    $('#cEb').textContent = `${s.addr} · ${z.verb}`;
+    $('#cH').textContent = z.name;
+    $('#cP').textContent = (moveFor(s, view) ? moveFor(s, view) + '.' : z.text) + (mode === 'plan' ? '' : sub === 'inside' ? '' : ' Step inside for eye level.');
+    $('#cL').innerHTML = zoneStats(view).map(x => `<li>${esc(x)}</li>`).join('');
+    $('#cCap').textContent = mode === 'plan' ? 'Schematic 3D test-fit on an assumed rectangular footprint. Not the building’s real plan.' : (sub === 'inside' ? 'Eye-level view generated from this exact spot in the cutaway. AI concept, not a photo.' : 'A closer look at this spot in the cutaway. AI concept, not a photo.');
+  }
+  $('#zWhere').textContent = view === 'hero' ? '' : `${ZONES[view].name} · ${ORDER.indexOf(view) + 1} of 5`;
+}
+function syncControls() { $('#gOverview').hidden = view !== 'hero'; $('#gZone').hidden = view === 'hero'; $('#bTour').classList.toggle('on', !!touring);
+  $('#bWalls').classList.toggle('on', !wallsTall); $('#bTour').innerHTML = touring ? '❚❚ <span class="lbl">Pause</span>' : '▶ <span class="lbl">Tour</span>'; $('#bPause').hidden = !touring;
+  $('#bInside').hidden = view === 'hero' || mode === 'plan'; $('#bInside').innerHTML = sub === 'inside' ? '↖ <span class="lbl">Step back</span>' : '↘ <span class="lbl">Step inside</span>'; }
+
+// ---------- navigation ----------
+async function goZone(k, inside=false) {
+  if (busy || !ZONES[k]) return; busy = true; const from = view; view = k; sub = 'detail'; setCaption(); syncControls(); setHash();
+  try {
+    if (mode === 'plan') plan3d(k);
+    else { if (from !== 'hero') { await zoomOut(from); await wait(750); } await zoomIntoZone(k); if (inside) { await wait(1400); await stepInside(k); } }
+  } finally { busy = false; syncControls(); setCaption(); setHash(); }
+}
+async function goOverview() { if (view === 'hero' || busy) return; busy = true; const from = view; view = 'hero'; setCaption(); syncControls(); setHash();
+  try { if (mode === 'plan') plan3d('hero'); else await zoomOut(from); } finally { busy = false; } }
+function stepZone(d) { const i = ORDER.indexOf(view); goZone(ORDER[(i + d + ORDER.length) % ORDER.length]); }
+function select(k) { stopTour(); goZone(k); }                 // 3D tags
+
+// ---------- tour: overview → zoom into each zone → zoom out → next space ----------
+let tourTimer = null;
+function startTour() { if (touring) return stopTour(); touring = true; syncControls(); runTour(); }
+function stopTour() { touring = false; clearTimeout(tourTimer); syncControls(); }
+async function runTour() {
+  const zs = view === 'hero' ? [...ORDER] : ORDER.slice(ORDER.indexOf(view) + (sub === 'inside' ? 1 : 0));
+  const steps = []; zs.forEach(k => steps.push(['zone', k], ['inside', k])); steps.push(['out'], ['next']);
+  const next = async () => {
+    if (!touring) return; const st = steps.shift();
+    if (!st) return runTour();
+    if (st[0] === 'zone') { await goZone(st[1]); tourTimer = setTimeout(next, 2600); return; }
+    if (st[0] === 'inside') { if (mode !== 'plan') await stepInside(st[1]); tourTimer = setTimeout(next, 4600); return; }
+    if (st[0] === 'out') { await goOverview(); tourTimer = setTimeout(next, 2400); return; }
+    if (st[0] === 'next') { await loadSpace(idx + 1); tourTimer = setTimeout(() => { if (touring) runTour(); }, 2800); return; }
+  };
+  tourTimer = setTimeout(next, view === 'hero' ? 2200 : 400);
+}
+
+// ---------- 3D plan ----------
+function setWalls(tall) { wallsTall = tall; wallMeshes.forEach(w => { w.scale.y = tall ? 1 : .32; w.position.y = (tall ? WALL_H : WALL_H*.32)/2 + LOW; }); syncControls(); }
+const ovPos = () => { const k = camera.aspect < 1 ? Math.min(2.3, 1.2/camera.aspect) : 1; return new THREE.Vector3(...S.overview.pos).multiplyScalar(k); };
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+function fly(pos, look, dur=1400) { anim = {t0:performance.now(), dur, p0:camera.position.clone(), l0:controls.target.clone(), p1:pos.clone(), l1:look.clone()}; controls.autoRotate = false; }
+function plan3d(v) {
+  if (built !== idx) { build(SPACES[idx]); built = idx; camera.position.copy(ovPos()); controls.target.set(...S.overview.look); }
+  for (const [zk, ms] of Object.entries(floorMeshes)) ms.forEach(m => { const c = zk === 'wc' ? WC_COLOR : ZONES[zk].color; m.material = mat(c, zk === v ? {e:c, ei:.35, r:.6} : {r:.6}); });
+  if (v === 'hero' || !tags[v]) { fly(ovPos(), new THREE.Vector3(...S.overview.look)); setTimeout(() => { if (view === 'hero' && !touring && mode === 'plan') controls.autoRotate = true; }, 1500); }
+  else { const t = tags[v], sz = Math.min(70, Math.max(32, t.size*1.5)); fly(t.look.clone().add(new THREE.Vector3(sz*.55, sz*.8, sz*.95)), t.look); }
+}
+function setMode(m) {
+  mode = m; document.body.classList.toggle('plan', m === 'plan'); canvas.hidden = m !== 'plan'; $('#bWalls').hidden = m !== 'plan';
+  $('#bMode').textContent = m === 'plan' ? 'Photos' : '3D plan';
+  if (m === 'plan') { scene.background.set(stageColor()); resize(); plan3d(view); }
+  else { showHero(SPACES[idx]).then(() => { if (view !== 'hero') { const k = view; view = 'hero'; goZone(k); } }); }
+  setCaption(); syncControls();
+}
+
+// ---------- spaces ----------
+const pick = $('#sPick');
+SPACES.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${s.n}. ${s.addr} · ${s.hood}`; pick.appendChild(o); });
+function setHash() { try { history.replaceState(null, '', location.pathname + location.search.replace(/[?&](space|zone)=\w+/g, '') + '#s' + SPACES[idx].n + (view === 'hero' ? '' : '-' + view + (sub === 'inside' ? '-in' : ''))); } catch (e) {} }
+async function loadSpace(i) {
+  idx = (i + SPACES.length) % SPACES.length; pick.value = idx; const s = SPACES[idx]; S = s; view = 'hero';
+  $('#sAddr').textContent = `${s.addr}, ${s.city} ${s.zip}`;
+  $('#sSub').textContent = `${s.hood} · ${s.sf.toLocaleString()} sq ft · ${short(s.price)} asking`;
+  $('#bMap').href = mapsUrl(s);
+  setCaption(); syncControls(); setHash();
+  if ($('#drawer').classList.contains('open')) renderDrawer();
+  if (mode === 'plan') { built = -1; plan3d('hero'); } else await showHero(s);
+  for (const v of ORDER) { const im = new Image(); im.src = imgFor(s, v); }    // warm the zone renders
+}
+
+// ---------- drawer: projections, listing, all ten ----------
+let tab = 'numbers';
+const tbl = (head, rows) => `<div class="tbl"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+function chartSVG(s) {
+  const cases = [['conservative', 'Conservative', 'var(--bad)'], ['base', 'Base', 'var(--ink)'], ['upside', 'Upside', 'var(--good)']];
+  const series = cases.map(([k, n, c]) => [n, c, [-s.equity, ...s.proj5[k].map(p => p.cumulative)]]);
+  const all = series.flatMap(x => x[2]).concat(0), lo = Math.min(...all), hi = Math.max(...all);
+  const W = 520, H = 230, L = 56, R = 88, T = 12, B = 28, X = i => L + i*(W - L - R)/5, Y = v => T + (hi - v)/(hi - lo || 1)*(H - T - B);
+  const step = (() => { const span = hi - lo, raw = span/4, mag = Math.pow(10, Math.floor(Math.log10(raw))); return [1, 2, 2.5, 5, 10].map(m => m*mag).find(m => m >= raw); })();
+  let ticks = ''; for (let v = Math.ceil(lo/step)*step; v <= hi; v += step) ticks += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L - 6}" y="${Y(v) + 4}" text-anchor="end">${short(v)}</text>`;
+  const years = [0,1,2,3,4,5].map(i => `<text x="${X(i)}" y="${H - 8}" text-anchor="middle">${i === 0 ? 'Close' : 'Yr ' + i}</text>`).join('');
+  const ly = series.map(x => Y(x[2][5])).map((y, i) => [y, i]).sort((a, b) => a[0] - b[0]);
+  for (let i = 1; i < ly.length; i++) if (ly[i][0] - ly[i-1][0] < 14) ly[i][0] = ly[i-1][0] + 14;
+  const labY = []; ly.forEach(([y, i]) => labY[i] = y);
+  const lines = series.map(([n, c, v], si) => `<polyline fill="none" style="stroke:${c}" stroke-width="2.5" stroke-linejoin="round" points="${v.map((y, i) => `${X(i)},${Y(y)}`).join(' ')}"/><circle cx="${X(5)}" cy="${Y(v[5])}" r="3.5" style="fill:${c}"/><text class="lab" x="${X(5) + 8}" y="${labY[si] + 4}" style="fill:${c}">${n} ${short(v[5])}</text>`);
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative cash after debt payments, five years, three cases, before selling the building">${ticks}<line x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}" style="stroke:var(--soft)" stroke-dasharray="3 3"/>${years}${lines.join('')}</svg>`;
+}
+function numbersHTML(s) {
+  const b = s.scenarios.base, p = s.path, d = p.drivers, rt = s.returns.cases, o = s.own, ld = s.lowDebt;
+  let verdict;
+  if (b.cash >= 0) verdict = `<div class="verdict ok"><b>Pays its mortgage at base demand</b>A stabilized base year clears ${money(b.cash)} after ${money(o.debt)} of loan payments, and the loan pays down ${money(o.principalY1)} in year one on top.</div>`;
+  else verdict = `<div class="verdict ${p.breakevenLift > 60 ? 'bad' : 'warn'}"><b>Needs ${p.breakevenLift}% more revenue than base to cover the mortgage</b>Base demand makes ${money(b.noi)} before the loan and ${money(b.cash)} after it. ${s.priceBreakeven ? `At base demand it pencils at a price of ${short(s.priceBreakeven)} or less, versus ${short(s.price)} asking.` : 'No purchase price pencils at base demand; revenue has to grow.'}</div>`;
+  const cell = (k, v) => { const c = d.ceiling[k]; const over = c != null && v > c; return `<td class="${over ? 'over' : ''}">${v.toLocaleString()}${over ? ' (over)' : ''}</td>`; };
+  const drivers = [['AI bootcamp cohorts a year','cohorts',`${p.students} students × $1,400`],['Events a year','events',`${p.guests} guests`],['House members','members','$150 a month'],['Outside rentals a month','rentals',`$${p.rate.toLocaleString()} each`],['Coworking desks','desks','by the month']]
+    .map(([n, k, basis]) => `<tr><td>${n}<span class="basis">${basis}</span></td><td>${d.base[k].toLocaleString()}</td>${cell(k, d.breakeven[k])}${cell(k, d.plan[k])}<td class="muted">${d.ceiling[k].toLocaleString()}</td></tr>`);
+  drivers.push(`<tr class="total"><td>Revenue</td><td>${short(p.baseRevenue)}</td><td>${short(s.breakeven)}</td><td>${short(s.planRevenue)}</td><td class="muted">–</td></tr>`);
+  const uses = Object.entries(s.uses).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${money(v)}</td></tr>`).concat(`<tr class="total"><td>Total</td><td>${money(Object.values(s.uses).reduce((a, x) => a + x, 0))}</td></tr>`);
+  const srcs = Object.entries(s.sources).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${money(v)}</td></tr>`);
+  const lineRows = Object.entries(s.lines).map(([k, v]) => `<tr><td>${esc(k)}<span class="basis">${esc(v.basis)}</span></td><td>${money(v.value)}</td></tr>`).concat(
+    `<tr class="total"><td>Revenue</td><td>${money(b.revenue)}</td></tr>`,
+    `<tr><td>Program costs and card fees</td><td class="neg">${money(-b.variable)}</td></tr>`,
+    `<tr><td>Team: GM, ops lead, cleaning and security</td><td class="neg">${money(-b.staff)}</td></tr>`,
+    `<tr><td>Utilities, insurance, repairs, software</td><td class="neg">${money(-b.opex)}</td></tr>`,
+    `<tr><td>Property tax (1.2% of price)</td><td class="neg">${money(-b.tax)}</td></tr>`,
+    `<tr class="total"><td>NOI, before the loan</td><td class="${cls(b.noi)}">${money(b.noi)}</td></tr>`,
+    `<tr><td>Loan payments (principal and interest)</td><td class="neg">${money(-o.debt)}</td></tr>`,
+    `<tr class="total"><td>Cash after the loan</td><td class="${cls(b.cash)}">${money(b.cash)}</td></tr>`);
+  const yrRows = s.proj5.base.map(r => `<tr><td>Year ${r.year}</td><td>${short(r.revenue)}</td><td class="${cls(r.noi)}">${short(r.noi)}</td><td class="${cls(r.cash)}">${short(r.cash)}</td><td class="${cls(r.cumulative)}">${short(r.cumulative)}</td></tr>`);
+  const retRows = [['conservative','Conservative'],['base','Base'],['upside','Upside'],['plan','$150K cash plan']].map(([k, n]) => { const r = rt[k];
+    return `<tr><td>${n}<span class="basis">building ${r.appreciation ? '+' + (r.appreciation*100).toFixed(1).replace('.0','') + '% a year' : 'flat'}</span></td><td class="${cls(r.cash5)}">${short(r.cash5)}</td><td>${short(r.value5)}</td><td>${short(r.saleNet)}</td><td class="${pcls(r.irr)}">${pct(r.irr)}</td><td class="${pcls(ld[k].irr)}">${pct(ld[k].irr)}</td></tr>`; });
+  return `<p class="fine">Illustrative projections built from the listing and our operating assumptions. Estimates, not a forecast, an offer or financial advice.</p>
+  <div class="tiles">
+    <div class="tile"><div class="v">${short(s.price)}</div><div class="l">Asking price · $${s.ppsf.toLocaleString()} per sq ft</div></div>
+    <div class="tile"><div class="v">${short(s.equity)}</div><div class="l">Cash to close and open, with an SBA 504 loan</div></div>
+    <div class="tile"><div class="v ${cls(b.cash)}">${short(b.cash)}</div><div class="l">Cash after the loan, stabilized base year</div></div>
+    <div class="tile"><div class="v ${pcls(rt.base.irr)}">${pct(rt.base.irr)}</div><div class="l">5-year IRR, base case, selling the building in year 5</div></div>
+    <div class="tile"><div class="v ${pcls(rt.upside.irr)}">${pct(rt.upside.irr)}</div><div class="l">5-year IRR, upside case</div></div>
+    <div class="tile"><div class="v ${pcls(rt.plan.irr)}">${pct(rt.plan.irr)}</div><div class="l">5-year IRR if it hits $150K cash after the loan</div></div>
+    <div class="tile"><div class="v" style="font-size:18px">${money(Math.round(o.occupancy/12))}/mo</div><div class="l">To own: loan, tax, insurance, repairs · ${money(Math.round(o.principalY1/12))}/mo of it is principal you keep</div></div>
+    <div class="tile"><div class="v" style="font-size:18px">${money(Math.round(o.rentEquivalent/12))}/mo</div><div class="l">What leasing this much space costs nearby</div></div></div>
+  <h3>What it takes to profit here</h3>${verdict}
+  ${tbl(['Driver', 'Base', 'Covers the loan', '$150K cash', 'Room holds'], drivers)}
+  <p class="fine">Every driver scales together. &#8220;(over)&#8221; means the plan needs more than this building holds, so that line needs higher prices instead.</p>
+  <div class="levers">
+    <div class="tile"><div class="v">${s.priceBreakeven ? short(s.priceBreakeven) : 'None'}</div><div class="l">Purchase price that covers the loan at base demand${s.priceBreakeven && s.priceBreakeven < s.price ? `, ${Math.round((1 - s.priceBreakeven/s.price)*100)}% under asking` : ''}</div></div>
+    <div class="tile"><div class="v ${cls(ld.base.cash)}">${short(ld.base.cash)}</div><div class="l">Base-year cash if the community puts in half the cost (${short(ld.base.equity)}) and the loan is smaller</div></div></div>
+  <h3>Five-year cash, three cases</h3>
+  <div class="legend"><span><i style="background:var(--bad)"></i>Conservative, 55% of base</span><span><i style="background:var(--ink)"></i>Base</span><span><i style="background:var(--good)"></i>Upside, 1.7×</span></div>
+  ${chartSVG(s)}
+  <p class="fine">Cumulative cash after loan payments, starting from the ${short(s.equity)} put in at closing, before the building is sold. Year 1 runs at 65% of each case&#8217;s demand, then 100%, 112%, 120% and 125%; costs rise 3% a year and property tax 2%.</p>
+  ${tbl(['Base case', 'Revenue', 'NOI', 'After loan', 'Cumulative'], yrRows)}
+  <h3>Returns over five years, selling the building</h3>
+  ${tbl(['Case', '5-yr cash', 'Building value', 'Sale, net of loan', 'IRR, SBA loan', 'IRR, half cash'], retRows)}
+  <p class="fine">IRR on the cash put in at closing. In year 5 the building sells at the asking price plus half the build-out, grown at each case&#8217;s rate, less 5% selling costs and the remaining loan. &#8220;Half cash&#8221; funds half the project with community and investor money and a 7% loan for the rest. The business itself is not sold.</p>
+  <h3>A stabilized year, base case, line by line</h3>${tbl(['Line', 'Per year'], lineRows)}
+  <h3>Uses of cash</h3>${tbl(['Item', 'Amount'], uses)}
+  <h3>Sources</h3>${tbl(['Source', 'Amount'], srcs)}
+  <p class="fine">Build-out rated ${esc(s.cond)}: $${({light:70,medium:110,heavy:160})[s.cond]} per sq ft including sprinklers, restrooms and exits for assembly use, plus 10% contingency. A contractor bid replaces this.</p>
+  <h3>How these numbers work</h3><ul>
+    <li>Loan: SBA 504 for an owner-occupied building, 85% of the purchase, closing and build-out, at a blended ${(s.loan.rate*100).toFixed(2)}% over ${s.loan.years} years. Lenders size it on the whole company&#8217;s cash flow, not the building alone.</li>
+    <li>NOI here is operating profit before loan payments. The same revenue engine as the lease plan: classroom seats set cohort size; Savanna size sets event guests, sponsorship and rentals.</li>
+    <li>Property tax 1.2% of the price, insurance $1.75 and repairs $2.00 per sq ft a year, on top of utilities and software.</li>
+    <li>Team is a general manager ($85K) and ops lead ($60K) with 20% burden, plus a $24K cleaning and security contract.</li>
+    <li>Membership, rentals and desks have no history yet; bootcamp, ticket and sponsorship lines follow 2026 results.</li></ul>`;
+}
+function listingHTML(s) {
+  const c = s.caps, map = PUBLIC_MAP ? `<iframe class="map" title="Map of ${esc(s.addr)}" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${s.lng-.008},${s.lat-.005},${s.lng+.008},${s.lat+.005}&layer=mapnik&marker=${s.lat},${s.lng}"></iframe>` : '';
+  const kv = [['Asking price', s.price ? money(s.price) + (s.priceNote ? ` (${esc(s.priceNote)})` : '') : 'On request'], ['Building', `${s.sf.toLocaleString()} sq ft`], ['Price per sq ft', '$' + s.ppsf.toLocaleString()],
+    ['Lot', s.lot ? s.lot.toLocaleString() + ' sq ft' : 'Not listed'], ['Built', s.year_built || 'Not listed'], ['Zoning', s.zoning || 'Not listed'], ['Type', s.type || '–']];
+  return `<h3>Location</h3>${map}<p><b style="color:var(--ink)">${esc(s.addr)}</b><br>${esc(s.city)}, CA ${esc(s.zip)} · ${esc(s.hood)}</p>
+  <p><a class="pillbtn" href="${mapsUrl(s)}" target="_blank" rel="noopener">Open in Google Maps ↗</a>${s.listing ? ` <a class="pillbtn" href="${esc(s.listing)}" target="_blank" rel="noopener">Listing ↗</a>` : ''}</p>
+  <h3>For sale</h3><dl class="kv">${kv.map(([a, b]) => `<dt>${a}</dt><dd>${typeof b === 'string' ? b : esc(b)}</dd>`).join('')}</dl>
+  <h3>Highlights</h3><ul>${s.facts.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+  <h3>What The Safari fits here</h3><div class="tiles">
+    <div class="tile"><div class="v">${c.standing} / ${c.seated}</div><div class="l">Savanna, standing / seated</div></div>
+    <div class="tile"><div class="v">${c.canopy}</div><div class="l">Canopy classroom seats</div></div>
+    <div class="tile"><div class="v">${c.acacia}</div><div class="l">Acacia founder seats</div></div>
+    <div class="tile"><div class="v">${c.oasis}</div><div class="l">Oasis café and lounge seats</div></div></div>
+  <h3>Fit</h3><div class="chips">${Object.entries(s.scores).map(([k, v]) => `<span class="chip s-${esc(v)}">${esc(k)}: ${esc(v)}</span>`).join('')}</div>
+  ${s.watch.length ? `<h3>Watch-outs</h3><ul>${s.watch.map(w => `<li>${esc(w)}</li>`).join('')}</ul>` : ''}
+  <p class="fine" style="margin-top:14px">Listing data${s.source ? ' from ' + esc(s.source) : ''}, gathered Sept 24 2026. Prices change and buildings go into escrow; confirm with the listing broker.</p>`;
+}
+function allHTML() {
+  const rows = SPACES.map((s, i) => { const rt = s.returns.cases; return `<tr class="click${i === idx ? ' cur' : ''}" data-i="${i}"><td><b>${s.n}. ${esc(s.addr)}</b><span class="basis">${esc(s.hood)} · ${s.sf.toLocaleString()} sq ft</span></td><td>${short(s.price)}</td><td>$${s.ppsf}</td><td>${short(s.equity)}</td><td class="${cls(s.scenarios.base.cash)}">${short(s.scenarios.base.cash)}</td><td>${s.priceBreakeven ? short(s.priceBreakeven) : '–'}</td><td class="${pcls(rt.base.irr)}">${pct(rt.base.irr)}</td><td class="${pcls(rt.upside.irr)}">${pct(rt.upside.irr)}</td><td class="${pcls(rt.plan.irr)}">${pct(rt.plan.irr)}</td></tr>`; });
+  return `<p>Tap a row to open that building.</p>${tbl(['Building', 'Price', '$/sf', 'Cash in', 'Base cash', 'Pencils at', 'Base IRR', 'Upside IRR', 'Plan IRR'], rows)}
+  <p class="fine">Cash in: equity to close and open with an SBA 504 loan. Base cash: a stabilized year after loan payments. Pencils at: the price that covers the loan at base demand. IRR is five years, selling the building in year 5; the plan clears $150K a year after the loan.</p>`;
+}
+function renderDrawer() {
+  const s = SPACES[idx];
+  $('#dEb').textContent = `Building ${s.n} of 10 · ${s.hood}`; $('#dH').textContent = s.addr;
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  $('#dBody').innerHTML = tab === 'numbers' ? numbersHTML(s) : tab === 'all' ? allHTML() : listingHTML(s);
+  $('#dBody').scrollTop = 0;
+  $('#dBody').querySelectorAll('tr.click').forEach(r => r.onclick = () => { stopTour(); loadSpace(+r.dataset.i); });
+}
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.tab; renderDrawer(); });
+$('#bDetails').onclick = () => { $('#drawer').classList.add('open'); renderDrawer(); };
+$('#dClose').onclick = () => $('#drawer').classList.remove('open');
+
+// ---------- wiring ----------
+$('#bTour').onclick = startTour;
+$('#bPause').onclick = () => stopTour();
+$('#bInside').onclick = () => { stopTour(); if (busy || view === 'hero') return; sub === 'inside' ? stepBack(view) : stepInside(view); };
+$('#bMode').onclick = () => setMode(mode === 'plan' ? 'photos' : 'plan');
+$('#bWalls').onclick = () => setWalls(!wallsTall);
+$('#bBack').onclick = () => { stopTour(); goOverview(); };
+$('#bPrevZone').onclick = () => { stopTour(); stepZone(-1); };
+$('#bNextZone').onclick = () => { stopTour(); stepZone(1); };
+$('#bPrevSpace').onclick = $('#sPrev').onclick = () => { stopTour(); loadSpace(idx - 1); };
+$('#bNextSpace').onclick = $('#bNextSpace2').onclick = $('#sNext').onclick = () => { stopTour(); loadSpace(idx + 1); };
+pick.onchange = () => { stopTour(); loadSpace(+pick.value); };
+controls.addEventListener('start', () => { anim = null; controls.autoRotate = false; stopTour(); });
+addEventListener('keydown', e => { if (e.target.tagName === 'SELECT') return;
+  if (e.key === 'Escape') { if ($('#drawer').classList.contains('open')) $('#drawer').classList.remove('open'); else { stopTour(); goOverview(); } }
+  if (e.key === 'ArrowRight') { stopTour(); view === 'hero' ? loadSpace(idx + 1) : stepZone(1); }
+  if (e.key === 'ArrowLeft') { stopTour(); view === 'hero' ? loadSpace(idx - 1) : stepZone(-1); } });
+addEventListener('hashchange', () => { const m = location.hash.match(/^#s(\d+)(?:-([a-z]+))?(-in)?$/); if (!m) return; const n = +m[1];
+  if (n >= 1 && n <= SPACES.length && n - 1 !== idx) loadSpace(n - 1).then(() => m[2] && goZone(m[2], !!m[3])); });
+
+const v3 = new THREE.Vector3();
+function placeTags() { const w = canvas.clientWidth, h = canvas.clientHeight;
+  for (const [k, t] of Object.entries(tags)) { v3.copy(t.p).project(camera); t.el.style.display = v3.z < 1 ? '' : 'none';
+    t.el.style.left = ((v3.x + 1)/2*w) + 'px'; t.el.style.top = ((1 - v3.y)/2*h) + 'px'; if (!t.lvl) t.el.classList.toggle('dim', view !== 'hero' && view !== k); } }
+function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.fov = w < 760 ? 52 : 38; camera.updateProjectionMatrix();
+  heroes.forEach(hh => hh.classList.toggle('fit', fitHero())); if (view === 'hero') drawSpots(); else if (mode !== 'plan') { heroFront.style.transition = 'none'; heroFront.style.transform = cropTransform(view); } }
+addEventListener('resize', resize); resize();
+function tick(now) {
+  if (mode === 'plan') {
+    if (anim) { const t = Math.min(1, (now - anim.t0)/anim.dur), k = ease(t); camera.position.lerpVectors(anim.p0, anim.p1, k); controls.target.lerpVectors(anim.l0, anim.l1, k); if (t >= 1) anim = null; }
+    controls.update(); renderer.render(scene, camera); placeTags();
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+const hm = location.hash.match(/^#s(\d+)(?:-([a-z]+))?(-in)?$/), queryN = +(new URLSearchParams(location.search).get('space') || 0);
+const startN = hm ? +hm[1] : queryN, startZone = (hm && hm[2]) || new URLSearchParams(location.search).get('zone');
+loadSpace(startN >= 1 && startN <= SPACES.length ? startN - 1 : 0).then(() => { if (startZone && ZONES[startZone]) setTimeout(() => goZone(startZone, !!(hm && hm[3])), 500); });
+
+</script>
+</body>
+</html>
