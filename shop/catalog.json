@@ -611,6 +611,312 @@
           "priceCents": 6300
         }
       ]
+    },
+    {
+      "id": "e8f57a1aed12407e9383608c9b4c5474",
+      "title": "Hot Pink",
+      "thumbUrl": "/shop/img/thumbs/e8f57a1aed12407e9383608c9b4c5474.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
+      "id": "a00147c96cfb4278b59579aef4bcc8e2",
+      "title": "Giraffa camelopardalis",
+      "thumbUrl": "/shop/img/thumbs/a00147c96cfb4278b59579aef4bcc8e2.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
+      "id": "fbf4bc8dab0c4e078dfe5972d4352190",
+      "title": "Shades",
+      "thumbUrl": "/shop/img/thumbs/fbf4bc8dab0c4e078dfe5972d4352190.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
+      "id": "0def22f53ab8432f9991f8d544e0fd13",
+      "title": "Study of Heads",
+      "thumbUrl": "/shop/img/thumbs/0def22f53ab8432f9991f8d544e0fd13.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
+      "id": "88eb30f53f92491facee8d265373aae8",
+      "title": "Repeat",
+      "thumbUrl": "/shop/img/thumbs/88eb30f53f92491facee8d265373aae8.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
+      "id": "bfae8386f7b24f40b3a706749bec49ca",
+      "title": "Reticulated",
+      "thumbUrl": "/shop/img/thumbs/bfae8386f7b24f40b3a706749bec49ca.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
     }
   ]
 }
