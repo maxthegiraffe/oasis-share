@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="giraffe-shop-api" content="">
+<title>The Giraffe Shop · Grateful Giraffes</title>
+<meta name="description" content="Original giraffe art by Grateful Giraffes, printed to order as posters, framed prints and canvas. Free US shipping.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="The Giraffe Shop">
+<meta property="og:description" content="Original giraffe art, printed to order. Free US shipping.">
+<meta property="og:url" content="https://grateful.gg/shop/">
+<meta property="og:image" content="https://grateful.gg/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://grateful.gg/shop/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Libre Bodoni',Georgia,serif;color:#1c1917;background:linear-gradient(135deg,#fffbeb,#fff7ed 50%,#fefce8);min-height:100vh}
+  .hero{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#78350f,#9a3412 55%,#713f12);color:#fff}
+  .kicker{margin:0 0 16px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:#fcd34d}
+  h1{margin:0;font-size:clamp(38px,6.5vw,68px);line-height:1.05}
+  .rule{width:56px;height:1px;background:#fbbf24;margin:22px auto}
+  .lede{max-width:680px;margin:0 auto;font-size:clamp(17px,2.2vw,20px);line-height:1.6;color:rgba(255,255,255,.85)}
+  main{max-width:1152px;margin:0 auto;padding:40px 16px 56px}
+  .status{text-align:center;color:#78716c}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .card{appearance:none;border:1px solid #fef3c7;background:#fff;border-radius:22px;overflow:hidden;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit;transition:box-shadow .2s,transform .2s}
+  .card:hover,.card:focus-visible{box-shadow:0 18px 40px rgba(120,53,15,.16);transform:translateY(-2px);outline:none}
+  .card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#fffbeb}
+  .card .b{padding:16px 18px 18px}
+  .card h2{margin:0 0 4px;font-size:18px}
+  .card p{margin:0;color:#92400e;font-weight:600}
+  dialog{border:0;border-radius:24px;padding:0;width:min(960px,calc(100vw - 24px));max-height:calc(100vh - 24px);background:#fffbeb}
+  dialog::backdrop{background:rgba(28,25,23,.55)}
+  .close{position:absolute;top:8px;right:10px;margin:0}
+  .close button{appearance:none;border:0;background:rgba(255,251,235,.9);border-radius:999px;width:40px;height:40px;font-size:26px;cursor:pointer}
+  .piece{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .preview{padding:28px;display:flex;align-items:center;justify-content:center;background:#f5f5f4}
+  .preview img{max-width:100%;max-height:70vh;display:block}
+  .preview.poster img{border:10px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .preview.framed img{border:14px solid #1c1917;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+  .preview.canvas img{box-shadow:6px 8px 0 #d6d3d1,0 12px 30px rgba(0,0,0,.25)}
+  .info{padding:32px 28px}
+  .info h2{margin:0 0 20px;font-size:28px}
+  .kinds,.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .opt{appearance:none;border:1px solid #fde68a;background:#fff;color:#78350f;font:inherit;font-size:15px;padding:9px 16px;border-radius:999px;cursor:pointer}
+  .opt[aria-pressed="true"]{background:#b45309;color:#fff;border-color:#b45309}
+  .price{font-size:30px;font-weight:700;color:#92400e;margin:10px 0 16px}
+  .buy{appearance:none;border:0;width:100%;padding:16px;border-radius:14px;font:inherit;font-size:18px;font-weight:600;color:#fff;background:linear-gradient(90deg,#d97706,#ea580c);cursor:pointer}
+  .buy[disabled]{opacity:.6;cursor:wait}
+  .note{font-size:13px;color:#78716c;line-height:1.5}
+  .error{color:#b91c1c;font-size:14px;min-height:1em}
+  footer{padding:40px 20px;text-align:center;border-top:1px solid #fde68a;color:rgba(120,53,15,.6);font-size:13px}
+  footer a{color:#b45309}
+  @media (max-width:720px){.piece{grid-template-columns:1fr}.preview{padding:18px}.info{padding:22px 18px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">Grateful Giraffes · Original Art</p>
+  <h1>The Giraffe Shop</h1>
+  <div class="rule"></div>
+  <p class="lede">Original giraffe artworks, printed to order on museum-quality paper, stretched canvas and framed prints. Free shipping in the US.</p>
+</header>
+<main>
+  <p class="status" id="status">Loading the collection…</p>
+  <div class="grid" id="grid"></div>
+</main>
+<dialog id="piece" aria-labelledby="pieceTitle">
+  <form method="dialog" class="close"><button aria-label="Close">×</button></form>
+  <div class="piece">
+    <div class="preview" id="preview"><img id="pieceImg" alt=""></div>
+    <div class="info">
+      <h2 id="pieceTitle"></h2>
+      <div class="kinds" id="kinds" role="group" aria-label="Product"></div>
+      <div class="sizes" id="sizes" role="group" aria-label="Size"></div>
+      <p class="price" id="price"></p>
+      <button class="buy" id="buy" type="button">Buy now</button>
+      <p class="note" id="staticNote" hidden>Prints go on sale in the next few days.</p>
+      <p class="note">Printed to order, usually shipped within 2–5 business days. Free US shipping. US addresses only for now.</p>
+      <p class="error" id="error" role="alert"></p>
+    </div>
+  </div>
+</dialog>
+<footer><p>Original art by Grateful Giraffes · <a href="https://app.grateful.gg/">Grateful Giraffes Community</a></p></footer>
+<script>
+(function () {
+  var API = document.querySelector('meta[name="giraffe-shop-api"]').content;
+  var STATIC = !API;
+  var KIND_ORDER = ['poster', 'framed', 'canvas', 'mug', 'tote'];
+  var KIND_LABEL = { poster: 'Poster', framed: 'Framed', canvas: 'Canvas', mug: 'Mug', tote: 'Tote bag' };
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var dollars = function (cents) { return '$' + Math.round(cents / 100); };
+  var current = null, selected = null;
+
+  if (STATIC) {
+    $('buy').disabled = true;
+    $('buy').textContent = 'Checkout opens soon';
+    $('staticNote').hidden = false;
+  }
+
+  function render(artworks) {
+    if (!artworks.length) { $('status').textContent = 'New pieces are on their way. Check back soon.'; return; }
+    $('status').remove();
+    $('grid').innerHTML = artworks.map(function (a, i) {
+      var from = Math.min.apply(null, a.products.map(function (p) { return p.priceCents; }));
+      return '<button class="card" data-i="' + i + '"><img src="' + esc(a.thumbUrl) + '" alt="' + esc(a.title) + '" loading="lazy">' +
+        '<div class="b"><h2>' + esc(a.title) + '</h2><p>from ' + dollars(from) + '</p></div></button>';
+    }).join('');
+    Array.prototype.forEach.call(document.querySelectorAll('.card'), function (el) {
+      el.addEventListener('click', function () { open(artworks[Number(el.getAttribute('data-i'))]); });
+    });
+  }
+
+  function open(a) {
+    current = a;
+    $('pieceImg').src = a.thumbUrl;
+    $('pieceImg').alt = a.title;
+    $('pieceTitle').textContent = a.title;
+    $('error').textContent = '';
+    var kinds = KIND_ORDER.filter(function (k) { return a.products.some(function (p) { return p.kind === k; }); });
+    $('kinds').innerHTML = kinds.map(function (k) { return '<button class="opt" type="button" data-kind="' + k + '">' + KIND_LABEL[k] + '</button>'; }).join('');
+    Array.prototype.forEach.call($('kinds').children, function (b) { b.addEventListener('click', function () { pickKind(b.getAttribute('data-kind')); }); });
+    pickKind(kinds[0]);
+    $('piece').showModal();
+  }
+
+  function pickKind(kind) {
+    Array.prototype.forEach.call($('kinds').children, function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-kind') === kind)); });
+    $('preview').className = 'preview ' + kind;
+    var options = current.products.filter(function (p) { return p.kind === kind; });
+    $('sizes').innerHTML = options.map(function (p) { return '<button class="opt" type="button" data-id="' + esc(p.id) + '">' + esc(p.sizeLabel) + '</button>'; }).join('');
+    Array.prototype.forEach.call($('sizes').children, function (b) {
+      b.addEventListener('click', function () { pickProduct(options.filter(function (p) { return p.id === b.getAttribute('data-id'); })[0]); });
+    });
+    pickProduct(options[0]);
+  }
+
+  function pickProduct(p) {
+    selected = p;
+    Array.prototype.forEach.call($('sizes').children, function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-id') === p.id)); });
+    $('price').textContent = dollars(p.priceCents);
+  }
+
+  if (!STATIC) {
+    $('buy').addEventListener('click', function () {
+      var btn = $('buy');
+      btn.disabled = true; btn.textContent = 'Opening secure checkout…'; $('error').textContent = '';
+      fetch(API + '/api/checkout', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ artworkId: current.id, productId: selected.id })
+      }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d.url) { location.href = res.d.url; return; }
+          throw new Error(res.d.error || 'Checkout is unavailable right now.');
+        })
+        .catch(function (err) {
+          $('error').textContent = err.message && err.message.indexOf('Failed to fetch') === -1 ? err.message : 'Checkout is unavailable right now. Please try again in a minute.';
+          btn.disabled = false; btn.textContent = 'Buy now';
+        });
+    });
+  }
+
+  if (STATIC) {
+    fetch('/shop/catalog.json').then(function (r) { return r.json(); })
+      .then(function (d) { render(d.artworks || []); })
+      .catch(function () { $('status').textContent = 'The shop is taking a short rest. Please try again soon.'; });
+  } else {
+    fetch(API + '/api/catalog').then(function (r) { return r.json(); })
+      .then(function (d) { render(d.artworks || []); })
+      .catch(function () { $('status').textContent = 'The shop is taking a short rest. Please try again soon.'; });
+  }
+})();
+</script>
+</body>
+</html>
