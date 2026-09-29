@@ -460,6 +460,57 @@
       ]
     },
     {
+      "id": "8198fa550b1345ae8060fbe40cab2200",
+      "title": "River Bow",
+      "thumbUrl": "/shop/img/thumbs/8198fa550b1345ae8060fbe40cab2200.jpg",
+      "width": 2480,
+      "height": 3312,
+      "products": [
+        {
+          "id": "poster-8x10",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "8″×10″",
+          "priceCents": 2700
+        },
+        {
+          "id": "poster-12x16",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "12″×16″",
+          "priceCents": 3500
+        },
+        {
+          "id": "poster-16x20",
+          "kind": "poster",
+          "name": "Matte poster",
+          "sizeLabel": "16″×20″",
+          "priceCents": 3600
+        },
+        {
+          "id": "framed-8x10",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "8″×10″",
+          "priceCents": 5500
+        },
+        {
+          "id": "framed-12x16",
+          "kind": "framed",
+          "name": "Framed print, black frame",
+          "sizeLabel": "12″×16″",
+          "priceCents": 6600
+        },
+        {
+          "id": "canvas-16x20",
+          "kind": "canvas",
+          "name": "Stretched canvas",
+          "sizeLabel": "16″×20″",
+          "priceCents": 6300
+        }
+      ]
+    },
+    {
       "id": "21e5d9ef274e4daf965d597bcbeb7f50",
       "title": "First Steps",
       "thumbUrl": "/shop/img/thumbs/21e5d9ef274e4daf965d597bcbeb7f50.jpg",
