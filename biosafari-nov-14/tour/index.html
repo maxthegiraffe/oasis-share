@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tour Primal Moves · The Biohacking Safari</title>
+<meta name="description" content="Walk through Primal Moves before the Biohacking Safari on Saturday, November 14th, 2-8 PM. Every zone, the day hour by hour, and photos from the last Safari.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Oasis">
+<meta property="og:title" content="Tour the Biohacking Safari · Primal Moves">
+<meta property="og:description" content="Every zone of the venue, the day hour by hour, and photos from the last Safari. Saturday, November 14th, 2-8 PM, Marina del Rey.">
+<meta property="og:url" content="https://grateful.gg/biosafari-nov-14/tour/">
+<meta property="og:image" content="https://grateful.gg/biosafari-nov-14/tour/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/biosafari-nov-14/tour/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A 3D cutaway of Primal Moves set up for the Biohacking Safari">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tour the Biohacking Safari · Primal Moves">
+<meta name="twitter:description" content="Every zone of the venue, the day hour by hour, and photos from the last Safari.">
+<meta name="twitter:image" content="https://grateful.gg/biosafari-nov-14/tour/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#13201a; --ink2:#0b1410; --panel:#182a22; --line:rgba(232,194,122,.28);
+    --gold:#e8c27a; --goldl:#fbe8c4; --ivory:#f6f3ea; --muted:#b9c2b7; --pin:#e8c27a;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--ink); color:var(--ivory); font-family:'Jost',system-ui,sans-serif; }
+  body { display:flex; flex-direction:column; min-height:100dvh; }
+  a { color:inherit; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+
+  header { display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:calc(env(safe-area-inset-top) + 12px) 18px 12px; border-bottom:1px solid var(--line); }
+  .brand { min-width:0; }
+  .eyebrow { font-size:11px; letter-spacing:.3em; color:var(--gold); text-transform:uppercase; }
+  h1 { margin:4px 0 0; font-family:'Libre Bodoni',Georgia,serif; font-weight:400; font-size:clamp(20px,3vw,30px); color:var(--goldl); line-height:1.1; }
+  .cta { flex:none; text-decoration:none; background:var(--gold); color:var(--ink); font-weight:500; font-size:14px;
+    padding:10px 18px; border-radius:999px; white-space:nowrap; }
+
+  main { flex:1; display:grid; grid-template-columns:minmax(0,1fr) 380px; min-height:0; }
+  @media (max-width: 900px) { main { grid-template-columns:minmax(0,1fr); } }
+  aside, .card { min-width:0; }
+
+  /* the stage: the cutaway, zoomed by transform */
+  .stage { position:relative; overflow:hidden; background:radial-gradient(120% 90% at 50% 40%, #f3ece0 0%, #e4dccd 100%);
+    min-height:56vh; touch-action:manipulation; }
+  @media (min-width: 901px) { .stage { min-height:0; } }
+  /* phones: a landscape stage, so the wide cutaway and its zooms fit */
+  @media (max-width: 900px) {
+    .stage { min-height:0; height:min(74vw, 58vh); }
+    /* phones scroll like a page: the map, then the card, the timeline stuck to the bottom */
+    html, body { height:auto; } body { min-height:0; }
+    main { display:block; }
+    .card { overflow:visible; }
+    .dock { position:sticky; bottom:0; z-index:5; }
+    .stage { position:sticky; top:0; z-index:4; }
+  }
+  .world { position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;
+    transition:transform 1.1s cubic-bezier(.65,.02,.2,1); }
+  .world img { display:block; width:100%; height:100%; user-select:none; -webkit-user-drag:none; }
+  .pin { position:absolute; transform:translate(-50%,-100%) scale(var(--inv,1)); transform-origin:50% 100%;
+    display:flex; flex-direction:column; align-items:center; background:none; border:0; padding:0;
+    transition:transform 1.1s cubic-bezier(.65,.02,.2,1), opacity .4s; }
+  .pin .tag { background:var(--ink); color:var(--goldl); font-size:13px; letter-spacing:.04em; padding:6px 11px; border-radius:999px;
+    border:1px solid var(--gold); white-space:nowrap; box-shadow:0 6px 18px rgba(0,0,0,.35); display:flex; gap:7px; align-items:center; }
+  .pin .n { width:20px; height:20px; border-radius:50%; background:var(--gold); color:var(--ink); font-size:12px; font-weight:500;
+    display:grid; place-items:center; }
+  .pin .stem { width:2px; height:18px; background:var(--gold); }
+  .pin .dot { width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 5px rgba(232,194,122,.3); }
+  .pin.on .tag { background:var(--gold); color:var(--ink); }
+  .pin.on .n { background:var(--ink); color:var(--gold); }
+  .pin.on .dot { animation:pulse 1.6s ease-out infinite; }
+  @keyframes pulse { 0% { box-shadow:0 0 0 0 rgba(232,194,122,.7); } 100% { box-shadow:0 0 0 18px rgba(232,194,122,0); } }
+  .world.zoomed .pin:not(.on) { opacity:.25; }
+  @media (max-width: 600px) { .pin .tag .lbl { display:none; } .pin .tag { padding:5px; } .pin.on .tag .lbl { display:inline; } }
+
+  .stagebar { position:absolute; left:12px; top:12px; display:flex; gap:8px; z-index:3; }
+  .chip { background:rgba(19,32,26,.88); border:1px solid var(--line); color:var(--goldl); border-radius:999px; padding:7px 13px; font-size:13px; }
+  .chip:hover { border-color:var(--gold); }
+  .hint { position:absolute; right:12px; bottom:12px; z-index:3; font-size:12px; color:#4a4436; background:rgba(255,255,255,.7);
+    padding:5px 10px; border-radius:999px; }
+
+  /* the side panel / bottom sheet */
+  aside { border-left:1px solid var(--line); background:var(--panel); display:flex; flex-direction:column; min-height:0; }
+  @media (max-width: 900px) { aside { border-left:0; border-top:1px solid var(--line); } }
+  .card { padding:20px 20px 8px; overflow:auto; flex:1; }
+  .when { font-size:12px; letter-spacing:.24em; color:var(--gold); text-transform:uppercase; }
+  .card h2 { font-family:'Libre Bodoni',Georgia,serif; font-weight:400; font-size:28px; margin:8px 0 4px; color:var(--goldl); line-height:1.1; }
+  .zone { font-size:13px; color:var(--muted); letter-spacing:.06em; }
+  .card p { font-weight:300; line-height:1.6; margin:12px 0; }
+  .note { font-size:12px; color:var(--muted); font-style:italic; }
+  .here { list-style:none; padding:0; margin:10px 0 0; display:grid; gap:6px; }
+  .here li { font-size:14px; font-weight:300; padding-left:18px; position:relative; }
+  .here li::before { content:''; position:absolute; left:2px; top:.6em; width:7px; height:7px; border-radius:50%; background:var(--gold); }
+  .photos { display:flex; gap:8px; overflow-x:auto; padding:14px 0 6px; scroll-snap-type:x mandatory; }
+  .photos img { height:150px; width:auto; border-radius:10px; flex:none; scroll-snap-align:start; cursor:zoom-in; background:#0e1813; }
+  .phcap { font-size:11px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-top:14px; }
+
+  /* the day: timeline dock */
+  .dock { border-top:1px solid var(--line); padding:12px 20px calc(env(safe-area-inset-bottom) + 14px); background:var(--ink2); }
+  .dockrow { display:flex; align-items:center; gap:10px; }
+  .play { flex:none; width:42px; height:42px; border-radius:50%; background:var(--gold); color:var(--ink); border:0; display:grid; place-items:center; }
+  .play svg { width:16px; height:16px; }
+  .nav { flex:none; width:34px; height:34px; border-radius:50%; background:transparent; border:1px solid var(--line); color:var(--goldl); }
+  .clock { font-family:'Libre Bodoni',Georgia,serif; font-size:22px; color:var(--goldl); min-width:92px; text-align:right; }
+  .track { position:relative; margin-top:12px; height:44px; }
+  .segs { position:absolute; left:0; right:0; top:0; height:10px; display:flex; border-radius:6px; overflow:hidden; }
+  .seg { height:100%; }
+  .ticks { position:absolute; left:0; right:0; top:14px; height:30px; font-size:11px; color:var(--muted); }
+  .ticks span { position:absolute; transform:translateX(-50%); white-space:nowrap; }
+  .ticks span:first-child { transform:none; } .ticks span:last-child { transform:translateX(-100%); }
+  input[type=range] { position:absolute; left:0; right:0; top:-7px; width:100%; margin:0; background:transparent; -webkit-appearance:none; appearance:none; height:24px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--goldl); border:3px solid var(--ink); box-shadow:0 0 0 2px var(--gold); }
+  input[type=range]::-moz-range-thumb { width:18px; height:18px; border-radius:50%; background:var(--goldl); border:3px solid var(--ink); box-shadow:0 0 0 2px var(--gold); }
+  input[type=range]::-webkit-slider-runnable-track { background:transparent; }
+  .legend { display:flex; flex-wrap:wrap; gap:10px 14px; margin-top:4px; font-size:11px; color:var(--muted); }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+
+  .facts { padding:0 20px 18px; font-size:13px; color:var(--muted); line-height:1.6; }
+  .facts b { color:var(--goldl); font-weight:500; }
+
+  /* lightbox */
+  .lb { position:fixed; inset:0; background:rgba(5,9,7,.94); display:none; align-items:center; justify-content:center; z-index:50; padding:20px; }
+  .lb.on { display:flex; }
+  .lb img { max-width:100%; max-height:100%; border-radius:12px; }
+  .lb button { position:absolute; top:calc(env(safe-area-inset-top) + 14px); right:16px; background:var(--gold); color:var(--ink); border:0; border-radius:999px; padding:8px 14px; }
+  @media (prefers-reduced-motion: reduce) { .world, .pin { transition:none; } .pin.on .dot { animation:none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="eyebrow">Saturday, November 14th · 2-8 PM</div>
+    <h1>Tour the Biohacking Safari</h1>
+  </div>
+  <a class="cta" href="https://app.grateful.gg/biosafari-nov-14">Get your ticket</a>
+</header>
+
+<main>
+  <section class="stage" id="stage" aria-label="3D cutaway of Primal Moves">
+    <div class="world" id="world">
+      <img id="cut" src="img/cutaway-sm.jpg" alt="A 3D cutaway of Primal Moves set up for the Biohacking Safari: the stage and lounge on a terracotta rug, a sauna and cold plunges, brand booths, a café, healing rooms and a mezzanine tea lounge." width="1400" height="788">
+    </div>
+    <div class="stagebar">
+      <button class="chip" id="overview">Whole venue</button>
+    </div>
+    <div class="hint" id="hint">Tap a zone, or press play to tour the day</div>
+  </section>
+
+  <aside>
+    <div class="card" id="card" aria-live="polite"></div>
+    <div class="facts">
+      <b>Primal Moves</b> · 1038 Princeton Dr, Suite B, Marina del Rey ·
+      <a href="https://maps.google.com/?q=1038+Princeton+Dr+Suite+B+Marina+del+Rey+CA+90292" target="_blank" rel="noopener">Map</a><br>
+      About 10,000 square feet on two levels, in the red-brick warehouse that was Shelby American's first Cobra factory.
+    </div>
+  </aside>
+</main>
+
+<div class="dock">
+  <div class="dockrow">
+    <button class="play" id="play" aria-label="Play the day"><svg viewBox="0 0 16 16"><path id="playicon" d="M3 1.5v13l11-6.5z" fill="currentColor"/></svg></button>
+    <button class="nav" id="prev" aria-label="Previous stop">‹</button>
+    <button class="nav" id="next" aria-label="Next stop">›</button>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="nowline"></div>
+    </div>
+    <div class="clock" id="clock">2:00 PM</div>
+  </div>
+  <div class="track">
+    <div class="segs" id="segs"></div>
+    <input type="range" id="scrub" min="0" max="360" step="5" value="0" aria-label="Time of day">
+    <div class="ticks" id="ticks"></div>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="lb" id="lb"><img id="lbimg" alt=""><button id="lbx">Close</button></div>
+
+<script>
+// ---- the venue -----------------------------------------------------------
+// Positions are percentages of the cutaway image (img/cutaway.jpg), read off a
+// grid overlay. `box` is the part of the image a zone zooms to.
+const ZONES = {
+  basecamp: { name: 'Basecamp', sub: 'Entrance, check-in & the Airstream',
+    pin: [33, 83], box: [14, 62, 52, 99],
+    text: 'Come in through the glass garage door at the front of the warehouse. Check in at the welcome table, then look around: the whole floor opens up in front of you.',
+    here: ['Check-in by the garage door', 'The Airstream, parked inside', 'Your first hellos of the day'],
+    photos: ['g01', 'g07', 'g14', 'g16', 'g25'] },
+  savanna: { name: 'The Savanna', sub: 'Main stage & the big rug',
+    pin: [36, 50], box: [18, 30, 74, 74],
+    text: 'The heart of the room: the stage of blue velvet sofas under the brick wall and high factory windows, and a huge terracotta rug of couches and bean bags facing it. Partner stretch starts here, and the ten talks happen here.',
+    here: ['The stage, against the brick wall', 'Couches and bean bags on the rug', 'Ten talks during the focused hour'],
+    photos: ['g28', 'g22', 'g24', 'g02', 'g04', 'g05', 'g23', 'g26', 'g12'] },
+  hole: { name: 'The Watering Hole', sub: 'Sauna, cold plunge & the rig',
+    pin: [13, 55], box: [0, 38, 32, 80],
+    text: 'Contrast therapy in the far corner: the barrel sauna and the cold plunges, right next to the training rig and rings. Go hot, go cold, hang around.',
+    here: ['Barrel sauna', 'Cold plunges', 'Training rig and gymnastic rings'],
+    photos: ['g30', 'g06'] },
+  acacia: { name: 'Acacia Grove', sub: 'Scans, IVs & the brands',
+    pin: [50, 33], box: [34, 16, 68, 50],
+    text: 'Booths along the back wall under the windows: scans, IVs, peptides and the brands worth meeting. Scan slots are capped, so book early if you want one.',
+    here: ['Health scans', 'IVs and injections', 'Biohacking brands'],
+    photos: ['g09', 'g27', 'g29', 'g19', 'g11', 'g18'] },
+  elixir: { name: 'Elixir Bar & Giraffeteria', sub: 'Drinks & bites',
+    pin: [72, 35], box: [58, 18, 84, 52],
+    text: 'Under the mezzanine: elixirs, functional drinks and something to eat. Refuel, then head back out.',
+    here: ['Functional drinks and elixirs', 'The Giraffeteria', 'A place to sit and talk'],
+    photos: ['g20', 'g21'] },
+  oasis: { name: 'The Oasis', sub: 'Healing rooms',
+    pin: [74, 60], box: [44, 38, 98, 90],
+    text: 'A row of private healing rooms along the side of the floor: bodywork, cupping, energy work and quiet. Step out of the crowd for a while.',
+    here: ['Bodywork and cupping', 'Energy healing', 'Quiet rooms to land'],
+    photos: ['g08', 'g10', 'g03', 'g15'] },
+  canopy: { name: 'The Tea Lounge', sub: 'Upstairs on the balcony',
+    pin: [80, 22], box: [64, 4, 100, 42],
+    text: 'Up the black steel stairs, a lounge on the balcony looking over the whole floor. Tea, cushions, and the best view of the day.',
+    here: ['Up the steel staircase', 'Floor cushions and tea', 'A view over everything'],
+    photos: ['g13', 'g17'] },
+};
+
+// ---- the day ---------------------------------------------------------------
+// The published schedule, and during free flow a suggested route (marked as
+// such). Minutes are from 2:00 PM.
+const PHASES = [
+  { from: 0, to: 60, name: 'Partner Stretch', color: '#8fb07a' },
+  { from: 60, to: 120, name: 'Free Flow', color: '#e8c27a' },
+  { from: 120, to: 180, name: 'The Focused Hour', color: '#e07a5f' },
+  { from: 180, to: 355, name: 'Free Flow', color: '#e8c27a' },
+  { from: 355, to: 360, name: 'Wind Down', color: '#9aa5c9' },
+];
+const STEPS = [
+  { t: -1, zone: null, title: 'Welcome to Primal Moves', text: 'The Biohacking Safari takes over the whole warehouse for an afternoon. Tap any zone, or press play and the tour will walk you through the day.' },
+  { t: 0, zone: 'basecamp', title: 'Arrive at Basecamp', text: 'Check in at the garage door and find your way in.' },
+  { t: 0, zone: 'savanna', title: 'Partner Stretch', text: 'We open together on the rug with a partner stretch. Loosen up and meet the people around you.' },
+  { t: 60, zone: 'hole', title: 'Free Flow: take the plunge', text: 'Every zone is open. A good first stop: sauna, then the cold plunge.', suggested: true },
+  { t: 80, zone: 'acacia', title: 'Free Flow: get scanned', text: 'Walk the booths along the back wall. Book a scan if you want one.', suggested: true },
+  { t: 100, zone: 'elixir', title: 'Free Flow: refuel', text: 'An elixir and a bite before the talks.', suggested: true },
+  { t: 120, zone: 'savanna', title: 'The Focused Hour', text: 'Ten talks, five minutes each, on the Savanna stage. Every activation pauses, so the whole room is here.' },
+  { t: 180, zone: 'oasis', title: 'Free Flow: the healing rooms', text: 'The zones reopen. Book a session in one of the healing rooms.', suggested: true },
+  { t: 230, zone: 'canopy', title: 'Free Flow: the tea lounge', text: 'Head up the stairs for tea and the view from the balcony.', suggested: true },
+  { t: 280, zone: 'hole', title: 'Free Flow: one more round', text: 'Hot, cold, repeat. Or back to the rug for more conversation.', suggested: true },
+  { t: 355, zone: 'savanna', title: 'Wind Down', text: 'Last plunge, last hug. We close the day together at 8.' },
+];
+const clockOf = (m) => { const h = 2 + Math.floor(m / 60), mm = m % 60; return `${h}:${String(mm).padStart(2, '0')} PM`; };
+
+// ---- layout & camera -------------------------------------------------------
+const stage = document.getElementById('stage'), world = document.getElementById('world'), cut = document.getElementById('cut');
+const AR = 1400 / 788;
+let cam = null; // current zone key or null
+function fit() {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  // the whole cutaway fits the stage (contain), centered
+  let w = W, h = W / AR;
+  if (h > H) { h = H; w = H * AR; }
+  return { W, H, w, h, x: (W - w) / 2, y: (H - h) / 2 };
+}
+function apply() {
+  const f = fit();
+  world.style.width = f.w + 'px'; world.style.height = f.h + 'px';
+  let s = 1, tx = f.x, ty = f.y;
+  if (cam && ZONES[cam]) {
+    const [x0, y0, x1, y1] = ZONES[cam].box.map((v) => v / 100);
+    const bw = (x1 - x0) * f.w, bh = (y1 - y0) * f.h;
+    s = Math.min(f.W / bw, f.H / bh) * 0.96;
+    s = Math.max(1, Math.min(s, 4));
+    const cx = ((x0 + x1) / 2) * f.w, cy = ((y0 + y1) / 2) * f.h;
+    tx = f.W / 2 - cx * s; ty = f.H / 2 - cy * s;
+    // keep the picture filling the stage where it can
+    const sw = f.w * s, sh = f.h * s;
+    tx = sw > f.W ? Math.min(0, Math.max(f.W - sw, tx)) : (f.W - sw) / 2;
+    ty = sh > f.H ? Math.min(0, Math.max(f.H - sh, ty)) : (f.H - sh) / 2;
+  }
+  world.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
+  world.style.setProperty('--inv', (1 / s).toFixed(4));
+  world.classList.toggle('zoomed', !!cam);
+}
+window.addEventListener('resize', apply);
+if (window.ResizeObserver) new ResizeObserver(apply).observe(stage);
+
+// pins
+const order = Object.keys(ZONES);
+order.forEach((k, i) => {
+  const z = ZONES[k];
+  const b = document.createElement('button');
+  b.className = 'pin'; b.dataset.zone = k;
+  b.style.left = z.pin[0] + '%'; b.style.top = z.pin[1] + '%';
+  b.setAttribute('aria-label', z.name);
+  b.innerHTML = `<span class="tag"><span class="n">${i + 1}</span><span class="lbl">${z.name}</span></span><span class="stem"></span><span class="dot"></span>`;
+  b.addEventListener('click', (e) => { e.stopPropagation(); stop(); showZone(k); });
+  world.appendChild(b);
+});
+
+// ---- the card ----------------------------------------------------------------
+const card = document.getElementById('card');
+function photosHTML(z) {
+  return `<div class="phcap">From the last Safari at Primal Moves</div><div class="photos">${z.photos.map((p) =>
+    `<img src="img/${p}.jpg" alt="${z.name} at the last Biohacking Safari" loading="lazy" data-full="img/${p}.jpg">`).join('')}</div>`;
+}
+function render(step) {
+  const z = step.zone ? ZONES[step.zone] : null;
+  const when = step.t < 0 ? 'The venue' : clockOf(step.t);
+  card.innerHTML = `
+    <div class="when">${when}${step.suggested ? ' · suggested route' : ''}</div>
+    <h2>${step.title}</h2>
+    ${z ? `<div class="zone">${z.name} · ${z.sub}</div>` : '<div class="zone">Primal Moves · Marina del Rey</div>'}
+    <p>${step.text}</p>
+    ${z ? `<p style="margin-top:0">${z.text}</p><ul class="here">${z.here.map((h) => `<li>${h}</li>`).join('')}</ul>${photosHTML(z)}` : overviewHTML()}
+    ${step.suggested ? '<p class="note">Free flow means every zone is open. This is one good way through it, not a set program.</p>' : ''}`;
+  card.scrollTop = 0;
+}
+function overviewHTML() {
+  return `<ul class="here">${order.map((k, i) => `<li><a href="#${k}" data-go="${k}">${i + 1}. ${ZONES[k].name}</a>: ${ZONES[k].sub}</li>`).join('')}</ul>`;
+}
+card.addEventListener('click', (e) => {
+  const a = e.target.closest('[data-go]');
+  if (a) { e.preventDefault(); stop(); showZone(a.dataset.go); return; }
+  const img = e.target.closest('img[data-full]');
+  if (img) { lbimg.src = img.dataset.full; lbimg.alt = img.alt; lb.classList.add('on'); }
+});
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+lb.addEventListener('click', () => lb.classList.remove('on'));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { if (lb.classList.contains('on')) lb.classList.remove('on'); else { stop(); go(0); } }
+  if (e.key === 'ArrowRight') { stop(); go(Math.min(idx + 1, STEPS.length - 1)); }
+  if (e.key === 'ArrowLeft') { stop(); go(Math.max(idx - 1, 0)); }
+});
+
+// ---- state -------------------------------------------------------------------
+let idx = 0;
+const scrub = document.getElementById('scrub'), clock = document.getElementById('clock'), nowline = document.getElementById('nowline');
+function markPins(k) { world.querySelectorAll('.pin').forEach((p) => p.classList.toggle('on', p.dataset.zone === k)); }
+function phaseAt(m) { return PHASES.find((p) => m >= p.from && m < p.to) || PHASES[PHASES.length - 1]; }
+function go(i) {
+  idx = i;
+  const s = STEPS[i];
+  cam = s.zone; apply(); markPins(s.zone); render(s);
+  const m = Math.max(0, s.t);
+  scrub.value = m; clock.textContent = s.t < 0 ? 'Overview' : clockOf(m);
+  nowline.textContent = s.t < 0 ? 'Press play to tour the day' : `${phaseAt(m).name}${s.zone ? ' · ' + ZONES[s.zone].name : ''}`;
+  history.replaceState(null, '', s.zone ? `#${s.zone}` : location.pathname);
+  document.getElementById('hint').style.display = i ? 'none' : '';
+}
+function showZone(k) {
+  // a tapped zone shows its first moment in the day, or just the zone
+  const i = STEPS.findIndex((s) => s.zone === k);
+  if (i >= 0) return go(i);
+  cam = k; apply(); markPins(k);
+}
+// scrubbing the clock moves to the last step at or before that time
+scrub.addEventListener('input', () => {
+  stop();
+  const m = +scrub.value;
+  let i = 1;
+  STEPS.forEach((s, j) => { if (s.t >= 0 && s.t <= m) i = j; });
+  if (i !== idx) go(i);
+  scrub.value = m; clock.textContent = clockOf(m);
+  nowline.textContent = `${phaseAt(m).name}${STEPS[idx].zone ? ' · ' + ZONES[STEPS[idx].zone].name : ''}`;
+});
+document.getElementById('overview').addEventListener('click', () => { stop(); go(0); });
+document.getElementById('prev').addEventListener('click', () => { stop(); go(Math.max(idx - 1, 0)); });
+document.getElementById('next').addEventListener('click', () => { stop(); go(Math.min(idx + 1, STEPS.length - 1)); });
+stage.addEventListener('click', () => { if (cam) { stop(); go(0); } });
+
+// play: walk the day, one stop every few seconds
+let timer = null;
+const playBtn = document.getElementById('play'), icon = document.getElementById('playicon');
+function stop() { if (timer) { clearInterval(timer); timer = null; } icon.setAttribute('d', 'M3 1.5v13l11-6.5z'); playBtn.setAttribute('aria-label', 'Play the day'); }
+function play() {
+  if (idx >= STEPS.length - 1) go(0);
+  icon.setAttribute('d', 'M3 1.5h3.5v13H3zM9.5 1.5H13v13H9.5z'); playBtn.setAttribute('aria-label', 'Pause');
+  go(idx + 1);
+  timer = setInterval(() => { if (idx >= STEPS.length - 1) return stop(); go(idx + 1); }, 5200);
+}
+playBtn.addEventListener('click', () => (timer ? stop() : play()));
+
+// timeline chrome
+const segs = document.getElementById('segs'), ticks = document.getElementById('ticks'), legend = document.getElementById('legend');
+PHASES.forEach((p) => { const d = document.createElement('div'); d.className = 'seg'; d.style.width = ((p.to - p.from) / 360 * 100) + '%'; d.style.background = p.color; d.title = p.name; segs.appendChild(d); });
+[0, 60, 120, 180, 240, 300, 360].forEach((m) => { const s = document.createElement('span'); s.style.left = (m / 360 * 100) + '%'; s.textContent = clockOf(m).replace(':00', '').replace(' PM', m === 360 ? ' PM' : ''); ticks.appendChild(s); });
+[...new Map(PHASES.map((p) => [p.name, p])).values()].forEach((p) => { const s = document.createElement('span'); s.innerHTML = `<i style="background:${p.color}"></i>${p.name}`; legend.appendChild(s); });
+
+// upgrade to the sharp cutaway once the page is up
+const big = new Image();
+big.onload = () => { cut.src = big.src; };
+big.src = window.innerWidth > 700 ? 'img/cutaway.jpg' : 'img/cutaway-sm.jpg';
+
+// deep link: #zone
+const start = location.hash.slice(1);
+if (ZONES[start]) showZone(start); else go(0);
+cut.addEventListener('load', apply);
+apply();
+</script>
+</body>
+</html>
