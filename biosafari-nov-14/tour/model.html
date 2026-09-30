@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primal Moves model</title>
+<meta name="robots" content="noindex">
+<style>html,body{margin:0;height:100%;background:#f3ede3;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+<script type="module">
+// A plain view of the venue model, for checking it against the plan and for
+// the snapshot the photoreal render is made from. ?cam=<zone> frames a zone.
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { buildVenue, lights, ANCHORS, OVERVIEW } from './venue.js';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#f3ede3');
+const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 1, 2000);
+buildVenue(scene); lights(scene);
+const q = new URLSearchParams(location.search);
+const v = ANCHORS[q.get('cam')] || OVERVIEW;
+camera.position.set(...v.eye);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(...v.look); controls.update();
+addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+window.__ready = true;
+</script>
+</body>
+</html>
