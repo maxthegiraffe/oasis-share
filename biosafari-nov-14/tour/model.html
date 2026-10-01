@@ -14,7 +14,7 @@
 // the snapshot the photoreal render is made from. ?cam=<zone> frames a zone.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { buildVenue, lights, ANCHORS, OVERVIEW } from './venue.js';
+import { buildVenue, lights, ANCHORS, OVERVIEW, FOV } from './venue.js';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -25,10 +25,12 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#f3ede3');
-const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 1, 2000);
-buildVenue(scene); lights(scene);
+const camera = new THREE.PerspectiveCamera(FOV, innerWidth / innerHeight, 1, 2000);
+const venue = buildVenue(scene); lights(scene);
 const q = new URLSearchParams(location.search);
 const v = ANCHORS[q.get('cam')] || OVERVIEW;
+// the watering hole is seen through the back wall, as a cutaway
+if (q.get('cam') === 'hole') venue.userData.backWall.visible = false;
 camera.position.set(...v.eye);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.set(...v.look); controls.update();

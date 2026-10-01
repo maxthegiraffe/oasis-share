@@ -67,10 +67,11 @@
   .chip:hover, .chip.on { border-color:var(--gold); }
   .chip.on { background:var(--gold); color:var(--ink); }
   .hint { position:absolute; right:12px; bottom:12px; z-index:3; font-size:12px; color:#4a4436; background:rgba(255,255,255,.75); padding:5px 10px; border-radius:999px; }
-  .render { position:absolute; inset:0; display:none; background:#f3ede3; z-index:2; }
-  .render.on { display:block; }
-  .render img { width:100%; height:100%; object-fit:contain; }
-  .render .cap { position:absolute; left:12px; bottom:12px; font-size:12px; color:#4a4436; background:rgba(255,255,255,.75); padding:5px 10px; border-radius:999px; }
+  /* photo mode: one photoreal view per stop, made from the model at that camera */
+  .photo { position:absolute; inset:0; overflow:hidden; z-index:1; background:#f3ede3; }
+  .photo img { position:absolute; opacity:0; transform:scale(1.04); transition:opacity .9s ease, transform 1.8s cubic-bezier(.2,.7,.2,1); }
+  .photo img.on { opacity:1; transform:scale(1); }
+  .labels { z-index:2; }
 
   aside { border-left:1px solid var(--line); background:var(--panel); display:flex; flex-direction:column; min-height:0; }
   .card { padding:20px 20px 8px; overflow:auto; flex:1; min-width:0; }
@@ -134,13 +135,13 @@
 <main>
   <section class="stage" id="stage" aria-label="3D model of Primal Moves">
     <div class="labels" id="labels"></div>
-    <div class="render" id="render"><img src="img/render-sm.jpg" alt="An illustrated render of the same venue model" id="renderimg"><span class="cap">Illustration made from the model</span></div>
+    <div class="photo" id="photo" role="img" aria-label="Photoreal views of Primal Moves set up for the Safari"></div>
     <div class="stagebar">
       <button class="chip" id="overview">Whole venue</button>
+      <button class="chip" id="viewphoto">Photo</button>
       <button class="chip" id="view3d">3D model</button>
-      <button class="chip" id="viewimg">Illustration</button>
     </div>
-    <div class="hint" id="hint">Drag to look around · tap a zone · or press play</div>
+    <div class="hint" id="hint">Tap a zone, or press play · 3D model to look around</div>
   </section>
 
   <aside>
@@ -174,7 +175,7 @@
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { buildVenue, lights, ANCHORS, OVERVIEW } from './venue.js';
+import { buildVenue, lights, ANCHORS, OVERVIEW, FOV, CROPS } from './venue.js';
 
 // ---- the zones --------------------------------------------------------------
 // Where things are comes from the venue model (venue.js). Photos are from the
@@ -217,7 +218,7 @@ const PHASES = [
   { from: 355, to: 360, name: 'Wind Down', color: '#9aa5c9' },
 ];
 const STEPS = [
-  { t: -1, zone: null, title: 'Welcome to Primal Moves', text: 'This is the venue as it will be set on November 14th. Drag to look around, tap a zone, or press play and the tour walks you through the day.' },
+  { t: -1, zone: null, title: 'Welcome to Primal Moves', text: 'This is the venue as it will be set on November 14th. Tap a zone, or press play and the tour walks you through the day. Switch to the 3D model to look around yourself.' },
   { t: 0, zone: 'basecamp', title: 'Arrive at Basecamp', text: 'Check in at the front and grab a drink by the entrance.' },
   { t: 0, zone: 'savanna', title: 'Partner Stretch', text: 'We open together on the rug with a partner stretch.' },
   { t: 60, zone: 'hole', title: 'Free Flow: take the plunge', text: 'Every zone is open. A good first stop: the sauna, then out back to the cold plunges.', suggested: true },
@@ -239,7 +240,7 @@ renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadow
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 stage.prepend(renderer.domElement);
 const scene = new THREE.Scene(); scene.background = new THREE.Color('#f3ede3');
-const camera = new THREE.PerspectiveCamera(32, 1, 1, 2000);
+const camera = new THREE.PerspectiveCamera(FOV, 1, 1, 2000);
 const venue = buildVenue(scene); lights(scene);
 const backWall = venue.userData.backWall;
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -260,6 +261,7 @@ controls.addEventListener('start', () => { flight = null; });
 function resize() {
   const w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  layoutPhotos(); if (mode === 'photo') placePinsPhoto();
 }
 new ResizeObserver(resize).observe(stage);
 
@@ -282,6 +284,46 @@ function placePins() {
     pin.el.style.left = ((v.x + 1) / 2 * w) + 'px'; pin.el.style.top = ((1 - v.y) / 2 * h) + 'px';
   }
 }
+// ---- photo mode ----------------------------------------------------------------
+// Each view is a photoreal render of the model from that exact camera, so the
+// pins are projected with the same camera (same FOV, 16:9) and land true.
+const VIEWS = ['overview', ...order];
+const photo = document.getElementById('photo');
+const SMALL = innerWidth <= 700;
+const imgs = {};
+VIEWS.forEach((k) => { const im = document.createElement('img'); im.alt = ''; im.decoding = 'async'; im.dataset.k = k; photo.appendChild(im); imgs[k] = im; });
+const loadImg = (k) => { if (!imgs[k].src) imgs[k].src = `img/view-${k}${SMALL ? '-sm' : ''}.jpg`; };
+let mode = 'photo', curView = 'overview';
+const pcam = new THREE.PerspectiveCamera(FOV, 16 / 9, 1, 2000);
+function photoFrame() {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  let w = W, h = W * 9 / 16;
+  if (h < H) { h = H; w = H * 16 / 9; }
+  return { x: (W - w) / 2, y: (H - h) / 2, w, h, W, H };
+}
+function layoutPhotos() {
+  const f = photoFrame();
+  for (const im of Object.values(imgs)) Object.assign(im.style, { left: f.x + 'px', top: f.y + 'px', width: f.w + 'px', height: f.h + 'px' });
+}
+function placePinsPhoto() {
+  const vw = curView === 'overview' ? OVERVIEW : ANCHORS[curView];
+  pcam.position.set(...vw.eye); pcam.lookAt(...vw.look); pcam.updateMatrixWorld(); pcam.updateProjectionMatrix();
+  const f = photoFrame();
+  for (const pin of pins) {
+    v.copy(pin.p).project(pcam);
+    const cr = CROPS[curView] || { x: 0, y: 0, w: 1 };
+    const nx = ((v.x + 1) / 2 - cr.x) / cr.w, ny = ((1 - v.y) / 2 - cr.y) / cr.w;
+    const x = f.x + nx * f.w, y = f.y + ny * f.h;
+    const vis = v.z < 1 && x > 10 && x < f.W - 10 && y > 40 && y < f.H - 4;
+    pin.el.style.display = vis ? '' : 'none';
+    pin.el.style.left = x + 'px'; pin.el.style.top = y + 'px';
+  }
+}
+function showPhoto(k) {
+  curView = k; loadImg(k);
+  for (const [key, im] of Object.entries(imgs)) im.classList.toggle('on', key === k);
+  placePinsPhoto();
+}
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 renderer.setAnimationLoop((now) => {
   // the back wall turns to glass while looking at the watering hole from the yard
@@ -294,6 +336,7 @@ renderer.setAnimationLoop((now) => {
     controls.target.lerpVectors(flight.from.look, flight.to.look, e);
     if (t >= 1) flight = null;
   }
+  if (mode !== '3d') return;
   controls.update();
   renderer.render(scene, camera);
   placePins();
@@ -336,8 +379,8 @@ const phaseAt = (m) => PHASES.find((p) => m >= p.from && m < p.to) || PHASES[PHA
 function go(i, instant) {
   idx = i;
   const s = STEPS[i];
-  setView('3d');
-  frame(s.zone ? ANCHORS[s.zone] : OVERVIEW, instant);
+  if (mode === 'photo') showPhoto(s.zone || 'overview');
+  else frame(s.zone ? ANCHORS[s.zone] : OVERVIEW, instant);
   pins.forEach((p) => p.el.classList.toggle('on', p.el.dataset.zone === s.zone));
   labels.classList.toggle('focus', !!s.zone);
   render(s);
@@ -366,14 +409,19 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') { stop(); go(Math.max(idx - 1, 0)); }
 });
 
-// 3D model or the illustration
-const renderBox = document.getElementById('render'), b3d = document.getElementById('view3d'), bimg = document.getElementById('viewimg');
-function setView(which) {
-  renderBox.classList.toggle('on', which === 'img'); b3d.classList.toggle('on', which === '3d'); bimg.classList.toggle('on', which === 'img');
-  labels.style.display = which === 'img' ? 'none' : '';
+// photo views or the live 3D model
+const bph = document.getElementById('viewphoto'), b3d = document.getElementById('view3d');
+function setMode(m) {
+  mode = m;
+  photo.style.display = m === 'photo' ? '' : 'none';
+  renderer.domElement.style.visibility = m === '3d' ? 'visible' : 'hidden';
+  bph.classList.toggle('on', m === 'photo'); b3d.classList.toggle('on', m === '3d');
+  const s = STEPS[idx];
+  if (m === '3d') { resize(); frame(s && s.zone ? ANCHORS[s.zone] : OVERVIEW, true); }
+  else showPhoto(s && s.zone ? s.zone : 'overview');
 }
-b3d.addEventListener('click', () => setView('3d'));
-bimg.addEventListener('click', () => { stop(); setView('img'); const big = document.getElementById('renderimg'); if (innerWidth > 700) big.src = 'img/render.jpg'; });
+bph.addEventListener('click', () => setMode('photo'));
+b3d.addEventListener('click', () => { stop(); setMode('3d'); });
 
 // play: walk the day
 let timer = null;
@@ -394,6 +442,9 @@ PHASES.forEach((p) => { const d = document.createElement('div'); d.style.width =
 [...new Map(PHASES.map((p) => [p.name, p])).values()].forEach((p) => { const s = document.createElement('span'); s.innerHTML = `<i style="background:${p.color}"></i>${p.name}`; legend.appendChild(s); });
 
 resize();
+setMode('photo');
+loadImg('overview');
+imgs.overview.addEventListener('load', () => VIEWS.forEach(loadImg), { once: true });
 const start = location.hash.slice(1);
 if (ZONES[start]) { go(0, true); showZone(start); } else go(0, true);
 window.__tour = { go, ZONES };

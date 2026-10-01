@@ -23,11 +23,16 @@ export const ANCHORS = {
   basecamp: { at: [40, 4, 98], eye: [84, 58, 160], look: [34, 0, 92] },
   savanna: { at: [26, 5, 56], eye: [82, 60, 110], look: [24, 0, 54] },
   acacia: { at: [24, 6, 12], eye: [70, 56, 66], look: [22, 0, 16] },
-  hole: { at: [12, 8, 2], eye: [20, 64, -64], look: [16, 0, 0] },
+  hole: { at: [20, 9, -2], eye: [66, 64, 62], look: [16, 0, -2] },
   oasis: { at: [56, 20, 40], eye: [128, 74, 72], look: [54, 11, 40] },
   tea: { at: [56, 20, 84], eye: [124, 70, 124], look: [54, 11, 80] },
 };
-export const OVERVIEW = { eye: [118, 104, 176], look: [30, 2, 50] };
+export const FOV = 32;
+// The photo for a view can be a crop of its camera frame (x, y from the
+// top-left, w the share of the width; 16:9 like the frame), so the
+// image model had less empty floor to invent things on.
+export const CROPS = { hole: { x: 0.22, y: 0.08, w: 0.62 } };
+export const OVERVIEW = { eye: [104, 94, 162], look: [33, 2, 59] };
 
 // ---- materials ------------------------------------------------------------
 function canvasTex(w, h, draw, repeat) {
