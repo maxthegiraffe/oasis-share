@@ -1,4 +1,4 @@
-// Sanctuary Fund · 132 Brooks Ave rent model. No sale is assumed: investors hold the building
+// Grateful Space Group · 132 Brooks Ave rent model. No sale is assumed: investors hold the building
 // and are paid from a triple-net master lease to Grateful Giraffes, the operator.
 // Shared by the page (inlined) and node tests: `node model.js` prints both price scenarios.
 const BROOKS = {
