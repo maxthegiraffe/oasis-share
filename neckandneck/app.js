@@ -36,7 +36,7 @@ function show(id) { for (const v of document.querySelectorAll('.view')) v.hidden
 function badge(el) {
   if (el.querySelector('video')) return;
   const v = document.createElement('video');
-  Object.assign(v, { src: 'gigi/clips/idle.mp4?v=cd15b7ce7a', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
+  Object.assign(v, { src: 'gigi/clips/idle.mp4?v=2f6b62584c', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
   v.setAttribute('playsinline', '');
   v.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:50% 18%;transform:scale(1.35);transform-origin:50% 22%';
   el.appendChild(v);
@@ -267,7 +267,7 @@ function render() {
     text.textContent = { welcome: 'Welcome', done: 'Thank you', between: mode === 'gratitude' ? '' : 'Breathe naturally' }[ph] ?? 'Waiting for everyone';
     sub.textContent = ph === 'waiting' && size > 1 ? `${count} of ${size} here` : '';
   }
-  $('promptStrip').hidden = !gratitudePhase;
+  $('promptStrip').hidden = !gratitudePhase || size === 1;   // 1-on-1 shows the prompt on Gigi's tile
   $('promptStrip').textContent = gratitudePhase ? st.prompt_text : '';
 
   const gigiOff = st.gigi === 'off';
