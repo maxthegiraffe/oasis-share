@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#16133a">
+  <title>Neck and Neck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="gigi/base.webp">
+</head>
+<body>
+  <main id="app">
+    <section class="stage">
+      <div id="gigi" class="gigi-frame"></div>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section id="join" class="panel join">
+      <h1>Neck and Neck</h1>
+      <p class="lede">A gratitude practice for two, held by Gigi.</p>
+      <label class="field">
+        <span>Your first name</span>
+        <input id="name" autocomplete="given-name" maxlength="40" placeholder="e.g. Max">
+      </label>
+      <button id="go" class="primary">Begin</button>
+      <p class="fine">Audio first. Your camera stays off unless you turn it on. Gigi listens so she knows when to speak; nothing is recorded.</p>
+      <p id="joinError" class="error" hidden></p>
+    </section>
+
+    <section id="call" class="panel call" hidden>
+      <div id="invite" class="invite" hidden>
+        <p>Send this link to your partner:</p>
+        <div class="invite-row">
+          <input id="inviteLink" readonly>
+          <button id="copy">Copy</button>
+        </div>
+      </div>
+
+      <article id="promptCard" class="prompt" hidden>
+        <p id="promptMeta" class="meta"></p>
+        <p id="promptText" class="text"></p>
+      </article>
+
+      <div id="turn" class="turn" hidden>
+        <svg class="ring" viewBox="0 0 44 44" aria-hidden="true">
+          <circle cx="22" cy="22" r="19" class="track"/>
+          <circle cx="22" cy="22" r="19" class="fill" id="ringFill"/>
+        </svg>
+        <p id="turnText"></p>
+        <button id="done" class="primary small" hidden>I'm done</button>
+      </div>
+
+      <div class="people">
+        <figure id="tileMe" class="tile"><div class="face"><video playsinline muted></video><span class="initial"></span></div><figcaption></figcaption></figure>
+        <figure id="tileThem" class="tile empty"><div class="face"><video playsinline></video><span class="initial">?</span></div><figcaption>Waiting…</figcaption></figure>
+      </div>
+
+      <nav class="controls">
+        <button id="mic" class="ctl on" aria-pressed="true">Mic on</button>
+        <button id="cam" class="ctl" aria-pressed="false">Camera off</button>
+        <button id="repeat" class="ctl">Repeat prompt</button>
+        <button id="leave" class="ctl leave">Leave</button>
+      </nav>
+    </section>
+
+    <section id="end" class="panel end" hidden>
+      <h2>Thank you</h2>
+      <p id="endText" class="lede"></p>
+      <button id="again" class="primary">Practice again</button>
+    </section>
+  </main>
+
+  <button id="unlock" class="unlock" hidden>Tap to hear Gigi</button>
+  <div id="audioSink" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
