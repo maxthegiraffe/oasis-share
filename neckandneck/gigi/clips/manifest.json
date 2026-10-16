@@ -1,12 +1,12 @@
 {
  "talk-loop": {
   "video": "clips/talk-loop.mp4",
-  "seconds": 5.26,
+  "seconds": 14.02,
   "source": "popcorn"
  },
  "idle": {
   "video": "clips/idle.mp4",
-  "seconds": 12.287,
+  "seconds": 13.567,
   "source": "popcorn"
  },
  "welcome-breath.1": {
@@ -98,5 +98,117 @@
   "seconds": 12.0,
   "palindrome": true,
   "source": "breath-cycle.mp4 (Popcorn), 0 to 6 s + reversed"
+ },
+ "welcome-gratitude": {
+  "video": "clips/welcome-gratitude.mp4",
+  "seconds": 16.16,
+  "lead": 0.35,
+  "speech": 15.36,
+  "source": "gratitude-set.mp4"
+ },
+ "howto-gratitude": {
+  "video": "clips/howto-gratitude.mp4",
+  "seconds": 18.501,
+  "lead": 0.35,
+  "speech": 17.701,
+  "source": "gratitude-set.mp4"
+ },
+ "lead-first": {
+  "video": "clips/lead-first.mp4",
+  "seconds": 1.98,
+  "lead": 0.35,
+  "speech": 1.18,
+  "source": "gratitude-set.mp4"
+ },
+ "lead-next": {
+  "video": "clips/lead-next.mp4",
+  "seconds": 2.18,
+  "lead": 0.35,
+  "speech": 1.38,
+  "source": "gratitude-set.mp4"
+ },
+ "p10": {
+  "video": "clips/p10.mp4",
+  "seconds": 5.94,
+  "lead": 0.35,
+  "speech": 5.14,
+  "source": "gratitude-set.mp4"
+ },
+ "p11": {
+  "video": "clips/p11.mp4",
+  "seconds": 6.7,
+  "lead": 0.35,
+  "speech": 5.9,
+  "source": "gratitude-set.mp4"
+ },
+ "p12": {
+  "video": "clips/p12.mp4",
+  "seconds": 6.12,
+  "lead": 0.35,
+  "speech": 5.32,
+  "source": "gratitude-set.mp4"
+ },
+ "p21": {
+  "video": "clips/p21.mp4",
+  "seconds": 5.22,
+  "lead": 0.35,
+  "speech": 4.42,
+  "source": "gratitude-set.mp4"
+ },
+ "p30": {
+  "video": "clips/p30.mp4",
+  "seconds": 8.56,
+  "lead": 0.35,
+  "speech": 7.76,
+  "source": "gratitude-set.mp4"
+ },
+ "p31": {
+  "video": "clips/p31.mp4",
+  "seconds": 9.34,
+  "lead": 0.35,
+  "speech": 8.54,
+  "source": "gratitude-set.mp4"
+ },
+ "p40": {
+  "video": "clips/p40.mp4",
+  "seconds": 8.46,
+  "lead": 0.35,
+  "speech": 7.66,
+  "source": "gratitude-set.mp4"
+ },
+ "lead-last": {
+  "video": "clips/lead-last.mp4",
+  "seconds": 2.24,
+  "lead": 0.35,
+  "speech": 1.44,
+  "source": "gratitude-set.mp4"
+ },
+ "nudge": {
+  "video": "clips/nudge.mp4",
+  "seconds": 2.84,
+  "lead": 0.35,
+  "speech": 2.04,
+  "source": "gratitude-set.mp4"
+ },
+ "goodbye": {
+  "video": "clips/goodbye.mp4",
+  "seconds": 8.78,
+  "lead": 0.35,
+  "speech": 7.98,
+  "source": "gratitude-set.mp4"
+ },
+ "breath-end": {
+  "video": "clips/breath-end.mp4",
+  "seconds": 4.28,
+  "lead": 0.35,
+  "speech": 3.48,
+  "source": "gratitude-set.mp4"
+ },
+ "to-closing-breath": {
+  "video": "clips/to-closing-breath.mp4",
+  "seconds": 4.8,
+  "lead": 0.35,
+  "speech": 4.0,
+  "source": "gratitude-set.mp4"
  }
 }
