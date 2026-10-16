@@ -2,234 +2,268 @@
  "talk-loop": {
   "video": "clips/talk-loop.mp4",
   "seconds": 10.32,
-  "source": "popcorn"
+  "source": "popcorn",
+  "v": "c5729c5267"
  },
  "idle": {
   "video": "clips/idle.mp4",
   "seconds": 8.727,
-  "source": "popcorn"
+  "source": "popcorn",
+  "v": "cd15b7ce7a"
  },
  "welcome-breath.1": {
   "video": "clips/welcome-breath.1.mp4",
   "seconds": 4.02,
   "lead": 0.35,
   "speech": 3.22,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "9b44431a31"
  },
  "welcome-breath.2": {
   "video": "clips/welcome-breath.2.mp4",
   "seconds": 5.48,
   "lead": 0.35,
   "speech": 4.68,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "c45bf40c23"
  },
  "welcome-breath.3": {
   "video": "clips/welcome-breath.3.mp4",
   "seconds": 4.62,
   "lead": 0.35,
   "speech": 3.82,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "e2276378d1"
  },
  "arrive-breath.1": {
   "video": "clips/arrive-breath.1.mp4",
   "seconds": 3.78,
   "lead": 0.35,
   "speech": 2.98,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "7f42e15b0a"
  },
  "arrive-breath.2": {
   "video": "clips/arrive-breath.2.mp4",
   "seconds": 4.84,
   "lead": 0.35,
   "speech": 4.04,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "228308b58c"
  },
  "arrive-breath.3": {
   "video": "clips/arrive-breath.3.mp4",
   "seconds": 1.94,
   "lead": 0.35,
   "speech": 1.14,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "9842dfe42a"
  },
  "in": {
   "video": "clips/in.mp4",
   "seconds": 1.58,
   "lead": 0.35,
   "speech": 0.78,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "4c3350d971"
  },
  "hold": {
   "video": "clips/hold.mp4",
   "seconds": 1.28,
   "lead": 0.35,
   "speech": 0.48,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "a35a74bcf1"
  },
  "out": {
   "video": "clips/out.mp4",
   "seconds": 2.14,
   "lead": 0.35,
   "speech": 1.34,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "202c9b711d"
  },
  "breath-quiet": {
   "video": "clips/breath-quiet.mp4",
   "seconds": 3.9,
   "lead": 0.35,
   "speech": 3.1,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "fb71c36b6c"
  },
  "to-gratitude": {
   "video": "clips/to-gratitude.mp4",
   "seconds": 4.36,
   "lead": 0.35,
   "speech": 3.56,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "3d16cf7ee7"
  },
  "goodbye-breath": {
   "video": "clips/goodbye-breath.mp4",
   "seconds": 6.06,
   "lead": 0.35,
   "speech": 5.26,
-  "source": "breath-set.mp4"
+  "source": "breath-set.mp4",
+  "v": "b9ff0961a6"
  },
  "breath-cycle": {
   "video": "clips/breath-cycle.mp4",
   "seconds": 12.0,
   "palindrome": true,
-  "source": "breath-cycle.mp4 (Popcorn), 0 to 6 s + reversed"
+  "source": "breath-cycle.mp4 (Popcorn), 0 to 6 s + reversed",
+  "v": "4174b9c51e"
  },
  "welcome-gratitude": {
   "video": "clips/welcome-gratitude.mp4",
   "seconds": 16.16,
   "lead": 0.35,
   "speech": 15.36,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "6aff3b5e42"
  },
  "howto-gratitude": {
   "video": "clips/howto-gratitude.mp4",
   "seconds": 18.501,
   "lead": 0.35,
   "speech": 17.701,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "6dbc09c4d7"
  },
  "lead-first": {
   "video": "clips/lead-first.mp4",
   "seconds": 1.98,
   "lead": 0.35,
   "speech": 1.18,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "29bb5ab77c"
  },
  "lead-next": {
   "video": "clips/lead-next.mp4",
   "seconds": 2.18,
   "lead": 0.35,
   "speech": 1.38,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "f7fcdb30b5"
  },
  "p10": {
   "video": "clips/p10.mp4",
   "seconds": 5.94,
   "lead": 0.35,
   "speech": 5.14,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "346ef748a5"
  },
  "p11": {
   "video": "clips/p11.mp4",
   "seconds": 6.7,
   "lead": 0.35,
   "speech": 5.9,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "204566cfda"
  },
  "p12": {
   "video": "clips/p12.mp4",
   "seconds": 6.12,
   "lead": 0.35,
   "speech": 5.32,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "1079fc9495"
  },
  "p21": {
   "video": "clips/p21.mp4",
   "seconds": 5.22,
   "lead": 0.35,
   "speech": 4.42,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "cdf32fc2a2"
  },
  "p30": {
   "video": "clips/p30.mp4",
   "seconds": 8.56,
   "lead": 0.35,
   "speech": 7.76,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "14007733e1"
  },
  "p31": {
   "video": "clips/p31.mp4",
   "seconds": 9.34,
   "lead": 0.35,
   "speech": 8.54,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "02b319e718"
  },
  "p40": {
   "video": "clips/p40.mp4",
   "seconds": 8.46,
   "lead": 0.35,
   "speech": 7.66,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "5b299b31bb"
  },
  "lead-last": {
   "video": "clips/lead-last.mp4",
   "seconds": 2.24,
   "lead": 0.35,
   "speech": 1.44,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "3cc1a1e10f"
  },
  "nudge": {
   "video": "clips/nudge.mp4",
   "seconds": 2.84,
   "lead": 0.35,
   "speech": 2.04,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "69458d9865"
  },
  "goodbye": {
   "video": "clips/goodbye.mp4",
   "seconds": 8.78,
   "lead": 0.35,
   "speech": 7.98,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "7ca583d1c2"
  },
  "breath-end": {
   "video": "clips/breath-end.mp4",
   "seconds": 4.28,
   "lead": 0.35,
   "speech": 3.48,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "ded79f3b11"
  },
  "to-closing-breath": {
   "video": "clips/to-closing-breath.mp4",
   "seconds": 4.8,
   "lead": 0.35,
   "speech": 4.0,
-  "source": "gratitude-set.mp4"
+  "source": "gratitude-set.mp4",
+  "v": "5f586ec30d"
  },
  "p00": {
   "video": "clips/p00.mp4",
   "seconds": 11.12,
   "lead": 0.35,
   "speech": 10.32,
-  "source": "retakes.mp4"
+  "source": "retakes.mp4",
+  "v": "a25cd16d36"
  },
  "p20": {
   "video": "clips/p20.mp4",
   "seconds": 6.62,
   "lead": 0.35,
   "speech": 5.82,
-  "source": "retakes.mp4"
+  "source": "retakes.mp4",
+  "v": "0a212905db"
  },
  "p41": {
   "video": "clips/p41.mp4",
   "seconds": 7.94,
   "lead": 0.35,
   "speech": 7.14,
-  "source": "retakes.mp4"
+  "source": "retakes.mp4",
+  "v": "d007f63d30"
  }
 }

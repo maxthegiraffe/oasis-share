@@ -51,7 +51,7 @@ export class GigiAvatar {
     if (!m) return null;
     if (this.clips[id]) return this.clips[id];
     const v = document.createElement('video');
-    Object.assign(v, { src: this.dir + m.video, muted: true, playsInline: true, preload: 'auto', loop });
+    Object.assign(v, { src: this.dir + m.video + (m.v ? `?v=${m.v}` : ''), muted: true, playsInline: true, preload: 'auto', loop });
     v.setAttribute('playsinline', '');
     v.setAttribute('muted', '');
     v.className = 'gigi-video';

@@ -1,13 +1,14 @@
 import { Room, RoomEvent, Track, ParticipantKind } from 'https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/+esm';
-import { GigiAvatar } from './avatar.js';
-import { Hide, seedOf } from './hide.js';
-import { Pacer } from './pacer.js';
+import { GigiAvatar } from './avatar.js?v=7ec4bd57f7';
+import { Hide, seedOf } from './hide.js?v=5e3b8abe0c';
+import { Pacer } from './pacer.js?v=10ed3b6f67';
 
 const FN = 'https://axysrawypndwfzruqkdh.supabase.co/functions/v1/neck-room';
 const MODE_LABEL = { gratitude: 'Gratitude', breath: 'Breath', both: 'Breath + Gratitude' };
 const PATTERN_LABEL = { coherence: 'Coherence', box: 'Box', '478': '4-7-8' };
 // Seats in the 3x3 grid as [row, col], filled in this order around the center square.
 const LAYOUT = {
+  solo: [[1, 1]],                                                      // 1-on-1: you beside the practice
   pair: [[1, 1], [1, 3]],                                              // two people: either side of the center
   cross: [[2, 1], [2, 3], [1, 2], [3, 2]],                             // 3-4: a cross
   ring: [[2, 1], [2, 3], [1, 2], [3, 2], [1, 1], [1, 3], [3, 1], [3, 3]], // 5-8: the full Brady Bunch
@@ -35,7 +36,7 @@ function show(id) { for (const v of document.querySelectorAll('.view')) v.hidden
 function badge(el) {
   if (el.querySelector('video')) return;
   const v = document.createElement('video');
-  Object.assign(v, { src: 'gigi/clips/idle.mp4', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
+  Object.assign(v, { src: 'gigi/clips/idle.mp4?v=cd15b7ce7a', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
   v.setAttribute('playsinline', '');
   v.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:50% 18%;transform:scale(1.35);transform-origin:50% 22%';
   el.appendChild(v);
@@ -151,10 +152,11 @@ async function enter(r, name) {
   if (size >= 3) { try { await room.localParticipant.setCameraEnabled(true); } catch { /* camera optional */ } }
   show('room');
   await avatar.load();
-  pacer = new Pacer($('center'), avatar.manifest && avatar.manifest['breath-cycle'] ? 'gigi/' + avatar.manifest['breath-cycle'].video : undefined);
+  const bc = avatar.manifest && avatar.manifest['breath-cycle'];
+  pacer = new Pacer($('center'), bc ? `gigi/${bc.video}${bc.v ? `?v=${bc.v}` : ''}` : undefined);
   centerHide = new Hide($('center'), seedOf(code), () => (st.phase === 'breath' ? pacer.fullness() : null));
   $('inviteLink').value = `${location.origin}${location.pathname}?r=${code}`;
-  $('invite').hidden = !isCreator;
+  $('invite').hidden = !isCreator || size === 1;
   $('unlock').hidden = room.canPlaybackAudio;
   for (const p of room.remoteParticipants.values()) {
     if (isGigi(p)) onState(p.attributes);
@@ -218,8 +220,9 @@ function seatEl(i) {
 function render() {
   if (!room) return;
   const ps = people();
-  const layout = size === 2 ? LAYOUT.pair : size <= 4 ? LAYOUT.cross : LAYOUT.ring;
+  const layout = size === 1 ? LAYOUT.solo : size === 2 ? LAYOUT.pair : size <= 4 ? LAYOUT.cross : LAYOUT.ring;
   $('grid').classList.toggle('pair', size === 2);
+  $('grid').classList.toggle('solo', size === 1);
   layout.slice(0, size).forEach(([row, col], i) => {
     const el = seatEl(i), p = ps[i], key = p ? p.identity : `empty-${i}`;
     Object.assign(el.style, { gridRow: row, gridColumn: col });
@@ -245,7 +248,7 @@ function render() {
 
   const count = ps.length, ph = st.phase || 'waiting';
   $('roomTitle').textContent = mode === 'gratitude' ? MODE_LABEL[mode] : `${MODE_LABEL[mode]} · ${PATTERN_LABEL[pattern]}`;
-  $('roomCount').textContent = `${count} of ${size} here`;
+  $('roomCount').textContent = size === 1 ? 'Just you and Gigi' : `${count} of ${size} here`;
   $('inviteBtn').hidden = count >= size;
   const c = $('center'), meta = $('centerMeta'), text = $('centerText'), sub = $('centerSub');
   c.classList.toggle('breath', ph === 'breath');
@@ -262,7 +265,7 @@ function render() {
   } else {
     meta.textContent = MODE_LABEL[mode];
     text.textContent = { welcome: 'Welcome', done: 'Thank you', between: mode === 'gratitude' ? '' : 'Breathe naturally' }[ph] ?? 'Waiting for everyone';
-    sub.textContent = ph === 'waiting' ? `${count} of ${size} here` : '';
+    sub.textContent = ph === 'waiting' && size > 1 ? `${count} of ${size} here` : '';
   }
   $('promptStrip').hidden = !gratitudePhase;
   $('promptStrip').textContent = gratitudePhase ? st.prompt_text : '';
@@ -287,7 +290,7 @@ function render() {
 
   let s = '';
   if (micBlocked && !mic) s = 'Your microphone is blocked. Allow it in the address bar, then tap Mic.';
-  else if (!gigiId) s = count < 2 ? 'Send the invite link to bring people in.' : 'Gigi is on her way…';
+  else if (!gigiId) s = count < 2 && size > 1 ? 'Send the invite link to bring people in.' : 'Gigi is on her way…';
   else s = { waiting: count < 2 ? 'Send the invite link to bring people in.' : size > 2 ? (amHost() ? 'Tap Begin now when everyone is here.' : 'Waiting for the host to begin.') : 'Gigi is gathering you…',
     welcome: gigiOff ? '' : 'Gigi is welcoming you.', breath: 'Breathe with the light. Mics are resting.',
     between: gigiOff ? (amHost() ? 'Tap Next when you are ready.' : '') : '',
