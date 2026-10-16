@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16133a">
+  <title>Neck and Neck · Gratitude and breath, together</title>
+  <meta name="description" content="Start a room, invite your people, and practice gratitude and breath together, held by Gigi.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neck and Neck">
+  <meta property="og:description" content="Gratitude and breath, together, held by Gigi. Start a room and invite your people.">
+  <meta property="og:image" content="https://grateful.gg/neckandneck/cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://grateful.gg/neckandneck/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- start a room -->
+    <section id="start" class="view start" hidden>
+      <div class="hero">
+        <div class="gigi-badge" id="heroGigi"></div>
+        <h1>Neck and Neck</h1>
+        <p class="lede">Gratitude and breath, together, held by Gigi.</p>
+      </div>
+      <form id="startForm" class="card form">
+        <fieldset>
+          <legend>What would you like to practice?</legend>
+          <div class="modes" role="radiogroup">
+            <label class="mode"><input type="radio" name="mode" value="gratitude" checked><span><b>Gratitude</b><small>Share what you're grateful for, one at a time</small></span></label>
+            <label class="mode"><input type="radio" name="mode" value="breath"><span><b>Breath</b><small>Breathe together, on one rhythm</small></span></label>
+            <label class="mode"><input type="radio" name="mode" value="both"><span><b>Both</b><small>Arrive with breath, then share</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>How many people?</legend>
+          <div class="sizes" role="radiogroup">
+            <label><input type="radio" name="size" value="2" checked><span>2</span></label>
+            <label><input type="radio" name="size" value="3"><span>3</span></label>
+            <label><input type="radio" name="size" value="4"><span>4</span></label>
+            <label><input type="radio" name="size" value="5"><span>5</span></label>
+            <label><input type="radio" name="size" value="6"><span>6</span></label>
+            <label><input type="radio" name="size" value="7"><span>7</span></label>
+            <label><input type="radio" name="size" value="8"><span>8</span></label>
+          </div>
+        </fieldset>
+        <fieldset id="breathOpts" hidden>
+          <legend>Breath pattern</legend>
+          <div class="sizes three" role="radiogroup">
+            <label><input type="radio" name="pattern" value="coherence" checked><span>Coherence<small>5.5 in · 5.5 out</small></span></label>
+            <label><input type="radio" name="pattern" value="box"><span>Box<small>4 · 4 · 4 · 4</small></span></label>
+            <label><input type="radio" name="pattern" value="478"><span>4-7-8<small>in · hold · out</small></span></label>
+          </div>
+          <legend class="sub-legend">Rounds</legend>
+          <div class="sizes three" role="radiogroup">
+            <label><input type="radio" name="rounds" value="3"><span>3</span></label>
+            <label><input type="radio" name="rounds" value="5" checked><span>5</span></label>
+            <label><input type="radio" name="rounds" value="10"><span>10</span></label>
+          </div>
+        </fieldset>
+        <label class="field"><span>Your first name</span><input name="name" id="startName" autocomplete="given-name" maxlength="40" placeholder="e.g. Max" required></label>
+        <button class="primary" id="startBtn">Start a room</button>
+        <p class="fine">Free. Rooms last up to 40 minutes. Gigi listens so she knows when to speak; nothing is recorded.</p>
+        <p class="error" id="startError" hidden></p>
+      </form>
+    </section>
+
+    <!-- join from an invite link -->
+    <section id="join" class="view start" hidden>
+      <div class="hero">
+        <div class="gigi-badge" id="joinGigi"></div>
+        <h1>Neck and Neck</h1>
+        <p class="lede" id="joinLede">You're invited.</p>
+      </div>
+      <form id="joinForm" class="card form">
+        <p class="room-facts" id="joinFacts"></p>
+        <label class="field"><span>Your first name</span><input name="name" id="joinName" autocomplete="given-name" maxlength="40" placeholder="e.g. Dana" required></label>
+        <button class="primary" id="joinBtn">Join the room</button>
+        <p class="fine">Gigi listens so she knows when to speak; nothing is recorded.</p>
+        <p class="error" id="joinError" hidden></p>
+        <a class="link" href="./">Or start your own room</a>
+      </form>
+    </section>
+
+    <!-- the room -->
+    <section id="room" class="view room" hidden>
+      <header class="room-head">
+        <span id="roomTitle" class="pill"></span>
+        <span id="roomCount" class="count"></span>
+        <button id="inviteBtn" class="ghost">Invite</button>
+      </header>
+      <div id="invite" class="card invite" hidden>
+        <p>Send this link to the people you want in the room:</p>
+        <div class="invite-row"><input id="inviteLink" readonly><button id="copyBtn">Copy</button></div>
+      </div>
+      <div id="grid" class="grid">
+        <div id="center" class="center">
+          <div class="center-body">
+            <p id="centerMeta" class="meta"></p>
+            <p id="centerText" class="text"></p>
+            <p id="centerSub" class="sub"></p>
+          </div>
+          <div id="breathHud" class="breath-hud" hidden>
+            <p id="breathLabel" class="breath-label"></p>
+            <p id="breathCount" class="breath-count"></p>
+            <p id="breathRound" class="breath-round"></p>
+          </div>
+          <div id="gigiTile" class="gigi-tile"><div id="gigiVideo" class="gigi-frame"></div><span id="gigiOff" class="gigi-off" hidden>Gigi off</span></div>
+        </div>
+      </div>
+      <p id="promptStrip" class="prompt-strip" hidden></p>
+      <p id="status" class="status" aria-live="polite"></p>
+      <nav class="controls">
+        <button id="micBtn" class="ctl on">Mic</button>
+        <button id="camBtn" class="ctl">Camera</button>
+        <button id="giraffeBtn" class="ctl giraffe" title="Send a giraffe">🦒</button>
+        <button id="doneBtn" class="ctl primary-ctl" hidden>I'm done</button>
+        <button id="repeatBtn" class="ctl" hidden>Repeat</button>
+        <span id="hostCtl" class="host-ctl" hidden>
+          <button id="beginBtn" class="ctl primary-ctl" hidden>Begin now</button>
+          <button id="nextBtn" class="ctl" hidden>Next</button>
+          <button id="gigiBtn" class="ctl">Gigi on</button>
+        </span>
+        <button id="leaveBtn" class="ctl leave">Leave</button>
+      </nav>
+    </section>
+
+    <!-- the end -->
+    <section id="end" class="view start" hidden>
+      <div class="hero">
+        <div class="gigi-badge" id="endGigi"></div>
+        <h2>Thank you</h2>
+        <p class="lede" id="endText"></p>
+        <a class="primary" href="./">Start another room</a>
+      </div>
+    </section>
+  </main>
+
+  <button id="unlock" class="unlock" hidden>Tap to hear Gigi</button>
+  <div id="audioSink" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

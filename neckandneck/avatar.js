@@ -40,7 +40,7 @@ export class GigiAvatar {
     this.idle = this.video('idle', true);
     this.talk = this.video('talk-loop', true);
     this.show(this.idle);
-    this.preload(['greet', 'welcome-1', 'welcome-2', 'nudge']);
+    this.preload(['greet', 'welcome-gratitude', 'howto-gratitude', 'welcome-breath', 'arrive-breath', 'nudge', 'lead-first', 'lead-next', 'lead-last']);
     // a timer, not requestAnimationFrame: browsers slow rAF for covered or background windows, and
     // catching the instant her voice starts is what keeps the lip-sync tight
     if (!this.timer) this.timer = setInterval(() => this.frame(performance.now()), 30);
