@@ -1,12 +1,12 @@
 {
  "talk-loop": {
   "video": "clips/talk-loop.mp4",
-  "seconds": 14.02,
+  "seconds": 10.32,
   "source": "popcorn"
  },
  "idle": {
   "video": "clips/idle.mp4",
-  "seconds": 13.567,
+  "seconds": 8.727,
   "source": "popcorn"
  },
  "welcome-breath.1": {
@@ -210,5 +210,26 @@
   "lead": 0.35,
   "speech": 4.0,
   "source": "gratitude-set.mp4"
+ },
+ "p00": {
+  "video": "clips/p00.mp4",
+  "seconds": 11.12,
+  "lead": 0.35,
+  "speech": 10.32,
+  "source": "retakes.mp4"
+ },
+ "p20": {
+  "video": "clips/p20.mp4",
+  "seconds": 6.62,
+  "lead": 0.35,
+  "speech": 5.82,
+  "source": "retakes.mp4"
+ },
+ "p41": {
+  "video": "clips/p41.mp4",
+  "seconds": 7.94,
+  "lead": 0.35,
+  "speech": 7.14,
+  "source": "retakes.mp4"
  }
 }
