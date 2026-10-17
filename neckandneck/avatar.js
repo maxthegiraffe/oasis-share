@@ -9,6 +9,10 @@ const VOICE_ON = 0.012;      // rms above this counts as Gigi speaking
 const TALK_AFTER_MS = 80;    // sustained voice before switching to the talking loop
 const IDLE_AFTER_MS = 380;   // sustained quiet before going back to idle
 const ARM_TIMEOUT_MS = 1500; // start an announced clip anyway if we never catch her voice starting
+const LIP_OFFSET_S = -0.06;  // Popcorn's mouths open ~0.17 s before the sound (video_review.py); a little of
+                            // that lead is natural, so start each clip 60 ms before her voice onset
+const PARK_AFTER_MS = 220;   // once a clip has faded in, park the hidden idle loop on its first frame: every
+                            // clip ends with a short morph into exactly that frame, so idle resumes seamlessly
 
 export class GigiAvatar {
   constructor(root, dir = 'gigi/') {
@@ -117,6 +121,11 @@ export class GigiAvatar {
     v.play().catch(() => {});
     this.playing = v;
     this.show(v);
+    clearTimeout(this.parkTimer);
+    this.parkTimer = setTimeout(() => {
+      const idle = this.idle;
+      if (this.playing === v && idle && !idle.classList.contains('on')) { idle.pause(); try { idle.currentTime = 0; } catch { /* not ready */ } }
+    }, PARK_AFTER_MS);
   }
 
   frame(t) {
@@ -128,7 +137,7 @@ export class GigiAvatar {
     if (this.armed) {
       const a = this.armed;
       if (!voiced) a.quietSeen = true;                       // her previous line's tail has ended
-      if (a.quietSeen && voiced) { this.armed = null; this.startClip(a.id, 0.03); }
+      if (a.quietSeen && voiced) { this.armed = null; this.startClip(a.id, LIP_OFFSET_S); }
       else if (t - a.at > ARM_TIMEOUT_MS) { this.armed = null; this.startClip(a.id, (t - a.at) / 1000 - 0.3); }
       return;
     }

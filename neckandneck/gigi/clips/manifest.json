@@ -1,15 +1,32 @@
 {
  "talk-loop": {
   "video": "clips/talk-loop.mp4",
-  "seconds": 7.1,
-  "source": "popcorn",
-  "v": "9cfb0f4521"
+  "seconds": 16.4,
+  "source": "gratitude-set.mp4 130.0-138.2 ping-pong",
+  "composite": {
+   "segments": [
+    [
+     0,
+     246,
+     [
+      1.011,
+      -0.0184,
+      -52.7458,
+      11.8487
+     ]
+    ]
+   ],
+   "light": -1.0,
+   "samples": 50
+  },
+  "tail": 0,
+  "v": "164cc6aa3b"
  },
  "idle": {
   "video": "clips/idle.mp4",
-  "seconds": 10.32,
-  "source": "popcorn",
-  "v": "2f6b62584c"
+  "seconds": 8.4,
+  "source": "gratitude-set.mp4 167.4-171.6 ping-pong",
+  "v": "85b097eecb"
  },
  "welcome-breath.1": {
   "video": "clips/welcome-breath.1.mp4",
@@ -17,7 +34,24 @@
   "lead": 0.35,
   "speech": 3.22,
   "source": "breath-set.mp4",
-  "v": "9b44431a31"
+  "composite": {
+   "segments": [
+    [
+     0,
+     121,
+     [
+      0.9337,
+      -0.0096,
+      10.1569,
+      9.5372
+     ]
+    ]
+   ],
+   "light": 0.6,
+   "samples": 25
+  },
+  "tail": 0.4,
+  "v": "a196723f68"
  },
  "welcome-breath.2": {
   "video": "clips/welcome-breath.2.mp4",
@@ -25,7 +59,24 @@
   "lead": 0.35,
   "speech": 4.68,
   "source": "breath-set.mp4",
-  "v": "c45bf40c23"
+  "composite": {
+   "segments": [
+    [
+     0,
+     164,
+     [
+      1.0017,
+      -0.0094,
+      -16.0587,
+      -3.6778
+     ]
+    ]
+   ],
+   "light": 1.6,
+   "samples": 33
+  },
+  "tail": 0.4,
+  "v": "52195f9d1c"
  },
  "welcome-breath.3": {
   "video": "clips/welcome-breath.3.mp4",
@@ -33,7 +84,24 @@
   "lead": 0.35,
   "speech": 3.82,
   "source": "breath-set.mp4",
-  "v": "e2276378d1"
+  "composite": {
+   "segments": [
+    [
+     0,
+     139,
+     [
+      0.9965,
+      -0.0078,
+      -19.3677,
+      20.2046
+     ]
+    ]
+   ],
+   "light": -1.9,
+   "samples": 28
+  },
+  "tail": 0.4,
+  "v": "f56b187854"
  },
  "arrive-breath.1": {
   "video": "clips/arrive-breath.1.mp4",
@@ -41,7 +109,24 @@
   "lead": 0.35,
   "speech": 2.98,
   "source": "breath-set.mp4",
-  "v": "7f42e15b0a"
+  "composite": {
+   "segments": [
+    [
+     0,
+     113,
+     [
+      0.9766,
+      -0.0104,
+      -20.0002,
+      9.8
+     ]
+    ]
+   ],
+   "light": -0.4,
+   "samples": 23
+  },
+  "tail": 0.4,
+  "v": "363381007f"
  },
  "arrive-breath.2": {
   "video": "clips/arrive-breath.2.mp4",
@@ -49,7 +134,24 @@
   "lead": 0.35,
   "speech": 4.04,
   "source": "breath-set.mp4",
-  "v": "228308b58c"
+  "composite": {
+   "segments": [
+    [
+     0,
+     146,
+     [
+      0.9264,
+      -0.0117,
+      4.6911,
+      -11.3931
+     ]
+    ]
+   ],
+   "light": 3.3,
+   "samples": 30
+  },
+  "tail": 0.4,
+  "v": "6a19b89143"
  },
  "arrive-breath.3": {
   "video": "clips/arrive-breath.3.mp4",
@@ -57,7 +159,24 @@
   "lead": 0.35,
   "speech": 1.14,
   "source": "breath-set.mp4",
-  "v": "9842dfe42a"
+  "composite": {
+   "segments": [
+    [
+     0,
+     58,
+     [
+      0.9734,
+      -0.0094,
+      -10.8279,
+      -13.2994
+     ]
+    ]
+   ],
+   "light": 4.1,
+   "samples": 12
+  },
+  "tail": 0.4,
+  "v": "edae39edc8"
  },
  "in": {
   "video": "clips/in.mp4",
@@ -65,7 +184,24 @@
   "lead": 0.35,
   "speech": 0.78,
   "source": "breath-set.mp4",
-  "v": "4c3350d971"
+  "composite": {
+   "segments": [
+    [
+     0,
+     47,
+     [
+      1.0502,
+      -0.0092,
+      -71.3913,
+      -2.3696
+     ]
+    ]
+   ],
+   "light": 0.3,
+   "samples": 10
+  },
+  "tail": 0.4,
+  "v": "e7c62f890a"
  },
  "hold": {
   "video": "clips/hold.mp4",
@@ -73,7 +209,24 @@
   "lead": 0.35,
   "speech": 0.48,
   "source": "breath-set.mp4",
-  "v": "a35a74bcf1"
+  "composite": {
+   "segments": [
+    [
+     0,
+     38,
+     [
+      1.0873,
+      -0.0114,
+      -50.8466,
+      4.005
+     ]
+    ]
+   ],
+   "light": 0.0,
+   "samples": 8
+  },
+  "tail": 0.4,
+  "v": "7aadaeaa66"
  },
  "out": {
   "video": "clips/out.mp4",
@@ -81,7 +234,24 @@
   "lead": 0.35,
   "speech": 1.34,
   "source": "breath-set.mp4",
-  "v": "202c9b711d"
+  "composite": {
+   "segments": [
+    [
+     0,
+     64,
+     [
+      1.0174,
+      -0.0164,
+      -44.357,
+      11.6176
+     ]
+    ]
+   ],
+   "light": 1.1,
+   "samples": 13
+  },
+  "tail": 0.4,
+  "v": "6ac941c00b"
  },
  "breath-quiet": {
   "video": "clips/breath-quiet.mp4",
@@ -89,7 +259,24 @@
   "lead": 0.35,
   "speech": 3.1,
   "source": "breath-set.mp4",
-  "v": "fb71c36b6c"
+  "composite": {
+   "segments": [
+    [
+     0,
+     116,
+     [
+      1.0652,
+      -0.015,
+      -70.1065,
+      -0.1899
+     ]
+    ]
+   ],
+   "light": 0.4,
+   "samples": 24
+  },
+  "tail": 0.4,
+  "v": "e3befd266e"
  },
  "to-gratitude": {
   "video": "clips/to-gratitude.mp4",
@@ -97,7 +284,34 @@
   "lead": 0.35,
   "speech": 3.56,
   "source": "breath-set.mp4",
-  "v": "3d16cf7ee7"
+  "composite": {
+   "segments": [
+    [
+     0,
+     4,
+     [
+      0.9828,
+      -0.0081,
+      -29.4914,
+      -3.5461
+     ]
+    ],
+    [
+     4,
+     131,
+     [
+      0.9947,
+      -0.0062,
+      -32.4241,
+      6.5283
+     ]
+    ]
+   ],
+   "light": -2.5,
+   "samples": 27
+  },
+  "tail": 0.4,
+  "v": "ae061f00b6"
  },
  "goodbye-breath": {
   "video": "clips/goodbye-breath.mp4",
@@ -105,14 +319,48 @@
   "lead": 0.35,
   "speech": 5.26,
   "source": "breath-set.mp4",
-  "v": "b9ff0961a6"
+  "composite": {
+   "segments": [
+    [
+     0,
+     182,
+     [
+      0.9554,
+      -0.0169,
+      -32.9366,
+      12.452
+     ]
+    ]
+   ],
+   "light": 1.7,
+   "samples": 37
+  },
+  "tail": 0.4,
+  "v": "e2dd22a9c7"
  },
  "breath-cycle": {
   "video": "clips/breath-cycle.mp4",
   "seconds": 12.0,
   "palindrome": true,
   "source": "breath-cycle.mp4 (Popcorn), 0 to 6 s + reversed",
-  "v": "4174b9c51e"
+  "composite": {
+   "segments": [
+    [
+     0,
+     360,
+     [
+      1.0216,
+      -0.0174,
+      -28.1369,
+      5.953
+     ]
+    ]
+   ],
+   "light": -1.7,
+   "samples": 72
+  },
+  "tail": 0,
+  "v": "6772870f6b"
  },
  "welcome-gratitude": {
   "video": "clips/welcome-gratitude.mp4",
@@ -120,7 +368,34 @@
   "lead": 0.35,
   "speech": 12.6,
   "source": "gratitude-set.mp4",
-  "v": "803d935bf9"
+  "composite": {
+   "segments": [
+    [
+     0,
+     149,
+     [
+      1.0299,
+      -0.0091,
+      -52.4596,
+      1.1046
+     ]
+    ],
+    [
+     149,
+     442,
+     [
+      0.9803,
+      -0.0148,
+      -37.9986,
+      11.5117
+     ]
+    ]
+   ],
+   "light": -0.4,
+   "samples": 89
+  },
+  "tail": 0.4,
+  "v": "70e3035a01"
  },
  "howto-gratitude": {
   "video": "clips/howto-gratitude.mp4",
@@ -128,7 +403,34 @@
   "lead": 0.35,
   "speech": 9.081,
   "source": "gratitude-set.mp4",
-  "v": "77c15781fb"
+  "composite": {
+   "segments": [
+    [
+     0,
+     203,
+     [
+      0.985,
+      -0.0114,
+      -23.3768,
+      1.2032
+     ]
+    ],
+    [
+     203,
+     426,
+     [
+      1.0203,
+      -0.0112,
+      -50.8721,
+      14.7032
+     ]
+    ]
+   ],
+   "light": 0.5,
+   "samples": 86
+  },
+  "tail": 0.4,
+  "v": "357560610a"
  },
  "lead-first": {
   "video": "clips/lead-first.mp4",
@@ -136,7 +438,24 @@
   "lead": 0.35,
   "speech": 1.18,
   "source": "gratitude-set.mp4",
-  "v": "29bb5ab77c"
+  "composite": {
+   "segments": [
+    [
+     0,
+     59,
+     [
+      0.9733,
+      -0.0215,
+      -28.6214,
+      -5.3411
+     ]
+    ]
+   ],
+   "light": 4.6,
+   "samples": 12
+  },
+  "tail": 0.4,
+  "v": "f443080916"
  },
  "lead-next": {
   "video": "clips/lead-next.mp4",
@@ -144,7 +463,24 @@
   "lead": 0.35,
   "speech": 1.38,
   "source": "gratitude-set.mp4",
-  "v": "f7fcdb30b5"
+  "composite": {
+   "segments": [
+    [
+     0,
+     66,
+     [
+      0.9935,
+      -0.0199,
+      -46.8307,
+      15.1878
+     ]
+    ]
+   ],
+   "light": -1.6,
+   "samples": 14
+  },
+  "tail": 0.4,
+  "v": "df348b89f6"
  },
  "p10": {
   "video": "clips/p10.mp4",
@@ -152,7 +488,24 @@
   "lead": 0.35,
   "speech": 5.14,
   "source": "gratitude-set.mp4",
-  "v": "346ef748a5"
+  "composite": {
+   "segments": [
+    [
+     0,
+     178,
+     [
+      0.9258,
+      0.0014,
+      -20.2028,
+      4.7591
+     ]
+    ]
+   ],
+   "light": 0.0,
+   "samples": 36
+  },
+  "tail": 0.4,
+  "v": "4f85d74b63"
  },
  "p11": {
   "video": "clips/p11.mp4",
@@ -160,7 +513,24 @@
   "lead": 0.35,
   "speech": 5.9,
   "source": "gratitude-set.mp4",
-  "v": "204566cfda"
+  "composite": {
+   "segments": [
+    [
+     0,
+     200,
+     [
+      1.039,
+      -0.0132,
+      -71.6235,
+      -3.0946
+     ]
+    ]
+   ],
+   "light": -0.8,
+   "samples": 40
+  },
+  "tail": 0.4,
+  "v": "1ee1771d16"
  },
  "p12": {
   "video": "clips/p12.mp4",
@@ -168,7 +538,24 @@
   "lead": 0.35,
   "speech": 5.32,
   "source": "gratitude-set.mp4",
-  "v": "1079fc9495"
+  "composite": {
+   "segments": [
+    [
+     0,
+     184,
+     [
+      1.0347,
+      -0.0116,
+      -56.1433,
+      12.2953
+     ]
+    ]
+   ],
+   "light": 1.5,
+   "samples": 37
+  },
+  "tail": 0.4,
+  "v": "4553c08c35"
  },
  "p21": {
   "video": "clips/p21.mp4",
@@ -176,7 +563,34 @@
   "lead": 0.35,
   "speech": 4.42,
   "source": "gratitude-set.mp4",
-  "v": "cdf32fc2a2"
+  "composite": {
+   "segments": [
+    [
+     0,
+     2,
+     [
+      0.9924,
+      -0.018,
+      -47.4647,
+      9.2447
+     ]
+    ],
+    [
+     2,
+     157,
+     [
+      0.8894,
+      -0.0053,
+      20.8941,
+      5.3811
+     ]
+    ]
+   ],
+   "light": 1.3,
+   "samples": 32
+  },
+  "tail": 0.4,
+  "v": "5673adac9d"
  },
  "p30": {
   "video": "clips/p30.mp4",
@@ -184,7 +598,24 @@
   "lead": 0.35,
   "speech": 7.76,
   "source": "gratitude-set.mp4",
-  "v": "14007733e1"
+  "composite": {
+   "segments": [
+    [
+     0,
+     257,
+     [
+      1.0017,
+      -0.0129,
+      -19.4431,
+      -4.9965
+     ]
+    ]
+   ],
+   "light": 3.0,
+   "samples": 52
+  },
+  "tail": 0.4,
+  "v": "d98d61022d"
  },
  "p31": {
   "video": "clips/p31.mp4",
@@ -192,7 +623,24 @@
   "lead": 0.35,
   "speech": 8.54,
   "source": "gratitude-set.mp4",
-  "v": "02b319e718"
+  "composite": {
+   "segments": [
+    [
+     0,
+     280,
+     [
+      1.0107,
+      -0.0185,
+      -53.0373,
+      11.7829
+     ]
+    ]
+   ],
+   "light": -1.1,
+   "samples": 56
+  },
+  "tail": 0.4,
+  "v": "5b263c2441"
  },
  "p40": {
   "video": "clips/p40.mp4",
@@ -200,7 +648,24 @@
   "lead": 0.35,
   "speech": 7.66,
   "source": "gratitude-set.mp4",
-  "v": "5b299b31bb"
+  "composite": {
+   "segments": [
+    [
+     0,
+     254,
+     [
+      0.9808,
+      -0.0133,
+      -23.3302,
+      2.5442
+     ]
+    ]
+   ],
+   "light": 1.2,
+   "samples": 51
+  },
+  "tail": 0.4,
+  "v": "6cf217d02f"
  },
  "lead-last": {
   "video": "clips/lead-last.mp4",
@@ -208,7 +673,24 @@
   "lead": 0.35,
   "speech": 1.44,
   "source": "gratitude-set.mp4",
-  "v": "3cc1a1e10f"
+  "composite": {
+   "segments": [
+    [
+     0,
+     67,
+     [
+      0.9681,
+      -0.0078,
+      -37.502,
+      5.1861
+     ]
+    ]
+   ],
+   "light": -0.3,
+   "samples": 14
+  },
+  "tail": 0.4,
+  "v": "3b4564776f"
  },
  "nudge": {
   "video": "clips/nudge.mp4",
@@ -216,7 +698,24 @@
   "lead": 0.35,
   "speech": 2.04,
   "source": "gratitude-set.mp4",
-  "v": "69458d9865"
+  "composite": {
+   "segments": [
+    [
+     0,
+     86,
+     [
+      0.9892,
+      0.0003,
+      4.7,
+      0.3725
+     ]
+    ]
+   ],
+   "light": -0.4,
+   "samples": 18
+  },
+  "tail": 0.4,
+  "v": "c0575e8bad"
  },
  "goodbye": {
   "video": "clips/goodbye.mp4",
@@ -224,7 +723,24 @@
   "lead": 0.35,
   "speech": 7.98,
   "source": "gratitude-set.mp4",
-  "v": "7ca583d1c2"
+  "composite": {
+   "segments": [
+    [
+     0,
+     263,
+     [
+      0.9899,
+      -0.0153,
+      2.8151,
+      6.3794
+     ]
+    ]
+   ],
+   "light": -0.9,
+   "samples": 53
+  },
+  "tail": 0.4,
+  "v": "e482f21533"
  },
  "breath-end": {
   "video": "clips/breath-end.mp4",
@@ -232,7 +748,24 @@
   "lead": 0.35,
   "speech": 3.48,
   "source": "gratitude-set.mp4",
-  "v": "ded79f3b11"
+  "composite": {
+   "segments": [
+    [
+     0,
+     128,
+     [
+      1.0051,
+      -0.0151,
+      -55.8554,
+      13.0829
+     ]
+    ]
+   ],
+   "light": 1.8,
+   "samples": 26
+  },
+  "tail": 0.4,
+  "v": "f2fc663bf4"
  },
  "to-closing-breath": {
   "video": "clips/to-closing-breath.mp4",
@@ -240,7 +773,24 @@
   "lead": 0.35,
   "speech": 4.0,
   "source": "gratitude-set.mp4",
-  "v": "5f586ec30d"
+  "composite": {
+   "segments": [
+    [
+     0,
+     143,
+     [
+      0.9677,
+      -0.0145,
+      2.3631,
+      1.323
+     ]
+    ]
+   ],
+   "light": 3.1,
+   "samples": 29
+  },
+  "tail": 0.4,
+  "v": "dd4bd33686"
  },
  "p00": {
   "video": "clips/p00.mp4",
@@ -248,7 +798,24 @@
   "lead": 0.35,
   "speech": 10.32,
   "source": "retakes.mp4",
-  "v": "a25cd16d36"
+  "composite": {
+   "segments": [
+    [
+     0,
+     334,
+     [
+      0.9505,
+      -0.0138,
+      -23.0449,
+      18.8404
+     ]
+    ]
+   ],
+   "light": 20.2,
+   "samples": 67
+  },
+  "tail": 0.4,
+  "v": "2b24e67ac3"
  },
  "p20": {
   "video": "clips/p20.mp4",
@@ -256,7 +823,24 @@
   "lead": 0.35,
   "speech": 5.82,
   "source": "retakes.mp4",
-  "v": "0a212905db"
+  "composite": {
+   "segments": [
+    [
+     0,
+     199,
+     [
+      0.932,
+      -0.0134,
+      -17.1346,
+      18.1142
+     ]
+    ]
+   ],
+   "light": 20.1,
+   "samples": 40
+  },
+  "tail": 0.4,
+  "v": "b0592d9715"
  },
  "p41": {
   "video": "clips/p41.mp4",
@@ -264,7 +848,24 @@
   "lead": 0.35,
   "speech": 7.14,
   "source": "retakes.mp4",
-  "v": "d007f63d30"
+  "composite": {
+   "segments": [
+    [
+     0,
+     239,
+     [
+      0.9405,
+      -0.0148,
+      -21.3589,
+      17.928
+     ]
+    ]
+   ],
+   "light": 21.4,
+   "samples": 47
+  },
+  "tail": 0.4,
+  "v": "0e1bc27136"
  },
  "closing": {
   "video": "clips/closing.mp4",
@@ -272,6 +873,23 @@
   "lead": 0.35,
   "speech": 7.1,
   "source": "retakes2.mp4",
-  "v": "619f6514c0"
+  "composite": {
+   "segments": [
+    [
+     0,
+     236,
+     [
+      0.9308,
+      -0.0168,
+      -17.4301,
+      20.7071
+     ]
+    ]
+   ],
+   "light": 20.3,
+   "samples": 48
+  },
+  "tail": 0.4,
+  "v": "bfa7bdad70"
  }
 }

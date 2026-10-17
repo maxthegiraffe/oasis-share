@@ -1,5 +1,5 @@
 import { Room, RoomEvent, Track, ParticipantKind } from 'https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/+esm';
-import { GigiAvatar } from './avatar.js?v=7ec4bd57f7';
+import { GigiAvatar } from './avatar.js?v=57338f2222';
 import { Hide, seedOf } from './hide.js?v=5e3b8abe0c';
 import { Pacer } from './pacer.js?v=10ed3b6f67';
 
@@ -36,7 +36,7 @@ function show(id) { for (const v of document.querySelectorAll('.view')) v.hidden
 function badge(el) {
   if (el.querySelector('video')) return;
   const v = document.createElement('video');
-  Object.assign(v, { src: 'gigi/clips/idle.mp4?v=2f6b62584c', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
+  Object.assign(v, { src: 'gigi/clips/idle.mp4?v=85b097eecb', poster: 'gigi/base.webp', muted: true, loop: true, playsInline: true, autoplay: true });
   v.setAttribute('playsinline', '');
   v.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:50% 18%;transform:scale(1.35);transform-origin:50% 22%';
   el.appendChild(v);
