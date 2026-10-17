@@ -90,14 +90,15 @@ input:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
   width: min(100%, 760px, calc((100vh - 260px) * 1));
 }
 .grid.pair { grid-template-rows: auto; width: min(100%, 760px); }
-/* 1-on-1: Gigi fills her own tile, full video, beside (or, on phones, above) you; her words sit on her tile */
-.grid.solo { grid-template-columns: 1fr 1fr; width: min(100%, 820px); }
-.grid.solo .center { grid-row: 1; grid-column: 2; }
+/* 1-on-1: Gigi IS the screen. No tile for the person; her words and the breath counter sit on her. */
+.grid.solo { grid-template-columns: 1fr; width: min(100%, 1100px); }
+.grid.solo > .center { aspect-ratio: auto; height: calc(100dvh - 150px); min-height: 360px; grid-row: 1; grid-column: 1; border-radius: 22px; }
 .grid.solo .gigi-tile { inset: 0; right: 0; bottom: 0; width: 100%; height: 100%; border-radius: inherit; box-shadow: none; z-index: 1; }
 .grid.solo .gigi-tile::after { border-radius: inherit; }
-.grid.solo .gigi > .gigi-still, .grid.solo .gigi > .gigi-video { transform: none; object-position: 50% 30%; }
-.grid.solo .center-body { z-index: 4; inset: auto 0 0 0; padding: 14px 16px 16px; align-content: end; background: linear-gradient(to top, rgba(13, 11, 36, 0.9), rgba(13, 11, 36, 0) ); }
-.grid.solo .center-body .text { display: block; font-size: clamp(16px, 2.2vw, 22px); }
+.grid.solo .gigi > .gigi-still, .grid.solo .gigi > .gigi-video { transform: none; object-fit: cover; object-position: 50% 32%; }
+.grid.solo .center .pacer-video { object-position: 50% 32%; }
+.grid.solo .center-body { z-index: 4; inset: auto 0 0 0; padding: 18px 20px 22px; align-content: end; background: linear-gradient(to top, rgba(13, 11, 36, 0.92), rgba(13, 11, 36, 0)); }
+.grid.solo .center-body .text { display: block; font-size: clamp(18px, 2.6vw, 26px); }
 .grid.solo .center:not(.breath) .gigi-tile { display: block; }
 .grid > * { aspect-ratio: 1; min-width: 0; }
 .center { grid-row: 2; grid-column: 2; position: relative; border-radius: 18px; overflow: hidden; background: #150d22; box-shadow: 0 0 0 1px var(--line); }
@@ -167,10 +168,10 @@ input:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
 }
 @media (min-width: 641px) { .prompt-strip { display: none !important; } }
 @media (max-width: 640px) {
-  .grid.solo { grid-template-columns: 1fr; width: 100%; gap: 8px; }
-  .grid.solo > * { aspect-ratio: auto; height: calc((100dvh - 200px) / 2); min-height: 220px; }
-  .grid.solo .center { grid-row: 1; grid-column: 1; }
-  .grid.solo .seat { grid-row: 2 !important; grid-column: 1 !important; }
-  .grid.solo .seat .initial { inset: 50% auto auto 50%; width: 42%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+  #app:has(.grid.solo) { padding-left: 0; padding-right: 0; }
+  .grid.solo { width: 100%; }
+  .grid.solo > .center { height: calc(100dvh - 52px); border-radius: 0; }
+  .grid.solo .center-body { padding-bottom: 96px; }
+  .grid.solo .breath-hud .breath-count, .grid.solo .breath-hud .breath-round { bottom: 96px; }
 }
 @media (prefers-reduced-motion: reduce) { .float-giraffe { animation-duration: 0.01s; } }

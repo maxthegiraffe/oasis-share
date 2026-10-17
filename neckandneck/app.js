@@ -8,7 +8,7 @@ const MODE_LABEL = { gratitude: 'Gratitude', breath: 'Breath', both: 'Breath + G
 const PATTERN_LABEL = { coherence: 'Coherence', box: 'Box', '478': '4-7-8' };
 // Seats in the 3x3 grid as [row, col], filled in this order around the center square.
 const LAYOUT = {
-  solo: [[1, 1]],                                                      // 1-on-1: you beside the practice
+  solo: [],                                                            // 1-on-1: Gigi fills the screen, no box for you
   pair: [[1, 1], [1, 3]],                                              // two people: either side of the center
   cross: [[2, 1], [2, 3], [1, 2], [3, 2]],                             // 3-4: a cross
   ring: [[2, 1], [2, 3], [1, 2], [3, 2], [1, 1], [1, 3], [3, 1], [3, 3]], // 5-8: the full Brady Bunch
@@ -223,6 +223,7 @@ function render() {
   const layout = size === 1 ? LAYOUT.solo : size === 2 ? LAYOUT.pair : size <= 4 ? LAYOUT.cross : LAYOUT.ring;
   $('grid').classList.toggle('pair', size === 2);
   $('grid').classList.toggle('solo', size === 1);
+  for (const el of $('grid').querySelectorAll('.seat')) if (Number(el.dataset.i) >= layout.length) { hides.get(el.dataset.key)?.destroy(); hides.delete(el.dataset.key); el.remove(); }
   layout.slice(0, size).forEach(([row, col], i) => {
     const el = seatEl(i), p = ps[i], key = p ? p.identity : `empty-${i}`;
     Object.assign(el.style, { gridRow: row, gridColumn: col });
@@ -276,7 +277,8 @@ function render() {
   const mine = ph === 'turn' && st.speaker === identity;
   $('doneBtn').hidden = !mine;
   $('repeatBtn').hidden = !(mine && !gigiOff);
-  $('hostCtl').hidden = !amHost();
+  $('hostCtl').hidden = !amHost() || size === 1;   // 1-on-1: Gigi is the session, nothing to hand over
+  $('camBtn').hidden = $('giraffeBtn').hidden = size === 1;   // nobody else to see you or receive a giraffe
   $('beginBtn').hidden = !(ph === 'waiting' && size > 2 && count >= 2);
   $('nextBtn').hidden = !['turn', 'breath', 'between', 'prompt'].includes(ph);
   $('gigiBtn').textContent = gigiOff ? 'Gigi off' : 'Gigi on';
