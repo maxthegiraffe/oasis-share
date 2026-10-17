@@ -1,5 +1,5 @@
 import { Room, RoomEvent, Track, ParticipantKind } from 'https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/+esm';
-import { GigiAvatar } from './avatar.js?v=57338f2222';
+import { GigiAvatar } from './avatar.js?v=35b5a6168f';
 import { Hide, seedOf } from './hide.js?v=5e3b8abe0c';
 import { Pacer } from './pacer.js?v=10ed3b6f67';
 
@@ -59,6 +59,7 @@ async function unlockAudio() {
 function showStart() {
   show('start');
   badge($('heroGigi'));
+  call({ action: 'warm' }).catch(() => {});   // wake a Gigi worker while they choose (an idle agent cold-starts in ~16 s)
   $('startName').value = store.get('nn-name') || '';
   const syncOpts = () => { $('breathOpts').hidden = new FormData($('startForm')).get('mode') === 'gratitude'; };
   for (const r of document.querySelectorAll('input[name=mode]')) r.onchange = syncOpts;
@@ -265,7 +266,7 @@ function render() {
     sub.textContent = ph === 'turn' ? (st.speaker === identity ? 'Your turn' : `${firstName(st.speaker_name)} is sharing`) : '';
   } else {
     meta.textContent = MODE_LABEL[mode];
-    text.textContent = { welcome: 'Welcome', done: 'Thank you', between: mode === 'gratitude' ? '' : 'Breathe naturally' }[ph] ?? 'Waiting for everyone';
+    text.textContent = { welcome: 'Welcome', done: 'Thank you', between: mode === 'gratitude' ? '' : 'Breathe naturally' }[ph] ?? (size === 1 ? (gigiId ? 'Welcome' : 'Gigi is on her way') : 'Waiting for everyone');
     sub.textContent = ph === 'waiting' && size > 1 ? `${count} of ${size} here` : '';
   }
   $('promptStrip').hidden = !gratitudePhase || size === 1;   // 1-on-1 shows the prompt on Gigi's tile
