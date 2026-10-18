@@ -90,15 +90,6 @@ input:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
   width: min(100%, 760px, calc((100vh - 260px) * 1));
 }
 .grid.pair { grid-template-rows: auto; width: min(100%, 760px); }
-/* 1-on-1: Gigi IS the screen. No tile for the person; her words and the breath counter sit on her. */
-.grid.solo { grid-template-columns: 1fr; width: min(100%, 1100px); }
-.grid.solo > .center { aspect-ratio: auto; height: calc(100dvh - 150px); min-height: 360px; grid-row: 1; grid-column: 1; border-radius: 22px; }
-.grid.solo .gigi-tile { inset: 0; right: 0; bottom: 0; width: 100%; height: 100%; border-radius: inherit; box-shadow: none; z-index: 1; }
-.grid.solo .gigi-tile::after { border-radius: inherit; }
-.grid.solo .gigi > .gigi-still, .grid.solo .gigi > .gigi-video { transform: none; object-fit: cover; object-position: 50% 32%; }
-.grid.solo .center .pacer-video { object-position: 50% 32%; }
-.grid.solo .center-body { z-index: 4; inset: auto 0 0 0; padding: 18px 20px 22px; align-content: end; background: linear-gradient(to top, rgba(13, 11, 36, 0.92), rgba(13, 11, 36, 0)); }
-.grid.solo .center-body .text { display: block; font-size: clamp(18px, 2.6vw, 26px); }
 .grid > * { aspect-ratio: 1; min-width: 0; }
 .center { grid-row: 2; grid-column: 2; position: relative; border-radius: 18px; overflow: hidden; background: #150d22; box-shadow: 0 0 0 1px var(--line); }
 .grid.pair .center { grid-row: 1; }
@@ -170,11 +161,84 @@ input:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
   .center.breath .text { display: block; }
 }
 @media (min-width: 641px) { .prompt-strip { display: none !important; } }
-@media (max-width: 640px) {
-  #app:has(.grid.solo) { padding-left: 0; padding-right: 0; }
-  .grid.solo { width: 100%; }
-  .grid.solo > .center { height: calc(100dvh - 52px); border-radius: 0; }
-  .grid.solo .center-body { padding-bottom: 96px; }
-  .grid.solo .breath-hud .breath-count, .grid.solo .breath-hud .breath-round { bottom: 96px; }
-}
 @media (prefers-reduced-motion: reduce) { .float-giraffe { animation-duration: 0.01s; } }
+
+/* 1-on-1: the whole screen is the oasis. One stage, back to front: the oasis image, Gigi's square (every
+   video, exactly where the oasis shows her), the words / breath HUD, the controls. app.js (layoutStage) sets
+   the geometry from manifest.stage; without one (.nostage) the videos simply cover the screen. */
+.stage-img { display: none; }
+html.stage-on, html.stage-on body { height: 100%; overflow: hidden; overscroll-behavior: none; background: #0f1238; }
+.room.solo { position: fixed; inset: 0; z-index: 1; display: block; overflow: hidden; background: #0f1238; animation: stage-in 600ms ease-out both; }
+@keyframes stage-in { from { opacity: 0; } }
+.room.solo .grid, .room.solo .grid > .center { position: absolute; inset: 0; width: auto; height: auto; aspect-ratio: auto; display: block; }
+.room.solo .center { border-radius: 0; box-shadow: none; background: none; overflow: hidden; }
+.room.solo .stage-img { display: block; position: absolute; left: var(--img-l); top: var(--img-t); width: var(--img-w); height: var(--img-h); max-width: none; z-index: 0; pointer-events: none; user-select: none; }
+.room.solo.nostage .stage-img { display: none; }
+/* the square: every Gigi video fills it exactly; its left, right and top edges feather into the oasis, never the
+   bottom (her shawl runs off the screen) */
+.room.solo .gigi-tile, .room.solo .center .pacer-video {
+  left: var(--sq-l); top: var(--sq-t); right: auto; bottom: auto; width: var(--sq); height: var(--sq); aspect-ratio: auto;
+  border-radius: 0; box-shadow: none; background: none; z-index: 1;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%);
+  mask-composite: intersect;
+}
+.room.solo .center .pacer-video { z-index: 2; object-fit: fill; }   /* fallback breath (no breath-<pattern> render) */
+.room.solo .gigi-tile::after { display: none; }
+.room.solo .gigi > .gigi-still, .room.solo .gigi > .gigi-video { transform: none; object-fit: fill; object-position: 50% 50%; }
+.room.solo.runclips .center.breath .gigi-tile { opacity: 1; visibility: visible; transition: none; }   /* the breath plays in her square */
+.room.solo.nostage .gigi-tile, .room.solo.nostage .center .pacer-video { left: 0; top: 0; width: 100%; height: 100%; -webkit-mask-image: none; mask-image: none; }
+.room.solo.nostage .gigi > .gigi-still, .room.solo.nostage .gigi > .gigi-video, .room.solo.nostage .center .pacer-video { object-fit: cover; object-position: 50% 32%; }
+
+/* words and breath HUD: portrait (.sky) in the sky above her head; landscape low over her shawl on a soft
+   gradient, never above --face-bottom (her head is the top ~45% of the square) */
+.room.solo .center-body, .room.solo .breath-hud {
+  position: absolute; left: 0; right: 0; z-index: 4; display: grid; justify-items: center; gap: 6px; text-align: center;
+  padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left)); background: none; pointer-events: none;
+}
+.room.solo.sky .center-body, .room.solo.sky .breath-hud { top: var(--sky-top); bottom: var(--sky-bottom); align-content: center; }
+.room.solo:not(.sky) .center-body, .room.solo:not(.sky) .breath-hud {
+  top: var(--face-bottom, 50%); bottom: 0; align-content: end; padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  align-content: safe end;   /* too tall for the band (a landscape phone): spill down over the shawl, never up into her face */
+  background: linear-gradient(to top, rgba(8, 9, 30, 0.8), rgba(8, 9, 30, 0.45) 55%, rgba(8, 9, 30, 0));
+}
+.room.solo.side .center-body, .room.solo.side .breath-hud {
+  top: 0; bottom: 0; left: var(--side-l); right: max(24px, env(safe-area-inset-right)); align-content: center; padding: 0;
+  background: none;
+}
+.room.solo.side .center .text { max-width: 22ch; font-size: clamp(22px, 2.3vw, 36px); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6); }
+.room.solo:not(.sky) .center .text { max-width: min(52ch, 100%); }   /* wide and low: two lines fit the band on a landscape phone */
+.room.solo.micnote:not(.sky) .center-body { padding-bottom: calc(118px + env(safe-area-inset-bottom)); }   /* clear of the blocked-mic note */
+.room.solo .center.quiet .center-body { opacity: 0; visibility: hidden; }
+.room.solo .center .text { display: block; max-width: 30ch; font-size: clamp(18px, min(4.6vh, 3.6vw), 32px); line-height: 1.25; text-wrap: balance; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+.room.solo.sky .center .text { font-size: clamp(20px, min(6.2vw, 4.4vh), 34px); }
+.room.solo .center .meta { font-size: 12px; letter-spacing: 0.14em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+.room.solo .center .sub { font-size: 14px; color: var(--amber); text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+.room.solo .breath-hud { gap: 4px; }
+.room.solo .breath-hud p { position: static; }
+.room.solo .breath-label { font: 600 clamp(20px, min(5.4vw, 5vh), 34px)/1.2 Fraunces, Georgia, serif; }
+.room.solo .breath-count { font: 600 clamp(44px, min(16vw, 12vh), 104px)/1 Fraunces, Georgia, serif; color: var(--amber); font-variant-numeric: tabular-nums; }
+.room.solo .breath-round { font-size: 13px; color: var(--ink); background: rgba(10, 12, 40, 0.45); padding: 3px 12px; border-radius: 999px; }
+.room.solo .breath-round:empty { visibility: hidden; }
+
+/* top bar: a small translucent mode chip and Leave; bottom: translucent pills. No backdrop blur: over a playing
+   video it re-renders every frame, and the stage has to stay smooth on phones. */
+.room.solo .room-head { position: absolute; z-index: 5; top: 0; left: 0; right: 0; max-width: none; padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left)); }
+.room.solo .pill { background: rgba(10, 12, 40, 0.45); color: var(--ink); border: 1px solid rgba(255, 255, 255, 0.16); font-size: 12px; }
+.room.solo .ghost { background: rgba(10, 12, 40, 0.45); border-color: rgba(255, 255, 255, 0.18); }
+.room.solo .leave-top { color: #ffd2c8; }
+.room.solo .controls { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+.room.solo .ctl { background: rgba(10, 12, 40, 0.45); border-color: rgba(255, 255, 255, 0.18); padding: 10px 18px; font-size: 15px; }
+.room.solo .ctl.on { background: rgba(18, 56, 40, 0.55); border-color: rgba(110, 224, 122, 0.45); }
+.room.solo .ctl.off { background: rgba(72, 24, 30, 0.6); border-color: rgba(255, 120, 100, 0.5); }
+.room.solo .ctl.primary-ctl { background: linear-gradient(135deg, var(--amber), var(--ember)); border: 0; }
+.room.solo .status { position: absolute; z-index: 5; left: 50%; bottom: calc(72px + env(safe-area-inset-bottom)); transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); min-height: 0; padding: 5px 12px; border-radius: 999px; background: rgba(10, 12, 40, 0.6); color: #ffd2c8; font-size: 13px; }
+.room.solo .status:empty { display: none; }
+@media (prefers-reduced-motion: reduce) { .room.solo { animation-duration: 0.01s; } }
+
+/* solo end: still in the oasis, not the navy start page */
+body.solo-done #end { position: fixed; inset: 0; overflow: auto; z-index: 20; align-content: center; justify-content: center; padding: 24px; background: linear-gradient(rgba(10, 10, 35, 0.25), rgba(10, 10, 35, 0.78)), url("gigi/oasis-stage.jpg") center 78% / cover no-repeat; }
+body.solo-done #app:has(#end:not([hidden])) { max-width: none; padding: 0; }
+body.solo-done #end > * { position: relative; align-self: center; }
+body.solo-done #end .primary { height: auto; }

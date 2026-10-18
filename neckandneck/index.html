@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=66f47003b2">
+  <link rel="stylesheet" href="style.css?v=c25ba4a81a">
 </head>
 <body>
   <main id="app">
@@ -91,10 +91,11 @@
 
     <!-- the room -->
     <section id="room" class="view room" hidden>
-      <header class="room-head">
+      <header id="roomHead" class="room-head">
         <span id="roomTitle" class="pill"></span>
         <span id="roomCount" class="count"></span>
         <button id="inviteBtn" class="ghost">Invite</button>
+        <button id="leaveTop" class="ghost leave-top" hidden>Leave</button>
       </header>
       <div id="invite" class="card invite" hidden>
         <p>Send this link to the people you want in the room:</p>
@@ -102,6 +103,7 @@
       </div>
       <div id="grid" class="grid">
         <div id="center" class="center">
+          <img id="stageImg" class="stage-img" alt="" aria-hidden="true">
           <div class="center-body">
             <p id="centerMeta" class="meta"></p>
             <p id="centerText" class="text"></p>
@@ -145,6 +147,6 @@
 
   <button id="unlock" class="unlock" hidden>Tap to hear Gigi</button>
   <div id="audioSink" hidden></div>
-  <script type="module" src="app.js?v=69350f5168"></script>
+  <script type="module" src="app.js?v=f1395c6248"></script>
 </body>
 </html>
