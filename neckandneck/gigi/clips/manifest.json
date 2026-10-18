@@ -43,6 +43,7 @@
    "light": -2.1,
    "samples": 51
   },
+  "poster": "clips/idle.jpg",
   "v": "65a3da1006"
  },
  "in": {
@@ -1330,15 +1331,6 @@
   "source": "morph",
   "kind": "breath",
   "v": "4cb47c124e"
- },
- "walkup": {
-  "video": "clips/walkup.mp4",
-  "poster": "clips/walkup.jpg",
-  "seconds": 6.4,
-  "tail": 0.4,
-  "source": "solo-set.mp4 0-6.0 (tilt removed)",
-  "kind": "intro",
-  "v": "5f1bb39bc9"
  },
  "stage": {
   "image": "oasis-stage.jpg",

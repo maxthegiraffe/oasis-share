@@ -1,5 +1,5 @@
 import { Room, RoomEvent, Track, ParticipantKind, createLocalAudioTrack } from 'https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/+esm';
-import { GigiAvatar, breathAt, breathMarks } from './avatar.js?v=017d312831';
+import { GigiAvatar, breathAt, breathMarks } from './avatar.js?v=48460c951b';
 import { Hide, seedOf } from './hide.js?v=5e3b8abe0c';
 import { Pacer } from './pacer.js?v=10ed3b6f67';
 
@@ -189,7 +189,9 @@ async function enter(r, name) {
   } else {
     stageImg(); layoutStage();   // in case the manifest came after openStage stopped waiting for it
     // she walks up while the agent connects; once she's on her spot the agent may start (the opener is loaded)
-    avatar.walkup().then(() => {
+    // no walk-up any more (Max: "should just start with the exercise"): she's on her spot from the first frame,
+    // and the agent starts as soon as her first line is in memory
+    avatar.walkup().then(() => avatar.loaded(SOLO_OPENER[mode][0], 3000)).then(() => {
       arrived = true;
       sendReady();
       avatar.preload(soloRest(mode, pattern));

@@ -246,7 +246,7 @@ export class GigiAvatar {
   // solo: under the videos sits the walk-up's first frame (Gigi out in the water), never base.webp, which was
   // rendered on another plate and doesn't belong on this oasis
   soloStill() {
-    const m = this.manifest, w = m && m.walkup;
+    const m = this.manifest, w = m && (m.walkup || m.idle);   // her first frame: the walk-up's, or idle's (no walk-up)
     if (w && w.poster) { this.still.hidden = false; this.setImg(this.still, w.poster, w.v); return true; }
     if (m && m.stage) { this.still.hidden = true; return true; }
     return false;
@@ -306,6 +306,15 @@ export class GigiAvatar {
       } catch { /* the network copy still works */ }
     }
     this.pumping = false;
+  }
+
+  // resolves once a clip is in memory (or after ms): her first line must have a frame before the agent starts it
+  loaded(id, ms) {
+    return new Promise((resolve) => {
+      const t0 = performance.now();
+      const check = () => (this.blobs && this.blobs[id]) || performance.now() - t0 > ms ? resolve() : setTimeout(check, 50);
+      check();
+    });
   }
 
   // a line announced before its download: it goes first
