@@ -12,6 +12,17 @@ const BELL_GAIN = 0.06;
 const MIC_OPTS = { echoCancellation: true, noiseSuppression: true, autoGainControl: true };
 // Solo plays only these (SOLO-V3-SPEC "The session"): the opener loads with the walk-up, the rest once she's arrived.
 const SOLO_OPENER = { gratitude: ['welcome-hello', 'welcome-gratitude'], breath: ['solo-welcome-breath'], both: ['solo-arrive-breath'] };
+// solo intro lines: a person who has heard one doesn't hear it again (Max: "for strangers yes. for people coming
+// back no."). Remembered per browser; sent when a room starts; the agent skips them.
+const INTRO = ['welcome-hello', 'welcome-gratitude', 'solo-howto', 'solo-welcome-breath', 'solo-arrive-breath'];
+const heardIntro = () => { try { return JSON.parse(store.get('nn-heard') || '[]').filter((c) => INTRO.includes(c)); } catch { return []; } };
+const markHeard = (id) => { if (INTRO.includes(id)) { const h = heardIntro(); if (!h.includes(id)) store.set('nn-heard', JSON.stringify([...h, id])); } };
+// what she says first: the opener minus what they've heard, else the exercise itself
+const soloFirst = (m, p) => {
+  const left = SOLO_OPENER[m].filter((c) => !heardIntro().includes(c));
+  if (left.length) return left;
+  return m === 'gratitude' ? ['lead-first'] : ['breath-in', `breath-${p}`];
+};
 const SOLO_SHARE = ['solo-howto', 'lead-first', 'lead-next', 'lead-last', 'ready', 'ack-1', 'ack-2', 'ack-3', 'ack-4',
   'ack-5', 'ack-6', 'ack-7', 'ack-8', 'ack-quiet', 'nudge'];   // nudge: a turn still silent after 20 s
 const soloRest = (m, p) => [...(m === 'gratitude' ? [] : ['breath-in', `breath-${p}`, 'breath-out']),
@@ -91,7 +102,7 @@ function showStart() {
     $('startBtn').disabled = true;
     $('startError').hidden = true;
     await unlockAudio();
-    const r = await call({ action: 'create', name, identity, mode: f.get('mode'), size: Number(f.get('size')),
+    const r = await call({ action: 'create', name, identity, mode: f.get('mode'), size: Number(f.get('size')), heard: heardIntro(),
       pattern: f.get('pattern'), rounds: Number(f.get('rounds')) });
     if (!r.token) {
       $('startBtn').disabled = false;
@@ -182,7 +193,8 @@ async function enter(r, name) {
   if (size === 1) await openStage();
   show('room');
   if (size === 1) { layoutStage(); setTimeout(sendReady, READY_FALLBACK_MS); }
-  await avatar.load(size === 1 ? { solo: true, preload: SOLO_OPENER[mode] } : undefined);
+  const first = size === 1 ? soloFirst(mode, pattern) : [];   // computed before this session marks anything heard
+  await avatar.load(size === 1 ? { solo: true, preload: first } : undefined);
   if (size > 1) {
     ensurePacer();
     centerHide = new Hide($('center'), seedOf(code), () => (st.phase === 'breath' ? pacer.fullness() : null));
@@ -191,11 +203,11 @@ async function enter(r, name) {
     // she walks up while the agent connects; once she's on her spot the agent may start (the opener is loaded)
     // no walk-up any more (Max: "should just start with the exercise"): she's on her spot from the first frame,
     // and the agent starts as soon as her first line is in memory
-    avatar.walkup().then(() => avatar.loaded(SOLO_OPENER[mode][0], 3000)).then(() => {
+    avatar.walkup().then(() => avatar.loaded(first[0], 3000)).then(() => {
       arrived = true;
       sendReady();
+      soloPrompts();                          // the first prompt and her next words first, then the rest
       avatar.preload(soloRest(mode, pattern));
-      soloPrompts();
       // no breath-<pattern> render: the pacer breathes instead, so load it now, hidden, not empty when the run starts
       if (mode !== 'gratitude' && !(avatar.manifest && avatar.manifest[`breath-${pattern}`])) ensurePacer();
     });
@@ -234,6 +246,7 @@ function onState(attrs) {
   if (st.clip && st.clip !== lastClip) {
     lastClip = st.clip;
     avatar.arm(st.clip);
+    if (size === 1) markHeard(st.clip.split(':')[0]);
     if (size === 1 && SOLO_AFTER_PROMPTS.includes(st.clip.split(':')[0])) promptsOver = true;
   }
   if (st.prompt_clips) {
@@ -467,7 +480,8 @@ function readyByRpc() {
 // solo: the prompts load once she's arrived (not during the walk-up and the opener), and never for Breath
 function soloPrompts() {
   if (!arrived || mode === 'breath' || !st.prompt_clips) return;
-  try { avatar.preload(JSON.parse(st.prompt_clips)); } catch { /* ignore */ }
+  // in the order she'll say them: prompt 1 and what follows it, then the later prompts
+  try { const ps = JSON.parse(st.prompt_clips); avatar.preload([...ps.slice(0, 1), 'ready', 'lead-next', 'ack-2', 'ack-5', 'ack-7', ...ps.slice(1)]); } catch { /* ignore */ }
 }
 
 // ---------------------------------------------------------------- solo breath
