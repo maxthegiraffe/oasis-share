@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Meet a Giraffe · Grateful Giraffes</title>
+<meta property="og:title" content="Meet a fellow Giraffe">
+<meta property="og:description" content="Gigi would love to introduce you.">
+<meta property="og:image" content="https://grateful.gg/og-default.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@500&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<!--
+  grateful.gg/meet - the yes / not-right-now page for Gigi's "would you like to meet X?" emails (2026-10-19, Max: the old
+  twil.io links "look sketch"). The link carries a signed id + answer. Opening it only READS the request (mail scanners
+  prefetch links, and a prefetch must never answer for someone); only the button posts the answer to Gigi's /intro.
+-->
+<style>
+:root{--bg:#f5f2ea;--ink:#1f1a14;--muted:#6b6257;--accent:#e2557a;--card:#ffffff;--line:rgba(31,26,20,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f3ede4;--muted:#a89f93;--accent:#f07895;--card:#211c17;--line:rgba(243,237,228,.14)}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f3ede4;--muted:#a89f93;--accent:#f07895;--card:#211c17;--line:rgba(243,237,228,.14)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:17px/1.55 'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);max-width:440px;width:100%;border-radius:20px;padding:36px 24px 28px;text-align:center}
+.g{font-size:44px;line-height:1}
+h1{font-family:'Libre Bodoni',Georgia,serif;font-weight:500;font-size:28px;line-height:1.2;margin:14px 0 10px}
+p{color:var(--muted);margin:0 0 24px}
+button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:14px 28px;background:var(--accent);color:#fff;cursor:pointer;width:100%}
+button.quiet{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button[disabled]{opacity:.6;cursor:default}
+.foot{margin-top:22px;font-size:13px;color:var(--muted)}
+.foot a{color:inherit}
+.hide{display:none}
+</style>
+</head>
+<body>
+<main class="card" aria-live="polite">
+  <div class="g" aria-hidden="true">🦒</div>
+  <h1 id="title">One moment…</h1>
+  <p id="body">Looking up your introduction.</p>
+  <button id="go" class="hide" type="button"></button>
+  <div class="foot">Sent by Gigi at <a href="https://grateful.gg">Grateful Giraffes</a></div>
+</main>
+<script>
+(function () {
+  var API = "https://gigi-whatsapp-7909-dev.twil.io/intro";
+  var q = new URLSearchParams(location.search);
+  var id = (q.get("id") || "").replace(/[^a-f0-9]/g, "").slice(0, 20);
+  var a = q.get("a") === "no" ? "no" : q.get("a") === "yes" ? "yes" : "";
+  var t = (q.get("t") || "").replace(/[^a-f0-9]/g, "");
+  var $t = document.getElementById("title"), $b = document.getElementById("body"), $go = document.getElementById("go");
+
+  function show(title, body) { $t.textContent = title; $b.textContent = body; $go.className = "hide"; }
+  function words(s, d) {
+    var o = (d && d.other) || "them";
+    switch (s) {
+      case "connected": return show("You're already connected", "Gigi emailed you and " + o + ". Just reply-all there.");
+      case "passed": return show("All set", "You passed on this one, and nothing about you was shared.");
+      case "closed": return show("This request has closed", "It's been a while, so this one has expired. Nothing about you was shared.");
+      case "bad": return show("That link doesn't look right", "It may have been copied incompletely. Reply to Gigi's email and she'll sort it out.");
+      case "done_yes": return show("Done, you're connected", "Gigi just emailed you and " + o + ". Keep an eye out for a few times that work for " + o + ".");
+      case "done_no": return show("No problem at all", "Nothing about you was shared, and Gigi won't bring it up again.");
+      default: return show("Something went wrong on our side", "Reply to Gigi's email with yes or no and she'll take care of it.");
+    }
+  }
+  function call(method, extra) {
+    var p = new URLSearchParams({ id: id, a: a, t: t, format: "json" });
+    if (extra) for (var k in extra) p.set(k, extra[k]);
+    var opts = method === "POST"
+      ? { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: p.toString() }
+      : { method: "GET" };
+    return fetch(method === "POST" ? API : API + "?" + p.toString(), opts).then(function (r) { return r.json(); });
+  }
+
+  if (!id || !a || !t) return words("bad");
+  call("GET").then(function (d) {
+    if (!d || d.state !== "open") return words(d && d.state, d);
+    var o = d.other || "them";
+    if (a === "yes") {
+      $t.textContent = "Meet " + o + "?";
+      $b.textContent = "Tap below and Gigi will email you both an introduction.";
+      $go.textContent = "Yes, introduce us"; $go.className = "";
+    } else {
+      $t.textContent = "Pass on meeting " + o + "?";
+      $b.textContent = "No pressure at all. Nothing about you is shared.";
+      $go.textContent = "Not right now"; $go.className = "quiet";
+    }
+    $go.onclick = function () {
+      $go.disabled = true; $go.textContent = "One moment…";
+      call("POST", { confirm: "1" }).then(function (r) { words(r && r.state, r); }).catch(function () { words("error"); });
+    };
+  }).catch(function () { words("error"); });
+})();
+</script>
+</body>
+</html>
