@@ -125,39 +125,6 @@ li {
   color: #3a3442;
 }
 
-.code-box {
-  background: #1a1622;
-  color: #f3eee6;
-  padding: 16px 20px;
-  border-radius: 12px;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
-  font-size: 14px;
-  margin-bottom: 14px;
-  overflow-x: auto;
-  position: relative;
-}
-
-.copy-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.copy-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.copy-btn:active {
-  transform: scale(0.95);
-}
 
 .prompt-card {
   background: #f8f9fa;
@@ -211,21 +178,6 @@ li {
   box-shadow: 0 6px 20px rgba(236, 72, 153, 0.15);
 }
 
-.status-badge {
-  display: inline-block;
-  background: #fef2f8;
-  color: #be185d;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-left: 8px;
-}
-
-.status-badge.coming-soon {
-  background: #fff7ed;
-  color: #c2410c;
-}
 
 .capability-list {
   display: grid;
@@ -303,13 +255,6 @@ footer {
     font-size: 12px;
     padding: 12px 14px;
   }
-
-  .copy-btn {
-    position: static;
-    display: block;
-    margin-top: 12px;
-    width: 100%;
-  }
 }
 </style>
 </head>
@@ -323,101 +268,82 @@ footer {
     <main>
       <section>
         <h2>Why Host with Claude?</h2>
-        <p>Hosts like Juliet (who runs "Ecstatic Qigong + Tea" at app.grateful.gg/illuminate) keep hitting walls with the built-in event editor. Multiple ticket types? Sliding scale pricing? Custom registration flows? The in-app editor can't do it all.</p>
-        <p>Now you can bring your own Claude subscription, connect it to our event platform, and let Claude build exactly what you need — without limits, without us paying for your AI usage.</p>
+        <p>Hosts like Juliet (who runs "Ecstatic Qigong + Tea" at app.grateful.gg/illuminate) keep hitting walls with the built-in event editor. Multiple ticket types? Sliding scale pricing? Custom sections and styling? Now you can bring your own Claude, connect it to your events, and let Claude build exactly what you need.</p>
+        <p>Design your perfect event page by chatting with Claude — update your copy, add custom sections, restyle your layout, configure ticket types, and more. All on your own Claude plan.</p>
       </section>
 
       <div class="highlight-box">
-        <p><strong>🎯 Important:</strong> This runs on <strong>your own Claude plan</strong>. No additional fees from us — you're just using your Claude Desktop subscription or API credits to build your events.</p>
+        <p><strong>🎯 Important:</strong> This requires a <strong>paid Claude plan</strong> that supports custom connectors. All usage runs on your own Claude subscription — no additional fees from us.</p>
       </div>
 
       <section>
         <h2>How to Connect</h2>
         
-        <h3>Step 1: Get Your Host API Key</h3>
-        <p>First, you'll need a personal host key that lets Claude access only your events:</p>
-        <ol>
-          <li>Sign in to <a href="https://app.grateful.gg/" target="_blank" style="color: #ec4899; text-decoration: none; font-weight: 600;">app.grateful.gg</a></li>
-          <li>Go to Settings → API & Integrations</li>
-          <li>Click "Generate Host Key" — save it somewhere safe</li>
-        </ol>
-        
-        <div class="status-badge coming-soon">Coming Soon</div>
-        <p style="font-size: 14px; color: #9ca3af; margin-top: 8px;">Per-host API authentication is currently being built. Once ready, you'll get a key scoped only to your events.</p>
+        <h3>Step 1: Get Your Connector Link</h3>
+        <p>Sign in to <a href="https://app.grateful.gg/" target="_blank" style="color: #ec4899; text-decoration: none; font-weight: 600;">app.grateful.gg</a> and open your event's host panel, then the Event tab. Click <strong>"Make my Claude link"</strong>. Your private link is shown once — save it somewhere safe. (You can revoke it anytime with "Turn it off".)</p>
 
-        <h3 style="margin-top: 28px;">Step 2: Add Oasis MCP to Claude Desktop</h3>
-        <p>Open Claude Desktop, go to Settings → Developer → Model Context Protocol, and add this connector:</p>
-        
-        <div class="code-box">
-          <button class="copy-btn" onclick="copyMcpUrl()">Copy</button>
-          <div id="mcp-url">https://mcp.grateful.gg/v1</div>
-        </div>
+        <h3 style="margin-top: 28px;">Step 2: Add to Claude</h3>
+        <p>In Claude, go to <strong>Settings → Connectors → Add custom connector</strong>. Paste your link and name it <strong>"Grateful Giraffes"</strong>.</p>
 
-        <p>Then paste your host key when Claude asks for authentication.</p>
-        
-        <div class="status-badge coming-soon">Coming Soon</div>
-        <p style="font-size: 14px; color: #9ca3af; margin-top: 8px;">The MCP server endpoint is currently under development. The URL above is illustrative.</p>
-
-        <h3 style="margin-top: 28px;">Step 3: Start Building</h3>
-        <p>Once connected, just chat with Claude and describe the event page you want. It'll create pages, set up tickets, manage RSVPs, and handle everything else.</p>
+        <h3 style="margin-top: 28px;">Step 3: Start Creating</h3>
+        <p>Start a chat and ask Claude about your events. For example: <em>"What events do I host?"</em> Then describe what you want to build or change.</p>
       </section>
 
       <section>
         <h2>What Can Claude Do?</h2>
-        <p>When connected to Oasis, Claude has access to all our event hosting tools:</p>
+        <p>When connected, Claude can help you craft your perfect event page:</p>
         
         <div class="capability-list">
           <div class="capability-item">
-            <div class="capability-icon">📄</div>
+            <div class="capability-icon">📝</div>
             <div class="capability-text">
-              <strong>Create & edit event pages</strong>
-              <span>Build custom landing pages with your branding, description, cover images, and schedule</span>
+              <strong>Read and edit page words</strong>
+              <span>Rewrite your intro, refine your description, update any text on your page</span>
+            </div>
+          </div>
+          
+          <div class="capability-item">
+            <div class="capability-icon">🎨</div>
+            <div class="capability-text">
+              <strong>Restyle your page</strong>
+              <span>Change colors, fonts, layout, section order, and button labels to match your vibe</span>
+            </div>
+          </div>
+          
+          <div class="capability-item">
+            <div class="capability-icon">📦</div>
+            <div class="capability-text">
+              <strong>Add custom sections</strong>
+              <span>Add, update or remove up to 6 custom sections with your own content</span>
+            </div>
+          </div>
+          
+          <div class="capability-item">
+            <div class="capability-icon">🖼️</div>
+            <div class="capability-text">
+              <strong>Set photos and previews</strong>
+              <span>Update images from links, customize your share preview card for social media</span>
             </div>
           </div>
           
           <div class="capability-item">
             <div class="capability-icon">🎟️</div>
             <div class="capability-text">
-              <strong>Multiple ticket types</strong>
-              <span>Set up paid, free, sliding scale, early bird, VIP, and member tiers</span>
+              <strong>Configure ticket types</strong>
+              <span>Set free, fixed-price, or sliding scale tickets ($18–$54 style)</span>
             </div>
           </div>
           
           <div class="capability-item">
-            <div class="capability-icon">✅</div>
+            <div class="capability-icon">📍</div>
             <div class="capability-text">
-              <strong>RSVP management</strong>
-              <span>Track who's coming, send confirmations, and manage waitlists</span>
-            </div>
-          </div>
-          
-          <div class="capability-item">
-            <div class="capability-icon">📋</div>
-            <div class="capability-text">
-              <strong>Check-in tools</strong>
-              <span>Generate QR codes, check attendees in at the door, track attendance</span>
-            </div>
-          </div>
-          
-          <div class="capability-item">
-            <div class="capability-icon">📢</div>
-            <div class="capability-text">
-              <strong>Announcements</strong>
-              <span>Send updates to attendees via email and SMS</span>
-            </div>
-          </div>
-          
-          <div class="capability-item">
-            <div class="capability-icon">📊</div>
-            <div class="capability-text">
-              <strong>Analytics & reports</strong>
-              <span>See registration trends, revenue, and attendance data</span>
+              <strong>Update event details</strong>
+              <span>Change event name, location, price, and run of show</span>
             </div>
           </div>
         </div>
-
-        <div class="status-badge coming-soon">Note</div>
-        <p style="font-size: 14px; color: #6b7280; margin-top: 12px;">The capabilities listed above represent what exists in the Oasis platform. The MCP interface to expose these is currently being specified. Availability will be documented once the MCP server is live.</p>
+        
+        <p style="font-size: 14px; color: #6b7280; margin-top: 16px;">Works for events where you're a host or co-host. Claude can list your events and help you manage any of them.</p>
       </section>
 
       <section>
@@ -425,33 +351,36 @@ footer {
         <p>Once you're connected, here are some things you can ask Claude to do:</p>
         
         <div class="prompt-card" onclick="copyPrompt(this)">
-          <p>"Create a new event page for my weekly meditation circle. Make it free with optional donations via sliding scale. Add a beautiful header image of a sunset over the ocean."</p>
+          <p>"What events do I host?"</p>
         </div>
         
         <div class="prompt-card" onclick="copyPrompt(this)">
-          <p>"Add three ticket types to my workshop: Early Bird ($45, limit 20), Regular ($65), and Community Pass (free for returning members). Early bird ends October 15th."</p>
+          <p>"Make my page feel like a candlelit tea house — warm colors, softer fonts, and a cozy vibe."</p>
         </div>
         
         <div class="prompt-card" onclick="copyPrompt(this)">
-          <p>"Send an announcement to everyone registered for my November event: 'Location update: we're moving to the rooftop garden to enjoy the weather! Same time, new view.'"</p>
+          <p>"Add a free Outdoors ticket and a sliding-scale $18–$54 tea ticket."</p>
         </div>
         
         <div class="prompt-card" onclick="copyPrompt(this)">
-          <p>"Show me how many people have registered for my Ecstatic Dance event this Saturday, broken down by ticket type."</p>
+          <p>"Rewrite my intro to be warmer and shorter. Make it feel more inviting."</p>
         </div>
         
         <div class="prompt-card" onclick="copyPrompt(this)">
-          <p>"Create a check-in QR code for my event tomorrow. I'll scan attendees at the door."</p>
+          <p>"Make the share card use my poster image. The link is https://example.com/poster.jpg"</p>
+        </div>
+        
+        <div class="prompt-card" onclick="copyPrompt(this)">
+          <p>"Add a new section about what to bring, and move it above the location section."</p>
         </div>
       </section>
 
       <section>
         <h2>Ready to Get Started?</h2>
-        <p>Sign in to your Grateful Giraffes account to get your host API key, or create a new account if you don't have one yet.</p>
+        <p>Sign in to your Grateful Giraffes account, open your event's host panel, and click "Make my Claude link" to connect.</p>
         
         <div style="margin-top: 24px;">
-          <a href="https://app.grateful.gg/" class="btn" target="_blank">Open Oasis Dashboard</a>
-          <a href="https://claude.ai/" class="btn btn-secondary" target="_blank" style="margin-left: 12px;">Get Claude</a>
+          <a href="https://app.grateful.gg/" class="btn" target="_blank">Go to app.grateful.gg</a>
         </div>
       </section>
     </main>
@@ -462,18 +391,6 @@ footer {
   </div>
 
   <script>
-    function copyMcpUrl() {
-      const url = document.getElementById('mcp-url').textContent;
-      navigator.clipboard.writeText(url).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(() => {
-          btn.textContent = originalText;
-        }, 2000);
-      });
-    }
-
     function copyPrompt(card) {
       const text = card.querySelector('p').textContent;
       navigator.clipboard.writeText(text).then(() => {
