@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Collective Resonance · Thank you</title>
-<meta name="description" content="Thank you for working with Grateful Labs, a venture studio dedicated to human flourishing, co-owned by the Grateful Giraffes.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Collective Resonance · Thank you · The Oasis</title>
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Grateful Labs">
+<meta property="og:site_name" content="The Oasis">
 <meta property="og:title" content="The Collective Resonance · Thank you">
 <meta property="og:description" content="Thank you for working with Grateful Labs, a venture studio dedicated to human flourishing, co-owned by the Grateful Giraffes.">
 <meta property="og:url" content="https://grateful.gg/resonance/">
@@ -16,264 +15,40 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Collective Resonance. Thank you. Santa Monica, October 24.">
+<meta property="og:image:alt" content="The Collective Resonance, thank you">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Collective Resonance · Thank you">
 <meta name="twitter:description" content="Thank you for working with Grateful Labs, a venture studio dedicated to human flourishing, co-owned by the Grateful Giraffes.">
 <meta name="twitter:image" content="https://grateful.gg/resonance/cover.jpg">
-<link rel="canonical" href="https://grateful.gg/resonance/">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Humans go to the real page; crawlers read the tags above first. The card
+     below only shows if the redirect is blocked (in-app browsers, JS off). -->
+<!-- Keep the query string (utm_*, fbclid) and hash so ad and campaign links
+     still attribute; the no-JS refresh can't carry them. -->
+<script>location.replace("https://app.grateful.gg/resonance" + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://app.grateful.gg/resonance"></noscript>
+<style>html{visibility:hidden}</style>
+<noscript><style>html{visibility:visible}</style></noscript>
+<script>setTimeout(function(){document.documentElement.style.visibility='visible';},1200);</script>
+<link rel="canonical" href="https://app.grateful.gg/resonance">
 <style>
-  :root {
-    --paper: #f8f6f1;
-    --ink: #1a1a1a;
-    --ink-soft: rgba(26, 26, 26, .68);
-    --ink-faint: rgba(26, 26, 26, .45);
-    --gold: #d3ae36;
-    --line: rgba(26, 26, 26, .12);
-    --serif: "Cormorant Garamond", Georgia, serif;
-    --sans: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
-    color-scheme: light;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 56px 16px;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: url("hero.jpg") center / cover no-repeat;
-    transform: scale(1.04);
-    animation: drift 24s ease-in-out infinite alternate;
-  }
-  .hero::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(rgba(249, 247, 242, .78), rgba(249, 247, 242, .5) 45%, rgba(249, 247, 242, .92));
-  }
-  @keyframes drift { to { transform: scale(1.1) translateY(-1.5%); } }
-  @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
-
-  .inner {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 620px;
-    text-align: center;
-    animation: rise 1.1s ease both;
-  }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-
-  .eyebrow {
-    display: flex; align-items: center; justify-content: center; gap: 14px;
-    margin: 0 0 22px;
-    font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .eyebrow::before, .eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--gold); flex: none; }
-
-  h1 {
-    margin: 0;
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(64px, 14vw, 112px);
-    line-height: .95; letter-spacing: -.01em;
-  }
-  .lede {
-    margin: 18px auto 0; max-width: 500px;
-    font-size: clamp(17px, 2.4vw, 19px); line-height: 1.6;
-    color: var(--ink-soft);
-  }
-  .lede em { font-family: var(--serif); font-style: italic; font-size: 1.18em; color: var(--ink); }
-
-  .pay, .done {
-    margin: 36px auto 0; max-width: 480px;
-    padding: 26px 24px 22px;
-    background: rgba(255, 255, 255, .62);
-    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, .9);
-    box-shadow: 0 18px 50px rgba(60, 50, 30, .10), inset 0 0 0 1px var(--line);
-    text-align: left;
-  }
-  .item { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-  .item-name { font-family: var(--serif); font-size: 24px; font-weight: 400; line-height: 1.15; }
-  .item-meta { margin-top: 4px; font-size: 13px; color: var(--ink-faint); line-height: 1.5; }
-  .amt { font-family: var(--serif); font-size: 26px; font-weight: 400; white-space: nowrap; }
-
-  .tip { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
-  .tip-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .tip-label { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); font-weight: 400; }
-  .tip-note { font-size: 13px; color: var(--ink-faint); }
-  .bubbles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
-  .bubble {
-    appearance: none; cursor: pointer;
-    min-height: 48px; padding: 10px 6px;
-    border-radius: 999px;
-    border: 1px solid rgba(26, 26, 26, .2);
-    background: rgba(255, 255, 255, .7);
-    color: var(--ink);
-    font: 400 16px/1 var(--sans);
-    transition: background .2s, color .2s, border-color .2s, transform .15s;
-  }
-  .bubble:hover { border-color: var(--gold); }
-  .bubble:active { transform: scale(.97); }
-  .bubble[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .bubble:focus-visible, .pay-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-  .tip-split { margin: 12px 0 0; font-size: 13px; line-height: 1.5; color: var(--ink-soft); min-height: 1.5em; }
-
-  .total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
-  .total span:first-child { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
-  .total span:last-child { font-family: var(--serif); font-size: 32px; font-weight: 400; }
-
-  .pay-btn {
-    appearance: none; cursor: pointer;
-    display: block; width: 100%;
-    margin-top: 18px; padding: 17px 20px;
-    border: 0; border-radius: 0;
-    background: var(--ink); color: var(--paper);
-    font: 400 14px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase;
-    transition: opacity .2s;
-  }
-  .pay-btn:hover { opacity: .88; }
-  .pay-btn[disabled] { opacity: .6; cursor: progress; }
-  .fine { margin: 12px 0 0; text-align: center; font-size: 12px; color: var(--ink-faint); letter-spacing: .04em; }
-  .err { margin: 10px 0 0; text-align: center; font-size: 13px; color: #9b2c2c; }
-
-  .done { text-align: center; }
-  .done-title { font-family: var(--serif); font-size: 30px; font-weight: 400; margin: 0; }
-  .done p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
-
-  .sign { margin: 28px 0 0; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-faint); }
-
-  [hidden] { display: none !important; }
-  @media (max-width: 420px) {
-    .eyebrow { gap: 10px; font-size: 11px; letter-spacing: .2em; white-space: nowrap; }
-    .eyebrow::before, .eyebrow::after { width: 24px; }
-    .pay, .done { padding: 22px 18px 18px; }
-    .bubbles { gap: 8px; }
-    .bubble { font-size: 15px; }
-    .item-name { font-size: 22px; }
-    .amt { font-size: 24px; }
-  }
+  body{margin:0;font-family:Georgia,'Libre Bodoni',serif;color:#26211b;
+    background:linear-gradient(180deg,#fff7ed 0%,#fef2f8 45%,#eef2ff 100%);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{max-width:560px;width:100%;background:#fff;border:1px solid #ece7f1;border-radius:22px;
+    overflow:hidden;box-shadow:0 8px 30px rgba(38,33,27,.08)}
+  .card img{width:100%;height:auto;display:block}
+  .b{padding:22px 26px 26px} h1{font-size:26px;margin:0 0 8px}
+  p{color:#7c7773;font-size:15px;line-height:1.6;margin:0 0 18px}
+  a.btn{display:inline-block;text-decoration:none;color:#fff;font-weight:700;padding:12px 22px;
+    border-radius:999px;background:linear-gradient(135deg,#f97316,#ec4899 45%,#8b5cf6)}
 </style>
 </head>
 <body>
-<main class="hero">
-  <div class="inner">
-    <p class="eyebrow">Santa Monica · October 24</p>
-    <h1>Thank you</h1>
-    <p class="lede">for working with <em>Grateful Labs</em>, a venture studio dedicated to human flourishing, co&#8209;owned by the Grateful Giraffes.</p>
-
-    <section class="pay" id="pay" aria-label="Payment">
-      <div class="item">
-        <div>
-          <div class="item-name">The Collective Resonance</div>
-          <div class="item-meta">Musical workshop day retreat · Saturday, October 24</div>
-        </div>
-        <div class="amt">$4,600</div>
-      </div>
-
-      <div class="tip">
-        <div class="tip-head">
-          <span class="tip-label">Tip the musicians</span>
-          <span class="tip-note">Optional</span>
-        </div>
-        <div class="bubbles" role="group" aria-label="Tip amount">
-          <button type="button" class="bubble" data-tip="50000" aria-pressed="false">$500</button>
-          <button type="button" class="bubble" data-tip="100000" aria-pressed="false">$1,000</button>
-          <button type="button" class="bubble" data-tip="200000" aria-pressed="false">$2,000</button>
-          <button type="button" class="bubble" data-tip="500000" aria-pressed="false">$5,000</button>
-        </div>
-        <p class="tip-split" id="tipSplit" aria-live="polite">Every tip is split evenly between the musicians.</p>
-      </div>
-
-      <div class="total"><span>Total</span><span id="total">$4,600</span></div>
-      <button type="button" class="pay-btn" id="payBtn">Pay $4,600</button>
-      <p class="fine">Secure checkout by Stripe</p>
-      <p class="err" id="err" role="alert" hidden></p>
-    </section>
-
-    <section class="done" id="done" hidden>
-      <p class="done-title">Received, with gratitude</p>
-      <p id="doneTip"></p>
-    </section>
-
-    <p class="sign">Grateful Labs</p>
-  </div>
-</main>
-<script>
-(function () {
-  var BASE = 460000;
-  var FN = 'https://app.grateful.gg/api/apps/69882c256690d6f8c4ce18bf/functions/createResonanceCheckout';
-  var tip = 0;
-  var fmt = function (c) { return '$' + (c / 100).toLocaleString('en-US'); };
-  var $ = function (id) { return document.getElementById(id); };
-  var bubbles = document.querySelectorAll('.bubble');
-
-  var params = new URLSearchParams(location.search);
-  if (params.get('paid') === '1') {
-    $('pay').hidden = true;
-    $('done').hidden = false;
-    var paidTip = Number(params.get('tip') || 0);
-    $('doneTip').textContent = paidTip > 0
-      ? 'Your ' + fmt(paidTip) + ' tip goes to the musicians, split evenly between them. Thank you.'
-      : 'Thank you for gathering with us.';
-    return;
-  }
-
-  function render() {
-    bubbles.forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.tip) === tip)); });
-    $('total').textContent = fmt(BASE + tip);
-    $('payBtn').textContent = 'Pay ' + fmt(BASE + tip);
-    $('tipSplit').textContent = tip > 0
-      ? fmt(tip) + ' to the musicians, split evenly between them. Tap again to remove.'
-      : 'Every tip is split evenly between the musicians.';
-  }
-
-  bubbles.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var t = Number(b.dataset.tip);
-      tip = tip === t ? 0 : t;
-      render();
-    });
-  });
-
-  $('payBtn').addEventListener('click', function () {
-    var btn = $('payBtn');
-    btn.disabled = true;
-    btn.textContent = 'Opening secure checkout';
-    $('err').hidden = true;
-    fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tip_cents: tip }) })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d || !d.checkout_url) throw new Error((d && d.error) || 'No checkout link');
-        location.href = d.checkout_url;
-      })
-      .catch(function () {
-        $('err').textContent = 'Checkout did not open. Please try again in a moment.';
-        $('err').hidden = false;
-        btn.disabled = false;
-        render();
-      });
-  });
-
-  render();
-})();
-</script>
+  <main class="card">
+    <img src="https://grateful.gg/resonance/cover.jpg" alt="The Collective Resonance, thank you" width="1200" height="630">
+    <div class="b"><h1>The Collective Resonance · Thank you</h1><p>Thank you for working with Grateful Labs, a venture studio dedicated to human flourishing, co-owned by the Grateful Giraffes.</p>
+    <a class="btn" href="https://app.grateful.gg/resonance">Open the event &rarr;</a></div>
+  </main>
 </body>
 </html>
