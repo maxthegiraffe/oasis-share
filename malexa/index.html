@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Max and Alexa</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A Human Design and astrology reading of how Max and Alexa fit together.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max and Alexa">
+<meta property="og:description" content="A Human Design and astrology reading of how Max and Alexa fit together.">
+<meta property="og:url" content="https://grateful.gg/malexa/">
+<meta property="og:image" content="https://grateful.gg/malexa/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/malexa/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Max and Alexa, their combined Human Design bodygraph">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Max and Alexa">
+<meta name="twitter:description" content="A Human Design and astrology reading of how Max and Alexa fit together.">
+<meta name="twitter:image" content="https://grateful.gg/malexa/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Figtree:ital,wght@0,400..700;1,400..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column where Max (violet, left) and Alexa (teal, right) sit side by side, and gold marks what exists only between them */
+:root {
+  --paper: #F5F4F9; --surface: #FFFFFF; --ink: #1D1B2B; --muted: #5E5A73; --rule: #DFDCE9;
+  --max: #5847C4; --alexa: #0D7B65; --spark: #A9690E; --spark-soft: #F7EDDB;
+  --open: #FFFFFF; --open-line: #B5B1C8;
+  --f-display: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #13121B; --surface: #1C1B27; --ink: #ECEAF5; --muted: #A39FBA; --rule: #2E2C3F;
+    --max: #A69CFF; --alexa: #4FD0AE; --spark: #E8B04E; --spark-soft: #33270F;
+    --open: #1C1B27; --open-line: #4C4964; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #13121B; --surface: #1C1B27; --ink: #ECEAF5; --muted: #A39FBA; --rule: #2E2C3F;
+  --max: #A69CFF; --alexa: #4FD0AE; --spark: #E8B04E; --spark-soft: #33270F;
+  --open: #1C1B27; --open-line: #4C4964; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap {
+  max-width: 1040px; margin: 0 auto; display: grid; gap: 88px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 72px;
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.08; }
+h2 { font-size: clamp(30px, 4.4vw, 44px); }
+h3 { font-size: 22px; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-data); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.max { color: var(--max); }
+.alexa { color: var(--alexa); }
+.spark { color: var(--spark); }
+.mono { font-family: var(--f-data); font-size: .88em; font-variant-numeric: tabular-nums; }
+section { display: grid; gap: 28px; min-width: 0; }
+.head { display: grid; gap: 12px; max-width: 68ch; }
+.prose { display: grid; gap: 16px; max-width: 66ch; min-width: 0; align-content: start; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.hero-text { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-size: clamp(50px, 7vw, 88px); letter-spacing: -.02em; line-height: .95; }
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--spark); font-size: .6em; }
+.lede { font-size: clamp(18px, 2.1vw, 21px); max-width: 44ch; }
+.births { display: grid; gap: 4px; margin: 0; }
+.births div { display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.births dt { font-weight: 600; min-width: 3.4em; }
+.births dd { margin: 0; font-family: var(--f-data); font-size: 14px; color: var(--muted); }
+.charts { display: grid; gap: 18px; min-width: 0; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+figure { margin: 0; display: grid; gap: 10px; justify-items: center; text-align: center; }
+.chart { width: 100%; max-width: 230px; }
+.chart svg { display: block; width: 100%; height: auto; }
+figcaption { font-size: 14px; color: var(--muted); }
+figcaption b { display: block; font-family: var(--f-display); font-size: 24px; font-weight: 600; line-height: 1.2; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); justify-content: center; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
+.sw-max { background: var(--max); }
+.sw-alexa { background: var(--alexa); }
+.sw-spark { background: var(--spark); }
+.sw-open { background: var(--open); border: 1.5px solid var(--open-line); }
+@media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+
+/* At a glance */
+.table-scroll { overflow-x: auto; border-top: 1.5px solid var(--ink); }
+table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--rule); }
+thead th { font-family: var(--f-display); font-size: 24px; font-weight: 600; padding-top: 14px; }
+tbody th { font-family: var(--f-data); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; width: 22%; padding-top: 15px; }
+td { width: 39%; }
+td small { display: block; color: var(--muted); font-size: 13.5px; }
+@media (max-width: 560px) { table { font-size: 14.5px; } tbody th { font-size: 10.5px; letter-spacing: .06em; } thead th { font-size: 20px; } }
+
+/* Together */
+.together { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 48px; align-items: start; }
+.together figure .chart { max-width: 300px; }
+@media (max-width: 760px) { .together { grid-template-columns: 1fr; } .together figure .chart { max-width: 260px; } }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--f-data); font-size: 12.5px; padding: 5px 11px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); }
+
+/* Sparks */
+.sparks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .sparks { grid-template-columns: 1fr; } }
+.spark-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 22px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.spark-card h3 small { display: block; font-family: var(--f-data); font-size: 12px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.em { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; font-family: var(--f-data); font-weight: 500; font-size: 15px; }
+.em .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; }
+.em .bar i { flex: 1; }
+.b-max { background: var(--max); }
+.b-alexa { background: var(--alexa); }
+.who { display: grid; gap: 8px; font-size: 14.5px; margin: 0; padding: 0; list-style: none; line-height: 1.45; }
+.who li { display: grid; grid-template-columns: 10px 1fr; gap: 10px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-top: .4em; }
+.who small { color: var(--muted); display: block; }
+blockquote { margin: 0; font-family: var(--f-display); font-style: italic; font-size: 18px; line-height: 1.4; padding-left: 14px; border-left: 2px solid var(--spark); }
+.spark-card p { font-size: 15.5px; }
+
+/* Two sides */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+.block { display: grid; gap: 10px; align-content: start; padding-top: 16px; border-top: 2px solid var(--rule); min-width: 0; }
+.block.side-max { border-top-color: var(--max); }
+.block.side-alexa { border-top-color: var(--alexa); }
+.block h3 { font-size: 21px; }
+.block .centers { font-family: var(--f-data); font-size: 13px; color: var(--muted); }
+
+.rows { display: grid; border-top: 1px solid var(--rule); }
+.row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.row .k { font-family: var(--f-data); font-size: 13.5px; line-height: 1.5; }
+.row .k b { display: block; font-family: var(--f-body); font-size: 16px; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; gap: 6px; } }
+
+ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: 20px; max-width: 66ch; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 36px 1fr; gap: 12px; }
+ol.steps li::before { content: counter(s); font-family: var(--f-display); font-size: 30px; line-height: 1; color: var(--spark); }
+ol.steps b { display: block; }
+
+/* Astrology */
+.aspects { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--rule); }
+.aspects li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+.orb { font-family: var(--f-data); font-size: 14px; color: var(--spark); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.aspects b { font-weight: 600; }
+.aspects span { color: var(--muted); }
+.planets { display: grid; gap: 4px; font-family: var(--f-data); font-size: 13.5px; margin: 0; }
+.planets div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dotted var(--rule); padding: 3px 0; }
+.planets dt { color: var(--muted); }
+.planets dd { margin: 0; text-align: right; }
+
+footer { display: grid; gap: 8px; font-size: 13.5px; color: var(--muted); max-width: 72ch; border-top: 1px solid var(--rule); padding-top: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Connection reading · Human Design and astrology</p>
+      <h1><span class="max">Max</span><em> and </em><span class="alexa">Alexa</span></h1>
+      <p class="lede">A Projector and a Generator, both rising in Sagittarius. Three channels in this reading belong to neither of you alone. They switch on only when you are together.</p>
+      <dl class="births">
+        <div><dt class="max">Max</dt><dd>8 Sep 1990 · Wynnewood, PA</dd></div>
+        <div><dt class="alexa">Alexa</dt><dd>4 Dec 1994 · Woodland Hills, CA</dd></div>
+      </dl>
+    </div>
+    <div class="charts">
+      <div class="pair">
+        <figure><div class="chart" data-chart="max"></div><figcaption><b class="max">Max</b>Projector · 5/1</figcaption></figure>
+        <figure><div class="chart" data-chart="alexa"></div><figcaption><b class="alexa">Alexa</b>Generator · 1/4</figcaption></figure>
+      </div>
+      <div class="legend">
+        <span><i class="sw sw-max"></i>Defined in Max</span>
+        <span><i class="sw sw-alexa"></i>Defined in Alexa</span>
+        <span><i class="sw sw-open"></i>Open</span>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="glance">
+    <div class="head">
+      <p class="eyebrow">Human Design and astrology</p>
+      <h2 id="glance">Side by side</h2>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col"><span class="eyebrow">Chart</span></th><th scope="col" class="max">Max</th><th scope="col" class="alexa">Alexa</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Type</th><td>Projector</td><td>Generator</td></tr>
+          <tr><th scope="row">Strategy</th><td>Wait for the invitation</td><td>Wait to respond</td></tr>
+          <tr><th scope="row">Authority</th><td>Self-Projected<small>Hearing himself say it</small></td><td>Sacral<small>The gut sound, in the moment</small></td></tr>
+          <tr><th scope="row">Profile</th><td>5/1<small>Heretic · Investigator</small></td><td>1/4<small>Investigator · Opportunist</small></td></tr>
+          <tr><th scope="row">Definition</th><td>Split</td><td>Split</td></tr>
+          <tr><th scope="row">Channels</th><td><span class="mono">1-8</span> Inspiration<br><span class="mono">24-61</span> Awareness</td><td><span class="mono">2-14</span> The Beat<br><span class="mono">18-58</span> Judgment<br><span class="mono">29-46</span> Discovery</td></tr>
+          <tr><th scope="row">Defined</th><td>Head, Ajna, Throat, G</td><td>G, Sacral, Spleen, Root</td></tr>
+          <tr><th scope="row">Open</th><td>Heart, Sacral, Solar Plexus, Spleen, Root</td><td>Head, Ajna, Throat, Heart, Solar Plexus</td></tr>
+          <tr><th scope="row">Signature · not-self</th><td>Success · bitterness</td><td>Satisfaction · frustration</td></tr>
+          <tr><th scope="row">Conscious Sun · Earth</th><td><span class="mono">64.5 · 63.5</span><small>Before Completion · After Completion</small></td><td><span class="mono">5.1 · 35.1</span><small>Waiting · Progress</small></td></tr>
+          <tr><th scope="row">Unconscious Sun · Earth</th><td><span class="mono">45.1 · 26.1</span></td><td><span class="mono">64.4 · 63.4</span><small>The same gates as Max's conscious Sun and Earth</small></td></tr>
+          <tr><th scope="row">Sun</th><td>&#x264D;&#xFE0E; Virgo 15°</td><td>&#x2650;&#xFE0E; Sagittarius 12°</td></tr>
+          <tr><th scope="row">Moon</th><td>&#x2649;&#xFE0E; Taurus 4°</td><td>&#x2651;&#xFE0E; Capricorn 4°</td></tr>
+          <tr><th scope="row">Rising</th><td>&#x2650;&#xFE0E; Sagittarius 18°</td><td>&#x2650;&#xFE0E; Sagittarius 2°</td></tr>
+          <tr><th scope="row">Midheaven</th><td>&#x264E;&#xFE0E; Libra 8°</td><td>&#x264D;&#xFE0E; Virgo 13°</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="together">
+    <div class="together">
+      <figure>
+        <div class="chart" data-chart="together"></div>
+        <div class="legend">
+          <span><i class="sw sw-max"></i>Max</span>
+          <span><i class="sw sw-alexa"></i>Alexa</span>
+          <span><i class="sw sw-spark"></i>Only together</span>
+        </div>
+      </figure>
+      <div class="prose">
+        <p class="eyebrow">Human Design · connection chart</p>
+        <h2 id="together">One chart, two people</h2>
+        <p>Lay the two bodygraphs on top of each other and seven of the nine centers turn on. Everything from the Root up to the Throat joins into one circuit. Max's Head and Ajna stay their own island: his mind is the one part of this pair that runs on its own track.</p>
+        <p>Because the Sacral now reaches the Throat, through Alexa's G and Max's 1-8, the pair reads as a Manifesting Generator. Together you have more fuel and more speed than either of you has alone. Plans move faster when you are in the same room.</p>
+        <p>The Solar Plexus stays open even together. Neither of you carries the emotional center, so the moods in a room tend to belong to whoever else is in it, and you can both get swept up in them. The only emotional gate either of you has is Alexa's 37, The Family: warmth, and the bargain both sides keep.</p>
+        <div class="chips">
+          <span class="chip">7 of 9 centers defined</span>
+          <span class="chip">Manifesting Generator as a pair</span>
+          <span class="chip">Solar Plexus open</span>
+          <span class="chip">Heart switched on by 26-44</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="sparks">
+    <div class="head">
+      <p class="eyebrow">Human Design · electromagnetic channels</p>
+      <h2 id="sparks">Three sparks</h2>
+      <p>An electromagnetic channel is one where each of you holds one end. Alone, neither of you has it. Together it switches on. This is where the attraction comes from, and where most of the friction will come from too. All three of yours land in Alexa's Spleen, the center of instinct, health and timing, which is open in Max. Two of the three come through her Venus.</p>
+    </div>
+    <div class="sparks">
+      <article class="spark-card">
+        <div class="em"><span class="max">26</span><span class="bar"><i class="b-max"></i><i class="b-alexa"></i></span><span class="alexa">44</span></div>
+        <h3>Surrender<small>26-44 · Heart to Spleen</small></h3>
+        <ul class="who">
+          <li><i class="dot b-max"></i><span><b>Max</b> brings 26, The Taming Power of the Great<small>Unconscious Earth</small></span></li>
+          <li><i class="dot b-alexa"></i><span><b>Alexa</b> brings 44, Coming to Meet<small>Unconscious Jupiter</small></span></li>
+        </ul>
+        <blockquote>You can read what people need from patterns in the past, and you know how to pitch it.</blockquote>
+        <p>A channel for selling and persuading. Alexa senses what people need from what has happened before. Max knows how to make it compelling. You could build a business on this one alone. It also turns on the Heart, which neither of you has defined: willpower, promises, self-worth. Promises made in the glow of being together are worth checking the next morning.</p>
+      </article>
+      <article class="spark-card">
+        <div class="em"><span class="max">27</span><span class="bar"><i class="b-max"></i><i class="b-alexa"></i></span><span class="alexa">50</span></div>
+        <h3>Preservation<small>27-50 · Sacral to Spleen</small></h3>
+        <ul class="who">
+          <li><i class="dot b-max"></i><span><b>Max</b> brings 27, Nourishment<small>Conscious Moon</small></span></li>
+          <li><i class="dot b-alexa"></i><span><b>Alexa</b> brings 50, The Cauldron<small>Unconscious Venus</small></span></li>
+        </ul>
+        <blockquote>You take care of people, and you guard the values that keep a community healthy.</blockquote>
+        <p>Caretaking. Max's urge to feed and look after people meets Alexa's quiet sense of what is good for them. Together this reads as a household, or a community, run on shared values. The friction lives in two questions: who is taking care of whom, and whose rules the house runs on.</p>
+      </article>
+      <article class="spark-card">
+        <div class="em"><span class="max">38</span><span class="bar"><i class="b-max"></i><i class="b-alexa"></i></span><span class="alexa">28</span></div>
+        <h3>Struggle<small>28-38 · Spleen to Root</small></h3>
+        <ul class="who">
+          <li><i class="dot b-max"></i><span><b>Max</b> brings 38, Opposition<small>Neptune, conscious and unconscious</small></span></li>
+          <li><i class="dot b-alexa"></i><span><b>Alexa</b> brings 28, Preponderance of the Great<small>Conscious Venus</small></span></li>
+        </ul>
+        <blockquote>You are willing to fight for what makes life meaningful, and the struggle itself teaches you.</blockquote>
+        <p>A shared stubbornness about meaning. Together you will take on hard things if they feel worth it, and you will argue about which ones are. Max's 38 comes from Neptune, which most people born around 1990 share, so for him it is background. Alexa's 28 is her conscious Venus, so for her it is personal: love that has a purpose.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="holds">
+    <div class="head">
+      <p class="eyebrow">Human Design · dominance and compromise</p>
+      <h2 id="holds">What each of you holds</h2>
+    </div>
+    <div class="cols">
+      <div class="block side-alexa">
+        <h3>Alexa's alone</h3>
+        <p class="centers">2-14 The Beat · 29-46 Discovery</p>
+        <p>Max has no gate in either channel. Around Alexa he gets to feel what steady direction with fuel behind it is like (2-14), and what happens when you commit fully to an experience and let it surprise you (29-46). He experiences these through her. They are hers to run.</p>
+      </div>
+      <div class="block">
+        <h3>Nothing in common, by design</h3>
+        <p class="centers">Companionship channels: none</p>
+        <p>You share no whole channel. You are not built as two of the same. You are built as complements, which is why being together feels like gaining something rather than doubling something.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <h3>Where one of you gives way</h3>
+      <p>When one of you has a whole channel and the other has a single gate of it, the whole channel usually sets the tone.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k"><b>Inspiration</b>1-8 · Max whole, Alexa has 1</div><p>In how things get expressed and shown to the world, Max's style tends to lead. Alexa has the creative spark (gate 1). Max has the outlet for it.</p></div>
+      <div class="row"><div class="k"><b>Awareness</b>24-61 · Max whole, Alexa has 61</div><p>Alexa's 61 is happy to sit with a mystery. Max's full channel wants to think it through to an answer. He can end up explaining what she would rather leave open.</p></div>
+      <div class="row"><div class="k"><b>Judgment</b>18-58 · Alexa whole, Max has 58</div><p>Here she leads. Alexa sees what could be better. Max's 58 brings the joy and energy to go fix it. Her critique can land hard on his enthusiasm, so it helps when she offers it as a correction to the plan, not to him.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="shape">
+    <div class="head">
+      <p class="eyebrow">Human Design · conditioning</p>
+      <h2 id="shape">How you change each other</h2>
+      <p>Where one of you is defined and the other is open, the open one takes in the defined one's energy and amplifies it. It feels like part of you. It is borrowed.</p>
+    </div>
+    <div class="cols">
+      <div class="block side-alexa">
+        <h3>What Alexa gives Max</h3>
+        <p class="centers">His open Sacral, Spleen and Root</p>
+        <p>Around her Max gets Generator fuel, a body sense of safety and timing, and a push to get moving. It feels great, and it is not his. He needs real time alone to let it drain, or he ends up running on energy that isn't his and burns out. Her Root pressure can also make him feel rushed.</p>
+      </div>
+      <div class="block side-max">
+        <h3>What Max gives Alexa</h3>
+        <p class="centers">Her open Head, Ajna and Throat</p>
+        <p>Around him Alexa's mind fills with his questions and his certainty, and she may find herself talking more, in his voice. The risk is his reasoning talking her out of her gut. For her, the body answers first and the explanation comes after.</p>
+      </div>
+    </div>
+    <p class="prose">Neither of you defines the Heart or the Solar Plexus. Watch for proving yourselves to each other (Heart), and for absorbing other people's moods as a pair (Solar Plexus). You will often be calmest when it is just the two of you.</p>
+  </section>
+
+  <section aria-labelledby="decide">
+    <div class="head">
+      <p class="eyebrow">Human Design · strategy and authority</p>
+      <h2 id="decide">Deciding together</h2>
+      <p>Alexa knows in her gut, in the moment. Max finds out what he thinks by hearing himself say it. Those fit well, in this order.</p>
+    </div>
+    <ol class="steps">
+      <li><div><b>Max asks, Alexa responds.</b>Yes or no questions work best. “Do you want to do this?” lands better than “What should we do?”</div></li>
+      <li><div><b>Alexa answers with the sound first.</b>An uh-huh or an un-un from the gut is her real answer. The reasons can come later, or never.</div></li>
+      <li><div><b>Max talks it out.</b>He needs someone to listen while he thinks out loud, without advice. Alexa listening, not steering, is how he hears his own yes.</div></li>
+      <li><div><b>Nobody pitches.</b>Max's insight works when it has been invited. Alexa's energy works when it is responding. A pitch skips both.</div></li>
+    </ol>
+    <p class="prose">The signals: bitterness in Max and frustration in Alexa. When either shows up, the usual cause is guidance nobody asked for, or a yes her gut never gave. Success for him and satisfaction for her mean it is working.</p>
+  </section>
+
+  <section aria-labelledby="profiles">
+    <div class="head">
+      <p class="eyebrow">Human Design · profiles and shared gates</p>
+      <h2 id="profiles">Two investigators</h2>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <p>You share line 1, the Investigator: you need solid ground, and you get it by studying until you trust what you know. Both of you do the homework before you trust something. That is a real point of ease between you.</p>
+        <p>Max's other line is the 5, the Heretic. People project onto him the practical savior they need, and he is built to solve the problem and then step back. Alexa's other line is the 4, the Opportunist. Her opportunities come through people she already knows, and her network is her foundation. Max's 1 and Alexa's 4 are a harmonic pair, so the way he researches and the way she connects fit together.</p>
+      </div>
+      <div class="prose">
+        <h3>The mirror</h3>
+        <p>Alexa's unconscious Sun and Earth sit in gates 64 and 63. Those are Max's conscious Sun and Earth, one line apart. What runs quietly through her body, Max lives out loud: images that arrive before the meaning (64, Before Completion) and the doubt that tests every pattern (63, After Completion). She may recognize something of herself in him that she cannot quite name.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <h3>Seven gates you both carry</h3>
+      <div class="chips">
+        <span class="chip">1 The Creative</span>
+        <span class="chip">39 Obstruction</span>
+        <span class="chip">54 The Marrying Maiden</span>
+        <span class="chip">58 The Joyous</span>
+        <span class="chip">61 Inner Truth</span>
+        <span class="chip">63 After Completion</span>
+        <span class="chip">64 Before Completion</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="sky">
+    <div class="head">
+      <p class="eyebrow">Astrology · whole-sign houses</p>
+      <h2 id="sky">Same horizon</h2>
+      <p>You were both born with Sagittarius rising, so your houses line up sign for sign. Wherever a planet of one of you falls, it falls in the same house for the other. Alexa's Sun lands in Max's 1st house: she reflects him back to himself. Max's Sun, Mercury and Venus land in Alexa's 10th: he shows up in her life around work, direction and how she is seen.</p>
+    </div>
+    <div class="cols">
+      <div class="block side-max">
+        <h3>Max</h3>
+        <dl class="planets">
+          <div><dt>Sun</dt><dd>Virgo 15° · 10th</dd></div>
+          <div><dt>Moon</dt><dd>Taurus 4° · 6th</dd></div>
+          <div><dt>Rising</dt><dd>Sagittarius 18°</dd></div>
+          <div><dt>Midheaven</dt><dd>Libra 8°</dd></div>
+        </dl>
+        <p>An earth Sun and Moon behind a fire rising: careful and practical underneath, open and outgoing when you first meet him.</p>
+      </div>
+      <div class="block side-alexa">
+        <h3>Alexa</h3>
+        <dl class="planets">
+          <div><dt>Sun, Mercury</dt><dd>Sagittarius · 1st</dd></div>
+          <div><dt>Moon, Uranus, Neptune</dt><dd>Capricorn · 2nd</dd></div>
+          <div><dt>Venus, Jupiter, Pluto, Node</dt><dd>Scorpio · 12th</dd></div>
+          <div><dt>Mars</dt><dd>Leo 27° · 9th</dd></div>
+          <div><dt>Saturn</dt><dd>Pisces 6° · 4th</dd></div>
+          <div><dt>Rising · Midheaven</dt><dd>Sagittarius 2° · Virgo 13°</dd></div>
+        </dl>
+        <p>Sun and Mercury in the 1st: what you see is who she is. Moon in Capricorn in the 2nd: security matters to her emotionally, and she builds it slowly. Venus, Jupiter and Pluto in Scorpio in the 12th: a deep, private inner life, and love that runs below the surface. Born just after a New Moon.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <h3>The closest contacts</h3>
+      <p>Each number is the orb in degrees. The smaller it is, the stronger the contact.</p>
+    </div>
+    <ul class="aspects">
+      <li><span class="orb">0.0°</span><p><b>Max's Mercury sextile Alexa's North Node.</b> <span>How he thinks helps her toward where her life is going.</span></p></li>
+      <li><span class="orb">0.1°</span><p><b>Moon trine Moon.</b> <span>Taurus and Capricorn, both at 4°. The same emotional language: steady, practical, loyal. This is the contact that feels like home.</span></p></li>
+      <li><span class="orb">0.3°</span><p><b>Max's Moon opposite Alexa's Venus.</b> <span>Strong pull. His needs and her way of loving face each other across the chart.</span></p></li>
+      <li><span class="orb">0.3°</span><p><b>Max's North Node sextile Alexa's Mercury.</b> <span>How she thinks and talks supports where his life is going.</span></p></li>
+      <li><span class="orb">0.3°</span><p><b>Max's Jupiter square Alexa's Venus.</b> <span>He wants to give big. Sometimes the gift is more than, or different from, what she wants.</span></p></li>
+      <li><span class="orb">0.5°</span><p><b>Max's Uranus sextile Alexa's Saturn.</b> <span>He loosens her structures in a way she can use.</span></p></li>
+      <li><span class="orb">0.6°</span><p><b>Max's Venus square Alexa's Ascendant.</b> <span>Attraction with a little friction about taste and style.</span></p></li>
+      <li><span class="orb">0.9°</span><p><b>Max's Mercury conjunct Alexa's Midheaven.</b> <span>His ideas plug straight into her career and direction.</span></p></li>
+      <li><span class="orb">0.9°</span><p><b>Max's Pluto conjunct Alexa's North Node.</b> <span>Intense. He pushes her toward the growth her chart points at.</span></p></li>
+      <li><span class="orb">1.1°</span><p><b>Max's Uranus conjunct Alexa's Moon.</b> <span>He wakes her feelings up. Exciting, not always restful.</span></p></li>
+      <li><span class="orb">1.2°</span><p><b>Max's Sun sextile Alexa's North Node.</b> <span>Who he is supports where she is heading.</span></p></li>
+      <li><span class="orb">1.6°</span><p><b>Max's Mars opposite Alexa's Ascendant.</b> <span>Physical chemistry. He can come on strong.</span></p></li>
+      <li><span class="orb">2.1°</span><p><b>Max's Sun conjunct Alexa's Midheaven.</b> <span>He is good for her work and for how she is seen.</span></p></li>
+      <li><span class="orb">2.1°</span><p><b>Max's Jupiter trine Alexa's Ascendant.</b> <span>She feels bigger and luckier around him.</span></p></li>
+      <li><span class="orb">2.8°</span><p><b>Max's Venus trine Alexa's Moon.</b> <span>His affection soothes her.</span></p></li>
+      <li><span class="orb">3.6°</span><p><b>Sun square Sun.</b> <span>Virgo and Sagittarius: the details and the big picture. Different instincts about how to live, and the friction keeps you both moving.</span></p></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Human Design reads two moments: the moment of birth (Personality, conscious) and the moment the Sun stood 88° earlier, about three months before (Design, unconscious). Gates are written gate.line, so 64.5 is gate 64, line 5.</p>
+    <p>Made for Max and Alexa.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var SHAPES = {
+    Head: { p: "110,10 84,46 136,46" },
+    Ajna: { p: "84,60 136,60 110,96" },
+    Throat: { r: [89, 108, 42, 36] },
+    G: { p: "110,156 135,181 110,206 85,181" },
+    Heart: { p: "141,214 170,214 160,192" },
+    Spleen: { p: "26,226 26,274 64,250" },
+    "Solar Plexus": { p: "194,226 194,274 156,250" },
+    Sacral: { r: [89, 234, 42, 38] },
+    Root: { r: [89, 284, 42, 34] }
+  };
+  var LINES = {
+    "24-61": [110, 46, 110, 60],
+    "1-8": [110, 144, 110, 156],
+    "2-14": [110, 206, 110, 234],
+    "29-46": [122, 194, 123, 234],
+    "26-44": [142, 213, 54, 244],
+    "27-50": [60, 252, 89, 261],
+    "18-58": [43, 263, 89, 292],
+    "28-38": [34, 269, 89, 305]
+  };
+  var SPECS = {
+    max: {
+      label: "Max's bodygraph. Head, Ajna, Throat and G defined, through channels 1-8 and 24-61.",
+      centers: { Head: "max", Ajna: "max", Throat: "max", G: "max" },
+      channels: { "1-8": "max", "24-61": "max" }
+    },
+    alexa: {
+      label: "Alexa's bodygraph. G, Sacral, Spleen and Root defined, through channels 2-14, 29-46 and 18-58.",
+      centers: { G: "alexa", Sacral: "alexa", Spleen: "alexa", Root: "alexa" },
+      channels: { "2-14": "alexa", "29-46": "alexa", "18-58": "alexa" }
+    },
+    together: {
+      label: "The connection chart. Seven centers defined together, with channels 26-44, 27-50 and 28-38 existing only between Max and Alexa.",
+      centers: { Head: "max", Ajna: "max", Throat: "max", G: "both", Heart: "spark", Sacral: "alexa", Spleen: "alexa", Root: "alexa" },
+      channels: { "1-8": "max", "24-61": "max", "2-14": "alexa", "29-46": "alexa", "18-58": "alexa", "26-44": "spark", "27-50": "spark", "28-38": "spark" }
+    }
+  };
+  var els = document.querySelectorAll("[data-chart]");
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i], id = el.getAttribute("data-chart"), spec = SPECS[id];
+    var s = '<svg viewBox="0 0 220 322" role="img" aria-label="' + spec.label + '"><defs>' +
+      '<linearGradient id="both-' + id + '" x1="0" x2="1" y1="0" y2="0">' +
+      '<stop offset="0.5" style="stop-color:var(--max)"/><stop offset="0.5" style="stop-color:var(--alexa)"/></linearGradient></defs>';
+    for (var k in spec.channels) {
+      var l = LINES[k];
+      s += '<line x1="' + l[0] + '" y1="' + l[1] + '" x2="' + l[2] + '" y2="' + l[3] + '" style="stroke:var(--' + spec.channels[k] + ');stroke-width:5;stroke-linecap:round"><title>' + k + '</title></line>';
+    }
+    for (var name in SHAPES) {
+      var sh = SHAPES[name], who = spec.centers[name];
+      var fill = !who ? "var(--open)" : who === "both" ? "url(#both-" + id + ")" : "var(--" + who + ")";
+      var st = 'style="fill:' + fill + ';stroke:' + (who ? "transparent" : "var(--open-line)") + ';stroke-width:1.5;stroke-linejoin:round"';
+      s += sh.r
+        ? '<rect x="' + sh.r[0] + '" y="' + sh.r[1] + '" width="' + sh.r[2] + '" height="' + sh.r[3] + '" rx="4" ' + st + '><title>' + name + '</title></rect>'
+        : '<polygon points="' + sh.p + '" ' + st + '><title>' + name + '</title></polygon>';
+    }
+    el.innerHTML = s + "</svg>";
+  }
+})();
+</script>
+</body>
+</html>
