@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One of One Giraffes · The Giraffe Shop</title>
+<meta name="description" content="Design a 3D-printed giraffe whose coat is grown from a name and never repeats. Numbered, certified, one of one.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grateful Giraffes">
+<meta property="og:title" content="A giraffe no one else will ever have">
+<meta property="og:description" content="Type a name and watch its coat grow. 3D-printed, numbered, one of one.">
+<meta property="og:url" content="https://grateful.gg/shop/3d/">
+<meta property="og:image" content="https://grateful.gg/shop/3d/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="One of one 3D-printed giraffes, each coat grown from a name">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A giraffe no one else will ever have">
+<meta name="twitter:description" content="Type a name and watch its coat grow. 3D-printed, numbered, one of one.">
+<meta name="twitter:image" content="https://grateful.gg/shop/3d/cover.jpg">
+<link rel="canonical" href="https://grateful.gg/shop/3d/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Libre Bodoni',Georgia,serif;color:#1c1917;background:linear-gradient(135deg,#fffbeb,#fff7ed 50%,#fefce8);min-height:100vh}
+  .hero{padding:64px 20px 56px;text-align:center;background:linear-gradient(135deg,#78350f,#9a3412 55%,#713f12);color:#fff}
+  .kicker{margin:0 0 16px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:#fcd34d}
+  .kicker a{color:inherit;text-decoration:none}
+  h1{margin:0;font-size:clamp(36px,6vw,64px);line-height:1.05}
+  .rule{width:56px;height:1px;background:#fbbf24;margin:22px auto}
+  .lede{max-width:640px;margin:0 auto;font-size:clamp(17px,2.2vw,20px);line-height:1.6;color:rgba(255,255,255,.85)}
+  main{max-width:1180px;margin:0 auto;padding:32px max(16px,env(safe-area-inset-left)) 56px}
+  .builder{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:22px;align-items:start}
+  .viewer{position:relative;border:1px solid #fde68a;border-radius:22px;overflow:hidden;background:#f4ede0;height:clamp(360px,64vh,620px)}
+  .viewer canvas{display:block;width:100%;height:100%}
+  .lbls{position:absolute;top:0;left:0;pointer-events:none}
+  .pill{transform:translateY(-70%);font:600 12px/1.2 Georgia,serif;color:#1c1917;background:#fff;border:1px solid #fde68a;padding:4px 10px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 6px rgba(120,53,15,.12)}
+  .pill span{font-weight:400;color:#78716c;margin-left:5px}
+  .vbar{position:absolute;left:12px;bottom:12px;display:flex;gap:4px;background:rgba(255,255,255,.9);border:1px solid #fde68a;border-radius:999px;padding:3px}
+  .vbar button{font:600 13px/1 Georgia,serif;border:0;background:none;color:#78716c;padding:8px 12px;border-radius:999px;cursor:pointer}
+  .vbar button[aria-pressed=true]{background:#78350f;color:#fff}
+  .hint{position:absolute;right:14px;bottom:18px;font-size:12px;color:#a8a29e;pointer-events:none}
+  #noGL[hidden]{display:none}
+  #noGL{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#78716c}
+  .panel{background:#fff;border:1px solid #fef3c7;border-radius:22px;padding:22px}
+  .field{margin-bottom:20px}
+  .field>.lab,.field>label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#92400e;margin-bottom:8px;font-weight:600}
+  .row{display:flex;gap:8px}
+  input[type=text]{font:inherit;font-size:18px;color:#1c1917;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 14px;width:100%;min-width:0}
+  .ghost{font:600 14px/1 Georgia,serif;color:#9a3412;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:0 14px;cursor:pointer;white-space:nowrap}
+  input:focus-visible,button:focus-visible{outline:2px solid #b45309;outline-offset:2px}
+  .cid{font-size:13px;color:#78716c;margin-top:8px}
+  .cid b{font-family:ui-monospace,Menlo,monospace;color:#1c1917;letter-spacing:.05em}
+  .opts{display:grid;gap:6px}
+  .opts.sizes{grid-template-columns:1fr}
+  .opts.two{grid-template-columns:1fr 1fr}
+  .opts.four{grid-template-columns:1fr 1fr}
+  .opt{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:inherit;font-size:15px;text-align:left;color:#1c1917;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 14px;cursor:pointer}
+  .opt small{color:#78716c;font-size:13px}
+  .opt[aria-pressed=true]{background:#78350f;border-color:#78350f;color:#fff}
+  .opt[aria-pressed=true] small{color:#fcd34d}
+  .note{font-size:13px;color:#78716c;margin:8px 2px 0;line-height:1.5}
+  .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #fef3c7;padding-top:16px;margin-top:4px}
+  .total b{font-size:30px}
+  .total span{font-size:13px;color:#78716c}
+  .buy{display:block;width:100%;margin-top:14px;font:700 16px/1 Georgia,serif;color:#fff;background:#9a3412;border:0;border-radius:999px;padding:16px;cursor:pointer}
+  .buy[disabled]{background:#d6d3d1;color:#57534e;cursor:default}
+  .copy{display:block;width:100%;margin-top:8px;font:600 14px/1 Georgia,serif;color:#9a3412;background:none;border:0;padding:10px;cursor:pointer}
+  .points{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+  .point{background:#fff;border:1px solid #fef3c7;border-radius:22px;padding:22px}
+  .point h2{font-size:20px;margin:0 0 8px}
+  .point p{margin:0;color:#57534e;line-height:1.6;font-size:15px}
+  footer{padding:40px 20px;text-align:center;border-top:1px solid #fde68a;color:rgba(120,53,15,.6);font-size:13px}
+  footer a{color:#b45309}
+  @media (max-width:900px){.builder{grid-template-columns:1fr}.points{grid-template-columns:1fr}}
+  @media (max-width:420px){.opts.four{grid-template-columns:1fr 1fr}.vbar button{padding:8px 9px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker"><a href="/shop/">The Giraffe Shop</a> · One of one</p>
+  <h1>A giraffe no one else<br>will ever have</h1>
+  <div class="rule"></div>
+  <p class="lede">Type a name and its coat grows from it, the way every real giraffe's pattern is its own. We 3D-print it in two colors, number it, and seal its certificate in the base.</p>
+</header>
+<main>
+  <div class="builder">
+    <div class="viewer" id="scene" role="img" aria-label="Your giraffe in 3D, shown to scale next to a 5 foot 9 adult and a 30 inch table">
+      <div id="noGL" hidden>The 3D preview needs WebGL. You can still choose your giraffe on the right.</div>
+      <div class="vbar" id="views"><button type="button" data-v="close" aria-pressed="true">Close up</button><button type="button" data-v="you" aria-pressed="false">Next to you</button></div>
+      <div class="hint">Drag to turn</div>
+    </div>
+    <div class="panel">
+      <div class="field"><label for="nm">Name on the coat</label>
+        <div class="row"><input id="nm" type="text" value="Gigi" maxlength="40" autocomplete="off" spellcheck="false"><button type="button" class="ghost" id="reroll">New coat</button></div>
+        <div class="cid">Coat ID <b id="cid">GG-0000-0000</b></div></div>
+      <div class="field"><span class="lab">Size</span><div class="opts sizes" id="sizes"></div></div>
+      <div class="field"><span class="lab">Style</span><div class="opts four" id="styles"></div><p class="note" id="styleNote"></p></div>
+      <div class="field"><span class="lab">Coat</span><div class="opts two" id="coats">
+        <button type="button" class="opt" data-v="0" aria-pressed="true">Reticulated</button><button type="button" class="opt" data-v="1" aria-pressed="false">Masai</button></div></div>
+      <div class="total"><div><span>Total, US shipping included</span><br><b id="price">$79</b></div><span id="lead"></span></div>
+      <button type="button" class="buy" id="buy" disabled>Checkout opens soon</button>
+      <button type="button" class="copy" id="copy">Copy a link to this coat</button>
+    </div>
+  </div>
+  <div class="points">
+    <div class="point"><h2>Never repeats</h2><p>Your name, a seed and the order number grow a coat that is checked against every coat we have made. If it is too close to one, it never gets printed.</p></div>
+    <div class="point"><h2>Printed in color, not painted</h2><p>The cream lines and brown patches are two colors of plastic, printed together, so the coat cannot chip or fade off. Lantern and Gilded carve it into the shape instead.</p></div>
+    <div class="point"><h2>Numbered and certified</h2><p>A tag sealed in the base opens your giraffe's certificate on any phone: its name, its coat, and its number in the herd.</p></div>
+  </div>
+</main>
+<footer><p>One of one giraffes by Grateful Giraffes · <a href="/shop/">Art prints</a> · <a href="https://app.grateful.gg/">Grateful Giraffes Community</a></p></footer>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {CSS2DRenderer,CSS2DObject} from 'three/addons/renderers/CSS2DRenderer.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
+
+// ---- catalog: prices live here, in the cart UI only
+const IN=.0254,FT=.3048;
+const SIZES=[{id:'mini',sz:'4 in',n:'Mini',H:4*IN,p:39,lead:'Ships in 3 to 5 days'},{id:'desk',sz:'8 in',n:'Desk',H:8*IN,p:79,lead:'Ships in 3 to 5 days'},
+ {id:'shelf',sz:'12 in',n:'Shelf',H:12*IN,p:149,lead:'Ships in 5 to 7 days'},{id:'floor',sz:'3 ft',n:'Floor',H:3*FT,p:690,lead:'Made to order, 2 to 3 weeks'},
+ {id:'calf',sz:'6 ft',n:'Life-size calf',H:6*FT,p:4900,lead:'Made to order, 6 to 8 weeks, 50% deposit'}];
+const STYLES={classic:{n:'Classic',m:1,note:'Two colors printed together, cream lines and brown patches.'},faceted:{n:'Faceted',m:1,note:'A low-poly sculpt with the coat on its facets.'},
+ lantern:{n:'Lantern',m:1.25,note:'Every patch cut through, with a warm light inside.'},gilded:{n:'Gilded',m:1.2,note:'Metallic gold with the coat raised in relief.'}};
+const px=v=>v<1000?Math.ceil(v/10)*10-1:Math.round(v/100)*100;
+const priceOf=(s,st)=>st==='classic'?s.p:px(s.p*STYLES[st].m);
+const money=v=>'$'+v.toLocaleString('en-US');
+
+// ---- state, restored from the link
+const Q=new URLSearchParams(location.search);
+let name=(Q.get('n')||'Gigi').slice(0,40),salt=Math.max(0,parseInt(Q.get('k'))||0),
+ size=SIZES.find(s=>s.id===Q.get('size'))||SIZES[1],st=STYLES[Q.get('style')]?Q.get('style'):'classic',masai=Q.get('coat')==='1'?1:0,view='close',moved=false;
+const $=id=>document.getElementById(id);
+$('nm').value=name;
+
+// ---- 3D
+const host=$('scene');let renderer;
+try{renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});}catch(e){$('noGL').hidden=false;}
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.02,200);
+let ctl,lr,K={};
+const WORLEY=`varying vec3 vP;uniform vec3 uSeed;uniform int uStyle;uniform float uMasai;
+vec3 h3(vec3 p){p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6)));return fract(sin(p)*43758.5453);}
+vec3 worley(vec3 x){vec3 p=floor(x),f=fract(x);float d1=8.,d2=8.,id=0.;
+for(int k=-1;k<=1;k++)for(int j=-1;j<=1;j++)for(int i=-1;i<=1;i++){vec3 b=vec3(i,j,k),h=h3(p+b),r=b+h-f;float d=dot(r,r);if(d<d1){d2=d1;d1=d;id=h.x;}else if(d<d2)d2=d;}
+return vec3(sqrt(d1),sqrt(d2),id);}`;
+const COAT=`vec3 q=vP*21.+uSeed;
+if(uMasai>.5)q+=.32*vec3(sin(q.y*1.9+uSeed.x),sin(q.z*2.1+uSeed.y),sin(q.x*1.7+uSeed.z));
+vec3 w=worley(q);float cLine=1.-smoothstep(.07,.13,w.y-w.x);
+float low=1.-smoothstep(.07,.2,vP.y),hoof=step(vP.y,.016);
+vec3 cream=vec3(.86,.75,.55),pc=mix(vec3(.26,.075,.014),vec3(.15,.04,.008),w.z);
+if(uStyle==3){cream=vec3(.12,.06,.015);pc=mix(vec3(.85,.47,.09),vec3(.75,.38,.06),w.z);}
+float isP=(1.-cLine)*(1.-low*.85);
+vec3 col=mix(cream,pc,isP);col=mix(col,vec3(.025,.02,.016),hoof);
+if(uStyle==2){if(isP>.5&&vP.y>.22)discard;col=vec3(.9,.82,.66);totalEmissiveRadiance+=gl_FrontFacing?vec3(.05,.03,.01):vec3(1.,.55,.2);}
+diffuseColor.rgb=col;`;
+const SIDX={classic:0,faceted:1,lantern:2,gilded:3};
+function coatMat(seed){const m=new THREE.MeshStandardMaterial({roughness:st==='gilded'?.3:.62,metalness:st==='gilded'?1:0,envMapIntensity:st==='gilded'?1.1:.35,flatShading:st==='faceted',side:st==='lantern'?THREE.DoubleSide:THREE.FrontSide});
+ m.userData.u={uSeed:{value:seed},uStyle:{value:SIDX[st]},uMasai:{value:masai}};
+ m.onBeforeCompile=s=>{Object.assign(s.uniforms,m.userData.u);
+  s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vP;').replace('#include <begin_vertex>','#include <begin_vertex>\nvP=position;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\n'+WORLEY).replace('#include <color_fragment>','#include <color_fragment>\n'+COAT);};
+ m.customProgramCacheKey=()=>'coat1';return m;}
+function cyl(a,b,r0,r1,n){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),g=new THREE.CylinderGeometry(r1,r0,d.length(),n);
+ g.applyMatrix4(new THREE.Matrix4().compose(A.clone().add(B).multiplyScalar(.5),new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize()),new THREE.Vector3(1,1,1)));return g;}
+function ell(s,p,rz,seg){const g=new THREE.SphereGeometry(1,seg[0],seg[1]);g.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...p),new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,rz||0)),new THREE.Vector3(...s)));return g;}
+function giraffeGeo(low){const S=low?[8,6]:[48,28],C=low?6:24,c=low?4:8,P=[
+ ell([.22,.115,.105],[0,.52,0],.1,S),ell([.1,.1,.09],[.13,.565,0],0,S),cyl([.15,.55,0],[.31,.93,0],.074,.034,C),
+ ell([.075,.036,.036],[.345,.925,0],-.4,S),cyl([.305,.95,.016],[.3,.993,.02],.008,.007,c),cyl([.305,.95,-.016],[.3,.993,-.02],.008,.007,c),
+ ell([.011,.011,.011],[.3,1,.02],0,S),ell([.011,.011,.011],[.3,1,-.02],0,S),ell([.022,.008,.012],[.3,.955,.04],.5,S),ell([.022,.008,.012],[.3,.955,-.04],.5,S),
+ cyl([-.19,.55,0],[-.245,.33,0],.007,.005,c),ell([.012,.035,.012],[-.247,.31,0],0,S)];
+ for(const [x,y,z] of [[.15,.5,.055],[.15,.5,-.055],[-.15,.47,.06],[-.15,.47,-.06]])P.push(cyl([x,y,z],[x+(x>0?.012:-.006),0,z],.028,.015,C));
+ return mergeGeometries(P);}
+function cyrb(str,s=0){let a=0xdeadbeef^s,b=0x41c6ce57^s;for(let i=0;i<str.length;i++){const c=str.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677);}
+ a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return 4294967296*(2097151&b)+(a>>>0);}
+const key=()=>name.trim().toLowerCase()+'|'+salt;
+function seed(){const h=cyrb(key()+'|coat');return new THREE.Vector3(h%997/997*140,Math.floor(h/997)%991/991*140,Math.floor(h/988027)%983/983*140);}
+function tag(html,pos){const d=document.createElement('div'),i=document.createElement('div');i.className='pill';i.innerHTML=html;d.appendChild(i);const o=new CSS2DObject(d);o.position.set(...pos);scene.add(o);return o;}
+
+if(renderer){
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+ renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;host.prepend(renderer.domElement);
+ lr=new CSS2DRenderer();lr.domElement.className='lbls';host.appendChild(lr.domElement);
+ scene.background=new THREE.Color(0xf4ede0);scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),.04).texture;
+ ctl=new OrbitControls(cam,renderer.domElement);ctl.enableDamping=true;ctl.maxPolarAngle=Math.PI*.495;ctl.minDistance=.12;ctl.maxDistance=30;ctl.enablePan=false;
+ renderer.domElement.style.touchAction='pan-y';ctl.addEventListener('start',()=>{moved=true;tw=null;});
+ scene.add(new THREE.HemisphereLight(0xfff4e6,0x8a7f6a,.75));
+ const sun=new THREE.DirectionalLight(0xffffff,1.9);sun.position.set(3,8,6);sun.castShadow=true;
+ Object.assign(sun.shadow.camera,{left:-1.5,right:4.5,top:3.5,bottom:-1.5,near:1,far:25});sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.0004;sun.shadow.normalBias=.01;
+ sun.target.position.set(1.6,0,0);scene.add(sun,sun.target);
+ const ground=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshStandardMaterial({color:0xe9e1d0,roughness:1,envMapIntensity:0}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+ const grey=new THREE.MeshStandardMaterial({color:0x9aa0a6,roughness:.8,envMapIntensity:.3}),wood=new THREE.MeshStandardMaterial({color:0xa98256,roughness:.7,envMapIntensity:.3});
+ const add=(g,m,p)=>{const o=new THREE.Mesh(g,m);o.position.set(...p);o.castShadow=o.receiveShadow=true;scene.add(o);return o;};
+ for(const x of[-.09,.09])add(new THREE.CylinderGeometry(.062,.048,.84,16),grey,[x,.42,0]);
+ add(new THREE.CapsuleGeometry(.17,.42,8,16),grey,[0,1.18,0]).scale.z=.6;add(new THREE.SphereGeometry(.105,24,16),grey,[0,1.645,0]);
+ add(new THREE.CylinderGeometry(.05,.05,.1,12),grey,[0,1.53,0]);for(const x of[-.235,.235])add(new THREE.CapsuleGeometry(.045,.56,6,12),grey,[x,1.17,0]);
+ add(new THREE.BoxGeometry(1,.04,.5),wood,[1.5,.73,0]);for(const [x,z] of[[1.04,.21],[1.96,.21],[1.04,-.21],[1.96,-.21]])add(new THREE.BoxGeometry(.04,.71,.04),wood,[x,.355,z]);
+ K.geo={hi:giraffeGeo(false),lo:giraffeGeo(true)};K.g=new THREE.Group();scene.add(K.g);
+ K.mesh=new THREE.Mesh(K.geo.hi);K.mesh.castShadow=K.mesh.receiveShadow=true;K.g.add(K.mesh);
+ K.light=new THREE.PointLight(0xffa860,1,0,2);K.light.position.set(0,.52,0);K.g.add(K.light);
+ K.you=tag('You<span>5′9″</span>',[0,1.8,0]);K.tag=tag('',[0,0,0]);
+}
+let tw=null;
+function place(){if(!renderer)return;const H=size.H,small=H<.5,x=small?1.5:(H<1.5?2.45:2.8),b=small?.75:0;
+ K.box={x,b,H};K.g.scale.setScalar(H);K.g.position.set(x-.08*H,b,0);K.light.intensity=.9*H*H;
+ K.tag.position.set(x,b+H+.01,0);K.tag.element.firstChild.innerHTML=`${size.sz}<span>${size.n}</span>`;}
+function material(){if(!renderer)return;const old=K.mesh.material;K.mesh.geometry=st==='faceted'?K.geo.lo:K.geo.hi;K.mesh.material=coatMat(seed());if(old&&old.dispose)old.dispose();K.light.visible=st==='lantern';}
+function goal(){const {x,b,H}=K.box,f=30,tn=Math.tan(f*Math.PI/360);let t,w,h,d;
+ if(view==='close'){t=new THREE.Vector3(x+.02*H,b+H*.5,0);w=H*1.2;h=H*1.45;d=new THREE.Vector3(.35,.22,1);}
+ else{const right=x+.45*H,left=-.4,top=Math.max(1.9,b+H+.15);t=new THREE.Vector3((left+right)/2,top/2,0);w=right-left;h=top;d=new THREE.Vector3(.12,.12,1);}
+ const dist=Math.max(h/2/tn,w/2/(tn*cam.aspect))*1.08;return{p:t.clone().add(d.normalize().multiplyScalar(dist)),t,f};}
+function frameView(instant){if(!renderer)return;moved=false;const G=goal();
+ if(instant){cam.position.copy(G.p);ctl.target.copy(G.t);cam.fov=G.f;cam.updateProjectionMatrix();ctl.update();return;}
+ tw={t0:performance.now(),p0:cam.position.clone(),q0:ctl.target.clone(),G};}
+if(renderer){
+ const fit=()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);lr.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();if(!moved)frameView(true);};
+ new ResizeObserver(fit).observe(host);
+ let onscreen=true;new IntersectionObserver(e=>{onscreen=e[0].isIntersecting;}).observe(host);
+ (function frame(now){requestAnimationFrame(frame);if(!onscreen)return;
+  if(tw){const k=Math.min(1,(now-tw.t0)/700),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;cam.position.lerpVectors(tw.p0,tw.G.p,e);ctl.target.lerpVectors(tw.q0,tw.G.t,e);if(k>=1)tw=null;}
+  if(!tw&&!moved&&view==='close')ctl.autoRotate=true,ctl.autoRotateSpeed=.6;else ctl.autoRotate=false;
+  ctl.update();renderer.render(scene,cam);lr.render(scene,cam);})(performance.now());
+}
+
+// ---- panel
+function pressed(box,v){box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===String(v)));}
+function drawOptions(){
+ $('sizes').innerHTML=SIZES.map(s=>`<button type="button" class="opt" data-v="${s.id}" aria-pressed="${s===size}">${s.sz} · ${s.n}<small>${money(priceOf(s,st))}</small></button>`).join('');
+ $('styles').innerHTML=Object.entries(STYLES).map(([k,v])=>`<button type="button" class="opt" data-v="${k}" aria-pressed="${k===st}">${v.n}</button>`).join('');
+ $('styleNote').textContent=STYLES[st].note;$('price').textContent=money(priceOf(size,st));$('lead').textContent=size.lead;pressed($('coats'),masai);}
+function sync(){const h=cyrb(key()).toString(16).toUpperCase().padStart(14,'0');$('cid').textContent=`GG-${h.slice(-8,-4)}-${h.slice(-4)}`;
+ const q=new URLSearchParams({n:name,k:salt,size:size.id,style:st,coat:masai});history.replaceState(null,'','?'+q);}
+function reseed(){if(renderer)K.mesh.material.userData.u.uSeed.value.copy(seed());sync();}
+$('nm').addEventListener('input',()=>{name=$('nm').value.trim()?$('nm').value:'Gigi';reseed();});
+$('reroll').onclick=()=>{salt++;reseed();};
+$('sizes').onclick=e=>{const b=e.target.closest('button');if(!b)return;size=SIZES.find(s=>s.id===b.dataset.v);view=size.H<.5?'close':'you';pressed($('views'),view);drawOptions();place();frameView();sync();};
+$('styles').onclick=e=>{const b=e.target.closest('button');if(!b)return;st=b.dataset.v;drawOptions();material();sync();};
+$('coats').onclick=e=>{const b=e.target.closest('button');if(!b)return;masai=+b.dataset.v;pressed($('coats'),masai);if(renderer)K.mesh.material.userData.u.uMasai.value=masai;sync();};
+$('views').onclick=e=>{const b=e.target.closest('button');if(!b)return;view=b.dataset.v;pressed($('views'),view);frameView();};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('copy').textContent='Link copied';}catch(e){$('copy').textContent='Copy the address bar to keep this coat';}setTimeout(()=>$('copy').textContent='Copy a link to this coat',2200);};
+view=size.H<.5?'close':'you';pressed($('views'),view);
+drawOptions();place();material();sync();
+if(renderer){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);lr.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();frameView(true);}
+</script>
+</body>
+</html>
