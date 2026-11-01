@@ -147,8 +147,8 @@
 
   const AGENT_ID = "agent_3601m6chm18fffcr8jtsgfcn30bs";
   const MAX_MS = 180000;   // the agent stops at 3 minutes too; this keeps the page honest if the line hangs
-  // After signing in they land where they can keep talking with her: /withgigi on the Oasis.
-  const NEXT = "https://app.grateful.gg/withgigi?from=gigi";
+  // After signing in they land on her own page in the Oasis, app.grateful.gg/gigi (Max, 11-01: not /withgigi).
+  const NEXT = "https://app.grateful.gg/gigi";
   const SIGNIN = "https://app.grateful.gg/login?from_url=" + encodeURIComponent(NEXT);
 
   const $ = (id) => document.getElementById(id);
