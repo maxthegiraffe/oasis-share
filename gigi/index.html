@@ -26,7 +26,9 @@
   avatar background with some text overlays if necessary".
   Her voice is the ElevenLabs agent "Gigi Welcome (grateful.gg/gigi)" (made by ~/.claude/state/gigi-welcome/agent.py):
   public but answering only on grateful.gg, 3 minutes a visit, 20 at once, 400 a day. She calls show_signin when it's time
-  for an account. The video is her /withgigi talking loop with its oasis left in (the original is a cut-out).
+  for an account. The video is her /withgigi talking loop with its oasis left in (the original is a cut-out). Her mouth is
+  drawn over it from her voice (mouth/: guideMouth.js, popmouth.js, guideVisemes.js, copied from the oasis repo's
+  src/lib/gigiLive, as /ai/setup does it): 252 frames at 30 fps, the same frames the mouth library was built on.
 -->
 <style>
   :root {
@@ -41,6 +43,7 @@
   .backdrop { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover;
     filter: blur(36px) brightness(.5) saturate(1.1); }
   .her { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  canvas.her { pointer-events: none; }   /* her mouth, in exactly the video's box */
   /* Wide screens: the square loop at full height, its sides melting into the blurred oasis. */
   @media (min-aspect-ratio: 1/1) {
     .her { left: 50%; width: 100dvh; max-width: 100%; transform: translateX(-50%);
@@ -101,6 +104,7 @@
   <video class="her" autoplay muted loop playsinline preload="auto" poster="poster.jpg">
     <source src="gigi.mp4" type="video/mp4">
   </video>
+  <canvas class="her" id="mouth"></canvas>
   <div class="shade"></div>
 </div>
 
@@ -139,6 +143,7 @@
 
 <script type="module">
   import { Conversation } from "https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.4.0/+esm";
+  import { attachMouth, preloadMouth, hear, quiet } from "./mouth/guideMouth.js";
 
   const AGENT_ID = "agent_3601m6chm18fffcr8jtsgfcn30bs";
   const MAX_MS = 180000;   // the agent stops at 3 minutes too; this keeps the page honest if the line hangs
@@ -147,7 +152,15 @@
   const SIGNIN = "https://app.grateful.gg/login?from_url=" + encodeURIComponent(NEXT);
 
   const $ = (id) => document.getElementById(id);
-  const stage = { conv: null, timer: null, unmute: null, ended: false };
+  const stage = { conv: null, timer: null, unmute: null, ended: false, playEnd: 0, align: null };
+  // Her voice is heard a beat after it reaches the player; each chunk plays when the one before it ends (as /ai/setup).
+  const OUT_LATENCY_MS = 60;
+  const pcmMs = (b64) => { const s = String(b64 || ""); return ((s.length * 3) / 4 - (s.endsWith("==") ? 2 : s.endsWith("=") ? 1 : 0)) / 2 / 16; };
+  attachMouth(document.querySelector("video.her"), $("mouth"));
+  // The mouth library is about 10 MB: fetched once the page has settled, or the moment they reach for the button.
+  const warm = () => preloadMouth();
+  (window.requestIdleCallback || ((f) => setTimeout(f, 1500)))(warm);
+  $("start").addEventListener("pointerdown", warm, { once: true });
   $("signinBtn").href = SIGNIN;
   $("topSignin").href = SIGNIN;
 
@@ -188,6 +201,13 @@
         agentId: AGENT_ID,
         connectionType: "websocket",
         clientTools: { show_signin: () => { showSignin(); return "shown"; } },
+        onAudioAlignment: (alignment) => { stage.align = alignment; },
+        onAudio: (b64) => {
+          const at = Math.max(performance.now() + OUT_LATENCY_MS, stage.playEnd || 0);
+          stage.playEnd = at + pcmMs(b64);
+          if (stage.align) hear(stage.align, at);
+          stage.align = null;
+        },
         onConnect: () => {
           setStatus("listening", "Listening");
           $("startRow").hidden = true; $("typeForm").hidden = false; $("liveRow").hidden = false;
@@ -199,6 +219,7 @@
           // On speakers her own voice comes back through the mic and cuts her off (the /ai/setup lesson, 10-30):
           // the mic rests while she talks and opens again just after.
           clearTimeout(stage.unmute);
+          if (!speaking) { quiet(); stage.playEnd = 0; }
           if (speaking) { try { stage.conv?.setMicMuted?.(true); } catch { /* ended */ } }
           else stage.unmute = setTimeout(() => { try { stage.conv?.setMicMuted?.(false); } catch { /* ended */ } }, 400);
         },
