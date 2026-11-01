@@ -204,7 +204,8 @@
         },
         onMessage: (m) => {
           const text = (m && (m.message || (m.agent_response_event && m.agent_response_event.agent_response))) || "";
-          if (m && m.source !== "user" && typeof text === "string" && text.trim()) $("caption").textContent = text.trim();
+          // She is written "Jee-jee" so the voice says it right; on screen she is Gigi.
+          if (m && m.source !== "user" && typeof text === "string" && text.trim()) $("caption").textContent = text.trim().replace(/Jee-jee/gi, "Gigi");
         },
         onDisconnect: () => finish("ended"),
         onError: (e) => { console.warn("[gigi] voice error", e); if (stage.conv?.isOpen?.() === false) finish("error"); },
