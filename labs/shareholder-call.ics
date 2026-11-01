@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Grateful Labs//Shareholder Call//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:shareholder-call-2026-11-11@grateful.gg
+DTSTAMP:20261101T225000Z
+DTSTART:20261111T190000Z
+DTEND:20261111T200000Z
+SUMMARY:Grateful Labs Shareholder Call 🦒
+DESCRIPTION:11:11 AM: a 1 minute 11 second meditation to give Grateful Giraffes & Grateful Labs a boost of cosmic energy. Then we go over the businesses we're incubating.\n\nJoin in the Oasis: https://grateful.gg/labs
+LOCATION:https://grateful.gg/labs
+URL:https://grateful.gg/labs
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Shareholder call in 15 minutes
+END:VALARM
+END:VEVENT
+END:VCALENDAR
