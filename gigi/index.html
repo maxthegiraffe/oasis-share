@@ -82,6 +82,12 @@
     border: 1px solid var(--line); padding: 10px 18px; border-radius: 999px; }
   .ghost:hover { color: var(--ink); }
   .row { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .pill { appearance: none; cursor: pointer; font: 500 15px var(--sans); color: var(--ink); background: var(--glass); border: 1px solid var(--line);
+    padding: 10px 16px; border-radius: 999px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .pill:hover { border-color: rgba(255,200,120,.6); }
+  .pill small { display: block; font-size: 12px; color: var(--soft); font-weight: 400; }
+  .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
   .type { display: flex; gap: 8px; width: min(100%, 520px); }
   .type input { flex: 1; min-width: 0; font: 16px var(--sans); color: var(--ink); background: var(--glass); border: 1px solid var(--line);
@@ -116,7 +122,7 @@
 <main>
   <section id="hello">
     <h1>Hi, I'm <em>Gigi</em></h1>
-    <p class="sub">Tap below and say hello. I'll ask what you'd love to talk about.</p>
+    <p class="sub">Tap below and say hello, or pick a practice to do together.</p>
   </section>
 
   <div class="status" id="status" hidden><span class="dot"></span><span id="statusText">Connecting</span></div>
@@ -124,6 +130,17 @@
 
   <div class="row" id="startRow">
     <button class="btn" id="start" type="button">Talk with Gigi</button>
+  </div>
+  <div class="pills" id="practices" role="group" aria-label="Practices">
+    <button class="pill" type="button" data-practice="breath">Breathe</button>
+    <button class="pill" type="button" data-practice="giraffirmation">Giraffirmation</button>
+    <button class="pill" type="button" data-practice="gratitude">Gratitude</button>
+  </div>
+  <div class="pills" id="breaths" role="group" aria-label="Breathing practices" hidden>
+    <button class="pill" type="button" data-breath="box">Box breathing<small>4 in, 4 hold, 4 out, 4 hold</small></button>
+    <button class="pill" type="button" data-breath="coherent">Slow and even<small>5 in, 5 out</small></button>
+    <button class="pill" type="button" data-breath="478">4-7-8<small>to settle and sleep</small></button>
+    <button class="pill" type="button" data-breath="sigh">The sigh<small>a fast reset</small></button>
   </div>
 
   <form class="type" id="typeForm" hidden>
@@ -146,7 +163,13 @@
   import { attachMouth, preloadMouth, hear, quiet } from "./mouth/guideMouth.js";
 
   const AGENT_ID = "agent_3601m6chm18fffcr8jtsgfcn30bs";
-  const MAX_MS = 180000;   // the agent stops at 3 minutes too; this keeps the page honest if the line hangs
+  const MAX_MS = 360000;   // the agent stops at 6 minutes too (a practice runs longer than a hello); this keeps the page honest
+  // A practice starts her voice with its own first line (the agent allows only that override). Breath is her track.
+  const OPENINGS = {
+    gratitude: "Hi, I'm Jee-jee. Let's do a gratitude practice together. What's one thing you're grateful for today?",
+    giraffirmation: "Hi, I'm Jee-jee. Let's write your giraffirmations. Where do you feel held back right now: money, love, your body, being seen, or something else?",
+    breath: "Welcome back. How do you feel now?",
+  };
   // After signing in they land on her own page in the Oasis, app.grateful.gg/gigi (Max, 11-01: not /withgigi).
   const NEXT = "https://app.grateful.gg/gigi";
   const SIGNIN = "https://app.grateful.gg/login?from_url=" + encodeURIComponent(NEXT);
@@ -171,7 +194,7 @@
   };
   const showSignin = () => {
     $("signin").hidden = false;
-    $("startRow").hidden = true;
+    $("startRow").hidden = true; $("practices").hidden = true; $("breaths").hidden = true;
     $("signinBtn").focus({ preventScroll: true });
   };
   const finish = async (why) => {
@@ -185,9 +208,56 @@
     showSignin();
   };
 
-  $("start").addEventListener("click", async () => {
+  // Breathe: her prerecorded track (breath/<name>.mp3), her mouth on its letter timings (breath/<name>.json, ElevenLabs
+  // Scribe), then the door, or a few words with her about how it felt.
+  const track = new Audio();
+  track.preload = "auto";
+  let breathAlign = null;
+  const fromNow = (a, sec) => {   // the timings still ahead of second `sec`, shifted to start now
+    const ms = sec * 1000, out = { chars: [], char_start_times_ms: [], char_durations_ms: [] };
+    a.chars.forEach((c, i) => { if (a.char_start_times_ms[i] >= ms) { out.chars.push(c); out.char_start_times_ms.push(a.char_start_times_ms[i] - ms); out.char_durations_ms.push(a.char_durations_ms[i]); } });
+    return out;
+  };
+  track.addEventListener("playing", () => { if (breathAlign) hear(fromNow(breathAlign, track.currentTime), performance.now() + 30); setStatus("speaking", "Breathe with Gigi"); });
+  track.addEventListener("pause", () => quiet());
+  track.addEventListener("waiting", () => quiet());
+  track.addEventListener("ended", () => {
+    quiet();
+    $("liveRow").hidden = true;
+    setStatus("", "Done");
+    $("caption").textContent = "";
+    $("start").textContent = "Tell Gigi how you feel";
+    $("start").disabled = false; $("start").dataset.opening = "breath";
+    $("startRow").hidden = false;
+    $("signin").hidden = false;
+  });
+  const playBreath = async (name) => {
+    $("hello").hidden = true; $("practices").hidden = true; $("breaths").hidden = true; $("startRow").hidden = true;
+    setStatus("", "Getting ready");
+    preloadMouth();
+    // play() right in the tap: iPhones refuse audio that starts after an await. The timings join as soon as they load.
+    breathAlign = null;
+    track.src = `breath/${name}.mp3`;
+    $("liveRow").hidden = false;
+    const playing = track.play().catch(() => { setStatus("", "Tap Breathe again to start"); $("breaths").hidden = false; $("liveRow").hidden = true; });
+    try { breathAlign = await (await fetch(`breath/${name}.json`)).json(); } catch { breathAlign = null; }
+    await playing;
+    if (breathAlign && !track.paused) { quiet(); hear(fromNow(breathAlign, track.currentTime), performance.now() + 30); }
+  };
+  $("practices").addEventListener("click", (ev) => {
+    const b = ev.target.closest("[data-practice]"); if (!b) return;
+    warm();
+    if (b.dataset.practice === "breath") { $("practices").hidden = true; $("breaths").hidden = false; return; }
+    talk(OPENINGS[b.dataset.practice]);
+  });
+  $("breaths").addEventListener("click", (ev) => { const b = ev.target.closest("[data-breath]"); if (b) playBreath(b.dataset.breath); });
+
+  $("start").addEventListener("click", () => talk($("start").dataset.opening ? OPENINGS[$("start").dataset.opening] : null));
+
+  async function talk(opening) {
     $("start").disabled = true;
-    $("hello").hidden = true;
+    $("hello").hidden = true; $("practices").hidden = true; $("breaths").hidden = true; $("signin").hidden = true;
+    try { track.pause(); } catch { /* not playing */ }
     setStatus("", "Connecting");
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -200,6 +270,7 @@
       stage.conv = await Conversation.startSession({
         agentId: AGENT_ID,
         connectionType: "websocket",
+        ...(opening ? { overrides: { agent: { firstMessage: opening } } } : {}),
         clientTools: { show_signin: () => { showSignin(); return "shown"; } },
         onAudioAlignment: (alignment) => { stage.align = alignment; },
         onAudio: (b64) => {
@@ -236,7 +307,7 @@
       $("caption").textContent = "I couldn't connect just now. Make an account and we can talk there.";
       finish("error");
     }
-  });
+  }
 
   $("typeForm").addEventListener("submit", (ev) => {
     ev.preventDefault();
@@ -244,7 +315,7 @@
     if (!t || !stage.conv) return;
     try { stage.conv.sendUserMessage(t); $("typeIn").value = ""; } catch { /* ended */ }
   });
-  $("end").addEventListener("click", () => finish("ended"));
+  $("end").addEventListener("click", () => { if (!track.paused) { track.pause(); track.dispatchEvent(new Event("ended")); return; } finish("ended"); });
   addEventListener("pagehide", () => { try { stage.conv?.endSession?.(); } catch { /* gone */ } });
 </script>
 </body>
