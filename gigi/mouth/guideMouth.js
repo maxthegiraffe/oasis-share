@@ -7,9 +7,6 @@
 // warped by the head track onto the base frame on screen, over her cut-out idle video.
 import { mul, apply, displayMap, patchMatrix } from './popmouth.js';
 import { VISEME_CELLS, charViseme } from './guideVisemes.js';
-// grateful.gg/gigi copy (2026-11-01): drawn at the phone's own sharpness (up to 3x, was 2x) with high-quality scaling (was
-// low). Her face fills a phone screen here, not a corner as on /ai/setup, and the low-res, low-quality mouth looked soft
-// against her face (Max: "her lips on mobile look worse").
 
 const ASSETS = 'https://grateful.gg/media/gigi-live/';   // as talk.js
 const FPS = 30;
@@ -17,7 +14,6 @@ const XFADE_MS = 70;     // a new sound's mouth fades in over this long
 const GAP_MS = 160;      // a pause in her voice shorter than this keeps the last mouth (word gaps); longer, it fades out
 const FADE_MS = 120;     // her own mouth comes back over this long
 const KEEP_MS = 4000;    // sounds kept after they are heard
-const STONE_FROM = 0.5, STONE_TO = 0.58;   // of a cell's height: below her chin, above the top stone (grateful.gg/gigi)
 
 const st = { M: null, loading: null, sounds: [], el: null, gen: 0, dirty: null };
 if (typeof window !== 'undefined') window.gigiGuideMouth = st;   // (for a look in the console: .sounds, .drawn)
@@ -132,14 +128,6 @@ function compose(parts, f) {
   }
   const co = f * cw * ch;
   for (let k = 0, a = 3; k < cw * ch; k++, a += 4) if (cover[co + k] > out[a]) out[a] = cover[co + k];
-  // grateful.gg/gigi: each cell ends just below her chin, over the top stone on her neck. The stone glows and pulses in
-  // the video but is frozen and dim in the cells, so on a phone it blinked out with every word (Max, 11-01: "her lips on
-  // mobile look worse"). The patch fades out between the chin and the stone, so her own stone always shows.
-  const y0 = Math.round(ch * STONE_FROM), y1 = Math.round(ch * STONE_TO);
-  for (let y = y0; y < ch; y++) {
-    const keep = y >= y1 ? 0 : 1 - (y - y0) / (y1 - y0);
-    for (let x = 0, a = y * cw * 4 + 3; x < cw; x++, a += 4) out[a] = Math.round(out[a] * keep);
-  }
   return img;
 }
 
@@ -153,7 +141,7 @@ function bbox(m, W, H) {
 
 function draw(video, canvas, meta) {
   const ctx = canvas.getContext('2d');
-  const w = canvas.clientWidth, h = canvas.clientHeight, dpr = Math.min(3, (canvas.ownerDocument.defaultView || window).devicePixelRatio || 1);
+  const w = canvas.clientWidth, h = canvas.clientHeight, dpr = Math.min(2, (canvas.ownerDocument.defaultView || window).devicePixelRatio || 1);
   const W = Math.max(1, Math.round(w * dpr)), H = Math.max(1, Math.round(h * dpr));
   if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; st.dirty = null; }
   if (st.dirty) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(...st.dirty); st.dirty = null; }
@@ -169,7 +157,7 @@ function draw(video, canvas, meta) {
   st.pctx.putImageData(compose(m0.parts, f), 0, 0);
   ctx.setTransform(m[0], m[1], m[2], m[3], m[4], m[5]);
   ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = 'high';
+  ctx.imageSmoothingQuality = 'low';
   ctx.globalAlpha = m0.E;
   ctx.drawImage(st.pc, 0, 0);
   ctx.globalAlpha = 1;
