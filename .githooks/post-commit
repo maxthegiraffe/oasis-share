@@ -1,0 +1,5 @@
+#!/bin/sh
+# After `git commit -- <paths>`, pre-commit's share-index.json is in the commit but the staging
+# area still holds the old one; line it up with the commit. A no-op after any other commit.
+git reset -q -- share-index.json 2>/dev/null
+exit 0

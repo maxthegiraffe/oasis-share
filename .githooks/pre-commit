@@ -1,0 +1,11 @@
+#!/bin/sh
+# Keeps share-index.json (which card each app.grateful.gg page gets as its link preview) in step
+# with the cards in every commit. Turned on per clone: git config core.hooksPath .githooks
+# It never blocks a commit: if the rebuild fails, the commit goes on with the old index.
+cd "$(git rev-parse --show-toplevel)" || exit 0
+if python3 -I _tools/build_share_index.py --quiet; then
+  git add share-index.json
+else
+  echo "share-index.json not rebuilt; the commit goes on (run python3 -I _tools/build_share_index.py)" >&2
+fi
+exit 0
