@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text SAFARI to Gigi · Biohacking Safari</title>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Oasis">
+<meta property="og:title" content="Text SAFARI to Gigi">
+<meta property="og:description" content="Plan your Biohacking Safari day with Gigi, by text.">
+<meta property="og:url" content="https://grateful.gg/textsafari/">
+<meta property="og:image" content="https://grateful.gg/biosafari/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<!-- The Safari door (Max, 2026-11-03: "Text Gigi door"). Emails and pages link here: it opens Messages to Gigi's
+     (516) 419-7249 line with SAFARI already typed, and Gigi plans their Safari day with them (gigi-whatsapp
+     functions/safari_guide.private.js). iOS takes "&body=", everyone else "?body=". -->
+<script>
+  var SMS = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) ? "sms:+15164197249&body=SAFARI" : "sms:+15164197249?body=SAFARI";
+  setTimeout(function(){ try{ window.location.href = SMS; }catch(e){} }, 400);
+  document.addEventListener("DOMContentLoaded", function(){ document.querySelectorAll("a[data-sms]").forEach(function(a){ a.href = SMS; }); });
+</script>
+<style>
+  body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#1D1A3A;background:#F9D8D4;
+    min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+  .card{max-width:520px;width:100%;text-align:left}
+  .eye{font-family:'Courier New',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#FF48B0;margin:0 0 10px}
+  h1{font-size:44px;line-height:1.05;margin:0 0 14px;color:#2340FF;font-weight:800}
+  p{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.55;margin:0 0 22px}
+  a.btn{display:inline-block;text-decoration:none;color:#fff;background:#2340FF;font-weight:800;font-size:19px;
+    padding:15px 34px;border-radius:999px;box-shadow:4px 4px 0 #FF48B0}
+  a.num{display:block;margin-top:18px;color:#2340FF;font-family:'Courier New',monospace;font-size:15px;text-decoration:none}
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="eye">Biohacking Safari · Saturday, November 14</p>
+    <h1>Text SAFARI to Gigi</h1>
+    <p>Gigi will help you plan your day: peptides, the Regenerative Skin and Scalp Treatment, the dental station and a biological age test.</p>
+    <a class="btn" data-sms href="sms:+15164197249">Text Gigi &rarr;</a>
+    <a class="num" data-sms href="sms:+15164197249">Or text SAFARI to (516) 419-7249</a>
+  </main>
+</body>
+</html>
