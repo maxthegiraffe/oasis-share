@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text AI to Gigi · Grateful Giraffes</title>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Oasis">
+<meta property="og:title" content="Text AI to Gigi">
+<meta property="og:description" content="Four quick questions about your work, then your own AI roadmap.">
+<meta property="og:url" content="https://grateful.gg/textai/">
+<meta property="og:image" content="https://grateful.gg/textai/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Text AI to Gigi. A free AI discovery, by text.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<!-- The AI door (Max, 2026-11-03: "gigi being available for anyone to have a free AI discovery call"). Opens Messages to
+     Gigi's (516) 419-7249 line with AI already typed; Gigi runs the discovery (gigi-whatsapp functions/ai_discovery.private.js).
+     iOS takes "&body=", everyone else "?body=". Same pattern as /textsafari. -->
+<script>
+  var SMS = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) ? "sms:+15164197249&body=AI" : "sms:+15164197249?body=AI";
+  setTimeout(function(){ try{ window.location.href = SMS; }catch(e){} }, 400);
+  document.addEventListener("DOMContentLoaded", function(){ document.querySelectorAll("a[data-sms]").forEach(function(a){ a.href = SMS; }); });
+</script>
+<style>
+  body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#FFF7EC;background:#1E1420;
+    min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+  .card{max-width:520px;width:100%;text-align:left}
+  .eye{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#F5C478;margin:0 0 10px}
+  h1{font-size:44px;line-height:1.05;margin:0 0 14px;font-weight:800}
+  h1 span{color:#F5C478}
+  p{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.55;margin:0 0 22px;color:#EFE6DA}
+  a.btn{display:inline-block;text-decoration:none;color:#1E1420;background:#F5C478;font-weight:800;font-size:19px;
+    padding:15px 34px;border-radius:999px;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif}
+  a.btn:focus-visible,a.num:focus-visible{outline:3px solid #FFF7EC;outline-offset:3px}
+  a.num{display:block;margin-top:18px;color:#F5C478;font-family:'Courier New',monospace;font-size:15px;text-decoration:none}
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="eye">Grateful Giraffes · Gigi</p>
+    <h1>Text AI <span>to Gigi</span></h1>
+    <p>A few quick questions about your work and where your hours go. Then Gigi sends back a short AI roadmap and one first step you can take this week.</p>
+    <a class="btn" data-sms href="sms:+15164197249">Text Gigi &rarr;</a>
+    <a class="num" data-sms href="sms:+15164197249">Or text AI to (516) 419-7249</a>
+  </main>
+</body>
+</html>
