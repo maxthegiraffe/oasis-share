@@ -1,0 +1,10 @@
+{
+  "client_id": "https://grateful.gg/oauth/higgsfield-client.json",
+  "client_name": "The Oasis (Grateful Giraffes)",
+  "client_uri": "https://app.grateful.gg",
+  "redirect_uris": ["https://app.grateful.gg/host"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "scope": "openid email offline_access"
+}
