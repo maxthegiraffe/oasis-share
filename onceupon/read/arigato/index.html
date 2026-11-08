@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arigato · Once Upon a Thank You</title>
+<meta name="description" content="Step inside the arigato page of Once Upon a Thank You: what the word really means, how Japan says thank you, and one way to practice it tonight.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="What arigato really means">
+<meta property="og:description" content="A living page from Once Upon a Thank You, the picture book that's also a song.">
+<meta property="og:image" content="https://grateful.gg/onceupon/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fff8ec">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600..700&family=DM+Serif+Display&family=Nunito:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff8ec;--paper-2:#f8ecd6;--white:#fffdf9;--ink:#25214b;--ink-2:#5e5878;--line:rgba(37,33,75,.12);
+  --gold:#f5b841;--gold-h:#ffc659;--rose:#c4553f;--blossom:#f6c9cf;--t-gold:#fff0c7;--t-rose:#ffe2db;--t-sky:#dcebff;
+  --edge:clamp(16px,5.5vw,88px);--maxw:1160px;
+  --font-d:"DM Serif Display",Georgia,serif;--font-b:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;--font-h:"Caveat",cursive;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--font-b);-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid #4f9bdf;outline-offset:3px;border-radius:8px}
+.wrap{width:min(var(--maxw),100% - 2*var(--edge));margin-inline:auto}
+h1,h2,h3{font-family:var(--font-d);font-weight:400;margin:0;line-height:1.05}
+h2{font-size:clamp(32px,4vw,52px)}
+p{margin:0}
+.lead{font-size:clamp(18px,1.5vw,21px);color:var(--ink-2);line-height:1.6}
+.hand{font-family:var(--font-h);font-weight:700;color:var(--rose)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:52px;padding:0 26px;border:0;border-radius:999px;font:800 16px/1 var(--font-b);text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .18s ease,box-shadow .2s ease,background-color .2s ease}
+.btn svg{width:15px;height:15px}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 3px 0 #d39822,0 12px 24px -14px rgba(0,0,0,.55)}
+.btn-gold:hover{background:var(--gold-h);transform:translateY(-2px)}
+.btn-gold:active{transform:translateY(2px);box-shadow:0 1px 0 #d39822}
+.btn-glass{background:rgba(255,253,249,.82);color:var(--ink);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1.5px rgba(37,33,75,.15)}
+.btn-glass:hover{background:#fff;transform:translateY(-2px)}
+.btn-glass:active{transform:translateY(1px) scale(.98)}
+
+/* the gate: the page comes alive */
+.gate{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#f6ebe4;isolation:isolate}
+.gate .backdrop{position:absolute;inset:-40px;background:url(art.webp) center/cover;filter:blur(28px) saturate(1.1);opacity:.9;transform:scale(1.08)}
+.gate .living{position:absolute;left:50%;top:0;height:100%;width:auto;aspect-ratio:2/3;max-width:none;transform:translateX(-50%);object-fit:cover;box-shadow:0 0 120px rgba(0,0,0,.18)}
+@media (max-aspect-ratio:2/3){.gate .living{width:100%;height:100%;left:0;transform:none}}
+.gate::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,250,242,.78) 0%,rgba(255,250,242,.45) 18%,rgba(255,250,242,0) 34%,rgba(37,33,75,0) 72%,rgba(37,33,75,.38) 100%)}
+.top{position:absolute;inset:0 0 auto;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 14px) var(--edge) 0}
+.top a{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;text-decoration:none;color:var(--ink);text-shadow:0 0 10px rgba(255,250,242,.95)}
+.top a svg{width:16px;height:16px}
+.verse{position:absolute;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 68px);text-align:center;color:var(--ink);text-shadow:0 0 22px rgba(255,250,242,.95),0 0 4px rgba(255,250,242,.9)}
+.verse .kicker{font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;opacity:.95}
+.verse h1{font:700 clamp(54px,9vw,104px)/1.05 "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;margin-top:6px;letter-spacing:.04em}
+.verse h1 .k{display:inline-block;transition:color .2s,transform .2s}
+.verse h1 .k.lit{color:var(--rose);transform:translateY(-4px)}
+.verse .roman{font:400 clamp(26px,3vw,36px)/1 var(--font-d);margin-top:8px}
+.dock{position:absolute;z-index:2;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 24px);display:flex;justify-content:center;gap:12px;padding-inline:16px}
+@media (max-width:599px){.dock .btn{flex:1;padding:0 12px}}
+
+/* step inside */
+.sec{padding-block:clamp(60px,9vh,110px)}
+.meaning{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,90px);align-items:center}
+.meaning .lead{margin-top:18px}
+.say{display:inline-flex;align-items:center;gap:12px;margin-top:24px;padding:12px 18px;border-radius:16px;background:var(--t-rose);font-weight:800}
+.say b{font-family:var(--font-d);font-weight:400;font-size:24px}
+.say button{width:40px;height:40px;border-radius:50%;border:0;background:var(--ink);color:var(--gold);display:grid;place-items:center;cursor:pointer;transition:transform .15s}
+.say button:hover{transform:scale(1.08)}
+.say button svg{width:14px;height:14px;margin-left:2px}
+.bookpage{margin:0;position:relative;justify-self:center;width:min(100%,380px)}
+.bookpage img{border-radius:14px;box-shadow:0 30px 50px -28px rgba(37,33,75,.6);transform:rotate(2deg)}
+.bookpage .hand{position:absolute;left:-12%;top:-6%;font-size:28px;transform:rotate(-8deg)}
+.band{background:var(--white)}
+.customs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:clamp(26px,4vh,40px)}
+.custom{padding:26px;border-radius:24px;background:var(--t-gold)}
+.custom:nth-child(2){background:var(--t-sky)}
+.custom .jp{font:700 30px/1.2 "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+.custom h3{font-size:26px;margin-top:6px}
+.custom p{margin-top:10px;color:var(--ink-2)}
+.tonight{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;padding:clamp(26px,4vw,44px);border-radius:28px;background:var(--ink);color:#fff8ec}
+.tonight .moon{width:clamp(64px,8vw,96px);height:clamp(64px,8vw,96px);border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3c4,#f5b841 70%);box-shadow:0 0 0 10px rgba(245,184,65,.15)}
+.tonight h2{color:#fff8ec}
+.tonight p{margin-top:12px;font-size:19px;color:rgba(255,248,236,.86)}
+.end{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:clamp(36px,6vh,56px)}
+.end .btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn-line{background:var(--white);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-line:hover{transform:translateY(-2px)}
+.sources{margin-top:28px;font-size:13.5px;color:var(--ink-2)}
+.sources a{color:var(--ink-2)}
+@media (max-width:899px){
+  .meaning,.customs{grid-template-columns:1fr}
+  .bookpage{width:min(80%,320px)}
+  .bookpage .hand{left:-4%}
+  .tonight{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<!-- prototype portal page (2026-11-08): grateful.gg/onceupon/read/arigato · plan in agentic-business-os-pkg/projects/once-upon-kdp/portal/PLAN.md -->
+<section class="gate" aria-label="Arigato, a living page">
+  <div class="backdrop" aria-hidden="true"></div>
+  <video class="living" src="loop.mp4" poster="art.webp" autoplay muted loop playsinline aria-label="A girl in a yellow kindergarten hat bows to a giraffe across a canal lined with cherry blossoms"></video>
+  <div class="top"><a href="../../"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Once Upon a Thank You</a></div>
+  <div class="verse">
+    <p class="kicker">Japanese · thank you</p>
+    <h1 lang="ja" id="word"><span class="k">あ</span><span class="k">り</span><span class="k">が</span><span class="k">と</span><span class="k">う</span></h1>
+    <p class="roman">Arigato</p>
+  </div>
+  <div class="dock">
+    <button class="btn btn-gold" type="button" id="hear"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Hear it sung</button>
+    <a class="btn btn-glass" href="#inside">Step inside</a>
+  </div>
+</section>
+
+<main id="inside">
+  <section class="sec">
+    <div class="wrap meaning">
+      <div>
+        <h2>What arigato really means</h2>
+        <p class="lead">Arigato grew from an old Japanese word, arigatai. Ari means "to exist" and gatai means "hard to". Something hard to find. Something rare. So every arigato carries a little wonder: what you gave me is rare.</p>
+        <p class="say">Say it <b>ah-ree-GAH-toh</b><button type="button" id="say" aria-label="Hear arigato sung"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></button></p>
+      </div>
+      <figure class="bookpage"><img src="../../pages/11.webp" alt="The arigato page in the book" width="900" height="1350" loading="lazy"><span class="hand" aria-hidden="true">in the book</span></figure>
+    </div>
+  </section>
+
+  <section class="sec band">
+    <div class="wrap">
+      <h2>How Japan says thank you</h2>
+      <div class="customs">
+        <div class="custom">
+          <p class="jp" lang="ja">いただきます</p>
+          <h3>Itadakimasu, before every meal</h3>
+          <p>Families say it together before they eat. It means "I humbly receive", a thank-you to everyone who helped bring the food to the table. When the meal is over, they say gochisosama deshita, "that was a feast", for all the running around it took to make it.</p>
+        </div>
+        <div class="custom">
+          <p class="jp" lang="ja">勤労感謝の日</p>
+          <h3>Labor Thanksgiving Day, November 23</h3>
+          <p>Every year Japan sets aside a day to thank the people who work. It grew from an old harvest festival, and children make thank-you cards for workers in their community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="tonight">
+        <span class="moon" aria-hidden="true"></span>
+        <div>
+          <h2>Try it tonight</h2>
+          <p>Before dinner, say "itadakimasu" together and name one person who helped bring the food. After dinner, say "gochisosama" to whoever cooked.</p>
+        </div>
+      </div>
+      <div class="end">
+        <a class="btn btn-line" href="../../#languages">Hear all eight thank-yous</a>
+        <div class="btns"><a class="btn btn-gold" data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener">Get the book</a></div>
+      </div>
+      <p class="sources">Sources: <a href="https://en.wiktionary.org/wiki/%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86" target="_blank" rel="noopener">Wiktionary, arigatou</a> · <a href="https://www.nippon.com/en/guide-to-japan/cs00086/" target="_blank" rel="noopener">Nippon.com, itadakimasu</a> · <a href="https://web-japan.org/kidsweb/explore/calendar/november/labor.html" target="_blank" rel="noopener">Kids Web Japan, Labor Thanksgiving Day</a></p>
+    </div>
+  </section>
+</main>
+
+<audio id="song" src="../../song.mp3" preload="none"></audio>
+<script>
+(() => {
+  /* the arigato line in the book's song (video/page_timing.json, page 10) */
+  const START = 77.96, END = 80.86;
+  const audio = document.getElementById("song");
+  const keys = [...document.querySelectorAll("#word .k")];
+  let raf = 0, pending = null;
+  function light(t) {
+    const p = Math.max(0, Math.min(1, (t - START) / (END - START)));
+    const n = audio.paused ? 0 : Math.ceil(p * keys.length);
+    keys.forEach((k, i) => k.classList.toggle("lit", i < n));
+  }
+  function tick() {
+    const t = audio.currentTime;
+    if (t >= END) { audio.pause(); light(0); return; }
+    light(t); raf = requestAnimationFrame(tick);
+  }
+  function sing() {
+    cancelAnimationFrame(raf);
+    if (audio.readyState >= 1) audio.currentTime = START; else pending = START;
+    const p = audio.play(); if (p && p.catch) p.catch(() => {});
+  }
+  audio.addEventListener("loadedmetadata", () => { if (pending != null) { audio.currentTime = pending; pending = null; } });
+  audio.addEventListener("play", () => { raf = requestAnimationFrame(tick); });
+  audio.addEventListener("pause", () => { cancelAnimationFrame(raf); light(0); });
+  document.getElementById("hear").addEventListener("click", sing);
+  document.getElementById("say").addEventListener("click", sing);
+  /* send each visitor to their own Amazon store, like the main page */
+  const tz = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) { return ""; } })();
+  const host = {"Europe/London":"co.uk","Europe/Dublin":"ie","Europe/Berlin":"de","Europe/Paris":"fr","Europe/Madrid":"es","Europe/Rome":"it","Europe/Amsterdam":"nl","Asia/Tokyo":"co.jp"}[tz]
+    || (/^Australia\//.test(tz) ? "com.au" : /^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|Montreal|Regina)$/.test(tz) ? "ca" : "com");
+  document.querySelectorAll("[data-amazon]").forEach(a => { a.href = "https://www.amazon." + host + "/dp/B0HMYHFPXZ"; });
+})();
+</script>
+</body>
+</html>
