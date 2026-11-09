@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-07T02:11:34.365Z",
+        "reason": "Claude: intentional, /aicall matches the live grateful.gg/gigi page, which already sets Gigi's look in Fraunces + Inter (oasis-share gigi/index.html)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "createdAt": "2026-11-07T02:11:34.390Z",
+        "reason": "Claude: intentional, /aicall matches the live grateful.gg/gigi page, which already sets Gigi's look in Fraunces + Inter (oasis-share gigi/index.html)"
+      }
+    ]
+  }
+}
