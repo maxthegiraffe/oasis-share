@@ -3,7 +3,7 @@
  "mcp": "https://app.grateful.gg/claude/mcp",
  "transport": "Streamable HTTP, OAuth 2.1 sign-in",
  "page": "https://grateful.gg/agents",
- "count": 30,
+ "count": 34,
  "tools": [
   {
    "name": "list_my_events",
@@ -449,6 +449,46 @@
    }
   },
   {
+   "name": "make_photo",
+   "title": "Make a photo",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Make a new photo for any photo on the page from a few words, on the hosts' monthly AI budget. You see both versions before one is used.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "section",
+     "required": false
+    },
+    {
+     "name": "prompt",
+     "required": false
+    },
+    {
+     "name": "job",
+     "required": false
+    },
+    {
+     "name": "use",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Make the opening photo a candlelit rooftop at dusk.",
+    "call": {
+     "name": "make_photo",
+     "arguments": {
+      "event": "sunday-supper",
+      "section": "hero",
+      "prompt": "A candlelit rooftop at dusk, seen from behind the guests"
+     }
+    }
+   }
+  },
+  {
    "name": "create_event",
    "title": "Create a draft event",
    "group": "New events",
@@ -793,6 +833,83 @@
    }
   },
   {
+   "name": "move_event",
+   "title": "Move an event's date",
+   "group": "Dates and money",
+   "reads_only": false,
+   "summary": "Move a live event to a new date and tell everyone going by email, with an updated calendar invite. It previews first and moves only with your yes.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "date",
+     "required": true
+    },
+    {
+     "name": "time",
+     "required": false
+    },
+    {
+     "name": "end_time",
+     "required": false
+    },
+    {
+     "name": "subject",
+     "required": false
+    },
+    {
+     "name": "message",
+     "required": false
+    },
+    {
+     "name": "audience",
+     "required": false
+    },
+    {
+     "name": "confirm",
+     "required": false
+    },
+    {
+     "name": "confirm_code",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Move it to the 29th, same time. Show me the note first.",
+    "call": {
+     "name": "move_event",
+     "arguments": {
+      "event": "sunday-supper",
+      "date": "2026-11-29"
+     }
+    }
+   }
+  },
+  {
+   "name": "list_payouts",
+   "title": "See what the hosts are owed",
+   "group": "Dates and money",
+   "reads_only": true,
+   "summary": "What the hosts are owed for each event: what was collected, the fees, what has been paid and what is still to come.",
+   "takes": [
+    {
+     "name": "event",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "What am I owed for Sunday Supper?",
+    "call": {
+     "name": "list_payouts",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
    "name": "list_guests",
    "title": "List guests",
    "group": "Guests",
@@ -988,6 +1105,50 @@
       "subject": "Parking on Sunday",
       "message": "Street parking is easiest on Rose Avenue. See you at noon.",
       "mode": "preview"
+     }
+    }
+   }
+  },
+  {
+   "name": "decide_guest",
+   "title": "Approve or decline a guest",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Approve or decline someone who asked to come, or someone on the waitlist. It previews first and decides only with your yes.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "guest_id",
+     "required": true
+    },
+    {
+     "name": "decision",
+     "required": true
+    },
+    {
+     "name": "over_capacity",
+     "required": false
+    },
+    {
+     "name": "confirm",
+     "required": false
+    },
+    {
+     "name": "confirm_code",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Let Priya in from the waitlist.",
+    "call": {
+     "name": "decide_guest",
+     "arguments": {
+      "event": "sunday-supper",
+      "guest_id": "the id list_guests gave for Priya",
+      "decision": "approve"
      }
     }
    }

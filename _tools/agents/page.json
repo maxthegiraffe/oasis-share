@@ -9,11 +9,15 @@
   "hero": {
     "eyebrow": "The Oasis · for AI agents",
     "title": "Agents propose. People approve.",
-    "lede": "The Oasis is where Grateful Giraffes hosts plan and run events. Connect your own AI over MCP and it can draft the event, build the page, keep the guest list and write the emails. Going live and emailing guests wait for your yes.",
+    "lede": "The Oasis is where Grateful Giraffes hosts plan and run events. Connect your own AI over MCP and it can draft the event, build the page, keep the guest list and write the emails. Going live, emailing guests, approving a guest and moving a date all wait for your yes.",
     "copy_button": "Copy the address",
     "copied": "Copied",
     "tools_link": "See every tool",
-    "facts": ["{count} tools", "One address", "Sign in once"]
+    "facts": [
+      "{count} tools",
+      "One address",
+      "Sign in once"
+    ]
   },
   "connect": {
     "title": "Connect your agent",
@@ -21,36 +25,118 @@
     "clients": [
       {
         "name": "Claude",
-        "steps": ["Open Customize, then Connectors, then Add custom connector.", "Paste the address and sign in to the Oasis."]
+        "steps": [
+          "Open Customize, then Connectors, then Add custom connector.",
+          "Paste the address and sign in to the Oasis."
+        ]
+      },
+      {
+        "name": "ChatGPT",
+        "steps": [
+          "Open chatgpt.com/plugins, press the plus button and choose Add custom MCP server.",
+          "Paste the address as the MCP server URL and create it. ChatGPT opens the Oasis sign-in."
+        ]
+      },
+      {
+        "name": "Cursor",
+        "code": "{\n  \"mcpServers\": {\n    \"the-oasis\": { \"url\": \"https://app.grateful.gg/claude/mcp\" }\n  }\n}",
+        "steps": [
+          "Add this to ~/.cursor/mcp.json.",
+          "Open Customize in Cursor, turn on the-oasis and sign in to the Oasis."
+        ]
+      },
+      {
+        "name": "Gemini CLI",
+        "code": "gemini mcp add --transport http the-oasis https://app.grateful.gg/claude/mcp",
+        "steps": [
+          "Run this once in a terminal.",
+          "Then type /mcp auth the-oasis in Gemini CLI."
+        ]
+      },
+      {
+        "name": "VS Code",
+        "steps": [
+          "Run MCP: Add Server from the Command Palette, choose HTTP and paste the address.",
+          "Sign in to the Oasis when VS Code asks, the first time the tools are used."
+        ]
       },
       {
         "name": "Claude Code",
         "code": "claude mcp add -s user --transport http the-oasis https://app.grateful.gg/claude/mcp",
-        "steps": ["Run this once in a terminal.", "Then type /mcp in Claude Code and choose Authenticate."]
+        "steps": [
+          "Run this once in a terminal.",
+          "Then type /mcp in Claude Code and choose Authenticate."
+        ]
       }
     ],
-    "more": { "text": "The walkthrough with pictures", "href": "https://grateful.gg/claude" }
+    "more": {
+      "text": "The walkthrough for Claude, with pictures",
+      "href": "https://grateful.gg/claude"
+    },
+    "other": "Another MCP client that runs on your own computer signs in the same way. An app that signs in from its own website has to be one the Oasis knows: today that is Claude, ChatGPT, Cursor and VS Code."
   },
   "approval": {
     "title": "What waits for a yes",
     "intro": "An agent on the Oasis works the way a good assistant does: it prepares, you decide.",
     "lines": [
-      ["A new event is a draft", "RSVPs stay closed until its host has seen the page and said yes."],
-      ["An email is a preview first", "The agent shows the exact words and how many people get it. It sends only after the host says yes."],
-      ["A share card is drawn before it is saved", "And a new opening image goes on the page only once the host picks it."],
-      ["Edits to a page you host are live right away", "Each one is noted, and the Grateful Giraffes team gets a summary."],
-      ["Your agent is you, never more", "It can do what you can do on the site. Every call is logged, up to 60 a minute."],
-      ["Addresses stay private", "A street address goes to confirmed guests only. Public pages give the city."]
+      [
+        "A new event is a draft",
+        "RSVPs stay closed until its host has seen the page and said yes."
+      ],
+      [
+        "An email is a preview first",
+        "The agent shows the exact words and how many people get it. It sends only after the host says yes."
+      ],
+      [
+        "Approving a guest is a preview first",
+        "The agent shows who it is and what happens, and gets a code. It can go ahead only with that code, after your yes."
+      ],
+      [
+        "Moving a date is a preview first",
+        "You see the new date, the note to guests and how many people get it before anything moves."
+      ],
+      [
+        "A share card is drawn before it is saved",
+        "And a new opening image goes on the page only once the host picks it."
+      ],
+      [
+        "Edits to a page you host are live right away",
+        "Each one is noted, and the Grateful Giraffes team gets a summary."
+      ],
+      [
+        "Refunds are made by people",
+        "A refund is made by the Grateful Giraffes team, never by an agent."
+      ],
+      [
+        "Your agent is you, never more",
+        "It can do what you can do on the site. Every call is logged, up to 60 a minute."
+      ],
+      [
+        "Addresses stay private",
+        "A street address goes to confirmed guests only. Public pages give the city."
+      ]
     ]
   },
   "open": {
     "title": "Open data, no sign-in",
     "intro": "What any agent can read before anyone connects.",
     "items": [
-      ["https://app.grateful.gg/events.json", "Upcoming public events as JSON: name, link, start and end, city, and whether RSVPs are open."],
-      ["https://app.grateful.gg/llms.txt", "A short guide for language models: what the Oasis is and where everything lives."],
-      ["https://grateful.gg/agents/tools.json", "This tool list as JSON."],
-      ["https://app.grateful.gg/events", "Every public event page carries schema.org Event data."]
+      [
+        "https://app.grateful.gg/events.json",
+        "Upcoming public events as JSON: name, link, start and end, city, and whether RSVPs are open."
+      ],
+      [
+        "https://app.grateful.gg/llms.txt",
+        "A short guide for language models: what the Oasis is and where everything lives."
+      ],
+      [
+        "https://grateful.gg/agents/tools.json",
+        "This tool list as JSON."
+      ],
+      [
+        "https://app.grateful.gg/events",
+        "Every public event page carries schema.org Event data."
+      ]
     ]
   },
   "tools_section": {
@@ -65,27 +151,72 @@
     {
       "title": "Pages you host",
       "intro": "Read a page, then change its words, sections, photos and look.",
-      "tools": ["list_my_events", "get_page", "update_page", "add_section", "update_section", "remove_section", "set_photo", "update_style", "set_share", "update_event"]
+      "tools": [
+        "list_my_events",
+        "get_page",
+        "update_page",
+        "add_section",
+        "update_section",
+        "remove_section",
+        "set_photo",
+        "update_style",
+        "set_share",
+        "update_event",
+        "make_photo"
+      ]
     },
     {
       "title": "New events",
       "intro": "For approved hosts. A new event stays a draft until you publish it.",
-      "tools": ["create_event", "make_art", "change_art", "show_art", "choose_art", "publish_event"]
+      "tools": [
+        "create_event",
+        "make_art",
+        "change_art",
+        "show_art",
+        "choose_art",
+        "publish_event"
+      ]
     },
     {
       "title": "Your own page design",
       "intro": "Bring a page made anywhere. The Oasis RSVP stays pinned on it.",
-      "tools": ["upload_event_page", "get_event_page", "add_page_asset", "publish_event_page", "remove_event_page"]
+      "tools": [
+        "upload_event_page",
+        "get_event_page",
+        "add_page_asset",
+        "publish_event_page",
+        "remove_event_page"
+      ]
+    },
+    {
+      "title": "Dates and money",
+      "intro": "Move a live event, and see what the hosts are owed. Payouts are sent by the Grateful Giraffes team.",
+      "tools": [
+        "move_event",
+        "list_payouts"
+      ]
     },
     {
       "title": "Guests",
-      "intro": "The guest list, the door and emails to guests.",
-      "tools": ["list_guests", "add_guests", "check_in", "remove_guest", "restore_guest", "message_guests"]
+      "intro": "The guest list, approvals, the door and emails to guests.",
+      "tools": [
+        "list_guests",
+        "add_guests",
+        "check_in",
+        "remove_guest",
+        "restore_guest",
+        "message_guests",
+        "decide_guest"
+      ]
     },
     {
       "title": "Design ideas",
       "intro": "Propose an improvement to the Oasis itself.",
-      "tools": ["get_design_system", "submit_design_idea", "list_my_design_ideas"]
+      "tools": [
+        "get_design_system",
+        "submit_design_idea",
+        "list_my_design_ideas"
+      ]
     }
   ],
   "tools": {
@@ -97,47 +228,87 @@
     "get_page": {
       "line": "Everything on a page that can change: each section's words, its photos, the sections you added and the run of show.",
       "ask": "Read me what's on the Sunday Supper page.",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "update_page": {
       "line": "Change the words of a page's sections. Only the fields you name change.",
       "ask": "Make the headline warmer.",
-      "call": { "event": "sunday-supper", "sections": { "gathering": { "title": "Come hungry, leave full" } } }
+      "call": {
+        "event": "sunday-supper",
+        "sections": {
+          "gathering": {
+            "title": "Come hungry, leave full"
+          }
+        }
+      }
     },
     "add_section": {
       "line": "Add a section of your own: a photo with a heading, a headline, a paragraph and a hosted-by line. Up to six.",
       "ask": "Add a section about the music after the gathering section.",
-      "call": { "event": "sunday-supper", "after": "gathering", "photo_url": "https://example.com/band.jpg", "eyebrow": "The music", "title": "Three guitars and a cello", "body": "Live, unplugged, and close enough to feel." }
+      "call": {
+        "event": "sunday-supper",
+        "after": "gathering",
+        "photo_url": "https://example.com/band.jpg",
+        "eyebrow": "The music",
+        "title": "Three guitars and a cello",
+        "body": "Live, unplugged, and close enough to feel."
+      }
     },
     "update_section": {
       "line": "Change a section you added: its words, its place on the page or its photo.",
       "ask": "Shorten the music paragraph.",
-      "call": { "event": "sunday-supper", "id": "k3x9p2aq", "body": "Live and unplugged." }
+      "call": {
+        "event": "sunday-supper",
+        "id": "k3x9p2aq",
+        "body": "Live and unplugged."
+      }
     },
     "remove_section": {
       "line": "Remove a section you added. Anything after it moves up.",
       "ask": "Take the music section off.",
-      "call": { "event": "sunday-supper", "id": "k3x9p2aq" }
+      "call": {
+        "event": "sunday-supper",
+        "id": "k3x9p2aq"
+      }
     },
     "set_photo": {
       "line": "Give a section a new photo from a direct link, or go back to the one it had.",
       "ask": "Use this photo for the opening.",
-      "call": { "event": "sunday-supper", "section": "hero", "photo_url": "https://example.com/long-table.jpg" }
+      "call": {
+        "event": "sunday-supper",
+        "section": "hero",
+        "photo_url": "https://example.com/long-table.jpg"
+      }
     },
     "update_style": {
       "line": "Change how the page looks: colours, fonts, the order of sections, button labels and the layout.",
       "ask": "Switch to the ocean palette and fit it on one screen.",
-      "call": { "event": "sunday-supper", "palette_name": "ocean", "layout": "onefold" }
+      "call": {
+        "event": "sunday-supper",
+        "palette_name": "ocean",
+        "layout": "onefold"
+      }
     },
     "set_share": {
       "line": "Make the share card people see when the event's grateful.gg link is sent. It can be drawn as a preview before it is saved.",
       "ask": "Show me a share card before you save it.",
-      "call": { "event": "sunday-supper", "title": "Sunday Supper", "date": "Sunday, November 22", "preview_only": true }
+      "call": {
+        "event": "sunday-supper",
+        "title": "Sunday Supper",
+        "date": "Sunday, November 22",
+        "preview_only": true
+      }
     },
     "update_event": {
       "line": "Change the event itself: its name, place line, who needs approval, the guest limit, the waitlist and the run of show.",
       "ask": "Cap it at 40 guests and let me approve every request.",
-      "call": { "event": "sunday-supper", "capacity": 40, "approval": "host_all" }
+      "call": {
+        "event": "sunday-supper",
+        "capacity": 40,
+        "approval": "host_all"
+      }
     },
     "create_event": {
       "line": "Start a new event page as a draft, with RSVPs closed until you publish it.",
@@ -150,65 +321,101 @@
         "city": "Venice",
         "hosts": "Maya",
         "sections": {
-          "hero": { "eyebrow": "A neighbourhood potluck", "where": "Venice" },
-          "gathering": { "title": "Bring a dish, meet a neighbour", "body": "Long tables, good food, new friends." }
+          "hero": {
+            "eyebrow": "A neighbourhood potluck",
+            "where": "Venice"
+          },
+          "gathering": {
+            "title": "Bring a dish, meet a neighbour",
+            "body": "Long tables, good food, new friends."
+          }
         }
       }
     },
     "make_art": {
       "line": "Make four versions of the opening image from a description.",
       "ask": "Picture a long table under string lights at dusk.",
-      "call": { "event": "sunday-supper", "description": "A long table under string lights at dusk, warm and painted" }
+      "call": {
+        "event": "sunday-supper",
+        "description": "A long table under string lights at dusk, warm and painted"
+      }
     },
     "change_art": {
       "line": "Take your note on one image and make four new takes of it.",
       "ask": "On the second one, make the sky more pink.",
-      "call": { "event": "sunday-supper", "option": "2", "feedback": "Make the sky more pink" }
+      "call": {
+        "event": "sunday-supper",
+        "option": "2",
+        "feedback": "Make the sky more pink"
+      }
     },
     "show_art": {
       "line": "Show the newest four images again, and which one is on the page.",
       "ask": "Show me the four images again.",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "choose_art": {
       "line": "Put the image you picked on the page as its opening, sized for phones and computers.",
       "ask": "Use the third one.",
-      "call": { "event": "sunday-supper", "option": "3" }
+      "call": {
+        "event": "sunday-supper",
+        "option": "3"
+      }
     },
     "publish_event": {
       "line": "Put a new event live: RSVPs open and its grateful.gg share link is made. Only after you have seen the draft and said yes.",
       "ask": "It looks right. Publish it.",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "upload_event_page": {
       "line": "Replace the event's page with one of your own design. It is saved as a draft with a preview link.",
       "ask": "Use the page I just designed.",
-      "call": { "event": "sunday-supper", "html": "<!doctype html><html>...</html>", "note": "First version" }
+      "call": {
+        "event": "sunday-supper",
+        "html": "<!doctype html><html>...</html>",
+        "note": "First version"
+      }
     },
     "get_event_page": {
       "line": "Read the page you uploaded, to revise it: the waiting draft if there is one, else the live page.",
       "ask": "What is in my uploaded page right now?",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "add_page_asset": {
       "line": "Keep a picture or video from a link that would expire, so your page can use it for good.",
       "ask": "Keep this image so the link never breaks.",
-      "call": { "event": "sunday-supper", "url": "https://example.com/hero.png" }
+      "call": {
+        "event": "sunday-supper",
+        "url": "https://example.com/hero.png"
+      }
     },
     "publish_event_page": {
       "line": "Put your uploaded page live, after you have looked at the preview and said yes.",
       "ask": "Put my page live.",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "remove_event_page": {
       "line": "Take your uploaded page down and show the event's Oasis page again. Your uploads are kept.",
       "ask": "Go back to the Oasis page.",
-      "call": { "event": "sunday-supper" }
+      "call": {
+        "event": "sunday-supper"
+      }
     },
     "list_guests": {
       "line": "Who is coming, as the host panel shows it: name, status and party size.",
       "ask": "Who is on the waitlist?",
-      "call": { "event": "sunday-supper", "status": "waitlist" }
+      "call": {
+        "event": "sunday-supper",
+        "status": "waitlist"
+      }
     },
     "add_guests": {
       "line": "Add people straight to Going, up to 100 at a time. Each one gets the confirmation email unless you say not to.",
@@ -216,8 +423,14 @@
       "call": {
         "event": "sunday-supper",
         "guests": [
-          { "name": "Sam Lee", "email": "sam@example.com" },
-          { "name": "Priya Shah", "email": "priya@example.com" }
+          {
+            "name": "Sam Lee",
+            "email": "sam@example.com"
+          },
+          {
+            "name": "Priya Shah",
+            "email": "priya@example.com"
+          }
         ],
         "send_email": false
       }
@@ -225,22 +438,38 @@
     "check_in": {
       "line": "Check a guest in at the door, the whole party or some of it.",
       "ask": "Sam's party of two just arrived.",
-      "call": { "event": "sunday-supper", "guest_id": "the id list_guests gave for Sam", "count": 2 }
+      "call": {
+        "event": "sunday-supper",
+        "guest_id": "the id list_guests gave for Sam",
+        "count": 2
+      }
     },
     "remove_guest": {
       "line": "Take a guest off the list quietly. No email goes to them and their seat is freed.",
       "ask": "Take Priya off the list.",
-      "call": { "event": "sunday-supper", "guest_id": "the id list_guests gave for Priya" }
+      "call": {
+        "event": "sunday-supper",
+        "guest_id": "the id list_guests gave for Priya"
+      }
     },
     "restore_guest": {
       "line": "Put back a guest a host removed.",
       "ask": "Put Priya back.",
-      "call": { "event": "sunday-supper", "guest_id": "the id list_guests gave for Priya" }
+      "call": {
+        "event": "sunday-supper",
+        "guest_id": "the id list_guests gave for Priya"
+      }
     },
     "message_guests": {
       "line": "Email the guests, signed by the hosts. It previews first and sends only after you say yes.",
       "ask": "Draft a note to everyone going about parking.",
-      "call": { "event": "sunday-supper", "audience": "confirmed", "subject": "Parking on Sunday", "message": "Street parking is easiest on Rose Avenue. See you at noon.", "mode": "preview" }
+      "call": {
+        "event": "sunday-supper",
+        "audience": "confirmed",
+        "subject": "Parking on Sunday",
+        "message": "Street parking is easiest on Rose Avenue. See you at noon.",
+        "mode": "preview"
+      }
     },
     "get_design_system": {
       "line": "Read the Oasis design brief before proposing a change to the Oasis itself.",
@@ -250,20 +479,67 @@
     "submit_design_idea": {
       "line": "Send the Grateful Giraffes team a design idea, with a mockup if you have one.",
       "ask": "Send the team my idea for the RSVP button.",
-      "call": { "title": "Keep RSVP in reach on phones", "page_url": "https://app.grateful.gg/events", "problem": "On a small phone the RSVP button sits below the first screen.", "proposal": "Pin it to the bottom of the screen." }
+      "call": {
+        "title": "Keep RSVP in reach on phones",
+        "page_url": "https://app.grateful.gg/events",
+        "problem": "On a small phone the RSVP button sits below the first screen.",
+        "proposal": "Pin it to the bottom of the screen."
+      }
     },
     "list_my_design_ideas": {
       "line": "See the ideas you sent and what the team answered.",
       "ask": "Did the team answer my idea?",
       "call": {}
+    },
+    "make_photo": {
+      "line": "Make a new photo for any photo on the page from a few words, on the hosts' monthly AI budget. You see both versions before one is used.",
+      "ask": "Make the opening photo a candlelit rooftop at dusk.",
+      "call": {
+        "event": "sunday-supper",
+        "section": "hero",
+        "prompt": "A candlelit rooftop at dusk, seen from behind the guests"
+      }
+    },
+    "move_event": {
+      "line": "Move a live event to a new date and tell everyone going by email, with an updated calendar invite. It previews first and moves only with your yes.",
+      "ask": "Move it to the 29th, same time. Show me the note first.",
+      "call": {
+        "event": "sunday-supper",
+        "date": "2026-11-29"
+      }
+    },
+    "list_payouts": {
+      "line": "What the hosts are owed for each event: what was collected, the fees, what has been paid and what is still to come.",
+      "ask": "What am I owed for Sunday Supper?",
+      "call": {
+        "event": "sunday-supper"
+      }
+    },
+    "decide_guest": {
+      "line": "Approve or decline someone who asked to come, or someone on the waitlist. It previews first and decides only with your yes.",
+      "ask": "Let Priya in from the waitlist.",
+      "call": {
+        "event": "sunday-supper",
+        "guest_id": "the id list_guests gave for Priya",
+        "decision": "approve"
+      }
     }
   },
   "footer": {
     "line": "The Oasis is the home of Grateful Giraffes, a community you co-own.",
     "links": [
-      ["The Oasis", "https://app.grateful.gg/"],
-      ["Events", "https://app.grateful.gg/events"],
-      ["Connect your Claude", "https://grateful.gg/claude"]
+      [
+        "The Oasis",
+        "https://app.grateful.gg/"
+      ],
+      [
+        "Events",
+        "https://app.grateful.gg/events"
+      ],
+      [
+        "Connect your Claude",
+        "https://grateful.gg/claude"
+      ]
     ]
   }
 }

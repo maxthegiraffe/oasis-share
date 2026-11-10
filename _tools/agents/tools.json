@@ -633,6 +633,124 @@
   }
  },
  {
+  "name": "list_payouts",
+  "title": "See what the hosts are owed",
+  "annotations": {
+   "title": "See what the hosts are owed",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "What the host is owed for their events, as the Payouts page shows it: collected, refunded, Stripe fees, the platform fee, what is owed, what has been paid, what is still outstanding (or due back after a refund following a payout), who the money goes to, and each payout sent. Without event, every event of theirs that has money or payouts; with event, that one. Read only. Bank details are never shown.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    }
+   }
+  }
+ },
+ {
+  "name": "move_event",
+  "title": "Move an event's date",
+  "annotations": {
+   "title": "Move an event's date",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Move a live event to a new date (and time), and tell everyone going by email, with an updated calendar invite for those with a seat. Use this, not update_event, once an event is live. Without confirm true it only previews: it returns the old and new date and time, the exact email (subject and text), how many people get it, and a confirm_code, and changes nothing. ALWAYS show the host the email note and the number of guests who will get it, and call again with confirm true and the same confirm_code (and the same settings) ONLY after the host says yes. The code is good for 10 minutes and only for that event, date and time. A move cannot be quietly undone: guests are emailed. subject and message are optional and replace the default note (the cancel line is always added). audience \"confirmed\" (default) tells guests who are going; \"all\" also tells those waiting for approval. The page, the calendar invite and the share card follow the new date.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "date": {
+     "type": "string",
+     "description": "The new date, YYYY-MM-DD"
+    },
+    "time": {
+     "type": "string",
+     "description": "New start, e.g. \"7:00 PM\". Leave out to keep the current one"
+    },
+    "end_time": {
+     "type": "string",
+     "description": "New end, e.g. \"9:30 PM\". Leave out to keep the current one"
+    },
+    "subject": {
+     "type": "string",
+     "description": "Subject of the email to guests. Leave out for the default"
+    },
+    "message": {
+     "type": "string",
+     "description": "The host's words in the email to guests. Leave out for the default"
+    },
+    "audience": {
+     "type": "string",
+     "enum": [
+      "confirmed",
+      "all"
+     ],
+     "description": "Who is told: \"confirmed\" (default) or \"all\" (also those waiting)"
+    },
+    "confirm": {
+     "type": "boolean",
+     "description": "Must be true to move the event, and only after the host said yes to the preview"
+    },
+    "confirm_code": {
+     "type": "string",
+     "description": "The confirm_code from the preview, passed back with confirm true"
+    }
+   },
+   "required": [
+    "event",
+    "date"
+   ]
+  }
+ },
+ {
+  "name": "make_photo",
+  "title": "Make a photo",
+  "annotations": {
+   "title": "Make a photo",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Make a new photo for any photo on an event page from a few words, using the hosts' monthly AI photo budget. Three calls: with section (an id from get_page, share.photos, e.g. \"stage\" for the opening animation) and prompt it starts and returns a job; with job it checks on it, and when ready returns both versions (phone and desktop links); with job and use true it puts the pair on the page. Wait about 20 seconds between checks. ALWAYS show the person both versions and use them only after they say yes. Only the use call changes the page. It is live for everyone at once; the original can be restored in the page editor.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "section": {
+     "type": "string",
+     "description": "Which photo: an id from get_page share.photos"
+    },
+    "prompt": {
+     "type": "string",
+     "description": "A few words describing the photo, e.g. \"a candlelit rooftop at dusk, seen from behind the guests\""
+    },
+    "job": {
+     "type": "string",
+     "description": "The job from the first call, to check on it or use it"
+    },
+    "use": {
+     "type": "boolean",
+     "description": "With job: true puts the finished photo on the page, only after the person said yes"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
   "name": "create_event",
   "title": "Create a draft event",
   "annotations": {
@@ -1122,7 +1240,7 @@
    "destructiveHint": true,
    "openWorldHint": true
   },
-  "description": "Add people straight to Going, up to 100 at a time. Each needs a name and an email; a phone is optional. By default each person gets the confirmation email with the address, so check the list with the host first. send_email false adds them quietly. Anyone already going is skipped. Anyone who already asked to come (pending or waitlist) has to be approved in the host panel's Guests tab.",
+  "description": "Add people straight to Going, up to 100 at a time. Each needs a name and an email; a phone is optional. By default each person gets the confirmation email with the address, so check the list with the host first. send_email false adds them quietly. Anyone already going is skipped. Anyone who already asked to come (pending or waitlist) has to be approved with decide_guest.",
   "inputSchema": {
    "type": "object",
    "properties": {
@@ -1204,7 +1322,7 @@
    "destructiveHint": true,
    "openWorldHint": false
   },
-  "description": "Take a guest off the list quietly: no email goes to them and their seat is freed. A guest who paid has to be refunded in the host panel first, then removed. They show as removed in list_guests and can be put back with restore_guest.",
+  "description": "Take a guest off the list quietly: no email goes to them and their seat is freed. A guest who paid has to be refunded first, then removed. They show as removed in list_guests and can be put back with restore_guest.",
   "inputSchema": {
    "type": "object",
    "properties": {
@@ -1232,7 +1350,7 @@
    "destructiveHint": true,
    "openWorldHint": false
   },
-  "description": "Put back a guest a host removed. They return to Going only if they had a confirmed seat before; otherwise they come back as pending and a host approves them in the host panel. Works only for guests removed by a host.",
+  "description": "Put back a guest a host removed. They return to Going only if they had a confirmed seat before; otherwise they come back as pending and a host approves them with decide_guest. Works only for guests removed by a host.",
   "inputSchema": {
    "type": "object",
    "properties": {
@@ -1304,6 +1422,54 @@
     "audience",
     "subject",
     "message"
+   ]
+  }
+ },
+ {
+  "name": "decide_guest",
+  "title": "Approve or decline a guest",
+  "annotations": {
+   "title": "Approve or decline a guest",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Approve or decline a guest who asked to come (pending or waitlist), the same as the Approve and Decline buttons in the host panel. Approving charges their card hold, if they have one, and emails their confirmation with the address. Declining releases the hold and emails them a kind no. Without confirm true this only previews and returns a confirm_code; show the host what will happen and decide only after they say yes, by calling again with confirm true and the same confirm_code (good for 10 minutes). If the room is full, it says so; ask the host, and only if they say yes call again with over_capacity true. A decision cannot be undone, apart from approving someone a host declined.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "guest_id": {
+     "type": "string",
+     "description": "The guest's registration id from list_guests"
+    },
+    "decision": {
+     "type": "string",
+     "enum": [
+      "approve",
+      "decline"
+     ]
+    },
+    "over_capacity": {
+     "type": "boolean",
+     "description": "Approve even though the room is full, only after the host said yes to that"
+    },
+    "confirm": {
+     "type": "boolean",
+     "description": "Must be true to decide, and only after the host said yes to the preview"
+    },
+    "confirm_code": {
+     "type": "string",
+     "description": "The confirm_code from the preview, passed back with confirm true"
+    }
+   },
+   "required": [
+    "event",
+    "guest_id",
+    "decision"
    ]
   }
  },

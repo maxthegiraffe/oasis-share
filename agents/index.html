@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Oasis for AI agents · Grateful Giraffes</title>
-<meta name="description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<meta name="description" content="One MCP address, 34 tools with an example each, and a public events feed, for any agent that plans and runs events.">
 <link rel="canonical" href="https://grateful.gg/agents">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Oasis">
 <meta property="og:title" content="The Oasis for AI agents">
-<meta property="og:description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<meta property="og:description" content="One MCP address, 34 tools with an example each, and a public events feed, for any agent that plans and runs events.">
 <meta property="og:url" content="https://grateful.gg/agents">
 <meta property="og:image" content="https://grateful.gg/agents/cover.jpg">
 <meta property="og:image:secure_url" content="https://grateful.gg/agents/cover.jpg">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Agents propose. People approve. The Oasis by Grateful Giraffes.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Oasis for AI agents">
-<meta name="twitter:description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<meta name="twitter:description" content="One MCP address, 34 tools with an example each, and a public events feed, for any agent that plans and runs events.">
 <meta name="twitter:image" content="https://grateful.gg/agents/cover.jpg">
 <link rel="alternate" type="application/json" href="https://grateful.gg/agents/tools.json" title="The Oasis connector tools">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,12 +59,13 @@ code,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.
 section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
 section h2{font-size:clamp(30px,4.6vw,52px);margin:10px 0 14px}
 section .intro{max-width:62ch;color:var(--soft);margin-bottom:28px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 26px}
 .card h3{font-size:24px;margin-bottom:10px}
 .card ol{margin:0;padding-left:20px;color:var(--soft)}
 .card pre,.tool pre{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:var(--wash);color:var(--code);overflow-x:auto;white-space:pre-wrap;word-break:break-word}
-.more{margin-top:22px}
+.other{margin-top:22px;max-width:70ch;color:var(--soft)}
+.more{margin-top:14px}
 .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 44px;margin:0;padding:0;list-style:none}
 .rules li{padding:18px 0;border-top:1px solid var(--line)}
 .rules strong{display:block;font-family:"Libre Bodoni",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:4px}
@@ -112,22 +113,27 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
 <div class="hero"><div class="wrap">
 <p class="label">The Oasis · for AI agents</p>
 <h1><span>Agents propose.</span><span>People approve.</span></h1>
-<p class="lede">The Oasis is where Grateful Giraffes hosts plan and run events. Connect your own AI over MCP and it can draft the event, build the page, keep the guest list and write the emails. Going live and emailing guests wait for your yes.</p>
+<p class="lede">The Oasis is where Grateful Giraffes hosts plan and run events. Connect your own AI over MCP and it can draft the event, build the page, keep the guest list and write the emails. Going live, emailing guests, approving a guest and moving a date all wait for your yes.</p>
 <div class="address"><code>https://app.grateful.gg/claude/mcp</code><button class="btn" type="button" data-copy="https://app.grateful.gg/claude/mcp" data-done="Copied">Copy the address</button></div>
-<div class="under"><ul><li>30 tools</li><li>One address</li><li>Sign in once</li></ul><a href="#tools">See every tool</a></div>
+<div class="under"><ul><li>34 tools</li><li>One address</li><li>Sign in once</li></ul><a href="#tools">See every tool</a></div>
 </div></div>
 <section id="connect"><div class="wrap">
 <p class="label">Step by step</p>
 <h2>Connect your agent</h2>
 <p class="intro">One address for every agent. Paste it once, sign in to the Oasis, and click Allow. Your agent then acts as you: it can do what you can do on the site, never more.</p>
-<div class="cards"><div class="card"><h3>Claude</h3><ol><li>Open Customize, then Connectors, then Add custom connector.</li><li>Paste the address and sign in to the Oasis.</li></ol></div><div class="card"><h3>Claude Code</h3><pre><code>claude mcp add -s user --transport http the-oasis https://app.grateful.gg/claude/mcp</code></pre><ol><li>Run this once in a terminal.</li><li>Then type /mcp in Claude Code and choose Authenticate.</li></ol></div></div>
-<p class="more"><a href="https://grateful.gg/claude">The walkthrough with pictures</a></p>
+<div class="cards"><div class="card"><h3>Claude</h3><ol><li>Open Customize, then Connectors, then Add custom connector.</li><li>Paste the address and sign in to the Oasis.</li></ol></div><div class="card"><h3>ChatGPT</h3><ol><li>Open chatgpt.com/plugins, press the plus button and choose Add custom MCP server.</li><li>Paste the address as the MCP server URL and create it. ChatGPT opens the Oasis sign-in.</li></ol></div><div class="card"><h3>Cursor</h3><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;the-oasis&quot;: { &quot;url&quot;: &quot;https://app.grateful.gg/claude/mcp&quot; }
+  }
+}</code></pre><ol><li>Add this to ~/.cursor/mcp.json.</li><li>Open Customize in Cursor, turn on the-oasis and sign in to the Oasis.</li></ol></div><div class="card"><h3>Gemini CLI</h3><pre><code>gemini mcp add --transport http the-oasis https://app.grateful.gg/claude/mcp</code></pre><ol><li>Run this once in a terminal.</li><li>Then type /mcp auth the-oasis in Gemini CLI.</li></ol></div><div class="card"><h3>VS Code</h3><ol><li>Run MCP: Add Server from the Command Palette, choose HTTP and paste the address.</li><li>Sign in to the Oasis when VS Code asks, the first time the tools are used.</li></ol></div><div class="card"><h3>Claude Code</h3><pre><code>claude mcp add -s user --transport http the-oasis https://app.grateful.gg/claude/mcp</code></pre><ol><li>Run this once in a terminal.</li><li>Then type /mcp in Claude Code and choose Authenticate.</li></ol></div></div>
+<p class="other">Another MCP client that runs on your own computer signs in the same way. An app that signs in from its own website has to be one the Oasis knows: today that is Claude, ChatGPT, Cursor and VS Code.</p>
+<p class="more"><a href="https://grateful.gg/claude">The walkthrough for Claude, with pictures</a></p>
 </div></section>
 <section id="approval"><div class="wrap">
 <p class="label">Agents propose, people approve</p>
 <h2>What waits for a yes</h2>
 <p class="intro">An agent on the Oasis works the way a good assistant does: it prepares, you decide.</p>
-<ul class="rules"><li><strong>A new event is a draft</strong><span>RSVPs stay closed until its host has seen the page and said yes.</span></li><li><strong>An email is a preview first</strong><span>The agent shows the exact words and how many people get it. It sends only after the host says yes.</span></li><li><strong>A share card is drawn before it is saved</strong><span>And a new opening image goes on the page only once the host picks it.</span></li><li><strong>Edits to a page you host are live right away</strong><span>Each one is noted, and the Grateful Giraffes team gets a summary.</span></li><li><strong>Your agent is you, never more</strong><span>It can do what you can do on the site. Every call is logged, up to 60 a minute.</span></li><li><strong>Addresses stay private</strong><span>A street address goes to confirmed guests only. Public pages give the city.</span></li></ul>
+<ul class="rules"><li><strong>A new event is a draft</strong><span>RSVPs stay closed until its host has seen the page and said yes.</span></li><li><strong>An email is a preview first</strong><span>The agent shows the exact words and how many people get it. It sends only after the host says yes.</span></li><li><strong>Approving a guest is a preview first</strong><span>The agent shows who it is and what happens, and gets a code. It can go ahead only with that code, after your yes.</span></li><li><strong>Moving a date is a preview first</strong><span>You see the new date, the note to guests and how many people get it before anything moves.</span></li><li><strong>A share card is drawn before it is saved</strong><span>And a new opening image goes on the page only once the host picks it.</span></li><li><strong>Edits to a page you host are live right away</strong><span>Each one is noted, and the Grateful Giraffes team gets a summary.</span></li><li><strong>Refunds are made by people</strong><span>A refund is made by the Grateful Giraffes team, never by an agent.</span></li><li><strong>Your agent is you, never more</strong><span>It can do what you can do on the site. Every call is logged, up to 60 a minute.</span></li><li><strong>Addresses stay private</strong><span>A street address goes to confirmed guests only. Public pages give the city.</span></li></ul>
 </div></section>
 <section id="open"><div class="wrap">
 <p class="label">For any agent</p>
@@ -136,7 +142,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
 <ul class="open"><li><a href="https://app.grateful.gg/events.json">app.grateful.gg/events.json</a><span>Upcoming public events as JSON: name, link, start and end, city, and whether RSVPs are open.</span></li><li><a href="https://app.grateful.gg/llms.txt">app.grateful.gg/llms.txt</a><span>A short guide for language models: what the Oasis is and where everything lives.</span></li><li><a href="https://grateful.gg/agents/tools.json">grateful.gg/agents/tools.json</a><span>This tool list as JSON.</span></li><li><a href="https://app.grateful.gg/events">app.grateful.gg/events</a><span>Every public event page carries schema.org Event data.</span></li></ul>
 </div></section>
 <section id="tools"><div class="wrap">
-<p class="label">30 tools</p>
+<p class="label">34 tools</p>
 <h2>Every tool, with an example</h2>
 <p class="intro">What your agent can do once you connect. Each tool shows something you might say and the call your agent makes.</p>
 <div class="group"><h3>Pages you host</h3><p>Read a page, then change its words, sections, photos and look.</p><div class="tools"><article class="tool" id="list_my_events"><header><h4>list_my_events</h4><span class="kind reads">Reads</span></header><p class="what">The events you host and the landing pages you can edit, with their links.</p><dl><dt>You say</dt><dd class="ask">Which events am I hosting?</dd><dt>Your agent calls</dt><dd><pre><code>{
@@ -208,6 +214,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
     &quot;event&quot;: &quot;sunday-supper&quot;,
     &quot;capacity&quot;: 40,
     &quot;approval&quot;: &quot;host_all&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="make_photo"><header><h4>make_photo</h4><span class="kind">Changes</span></header><p class="what">Make a new photo for any photo on the page from a few words, on the hosts&#x27; monthly AI budget. You see both versions before one is used.</p><dl><dt>You say</dt><dd class="ask">Make the opening photo a candlelit rooftop at dusk.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;make_photo&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;section&quot;: &quot;hero&quot;,
+    &quot;prompt&quot;: &quot;A candlelit rooftop at dusk, seen from behind the guests&quot;
   }
 }</code></pre></dd></dl></article></div></div><div class="group"><h3>New events</h3><p>For approved hosts. A new event stays a draft until you publish it.</p><div class="tools"><article class="tool" id="create_event"><header><h4>create_event</h4><span class="kind">Changes</span></header><p class="what">Start a new event page as a draft, with RSVPs closed until you publish it.</p><dl><dt>You say</dt><dd class="ask">Start a potluck in Venice on Sunday the 22nd at noon.</dd><dt>Your agent calls</dt><dd><pre><code>{
   &quot;name&quot;: &quot;create_event&quot;,
@@ -286,7 +299,18 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
   &quot;arguments&quot;: {
     &quot;event&quot;: &quot;sunday-supper&quot;
   }
-}</code></pre></dd></dl></article></div></div><div class="group"><h3>Guests</h3><p>The guest list, the door and emails to guests.</p><div class="tools"><article class="tool" id="list_guests"><header><h4>list_guests</h4><span class="kind reads">Reads</span></header><p class="what">Who is coming, as the host panel shows it: name, status and party size.</p><dl><dt>You say</dt><dd class="ask">Who is on the waitlist?</dd><dt>Your agent calls</dt><dd><pre><code>{
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>Dates and money</h3><p>Move a live event, and see what the hosts are owed. Payouts are sent by the Grateful Giraffes team.</p><div class="tools"><article class="tool" id="move_event"><header><h4>move_event</h4><span class="kind">Changes</span></header><p class="what">Move a live event to a new date and tell everyone going by email, with an updated calendar invite. It previews first and moves only with your yes.</p><dl><dt>You say</dt><dd class="ask">Move it to the 29th, same time. Show me the note first.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;move_event&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;date&quot;: &quot;2026-11-29&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="list_payouts"><header><h4>list_payouts</h4><span class="kind reads">Reads</span></header><p class="what">What the hosts are owed for each event: what was collected, the fees, what has been paid and what is still to come.</p><dl><dt>You say</dt><dd class="ask">What am I owed for Sunday Supper?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;list_payouts&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>Guests</h3><p>The guest list, approvals, the door and emails to guests.</p><div class="tools"><article class="tool" id="list_guests"><header><h4>list_guests</h4><span class="kind reads">Reads</span></header><p class="what">Who is coming, as the host panel shows it: name, status and party size.</p><dl><dt>You say</dt><dd class="ask">Who is on the waitlist?</dd><dt>Your agent calls</dt><dd><pre><code>{
   &quot;name&quot;: &quot;list_guests&quot;,
   &quot;arguments&quot;: {
     &quot;event&quot;: &quot;sunday-supper&quot;,
@@ -335,6 +359,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
     &quot;subject&quot;: &quot;Parking on Sunday&quot;,
     &quot;message&quot;: &quot;Street parking is easiest on Rose Avenue. See you at noon.&quot;,
     &quot;mode&quot;: &quot;preview&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="decide_guest"><header><h4>decide_guest</h4><span class="kind">Changes</span></header><p class="what">Approve or decline someone who asked to come, or someone on the waitlist. It previews first and decides only with your yes.</p><dl><dt>You say</dt><dd class="ask">Let Priya in from the waitlist.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;decide_guest&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;guest_id&quot;: &quot;the id list_guests gave for Priya&quot;,
+    &quot;decision&quot;: &quot;approve&quot;
   }
 }</code></pre></dd></dl></article></div></div><div class="group"><h3>Design ideas</h3><p>Propose an improvement to the Oasis itself.</p><div class="tools"><article class="tool" id="get_design_system"><header><h4>get_design_system</h4><span class="kind reads">Reads</span></header><p class="what">Read the Oasis design brief before proposing a change to the Oasis itself.</p><dl><dt>You say</dt><dd class="ask">What are the Oasis design rules?</dd><dt>Your agent calls</dt><dd><pre><code>{
   &quot;name&quot;: &quot;get_design_system&quot;,

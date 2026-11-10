@@ -5,6 +5,8 @@
 //     "file://$PWD/base44/shared/hostConnectorTools.ts" <oasis-share>/_tools/agents/tools.json
 //
 // Then: python3 -I _tools/build_agents_page.py   (it refuses a tool that has no example in page.json)
-const { TOOLS } = await import(Deno.args[0]);
+// offeredTools(): what an AI app is offered right now (refund_guest is left out while refunds are the team's)
+const m = await import(Deno.args[0]);
+const TOOLS = m.offeredTools ? m.offeredTools() : m.TOOLS;
 await Deno.writeTextFile(Deno.args[1], JSON.stringify(TOOLS, null, 1) + "\n");
 console.log(`${TOOLS.length} tools: ${TOOLS.map((t: { name: string }) => t.name).join(" ")}`);

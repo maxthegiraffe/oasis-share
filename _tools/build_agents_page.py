@@ -135,12 +135,13 @@ code,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.
 section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
 section h2{font-size:clamp(30px,4.6vw,52px);margin:10px 0 14px}
 section .intro{max-width:62ch;color:var(--soft);margin-bottom:28px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 26px}
 .card h3{font-size:24px;margin-bottom:10px}
 .card ol{margin:0;padding-left:20px;color:var(--soft)}
 .card pre,.tool pre{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:var(--wash);color:var(--code);overflow-x:auto;white-space:pre-wrap;word-break:break-word}
-.more{margin-top:22px}
+.other{margin-top:22px;max-width:70ch;color:var(--soft)}
+.more{margin-top:14px}
 .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 44px;margin:0;padding:0;list-style:none}
 .rules li{padding:18px 0;border-top:1px solid var(--line)}
 .rules strong{display:block;font-family:"Libre Bodoni",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:4px}
@@ -267,6 +268,7 @@ def render(tools, page):
 <h2>{e(c["title"])}</h2>
 <p class="intro">{e(c["intro"])}</p>
 <div class="cards">{"".join(client(cl) for cl in c["clients"])}</div>
+{f'<p class="other">{e(c["other"])}</p>' if c.get("other") else ""}
 <p class="more"><a href="{e(c["more"]["href"])}">{e(c["more"]["text"])}</a></p>
 </div></section>
 <section id="approval"><div class="wrap">
