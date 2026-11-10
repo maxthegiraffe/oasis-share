@@ -58,6 +58,10 @@
 "s":"healthluma"
 },
 {
+"p":"/host/gigi",
+"s":"results"
+},
+{
 "p":"/invite",
 "s":"aaronk",
 "q":{
