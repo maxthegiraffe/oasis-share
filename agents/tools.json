@@ -3,7 +3,7 @@
  "mcp": "https://app.grateful.gg/claude/mcp",
  "transport": "Streamable HTTP, OAuth 2.1 sign-in",
  "page": "https://grateful.gg/agents",
- "count": 34,
+ "count": 35,
  "tools": [
   {
    "name": "list_my_events",
@@ -1149,6 +1149,36 @@
       "event": "sunday-supper",
       "guest_id": "the id list_guests gave for Priya",
       "decision": "approve"
+     }
+    }
+   }
+  },
+  {
+   "name": "fill_waitlist",
+   "title": "Fill open seats from the waitlist",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Give the open seats to the people who have waited longest. It previews who gets a seat and who is passed over, and seats them only with your yes. Nothing fills by itself.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "confirm",
+     "required": false
+    },
+    {
+     "name": "confirm_code",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Two people cancelled. Who is next on the waitlist?",
+    "call": {
+     "name": "fill_waitlist",
+     "arguments": {
+      "event": "sunday-supper"
      }
     }
    }

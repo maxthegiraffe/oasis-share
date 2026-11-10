@@ -1474,6 +1474,37 @@
   }
  },
  {
+  "name": "fill_waitlist",
+  "title": "Fill open seats from the waitlist",
+  "annotations": {
+   "title": "Fill open seats from the waitlist",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Give the open seats to the people who have waited longest on the waitlist. Nothing fills by itself: this is the hosts' call. Without confirm true it only previews: who would get a seat (longest wait first), who is passed over and why (a party bigger than the seats left, or on a paid event someone who has not paid), how many stay on the waitlist, and a confirm_code. Show the host that. With confirm true and that confirm_code it seats exactly those people: each one's card hold is charged if they have one, and each gets the confirmation email with the address. If the waitlist or the open seats changed since the preview, nothing happens: preview again. An event with no guest limit has no seats to fill (update_event sets capacity).",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "confirm": {
+     "type": "boolean",
+     "description": "Must be true to seat them, and only after the host said yes to the preview"
+    },
+    "confirm_code": {
+     "type": "string",
+     "description": "The confirm_code from the preview, passed back with confirm true"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
   "name": "get_design_system",
   "title": "Read the Oasis design brief",
   "annotations": {

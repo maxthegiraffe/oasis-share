@@ -88,7 +88,7 @@
         "The agent shows the exact words and how many people get it. It sends only after the host says yes."
       ],
       [
-        "Approving a guest is a preview first",
+        "Approving a guest, or filling seats from the waitlist, is a preview first",
         "The agent shows who it is and what happens, and gets a code. It can go ahead only with that code, after your yes."
       ],
       [
@@ -198,7 +198,7 @@
     },
     {
       "title": "Guests",
-      "intro": "The guest list, approvals, the door and emails to guests.",
+      "intro": "The guest list, approvals, the waitlist, the door and emails to guests.",
       "tools": [
         "list_guests",
         "add_guests",
@@ -206,7 +206,8 @@
         "remove_guest",
         "restore_guest",
         "message_guests",
-        "decide_guest"
+        "decide_guest",
+        "fill_waitlist"
       ]
     },
     {
@@ -522,6 +523,13 @@
         "event": "sunday-supper",
         "guest_id": "the id list_guests gave for Priya",
         "decision": "approve"
+      }
+    },
+    "fill_waitlist": {
+      "line": "Give the open seats to the people who have waited longest. It previews who gets a seat and who is passed over, and seats them only with your yes. Nothing fills by itself.",
+      "ask": "Two people cancelled. Who is next on the waitlist?",
+      "call": {
+        "event": "sunday-supper"
       }
     }
   },
