@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Oasis for AI agents · Grateful Giraffes</title>
+<meta name="description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<link rel="canonical" href="https://grateful.gg/agents">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Oasis">
+<meta property="og:title" content="The Oasis for AI agents">
+<meta property="og:description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<meta property="og:url" content="https://grateful.gg/agents">
+<meta property="og:image" content="https://grateful.gg/agents/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/agents/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Agents propose. People approve. The Oasis by Grateful Giraffes.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Oasis for AI agents">
+<meta name="twitter:description" content="One MCP address, 30 tools with an example each, and a public events feed, for any agent that plans and runs events.">
+<meta name="twitter:image" content="https://grateful.gg/agents/cover.jpg">
+<link rel="alternate" type="application/json" href="https://grateful.gg/agents/tools.json" title="The Oasis connector tools">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Libre+Bodoni:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#26211b;--soft:#6f675f;--line:#eadfce;--paper:#fffaf3;--card:#ffffff;--accent:#b45309;--accent-ink:#ffffff;--wash:#fff3df;--code:#2b241c}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:400 17px/1.6 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(160deg,#fff4e2 0%,#fffaf3 38%,#ffffff 100%) fixed;text-rendering:optimizeLegibility}
+.wrap{width:min(100% - 40px,1040px);margin-inline:auto}
+h1,h2,h3{font-family:"Libre Bodoni","Bodoni 72",Didot,Georgia,serif;font-weight:700;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+code,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.84em}
+.label{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;background:rgba(255,250,243,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.top a.home{font-family:"Libre Bodoni",Georgia,serif;font-weight:700;font-size:19px;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:22px}
+.top nav a{font-size:14px;font-weight:500;color:var(--soft);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+.hero{min-height:calc(100svh - 57px);display:flex;align-items:center;padding:clamp(20px,5svh,56px) 0}
+.hero h1{font-size:clamp(38px,min(8.4vw,11svh),92px);letter-spacing:-.015em;margin:clamp(10px,2svh,20px) 0 clamp(12px,2.4svh,24px)}
+.hero h1 span{display:block}
+.hero .lede{max-width:60ch;font-size:clamp(16px,2.3svh,20px);color:var(--soft)}
+.address{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-top:clamp(16px,3.4svh,34px)}
+.address code{flex:1 1 300px;min-width:0;display:flex;align-items:center;padding:13px 18px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:15px;color:var(--code);overflow-x:auto;white-space:nowrap}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:700 13px/1 "DM Sans",system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:transform .15s ease,background-color .15s ease}
+.btn:hover{background:#9a4507;transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.under{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin-top:clamp(12px,2.2svh,22px);font-size:14px;color:var(--soft)}
+.under ul{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;margin:0;padding:0}
+.under li+li::before{content:"·";margin-right:18px;color:var(--line)}
+section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(30px,4.6vw,52px);margin:10px 0 14px}
+section .intro{max-width:62ch;color:var(--soft);margin-bottom:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 26px}
+.card h3{font-size:24px;margin-bottom:10px}
+.card ol{margin:0;padding-left:20px;color:var(--soft)}
+.card pre,.tool pre{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:var(--wash);color:var(--code);overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+.more{margin-top:22px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 44px;margin:0;padding:0;list-style:none}
+.rules li{padding:18px 0;border-top:1px solid var(--line)}
+.rules strong{display:block;font-family:"Libre Bodoni",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:4px}
+.rules span{color:var(--soft)}
+.open{margin:0;padding:0;list-style:none}
+.open li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:6px 28px;padding:16px 0;border-top:1px solid var(--line)}
+.open a{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14.5px;overflow-wrap:anywhere}
+.open span{color:var(--soft)}
+.group{margin-top:44px}
+.group>h3{font-size:clamp(24px,3vw,32px)}
+.group>p{color:var(--soft);margin:6px 0 16px}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px 24px;min-width:0;scroll-margin-top:76px}
+.tool header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:8px}
+.tool h4{margin:0;font:600 16.5px/1.3 ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--code)}
+.tool .kind{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid #f1d9b5;background:var(--wash);border-radius:999px;padding:3px 10px}
+.tool .kind.reads{color:#3f6b4f;border-color:#cfe3d5;background:#eef7f0}
+.tool .what{margin-bottom:14px}
+.tool dl{margin:0}
+.tool dt{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+.tool dd{margin:0 0 12px}
+.tool dd:last-child,.tool dd:last-child pre{margin-bottom:0}
+.tool .ask{font-family:"Libre Bodoni",Georgia,serif;font-size:19px;line-height:1.3}
+footer{border-top:1px solid var(--line);padding:36px 0 56px;color:var(--soft);font-size:14.5px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+@media (max-width:760px){
+  body{font-size:16px}
+  .top nav a:not(:last-child){display:none}
+  .tools{grid-template-columns:1fr}
+  .open li{grid-template-columns:1fr}
+  .address code{flex-basis:100%;font-size:13.5px;padding:12px 16px}
+  .btn{width:100%}
+  .under li+li::before{margin-right:12px}
+  .under ul{gap:6px 12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- Made by _tools/build_agents_page.py from the Oasis connector's tool list and _tools/agents/page.json. Edit those, not this file. -->
+<div class="top"><div class="wrap"><a class="home" href="https://app.grateful.gg/">The Oasis</a>
+<nav><a href="#connect">Connect</a><a href="#approval">Approval</a><a href="#open">Open data</a><a href="#tools">Tools</a></nav></div></div>
+<main>
+<div class="hero"><div class="wrap">
+<p class="label">The Oasis · for AI agents</p>
+<h1><span>Agents propose.</span><span>People approve.</span></h1>
+<p class="lede">The Oasis is where Grateful Giraffes hosts plan and run events. Connect your own AI over MCP and it can draft the event, build the page, keep the guest list and write the emails. Going live and emailing guests wait for your yes.</p>
+<div class="address"><code>https://app.grateful.gg/claude/mcp</code><button class="btn" type="button" data-copy="https://app.grateful.gg/claude/mcp" data-done="Copied">Copy the address</button></div>
+<div class="under"><ul><li>30 tools</li><li>One address</li><li>Sign in once</li></ul><a href="#tools">See every tool</a></div>
+</div></div>
+<section id="connect"><div class="wrap">
+<p class="label">Step by step</p>
+<h2>Connect your agent</h2>
+<p class="intro">One address for every agent. Paste it once, sign in to the Oasis, and click Allow. Your agent then acts as you: it can do what you can do on the site, never more.</p>
+<div class="cards"><div class="card"><h3>Claude</h3><ol><li>Open Customize, then Connectors, then Add custom connector.</li><li>Paste the address and sign in to the Oasis.</li></ol></div><div class="card"><h3>Claude Code</h3><pre><code>claude mcp add -s user --transport http the-oasis https://app.grateful.gg/claude/mcp</code></pre><ol><li>Run this once in a terminal.</li><li>Then type /mcp in Claude Code and choose Authenticate.</li></ol></div></div>
+<p class="more"><a href="https://grateful.gg/claude">The walkthrough with pictures</a></p>
+</div></section>
+<section id="approval"><div class="wrap">
+<p class="label">Agents propose, people approve</p>
+<h2>What waits for a yes</h2>
+<p class="intro">An agent on the Oasis works the way a good assistant does: it prepares, you decide.</p>
+<ul class="rules"><li><strong>A new event is a draft</strong><span>RSVPs stay closed until its host has seen the page and said yes.</span></li><li><strong>An email is a preview first</strong><span>The agent shows the exact words and how many people get it. It sends only after the host says yes.</span></li><li><strong>A share card is drawn before it is saved</strong><span>And a new opening image goes on the page only once the host picks it.</span></li><li><strong>Edits to a page you host are live right away</strong><span>Each one is noted, and the Grateful Giraffes team gets a summary.</span></li><li><strong>Your agent is you, never more</strong><span>It can do what you can do on the site. Every call is logged, up to 60 a minute.</span></li><li><strong>Addresses stay private</strong><span>A street address goes to confirmed guests only. Public pages give the city.</span></li></ul>
+</div></section>
+<section id="open"><div class="wrap">
+<p class="label">For any agent</p>
+<h2>Open data, no sign-in</h2>
+<p class="intro">What any agent can read before anyone connects.</p>
+<ul class="open"><li><a href="https://app.grateful.gg/events.json">app.grateful.gg/events.json</a><span>Upcoming public events as JSON: name, link, start and end, city, and whether RSVPs are open.</span></li><li><a href="https://app.grateful.gg/llms.txt">app.grateful.gg/llms.txt</a><span>A short guide for language models: what the Oasis is and where everything lives.</span></li><li><a href="https://grateful.gg/agents/tools.json">grateful.gg/agents/tools.json</a><span>This tool list as JSON.</span></li><li><a href="https://app.grateful.gg/events">app.grateful.gg/events</a><span>Every public event page carries schema.org Event data.</span></li></ul>
+</div></section>
+<section id="tools"><div class="wrap">
+<p class="label">30 tools</p>
+<h2>Every tool, with an example</h2>
+<p class="intro">What your agent can do once you connect. Each tool shows something you might say and the call your agent makes.</p>
+<div class="group"><h3>Pages you host</h3><p>Read a page, then change its words, sections, photos and look.</p><div class="tools"><article class="tool" id="list_my_events"><header><h4>list_my_events</h4><span class="kind reads">Reads</span></header><p class="what">The events you host and the landing pages you can edit, with their links.</p><dl><dt>You say</dt><dd class="ask">Which events am I hosting?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;list_my_events&quot;,
+  &quot;arguments&quot;: {}
+}</code></pre></dd></dl></article><article class="tool" id="get_page"><header><h4>get_page</h4><span class="kind reads">Reads</span></header><p class="what">Everything on a page that can change: each section&#x27;s words, its photos, the sections you added and the run of show.</p><dl><dt>You say</dt><dd class="ask">Read me what&#x27;s on the Sunday Supper page.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;get_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="update_page"><header><h4>update_page</h4><span class="kind">Changes</span></header><p class="what">Change the words of a page&#x27;s sections. Only the fields you name change.</p><dl><dt>You say</dt><dd class="ask">Make the headline warmer.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;update_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;sections&quot;: {
+      &quot;gathering&quot;: {
+        &quot;title&quot;: &quot;Come hungry, leave full&quot;
+      }
+    }
+  }
+}</code></pre></dd></dl></article><article class="tool" id="add_section"><header><h4>add_section</h4><span class="kind">Changes</span></header><p class="what">Add a section of your own: a photo with a heading, a headline, a paragraph and a hosted-by line. Up to six.</p><dl><dt>You say</dt><dd class="ask">Add a section about the music after the gathering section.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;add_section&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;after&quot;: &quot;gathering&quot;,
+    &quot;photo_url&quot;: &quot;https://example.com/band.jpg&quot;,
+    &quot;eyebrow&quot;: &quot;The music&quot;,
+    &quot;title&quot;: &quot;Three guitars and a cello&quot;,
+    &quot;body&quot;: &quot;Live, unplugged, and close enough to feel.&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="update_section"><header><h4>update_section</h4><span class="kind">Changes</span></header><p class="what">Change a section you added: its words, its place on the page or its photo.</p><dl><dt>You say</dt><dd class="ask">Shorten the music paragraph.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;update_section&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;id&quot;: &quot;k3x9p2aq&quot;,
+    &quot;body&quot;: &quot;Live and unplugged.&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="remove_section"><header><h4>remove_section</h4><span class="kind">Changes</span></header><p class="what">Remove a section you added. Anything after it moves up.</p><dl><dt>You say</dt><dd class="ask">Take the music section off.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;remove_section&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;id&quot;: &quot;k3x9p2aq&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="set_photo"><header><h4>set_photo</h4><span class="kind">Changes</span></header><p class="what">Give a section a new photo from a direct link, or go back to the one it had.</p><dl><dt>You say</dt><dd class="ask">Use this photo for the opening.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;set_photo&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;section&quot;: &quot;hero&quot;,
+    &quot;photo_url&quot;: &quot;https://example.com/long-table.jpg&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="update_style"><header><h4>update_style</h4><span class="kind">Changes</span></header><p class="what">Change how the page looks: colours, fonts, the order of sections, button labels and the layout.</p><dl><dt>You say</dt><dd class="ask">Switch to the ocean palette and fit it on one screen.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;update_style&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;palette_name&quot;: &quot;ocean&quot;,
+    &quot;layout&quot;: &quot;onefold&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="set_share"><header><h4>set_share</h4><span class="kind">Changes</span></header><p class="what">Make the share card people see when the event&#x27;s grateful.gg link is sent. It can be drawn as a preview before it is saved.</p><dl><dt>You say</dt><dd class="ask">Show me a share card before you save it.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;set_share&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;title&quot;: &quot;Sunday Supper&quot;,
+    &quot;date&quot;: &quot;Sunday, November 22&quot;,
+    &quot;preview_only&quot;: true
+  }
+}</code></pre></dd></dl></article><article class="tool" id="update_event"><header><h4>update_event</h4><span class="kind">Changes</span></header><p class="what">Change the event itself: its name, place line, who needs approval, the guest limit, the waitlist and the run of show.</p><dl><dt>You say</dt><dd class="ask">Cap it at 40 guests and let me approve every request.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;update_event&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;capacity&quot;: 40,
+    &quot;approval&quot;: &quot;host_all&quot;
+  }
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>New events</h3><p>For approved hosts. A new event stays a draft until you publish it.</p><div class="tools"><article class="tool" id="create_event"><header><h4>create_event</h4><span class="kind">Changes</span></header><p class="what">Start a new event page as a draft, with RSVPs closed until you publish it.</p><dl><dt>You say</dt><dd class="ask">Start a potluck in Venice on Sunday the 22nd at noon.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;create_event&quot;,
+  &quot;arguments&quot;: {
+    &quot;title&quot;: &quot;Sunday Supper&quot;,
+    &quot;date&quot;: &quot;2026-11-22&quot;,
+    &quot;time&quot;: &quot;12:00 PM&quot;,
+    &quot;end_time&quot;: &quot;3:00 PM&quot;,
+    &quot;city&quot;: &quot;Venice&quot;,
+    &quot;hosts&quot;: &quot;Maya&quot;,
+    &quot;sections&quot;: {
+      &quot;hero&quot;: {
+        &quot;eyebrow&quot;: &quot;A neighbourhood potluck&quot;,
+        &quot;where&quot;: &quot;Venice&quot;
+      },
+      &quot;gathering&quot;: {
+        &quot;title&quot;: &quot;Bring a dish, meet a neighbour&quot;,
+        &quot;body&quot;: &quot;Long tables, good food, new friends.&quot;
+      }
+    }
+  }
+}</code></pre></dd></dl></article><article class="tool" id="make_art"><header><h4>make_art</h4><span class="kind">Changes</span></header><p class="what">Make four versions of the opening image from a description.</p><dl><dt>You say</dt><dd class="ask">Picture a long table under string lights at dusk.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;make_art&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;description&quot;: &quot;A long table under string lights at dusk, warm and painted&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="change_art"><header><h4>change_art</h4><span class="kind">Changes</span></header><p class="what">Take your note on one image and make four new takes of it.</p><dl><dt>You say</dt><dd class="ask">On the second one, make the sky more pink.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;change_art&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;option&quot;: &quot;2&quot;,
+    &quot;feedback&quot;: &quot;Make the sky more pink&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="show_art"><header><h4>show_art</h4><span class="kind reads">Reads</span></header><p class="what">Show the newest four images again, and which one is on the page.</p><dl><dt>You say</dt><dd class="ask">Show me the four images again.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;show_art&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="choose_art"><header><h4>choose_art</h4><span class="kind">Changes</span></header><p class="what">Put the image you picked on the page as its opening, sized for phones and computers.</p><dl><dt>You say</dt><dd class="ask">Use the third one.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;choose_art&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;option&quot;: &quot;3&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="publish_event"><header><h4>publish_event</h4><span class="kind">Changes</span></header><p class="what">Put a new event live: RSVPs open and its grateful.gg share link is made. Only after you have seen the draft and said yes.</p><dl><dt>You say</dt><dd class="ask">It looks right. Publish it.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;publish_event&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>Your own page design</h3><p>Bring a page made anywhere. The Oasis RSVP stays pinned on it.</p><div class="tools"><article class="tool" id="upload_event_page"><header><h4>upload_event_page</h4><span class="kind">Changes</span></header><p class="what">Replace the event&#x27;s page with one of your own design. It is saved as a draft with a preview link.</p><dl><dt>You say</dt><dd class="ask">Use the page I just designed.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;upload_event_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;html&quot;: &quot;&lt;!doctype html&gt;&lt;html&gt;...&lt;/html&gt;&quot;,
+    &quot;note&quot;: &quot;First version&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="get_event_page"><header><h4>get_event_page</h4><span class="kind reads">Reads</span></header><p class="what">Read the page you uploaded, to revise it: the waiting draft if there is one, else the live page.</p><dl><dt>You say</dt><dd class="ask">What is in my uploaded page right now?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;get_event_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="add_page_asset"><header><h4>add_page_asset</h4><span class="kind">Changes</span></header><p class="what">Keep a picture or video from a link that would expire, so your page can use it for good.</p><dl><dt>You say</dt><dd class="ask">Keep this image so the link never breaks.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;add_page_asset&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;url&quot;: &quot;https://example.com/hero.png&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="publish_event_page"><header><h4>publish_event_page</h4><span class="kind">Changes</span></header><p class="what">Put your uploaded page live, after you have looked at the preview and said yes.</p><dl><dt>You say</dt><dd class="ask">Put my page live.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;publish_event_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="remove_event_page"><header><h4>remove_event_page</h4><span class="kind">Changes</span></header><p class="what">Take your uploaded page down and show the event&#x27;s Oasis page again. Your uploads are kept.</p><dl><dt>You say</dt><dd class="ask">Go back to the Oasis page.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;remove_event_page&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;
+  }
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>Guests</h3><p>The guest list, the door and emails to guests.</p><div class="tools"><article class="tool" id="list_guests"><header><h4>list_guests</h4><span class="kind reads">Reads</span></header><p class="what">Who is coming, as the host panel shows it: name, status and party size.</p><dl><dt>You say</dt><dd class="ask">Who is on the waitlist?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;list_guests&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;status&quot;: &quot;waitlist&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="add_guests"><header><h4>add_guests</h4><span class="kind">Changes</span></header><p class="what">Add people straight to Going, up to 100 at a time. Each one gets the confirmation email unless you say not to.</p><dl><dt>You say</dt><dd class="ask">Add Sam and Priya, no emails yet.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;add_guests&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;guests&quot;: [
+      {
+        &quot;name&quot;: &quot;Sam Lee&quot;,
+        &quot;email&quot;: &quot;sam@example.com&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Priya Shah&quot;,
+        &quot;email&quot;: &quot;priya@example.com&quot;
+      }
+    ],
+    &quot;send_email&quot;: false
+  }
+}</code></pre></dd></dl></article><article class="tool" id="check_in"><header><h4>check_in</h4><span class="kind">Changes</span></header><p class="what">Check a guest in at the door, the whole party or some of it.</p><dl><dt>You say</dt><dd class="ask">Sam&#x27;s party of two just arrived.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;check_in&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;guest_id&quot;: &quot;the id list_guests gave for Sam&quot;,
+    &quot;count&quot;: 2
+  }
+}</code></pre></dd></dl></article><article class="tool" id="remove_guest"><header><h4>remove_guest</h4><span class="kind">Changes</span></header><p class="what">Take a guest off the list quietly. No email goes to them and their seat is freed.</p><dl><dt>You say</dt><dd class="ask">Take Priya off the list.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;remove_guest&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;guest_id&quot;: &quot;the id list_guests gave for Priya&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="restore_guest"><header><h4>restore_guest</h4><span class="kind">Changes</span></header><p class="what">Put back a guest a host removed.</p><dl><dt>You say</dt><dd class="ask">Put Priya back.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;restore_guest&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;guest_id&quot;: &quot;the id list_guests gave for Priya&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="message_guests"><header><h4>message_guests</h4><span class="kind">Changes</span></header><p class="what">Email the guests, signed by the hosts. It previews first and sends only after you say yes.</p><dl><dt>You say</dt><dd class="ask">Draft a note to everyone going about parking.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;message_guests&quot;,
+  &quot;arguments&quot;: {
+    &quot;event&quot;: &quot;sunday-supper&quot;,
+    &quot;audience&quot;: &quot;confirmed&quot;,
+    &quot;subject&quot;: &quot;Parking on Sunday&quot;,
+    &quot;message&quot;: &quot;Street parking is easiest on Rose Avenue. See you at noon.&quot;,
+    &quot;mode&quot;: &quot;preview&quot;
+  }
+}</code></pre></dd></dl></article></div></div><div class="group"><h3>Design ideas</h3><p>Propose an improvement to the Oasis itself.</p><div class="tools"><article class="tool" id="get_design_system"><header><h4>get_design_system</h4><span class="kind reads">Reads</span></header><p class="what">Read the Oasis design brief before proposing a change to the Oasis itself.</p><dl><dt>You say</dt><dd class="ask">What are the Oasis design rules?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;get_design_system&quot;,
+  &quot;arguments&quot;: {}
+}</code></pre></dd></dl></article><article class="tool" id="submit_design_idea"><header><h4>submit_design_idea</h4><span class="kind">Changes</span></header><p class="what">Send the Grateful Giraffes team a design idea, with a mockup if you have one.</p><dl><dt>You say</dt><dd class="ask">Send the team my idea for the RSVP button.</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;submit_design_idea&quot;,
+  &quot;arguments&quot;: {
+    &quot;title&quot;: &quot;Keep RSVP in reach on phones&quot;,
+    &quot;page_url&quot;: &quot;https://app.grateful.gg/events&quot;,
+    &quot;problem&quot;: &quot;On a small phone the RSVP button sits below the first screen.&quot;,
+    &quot;proposal&quot;: &quot;Pin it to the bottom of the screen.&quot;
+  }
+}</code></pre></dd></dl></article><article class="tool" id="list_my_design_ideas"><header><h4>list_my_design_ideas</h4><span class="kind reads">Reads</span></header><p class="what">See the ideas you sent and what the team answered.</p><dl><dt>You say</dt><dd class="ask">Did the team answer my idea?</dd><dt>Your agent calls</dt><dd><pre><code>{
+  &quot;name&quot;: &quot;list_my_design_ideas&quot;,
+  &quot;arguments&quot;: {}
+}</code></pre></dd></dl></article></div></div>
+</div></section>
+</main>
+<footer><div class="wrap"><p>The Oasis is the home of Grateful Giraffes, a community you co-own.</p><nav><a href="https://app.grateful.gg/">The Oasis</a><a href="https://app.grateful.gg/events">Events</a><a href="https://grateful.gg/claude">Connect your Claude</a></nav></div></footer>
+<script>
+(function(){var b=document.querySelector('[data-copy]');if(!b||!navigator.clipboard)return;
+b.addEventListener('click',function(){navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function(){
+var t=b.textContent;b.textContent=b.getAttribute('data-done');setTimeout(function(){b.textContent=t},1800)})})})();
+</script>
+</body>
+</html>

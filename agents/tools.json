@@ -1,0 +1,1067 @@
+{
+ "name": "The Oasis connector",
+ "mcp": "https://app.grateful.gg/claude/mcp",
+ "transport": "Streamable HTTP, OAuth 2.1 sign-in",
+ "page": "https://grateful.gg/agents",
+ "count": 30,
+ "tools": [
+  {
+   "name": "list_my_events",
+   "title": "List my events",
+   "group": "Pages you host",
+   "reads_only": true,
+   "summary": "The events you host and the landing pages you can edit, with their links.",
+   "takes": [],
+   "example": {
+    "ask": "Which events am I hosting?",
+    "call": {
+     "name": "list_my_events",
+     "arguments": {}
+    }
+   }
+  },
+  {
+   "name": "get_page",
+   "title": "Read an event page",
+   "group": "Pages you host",
+   "reads_only": true,
+   "summary": "Everything on a page that can change: each section's words, its photos, the sections you added and the run of show.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Read me what's on the Sunday Supper page.",
+    "call": {
+     "name": "get_page",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "update_page",
+   "title": "Change page words",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Change the words of a page's sections. Only the fields you name change.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "sections",
+     "required": false
+    },
+    {
+     "name": "reset",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Make the headline warmer.",
+    "call": {
+     "name": "update_page",
+     "arguments": {
+      "event": "sunday-supper",
+      "sections": {
+       "gathering": {
+        "title": "Come hungry, leave full"
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "add_section",
+   "title": "Add a page section",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Add a section of your own: a photo with a heading, a headline, a paragraph and a hosted-by line. Up to six.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "after",
+     "required": true
+    },
+    {
+     "name": "photo_url",
+     "required": false
+    },
+    {
+     "name": "eyebrow",
+     "required": false
+    },
+    {
+     "name": "title",
+     "required": false
+    },
+    {
+     "name": "body",
+     "required": false
+    },
+    {
+     "name": "footer",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Add a section about the music after the gathering section.",
+    "call": {
+     "name": "add_section",
+     "arguments": {
+      "event": "sunday-supper",
+      "after": "gathering",
+      "photo_url": "https://example.com/band.jpg",
+      "eyebrow": "The music",
+      "title": "Three guitars and a cello",
+      "body": "Live, unplugged, and close enough to feel."
+     }
+    }
+   }
+  },
+  {
+   "name": "update_section",
+   "title": "Change an added section",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Change a section you added: its words, its place on the page or its photo.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "id",
+     "required": true
+    },
+    {
+     "name": "after",
+     "required": false
+    },
+    {
+     "name": "photo_url",
+     "required": false
+    },
+    {
+     "name": "eyebrow",
+     "required": false
+    },
+    {
+     "name": "title",
+     "required": false
+    },
+    {
+     "name": "body",
+     "required": false
+    },
+    {
+     "name": "footer",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Shorten the music paragraph.",
+    "call": {
+     "name": "update_section",
+     "arguments": {
+      "event": "sunday-supper",
+      "id": "k3x9p2aq",
+      "body": "Live and unplugged."
+     }
+    }
+   }
+  },
+  {
+   "name": "remove_section",
+   "title": "Remove an added section",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Remove a section you added. Anything after it moves up.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "id",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Take the music section off.",
+    "call": {
+     "name": "remove_section",
+     "arguments": {
+      "event": "sunday-supper",
+      "id": "k3x9p2aq"
+     }
+    }
+   }
+  },
+  {
+   "name": "set_photo",
+   "title": "Set a section photo",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Give a section a new photo from a direct link, or go back to the one it had.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "section",
+     "required": true
+    },
+    {
+     "name": "photo_url",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Use this photo for the opening.",
+    "call": {
+     "name": "set_photo",
+     "arguments": {
+      "event": "sunday-supper",
+      "section": "hero",
+      "photo_url": "https://example.com/long-table.jpg"
+     }
+    }
+   }
+  },
+  {
+   "name": "update_style",
+   "title": "Change the page look",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Change how the page looks: colours, fonts, the order of sections, button labels and the layout.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "palette",
+     "required": false
+    },
+    {
+     "name": "fonts",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "required": false
+    },
+    {
+     "name": "order",
+     "required": false
+    },
+    {
+     "name": "hidden",
+     "required": false
+    },
+    {
+     "name": "buttons",
+     "required": false
+    },
+    {
+     "name": "placement",
+     "required": false
+    },
+    {
+     "name": "opener",
+     "required": false
+    },
+    {
+     "name": "reset",
+     "required": false
+    },
+    {
+     "name": "layout",
+     "required": false
+    },
+    {
+     "name": "palette_name",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Switch to the ocean palette and fit it on one screen.",
+    "call": {
+     "name": "update_style",
+     "arguments": {
+      "event": "sunday-supper",
+      "palette_name": "ocean",
+      "layout": "onefold"
+     }
+    }
+   }
+  },
+  {
+   "name": "set_share",
+   "title": "Make the share preview",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Make the share card people see when the event's grateful.gg link is sent. It can be drawn as a preview before it is saved.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "photo",
+     "required": false
+    },
+    {
+     "name": "focus",
+     "required": false
+    },
+    {
+     "name": "side",
+     "required": false
+    },
+    {
+     "name": "eyebrow",
+     "required": false
+    },
+    {
+     "name": "title",
+     "required": false
+    },
+    {
+     "name": "edition",
+     "required": false
+    },
+    {
+     "name": "date",
+     "required": false
+    },
+    {
+     "name": "line",
+     "required": false
+    },
+    {
+     "name": "desc",
+     "required": false
+    },
+    {
+     "name": "preview_only",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Show me a share card before you save it.",
+    "call": {
+     "name": "set_share",
+     "arguments": {
+      "event": "sunday-supper",
+      "title": "Sunday Supper",
+      "date": "Sunday, November 22",
+      "preview_only": true
+     }
+    }
+   }
+  },
+  {
+   "name": "update_event",
+   "title": "Change event details",
+   "group": "Pages you host",
+   "reads_only": false,
+   "summary": "Change the event itself: its name, place line, who needs approval, the guest limit, the waitlist and the run of show.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "name",
+     "required": false
+    },
+    {
+     "name": "place",
+     "required": false
+    },
+    {
+     "name": "date",
+     "required": false
+    },
+    {
+     "name": "time",
+     "required": false
+    },
+    {
+     "name": "end_time",
+     "required": false
+    },
+    {
+     "name": "price",
+     "required": false
+    },
+    {
+     "name": "ticket_types",
+     "required": false
+    },
+    {
+     "name": "potluck",
+     "required": false
+    },
+    {
+     "name": "gigi_sms",
+     "required": false
+    },
+    {
+     "name": "waitlist",
+     "required": false
+    },
+    {
+     "name": "capacity",
+     "required": false
+    },
+    {
+     "name": "approval",
+     "required": false
+    },
+    {
+     "name": "run_of_show",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Cap it at 40 guests and let me approve every request.",
+    "call": {
+     "name": "update_event",
+     "arguments": {
+      "event": "sunday-supper",
+      "capacity": 40,
+      "approval": "host_all"
+     }
+    }
+   }
+  },
+  {
+   "name": "create_event",
+   "title": "Create a draft event",
+   "group": "New events",
+   "reads_only": false,
+   "summary": "Start a new event page as a draft, with RSVPs closed until you publish it.",
+   "takes": [
+    {
+     "name": "title",
+     "required": true
+    },
+    {
+     "name": "date",
+     "required": false
+    },
+    {
+     "name": "time",
+     "required": false
+    },
+    {
+     "name": "end_time",
+     "required": false
+    },
+    {
+     "name": "time_zone",
+     "required": false
+    },
+    {
+     "name": "city",
+     "required": false
+    },
+    {
+     "name": "venue",
+     "required": false
+    },
+    {
+     "name": "address",
+     "required": false
+    },
+    {
+     "name": "hosts",
+     "required": false
+    },
+    {
+     "name": "sections",
+     "required": true
+    },
+    {
+     "name": "run_of_show",
+     "required": false
+    },
+    {
+     "name": "palette",
+     "required": false
+    },
+    {
+     "name": "photo_url",
+     "required": false
+    },
+    {
+     "name": "ticket_url",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Start a potluck in Venice on Sunday the 22nd at noon.",
+    "call": {
+     "name": "create_event",
+     "arguments": {
+      "title": "Sunday Supper",
+      "date": "2026-11-22",
+      "time": "12:00 PM",
+      "end_time": "3:00 PM",
+      "city": "Venice",
+      "hosts": "Maya",
+      "sections": {
+       "hero": {
+        "eyebrow": "A neighbourhood potluck",
+        "where": "Venice"
+       },
+       "gathering": {
+        "title": "Bring a dish, meet a neighbour",
+        "body": "Long tables, good food, new friends."
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "make_art",
+   "title": "Make 4 opening images",
+   "group": "New events",
+   "reads_only": false,
+   "summary": "Make four versions of the opening image from a description.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "description",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Picture a long table under string lights at dusk.",
+    "call": {
+     "name": "make_art",
+     "arguments": {
+      "event": "sunday-supper",
+      "description": "A long table under string lights at dusk, warm and painted"
+     }
+    }
+   }
+  },
+  {
+   "name": "change_art",
+   "title": "Change one opening image",
+   "group": "New events",
+   "reads_only": false,
+   "summary": "Take your note on one image and make four new takes of it.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "option",
+     "required": true
+    },
+    {
+     "name": "feedback",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "On the second one, make the sky more pink.",
+    "call": {
+     "name": "change_art",
+     "arguments": {
+      "event": "sunday-supper",
+      "option": "2",
+      "feedback": "Make the sky more pink"
+     }
+    }
+   }
+  },
+  {
+   "name": "show_art",
+   "title": "Show the opening images",
+   "group": "New events",
+   "reads_only": true,
+   "summary": "Show the newest four images again, and which one is on the page.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Show me the four images again.",
+    "call": {
+     "name": "show_art",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "choose_art",
+   "title": "Use an opening image",
+   "group": "New events",
+   "reads_only": false,
+   "summary": "Put the image you picked on the page as its opening, sized for phones and computers.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "option",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Use the third one.",
+    "call": {
+     "name": "choose_art",
+     "arguments": {
+      "event": "sunday-supper",
+      "option": "3"
+     }
+    }
+   }
+  },
+  {
+   "name": "publish_event",
+   "title": "Publish an event",
+   "group": "New events",
+   "reads_only": false,
+   "summary": "Put a new event live: RSVPs open and its grateful.gg share link is made. Only after you have seen the draft and said yes.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "It looks right. Publish it.",
+    "call": {
+     "name": "publish_event",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "upload_event_page",
+   "title": "Upload a landing page",
+   "group": "Your own page design",
+   "reads_only": false,
+   "summary": "Replace the event's page with one of your own design. It is saved as a draft with a preview link.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "html",
+     "required": true
+    },
+    {
+     "name": "note",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Use the page I just designed.",
+    "call": {
+     "name": "upload_event_page",
+     "arguments": {
+      "event": "sunday-supper",
+      "html": "<!doctype html><html>...</html>",
+      "note": "First version"
+     }
+    }
+   }
+  },
+  {
+   "name": "get_event_page",
+   "title": "Read the uploaded page",
+   "group": "Your own page design",
+   "reads_only": true,
+   "summary": "Read the page you uploaded, to revise it: the waiting draft if there is one, else the live page.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "What is in my uploaded page right now?",
+    "call": {
+     "name": "get_event_page",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "add_page_asset",
+   "title": "Keep a picture or video for a page",
+   "group": "Your own page design",
+   "reads_only": false,
+   "summary": "Keep a picture or video from a link that would expire, so your page can use it for good.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "url",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Keep this image so the link never breaks.",
+    "call": {
+     "name": "add_page_asset",
+     "arguments": {
+      "event": "sunday-supper",
+      "url": "https://example.com/hero.png"
+     }
+    }
+   }
+  },
+  {
+   "name": "publish_event_page",
+   "title": "Publish the uploaded page",
+   "group": "Your own page design",
+   "reads_only": false,
+   "summary": "Put your uploaded page live, after you have looked at the preview and said yes.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Put my page live.",
+    "call": {
+     "name": "publish_event_page",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "remove_event_page",
+   "title": "Go back to the Oasis page",
+   "group": "Your own page design",
+   "reads_only": false,
+   "summary": "Take your uploaded page down and show the event's Oasis page again. Your uploads are kept.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Go back to the Oasis page.",
+    "call": {
+     "name": "remove_event_page",
+     "arguments": {
+      "event": "sunday-supper"
+     }
+    }
+   }
+  },
+  {
+   "name": "list_guests",
+   "title": "List guests",
+   "group": "Guests",
+   "reads_only": true,
+   "summary": "Who is coming, as the host panel shows it: name, status and party size.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "status",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Who is on the waitlist?",
+    "call": {
+     "name": "list_guests",
+     "arguments": {
+      "event": "sunday-supper",
+      "status": "waitlist"
+     }
+    }
+   }
+  },
+  {
+   "name": "add_guests",
+   "title": "Add guests",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Add people straight to Going, up to 100 at a time. Each one gets the confirmation email unless you say not to.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "guests",
+     "required": true
+    },
+    {
+     "name": "send_email",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Add Sam and Priya, no emails yet.",
+    "call": {
+     "name": "add_guests",
+     "arguments": {
+      "event": "sunday-supper",
+      "guests": [
+       {
+        "name": "Sam Lee",
+        "email": "sam@example.com"
+       },
+       {
+        "name": "Priya Shah",
+        "email": "priya@example.com"
+       }
+      ],
+      "send_email": false
+     }
+    }
+   }
+  },
+  {
+   "name": "check_in",
+   "title": "Check a guest in",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Check a guest in at the door, the whole party or some of it.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "guest_id",
+     "required": true
+    },
+    {
+     "name": "count",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Sam's party of two just arrived.",
+    "call": {
+     "name": "check_in",
+     "arguments": {
+      "event": "sunday-supper",
+      "guest_id": "the id list_guests gave for Sam",
+      "count": 2
+     }
+    }
+   }
+  },
+  {
+   "name": "remove_guest",
+   "title": "Remove a guest",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Take a guest off the list quietly. No email goes to them and their seat is freed.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "guest_id",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Take Priya off the list.",
+    "call": {
+     "name": "remove_guest",
+     "arguments": {
+      "event": "sunday-supper",
+      "guest_id": "the id list_guests gave for Priya"
+     }
+    }
+   }
+  },
+  {
+   "name": "restore_guest",
+   "title": "Restore a removed guest",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Put back a guest a host removed.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "guest_id",
+     "required": true
+    }
+   ],
+   "example": {
+    "ask": "Put Priya back.",
+    "call": {
+     "name": "restore_guest",
+     "arguments": {
+      "event": "sunday-supper",
+      "guest_id": "the id list_guests gave for Priya"
+     }
+    }
+   }
+  },
+  {
+   "name": "message_guests",
+   "title": "Email guests",
+   "group": "Guests",
+   "reads_only": false,
+   "summary": "Email the guests, signed by the hosts. It previews first and sends only after you say yes.",
+   "takes": [
+    {
+     "name": "event",
+     "required": true
+    },
+    {
+     "name": "audience",
+     "required": true
+    },
+    {
+     "name": "subject",
+     "required": true
+    },
+    {
+     "name": "message",
+     "required": true
+    },
+    {
+     "name": "mode",
+     "required": false
+    },
+    {
+     "name": "confirm",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Draft a note to everyone going about parking.",
+    "call": {
+     "name": "message_guests",
+     "arguments": {
+      "event": "sunday-supper",
+      "audience": "confirmed",
+      "subject": "Parking on Sunday",
+      "message": "Street parking is easiest on Rose Avenue. See you at noon.",
+      "mode": "preview"
+     }
+    }
+   }
+  },
+  {
+   "name": "get_design_system",
+   "title": "Read the Oasis design brief",
+   "group": "Design ideas",
+   "reads_only": true,
+   "summary": "Read the Oasis design brief before proposing a change to the Oasis itself.",
+   "takes": [],
+   "example": {
+    "ask": "What are the Oasis design rules?",
+    "call": {
+     "name": "get_design_system",
+     "arguments": {}
+    }
+   }
+  },
+  {
+   "name": "submit_design_idea",
+   "title": "Submit a design idea",
+   "group": "Design ideas",
+   "reads_only": false,
+   "summary": "Send the Grateful Giraffes team a design idea, with a mockup if you have one.",
+   "takes": [
+    {
+     "name": "title",
+     "required": true
+    },
+    {
+     "name": "page_url",
+     "required": false
+    },
+    {
+     "name": "problem",
+     "required": false
+    },
+    {
+     "name": "proposal",
+     "required": true
+    },
+    {
+     "name": "mockup_html",
+     "required": false
+    }
+   ],
+   "example": {
+    "ask": "Send the team my idea for the RSVP button.",
+    "call": {
+     "name": "submit_design_idea",
+     "arguments": {
+      "title": "Keep RSVP in reach on phones",
+      "page_url": "https://app.grateful.gg/events",
+      "problem": "On a small phone the RSVP button sits below the first screen.",
+      "proposal": "Pin it to the bottom of the screen."
+     }
+    }
+   }
+  },
+  {
+   "name": "list_my_design_ideas",
+   "title": "List my design ideas",
+   "group": "Design ideas",
+   "reads_only": true,
+   "summary": "See the ideas you sent and what the team answered.",
+   "takes": [],
+   "example": {
+    "ask": "Did the team answer my idea?",
+    "call": {
+     "name": "list_my_design_ideas",
+     "arguments": {}
+    }
+   }
+  }
+ ]
+}

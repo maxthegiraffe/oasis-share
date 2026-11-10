@@ -1,0 +1,1378 @@
+[
+ {
+  "name": "list_my_events",
+  "title": "List my events",
+  "annotations": {
+   "title": "List my events",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "The upcoming Grateful Giraffes events this person hosts, and the landing pages they can edit (\"a page, not an event\"), with their page links and whether the page's words can be edited here.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {}
+  }
+ },
+ {
+  "name": "get_page",
+  "title": "Read an event page",
+  "annotations": {
+   "title": "Read an event page",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "Everything on an event page that can be changed: each section's words (current and original), photos, the sections the hosts added, the event name and place line, and the run of show. On a landing page: its words, the sections added to it, and where a new section shows (places). Read this before changing anything. eyebrow = the small heading above, title = the headline, body = the paragraph, footer = the hosted-by line, where = the place line, line / serif / note = the request card's first line, highlighted line and small print. edition = an italic subtitle under the opening's headline (e.g. the city), close = a closing line under the run of show. A line break (\\n) starts a new line on the page.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "update_page",
+  "title": "Change page words",
+  "annotations": {
+   "title": "Change page words",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Change the words of the page's sections. Only the fields you name change. Set a field to null to go back to its original words; list a section in reset to put the whole section back. eyebrow = the small heading above, title = the headline, body = the paragraph, footer = the hosted-by line, where = the place line, line / serif / note = the request card's first line, highlighted line and small print. edition = an italic subtitle under the opening's headline (e.g. the city), close = a closing line under the run of show. A line break (\\n) starts a new line on the page.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "sections": {
+     "type": "object",
+     "description": "e.g. { \"gathering\": { \"title\": \"Be the light\", \"body\": null } }",
+     "additionalProperties": {
+      "type": "object",
+      "additionalProperties": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "reset": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "Sections to put back to their original words (their photos stay)"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "add_section",
+  "title": "Add a page section",
+  "annotations": {
+   "title": "Add a page section",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Add a new section to the page: a photo with a heading, headline, paragraph and hosted-by line, placed after a section (or after another added section). Up to 6. On an event page the photo is needed, a direct https link to a JPG or PNG. On a landing page the photo is optional (a JPG, PNG or WebP) and words only is fine; get_page (places) says where it shows. The reply gives the new section's id, for update_section and remove_section.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "after": {
+     "type": "string",
+     "description": "The section (or added section id) it goes after"
+    },
+    "photo_url": {
+     "type": "string"
+    },
+    "eyebrow": {
+     "type": "string",
+     "description": "Small heading above the headline"
+    },
+    "title": {
+     "type": "string",
+     "description": "Headline (\\n for a new line)"
+    },
+    "body": {
+     "type": "string",
+     "description": "Paragraph"
+    },
+    "footer": {
+     "type": "string",
+     "description": "Hosted-by line"
+    }
+   },
+   "required": [
+    "event",
+    "after"
+   ]
+  }
+ },
+ {
+  "name": "update_section",
+  "title": "Change an added section",
+  "annotations": {
+   "title": "Change an added section",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Change a section the hosts added: its words, where it goes, or its photo (a direct https link to a JPG or PNG, or a WebP on a landing page). Fields you leave out stay; null clears a field.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "id": {
+     "type": "string",
+     "description": "The added section's id from get_page"
+    },
+    "after": {
+     "type": "string"
+    },
+    "photo_url": {
+     "type": "string"
+    },
+    "eyebrow": {
+     "type": "string",
+     "description": "Small heading above the headline"
+    },
+    "title": {
+     "type": "string",
+     "description": "Headline (\\n for a new line)"
+    },
+    "body": {
+     "type": "string",
+     "description": "Paragraph"
+    },
+    "footer": {
+     "type": "string",
+     "description": "Hosted-by line"
+    }
+   },
+   "required": [
+    "event",
+    "id"
+   ]
+  }
+ },
+ {
+  "name": "remove_section",
+  "title": "Remove an added section",
+  "annotations": {
+   "title": "Remove an added section",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Remove a section the hosts added. Anything placed after it moves up.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "id": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "event",
+    "id"
+   ]
+  }
+ },
+ {
+  "name": "set_photo",
+  "title": "Set a section photo",
+  "annotations": {
+   "title": "Set a section photo",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Give one of the page's own sections a new photo from a direct https link to a JPG or PNG (cropped and darkened to match the page), or photo_url null to go back to the original photo. section \"stage\" is the opening animation's first (afternoon) frame. On a landing page, section is the id of a section added to it (a JPG, PNG or WebP; null takes its photo off); the page's own photos stay.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "section": {
+     "type": "string"
+    },
+    "photo_url": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "event",
+    "section",
+    "photo_url"
+   ]
+  }
+ },
+ {
+  "name": "update_style",
+  "title": "Change the page look",
+  "annotations": {
+   "title": "Change the page look",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Event pages only. Change how the page looks: colours, fonts, cursor, the order of the sections, hiding a section, button labels, where the words sit on a section, and the opening animation's two lines. Only what you send changes; null puts that part back to the original; {\"reset\": true} puts the whole look back. get_page lists the options and what is set now. Colours are refused when text would be hard to read on the background. The opening stays first and the seat section always stays.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "palette": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "description": "Hex colours: gold (accent: lines, small headings), goldl (headlines), ivory (body text), ink (background). e.g. {\"gold\":\"#e0a050\"}"
+    },
+    "fonts": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "A font pair id from get_page (look.fonts)"
+    },
+    "cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "lantern",
+      "merkaba",
+      "fish",
+      "helix",
+      "candle",
+      "bat",
+      "arrow",
+      null
+     ]
+    },
+    "order": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     },
+     "description": "Every section once, the opening (hero) first"
+    },
+    "hidden": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     },
+     "description": "Sections to hide (not hero or reserve)"
+    },
+    "buttons": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "description": "Button labels by \"section:position\", e.g. {\"hero:0\":\"Save my seat\"}; null for one goes back"
+    },
+    "placement": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "description": "Where a section's words sit, phone (m) and desktop (d) separately: {\"gathering\":{\"m\":{\"v\":\"top\",\"h\":\"center\",\"scale\":1.1}}}. v = top|middle|bottom, h = left|center|right, scale 0.8 to 1.3"
+    },
+    "opener": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "description": "The opening animation's lines: {\"invitation\":\"...\",\"cue\":\"Scroll to ...\"}"
+    },
+    "reset": {
+     "type": "boolean",
+     "description": "true puts the whole look back to the original"
+    },
+    "layout": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "onefold",
+      "poster",
+      "letter",
+      "classic",
+      null
+     ],
+     "description": "Pages made in the Host Studio only: onefold (one screen), poster, letter or classic"
+    },
+    "palette_name": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "dusk",
+      "ember",
+      "ocean",
+      "forest",
+      "rose",
+      "violet",
+      "sand",
+      null
+     ],
+     "description": "Pages made in the Host Studio only: a named palette, which replaces hand-set colours"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "set_share",
+  "title": "Make the share preview",
+  "annotations": {
+   "title": "Make the share preview",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Event pages only. Make the share preview: the picture and words WhatsApp, iMessage and Slack show when someone shares the event's grateful.gg link. A 1200x630 card with the title and date set large on one of the page's photos. Only what you send changes; get_page (share) shows what's set now and the photos to pick from. preview_only true draws the card and returns its link without saving, so the person can see it first. Saved cards show on grateful.gg in about a minute.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "photo": {
+     "type": "string",
+     "description": "A photo id from get_page share.photos (\"hero\", \"stage\" for the opening animation, a section) or a direct https link to a JPG or PNG"
+    },
+    "focus": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "description": "What to keep in view when cropping to the card, [across, down] from 0 to 1, e.g. [0.75, 0.5] keeps the right side"
+    },
+    "side": {
+     "type": "string",
+     "enum": [
+      "left",
+      "right"
+     ],
+     "description": "Which side the words sit on (put them over the quieter part of the photo)"
+    },
+    "eyebrow": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Small heading in capitals, e.g. \"Grateful Giraffes\""
+    },
+    "title": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "The big title (\\n for a new line)"
+    },
+    "edition": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Italic subtitle under the title, e.g. the city"
+    },
+    "date": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "The date line, e.g. \"Friday, October 23\""
+    },
+    "line": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Small line in capitals at the bottom, e.g. \"Doors 7:00 PM CT · Potluck dinner\""
+    },
+    "desc": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "The sentence chat apps show under the title (not on the picture)"
+    },
+    "preview_only": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "update_event",
+  "title": "Change event details",
+  "annotations": {
+   "title": "Change event details",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Events only. Change the event's name, its place line, its price, who needs approval, ticket types, or the run of show; for a new event that isn't published yet, also its date and times. For the run of show, send the whole list from get_page with your changes (keep each item's id; items with public false are the hosts' own notes and stay off the page). Use ticket_types for multiple tiers (different prices/times/descriptions); it replaces the single price field when set. A new price is for new RSVPs; guests who already paid keep what they paid. If the page's words mention the price (e.g. the request card), offer to update them too.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "name": {
+     "type": "string"
+    },
+    "place": {
+     "type": "string",
+     "description": "The short place line, e.g. \"West China Tea House · East Austin\""
+    },
+    "date": {
+     "type": "string",
+     "description": "YYYY-MM-DD. Only for a new event that isn't published yet"
+    },
+    "time": {
+     "type": "string",
+     "description": "Start, e.g. \"7:00 PM\". Only for a new event that isn't published yet"
+    },
+    "end_time": {
+     "type": "string",
+     "description": "End, e.g. \"9:30 PM\". Only for a new event that isn't published yet"
+    },
+    "price": {
+     "type": "object",
+     "description": "In dollars: {\"type\":\"free\"} | {\"type\":\"fixed\",\"amount\":45} | {\"type\":\"pay_what_you_can\",\"min\":10,\"suggested\":30,\"max\":100}. $1 to $5,000.",
+     "properties": {
+      "type": {
+       "type": "string",
+       "enum": [
+        "free",
+        "fixed",
+        "pay_what_you_can"
+       ]
+      },
+      "amount": {
+       "type": "number"
+      },
+      "min": {
+       "type": "number"
+      },
+      "suggested": {
+       "type": "number"
+      },
+      "max": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "type"
+     ]
+    },
+    "ticket_types": {
+     "type": "array",
+     "description": "Multiple ticket tiers with different prices/times. Replaces single price when set. Each tier can be fixed price, free, or sliding scale (pay what feels right). Fixed: {\"name\":\"VIP\",\"priceType\":\"fixed\",\"price\":40}. Free: {\"name\":\"Basic\",\"priceType\":\"free\"}. Sliding: {\"name\":\"General\",\"priceType\":\"sliding\",\"minPrice\":18,\"maxPrice\":54,\"suggestedPrice\":36,\"priceLabel\":\"Contribute what feels right\"}. Optional: description, time, capacity.",
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "priceType": {
+        "type": "string",
+        "enum": [
+         "fixed",
+         "free",
+         "sliding"
+        ]
+       },
+       "price": {
+        "type": "number"
+       },
+       "minPrice": {
+        "type": "number"
+       },
+       "maxPrice": {
+        "type": "number"
+       },
+       "suggestedPrice": {
+        "type": "number"
+       },
+       "priceLabel": {
+        "type": "string"
+       },
+       "description": {
+        "type": "string"
+       },
+       "time": {
+        "type": "string"
+       },
+       "capacity": {
+        "type": [
+         "number",
+         "null"
+        ]
+       }
+      },
+      "required": [
+       "name"
+      ]
+     }
+    },
+    "potluck": {
+     "type": "boolean",
+     "description": "Ask guests what they will bring"
+    },
+    "gigi_sms": {
+     "type": "boolean",
+     "description": "Show guests the box for Gigi's SMS updates"
+    },
+    "waitlist": {
+     "type": "boolean",
+     "description": "Let people join a waitlist when every seat is taken"
+    },
+    "capacity": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1,
+     "maximum": 10000,
+     "description": "How many guests in all; null takes the limit off"
+    },
+    "approval": {
+     "type": "string",
+     "enum": [
+      "all_confirm",
+      "giraffe_auto",
+      "host_all"
+     ],
+     "description": "all_confirm = everyone is in automatically; giraffe_auto = Giraffes are in automatically, everyone else waits for a host; host_all = a host approves every request"
+    },
+    "run_of_show": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "time": {
+        "type": "string"
+       },
+       "title": {
+        "type": "string"
+       },
+       "description": {
+        "type": "string"
+       },
+       "public": {
+        "type": "boolean"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "title"
+      ]
+     }
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "create_event",
+  "title": "Create a draft event",
+  "annotations": {
+   "title": "Create a draft event",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Approved hosts only: start a new event page on the Oasis, as a draft at app.grateful.gg/p/<key> with RSVPs closed until publish_event. You write the page's words from what the person tells you, in the Grateful Giraffes voice: warm, poetic, short lines, grounded; never em or en dashes; never invent prices, names, famous guests or promises. The page is a poster in four sections (sections): hero (the opening, over a big photo), gathering (what it is and who it's for), evening (the run of show heading) and reserve (the RSVP card). Give a photo_url (a direct https link to a JPG, PNG or WebP of theirs), or leave it out and add the opening photo later with set_photo (section \"hero\"). The street address stays private and goes only to confirmed guests. Guests RSVP on the Oasis for free with approvals by Giraffes first; change the price or approvals with update_event.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "title": {
+     "type": "string",
+     "description": "The event's name, e.g. \"Full Moon Sound Bath\""
+    },
+    "date": {
+     "type": "string",
+     "description": "YYYY-MM-DD. Leave out if not decided yet"
+    },
+    "time": {
+     "type": "string",
+     "description": "Start, e.g. \"7:00 PM\""
+    },
+    "end_time": {
+     "type": "string",
+     "description": "End, e.g. \"9:30 PM\""
+    },
+    "time_zone": {
+     "type": "string",
+     "description": "IANA zone from the city, e.g. \"America/New_York\". Leave out for Los Angeles"
+    },
+    "city": {
+     "type": "string",
+     "description": "The public place line: a city or neighbourhood, never a street address, e.g. \"Venice\""
+    },
+    "venue": {
+     "type": "string",
+     "description": "A venue name if it is a public place"
+    },
+    "address": {
+     "type": "string",
+     "description": "The street address. Private: only confirmed guests get it"
+    },
+    "hosts": {
+     "type": "string",
+     "description": "The hosts' names as the page shows them, e.g. \"Juliet & Max\""
+    },
+    "sections": {
+     "type": "object",
+     "description": "The page's words. gathering.title and gathering.body are needed; fill in all four for a full page. \\n starts a new line.",
+     "properties": {
+      "hero": {
+       "type": "object",
+       "properties": {
+        "eyebrow": {
+         "type": "string",
+         "description": "Tiny line above the title, usually \"Grateful Giraffes\""
+        },
+        "where": {
+         "type": "string",
+         "description": "One short line on what it is, e.g. \"An intimate potluck dinner\""
+        },
+        "edition": {
+         "type": "string",
+         "description": "Italic subtitle, e.g. the city"
+        }
+       }
+      },
+      "gathering": {
+       "type": "object",
+       "properties": {
+        "eyebrow": {
+         "type": "string",
+         "description": "Small heading"
+        },
+        "title": {
+         "type": "string",
+         "description": "Headline, under 40 characters"
+        },
+        "body": {
+         "type": "string",
+         "description": "2 to 4 warm sentences, under 350 characters"
+        },
+        "footer": {
+         "type": "string",
+         "description": "\"Hosted by ...\""
+        }
+       }
+      },
+      "evening": {
+       "type": "object",
+       "properties": {
+        "eyebrow": {
+         "type": "string",
+         "description": "The date in words, e.g. \"Friday, November 14\""
+        },
+        "title": {
+         "type": "string",
+         "description": "e.g. \"How the evening\\nunfolds\""
+        },
+        "close": {
+         "type": "string",
+         "description": "One short line under the schedule, e.g. \"Ends about 9:00 PM\""
+        }
+       }
+      },
+      "reserve": {
+       "type": "object",
+       "properties": {
+        "eyebrow": {
+         "type": "string",
+         "description": "Small heading"
+        },
+        "title": {
+         "type": "string",
+         "description": "e.g. \"Reserve\\nyour seat\""
+        },
+        "body": {
+         "type": "string",
+         "description": "One or two short lines on what to bring or expect"
+        },
+        "note": {
+         "type": "string",
+         "description": "A small reassuring line"
+        }
+       }
+      }
+     },
+     "required": [
+      "gathering"
+     ]
+    },
+    "run_of_show": {
+     "type": "array",
+     "description": "The evening, 3 to 6 moments",
+     "items": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "type": "string",
+        "description": "\"7:00 PM\""
+       },
+       "title": {
+        "type": "string",
+        "description": "A few words"
+       },
+       "body": {
+        "type": "string",
+        "description": "One short sentence"
+       }
+      },
+      "required": [
+       "title"
+      ]
+     }
+    },
+    "palette": {
+     "type": "string",
+     "enum": [
+      "dusk",
+      "ember",
+      "ocean",
+      "forest",
+      "rose",
+      "violet",
+      "sand"
+     ],
+     "description": "The page's colours, by mood: dusk (warm gold on a deep night blue, candlelit and calm); ember (fire orange on smoky plum, a party, a bonfire, a celebration); ocean (sea glass on deep water, the beach, breath, sound baths); forest (sage and moss on a dark wood, hikes, gardens, retreats); rose (rose on dark wine, love, women's circles, tenderness); violet (lavender on indigo, meditation, music, the cosmos); sand (desert clay on dark earth, ceremony, the land, slow dinners)"
+    },
+    "photo_url": {
+     "type": "string",
+     "description": "Their own photo for the opening: a direct https link to a JPG, PNG or WebP"
+    },
+    "ticket_url": {
+     "type": "string",
+     "description": "Only if guests buy tickets somewhere else (Luma, Eventbrite): that link, and the page sends them there instead of RSVPing on the Oasis"
+    }
+   },
+   "required": [
+    "title",
+    "sections"
+   ]
+  }
+ },
+ {
+  "name": "make_art",
+  "title": "Make 4 opening images",
+  "annotations": {
+   "title": "Make 4 opening images",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Make four versions of a new event's opening image from a description, each in its own look (cinematic, up close, painted, graphic). It takes about 20 seconds and shows them. Nothing goes on the page until choose_art. Show the person all four, ask which they like, and pass on the link it gives to see them large.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key create_event gave back (or from list_my_events)"
+    },
+    "description": {
+     "type": "string",
+     "description": "The picture in a sentence or two, in the person's words: the place, the light, the feeling. No words or names to appear in it"
+    }
+   },
+   "required": [
+    "event",
+    "description"
+   ]
+  }
+ },
+ {
+  "name": "change_art",
+  "title": "Change one opening image",
+  "annotations": {
+   "title": "Change one opening image",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "The person's feedback on one image: makes four new takes of that image with the change. Nothing goes on the page until choose_art.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key create_event gave back (or from list_my_events)"
+    },
+    "option": {
+     "type": "string",
+     "description": "Which image: 1 to 4 in the newest round, or its id, e.g. \"r1-3\""
+    },
+    "feedback": {
+     "type": "string",
+     "description": "What to change, in the person's words"
+    }
+   },
+   "required": [
+    "event",
+    "option",
+    "feedback"
+   ]
+  }
+ },
+ {
+  "name": "show_art",
+  "title": "Show the opening images",
+  "annotations": {
+   "title": "Show the opening images",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "Show the newest four images for a new event again, and which is on the page.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key create_event gave back (or from list_my_events)"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "choose_art",
+  "title": "Use an opening image",
+  "annotations": {
+   "title": "Use an opening image",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Put the image the person chose on the event page as its opening, sized for phones and computers. It takes about 30 seconds. Only after they have said which one.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key create_event gave back (or from list_my_events)"
+    },
+    "option": {
+     "type": "string",
+     "description": "Which image: 1 to 4 in the newest round, or its id, e.g. \"r1-3\""
+    }
+   },
+   "required": [
+    "event",
+    "option"
+   ]
+  }
+ },
+ {
+  "name": "publish_event",
+  "title": "Publish an event",
+  "annotations": {
+   "title": "Publish an event",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Put a new event live: RSVPs open, and its grateful.gg share link (with a preview card made from the page's photo and words) is made. Only after the person has seen the draft page and said yes. It needs its opening photo first.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key create_event gave back (or from list_my_events)"
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "upload_event_page",
+  "title": "Upload a landing page",
+  "annotations": {
+   "title": "Upload a landing page",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Upload a whole landing page of the host's own design for their event, as a draft. Returns a preview link only the event's hosts can open; nothing changes for guests until publish_event_page. Make one self-contained HTML document (inline CSS and JS are fine, fonts and media by https link). Use add_page_asset to keep each picture or video from an AI tool, since their links expire. The Oasis keeps its own RSVP button pinned at the bottom of the screen, so leave room for it there; any element with a data-oasis-rsvp attribute, or a link to #rsvp, also opens the RSVP. Links open in a new tab. Never put a price, a street address or a sign-in form on the page: checkout and the guest emails carry those. Make it work on a phone (390 wide) and a laptop (1280 wide).",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"cosmic-nov-8\""
+    },
+    "html": {
+     "type": "string",
+     "description": "The whole page: one HTML document, at most 2 MB"
+    },
+    "note": {
+     "type": "string",
+     "description": "What changed in this version, in a few words"
+    }
+   },
+   "required": [
+    "event",
+    "html"
+   ]
+  }
+ },
+ {
+  "name": "get_event_page",
+  "title": "Read the uploaded page",
+  "annotations": {
+   "title": "Read the uploaded page",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "The HTML of the event's uploaded page to revise: the waiting draft if there is one, else the live one. Says so when the event has none.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"cosmic-nov-8\""
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "add_page_asset",
+  "title": "Keep a picture or video for a page",
+  "annotations": {
+   "title": "Keep a picture or video for a page",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Copy a picture (JPG, PNG, WebP or GIF, up to 15 MB) or a video (MP4 or WebM, up to 60 MB) from a direct https link into the Oasis, and get back a link that lasts, to use in an uploaded page.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"cosmic-nov-8\""
+    },
+    "url": {
+     "type": "string",
+     "description": "A direct https link to the file"
+    }
+   },
+   "required": [
+    "event",
+    "url"
+   ]
+  }
+ },
+ {
+  "name": "publish_event_page",
+  "title": "Publish the uploaded page",
+  "annotations": {
+   "title": "Publish the uploaded page",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Make the latest uploaded draft the event's page, for everyone at once. Only after the host has opened the preview link and said yes.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"cosmic-nov-8\""
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "remove_event_page",
+  "title": "Go back to the Oasis page",
+  "annotations": {
+   "title": "Go back to the Oasis page",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Take the uploaded page down and show the event's standard Oasis page again. The uploaded versions are kept.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"cosmic-nov-8\""
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "list_guests",
+  "title": "List guests",
+  "annotations": {
+   "title": "List guests",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "Who is coming to an event, as the host panel shows it: name, email, phone (if any), status (going, pending, waitlist, declined or removed), party size, whether they are checked in, whether they paid, and the id to use with the other guest tools. Also counts for each status. Without status it lists going, pending and waitlist; use \"all\" to include declined and removed.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "status": {
+     "type": "string",
+     "enum": [
+      "going",
+      "pending",
+      "waitlist",
+      "declined",
+      "removed",
+      "all"
+     ]
+    }
+   },
+   "required": [
+    "event"
+   ]
+  }
+ },
+ {
+  "name": "add_guests",
+  "title": "Add guests",
+  "annotations": {
+   "title": "Add guests",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Add people straight to Going, up to 100 at a time. Each needs a name and an email; a phone is optional. By default each person gets the confirmation email with the address, so check the list with the host first. send_email false adds them quietly. Anyone already going is skipped. Anyone who already asked to come (pending or waitlist) has to be approved in the host panel's Guests tab.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "guests": {
+     "type": "array",
+     "maxItems": 100,
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "email": {
+        "type": "string"
+       },
+       "phone": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "name",
+       "email"
+      ]
+     }
+    },
+    "send_email": {
+     "type": "boolean",
+     "description": "Send each guest the confirmation email (default true)"
+    }
+   },
+   "required": [
+    "event",
+    "guests"
+   ]
+  }
+ },
+ {
+  "name": "check_in",
+  "title": "Check a guest in",
+  "annotations": {
+   "title": "Check a guest in",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Check a guest in at the door. Without count, the whole party is checked in. count is how many of the party are in (never more than their tickets); count 0 checks them out.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "guest_id": {
+     "type": "string",
+     "description": "The guest's registration id from list_guests"
+    },
+    "count": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "event",
+    "guest_id"
+   ]
+  }
+ },
+ {
+  "name": "remove_guest",
+  "title": "Remove a guest",
+  "annotations": {
+   "title": "Remove a guest",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Take a guest off the list quietly: no email goes to them and their seat is freed. A guest who paid has to be refunded in the host panel first, then removed. They show as removed in list_guests and can be put back with restore_guest.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "guest_id": {
+     "type": "string",
+     "description": "The guest's registration id from list_guests"
+    }
+   },
+   "required": [
+    "event",
+    "guest_id"
+   ]
+  }
+ },
+ {
+  "name": "restore_guest",
+  "title": "Restore a removed guest",
+  "annotations": {
+   "title": "Restore a removed guest",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Put back a guest a host removed. They return to Going only if they had a confirmed seat before; otherwise they come back as pending and a host approves them in the host panel. Works only for guests removed by a host.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "guest_id": {
+     "type": "string",
+     "description": "The guest's registration id from list_guests"
+    }
+   },
+   "required": [
+    "event",
+    "guest_id"
+   ]
+  }
+ },
+ {
+  "name": "message_guests",
+  "title": "Email guests",
+  "annotations": {
+   "title": "Email guests",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": true
+  },
+  "description": "Email the guests of an event, signed by the hosts. Always use mode \"preview\" first: it sends nothing and returns the exact email text and how many people get it. Show the host that message and the number, and send only after the host says yes. mode \"test\" sends one copy to the host only. mode \"send\" emails everyone in the audience and also needs confirm true. Keep the message warm and short, with no em dashes. Never send a message the host has not seen.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "event": {
+     "type": "string",
+     "description": "The event key from list_my_events, e.g. \"illuminate\""
+    },
+    "audience": {
+     "type": "string",
+     "enum": [
+      "confirmed",
+      "pending",
+      "waitlist",
+      "all"
+     ],
+     "description": "confirmed = going, pending = waiting for a host, waitlist = waiting for a spot, all = every one of those"
+    },
+    "subject": {
+     "type": "string"
+    },
+    "message": {
+     "type": "string",
+     "description": "The email, after \"Hi [first name],\". A blank line starts a new paragraph."
+    },
+    "mode": {
+     "type": "string",
+     "enum": [
+      "preview",
+      "test",
+      "send"
+     ],
+     "description": "Default preview"
+    },
+    "confirm": {
+     "type": "boolean",
+     "description": "Must be true for mode \"send\", and only after the host said yes to the preview"
+    }
+   },
+   "required": [
+    "event",
+    "audience",
+    "subject",
+    "message"
+   ]
+  }
+ },
+ {
+  "name": "get_design_system",
+  "title": "Read the Oasis design brief",
+  "annotations": {
+   "title": "Read the Oasis design brief",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "The Oasis design brief: what the Oasis is, its main pages, its look (canvas, type, mood) and the rules every page keeps, plus how to shape a mockup for submit_design_idea. For the Grateful Giraffes team and approved hosts.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {}
+  }
+ },
+ {
+  "name": "submit_design_idea",
+  "title": "Submit a design idea",
+  "annotations": {
+   "title": "Submit a design idea",
+   "readOnlyHint": false,
+   "destructiveHint": true,
+   "openWorldHint": false
+  },
+  "description": "Send the Grateful Giraffes team a design improvement for the Oasis: a title, the page, what is wrong today, what to change and why, and a self-contained HTML mockup (inline CSS, no scripts, under 300 KB). It is saved for review; nothing on the Oasis changes. Show the person the idea before sending.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "title": {
+     "type": "string",
+     "description": "The idea in a few words"
+    },
+    "page_url": {
+     "type": "string",
+     "description": "The Oasis page it improves, e.g. https://app.grateful.gg/events (leave out for the whole Oasis)"
+    },
+    "problem": {
+     "type": "string",
+     "description": "What is wrong or could be better today"
+    },
+    "proposal": {
+     "type": "string",
+     "description": "What to change, and why it is better"
+    },
+    "mockup_html": {
+     "type": "string",
+     "description": "A self-contained HTML mockup: inline CSS, no scripts, phone and laptop versions"
+    }
+   },
+   "required": [
+    "title",
+    "proposal"
+   ]
+  }
+ },
+ {
+  "name": "list_my_design_ideas",
+  "title": "List my design ideas",
+  "annotations": {
+   "title": "List my design ideas",
+   "readOnlyHint": true,
+   "openWorldHint": false
+  },
+  "description": "The design ideas this person sent, newest first, with their status (new, approved, passed or built) and the review note.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {}
+  }
+ }
+]

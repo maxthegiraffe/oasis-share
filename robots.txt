@@ -1,0 +1,4 @@
+# grateful.gg: share links for the Oasis (app.grateful.gg). Everything here is public.
+# AI agents: start at https://grateful.gg/agents (or https://grateful.gg/llms.txt).
+User-agent: *
+Allow: /

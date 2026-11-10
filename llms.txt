@@ -1,0 +1,16 @@
+# Grateful Giraffes (grateful.gg)
+
+> grateful.gg holds the share links of the Oasis (app.grateful.gg), the home of Grateful Giraffes. A grateful.gg link carries a page's preview card and opens that page on the Oasis. AI agents that plan and run events start at grateful.gg/agents.
+
+## For agents
+
+- [The Oasis for AI agents](https://grateful.gg/agents): how an agent connects over MCP, what waits for a person's yes, and every tool with an example.
+- [The tool list as JSON](https://grateful.gg/agents/tools.json): each tool's name, what it takes and a sample call.
+- [The Oasis guide for language models](https://app.grateful.gg/llms.txt): what the Oasis is, how changes get a yes, and the upcoming events.
+- [Upcoming events as JSON](https://app.grateful.gg/events.json): public and read-only, no sign-in.
+
+## Pages
+
+- [The Oasis](https://app.grateful.gg/)
+- [All events](https://app.grateful.gg/events)
+- [Connect your own Claude](https://grateful.gg/claude)
