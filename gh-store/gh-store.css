@@ -1,0 +1,96 @@
+
+:root { --peach:#FFDED8; --panel:#FFF4F1; --ink:#1D1A3A; --soft:#4A4570; --cobalt:#2340FF; --pink:#FF48B0; --line:rgba(35,64,255,.26); }
+* { box-sizing:border-box; }
+html, body { margin:0; }
+body { background:var(--peach); color:var(--ink); font:15px/1.6 'DM Mono', ui-monospace, monospace; -webkit-font-smoothing:antialiased; }
+body::before { content:''; position:fixed; inset:0; pointer-events:none; opacity:.4; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .4  0 0 0 0 .42  0 0 0 .32 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+a { color:var(--cobalt); }
+.gh-wrap { position:relative; max-width:1120px; margin:0 auto; padding:0 clamp(16px,4vw,40px); }
+
+/* the header: the same mark and wordmark as app.grateful.gg/gratefulhealth */
+.gh-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; }
+.gh-brand { display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); }
+.gh-brand img { width:38px; height:38px; flex:none; }
+.gh-word { font:800 21px/1 'Fraunces', Georgia, serif; letter-spacing:-.02em; color:var(--cobalt); }
+.gh-word i { font-style:italic; color:var(--pink); }
+.gh-nav { display:flex; align-items:center; gap:16px; font-size:14px; }
+.gh-nav a { color:var(--ink); text-decoration:none; }
+.gh-nav a.on { background:var(--ink); color:#fff; padding:8px 16px; border-radius:999px; }
+@media (max-width:560px) { .gh-nav .hide-sm { display:none; } .gh-word { font-size:19px; } .gh-brand img { width:32px; height:32px; } .gh-top { padding:10px 0; } }
+
+.gh-eye { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--cobalt); display:inline-flex; align-items:center; gap:8px; }
+.gh-eye::before { content:''; width:16px; height:9px; border-radius:50%; background:var(--pink); transform:rotate(-20deg); }
+.gh-h1 { font:800 clamp(38px,6vw,64px)/1.02 'Fraunces', Georgia, serif; letter-spacing:-.035em; margin:10px 0 10px; }
+.gh-h1 i { font-style:italic; color:var(--pink); }
+
+/* the voucher line (Max, Nov 11), the same on the shop and every product page */
+.gh-voucher { display:flex; gap:10px; align-items:center; margin:14px 0 0; padding:10px 14px; border:2px dashed var(--pink); border-radius:16px;
+  background:rgba(255,255,255,.55); font-size:13px; line-height:1.45; }
+.gh-voucher b { font-weight:500; color:var(--ink); }
+.gh-voucher svg { flex:none; }
+
+/* the art frame: our drawings on the panel, as on /peptides */
+.gh-art { margin:0; background:var(--panel); border:2px solid var(--cobalt); border-radius:24px; box-shadow:7px 7px 0 var(--pink);
+  display:grid; place-items:center; aspect-ratio:16 / 10; overflow:hidden; }
+.gh-art img { width:94%; height:auto; display:block; }
+.gh-art figcaption { display:none; }
+
+/* the shop */
+.ph-store-top { padding:18px 0 6px; }
+.ph-store-top p { margin:0; max-width:40em; color:var(--soft); }
+.ph-store-grid { display:grid; gap:22px; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); padding:22px 0 60px; }
+.ph-store-card { text-decoration:none; color:var(--ink); display:block; }
+.ph-store-card .gh-art { aspect-ratio:16 / 10; border-radius:20px; box-shadow:5px 5px 0 var(--pink); transition:transform .15s, box-shadow .15s; }
+.ph-store-card:hover .gh-art { transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--pink); }
+.ph-store-card-name { display:block; margin-top:12px; font:800 21px/1.15 'Fraunces', Georgia, serif; letter-spacing:-.02em; }
+.ph-store-card-from { display:block; margin-top:4px; font-size:13px; color:var(--cobalt); }
+.ph-store-card-desc { display:block; margin-top:4px; font-size:13px; color:var(--soft); }
+@media (max-width:560px) { .ph-store-grid { grid-template-columns:1fr 1fr; gap:16px 12px; } .ph-store-card-name { font-size:17px; } .ph-store-card-desc { display:none; } }
+
+/* the product page: the button on the first screen at 1280x720 and on a 375x667 phone, with the whole drawing */
+.pdp-crumb { font-size:12px; color:var(--soft); margin:0 0 14px; }
+.pdp-crumb a { text-decoration:none; }
+.pdp-grid { display:grid; gap:clamp(22px,4vw,56px); grid-template-columns:1fr; padding-bottom:56px; }
+@media (min-width:900px) { .pdp-grid { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); } .pdp-media { position:sticky; top:24px; align-self:start; } }
+.pdp-head { display:block; }
+.pdp-title { font:800 clamp(40px,5vw,60px)/1 'Fraunces', Georgia, serif; letter-spacing:-.03em; margin:0 0 10px; }
+.pdp-lead { margin:0; font-size:15px; line-height:1.6; max-width:36em; }
+.pdp-price { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; margin-top:16px; }
+.pdp-price-figure { margin:0; font:800 clamp(34px,4vw,44px)/1 'Fraunces', Georgia, serif; letter-spacing:-.02em; }
+.pdp-price-figure span { font:400 15px 'DM Mono', monospace; color:var(--soft); letter-spacing:0; }
+.pdp-price-note { margin:0; font-size:12px; color:var(--soft); border:1px solid var(--line); border-radius:999px; padding:3px 11px; background:rgba(255,255,255,.5); }
+.pdp-fine-lead { margin:14px 0 0; font-size:12px; line-height:1.5; color:var(--soft); }
+.pdp-fine-lead strong { color:var(--ink); font-weight:500; }
+.pdp-buy { margin-top:12px; }
+.pdp-cta { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:58px; border-radius:999px; background:var(--cobalt);
+  color:#fff; text-decoration:none; font:italic 600 21px 'Fraunces', Georgia, serif; box-shadow:6px 6px 0 var(--pink); }
+.pdp-more { margin-top:26px; }
+.pdp-fine { margin:0; padding:16px 18px; border-radius:16px; background:rgba(255,255,255,.55); border:1px solid var(--line); font-size:12.5px; line-height:1.6; }
+.pdp-fine p { margin:0 0 8px; } .pdp-fine p:last-child { margin:0; }
+.pdp-facts { margin:22px 0 0; border-top:1px solid var(--line); }
+.pdp-facts > div { display:grid; grid-template-columns:9.5em 1fr; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); }
+.pdp-facts dt { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--cobalt); padding-top:3px; }
+.pdp-facts dd { margin:0; font-size:14px; }
+.pdp-fine--after { margin-top:18px; font-size:12.5px; color:var(--soft); }
+/* phones: the drawing sits beside the name and price, so the whole drawing and the button both fit the first screen */
+@media (max-width:899px) {
+  .pdp-crumb { margin-bottom:10px; }
+  .pdp-grid { gap:0; }
+  .pdp-media { display:none; }
+  .pdp-head { display:grid; grid-template-columns:136px 1fr; gap:14px; align-items:center; }
+  .pdp-head .gh-art { display:grid; border-radius:18px; box-shadow:5px 5px 0 var(--pink); }
+  .pdp-title { font-size:34px; margin:0; }
+  .pdp-head .pdp-price { margin-top:8px; }
+  .pdp-price-figure { font-size:28px; }
+  .pdp-lead { margin-top:14px; font-size:14px; line-height:1.55; }
+  .pdp-facts > div { grid-template-columns:1fr; gap:2px; }
+}
+@media (min-width:900px) { .pdp-head .gh-art, .pdp-head .pdp-price-sm { display:none; } }
+@media (max-width:899px) { .pdp-price-lg { display:none; } }
+@media (max-width:899px) and (max-height:700px) { .pdp-title { font-size:30px; } .pdp-lead { font-size:13px; } .gh-voucher { margin-top:10px; } .pdp-cta { min-height:52px; font-size:19px; } }
+
+.gh-gigi { position:fixed; right:16px; bottom:16px; z-index:5; display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:999px;
+  background:var(--cobalt); color:#fff; text-decoration:none; font-size:14px; box-shadow:4px 4px 0 var(--pink); }
+footer.gh-foot { position:relative; border-top:1px solid var(--line); padding:26px 0 80px; font-size:12.5px; line-height:1.7; color:var(--soft); }
+footer.gh-foot .links { display:flex; flex-wrap:wrap; gap:6px 14px; margin:10px 0; }

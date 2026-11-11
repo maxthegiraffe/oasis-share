@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Grateful Health store design</title>
+<meta property="og:title" content="The Grateful Health store, redesigned">
+<meta property="og:description" content="The flow from our landing page to your checkout, all 18 product pages, and the zip for your team.">
+<meta property="og:image" content="https://grateful.gg/gh-store/cover.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://grateful.gg/gh-store/"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600;1,9..144,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gh-store.css">
+<style>
+  .hero { padding:20px 0 8px; }
+  .hero p { max-width:40em; color:var(--soft); margin:0; }
+  .dl { display:inline-flex; align-items:center; gap:10px; margin-top:20px; padding:16px 26px; border-radius:999px; background:var(--cobalt); color:#fff;
+        text-decoration:none; font:italic 600 20px 'Fraunces', Georgia, serif; box-shadow:6px 6px 0 var(--pink); }
+  .dl small { font:400 12px 'DM Mono', monospace; opacity:.85; }
+  .new { display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px; padding:0; list-style:none; }
+  .new li { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:14px 16px; font-size:13.5px; }
+  .new b { display:block; font:800 17px 'Fraunces', Georgia, serif; margin-bottom:4px; }
+  h2 { font:800 clamp(28px,4vw,40px)/1.05 'Fraunces', Georgia, serif; letter-spacing:-.03em; margin:46px 0 6px; }
+  .flow { list-style:none; margin:20px 0 0; padding:0; display:grid; gap:26px; }
+  .step { display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:28px; align-items:start; }
+  .step.last { grid-template-columns:1fr; }
+  .shot { border:2px solid var(--cobalt); border-radius:26px; overflow:hidden; box-shadow:7px 7px 0 var(--pink); background:#fff; max-height:560px; }
+  .shot img { width:100%; height:auto; display:block; }
+  .say .n { display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--cobalt); color:#fff; font-weight:500; box-shadow:3px 3px 0 var(--pink); }
+  .say h3 { font:800 28px/1.1 'Fraunces', Georgia, serif; letter-spacing:-.02em; margin:12px 0 2px; }
+  .say .where { margin:0 0 8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--cobalt); }
+  .say p { margin:0; max-width:34em; }
+  .open { display:inline-block; margin-top:12px; font-weight:500; }
+  .all { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 60px; }
+  .all a { padding:7px 13px; border-radius:999px; background:var(--panel); border:1px solid var(--line); text-decoration:none; font-size:13px; }
+  @media (max-width:700px) { .step { grid-template-columns:1fr; gap:14px; } .shot { max-width:300px; } }
+</style></head>
+<body><div class="gh-wrap">
+  <header class="gh-top"><a class="gh-brand" href="https://app.grateful.gg/gratefulhealth"><img src="assets/mark-480.webp" alt=""><span class="gh-word">grateful <i>health</i></span></a></header>
+  <section class="hero">
+    <span class="gh-eye">For Platform Health · Nov 11, 2026</span>
+    <h1 class="gh-h1">The store, <i>redesigned</i></h1>
+    <p>Hi Dan, here is the Grateful Health store in the same look as our pages, from the first page someone sees to your checkout. The words and prices are the ones live in the store today. The zip has the stylesheet, all 18 product pages, the drawings and a README for your tech.</p>
+    <a class="dl" href="grateful-health-store-design.zip" download>Download the zip <small>98 KB</small></a>
+    <ul class="new">
+      <li><b>One look, end to end</b>Our mark and wordmark in the header, and our drawings in place of the vial photos.</li>
+      <li><b>Button on the first screen</b>On phones and laptops, with the whole drawing beside the name.</li>
+      <li><b>The Safari voucher</b>"Have a voucher from Biohacking Safari? Use it for a discount on your first order!" on the shop and every product.</li>
+      <li><b>Talk to Gigi</b>The same chat button as our pages, in place of "Ask Paula".</li>
+    </ul>
+  </section>
+  <h2>The flow</h2>
+  <ol class="flow"><li class="step"><div class="shot"><img src="flow/landing.jpg" alt="Our landing page on a phone" loading="lazy" width="390"></div><div class="say"><span class="n">1</span><h3>Our landing page</h3><p class="where">app.grateful.gg/gratefulhealth</p><p>Where people meet Grateful Health: the Grateful Health Bundle, the partners, and the way into the shop. The screenshot shows the new Bundle version.</p><a class="open" href="https://app.grateful.gg/gratefulhealth" target="_blank" rel="noopener">Open it</a></div></li><li class="step"><div class="shot"><img src="flow/peptides.jpg" alt="Find your peptides on a phone" loading="lazy" width="390"></div><div class="say"><span class="n">2</span><h3>Find your peptides</h3><p class="where">app.grateful.gg/peptides</p><p>One question, then their own list of peptides to ask a physician about, each linked to its page in your store. The drawings start here.</p><a class="open" href="https://app.grateful.gg/peptides" target="_blank" rel="noopener">Open it</a></div></li><li class="step"><div class="shot"><img src="flow/shop.jpg" alt="Your store: the shop on a phone" loading="lazy" width="390"></div><div class="say"><span class="n">3</span><h3>Your store: the shop</h3><p class="where">New design</p><p>The same mark, colors, type and drawings as our pages, so leaving app.grateful.gg feels like the next page, not another site.</p><a class="open" href="shop.html" target="_blank" rel="noopener">Open it</a></div></li><li class="step"><div class="shot"><img src="flow/product.jpg" alt="Your store: a product page on a phone" loading="lazy" width="390"></div><div class="say"><span class="n">4</span><h3>Your store: a product page</h3><p class="where">New design, all 18</p><p>The whole drawing, the price, the Biohacking Safari voucher line and the button, all on the first screen of a phone and a laptop.</p><a class="open" href="products/bpc-157.html" target="_blank" rel="noopener">Open it</a></div></li><li class="step last"><div class="say"><span class="n">5</span><h3>The online visit</h3><p class="where">Your checkout, unchanged</p><p>"Start your online visit" goes to your clinical partner exactly as it does today. A Safari voucher code is entered there.</p></div></li></ol>
+  <h2>All 18 product pages</h2>
+  <div class="all"><a href="products/vitamin-b12-injection.html" target="_blank" rel="noopener">Vitamin B12 Injection</a><a href="products/glutathione-injection.html" target="_blank" rel="noopener">Glutathione Injection</a><a href="products/methylene-blue.html" target="_blank" rel="noopener">Methylene Blue</a><a href="products/bpc-157.html" target="_blank" rel="noopener">BPC-157</a><a href="products/dsip.html" target="_blank" rel="noopener">DSIP</a><a href="products/epithalon.html" target="_blank" rel="noopener">Epithalon</a><a href="products/nad-injection.html" target="_blank" rel="noopener">NAD+ Injection</a><a href="products/sermorelin.html" target="_blank" rel="noopener">Sermorelin</a><a href="products/sermorelin-nasal-spray.html" target="_blank" rel="noopener">Sermorelin Nasal Spray</a><a href="products/tb-500.html" target="_blank" rel="noopener">TB-500</a><a href="products/lipo-c-injection.html" target="_blank" rel="noopener">Lipo-C Injection</a><a href="products/glutathione-nasal-spray.html" target="_blank" rel="noopener">Glutathione Nasal Spray</a><a href="products/nad-nasal-spray.html" target="_blank" rel="noopener">NAD+ Nasal Spray</a><a href="products/pt-141-nasal-spray.html" target="_blank" rel="noopener">PT-141 Nasal Spray</a><a href="products/tirzepatide.html" target="_blank" rel="noopener">Tirzepatide</a><a href="products/pt-141-bremelanotide.html" target="_blank" rel="noopener">PT-141 (Bremelanotide)</a><a href="products/nad-glutathione-stack.html" target="_blank" rel="noopener">NAD+ &amp; Glutathione Stack</a><a href="products/longevity-health-scan.html" target="_blank" rel="noopener">Longevity Health Scan</a></div>
+</div></body></html>

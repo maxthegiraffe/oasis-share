@@ -1,0 +1,621 @@
+[
+ {
+  "slug": "proto-gratefulhealth-vitamin-b12-injection-rgl6",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-vitamin-b12-injection-rgl6",
+  "name": "Vitamin B12 Injection",
+  "lead": "Compounded vitamin B12 injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$99.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-b12.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded vitamin B12. Vitamin B12 is an essential vitamin the body uses to make red blood cells and keep nerves working."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-glutathione-injection-rn6m",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-glutathione-injection-rn6m",
+  "name": "Glutathione Injection",
+  "lead": "Compounded glutathione injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$139.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-glutathione.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded glutathione. Glutathione is an antioxidant the body makes from three amino acids, present in nearly every cell."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-methylene-blue-rpw0",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-methylene-blue-rpw0",
+  "name": "Methylene Blue",
+  "lead": "Compounded methylene blue. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$215.06",
+  "price_note": "One-time purchase",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-methylene-blue.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded methylene blue, a compound that has been used in medicine for more than a century."
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "A one-time purchase: you’re charged once, with no plan to manage."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-bpc-157-rd8x",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-bpc-157-rd8x",
+  "name": "BPC-157",
+  "lead": "Compounded BPC-157, a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-bpc-157.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded BPC-157. BPC-157 is a lab-made peptide — a chain of 15 amino acids — based on a protein found in stomach fluid. It is not FDA-approved and has had very little study in people."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-dsip-o1au",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-dsip-o1au",
+  "name": "DSIP",
+  "lead": "Compounded DSIP (delta sleep-inducing peptide), a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-dsip.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded DSIP. DSIP (delta sleep-inducing peptide) is a lab-made chain of nine amino acids, first described in research on sleep. It is not FDA-approved and has had little study in people."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-epithalon-o0mf",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-epithalon-o0mf",
+  "name": "Epithalon",
+  "lead": "Compounded Epithalon (also spelled epitalon), a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-epithalon.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded Epithalon. Epithalon (also spelled epitalon) is a lab-made peptide of four amino acids, modeled on an extract of the pineal gland. It is not FDA-approved and has had little study in people."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-nad-injection-rtle",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-nad-injection-rtle",
+  "name": "NAD+ Injection",
+  "lead": "Compounded NAD+ injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-nad.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded NAD+. NAD+ (nicotinamide adenine dinucleotide) is a coenzyme found in every cell, where it takes part in turning food into energy."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-sermorelin-rsb2",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-sermorelin-rsb2",
+  "name": "Sermorelin",
+  "lead": "Compounded sermorelin, a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-sermorelin.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded sermorelin. Sermorelin is a peptide — a short chain of amino acids — that signals the pituitary gland to release the body’s own growth hormone."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-sermorelin-nasal-spray-rl7z",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-sermorelin-nasal-spray-rl7z",
+  "name": "Sermorelin Nasal Spray",
+  "lead": "Compounded sermorelin as a nasal spray, with no needles. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-sermorelin-spray.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded sermorelin. Sermorelin is a peptide — a short chain of amino acids — that signals the pituitary gland to release the body’s own growth hormone."
+   ],
+   [
+    "How it’s taken",
+    "A nasal spray — no needles"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-tb-500-rahc",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-tb-500-rahc",
+  "name": "TB-500",
+  "lead": "Compounded TB-500 (a fragment of thymosin beta-4), a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$219.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-tb-500.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded TB-500. TB-500 is a lab-made fragment of thymosin beta-4, a protein found in most of the body’s cells. It is not FDA-approved and has not been studied in people."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-lipo-c-injection-rf4j",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-lipo-c-injection-rf4j",
+  "name": "Lipo-C Injection",
+  "lead": "Compounded lipotropic injection with vitamin C. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$235.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-lipo-c.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "A compounded lipotropic blend with vitamin C. Lipotropics are nutrients that take part in how the body processes fat; the pharmacy’s label lists the exact ingredients."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-glutathione-nasal-spray-ridl",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-glutathione-nasal-spray-ridl",
+  "name": "Glutathione Nasal Spray",
+  "lead": "Compounded glutathione as a nasal spray, with no needles. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$250.00",
+  "price_note": "One-time purchase",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-glutathione-spray.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded glutathione. Glutathione is an antioxidant the body makes from three amino acids, present in nearly every cell."
+   ],
+   [
+    "How it’s taken",
+    "A nasal spray — no needles"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "A one-time purchase: you’re charged once, with no plan to manage."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-nad-nasal-spray-roi7",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-nad-nasal-spray-roi7",
+  "name": "NAD+ Nasal Spray",
+  "lead": "Compounded NAD+ as a nasal spray, with no needles. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$250.00",
+  "price_note": "One-time purchase",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-nad-spray.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded NAD+. NAD+ (nicotinamide adenine dinucleotide) is a coenzyme found in every cell, where it takes part in turning food into energy."
+   ],
+   [
+    "How it’s taken",
+    "A nasal spray — no needles"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "A one-time purchase: you’re charged once, with no plan to manage."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-pt-141-nasal-spray-rjpy",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-pt-141-nasal-spray-rjpy",
+  "name": "PT-141 Nasal Spray",
+  "lead": "Compounded bremelanotide (PT-141) as a nasal spray, with no needles. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$285.00",
+  "price_note": "One-time purchase",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-bremelanotide-spray.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded bremelanotide. Bremelanotide (PT-141) is a peptide that acts on melanocortin receptors in the brain, which are involved in sexual desire."
+   ],
+   [
+    "How it’s taken",
+    "A nasal spray — no needles"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "A one-time purchase: you’re charged once, with no plan to manage."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-tirzepatide-rrec",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-tirzepatide-rrec",
+  "name": "Tirzepatide",
+  "lead": "Compounded dual GIP/GLP-1 for weight management. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$289.00 / month",
+  "price_note": "$249/month on a 3- or 6-month plan",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-tirzepatide.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded tirzepatide, prescribed for weight management. Tirzepatide acts on two gut-hormone receptors, GIP and GLP-1, that are involved in appetite and blood sugar."
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose 3 months for $747 or 6 months for $1,494 instead — $249 a month."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-pt-141-bremelanotide-rkmz",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-pt-141-bremelanotide-rkmz",
+  "name": "PT-141 (Bremelanotide)",
+  "lead": "Compounded bremelanotide (PT-141), a peptide given by injection. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$299.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-bremelanotide.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Compounded bremelanotide. Bremelanotide (PT-141) is a peptide that acts on melanocortin receptors in the brain, which are involved in sexual desire."
+   ],
+   [
+    "How it’s taken",
+    "An injection"
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-nad-glutathione-stack-rb6q",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-nad-glutathione-stack-rb6q",
+  "name": "NAD+ & Glutathione Stack",
+  "lead": "Compounded NAD+ and glutathione together, in one plan. Prescribed only by an independent licensed clinical provider, after an online visit, if they decide it is appropriate for you.",
+  "price": "$405.00 / month",
+  "price_note": "Billed monthly · 3-month plan at checkout",
+  "image": "https://app.joinplatformhealth.com/products/telehealth-reverse-aging-stack.webp",
+  "cta": "Start your online visit →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with our clinical partner . You’ll leave Platform Health’s service for your visit with the independent medical group, which presents its own telehealth consent and Notice of Privacy Practices. An independent licensed clinical provider alone decides whether a prescription is appropriate for you; you are not charged for medication without one, and you can fill a prescription at any pharmacy you choose. Compounded medications are not approved by the FDA, and the FDA does not review them for safety, effectiveness or quality before they are marketed.",
+  "facts": [
+   [
+    "What it is",
+    "Two treatments on one plan: compounded NAD+ and compounded glutathione. NAD+ (nicotinamide adenine dinucleotide) is a coenzyme found in every cell, where it takes part in turning food into energy. Glutathione is an antioxidant the body makes from three amino acids, present in nearly every cell."
+   ],
+   [
+    "How much you get",
+    "Your prescribing provider sets your dose and how much each shipment holds, after your online visit."
+   ],
+   [
+    "Billing",
+    "Billed every month while you’re on the plan. At checkout you can choose a 3-month plan instead."
+   ]
+  ]
+ },
+ {
+  "slug": "proto-gratefulhealth-longevity-health-scan-ra5d",
+  "url": "https://gratefulhealth.joinplatformhealth.com/protocols/proto-gratefulhealth-longevity-health-scan-ra5d",
+  "name": "Longevity Health Scan",
+  "lead": "One 15-minute preventative CT at an imaging center near you, analysed by Innerscopic.",
+  "price": "$599.00",
+  "price_note": "One price · no insurance",
+  "image": "https://app.joinplatformhealth.com/products/innerscopic-longevity-health-scan.png",
+  "cta": "Check your ZIP →",
+  "fine_lead": "Medical evaluation required. Treatment and prescription approval are not guaranteed and are determined solely by an independent licensed clinician based on medical appropriateness.",
+  "fine": [
+   "Clinical services in this program are provided by an independent medical group. The medical group is not owned or controlled by Grateful Health or Platform Health and makes all diagnosis, treatment, and prescribing decisions.",
+   "If the clinician decides treatment isn't right for you, you won't be charged for medication.",
+   "You can fill any prescription at the pharmacy of your choice.",
+   "Not for emergencies. Call 911, or call or text 988 for a mental health crisis. Telehealth Disclaimer"
+  ],
+  "fine_after": "Checkout with Innerscopic . You’ll finish on innerscopic.com: enter your ZIP and how far you’ll travel. If a listed imaging center is in range you pay $599 all in; if not, you join their waitlist and aren’t charged.",
+  "facts": []
+ }
+]
