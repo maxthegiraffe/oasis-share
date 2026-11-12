@@ -18,6 +18,8 @@ pkill -x GigiHelper 2>/dev/null || true
 rm -rf "$APP"
 ditto -x -k "$TMP/gigi.zip" "$DEST"
 xattr -dr com.apple.quarantine "$APP" 2>/dev/null || true
+# This window moves clear of her card (left edge, 440 wide) and fits beside it, so it's never hidden (Max, 11-11).
+[ -t 1 ] && [ "${TERM_PROGRAM:-}" = "Apple_Terminal" ] && printf '\033[3;490;60t\033[8;30;105t'
 echo "  Done. Opening now. You can close this window."
 echo ""
 if [ -n "${GIGI_NO_OPEN:-}" ]; then exit 0; fi
