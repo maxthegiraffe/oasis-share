@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en" data-type="product">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Once Upon a Thank You · A picture book about gratitude</title>
+<meta name="description" content="A picture book that's also a song. How we came to be, from the very first star to your family's dinner table, told as one big thank you. For ages 3 to 8, in paperback and Kindle.">
+<link rel="canonical" href="https://grateful.gg/onceupon/landing.html">
+<meta name="page-type" content="product">
+<meta name="site-kind" content="other">
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="The Grateful Giraffes">
+<meta property="og:title" content="The story of everything, told as a thank you">
+<meta property="og:description" content="Press play and the pages turn with the music. For ages 3 to 8, in paperback and Kindle.">
+<meta property="og:url" content="https://grateful.gg/onceupon/">
+<meta property="og:image" content="https://grateful.gg/onceupon/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A giraffe bends over the glowing Earth, with animals and children from around the world">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#17153d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600..700&family=Crimson+Pro:wght@600..900&family=Nunito:wght@400..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="art/cover.webp">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Book","name":"Once Upon a Thank You","author":{"@type":"Person","name":"Max Marine"},"isbn":"9798161709306","numberOfPages":46,"bookFormat":"https://schema.org/Paperback","typicalAgeRange":"3-8","inLanguage":"en","image":"https://grateful.gg/onceupon/art/cover.webp","url":"https://grateful.gg/onceupon/","sameAs":["https://www.amazon.com/dp/B0HMYHFPXZ"],"workExample":{"@type":"Book","bookFormat":"https://schema.org/EBook","sameAs":"https://www.amazon.com/dp/B0HMY1BTRW"}}
+</script>
+<style>
+/* v3 (2026-11-08): the page wears the new cover. Night sky + gold lettering up top, the cover's
+   world (art/hero-wide) as the meadow under the hero, then dawn-cream sections. One button: gold. */
+:root{
+  --night:#17153d;--night-2:#201d50;--night-3:#2b2865;--deep:#100e2c;
+  --dawn:#fcf2e0;--dawn-2:#f7e7cb;--white:#fffaf1;
+  --ink:#1a1844;--ink-2:#4f4a73;--line:rgba(26,24,68,.13);
+  --gold:#fcd46b;--gold-h:#ffe08a;--gold-d:#e2a43c;--gold-dd:#9c6a24;--gold-ink:#7c5310;
+  /* the cover title is #fcd46b; a highlight-to-amber ramp around it reads as gold, not yellow */
+  --gold-grad:linear-gradient(180deg,#fff2c4 0%,#fde08a 30%,#fcd46b 52%,#eab24a 78%,#d69a33 100%);
+  --gold-btn:linear-gradient(180deg,#ffe9a6 0%,#fcd46b 46%,#ebb04a 100%);
+  --gold-btn-h:linear-gradient(180deg,#fff2c4 0%,#ffe08a 46%,#f2bd58 100%);
+  --cream:#fff3dc;--cream-2:rgba(255,243,220,.84);--cream-3:rgba(255,243,220,.66);--cream-line:rgba(255,243,220,.16);
+  --edge:clamp(16px,5.5vw,88px);--maxw:1220px;--r:22px;
+  --font-d:"Hoefler Text","Crimson Pro",Georgia,"Times New Roman",serif;
+  --font-b:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-h:"Caveat","Comic Sans MS",cursive;
+  --stars:radial-gradient(1.6px 1.6px at 7% 14%,rgba(255,243,220,.95) 50%,transparent 52%),
+    radial-gradient(1.2px 1.2px at 23% 61%,rgba(255,243,220,.7) 50%,transparent 52%),
+    radial-gradient(1.8px 1.8px at 41% 27%,rgba(255,233,180,.9) 50%,transparent 52%),
+    radial-gradient(1.1px 1.1px at 57% 83%,rgba(255,243,220,.6) 50%,transparent 52%),
+    radial-gradient(1.4px 1.4px at 71% 9%,rgba(255,243,220,.85) 50%,transparent 52%),
+    radial-gradient(1px 1px at 86% 47%,rgba(255,243,220,.6) 50%,transparent 52%),
+    radial-gradient(1.5px 1.5px at 94% 76%,rgba(255,233,180,.8) 50%,transparent 52%),
+    radial-gradient(1.1px 1.1px at 33% 92%,rgba(255,243,220,.55) 50%,transparent 52%);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--dawn);color:var(--ink);font:400 17px/1.6 var(--font-b);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.wrap{width:min(var(--maxw),100% - 2*var(--edge));margin-inline:auto}
+h1,h2,h3{font-family:var(--font-d);font-weight:900;letter-spacing:-.005em;margin:0;line-height:1.04}
+h2{font-size:clamp(34px,4.2vw,56px)}
+h3{font-size:22px;line-height:1.2}
+p{margin:0}
+.lead{font-size:clamp(18px,1.45vw,21px);line-height:1.55;color:var(--ink-2)}
+.hand{font-family:var(--font-h);font-weight:700;color:var(--gold-ink);line-height:1.05}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* night sections carry the cover's sky */
+.night{position:relative;background:var(--night);color:var(--cream);isolation:isolate}
+.night::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--stars);background-size:520px 420px;opacity:.85;pointer-events:none}
+.night .lead,.night .muted{color:var(--cream-2)}
+.night h2,.hero h1,.logo{color:var(--gold);background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.night h2{filter:drop-shadow(0 3px 6px rgba(38,20,5,.7));background-size:100% 1.04em}
+.hero h1{background-size:100% 1em}   /* one gold ramp per line */
+
+/* buttons: gold is the one buy button; ghost is its quiet partner on the night */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:56px;padding:0 30px;border:0;border-radius:999px;
+  font:800 17px/1 var(--font-b);text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .18s ease,box-shadow .2s ease,background-color .2s ease}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-gold{background:var(--gold-btn);color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 3px 0 var(--gold-dd),0 14px 30px -14px rgba(252,212,107,.5)}
+.btn-gold:hover{background:var(--gold-btn-h);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 5px 0 var(--gold-dd),0 18px 36px -14px rgba(252,212,107,.6)}
+.btn-gold:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 1px 0 var(--gold-dd),0 8px 18px -10px rgba(252,212,107,.45)}
+.btn-ghost{background:rgba(255,243,220,.07);color:var(--cream);box-shadow:inset 0 0 0 2px rgba(255,243,220,.5)}
+.btn-ghost:hover{transform:translateY(-2px);background:rgba(255,243,220,.14)}
+.btn-ghost:active{transform:translateY(1px) scale(.98)}
+.btn-sm{min-height:42px;padding:0 20px;font-size:15px}
+.link{display:inline-flex;align-items:center;gap:.4em;font-weight:800;text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;padding-bottom:2px;transition:background-size .3s ease}
+.link:hover{background-size:100% 2px}
+.link svg{width:15px;height:15px}
+
+/* announcement + header: the night starts at the very top */
+.announce{background:var(--deep);color:var(--cream-2);font-size:14.5px;font-weight:700;text-align:center;padding:9px var(--edge)}
+.announce a{color:var(--gold);white-space:nowrap}
+.top{position:sticky;top:0;z-index:30;background:rgba(23,21,61,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--cream);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.is-stuck{border-bottom-color:var(--cream-line)}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:66px}
+.logo{font:900 22px/1 var(--font-d);text-decoration:none;margin-right:auto;white-space:nowrap}
+.nav{display:flex;gap:26px}
+.nav a{font-weight:700;font-size:15.5px;text-decoration:none;color:var(--cream-3);background:linear-gradient(var(--gold),var(--gold)) 0 100%/0 3px no-repeat;padding-bottom:2px;transition:background-size .25s,color .2s}
+.nav a:hover{color:var(--cream);background-size:100% 3px}
+
+/* hero: the cover's night sky, its sunrise behind the book */
+.hero{position:relative;overflow:hidden;min-height:calc(100svh - 106px);display:flex;align-items:center;
+  padding-block:clamp(20px,4vh,56px) clamp(36px,6vh,72px);
+  background:radial-gradient(52% 64% at 76% 58%,rgba(255,214,140,.30),rgba(255,170,130,.10) 45%,transparent 72%),
+    linear-gradient(180deg,#141238 0%,#1a1844 58%,#231f58 100%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,64px);align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(14px,2.2vh,22px)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:14px;font-weight:800;background:rgba(255,243,220,.08);color:var(--cream);box-shadow:inset 0 0 0 1px rgba(255,243,220,.24)}
+.hero h1{font-size:clamp(48px,min(6.4vw,11vh),100px);line-height:1;
+  filter:drop-shadow(0 4px 9px rgba(38,20,5,.85)) drop-shadow(0 1px 1px rgba(110,64,14,.6))}
+.hero .lead{margin-top:clamp(16px,2.4vh,24px);max-width:520px;color:var(--cream-2)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3.6vh,34px)}
+.fine{margin-top:14px;font-size:14px;font-weight:700;color:var(--cream-3)}
+.visual{position:relative;height:clamp(300px,min(64vh,46vw),620px);display:grid;place-items:center}
+.sun{position:absolute;inset:-18%;background:repeating-conic-gradient(from 4deg at 50% 46%,rgba(255,226,160,.13) 0deg 3deg,transparent 3deg 11deg);
+  -webkit-mask:radial-gradient(closest-side at 50% 46%,#000 18%,transparent 78%);mask:radial-gradient(closest-side at 50% 46%,#000 18%,transparent 78%);pointer-events:none}
+.glow{position:absolute;left:50%;top:44%;width:70%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,236,190,.55),rgba(255,190,120,.18) 45%,transparent 70%);filter:blur(6px);pointer-events:none}
+.visual .book{position:relative;height:86%;width:auto}
+.note{position:absolute;left:-13%;top:5%;font-size:clamp(22px,1.9vw,27px);transform:rotate(-6deg);width:5.4em;color:var(--gold)}
+.note svg{display:block;width:80px;height:56px;margin:6px 0 0 38%;color:var(--gold)}
+.spark{position:absolute;width:22px;height:22px;color:var(--gold)}
+.spark svg{width:100%;height:100%}
+
+/* the 3D book */
+.book{width:var(--bw);aspect-ratio:2/3;perspective:1500px}
+.book-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(-22deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.7,.2,1);animation:float 6s ease-in-out infinite}
+.book:hover .book-in{transform:rotateY(-8deg) rotateX(2deg)}
+.book-in>*{position:absolute;inset:0}
+.book .front{width:100%;height:100%;object-fit:cover;border-radius:2px 7px 7px 2px;transform:translateZ(5px)}
+.book .shade{transform:translateZ(5.5px);border-radius:2px 7px 7px 2px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.3) 0%,rgba(255,255,255,.16) 2.6%,rgba(0,0,0,.06) 5%,rgba(0,0,0,0) 10%)}
+.book .edge{inset:auto;top:3px;right:-5px;width:10px;height:calc(100% - 6px);transform:rotateY(90deg) translateZ(0);background:repeating-linear-gradient(90deg,#f7f1e5 0 1px,#e2d9c7 1px 2px)}
+.book .back{transform:translateZ(-5px);border-radius:2px 7px 7px 2px;background:#17153d;box-shadow:-18px 30px 60px -10px rgba(0,0,0,.6)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+/* features: still under the night sky */
+.features{background:#231f58;padding-block:4px clamp(28px,4vh,44px)}
+.feat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.feat{border-radius:var(--r);padding:20px 20px 22px;background:rgba(255,243,220,.06);box-shadow:inset 0 0 0 1px var(--cream-line);color:var(--cream)}
+.feat .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin-bottom:12px;background:rgba(247,201,95,.14);color:var(--gold)}
+.feat .ic svg{width:24px;height:24px}
+.feat h3{font-size:20px;color:var(--gold)}
+.feat p{margin-top:6px;font-size:15px;color:var(--cream-3);line-height:1.5}
+
+/* the cover's world, unfolding under the hero */
+.meadow{position:relative;height:clamp(200px,30vw,440px);overflow:hidden;background:#231f58}
+.meadow img{width:100%;height:100%;object-fit:cover;object-position:50% 72%}
+.meadow::before,.meadow::after{content:"";position:absolute;left:0;right:0;pointer-events:none}
+.meadow::before{top:0;height:42%;background:linear-gradient(180deg,#231f58,rgba(35,31,88,0))}
+.meadow::after{bottom:0;height:34%;background:linear-gradient(180deg,rgba(247,231,203,0),var(--dawn-2))}
+
+/* sections */
+.sec{padding-block:clamp(64px,10vh,120px)}
+.band{background:var(--dawn-2)}
+.white{background:var(--white)}
+.head{max-width:640px}
+.head .lead{margin-top:16px}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+
+/* look inside */
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:min(720px,84vw);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;
+  margin:clamp(28px,4vh,44px) calc(-1*var(--edge)) 0;padding:6px var(--edge) 26px;scroll-padding-inline:var(--edge);scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.spread{position:relative;padding:0;border:0;background:none;cursor:pointer;scroll-snap-align:start;border-radius:14px;
+  box-shadow:0 26px 40px -26px rgba(26,24,68,.6),0 0 0 1px rgba(26,24,68,.06);transition:transform .25s ease,box-shadow .25s ease}
+.spread img{width:100%;height:auto;border-radius:14px}
+.spread:hover{transform:translateY(-2px);box-shadow:0 32px 46px -26px rgba(26,24,68,.65),0 0 0 1px rgba(26,24,68,.08)}
+.spread .dot{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:0 16px 0 6px;height:44px;border-radius:999px;background:var(--gold-btn);color:var(--ink);font-weight:800;font-size:15px;box-shadow:0 8px 18px -8px rgba(0,0,0,.45);transition:transform .2s}
+.spread .dot i{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--gold);display:grid;place-items:center}
+.spread .dot svg{width:13px;height:13px;margin-left:2px}
+.spread:hover .dot{transform:scale(1.05)}
+.spread.is-on{box-shadow:0 0 0 4px var(--gold),0 26px 40px -26px rgba(26,24,68,.6)}
+.arrows{display:flex;gap:10px}
+.arrow{width:50px;height:50px;border-radius:50%;border:0;background:var(--ink);color:var(--gold);display:grid;place-items:center;cursor:pointer;transition:transform .15s,background-color .2s}
+.arrow:hover{transform:translateY(-2px);background:var(--night-3)}
+.arrow:active{transform:scale(.94)}
+.arrow svg{width:18px;height:18px}
+
+/* the song */
+.song{padding-block:clamp(64px,10vh,120px)}
+.song-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(36px,6vw,96px);align-items:center;position:relative}
+.song-copy .muted{margin-top:16px}
+.song-copy .link{margin-top:24px;color:var(--gold)}
+.song .hand{color:var(--gold);font-size:30px;display:block;margin-bottom:8px}
+.player{width:min(470px,calc((100svh - 220px)*.6667))}
+.stage{position:relative;aspect-ratio:2/3;border-radius:18px;overflow:hidden;background:#0a0b22;cursor:pointer;box-shadow:0 50px 90px -40px rgba(0,0,0,.85),0 0 0 1px rgba(255,243,220,.12)}
+.stage .pg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+.stage .pg.is-on{opacity:1}
+.big-play{position:absolute;right:18px;bottom:18px;width:76px;height:76px;border:0;border-radius:50%;background:var(--gold-btn);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 0 var(--gold-dd),0 18px 34px -12px rgba(0,0,0,.6);transition:transform .2s ease,opacity .3s ease}
+.big-play svg{width:30px;height:30px;margin-left:4px}
+.stage:hover .big-play{transform:scale(1.06)}
+.player.is-playing .big-play{opacity:0;transform:scale(.85);pointer-events:none}
+.controls{display:flex;align-items:center;gap:10px;margin-top:16px}
+.ctl{flex:none;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,243,220,.12);color:var(--cream);display:grid;place-items:center;cursor:pointer;transition:background-color .2s ease,transform .15s ease}
+.ctl:hover{background:rgba(255,243,220,.22);transform:translateY(-1px)}
+.ctl:active{transform:scale(.94)}
+.ctl svg{width:18px;height:18px}
+.ctl.play{width:52px;height:52px;background:var(--gold-btn);color:var(--ink)}
+.ctl.play:hover{background:var(--gold-btn-h)}
+.ctl .i-pause,.player.is-playing .ctl .i-play{display:none}
+.player.is-playing .ctl .i-pause{display:block}
+.bar{flex:1;height:32px;display:flex;align-items:center;cursor:pointer;touch-action:none}
+.track{position:relative;width:100%;height:6px;border-radius:6px;background:rgba(255,243,220,.2);overflow:hidden}
+.fill{position:absolute;inset:0;background:var(--gold);transform-origin:0 50%;transform:scaleX(0)}
+.time{flex:none;min-width:78px;text-align:right;font:700 13px/1 var(--font-b);font-variant-numeric:tabular-nums;color:var(--cream-3)}
+
+/* eight languages: one tile style, the playing word turns to night and gold */
+.langs-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(36px,6vw,90px);align-items:center}
+.words{list-style:none;margin:clamp(26px,4vh,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.word{width:100%;min-height:96px;padding:16px 20px;border:0;border-radius:20px;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:4px;
+  background:var(--white);box-shadow:inset 0 0 0 1.5px var(--line),0 10px 22px -18px rgba(26,24,68,.45);transition:transform .18s ease,box-shadow .2s ease,background-color .2s ease}
+.word:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1.5px rgba(26,24,68,.22),0 16px 26px -18px rgba(26,24,68,.5)}
+.word:active{transform:scale(.98)}
+.word .w{align-self:flex-start;font:900 clamp(25px,2.4vw,32px)/1.1 var(--font-d);color:var(--ink)}
+.word .w:lang(ar){font-family:"Geeza Pro","Segoe UI","Noto Naskh Arabic",sans-serif;font-weight:700}
+.word .w:lang(he){font-family:"Arial Hebrew","Segoe UI","Noto Sans Hebrew",sans-serif;font-weight:700}
+.word .w:lang(ja){font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-weight:700}
+.word .w:lang(ko){font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-weight:700}
+.word .l{display:flex;align-items:center;gap:8px;font:700 13.5px/1.25 var(--font-b);color:var(--ink-2)}
+.word .l svg{width:14px;height:14px;flex:none;color:var(--gold-d)}
+.word.is-on{background:var(--ink);box-shadow:0 0 0 3px var(--gold)}
+.word.is-on .w{color:var(--gold)}
+.word.is-on .l{color:var(--cream-2)}
+.arch-frame{border-radius:999px 999px 28px 28px;overflow:hidden;aspect-ratio:2/3;box-shadow:0 30px 60px -34px rgba(26,24,68,.6);max-height:calc(100svh - 150px);justify-self:center;width:100%}
+.arch-frame img{width:100%;height:100%;object-fit:cover}
+
+/* gift */
+.gift-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:center}
+.steps{list-style:none;margin:clamp(26px,4vh,40px) 0 0;padding:0;display:grid;gap:18px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}
+.step .n{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:900 24px/1 var(--font-d);background:var(--ink);color:var(--gold)}
+.step h3{font-size:22px;margin-top:4px}
+.step p{margin-top:4px;color:var(--ink-2)}
+.step .link{margin-top:10px;color:var(--ink)}
+.occasions{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.occasions span{padding:7px 14px;border-radius:999px;background:var(--dawn);box-shadow:inset 0 0 0 1.5px var(--line);font-size:14px;font-weight:700;color:var(--ink-2)}
+.gift-visual{position:relative;min-height:clamp(380px,48vw,560px)}
+.gift-visual .plate{position:absolute;right:0;top:4%;width:78%;border-radius:18px;transform:rotate(3deg);box-shadow:0 30px 50px -30px rgba(26,24,68,.6)}
+.gift-visual .page{position:absolute;left:0;bottom:0;width:44%;border-radius:12px;transform:rotate(-5deg);box-shadow:0 30px 50px -28px rgba(26,24,68,.6)}
+.gift-visual .hand{position:absolute;left:55%;bottom:4%;font-size:clamp(24px,2vw,30px);transform:rotate(-4deg);width:7em}
+
+/* heart (night) */
+.heart-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,6vw,90px);align-items:center}
+.heart-grid .arch-frame{max-height:calc(100svh - 150px);box-shadow:0 40px 70px -34px rgba(0,0,0,.7)}
+.quote{margin:clamp(22px,3vh,32px) 0 0;padding:0;font:italic 400 clamp(24px,2.2vw,31px)/1.36 var(--font-d);color:var(--cream);text-wrap:pretty}
+.heart .note2{margin-top:22px;color:var(--cream-2)}
+.science{margin-top:26px;padding:18px 20px;border-radius:18px;background:rgba(255,243,220,.06);box-shadow:inset 0 0 0 1px var(--cream-line);font-size:15px;color:var(--cream-2)}
+.science b{color:var(--gold)}
+.science small{display:block;margin-top:6px;font-size:13px;opacity:.85}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,90px);align-items:start}
+.faq details{border-bottom:1.5px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font:800 18px/1.35 var(--font-b)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--gold);display:grid;place-items:center;transition:transform .25s ease}
+.faq summary i svg{width:14px;height:14px}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq summary:hover{color:var(--night-3)}
+.faq details p{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
+
+/* buy: the night and its sunrise again, for the close */
+.buy{background:radial-gradient(50% 70% at 26% 60%,rgba(255,214,140,.26),transparent 70%),var(--night)}
+.buy-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:center}
+.buy-visual{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:0;min-height:clamp(360px,44vw,520px)}
+.buy-visual .book{--bw:min(300px,42vw);position:relative;z-index:1}
+.walkers{width:min(250px,30vw);margin-left:-6%;position:relative;z-index:2}
+.buy-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.store{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-size:14px;font-weight:700;color:var(--cream-3);white-space:nowrap}
+.store select{appearance:none;-webkit-appearance:none;font:700 14px/1 var(--font-b);color:var(--cream);background:rgba(255,243,220,.08)
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23fff3dc' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center/11px;
+  border:0;box-shadow:inset 0 0 0 1.5px var(--cream-line);border-radius:999px;padding:10px 34px 10px 14px;cursor:pointer}
+.store select option{color:var(--ink)}
+
+.foot{background:var(--deep);color:var(--cream-3);font-size:14px;padding-block:30px calc(30px + env(safe-area-inset-bottom))}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--cream)}
+
+/* phones: a buy bar once the hero's button has scrolled away */
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(16,14,44,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 -10px 30px -12px rgba(0,0,0,.5);padding:10px 16px calc(10px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .3s ease;display:none}
+.buybar.is-on{transform:none}
+.buybar-in{display:flex;align-items:center;gap:12px;max-width:640px;margin-inline:auto}
+.buybar img{width:34px;height:51px;border-radius:3px;flex:none;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.buybar span{flex:1;min-width:0;color:var(--cream);line-height:1.2}
+.buybar b{display:block;font:900 16px/1.15 var(--font-d);color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buybar small{font-size:13px;font-weight:700;color:var(--cream-3)}
+.buybar .btn{min-height:46px;padding:0 18px;font-size:15.5px}
+
+@media (max-width:1023px){
+  .nav{display:none}
+  .hero{min-height:0}
+  .hero-grid,.song-grid,.langs-grid,.gift-grid,.heart-grid,.faq-grid,.buy-grid{grid-template-columns:1fr}
+  .hero-copy{order:2}
+  .visual{order:1;height:clamp(180px,27svh,320px);max-width:460px;width:100%;margin-inline:auto}
+  .note{display:none}
+  .feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .player{width:min(100%,440px);justify-self:center}
+  .arch-frame{width:min(100%,420px)}
+  .gift-visual{min-height:clamp(320px,80vw,460px);max-width:520px;width:100%;margin-inline:auto}
+  .heart-grid .arch-frame{order:2}
+  .buy-visual{order:-1}
+  .buybar{display:block}
+  .top .btn{display:none}   /* the buy bar takes over on phones */
+  .foot{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+}
+@media (max-width:599px){
+  .top .wrap{min-height:58px}
+  .logo{font-size:19px}
+  .announce{font-size:13px;padding:8px 16px}
+  .hero{padding-top:10px}
+  .hero h1{font-size:clamp(40px,11.4vw,54px)}
+  /* phones: the buy button comes right after the title, the description after it */
+  .hero-copy{display:flex;flex-direction:column}
+  .hero .chips{order:1}.hero h1{order:2}.hero .cta{order:3}.hero .lead{order:4;margin-top:18px}.hero .fine{order:5}
+  .hide-sm{display:none}
+  .buybar b{font-size:14.5px}
+  .hero .lead{font-size:17px}
+  .chip{font-size:13px;padding:5px 12px}
+  .cta .btn{flex:1;padding:0 12px;min-height:52px;font-size:16px}
+  .feat-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .feat{padding:16px}
+  .feat .ic{width:40px;height:40px;margin-bottom:10px}
+  .feat .ic svg{width:21px;height:21px}
+  .feat h3{font-size:17px}
+  .feat p{font-size:14px}
+  .words{gap:10px}
+  .word{min-height:86px;padding:14px}
+  .word .w{font-size:21px}
+  .buy-btns .btn{flex:1 1 100%}
+  .controls{gap:8px}
+  .time{min-width:70px}
+  .head-row .arrows{display:none}
+}
+@media (max-width:420px){
+  .top .wrap{gap:12px}
+  .logo{font-size:17px}
+  .top .btn-sm{padding:0 14px;font-size:14px;min-height:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<!-- grateful.gg/onceupon · v3 2026-11-08 (wears the new cover: night sky, gold lettering, the cover world as the meadow) · words live in this file; book pages in pages/, spreads in spreads/, art in art/, song.mp3 is the book's song -->
+<div class="announce">Just in time for Thanksgiving<span class="hide-sm">: the picture book that's also a song</span>. <a data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener">Shop on Amazon</a></div>
+
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a class="logo" href="#">Once Upon a Thank You</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#inside">Look inside</a><a href="#song">The song</a><a href="#gift">Gift it</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener">Buy on Amazon</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero night" aria-label="Once Upon a Thank You">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="chips"><span class="chip">Ages 3 to 8</span><span class="chip rose">Picture book + sing-along song</span></div>
+        <h1>Once Upon a<br> Thank You</h1>
+        <p class="lead">How we came to be, from the very first star to your family's dinner table, told as one big thank you.</p>
+        <div class="cta">
+          <a class="btn btn-gold" data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener">Buy on Amazon</a>
+          <button class="btn btn-ghost" type="button" data-play><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Play the song</button>
+        </div>
+        <p class="fine">Paperback and Kindle · 46 full-color pages · Ships from Amazon</p>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <span class="sun"></span><span class="glow"></span>
+        <div class="book">
+          <div class="book-in"><span class="back"></span><span class="edge"></span><img class="front" src="art/cover.webp" alt="" width="900" height="1350" fetchpriority="high"><span class="shade"></span></div>
+        </div>
+        <p class="note hand">A song plays from inside the book!<svg viewBox="0 0 90 60" aria-hidden="true"><path d="M8 6 C 30 10, 52 26, 62 52" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M50 44 L63 54 L68 39" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        <span class="spark" style="right:-2%;top:62%"><svg viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" fill="currentColor"/></svg></span>
+        <span class="spark" style="right:84%;top:4%;width:16px;height:16px"><svg viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" fill="currentColor"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="features night" aria-labelledby="feat-h">
+    <h2 class="sr" id="feat-h">What's inside the book</h2>
+    <div class="wrap feat-grid">
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5V5.5l11-2.5v12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6.5" cy="18.5" r="2.8" fill="currentColor"/><circle cx="17.5" cy="15.5" r="2.8" fill="currentColor"/></svg></span><h3>A song to sing together</h3><p>Scan the code inside and the whole family can sing along.</p></div>
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><h3>Thank you in 8 languages</h3><p>From obrigado to toda raba, kids say it like friends around the world.</p></div>
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.8 5.6 4.4 9.2 10 10-5.6.8-9.2 4.4-10 10-.8-5.6-4.4-9.2-10-10 5.6-.8 9.2-4.4 10-10z" fill="currentColor"/></svg></span><h3>The whole story of us</h3><p>The Big Bang, the first leaf, the dinosaurs and the first people.</p></div>
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4.6L16.6 4a2 2 0 012.8 0l.6.6a2 2 0 010 2.8L8.6 18.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14.5 6l3.5 3.5" stroke="currentColor" stroke-width="2"/></svg></span><h3>A page for their thanks</h3><p>The last pages ask what they're thankful for, with room to write it.</p></div>
+    </div>
+  </section>
+
+  <div class="meadow" aria-hidden="true"><img src="art/hero-wide-1600.webp" srcset="art/hero-wide-1600.webp 1600w, art/hero-wide-2600.webp 2600w" sizes="100vw" alt="" width="1600" height="679" loading="lazy"></div>
+
+  <section class="sec band" id="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="head">
+          <h2 id="inside-h">Take a peek inside</h2>
+          <p class="lead">Every spread is a line of the song. Tap one to hear it sung.</p>
+        </div>
+        <div class="arrows">
+          <button class="arrow" type="button" data-scroll="-1" aria-label="Previous spreads"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button class="arrow" type="button" data-scroll="1" aria-label="Next spreads"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery">
+        <button class="spread" type="button" data-src="3"><img src="spreads/big-bang.webp" alt="Then came the Big Bang, a glimpse of God's face. Energy expanded, the universe in motion." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+        <button class="spread" type="button" data-src="17"><img src="spreads/dinosaurs.webp" alt="Dinosaurs ruled for millions of years. Then came a rock, and millions of dinosaur tears." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+        <button class="spread" type="button" data-src="21"><img src="spreads/thank-you-table.webp" alt="We say thank you. Obrigado." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+        <button class="spread" type="button" data-src="15"><img src="spreads/first-leaf.webp" alt="Sunlight kissed the first green leaf. Life took shape and swam through the tide." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+        <button class="spread" type="button" data-src="29"><img src="spreads/first-people.webp" alt="They tamed the fire and crafted the wheel. They drummed on the stones and painted the skies." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+        <button class="spread" type="button" data-src="31"><img src="spreads/to-the-stars.webp" alt="From steam to steel and engine to flight, they reached for the stars. Software ate the world." width="1600" height="1200" loading="lazy"><span class="dot"><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></i>Hear it</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="song night" id="song" aria-labelledby="song-h">
+    <div class="wrap song-grid">
+      <div class="song-copy head">
+        <span class="hand">Press play!</span>
+        <h2 id="song-h">This book is a song</h2>
+        <p class="lead">Every page is a line of an original song about gratitude. Press play and the pages turn with the music.</p>
+        <p class="muted">In the book, scan the code inside to play the song and sing along as you read.</p>
+        <a class="link" href="https://youtu.be/J-ngGdMhUUU" target="_blank" rel="noopener">Watch it on YouTube <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      </div>
+      <div class="player" id="player">
+        <div class="stage" id="stage">
+          <img class="pg is-on" src="art/cover.webp" alt="Once Upon a Thank You, by Max Marine: a giraffe bends over the glowing Earth with animals and children" width="900" height="1350" loading="lazy">
+          <button class="big-play" type="button" aria-label="Play the song"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="controls">
+          <button class="ctl" type="button" id="prev" aria-label="Previous page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button class="ctl play" type="button" id="toggle" aria-label="Play or pause the song">
+            <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z" fill="currentColor"/></svg>
+            <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg>
+          </button>
+          <button class="ctl" type="button" id="next" aria-label="Next page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <div class="bar" id="bar" role="slider" tabindex="0" aria-label="Song position" aria-valuemin="0" aria-valuemax="261" aria-valuenow="0"><div class="track"><div class="fill" id="fill"></div></div></div>
+          <span class="time" id="time">0:00 / 4:21</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="languages" aria-labelledby="langs-h">
+    <div class="wrap langs-grid">
+      <div class="head">
+        <h2 id="langs-h">Thank you in eight languages</h2>
+        <p class="lead">Along the way, children around the world say thank you. Tap a word to hear it sung.</p>
+        <ul class="words">
+          <li><button class="word" type="button" data-word="7"><span class="w">Thank you</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>English</span></button></li>
+          <li><button class="word" type="button" data-word="8"><span class="w">Obrigado</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Portuguese</span></button></li>
+          <li><button class="word" type="button" data-word="9"><span class="w" lang="ar" dir="rtl">شكراً</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Arabic · Shukran</span></button></li>
+          <li><button class="word" type="button" data-word="10"><span class="w" lang="ja">ありがとう</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Japanese · Arigato</span></button></li>
+          <li><button class="word" type="button" data-word="11"><span class="w">Muchas gracias</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Spanish</span></button></li>
+          <li><button class="word" type="button" data-word="12"><span class="w" lang="ko">감사합니다</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Korean · Kamsahamnida</span></button></li>
+          <li><button class="word" type="button" data-word="13"><span class="w">Merci beaucoup</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>French</span></button></li>
+          <li><button class="word" type="button" data-word="14"><span class="w" lang="he" dir="rtl">תודה רבה</span><span class="l"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>Hebrew · Toda raba</span></button></li>
+        </ul>
+      </div>
+      <figure class="arch-frame" style="margin:0"><img src="art/chorus.webp" alt="A family gathers around a Thanksgiving table to say thank you" width="1000" height="1491" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="sec white" id="gift" aria-labelledby="gift-h">
+    <div class="wrap gift-grid">
+      <div class="gift-visual" aria-hidden="true">
+        <img class="plate" src="art/bookplate.webp" alt="" width="900" height="569" loading="lazy">
+        <img class="page" src="pages/44.webp" alt="" width="900" height="1350" loading="lazy">
+        <p class="hand">Print it, sign it, tuck it inside</p>
+      </div>
+      <div class="head">
+        <h2 id="gift-h">Made for giving</h2>
+        <p class="lead">A thank you is the best kind of gift. Here's how to give this one.</p>
+        <ol class="steps">
+          <li class="step"><span class="n">1</span><div><h3>Order it on Amazon</h3><p>The paperback to keep on the shelf, or Kindle to read anywhere.</p></div></li>
+          <li class="step"><span class="n">2</span><div><h3>Print a free bookplate</h3><p>Write who it's for and why you're thankful for them, then tuck it inside the cover.</p><a class="link" href="once-upon-a-thank-you-bookplates.pdf" download>Download the bookplate <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li>
+          <li class="step"><span class="n">3</span><div><h3>Read it together</h3><p>At bedtime, on a long drive, or around the Thanksgiving table.</p></div></li>
+        </ol>
+        <div class="occasions" aria-label="Good for"><span>Thanksgiving</span><span>Hanukkah</span><span>Christmas</span><span>Birthdays</span><span>New babies</span><span>Teachers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec heart night" id="heart" aria-labelledby="heart-h">
+    <div class="wrap heart-grid">
+      <figure class="arch-frame" style="margin:0"><img src="art/walk.webp" alt="A giraffe and a girl walk home together along a path at sunset" width="1000" height="1491" loading="lazy"></figure>
+      <div>
+        <h2 id="heart-h">The heart behind the book</h2>
+        <blockquote class="quote">Gratitude is for anyone, and within everyone. Being grateful is not just good for you, but for everyone around you. Every moment is a gift, and the more we can remember that, the more we get out of life.</blockquote>
+        <p class="note2">Written by Max Marine and made by the Grateful Giraffes, a community of people who practice gratitude together. Giraffes have the biggest hearts of any land animal, and they keep their heads in the clouds and their feet on the ground. That is how we try to live too.</p>
+        <p class="science"><b>Why gratitude?</b> In a study of middle schoolers, counting blessings each day was linked to more satisfaction with school and fewer bad moods.<small>Froh, Sefick and Emmons, Journal of School Psychology, 2008</small></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq-grid">
+      <div class="head"><h2 id="faq-h">Questions, answered</h2></div>
+      <div>
+        <details><summary>Who is it for?<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2"/></svg></i></summary><p>Children ages 3 to 8, and anyone who loves reading aloud with them. The words are short enough to sing and the pictures carry the big ideas.</p></details>
+        <details><summary>How does the song work?<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2"/></svg></i></summary><p>Point a phone camera at the code inside the book and the song plays, so kids can sing along as the pages turn. You can also play it right here on this page.</p></details>
+        <details><summary>Paperback or Kindle?<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2"/></svg></i></summary><p>The paperback is 6 x 9 inches with 46 full-color pages. The Kindle edition shows every page exactly as printed, on a phone, a tablet or a Kindle.</p></details>
+        <details><summary>Can I order from outside the US?<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2"/></svg></i></summary><p>Yes. The buttons on this page open the Amazon store for your country, including the UK, Canada, Australia, Germany, France, Spain, Italy and Japan. You can switch stores at the bottom of the page.</p></details>
+        <details><summary>What's the story about?<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2"/></svg></i></summary><p>How we came to be, from the birth of the universe to the magic of everyday life: the first stars, the first green leaf, the dinosaurs, the first people, all the way to today. Along the way, children around the world say thank you.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec buy night" id="buy" aria-labelledby="buy-h">
+    <div class="wrap buy-grid">
+      <div class="buy-visual" aria-hidden="true">
+        <div class="book"><div class="book-in"><span class="back"></span><span class="edge"></span><img class="front" src="art/cover.webp" alt="" width="900" height="1350" loading="lazy"><span class="shade"></span></div></div>
+        <img class="walkers" src="art/walkers.webp" alt="" width="513" height="700" loading="lazy">
+      </div>
+      <div class="head">
+        <h2 id="buy-h">Bring the story home</h2>
+        <p class="lead">A 6 x 9 inch paperback with 46 full-color pages, or the Kindle edition for your phone, tablet or Kindle.</p>
+        <div class="buy-btns">
+          <a class="btn btn-gold" data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener">Buy the paperback</a>
+          <a class="btn btn-ghost" data-amazon="kindle" href="https://www.amazon.com/dp/B0HMY1BTRW" target="_blank" rel="noopener">Get it on Kindle</a>
+        </div>
+        <label class="store">Amazon store <select id="store" aria-label="Amazon store"></select></label>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Grateful Labs · Once Upon a Thank You by Max Marine</span>
+    <a href="https://grateful.gg/">grateful.gg</a>
+  </div>
+</footer>
+
+<div class="buybar" id="buybar" aria-hidden="true"><div class="buybar-in"><img src="art/cover.webp" alt="" width="900" height="1350" loading="lazy"><span><b>Paperback and Kindle</b><small>Ages 3 to 8</small></span><a class="btn btn-gold" data-amazon="paperback" href="https://www.amazon.com/dp/B0HMYHFPXZ" target="_blank" rel="noopener" tabindex="-1">Buy on Amazon</a></div></div>
+
+<audio id="song-audio" src="song.mp3" preload="none"></audio>
+
+<script>
+(() => {
+  /* [file, start second in the song, words on the page, book source page] */
+  const PAGES = [["art/cover.webp",0,"Once Upon a Thank You, by Max Marine: a giraffe bends over the glowing Earth with animals and children.","title"],["pages/03.webp",2.04,"Once upon a time. There was no time. There was no space.",2],["pages/04.webp",14.52,"Then came the Big Bang. A glimpse of God's face.",3],["pages/05.webp",26.56,"Energy expanded. The universe in motion. Hydrogen and oxygen. A universal potion.",4],["pages/06.webp",40.04,"Gravity pulled. Galaxies swirled. Billions of stars. Ignited the world.",5],["pages/07.webp",52.64,"Supernova bursts. Forging iron and gold. The building blocks of life. A story to be told.",6],["pages/08.webp",68.08,"We say THANK YOU.",7],["pages/09.webp",71.36,"OBRIGADO.",8],["pages/10.webp",75.22,"SHUKRAN. شكراً.",9],["pages/11.webp",77.96,"ARIGATO. ありがとう.",10],["pages/12.webp",80.86,"MUCHAS GRACIAS.",11],["pages/13.webp",84.78,"KAMSAHAMNIDA. 감사합니다.",12],["pages/14.webp",87.22,"MERCI BEAUCOUP.",13],["pages/15.webp",90.36,"TODA RABA. תודה רבה.",14],["pages/16.webp",96.46,"Sunlight kissed the first green leaf. Photosynthesis. The planet's relief.",15],["pages/17.webp",109.14,"Life took shape. Swam through the tide. Creatures emerged. Along for the ride.",16],["pages/18.webp",122.7,"Dinosaurs ruled for millions of years.",17],["pages/19.webp",128.2,"Then came a rock. and millions of dinosaur tears.",18],["pages/20.webp",134.64,"But life found a way. The mammals arose.",19],["pages/21.webp",141.46,"Walking on two feet. The first human toes.",20],["pages/22.webp",150.06,"We say THANK YOU.",21],["pages/23.webp",153.4,"OBRIGADO.",22],["pages/24.webp",156.94,"SHUKRAN. شكراً.",23],["pages/25.webp",159.44,"ARIGATO. ありがとう.",24],["pages/26.webp",162.44,"MUCHAS GRACIAS.",25],["pages/27.webp",166.28,"KAMSAHAMNIDA. 감사합니다.",26],["pages/28.webp",168.64,"MERCI BEAUCOUP.",27],["pages/29.webp",171.7,"TODA RABA. תודה רבה.",28],["pages/30.webp",175.36,"They tamed the fire and crafted the wheel. Carved into caves. Their stories were real.",29],["pages/31.webp",181.52,"Drummed on the stones and painted the skies. Looking for meaning with wonder-filled eyes.",30],["pages/32.webp",187.66,"From steam to steel and engine to flight. They reached for the stars. And kissed the moonlight.",31],["pages/33.webp",193.78,"Software ate the world. AI is taking its place.",32],["pages/34.webp",196.88,"But once upon a time. There was no time. There was no space.",33],["pages/35.webp",204.08,"WE SAY THANK YOU.",34],["pages/36.webp",207.44,"OBRIGADO.",35],["pages/37.webp",210.96,"SHUKRAN. شكراً.",36],["pages/38.webp",213.64,"ARIGATO. ありがとう.",37],["pages/39.webp",216.4,"MUCHAS GRACIAS.",38],["pages/40.webp",220.18,"KAMSAHAMNIDA. 감사합니다.",39],["pages/41.webp",222.52,"MERCI BEAUCOUP.",40],["pages/42.webp",225.52,"TODA RABA. תודה רבה.",41],["art/cover.webp",228.56,"The cover of Once Upon a Thank You: a giraffe bends over the glowing Earth with animals and children.",42]];
+  const ASIN = {paperback: "B0HMYHFPXZ", kindle: "B0HMY1BTRW"};
+  /* [code, name, host, sells the paperback] */
+  const STORES = [
+    ["US","United States","www.amazon.com",1],["GB","United Kingdom","www.amazon.co.uk",1],["CA","Canada","www.amazon.ca",1],
+    ["AU","Australia","www.amazon.com.au",1],["DE","Germany","www.amazon.de",1],["FR","France","www.amazon.fr",1],
+    ["ES","Spain","www.amazon.es",1],["IT","Italy","www.amazon.it",1],["NL","Netherlands","www.amazon.nl",1],
+    ["BE","Belgium","www.amazon.com.be",1],["IE","Ireland","www.amazon.ie",1],["PL","Poland","www.amazon.pl",1],
+    ["SE","Sweden","www.amazon.se",1],["JP","Japan","www.amazon.co.jp",1],["IN","India","www.amazon.in",0],
+    ["BR","Brazil","www.amazon.com.br",0],["MX","Mexico","www.amazon.com.mx",0]
+  ];
+  const TZ = {"Europe/London":"GB","Europe/Belfast":"GB","Europe/Dublin":"IE","Europe/Berlin":"DE","Europe/Vienna":"DE","Europe/Zurich":"DE",
+    "Europe/Busingen":"DE","Europe/Paris":"FR","Europe/Monaco":"FR","Europe/Luxembourg":"FR","Europe/Madrid":"ES","Atlantic/Canary":"ES",
+    "Africa/Ceuta":"ES","Europe/Rome":"IT","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Warsaw":"PL","Europe/Stockholm":"SE",
+    "Asia/Tokyo":"JP","Asia/Kolkata":"IN","Asia/Calcutta":"IN","America/Sao_Paulo":"BR","America/Mexico_City":"MX","America/Cancun":"MX",
+    "America/Monterrey":"MX","America/Tijuana":"MX"};
+  const byCode = c => STORES.find(s => s[0] === c);
+
+  function detectStore() {
+    try { const s = localStorage.getItem("ouaty-store"); if (s && byCode(s)) return s; } catch (e) {}
+    let tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    if (TZ[tz]) return TZ[tz];
+    if (/^Australia\//.test(tz)) return "AU";
+    if (/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife|Iqaluit|Glace_Bay|Goose_Bay|Swift_Current|Dawson_Creek|Fort_Nelson|Rankin_Inlet|Cambridge_Bay|Inuvik|Atikokan|Thunder_Bay|Nipigon|Rainy_River)$/.test(tz)) return "CA";
+    const lang = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+    const m = lang.match(/[-_]([a-z]{2})$/i);
+    if (m && byCode(m[1].toUpperCase())) return m[1].toUpperCase();
+    return "US";
+  }
+  function applyStore(code) {
+    const st = byCode(code) || STORES[0];
+    document.querySelectorAll("[data-amazon]").forEach(a => {
+      const fmt = a.dataset.amazon;
+      const host = fmt === "paperback" && !st[3] ? "www.amazon.com" : st[2];
+      a.href = "https://" + host + "/dp/" + ASIN[fmt];
+    });
+    const sel = document.getElementById("store");
+    if (sel) sel.value = st[0];
+  }
+  const sel = document.getElementById("store");
+  STORES.forEach(s => { const o = document.createElement("option"); o.value = s[0]; o.textContent = s[1] + " · " + s[2].replace("www.", ""); sel.appendChild(o); });
+  sel.addEventListener("change", () => { try { localStorage.setItem("ouaty-store", sel.value); } catch (e) {} applyStore(sel.value); });
+  applyStore(detectStore());
+
+  /* phones: the buy bar shows once the hero's buttons scroll away, and steps aside at the buy section */
+  const buybar = document.getElementById("buybar");
+  if (buybar && "IntersectionObserver" in window) {
+    const heroCta = document.querySelector(".hero .cta"), buySec = document.getElementById("buy");
+    let ctaSeen = true, buySeen = false;
+    const setBar = () => {
+      const on = !ctaSeen && !buySeen;
+      buybar.classList.toggle("is-on", on);
+      buybar.setAttribute("aria-hidden", on ? "false" : "true");
+      buybar.querySelector("a").tabIndex = on ? 0 : -1;
+    };
+    new IntersectionObserver(e => { ctaSeen = e[0].isIntersecting; setBar(); }).observe(heroCta);
+    new IntersectionObserver(e => { buySeen = e[0].isIntersecting; setBar(); }).observe(buySec);
+  }
+
+  /* header hairline once the page scrolls */
+  const topbar = document.getElementById("topbar");
+  const onScroll = () => topbar.classList.toggle("is-stuck", scrollY > 40);
+  addEventListener("scroll", onScroll, {passive: true}); onScroll();
+
+  /* look inside: arrow buttons scroll the gallery */
+  const gallery = document.getElementById("gallery");
+  document.querySelectorAll("[data-scroll]").forEach(b => b.addEventListener("click", () => {
+    const card = gallery.querySelector(".spread");
+    gallery.scrollBy({left: (card ? card.getBoundingClientRect().width + 22 : 600) * Number(b.dataset.scroll), behavior: "smooth"});
+  }));
+
+  /* the read-along player: the book's own pages, turned by its song */
+  const audio = document.getElementById("song-audio");   /* #song is the section */
+  const player = document.getElementById("player");
+  const stage = document.getElementById("stage");
+  const layer = document.createElement("img");
+  layer.className = "pg"; layer.alt = ""; layer.width = 900; layer.height = 1350; layer.setAttribute("aria-hidden", "true");
+  stage.insertBefore(layer, stage.querySelector(".big-play"));
+  const imgs = stage.querySelectorAll(".pg");
+  const fill = document.getElementById("fill"), timeEl = document.getElementById("time"), barEl = document.getElementById("bar");
+  const SONG_END = 261.04;
+  let front = 0, cur = 0, token = 0, raf = 0, pendingSeek = null, segEnd = null, segEl = null, mediaSet = false;
+  const fmt = t => { t = Math.max(0, t | 0); return (t / 60 | 0) + ":" + String(t % 60).padStart(2, "0"); };
+  const dur = () => (isFinite(audio.duration) && audio.duration > 0 ? audio.duration : SONG_END);
+  const idxAt = t => { let i = 0; for (let k = 0; k < PAGES.length; k++) { if (PAGES[k][1] <= t + 0.02) i = k; else break; } return i; };
+  const idxOfSrc = s => PAGES.findIndex(p => String(p[3]) === String(s));
+  const now = () => (pendingSeek != null ? pendingSeek : audio.currentTime);
+
+  function preload(i) { if (PAGES[i]) { const im = new Image(); im.src = PAGES[i][0]; } }
+  function show(i) {
+    i = Math.max(0, Math.min(PAGES.length - 1, i));
+    if (i === cur && imgs[front].getAttribute("src") === PAGES[i][0]) return;
+    cur = i;
+    const my = ++token, [f, , alt] = PAGES[i], back = imgs[1 - front];
+    const swap = () => {
+      if (my !== token) return;
+      back.classList.add("is-on"); back.removeAttribute("aria-hidden"); back.alt = alt;
+      imgs[front].classList.remove("is-on"); imgs[front].setAttribute("aria-hidden", "true");
+      front = 1 - front;
+    };
+    back.src = f;
+    if (back.decode) back.decode().then(swap, swap); else back.onload = swap;
+    preload(i + 1); preload(i + 2);
+  }
+  function paint(t) {
+    const d = dur();
+    fill.style.transform = "scaleX(" + Math.min(1, t / d) + ")";
+    timeEl.textContent = fmt(t) + " / " + fmt(d);
+    barEl.setAttribute("aria-valuenow", Math.round(t));
+    barEl.setAttribute("aria-valuetext", fmt(t));
+  }
+  function seek(t) {
+    t = Math.max(0, Math.min(dur() - 0.1, t));
+    if (audio.readyState >= 1) audio.currentTime = t; else pendingSeek = t;
+    show(idxAt(t)); paint(t);
+  }
+  function tick() {
+    const t = audio.currentTime;
+    if (segEnd != null && t >= segEnd) { segEnd = null; audio.pause(); }
+    const i = idxAt(t); if (i !== cur) show(i);
+    paint(t);
+    if (!audio.paused) raf = requestAnimationFrame(tick);
+  }
+  function setMedia() {
+    if (mediaSet || !("mediaSession" in navigator)) return; mediaSet = true;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({title: "Thank You", artist: "The Breathing Garden", album: "Once Upon a Thank You",
+        artwork: [{src: new URL("art/cover.webp", location.href).href, sizes: "900x1350", type: "image/webp"}]});
+      navigator.mediaSession.setActionHandler("play", () => audio.play());
+      navigator.mediaSession.setActionHandler("pause", () => audio.pause());
+      navigator.mediaSession.setActionHandler("previoustrack", () => step(-1));
+      navigator.mediaSession.setActionHandler("nexttrack", () => step(1));
+    } catch (e) {}
+  }
+  function clearSeg() { if (segEl) { segEl.classList.remove("is-on"); segEl = null; } }
+  function play(fromIdx) {
+    segEnd = null; clearSeg();
+    if (fromIdx != null) seek(PAGES[fromIdx][1] + 0.01);
+    else if (audio.ended || now() >= dur() - 0.2) seek(0);
+    const p = audio.play(); if (p && p.catch) p.catch(() => {});
+  }
+  /* play only part of the song (a spread or a chorus word), then stop */
+  function playSegment(i, endIdx, el) {
+    play(i);
+    segEnd = (PAGES[endIdx] ? PAGES[endIdx][1] : PAGES[i][1] + 6) - 0.04;
+    segEl = el; el.classList.add("is-on");
+  }
+  function toggle() { if (audio.paused) play(); else audio.pause(); }
+  function step(d) { seek(PAGES[Math.max(0, Math.min(PAGES.length - 1, cur + d))][1] + 0.01); }
+
+  audio.addEventListener("loadedmetadata", () => { if (pendingSeek != null) { audio.currentTime = pendingSeek; pendingSeek = null; } paint(audio.currentTime); });
+  audio.addEventListener("play", () => { player.classList.add("is-playing"); setMedia(); cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
+  audio.addEventListener("pause", () => { player.classList.remove("is-playing"); clearSeg(); });
+  audio.addEventListener("ended", () => { player.classList.remove("is-playing"); show(PAGES.length - 1); paint(dur()); });
+  audio.addEventListener("timeupdate", () => { if (audio.paused) paint(audio.currentTime); });
+
+  stage.addEventListener("click", toggle);
+  document.getElementById("toggle").addEventListener("click", toggle);
+  document.getElementById("prev").addEventListener("click", () => step(-1));
+  document.getElementById("next").addEventListener("click", () => step(1));
+
+  const seekFromPointer = e => { const r = barEl.getBoundingClientRect(); seek(((e.clientX - r.left) / r.width) * dur()); };
+  barEl.addEventListener("pointerdown", e => {
+    barEl.setPointerCapture(e.pointerId); seekFromPointer(e);
+    const move = ev => seekFromPointer(ev);
+    const up = () => { barEl.removeEventListener("pointermove", move); barEl.removeEventListener("pointerup", up); barEl.removeEventListener("pointercancel", up); };
+    barEl.addEventListener("pointermove", move); barEl.addEventListener("pointerup", up); barEl.addEventListener("pointercancel", up);
+  });
+  barEl.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") { seek(now() + 5); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { seek(now() - 5); e.preventDefault(); }
+    else if (e.key === " " || e.key === "Enter") { toggle(); e.preventDefault(); }
+  });
+
+  const toPlayer = () => player.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center"});
+  document.querySelectorAll("[data-play]").forEach(b => b.addEventListener("click", () => { toPlayer(); play(audio.paused && now() < 0.5 ? 0 : null); }));
+  /* a spread plays its two pages; a word plays its one line */
+  document.querySelectorAll(".spread[data-src]").forEach(s => s.addEventListener("click", () => {
+    const i = idxOfSrc(s.dataset.src); if (i < 0) return; playSegment(i, i + 2, s);
+  }));
+  document.querySelectorAll(".word[data-word]").forEach(w => w.addEventListener("click", () => {
+    const i = idxOfSrc(w.dataset.word); if (i < 0) return; playSegment(i, i + 1, w);
+  }));
+
+  paint(0);
+})();
+</script>
+</body>
+</html>
