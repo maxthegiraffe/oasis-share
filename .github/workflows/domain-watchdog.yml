@@ -1,0 +1,101 @@
+# Watches grateful.gg every 10 minutes. If its DNS or HTTPS drifts (as on 2026-11-12,
+# when the records were repointed to an old Vercel project and the site went down),
+# it opens an issue here and emails ALERT_TO once; when it recovers it closes the issue
+# and emails again. Expected setup: GitHub Pages, four A records + www CNAME at GoDaddy.
+# If grateful.gg ever moves DNS host on purpose, update WANT_* below in the same change.
+name: grateful.gg watchdog
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: domain-watchdog
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      DOMAIN: grateful.gg
+      WANT_NS: "ns41.domaincontrol.com. ns42.domaincontrol.com."
+      WANT_A: "185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153"
+      WANT_WWW: "maxthegiraffe.github.io."
+      ISSUE_TITLE: "grateful.gg watchdog: site or DNS is wrong"
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      ALERT_FROM: ${{ secrets.ALERT_FROM }}
+      ALERT_TO: ${{ secrets.ALERT_TO }}
+    steps:
+      - name: Check DNS and HTTPS
+        id: check
+        shell: bash
+        run: |
+          set -u
+          command -v dig >/dev/null || { sudo apt-get -qq update && sudo apt-get -qq install -y dnsutils >/dev/null; }
+          problems=()
+          sorted() { tr ' ' '\n' | grep -v '^$' | sort | tr '\n' ' ' | sed 's/ $//'; }
+
+          ns=$(dig +short NS "$DOMAIN" @1.1.1.1 | sorted)
+          [ "$ns" = "$(echo $WANT_NS | sorted)" ] || problems+=("Nameservers are [$ns], expected [$WANT_NS].")
+
+          auth=$(echo $WANT_NS | cut -d' ' -f1)
+          a=$(dig +short A "$DOMAIN" @"$auth" | sorted)
+          [ "$a" = "$(echo $WANT_A | sorted)" ] || problems+=("A records for $DOMAIN are [$a], expected [$WANT_A] (GitHub Pages).")
+
+          www=$(dig +short CNAME "www.$DOMAIN" @"$auth" | sorted)
+          [ "$www" = "$WANT_WWW" ] || problems+=("www.$DOMAIN points to [$www], expected [$WANT_WWW].")
+
+          code=$(curl -sS -o /dev/null -m 20 -w '%{http_code}' "https://$DOMAIN/" 2>/tmp/curl.err) || true
+          [ "$code" = "200" ] || problems+=("https://$DOMAIN/ answered [$code] $(head -c 200 /tmp/curl.err)")
+
+          loc=$(curl -sS -o /dev/null -m 20 -w '%{redirect_url}' "http://www.$DOMAIN/music/" 2>/dev/null) || true
+          case "$loc" in http://$DOMAIN/music/|https://$DOMAIN/music/) ;; *) problems+=("http://www.$DOMAIN/music/ redirects to [$loc], expected $DOMAIN/music/.");; esac
+
+          if [ ${#problems[@]} -eq 0 ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"; echo "All checks passed."
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            printf '%s\n' "${problems[@]}" | tee /tmp/problems.txt
+          fi
+
+      - name: Alert or recover
+        shell: bash
+        env:
+          OK: ${{ steps.check.outputs.ok }}
+        run: |
+          set -u
+          open=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number --jq '.[0].number // empty')
+          send() {
+            [ -n "$RESEND_API_KEY" ] && [ -n "$ALERT_TO" ] || { echo "email secrets missing"; return 0; }
+            jq -n --arg f "$ALERT_FROM" --arg t "$ALERT_TO" --arg s "$1" --arg b "$2" \
+              '{from:$f,to:($t|split(",")),subject:$s,text:$b}' |
+            curl -sS -m 20 -X POST https://api.resend.com/emails \
+              -H "Authorization: Bearer $RESEND_API_KEY" -H "Content-Type: application/json" -d @- >/dev/null || echo "email failed"
+          }
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          if [ "$OK" = "false" ]; then
+            body="$(cat /tmp/problems.txt)
+
+          The right setup, in GoDaddy DNS for grateful.gg:
+          - A @ -> 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
+          - CNAME www -> maxthegiraffe.github.io
+
+          Run: $run_url"
+            if [ -z "$open" ]; then
+              gh issue create --title "$ISSUE_TITLE" --body "$body"
+              send "grateful.gg is down or its DNS changed" "$body"
+            else
+              echo "Already alerted in issue #$open."
+            fi
+            exit 1
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "Recovered: all checks pass again ($run_url)."
+            send "grateful.gg is back" "All grateful.gg checks pass again. $run_url"
+          fi
