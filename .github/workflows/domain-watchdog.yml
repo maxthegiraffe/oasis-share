@@ -91,10 +91,10 @@ jobs:
             if [ -z "$open" ]; then
               gh issue create --title "$ISSUE_TITLE" --body "$body"
               send "grateful.gg is down or its DNS changed" "$body"
+              exit 1
             else
-              echo "Already alerted in issue #$open."
+              echo "Still failing; already alerted in issue #$open."
             fi
-            exit 1
           elif [ -n "$open" ]; then
             gh issue close "$open" --comment "Recovered: all checks pass again ($run_url)."
             send "grateful.gg is back" "All grateful.gg checks pass again. $run_url"
