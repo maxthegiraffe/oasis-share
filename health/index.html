@@ -20,39 +20,13 @@
 <meta name="twitter:title" content="Text Gigi PEPTIDES">
 <meta name="twitter:description" content="Gigi walks you through it, from your first question to the Grateful Health store. A licensed physician decides what fits you.">
 <meta name="twitter:image" content="https://grateful.gg/health/cover.jpg">
-<link rel="canonical" href="https://grateful.gg/health/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,600..900,0..100,0..1;1,9..144,600..900,0..100,0..1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- Max, 2026-11-12: "grateful.gg/health should just be text gigi Peptides as the CTA - nothing on the page".
-     Gigi takes it from there: the peptide question, the Grateful Health store (Platform Health), the Safari code. -->
-<style>
-  :root { --peach:#FFDED8; --cobalt:#2340FF; --pink:#FF48B0; --ink:#1D1A3A; }
-  * { box-sizing: border-box; margin: 0; padding: 0 }
-  html, body { background: var(--peach); color: var(--cobalt) }
-  body { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
-    font-family: "DM Mono", ui-monospace, monospace; -webkit-font-smoothing: antialiased }
-  main { width: 100%; max-width: 520px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(14px, 3svh, 26px) }
-  .mark { width: clamp(150px, 30svh, 260px); height: auto; aspect-ratio: 1 }
-  h1 { font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 800;
-    font-size: clamp(40px, 11vw, 64px); line-height: 1; letter-spacing: -.02em }
-  .cta { display: block; text-align: center; white-space: nowrap; width: 100%; max-width: 420px; text-decoration: none;
-    background: var(--cobalt); color: #fff; border-radius: 999px; padding: 18px 28px; box-shadow: 5px 5px 0 var(--pink);
-    font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 800; font-size: clamp(22px, 6.6vw, 30px); line-height: 1.1;
-    transition: transform .15s ease, box-shadow .15s ease }
-  .cta em { font-style: italic; color: var(--peach) }
-  .cta:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--pink) }
-  .cta:focus-visible { outline: 3px solid var(--pink); outline-offset: 4px }
-  .num { font-size: 14px; letter-spacing: .08em; color: var(--ink) }
-  .num a { color: var(--cobalt) }
-</style>
+<!-- Max, 2026-11-13: "have grateful.gg/health redirect to https://gratefulhealth.joinplatformhealth.com/store".
+     GitHub Pages cannot send a 301, so the page forwards at once; the tags above keep the link preview. -->
+<link rel="canonical" href="https://gratefulhealth.joinplatformhealth.com/store">
+<meta http-equiv="refresh" content="0; url=https://gratefulhealth.joinplatformhealth.com/store">
+<script>location.replace("https://gratefulhealth.joinplatformhealth.com/store" + location.search + location.hash)</script>
 </head>
 <body>
-<main>
-  <img class="mark" src="mark.webp" alt="Grateful Health: two giraffes on a caduceus inside a cell" width="640" height="640">
-  <h1>Grateful Health</h1>
-  <a class="cta" href="sms:+15164197249?&amp;body=PEPTIDES">Text Gigi <em>PEPTIDES</em></a>
-  <p class="num">or text PEPTIDES to <a href="sms:+15164197249?&amp;body=PEPTIDES">(516) 419-7249</a></p>
-</main>
+<p><a href="https://gratefulhealth.joinplatformhealth.com/store">Continue to the Grateful Health store</a></p>
 </body>
 </html>
