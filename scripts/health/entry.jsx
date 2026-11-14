@@ -40,7 +40,10 @@ const BY_SLUG = Object.fromEntries(PEPTIDES.flatMap((p) => [[p[4], p[0]], ...(p[
 
 // ---- the test: which version, and the steps ----
 const TEST = 'health-lp';
-const VERSIONS = ['a', 'b', 'c', 'd'];
+// b (Text Gigi PEPTIDES) is out of the test since 2026-11-14 (Max: Gigi's replies send people to this page, so that
+// version "would be a loop ... lets remove that for now and only test the 3 pages"). A browser that held b, or a ?v=b link,
+// gets one of the three at random, kept. Its component stays below for when the loop is solved.
+const VERSIONS = ['a', 'c', 'd'];
 const BEACON = 'https://app.grateful.gg/__f';
 const store = {
   get(k) { try { return window.localStorage.getItem(k); } catch { return null; } },
