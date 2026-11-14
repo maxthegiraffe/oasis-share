@@ -355,7 +355,7 @@ function Join() {
           <div className="jn-f" role="radiogroup" aria-label={w.jn_pick}>{w.jn_pick}
             <div className="jn-chips">{TIERS.map(([key, name, label]) => <button key={key} type="button" role="radio" aria-checked={f.tier === key} onClick={() => setF((x) => ({ ...x, tier: key }))}>{name} · {label}</button>)}</div>
           </div>
-          <label className="jn-agree"><input type="checkbox" checked={f.agrees} onChange={set('agrees')} /><span>{w.jn_agree} <a href="https://app.grateful.gg/terms" target="_blank" rel="noopener noreferrer">{w.jn_guidelines}</a></span></label>
+          <label className="jn-agree"><input type="checkbox" checked={f.agrees} onChange={set('agrees')} /><span>{w.jn_agree}</span></label>
           <input className="jn-hp" tabIndex="-1" autoComplete="off" value={f.company} onChange={set('company')} aria-hidden="true" />
           {state && state !== 'sending' && <p className="jn-err" role="alert">{state}</p>}
           <button type="submit" className="btn" disabled={state === 'sending'}>{state === 'sending' ? w.jn_sending : w.jn_send}</button>
