@@ -9,7 +9,7 @@
 //   d  The shelf: every product with its photo, each straight to its own shop page
 // Steps go to the Oasis edge (app.grateful.gg/__f, the same counter as the Safari landing test; never a name, email or
 // phone): view, engage (first tap in the hero), scroll (reached the cards), stay30 (30 seconds on the page), shop (a tap
-// on a product's shop page, detail = the product), gigi (a tap on a Text Gigi link).
+// on a product's shop page, detail = the product), gigi (a tap on a Text Gigi link), apply (Apply to the Giraffes, at the bottom).
 // Read with agentic-business-os-pkg/projects/grateful-health/tools/health_lp_report.py.
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -258,6 +258,7 @@ document.addEventListener('click', (e) => {
   const h = a.getAttribute('href') || '';
   if (h.startsWith(SHOP)) track('shop', `${BY_SLUG[h.slice(SHOP.length)] || 'other'}:${a.closest('.hero') ? 'hero' : 'page'}`);
   else if (h.startsWith('sms:')) track('gigi', a.closest('.hero') ? 'hero' : 'page');
+  else if (h.includes('grateful.gg/apply')) track('apply');
 }, true);
 let seconds = 0;
 const clock = setInterval(() => { if (!document.hidden && (seconds += 1) >= 30) { track('stay30'); clearInterval(clock); } }, 1000);
