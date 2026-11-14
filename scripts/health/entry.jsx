@@ -237,6 +237,15 @@ const BENEFITS = [
 ];
 const TIERS = [['1-499', 'Southern', '<$500', 'southern'], ['500-999', 'Nubian', '$500 - $999', 'nubian'], ['1000-4999', 'Reticulated', '$1,000 - $4,999', 'reticulated'], ['5000+', 'Masai', '$5,000+', 'masai']];
 const PLACES = ['LA', 'SF', 'Austin', 'NYC', 'Miami', 'Israel'];
+// One photo a year, 2022 to 2026, for "Find your people. Keep them for life." (Max, 2026-11-13). Max's own event photos, with
+// the years and captions of the Oasis homepage's curated set (oasis src/components/oasis-welcome/home/oasisPhotos.js).
+const YEARS = [
+  [2022, 'An Evening of Gratitude in Venice', 'A long dinner table under an orange cloth in a home kitchen, about fifteen guests seated along both sides and more talking by the stove', '50% 50%'],
+  [2023, 'A Brunch of Giraffes at Little City Farm', 'About forty Giraffes and two dogs posed together in a garden at a Brunch of Giraffes', '50% 40%'],
+  [2024, 'A fruit ceremony', 'Giraffes sitting in a circle on the grass around a mandala of sliced fruit', '50% 62%'],
+  [2025, 'Giraffes at the Zoo, San Francisco', 'Eight Giraffes holding lettuce in front of a real giraffe at the San Francisco Zoo', '50% 45%'],
+  [2026, 'An Evening of Gratitude Shabbat at Brentwood Hills', 'About thirty-five Giraffes standing in a wide circle around a living room at dusk, each holding a lit tea candle', '50% 50%'],
+];
 const EMPTY = { name: '', email: '', phone: '', location: '', other: '', why: '', heard: '', tier: '', agrees: false, company: '' };
 function Join() {
   const [step, setStep] = useState(0);
@@ -299,12 +308,14 @@ function Join() {
       {dots}
       {step === 0 && (
         <div className="jn-slide jn-0">
-          <figure className="jn-photo"><img src="giraffes/brunch.jpg" alt="About forty Giraffes and two dogs posed together in a garden at a Brunch of Giraffes" width="728" height="970" loading="lazy" /><figcaption>A Brunch of Giraffes at Little City Farm, 2023</figcaption></figure>
-          <div>
-            <p className="eye">{w.jn_eye}</p>
-            <h3>{w.jn_h1}</h3>
-            <p>{w.jn_intro}</p>
+          <p className="eye">{w.jn_eye}</p>
+          <h3>{w.jn_h1}</h3>
+          <div className="jn-years">
+            {YEARS.map(([year, cap, alt, pos]) => (
+              <figure key={year}><img src={`giraffes/y${year}.jpg`} alt={alt} style={{ objectPosition: pos }} loading="lazy" /><b>{year}</b><figcaption>{cap}</figcaption></figure>
+            ))}
           </div>
+          <p>{w.jn_intro}</p>
         </div>
       )}
       {step === 1 && (

@@ -83,6 +83,11 @@
   .btn.alt { background:rgba(255,255,255,.5); color:var(--blue); box-shadow:inset 0 0 0 1.5px var(--blue) }
   .btn.alt:hover { box-shadow:inset 0 0 0 1.5px var(--blue), 4px 4px 0 var(--pink) }
   .sub em { font-style:italic; font-weight:500; color:var(--blue) }
+  .with { margin-top:clamp(6px, 1.2svh, 12px) }
+  .with a { display:inline-block; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.5); box-shadow:inset 0 0 0 1.5px var(--blue); color:var(--blue); text-decoration:none; font:500 clamp(11px, 3vw, 13px)/1.2 var(--mono); letter-spacing:.02em; white-space:nowrap }
+  .with a:hover { background:rgba(255,255,255,.8) }
+  @media (max-width:440px) { .with a span { display:none } .with a { font-size:11.5px } }
+  @media (max-width:859px) { html[data-v="a"] .hero .lede { display:none } }
   @media (max-width:859px) { .brand .eye, .lab-hint { display:none } .hero .lede { font-size:13.5px; line-height:1.35; margin-top:6px } .hero main { align-content:start; padding-top:clamp(0px, 2svh, 28px) } }
   @media (max-width:859px) {
     .lab-pick .px-cap { height:56px; align-items:center } .lab-pick .px-cap span { font-size:14.5px; line-height:1.3 }
@@ -141,7 +146,7 @@
     .qz-out { min-height:204px; gap:7px } .qz-row { min-height:56px; padding:5px 12px 5px 6px } .qz-row img { width:44px; height:44px } .qz-row b { font-size:18px }
   }
   @media (max-width:859px) and (max-height:720px) { .tg-line { display:none } .qz { gap:8px } }
-  @media (max-width:859px) and (max-height:600px) { .qz-out { min-height:178px; gap:5px } .qz-row { min-height:50px } .qz-row img { width:40px; height:40px } .qz .more { display:none } }
+  @media (max-width:859px) and (max-height:600px) { .qz-eye { display:none } .qz { gap:6px } .qz-goals button { min-height:36px } .qz-out { min-height:164px; gap:5px } .qz-row { min-height:50px } .qz-row img { width:40px; height:40px } .qz .more { display:none } }
   @media (min-width:860px) {
     .tg, .qz, .sh { grid-column:2; grid-row:1 / span 2; justify-self:end }
     html[data-v="b"] .hero main, html[data-v="c"] .hero main, html[data-v="d"] .hero main { grid-template-areas:"pitch pick" "pitch pick" }
@@ -201,10 +206,12 @@
   .jn-slide { display:flex; flex-direction:column; gap:12px; animation:lab-in .35s ease both }
   .jn h3 { font:400 clamp(28px, 6vw, 42px)/1.05 var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1; letter-spacing:-.02em; text-wrap:balance }
   .jn-slide p { font-size:15.5px; color:var(--ink-soft); max-width:44em }
-  .jn-0 { gap:18px } .jn-0 .eye { margin-bottom:8px } .jn-0 h3 { margin-bottom:10px }
-  .jn-photo { position:relative; margin:0; aspect-ratio:4 / 3; border-radius:var(--r-md); overflow:hidden }
-  .jn-photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 40% }
-  .jn-photo figcaption { position:absolute; left:0; right:0; bottom:0; padding:26px 12px 9px; background:linear-gradient(to top, rgba(29,26,58,.78), rgba(29,26,58,0)); color:#fff; font:500 11.5px/1.3 var(--mono); letter-spacing:.03em }
+  .jn-years { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin:4px 0 6px }
+  .jn-years figure { position:relative; margin:0; aspect-ratio:4 / 3; border-radius:18px; overflow:hidden; background:rgba(29,26,58,.08) }
+  .jn-years figure:last-child { grid-column:1 / -1; aspect-ratio:16 / 9; box-shadow:0 0 0 1.5px var(--blue), 5px 5px 0 var(--pink) }
+  .jn-years img { display:block; width:100%; height:100%; object-fit:cover }
+  .jn-years b { position:absolute; left:8px; top:8px; padding:3px 10px; border-radius:999px; background:var(--blue); color:#fff; box-shadow:2px 2px 0 var(--pink); font:800 15px/1.3 var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1 }
+  .jn-years figcaption { position:absolute; left:0; right:0; bottom:0; padding:22px 10px 8px; background:linear-gradient(to top, rgba(29,26,58,.8), rgba(29,26,58,0)); color:#fff; font:500 11px/1.3 var(--mono); letter-spacing:.02em }
   .jn-ben { display:grid; grid-template-columns:minmax(0, 1fr); gap:10px; margin-top:4px }
   .jn-ben li { display:flex; gap:12px; align-items:flex-start }
   .jn-ben i { flex:none; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--blue); color:var(--paper); box-shadow:2px 2px 0 var(--pink); font:500 13px var(--mono); font-style:normal }
@@ -233,7 +240,7 @@
   .jn-nav .btn { border:0; cursor:pointer; min-height:52px; font-size:20px }
   .jn-gigi { margin-top:16px; text-align:center; font-size:13.5px } .jn-gigi a { color:var(--blue); text-underline-offset:4px }
   .jn-done { text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px } .jn-done img { height:220px; width:auto } .jn-done p { max-width:30em; color:var(--ink-soft) }
-  @media (min-width:860px) { .jn-0 { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:32px } .jn-ben { grid-template-columns:1fr 1fr; gap:14px 28px } .jn-tiers { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
+  @media (min-width:860px) { .jn-years { grid-template-columns:repeat(5, minmax(0, 1fr)); gap:12px } .jn-years figure, .jn-years figure:last-child { grid-column:auto; aspect-ratio:3 / 4 } .jn-ben { grid-template-columns:1fr 1fr; gap:14px 28px } .jn-tiers { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
   @media (prefers-reduced-motion: reduce) { .jn-slide { animation:none } .jn-tiers img { transition:none } }
   footer.wrap { padding-top:56px; padding-bottom:40px; font-size:13.5px; color:var(--ink-soft) }
   footer p { max-width:52em }
@@ -250,6 +257,7 @@
     <div class="pitch">
       <h1 class="word">grateful <span>health</span></h1>
       <p class="sub">Regenerative medicine, <em>in community.</em></p>
+      <p class="with"><a href="#giraffes">In partnership with the Grateful Giraffes<span> community</span></a></p>
       <p class="lede">The power of a community doing its diligence together, toward longer, healthier lives. We are starting with peptides.</p>
     </div>
     <div id="lab"><a class="btn" href="#learn">See how each one works</a></div>
@@ -297,8 +305,8 @@
 <!-- Who we are (Max, 2026-11-13): "grateful giraffes missing at the bottom - this is kind of the who we are and why we
      started grateful health", then: not about physicians and pharmacies; "its more about using the power of the community
      diligence that can lead to longer healthier lives and talk about the blue zones & community and use real photos & real
-     stats from giraffes and then grateful labs is the venture studio behind grateful health". The stats are the Nov 11 town
-     hall deck's (oasis src/lib/townHallDeckCopy.js) and /labs' (154 Evenings of Gratitude); the photos are Max's own event photos from the Oasis
+     stats from giraffes and then grateful labs is the venture studio behind grateful health". The stats are Max's (1,000 Giraffes and 500+
+     gatherings as in the Nov 11 town hall deck; 7 Biohacking Safaris and 160+ Evenings of Gratitude, his words that night); the photos are Max's own event photos from the Oasis
      homepage's curated set (oasis public/oasis-home/, captions from oasisPhotos.js); none is used twice on this page. -->
 <section id="giraffes" class="wrap who-we">
   <p class="eye">Who we are</p>
@@ -309,13 +317,13 @@
     <figure><img src="giraffes/feast.jpg" alt="About forty Giraffes posed together on the floor and couches of a living room at the second Tower Feast" width="1400" height="1050" style="object-position:50% 45%" loading="lazy"><figcaption>The second Tower Feast, Santa Monica, 2023</figcaption></figure>
     <figure><img src="giraffes/olympus.jpg" alt="Rows of guests lying on mats on a rooftop lawn between downtown Los Angeles towers at Olympus" width="1016" height="1354" style="object-position:50% 42%" loading="lazy"><figcaption>Olympus on a downtown LA rooftop, 2024</figcaption></figure>
     <figure><img src="giraffes/friendsgiving.jpg" alt="About twenty-seven Giraffes and a dog posed together on a terrace at Friendsgiving" width="1400" height="1050" style="object-position:50% 45%" loading="lazy"><figcaption>Friendsgiving, 2024</figcaption></figure>
-    <figure><img src="giraffes/candles.jpg" alt="About thirty-five Giraffes standing in a wide circle around a living room at dusk, each holding a lit tea candle" width="1400" height="1050" loading="lazy"><figcaption>An Evening of Gratitude Shabbat</figcaption></figure>
+    <figure><img src="giraffes/bus.jpg" alt="About twenty people in front of the Grateful Bus, painted with giraffes and the words What are you grateful for" width="960" height="640" style="object-position:60% 55%" loading="lazy"><figcaption>The Grateful Bus on the road</figcaption></figure>
   </div>
   <ul class="who-stats">
     <li><b>1,000</b><span>Grateful Giraffes</span></li>
     <li><b>500+</b><span>gatherings since 2022</span></li>
-    <li><b>154</b><span>Evenings of Gratitude</span></li>
-    <li><b>4</b><span>cities this fall</span></li>
+    <li><b>7</b><span>Biohacking Safaris</span></li>
+    <li><b>160+</b><span>Evenings of Gratitude</span></li>
   </ul>
   <div class="who-why">
     <p class="lede">The Grateful Giraffes are that kind of community. Grateful Health puts it to work: a thousand of us asking the hard questions, trying things, comparing notes and vouching for what we would recommend.</p>
