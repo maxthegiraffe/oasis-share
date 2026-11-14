@@ -35,6 +35,8 @@ const PEPTIDES = [
   ['b12', 'Vitamin B12', 'A vitamin built around cobalt', 'Vitamin B12', 'vitamin-b12-injection-rgl6', 'b12'],
   ['lipoc', 'Lipo-C', 'Nutrients the body uses to process fat', 'Lipo-C', 'lipo-c-injection-rf4j', 'lipo-c'],
 ];
+// Shop links open in a new tab, so the page stays open behind them (Max, 2026-11-14).
+const NEW_TAB = { target: '_blank', rel: 'noopener' };
 const BY_KEY = Object.fromEntries(PEPTIDES.map((p) => [p[0], p]));
 const BY_SLUG = Object.fromEntries(PEPTIDES.flatMap((p) => [[p[4], p[0]], ...(p[6] || []).map(([, s]) => [s, p[0]])]));
 
@@ -128,7 +130,7 @@ function Lab() {
         </div>
         <p className="lab-text" role="tabpanel" key={k + tab}>{tab === 'what' ? w[`pep_${k}`] : w[`x_${k}_${tab}`]}</p>
         <div className="lab-go">
-          <a className="btn" href={SHOP + slug}>{w.lab_buy} {shopName}<span aria-hidden="true"> →</span></a>
+          <a className="btn" href={SHOP + slug} {...NEW_TAB}>{w.lab_buy} {shopName}<span aria-hidden="true"> →</span></a>
           <a className="btn alt" href={GIGI + encodeURIComponent(`PEPTIDES: ${name}`)}>{w.lab_gigi}</a>
         </div>
       </div>
@@ -181,7 +183,7 @@ function Quiz() {
           <>
             <p className="qz-eye">{w.qz_eye}</p>
             {list.map(([k, name, cap, shopName, slug, photo]) => (
-              <a key={k} className="qz-row" href={SHOP + slug}>
+              <a key={k} className="qz-row" href={SHOP + slug} {...NEW_TAB}>
                 <img src={`products/${photo}.webp`} alt="" width="48" height="48" />
                 <span><b>{k === 'glp1' ? shopName : name}</b><small>{k === 'glp1' ? w.qz_glp1 : cap}</small></span>
                 <i>{w.lab_buy}<span aria-hidden="true"> →</span></i>
@@ -210,7 +212,7 @@ function Shelf() {
       <p className="lab-hint sh-hint">{w.sh_hint}</p>
       <div className="sh-row" ref={row}>
         {PEPTIDES.map(([k, name, cap, shopName, slug, photo]) => (
-          <a key={k} className="sh-tile" href={SHOP + slug}>
+          <a key={k} className="sh-tile" href={SHOP + slug} {...NEW_TAB}>
             <span className="sh-ph"><img src={`products/${photo}.webp`} alt="" width="320" height="320" loading={k === 'bpc157' || k === 'tb500' || k === 'glp1' ? 'eager' : 'lazy'} /></span>
             <b>{k === 'glp1' ? shopName : name}</b>
             <small>{k === 'glp1' ? w.qz_glp1 : cap}</small>
@@ -379,16 +381,16 @@ function Cards() {
       </PeptideExplainer>
       <div className="pep-buy">
         <img src={`products/${photo}.webp`} alt="" width="56" height="56" loading="lazy" />
-        <a className="pep-shop" href={SHOP + slug}>See {shopName} {w.lab_shop}<span aria-hidden="true"> →</span></a>
+        <a className="pep-shop" href={SHOP + slug} {...NEW_TAB}>See {shopName} {w.lab_shop}<span aria-hidden="true"> →</span></a>
       </div>
-      {forms.length > 0 && <p className="pep-forms">{forms.map(([label, s]) => <a key={s} href={SHOP + s}>{label} <span aria-hidden="true">→</span></a>)}</p>}
+      {forms.length > 0 && <p className="pep-forms">{forms.map(([label, s]) => <a key={s} href={SHOP + s} {...NEW_TAB}>{label} <span aria-hidden="true">→</span></a>)}</p>}
     </article>
   ));
 }
 
 // Every product, by name, each to its own shop page (Max, 2026-11-13: "it shouldnt open the shop it should have a link for each one").
 function Names() {
-  return PEPTIDES.map(([k, name, , shopName, slug]) => <a key={k} href={SHOP + slug}>{k === 'glp1' ? shopName : name}<span aria-hidden="true"> →</span></a>);
+  return PEPTIDES.map(([k, name, , shopName, slug]) => <a key={k} href={SHOP + slug} {...NEW_TAB}>{k === 'glp1' ? shopName : name}<span aria-hidden="true"> →</span></a>);
 }
 
 const style = document.createElement('style');
