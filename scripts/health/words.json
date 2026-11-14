@@ -115,5 +115,15 @@
  "lab_shop": "in the shop",
  "lab_what": "What it is",
  "lab_gigi": "Ask Gigi",
- "lab_buy": "Shop"
+ "lab_buy": "Shop",
+ "tg_line": "She asks one question, then sends you your own page with the ones worth asking a physician about.",
+ "tg_or": "or text PEPTIDES to",
+ "tg_more": "or see how each one works",
+ "qz_q": "What do you want most right now?",
+ "qz_empty": "Pick up to three. You'll see what to ask a physician about.",
+ "qz_eye": "Worth asking a physician about",
+ "qz_more": "See how each one works",
+ "sh_hint": "Twelve in the shop. Tap one to open its page",
+ "sh_more": "See how each one works",
+ "qz_glp1": "A GLP-1 medicine"
 }
