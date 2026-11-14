@@ -22,10 +22,15 @@ const PEPTIDES = [
   ['lipoc', 'Lipo-C', 'Nutrients the body uses to process fat', 'Lipo-C', 'lipo-c-injection-rf4j', 'lipo-c'],
 ];
 
-// The hero's lab: a row of names, and the picked one's animation. Until someone picks, it moves on to the next one
-// after each loop (three steps of four seconds), unless motion is reduced.
+// The hero's lab: pick a name, watch its animation, read about it and go to its page in the shop, all on the first
+// screen (Max, 2026-11-13: "the more about should appear in the hero section and not need scrolling down - as well as
+// the buy button", "or ask gigi"). Until someone picks, it moves on to the next one after each loop (three steps of
+// four seconds), unless motion is reduced.
+const GIGI = 'sms:+15164197249?&body=';
+const TABS = [['what', 'lab_what'], ['benefits', 'x_benefits'], ['risks', 'x_risks'], ['dose', 'x_dose'], ['stack', 'x_stack']];
 function Lab() {
   const [i, setI] = useState(0);
+  const [tab, setTab] = useState('what');
   const picked = useRef(false);
   const row = useRef(null);
   useEffect(() => {
@@ -37,17 +42,30 @@ function Lab() {
     const el = row.current, chip = el?.children[i];
     if (chip && el.scrollWidth > el.clientWidth) el.scrollTo({ left: chip.offsetLeft - (el.clientWidth - chip.offsetWidth) / 2, behavior: 'smooth' });
   }, [i]);
-  const [k, name] = PEPTIDES[i];
+  const [k, name, cap, shopName, slug] = PEPTIDES[i];
+  const pick = (fn) => { picked.current = true; fn(); };
   return (
     <>
-      <p className="lab-hint">{w.lab_hint}</p>
-      <div className="lab-chips" role="tablist" aria-label={w.lab_hint} ref={row}>
-        {PEPTIDES.map(([pk, pn], j) => (
-          <button key={pk} type="button" role="tab" aria-selected={j === i} onClick={() => { picked.current = true; setI(j); }}>{pn}</button>
-        ))}
+      <div className="lab-pick">
+        <p className="lab-hint">{w.lab_hint}</p>
+        <div className="lab-chips" role="tablist" aria-label={w.lab_hint} ref={row}>
+          {PEPTIDES.map(([pk, pn], j) => (
+            <button key={pk} type="button" role="tab" aria-selected={j === i} onClick={() => pick(() => setI(j))}>{pn}</button>
+          ))}
+        </div>
+        <PeptideStage key={k} k={k} name={name} w={w} />
       </div>
-      <PeptideStage key={k} k={k} name={name} w={w} />
-      <a className="lab-more" href={`#${k}`}>{w.lab_more} {name} <span aria-hidden="true">↓</span></a>
+      <div className="lab-info">
+        <p className="lab-name"><b>{name}</b><small>{cap}</small></p>
+        <div className="lab-tabs" role="tablist" aria-label={name}>
+          {TABS.map(([id, label]) => <button key={id} type="button" role="tab" aria-selected={tab === id} onClick={() => pick(() => setTab(id))}>{w[label]}</button>)}
+        </div>
+        <p className="lab-text" role="tabpanel" key={k + tab}>{tab === 'what' ? w[`pep_${k}`] : w[`x_${k}_${tab}`]}</p>
+        <div className="lab-go">
+          <a className="btn" href={SHOP + slug}>{w.lab_buy} {shopName}<span aria-hidden="true"> →</span></a>
+          <a className="btn alt" href={GIGI + encodeURIComponent(`PEPTIDES: ${name}`)}>{w.lab_gigi}</a>
+        </div>
+      </div>
     </>
   );
 }

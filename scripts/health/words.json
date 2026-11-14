@@ -112,6 +112,8 @@
  "x_lipoc_dose": "On a regular schedule, alongside changes to food and movement. A physician sets it.",
  "x_lipoc_stack": "Sometimes used with GLP-1 medicines. The combination has not been well studied.",
  "lab_hint": "Tap one to watch what it does",
- "lab_more": "More about",
- "lab_shop": "in the shop"
+ "lab_shop": "in the shop",
+ "lab_what": "What it is",
+ "lab_gigi": "Ask Gigi",
+ "lab_buy": "Shop"
 }
