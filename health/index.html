@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Grateful Health · Regenerative medicine, in community</title>
-<meta name="description" content="Peptides and other prescription therapies, explained. A licensed physician decides and a licensed pharmacy fills it.">
+<meta name="description" content="A community doing its diligence together, toward longer, healthier lives. Starting with peptides: see how each one works.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Grateful Health">
 <meta property="og:title" content="Grateful Health">
-<meta property="og:description" content="Peptides and other prescription therapies, explained. A licensed physician decides and a licensed pharmacy fills it.">
+<meta property="og:description" content="A community doing its diligence together, toward longer, healthier lives. Starting with peptides: see how each one works.">
 <meta property="og:url" content="https://grateful.gg/health/">
 <meta property="og:image" content="https://grateful.gg/health/cover.jpg?v=3">
 <meta property="og:image:secure_url" content="https://grateful.gg/health/cover.jpg?v=3">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="Grateful Health: Regenerative medicine, in community, beside BPC-157 and Sermorelin vials">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Grateful Health">
-<meta name="twitter:description" content="Peptides and other prescription therapies, explained. A licensed physician decides and a licensed pharmacy fills it.">
+<meta name="twitter:description" content="A community doing its diligence together, toward longer, healthier lives. Starting with peptides: see how each one works.">
 <meta name="twitter:image" content="https://grateful.gg/health/cover.jpg?v=3">
 <link rel="canonical" href="https://grateful.gg/health/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -192,6 +192,46 @@
   .who-stats span { display:block; margin-top:6px; font-size:13.5px; line-height:1.3; color:var(--ink-soft) }
   .who-why { margin-top:10px } .who-why .lede b { color:var(--ink); font-weight:500 }
   @media (min-width:860px) { .who-photos { grid-template-columns:1fr 1fr; gap:22px } .who-stats { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
+  .jn { max-width:860px; margin:0 auto; padding:clamp(18px, 4vw, 34px); border-radius:36px; background:var(--panel); box-shadow:0 0 0 1.5px var(--blue), 8px 8px 0 var(--pink); scroll-margin-top:12px }
+  .jn-dots { display:flex; gap:6px; margin-bottom:18px }
+  .jn-dots button { flex:1; height:26px; padding:0; border:0; background:none; cursor:pointer }
+  .jn-dots span { display:block; height:5px; border-radius:3px; background:var(--cytoplasm) }
+  .jn-dots button[aria-selected="true"] span { background:var(--blue) }
+  .jn-slide { display:flex; flex-direction:column; gap:12px; animation:lab-in .35s ease both }
+  .jn h3 { font:400 clamp(28px, 6vw, 42px)/1.05 var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1; letter-spacing:-.02em; text-wrap:balance }
+  .jn-slide p { font-size:15.5px; color:var(--ink-soft); max-width:44em }
+  .jn-0 { gap:18px } .jn-0 .eye { margin-bottom:8px } .jn-0 h3 { margin-bottom:10px }
+  .jn-photo { display:block; width:100%; height:auto; aspect-ratio:16 / 9; object-fit:cover; object-position:50% 35%; border-radius:var(--r-md) }
+  .jn-ben { display:grid; grid-template-columns:minmax(0, 1fr); gap:10px; margin-top:4px }
+  .jn-ben li { display:flex; gap:12px; align-items:flex-start }
+  .jn-ben i { flex:none; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--blue); color:var(--paper); box-shadow:2px 2px 0 var(--pink); font:500 13px var(--mono); font-style:normal }
+  .jn-ben b { display:block; font:500 18px/1.2 var(--serif) } .jn-ben span { display:block; margin-top:2px; font-size:14px; line-height:1.4; color:var(--ink-soft) }
+  .jn-q { font:500 15px var(--mono) !important; color:var(--ink) !important; margin-top:6px }
+  .jn-tiers { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px }
+  .jn-tiers button { display:flex; flex-direction:column; align-items:center; gap:2px; padding:12px 8px 14px; border-radius:var(--r-md); border:0; background:rgba(255,255,255,.7); box-shadow:inset 0 0 0 1.5px rgba(35,64,255,.3); cursor:pointer; color:var(--ink) }
+  .jn-tiers img { width:auto; height:clamp(120px, 26vw, 190px); transition:transform .25s ease }
+  .jn-tiers button:hover img { transform:translateY(-3px) }
+  .jn-tiers b { font:500 20px/1.1 var(--serif) } .jn-tiers span { font:500 13px var(--mono); color:var(--ink-soft) }
+  .jn-tiers button[aria-checked="true"] { background:var(--blue); color:#fff; box-shadow:4px 4px 0 var(--pink) } .jn-tiers button[aria-checked="true"] span { color:var(--paper) }
+  .jn-form label, .jn-f { display:flex; flex-direction:column; gap:6px; font:500 13.5px var(--mono); color:var(--ink) }
+  .jn-form input:not([type="checkbox"]), .jn-form textarea { width:100%; min-height:48px; padding:10px 14px; border-radius:14px; border:0; background:#fff; box-shadow:inset 0 0 0 1.5px rgba(35,64,255,.35); font:400 16px var(--mono); color:var(--ink) }
+  .jn-form textarea { resize:vertical }
+  .jn-form input:focus, .jn-form textarea:focus { outline:none; box-shadow:inset 0 0 0 2.5px var(--blue) }
+  .jn-chips { display:flex; flex-wrap:wrap; gap:7px }
+  .jn-chips button { min-height:40px; padding:0 14px; border-radius:999px; border:0; background:#fff; box-shadow:inset 0 0 0 1.5px var(--blue); color:var(--blue); font:500 13.5px var(--mono); cursor:pointer }
+  .jn-chips button[aria-checked="true"] { background:var(--blue); color:#fff; box-shadow:3px 3px 0 var(--pink) }
+  .jn-agree { flex-direction:row !important; align-items:flex-start; gap:10px !important; font-weight:400 !important; line-height:1.45 }
+  .jn-agree input { flex:none; width:22px; height:22px; margin-top:1px; accent-color:var(--blue) } .jn-agree a { color:var(--blue) }
+  .jn-hp { position:absolute !important; left:-9999px; width:1px !important; height:1px !important; min-height:0 !important; opacity:0 }
+  .jn-err { color:#B4005A !important; font-weight:500 }
+  .jn-form .btn { align-self:flex-start; border:0; cursor:pointer } .jn-form .btn[disabled] { opacity:.6 }
+  .jn-note { font-size:13px !important }
+  .jn-nav { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:20px }
+  .jn-nav .btn { border:0; cursor:pointer; min-height:52px; font-size:20px }
+  .jn-gigi { margin-top:16px; text-align:center; font-size:13.5px } .jn-gigi a { color:var(--blue); text-underline-offset:4px }
+  .jn-done { text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px } .jn-done img { height:220px; width:auto } .jn-done p { max-width:30em; color:var(--ink-soft) }
+  @media (min-width:860px) { .jn-0 { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:32px } .jn-photo { aspect-ratio:4 / 3 } .jn-ben { grid-template-columns:1fr 1fr; gap:14px 28px } .jn-tiers { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
+  @media (prefers-reduced-motion: reduce) { .jn-slide { animation:none } .jn-tiers img { transition:none } }
   footer { padding:56px 0 40px; font-size:13.5px; color:var(--ink-soft) }
   footer p { max-width:52em }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto } .btn, .tile img { transition:none } }
@@ -207,7 +247,7 @@
     <div class="pitch">
       <h1 class="word">grateful <span>health</span></h1>
       <p class="sub">Regenerative medicine, <em>in community.</em></p>
-      <p class="lede">Peptides and other prescription therapies, from a licensed physician and pharmacy.</p>
+      <p class="lede">The power of a community doing its diligence together, toward longer, healthier lives. We are starting with peptides.</p>
     </div>
     <div id="lab"><a class="btn" href="#learn">See how each one works</a></div>
   </main>
@@ -235,9 +275,9 @@
 </section>
 
 <section id="partnership" class="wrap">
-  <p class="eye">The partnership</p>
-  <h2>Grateful Health, with Platform Health</h2>
-  <p class="lede">The Grateful Health shop is built by Grateful Labs and Platform Health together. Each side does one job.</p>
+  <p class="eye">The peptide shop</p>
+  <h2>Built with Platform Health</h2>
+  <p class="lede">The Grateful Health peptide shop is built by Grateful Labs and Platform Health together. Each side does one job.</p>
   <div class="who">
     <div><b>Grateful Health</b><p>Explains each peptide in plain words, like this page, and points you to the right place in the shop.</p></div>
     <div><b>Platform Health</b><p>Runs the shop and the checkout.</p></div>
@@ -275,8 +315,13 @@
     <p class="lede">The Grateful Giraffes are that kind of community. Grateful Health puts it to work: a thousand of us asking the hard questions, trying things, comparing notes and vouching for what we would recommend.</p>
     <p class="lede">The power of a community doing its diligence together can lead to longer, healthier lives.</p>
     <p class="lede"><b>Grateful Labs</b> is the venture studio behind Grateful Health, and every Giraffe is a shareholder.</p>
-    <p class="cta-row"><a class="btn" href="https://grateful.gg/apply">Apply to the Giraffes</a></p>
+    <p class="cta-row"><a class="btn" href="#join">Apply to the Giraffes ↓</a></p>
   </div>
+</section>
+
+<!-- Join: the Oasis /apply page in four slides, and the application sent from here (scripts/health/entry.jsx Join). -->
+<section id="join" class="wrap">
+  <div id="join-app"><p class="lede"><a href="sms:+15164197249?&amp;body=APPLY">Text APPLY to Gigi to apply</a></p></div>
 </section>
 
 <footer class="wrap">

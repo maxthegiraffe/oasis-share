@@ -9,7 +9,7 @@
 //   d  The shelf: every product with its photo, each straight to its own shop page
 // Steps go to the Oasis edge (app.grateful.gg/__f, the same counter as the Safari landing test; never a name, email or
 // phone): view, engage (first tap in the hero), scroll (reached the cards), stay30 (30 seconds on the page), shop (a tap
-// on a product's shop page, detail = the product), gigi (a tap on a Text Gigi link), apply (Apply to the Giraffes, at the bottom).
+// on a product's shop page, detail = the product), gigi (a tap on a Text Gigi link), and the application at the bottom: apply_open, apply_tier, apply_form, apply_done.
 // Read with agentic-business-os-pkg/projects/grateful-health/tools/health_lp_report.py.
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -220,6 +220,143 @@ function Shelf() {
   );
 }
 
+// ---- Join: the Oasis /apply page, condensed into four slides at the bottom, and the application itself, sent from here
+// (Max, 2026-11-13: "apply - it should happen on the page", "condense the apply page into a few slides at the bottom with
+// good visuals in the same style and not force them to leave the page"). The words, benefits, tiers and questions are
+// /apply's own (oasis src/components/membership/applyCopy.js, src/lib/membershipContribution.js). It files the same
+// application /apply and Gigi's APPLY by text do, through Gigi's Worker (gigi-cloud POST /apply), marked with this page.
+const APPLY_URL = 'https://gigi-cloud.gigi-grateful.workers.dev/apply';
+const BENEFITS = [
+  ['Walk into any gathering already belonging', 'Giraffe-only gatherings, auto-approval, and Giraffe pricing on open events.'],
+  ['Perks from people who know you', 'Giraffe-only discounts and perks from the community and our partners.'],
+  ['Own a piece of what we build', 'A welcome equity grant in Grateful Labs, and the ability to earn more in our venture studio.'],
+  ['Your city’s Giraffe group chat', 'WhatsApp groups in LA, SF, Austin, NYC, Miami and Israel.'],
+  ['Someone who makes the right intros', 'Gigi, our Giraffe of Staff, gets to know you and finds the Giraffes who can help you, and who you can help.'],
+  ['Say you’re a Grateful Giraffe', 'Heads in the clouds, feet on the ground, big hearts.'],
+  ['Yours for life', 'One contribution, no dues, no renewals. Once a Giraffe, always a Giraffe.'],
+];
+const TIERS = [['1-499', 'Southern', '<$500', 'southern'], ['500-999', 'Nubian', '$500 - $999', 'nubian'], ['1000-4999', 'Reticulated', '$1,000 - $4,999', 'reticulated'], ['5000+', 'Masai', '$5,000+', 'masai']];
+const PLACES = ['LA', 'SF', 'Austin', 'NYC', 'Miami', 'Israel'];
+const EMPTY = { name: '', email: '', phone: '', location: '', other: '', why: '', heard: '', tier: '', agrees: false, company: '' };
+function Join() {
+  const [step, setStep] = useState(0);
+  const [f, setF] = useState(EMPTY);
+  const [state, setState] = useState('');   // '', sending, done, already, or an error line
+  const top = useRef(null);
+  const set = (k) => (e) => setF((x) => ({ ...x, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }));
+  const go = (n) => {
+    setStep(n);
+    track(n === 3 ? 'apply_form' : 'apply_open');
+    const el = top.current;
+    if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: 'start' });
+  };
+  const send = async (e) => {
+    e.preventDefault();
+    const location = f.location === w.jn_else ? f.other.trim() : f.location;
+    const need = [];
+    if (f.name.trim().replace(/[^a-z]/gi, '').length < 2) need.push(w.jn_name);
+    if (!/^[\w.+-]+@[\w-]+(\.[\w-]+)+$/.test(f.email.trim())) need.push(w.jn_email);
+    if (f.phone.replace(/\D/g, '').length < 10) need.push(w.jn_phone);
+    if (!location) need.push(w.jn_where);
+    if (f.why.trim().length < 3) need.push(w.jn_why);
+    if (f.heard.trim().length < 2) need.push(w.jn_heard);
+    if (!f.tier) need.push(w.jn_pick);
+    if (!f.agrees) need.push(w.jn_guidelines);
+    if (need.length) { setState(`${w.jn_need} ${need.join(', ')}`); return; }
+    setState('sending');
+    try {
+      const r = await fetch(APPLY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        full_name: f.name.trim(), email: f.email.trim(), phone: f.phone, location, why_join: f.why.trim(), how_did_you_hear: f.heard.trim(),
+        contribution_range: f.tier, agrees_to_guidelines: true, company: f.company, page: 'grateful.gg/health' }) });
+      const j = await r.json().catch(() => ({}));
+      if (j.status === 'filed' || j.status === 'already') { track('apply_done'); setState(j.status === 'already' ? 'already' : 'done'); }
+      else if (j.status === 'missing') setState(`${w.jn_need} ${j.note || ''}`);
+      else setState(j.status === 'slow' ? w.jn_slow : w.jn_err);
+    } catch { setState(w.jn_err); }
+  };
+  if (state === 'done' || state === 'already') {
+    return (
+      <div className="jn jn-done" ref={top}>
+        <img src="giraffes/masai.webp" alt="" width="300" height="600" />
+        <h3>{w.jn_thanks_h}</h3>
+        <p>{state === 'already' ? w.jn_already : w.jn_thanks}</p>
+      </div>
+    );
+  }
+  const dots = (
+    <div className="jn-dots" role="tablist" aria-label={w.jn_eye}>
+      {[0, 1, 2, 3].map((n) => <button key={n} type="button" role="tab" aria-selected={n === step} aria-label={`${n + 1}`} onClick={() => go(n)}><span /></button>)}
+    </div>
+  );
+  const nav = (
+    <div className="jn-nav">
+      {step > 0 ? <button type="button" className="btn alt" onClick={() => go(step - 1)}>{w.jn_back}</button> : <span />}
+      {step < 3 && <button type="button" className="btn" onClick={() => go(step + 1)}>{step === 0 ? w.jn_start : w.jn_next}<span aria-hidden="true"> →</span></button>}
+    </div>
+  );
+  return (
+    <div className="jn" ref={top}>
+      {dots}
+      {step === 0 && (
+        <div className="jn-slide jn-0">
+          <img className="jn-photo" src="giraffes/group.jpg" alt="About twenty Grateful Giraffes posing together and smiling in a sunlit room" width="1100" height="732" loading="lazy" />
+          <div>
+            <p className="eye">{w.jn_eye}</p>
+            <h3>{w.jn_h1}</h3>
+            <p>{w.jn_intro}</p>
+          </div>
+        </div>
+      )}
+      {step === 1 && (
+        <div className="jn-slide">
+          <h3>{w.jn_h2}</h3>
+          <ol className="jn-ben">{BENEFITS.map(([t, d], i) => <li key={t}><i>{String(i + 1).padStart(2, '0')}</i><div><b>{t}</b><span>{d}</span></div></li>)}</ol>
+        </div>
+      )}
+      {step === 2 && (
+        <div className="jn-slide">
+          <h3>{w.jn_h3}</h3>
+          <p>{w.jn_treasury}</p>
+          <p>{w.jn_tiers}</p>
+          <p className="jn-q">{w.jn_pick}</p>
+          <div className="jn-tiers" role="radiogroup" aria-label={w.jn_pick}>
+            {TIERS.map(([key, name, label, img]) => (
+              <button key={key} type="button" role="radio" aria-checked={f.tier === key} onClick={() => { track('apply_tier', img); setF((x) => ({ ...x, tier: key })); }}>
+                <img src={`giraffes/${img}.webp`} alt="" width="300" height="600" loading="lazy" />
+                <b>{name}</b><span>{label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {step === 3 && (
+        <form className="jn-slide jn-form" onSubmit={send} noValidate>
+          <h3>{w.jn_h4}</h3>
+          <label>{w.jn_name}<input value={f.name} onChange={set('name')} autoComplete="name" /></label>
+          <label>{w.jn_email}<input type="email" value={f.email} onChange={set('email')} autoComplete="email" inputMode="email" /></label>
+          <label>{w.jn_phone}<input type="tel" value={f.phone} onChange={set('phone')} autoComplete="tel" inputMode="tel" /></label>
+          <div className="jn-f" role="radiogroup" aria-label={w.jn_where}>{w.jn_where}
+            <div className="jn-chips">{[...PLACES, w.jn_else].map((p) => <button key={p} type="button" role="radio" aria-checked={f.location === p} onClick={() => setF((x) => ({ ...x, location: p }))}>{p}</button>)}</div>
+            {f.location === w.jn_else && <input value={f.other} onChange={set('other')} placeholder={w.jn_where_other} aria-label={w.jn_where_other} />}
+          </div>
+          <label>{w.jn_why}<textarea rows="3" value={f.why} onChange={set('why')} /></label>
+          <label>{w.jn_heard}<input value={f.heard} onChange={set('heard')} /></label>
+          <div className="jn-f" role="radiogroup" aria-label={w.jn_pick}>{w.jn_pick}
+            <div className="jn-chips">{TIERS.map(([key, name, label]) => <button key={key} type="button" role="radio" aria-checked={f.tier === key} onClick={() => setF((x) => ({ ...x, tier: key }))}>{name} · {label}</button>)}</div>
+          </div>
+          <label className="jn-agree"><input type="checkbox" checked={f.agrees} onChange={set('agrees')} /><span>{w.jn_agree} <a href="https://app.grateful.gg/terms" target="_blank" rel="noopener noreferrer">{w.jn_guidelines}</a></span></label>
+          <input className="jn-hp" tabIndex="-1" autoComplete="off" value={f.company} onChange={set('company')} aria-hidden="true" />
+          {state && state !== 'sending' && <p className="jn-err" role="alert">{state}</p>}
+          <button type="submit" className="btn" disabled={state === 'sending'}>{state === 'sending' ? w.jn_sending : w.jn_send}</button>
+          <p className="jn-note">{w.jn_note}</p>
+        </form>
+      )}
+      {nav}
+      <p className="jn-gigi"><a href={`${GIGI}APPLY`}>{w.jn_gigi}</a></p>
+    </div>
+  );
+}
+
 function Cards() {
   return PEPTIDES.map(([k, name, cap, shopName, slug, photo, forms = []]) => (
     <article className="pep" id={k} key={k}>
@@ -247,6 +384,8 @@ document.documentElement.dataset.v = V;
 const Hero = { a: Lab, b: TextGigi, c: Quiz, d: Shelf }[V];
 createRoot(document.getElementById('lab')).render(<Hero />);
 createRoot(document.getElementById('peptides')).render(<Cards />);
+const joinEl = document.getElementById('join-app');
+if (joinEl) createRoot(joinEl).render(<Join />);
 const names = document.getElementById('names');
 if (names) createRoot(names).render(<Names />);
 
@@ -258,7 +397,7 @@ document.addEventListener('click', (e) => {
   const h = a.getAttribute('href') || '';
   if (h.startsWith(SHOP)) track('shop', `${BY_SLUG[h.slice(SHOP.length)] || 'other'}:${a.closest('.hero') ? 'hero' : 'page'}`);
   else if (h.startsWith('sms:')) track('gigi', a.closest('.hero') ? 'hero' : 'page');
-  else if (h.includes('grateful.gg/apply')) track('apply');
+  else if (h === '#join') track('apply_open');
 }, true);
 let seconds = 0;
 const clock = setInterval(() => { if (!document.hidden && (seconds += 1) >= 30) { track('stay30'); clearInterval(clock); } }, 1000);
