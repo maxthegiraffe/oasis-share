@@ -26,6 +26,8 @@ const PEPTIDES = [
 // screen (Max, 2026-11-13: "the more about should appear in the hero section and not need scrolling down - as well as
 // the buy button", "or ask gigi"). Until someone picks, it moves on to the next one after each loop (three steps of
 // four seconds), unless motion is reduced.
+// The bare word PEPTIDES is what opens Gigi for someone she doesn't know (gigi-whatsapp peptide_match isTrigger);
+// "PEPTIDES: <name>" got them the members-only letter (checked 2026-11-13). Add the name back once she handles it.
 const GIGI = 'sms:+15164197249?&body=';
 const TABS = [['what', 'lab_what'], ['benefits', 'x_benefits'], ['risks', 'x_risks'], ['dose', 'x_dose'], ['stack', 'x_stack']];
 function Lab() {
@@ -63,7 +65,7 @@ function Lab() {
         <p className="lab-text" role="tabpanel" key={k + tab}>{tab === 'what' ? w[`pep_${k}`] : w[`x_${k}_${tab}`]}</p>
         <div className="lab-go">
           <a className="btn" href={SHOP + slug}>{w.lab_buy} {shopName}<span aria-hidden="true"> →</span></a>
-          <a className="btn alt" href={GIGI + encodeURIComponent(`PEPTIDES: ${name}`)}>{w.lab_gigi}</a>
+          <a className="btn alt" href={GIGI + 'PEPTIDES'}>{w.lab_gigi}</a>
         </div>
       </div>
     </>
