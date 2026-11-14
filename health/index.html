@@ -182,16 +182,17 @@
   .pep-forms { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:-4px; font-size:13.5px }
   .pep-forms a { color:var(--blue); text-underline-offset:4px }
   .end { text-align:center } .end .lede { margin-left:auto; margin-right:auto }
-  .who-photos { display:grid; grid-template-columns:minmax(0, 1fr); gap:14px; margin-top:28px }
-  .who-photos figure { margin:0 }
-  .who-photos img { display:block; width:100%; height:auto; aspect-ratio:3 / 2; object-fit:cover; border-radius:var(--r-md); box-shadow:0 0 0 1.5px var(--blue), 6px 6px 0 var(--pink) }
-  .who-photos figcaption { margin-top:12px; font-size:12.5px; letter-spacing:.06em; color:var(--blue) }
+  .who-photos { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:28px }
+  .who-photos figure { position:relative; margin:0; border-radius:var(--r-md); overflow:hidden; aspect-ratio:4 / 3; background:rgba(29,26,58,.08) }
+  .who-photos figure.big { grid-column:1 / -1; aspect-ratio:3 / 2; box-shadow:0 0 0 1.5px var(--blue), 6px 6px 0 var(--pink); margin-bottom:4px }
+  .who-photos img { display:block; width:100%; height:100%; object-fit:cover }
+  .who-photos figcaption { position:absolute; left:0; right:0; bottom:0; padding:26px 12px 9px; background:linear-gradient(to top, rgba(29,26,58,.78), rgba(29,26,58,0)); color:#fff; font:500 11.5px/1.3 var(--mono); letter-spacing:.03em }
   .who-stats { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; margin-top:30px }
   .who-stats li { padding:18px 16px; border-radius:var(--r-md); background:var(--panel); box-shadow:inset 0 0 0 1.5px rgba(35,64,255,.22) }
   .who-stats b { display:block; font:800 clamp(38px, 9vw, 54px)/1 var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1; letter-spacing:-.03em; color:var(--blue) }
   .who-stats span { display:block; margin-top:6px; font-size:13.5px; line-height:1.3; color:var(--ink-soft) }
   .who-why { margin-top:10px } .who-why .lede b { color:var(--ink); font-weight:500 }
-  @media (min-width:860px) { .who-photos { grid-template-columns:1fr 1fr; gap:22px } .who-stats { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
+  @media (min-width:860px) { .who-photos { grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px } .who-photos figure.big { grid-column:1 / span 2; grid-row:1 / span 2; aspect-ratio:auto; margin:0 } .who-photos figcaption { font-size:12.5px } .who-stats { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
   .jn { max-width:860px; margin:0 auto; padding:clamp(18px, 4vw, 34px); border-radius:36px; background:var(--panel); box-shadow:0 0 0 1.5px var(--blue), 8px 8px 0 var(--pink); scroll-margin-top:12px }
   .jn-dots { display:flex; gap:6px; margin-bottom:18px }
   .jn-dots button { flex:1; height:26px; padding:0; border:0; background:none; cursor:pointer }
@@ -201,7 +202,9 @@
   .jn h3 { font:400 clamp(28px, 6vw, 42px)/1.05 var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1; letter-spacing:-.02em; text-wrap:balance }
   .jn-slide p { font-size:15.5px; color:var(--ink-soft); max-width:44em }
   .jn-0 { gap:18px } .jn-0 .eye { margin-bottom:8px } .jn-0 h3 { margin-bottom:10px }
-  .jn-photo { display:block; width:100%; height:auto; aspect-ratio:16 / 9; object-fit:cover; object-position:50% 35%; border-radius:var(--r-md) }
+  .jn-photo { position:relative; margin:0; aspect-ratio:4 / 3; border-radius:var(--r-md); overflow:hidden }
+  .jn-photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 40% }
+  .jn-photo figcaption { position:absolute; left:0; right:0; bottom:0; padding:26px 12px 9px; background:linear-gradient(to top, rgba(29,26,58,.78), rgba(29,26,58,0)); color:#fff; font:500 11.5px/1.3 var(--mono); letter-spacing:.03em }
   .jn-ben { display:grid; grid-template-columns:minmax(0, 1fr); gap:10px; margin-top:4px }
   .jn-ben li { display:flex; gap:12px; align-items:flex-start }
   .jn-ben i { flex:none; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--blue); color:var(--paper); box-shadow:2px 2px 0 var(--pink); font:500 13px var(--mono); font-style:normal }
@@ -230,9 +233,9 @@
   .jn-nav .btn { border:0; cursor:pointer; min-height:52px; font-size:20px }
   .jn-gigi { margin-top:16px; text-align:center; font-size:13.5px } .jn-gigi a { color:var(--blue); text-underline-offset:4px }
   .jn-done { text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px } .jn-done img { height:220px; width:auto } .jn-done p { max-width:30em; color:var(--ink-soft) }
-  @media (min-width:860px) { .jn-0 { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:32px } .jn-photo { aspect-ratio:4 / 3 } .jn-ben { grid-template-columns:1fr 1fr; gap:14px 28px } .jn-tiers { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
+  @media (min-width:860px) { .jn-0 { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:32px } .jn-ben { grid-template-columns:1fr 1fr; gap:14px 28px } .jn-tiers { grid-template-columns:repeat(4, minmax(0, 1fr)) } }
   @media (prefers-reduced-motion: reduce) { .jn-slide { animation:none } .jn-tiers img { transition:none } }
-  footer { padding:56px 0 40px; font-size:13.5px; color:var(--ink-soft) }
+  footer.wrap { padding-top:56px; padding-bottom:40px; font-size:13.5px; color:var(--ink-soft) }
   footer p { max-width:52em }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto } .btn, .tile img { transition:none } }
 </style>
@@ -295,15 +298,18 @@
      started grateful health", then: not about physicians and pharmacies; "its more about using the power of the community
      diligence that can lead to longer healthier lives and talk about the blue zones & community and use real photos & real
      stats from giraffes and then grateful labs is the venture studio behind grateful health". The stats are the Nov 11 town
-     hall deck's (oasis src/lib/townHallDeckCopy.js) and /labs' (154 Evenings of Gratitude); the photos are real ones already
-     public in the Oasis (a past Biohacking Safari; Giraffes at a Grateful Labs bootcamp). -->
+     hall deck's (oasis src/lib/townHallDeckCopy.js) and /labs' (154 Evenings of Gratitude); the photos are Max's own event photos from the Oasis
+     homepage's curated set (oasis public/oasis-home/, captions from oasisPhotos.js); none is used twice on this page. -->
 <section id="giraffes" class="wrap who-we">
   <p class="eye">Who we are</p>
   <h2>Longer, healthier lives, together</h2>
   <p class="lede">In the Blue Zones, the places where people live the longest, one thing keeps showing up: people belong to a community that looks out for each other.</p>
   <div class="who-photos">
-    <figure><img src="giraffes/safari.jpg" alt="Guests relaxing on yellow couches in a full room at a past Biohacking Safari" width="1280" height="720" loading="lazy"><figcaption>A past Biohacking Safari</figcaption></figure>
-    <figure><img src="giraffes/group.jpg" alt="About twenty Grateful Giraffes posing together and smiling in a sunlit room" width="1100" height="732" loading="lazy"><figcaption>Giraffes at a Grateful Labs bootcamp</figcaption></figure>
+    <figure class="big"><img src="giraffes/safari7.jpg" alt="An overhead view of a sunlit brick loft full of guests on couches and yellow cushions at Biohacking Safari" width="1000" height="667" loading="lazy"><figcaption>Biohacking Safari #7 at Primal Moves, 2026</figcaption></figure>
+    <figure><img src="giraffes/feast.jpg" alt="About forty Giraffes posed together on the floor and couches of a living room at the second Tower Feast" width="1400" height="1050" style="object-position:50% 45%" loading="lazy"><figcaption>The second Tower Feast, Santa Monica, 2023</figcaption></figure>
+    <figure><img src="giraffes/olympus.jpg" alt="Rows of guests lying on mats on a rooftop lawn between downtown Los Angeles towers at Olympus" width="1016" height="1354" style="object-position:50% 42%" loading="lazy"><figcaption>Olympus on a downtown LA rooftop, 2024</figcaption></figure>
+    <figure><img src="giraffes/friendsgiving.jpg" alt="About twenty-seven Giraffes and a dog posed together on a terrace at Friendsgiving" width="1400" height="1050" style="object-position:50% 45%" loading="lazy"><figcaption>Friendsgiving, 2024</figcaption></figure>
+    <figure><img src="giraffes/candles.jpg" alt="About thirty-five Giraffes standing in a wide circle around a living room at dusk, each holding a lit tea candle" width="1400" height="1050" loading="lazy"><figcaption>An Evening of Gratitude Shabbat</figcaption></figure>
   </div>
   <ul class="who-stats">
     <li><b>1,000</b><span>Grateful Giraffes</span></li>

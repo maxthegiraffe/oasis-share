@@ -299,7 +299,7 @@ function Join() {
       {dots}
       {step === 0 && (
         <div className="jn-slide jn-0">
-          <img className="jn-photo" src="giraffes/group.jpg" alt="About twenty Grateful Giraffes posing together and smiling in a sunlit room" width="1100" height="732" loading="lazy" />
+          <figure className="jn-photo"><img src="giraffes/brunch.jpg" alt="About forty Giraffes and two dogs posed together in a garden at a Brunch of Giraffes" width="728" height="970" loading="lazy" /><figcaption>A Brunch of Giraffes at Little City Farm, 2023</figcaption></figure>
           <div>
             <p className="eye">{w.jn_eye}</p>
             <h3>{w.jn_h1}</h3>
