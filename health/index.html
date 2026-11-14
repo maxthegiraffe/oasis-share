@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Grateful Health Store</title>
+<title>Grateful Health · Peptides, explained</title>
 <meta name="description" content="BPC-157, Sermorelin, NAD+, Glutathione, B12 and more.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Grateful Health">
@@ -20,13 +20,150 @@
 <meta name="twitter:title" content="Grateful Health Store">
 <meta name="twitter:description" content="BPC-157, Sermorelin, NAD+, Glutathione, B12 and more.">
 <meta name="twitter:image" content="https://grateful.gg/health/cover.jpg?v=2">
-<!-- Max, 2026-11-13: "have grateful.gg/health redirect to https://gratefulhealth.joinplatformhealth.com/store".
-     GitHub Pages cannot send a 301, so the page forwards at once; the tags above keep the link preview. -->
-<link rel="canonical" href="https://gratefulhealth.joinplatformhealth.com/store">
-<meta http-equiv="refresh" content="0; url=https://gratefulhealth.joinplatformhealth.com/store">
-<script>location.replace("https://gratefulhealth.joinplatformhealth.com/store" + location.search + location.hash)</script>
+<link rel="canonical" href="https://grateful.gg/health/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Max, 2026-11-13: "grateful.gg/health wont redirect it will be a peptide education page like we had before with the
+     animations and explanations", each peptide linking to its own page in the shop, plus the Platform Health
+     partnership and how ordering works. The animated cards are health/app.js (source: scripts/health/, copied from the
+     Oasis /gratefulhealth Learn section). No prices here: the shop shows them. -->
+<style>
+  :root { --paper:#FFDED8; --panel:#FFF4F1; --white:#fff; --cytoplasm:#FFCEC6; --membrane:#2340FF; --blue:#2340FF; --nucleus:#1A30D9;
+    --pink:#FF48B0; --ink:#1D1A3A; --ink-soft:#4A4570; --r-md:22px; --serif:Fraunces, Georgia, serif; --mono:"DM Mono", ui-monospace, monospace; }
+  * { box-sizing:border-box; margin:0; padding:0 }
+  html { scroll-behavior:smooth }
+  body { background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .2 0 0 0 -.42 .3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    color:var(--ink); font-family:var(--mono); font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased }
+  a { color:inherit }
+  ul, ol { list-style:none }
+  .wrap { width:100%; max-width:1120px; margin:0 auto; padding:0 20px }
+  .eye { font:500 13px/1.3 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--blue) }
+  h1, h2 { font-family:var(--serif); font-variation-settings:"SOFT" 100, "WONK" 1; font-weight:400; letter-spacing:-.025em; text-wrap:balance }
+  h2 { font-size:clamp(34px, 5vw, 56px); line-height:1.02; margin-top:8px }
+  .lede { max-width:40em; margin-top:14px; font-size:17px; color:var(--ink-soft) }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:56px; padding:0 30px; border-radius:999px; text-decoration:none; white-space:nowrap;
+    background:var(--blue); color:#fff; box-shadow:5px 5px 0 var(--pink); font:italic 600 22px/1.1 var(--serif); transition:transform .15s ease, box-shadow .15s ease }
+  .btn:hover { transform:translate(-1px,-1px); box-shadow:7px 7px 0 var(--pink) }
+  .btn:active { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--pink) }
+  :focus-visible { outline:3px solid var(--pink); outline-offset:3px }
+
+  .hero { min-height:100svh; display:flex; flex-direction:column }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:16px; padding-bottom:8px }
+  .top a { display:inline-flex; align-items:center; min-height:40px; padding:0 18px; border-radius:999px; background:var(--ink); color:#fff; font:500 14px var(--mono); text-decoration:none }
+  .hero main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:clamp(10px, 2.2svh, 22px); padding-bottom:clamp(16px, 4svh, 48px) }
+  .mark { width:auto; height:clamp(96px, 26svh, 250px); aspect-ratio:1 }
+  h1 { font-size:clamp(52px, min(13vw, 13svh), 112px); line-height:.95 }
+  .sub { font:400 clamp(22px, min(5.6vw, 4.4svh), 34px)/1.15 var(--serif); letter-spacing:-.01em; max-width:17em; text-wrap:balance }
+  .hero .lede { margin-top:0; font-size:clamp(14.5px, 2.3svh, 17px); max-width:34em }
+  .more { font:500 14px var(--mono); color:var(--blue); text-underline-offset:4px }
+
+  section.wrap { padding-top:clamp(56px, 8vw, 96px) }
+  #peptides { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-top:28px }
+  .pep { display:flex; flex-direction:column; gap:14px; padding:18px; border-radius:var(--r-md); background:var(--panel); box-shadow:inset 0 0 0 1.5px rgba(35,64,255,.22); scroll-margin-top:16px }
+  .pep .px-card { flex:1 }
+  .pep .px-card b { font:500 26px/1.1 var(--serif); letter-spacing:-.01em }
+  .pep .px-card small { font-size:12.5px; font-weight:500; letter-spacing:.06em; color:var(--blue) }
+  .pep-what { font-size:15px; color:var(--ink-soft) }
+  .px-pp, .px-dots button, .px-tabs button { font-family:var(--mono) }
+  .pep-shop { display:flex; align-items:center; justify-content:center; min-height:50px; padding:0 18px; border-radius:999px; background:var(--blue); color:#fff; text-decoration:none; text-align:center;
+    box-shadow:4px 4px 0 var(--pink); font:italic 600 19px/1.1 var(--serif) }
+  .pep-shop:hover { background:var(--nucleus) }
+  .note { max-width:46em; margin-top:18px; font-size:14px; color:var(--ink-soft) }
+
+  .steps { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:28px; counter-reset:s }
+  .steps li { padding:20px; border-radius:var(--r-md); background:var(--panel); box-shadow:inset 0 0 0 1.5px rgba(35,64,255,.22) }
+  .steps li::before { counter-increment:s; content:counter(s); display:grid; place-items:center; width:32px; height:32px; margin-bottom:12px; border-radius:50%; background:var(--blue); color:var(--paper); box-shadow:2px 2px 0 var(--pink); font:500 15px var(--mono) }
+  .steps b { display:block; font:500 21px/1.15 var(--serif) }
+  .steps p { margin-top:6px; font-size:15px; color:var(--ink-soft) }
+  .who { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:28px }
+  .who div { padding:22px; border-radius:var(--r-md); background:var(--ink); color:#fff }
+  .who b { display:block; font:500 22px/1.15 var(--serif) }
+  .who p { margin-top:6px; font-size:15px; color:rgba(255,255,255,.78) }
+  .cta-row { margin-top:28px }
+
+  .tiles { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:16px; margin-top:28px }
+  .tile { display:flex; flex-direction:column; gap:4px; text-decoration:none }
+  .tile .ph { display:block; aspect-ratio:1; border-radius:16px; overflow:hidden; background:rgba(29,26,58,.06); margin-bottom:6px }
+  .tile img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .25s ease }
+  .tile:hover img { transform:scale(1.04) }
+  .tile b { font:500 15.5px/1.3 var(--mono) }
+  .tile i { font-style:normal; font-size:13px; color:var(--blue) }
+  footer { padding:56px 0 40px; font-size:13.5px; color:var(--ink-soft) }
+  footer p { max-width:52em }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto } .btn, .tile img { transition:none } }
+</style>
 </head>
 <body>
-<p><a href="https://gratefulhealth.joinplatformhealth.com/store">Continue to the Grateful Health store</a></p>
+<div class="hero">
+  <header class="top wrap">
+    <span class="eye">Grateful Health</span>
+    <a href="https://health.grateful.gg/store">Shop</a>
+  </header>
+  <main class="wrap">
+    <img class="mark" src="mark.webp" alt="Grateful Health: two giraffes on a caduceus inside a cell" width="640" height="640">
+    <h1>Peptides</h1>
+    <p class="sub">prescribed by a licensed physician &amp; pharmacy</p>
+    <p class="lede">See how each one works. When you are ready, ask a physician through our shop.</p>
+    <a class="btn" href="https://health.grateful.gg/store">Open the shop</a>
+    <a class="more" href="#learn">or learn first ↓</a>
+  </main>
+</div>
+
+<section id="learn" class="wrap">
+  <p class="eye">Learn</p>
+  <h2>How each peptide works</h2>
+  <p class="lede">Peptides are short chains of amino acids. Each card plays a short animation of what it does in the body. Tap the tabs for benefits, risks, dosing and stacking.</p>
+  <div id="peptides"></div>
+  <p class="note">A licensed physician decides what fits you, and some peptides cannot be prescribed at all. Nothing here is medical advice.</p>
+</section>
+
+<section id="how" class="wrap">
+  <p class="eye">Ordering</p>
+  <h2>How ordering works</h2>
+  <p class="lede">Prescription peptides are not an add to cart product. You ask, a physician decides, a pharmacy fills it.</p>
+  <ol class="steps">
+      <li><b>Pick what to ask about</b><p>Nothing is prescribed in a cart: you choose what you want a physician to consider.</p></li>
+      <li><b>Answer a few health questions</b><p>At checkout, so the physician has what they need.</p></li>
+      <li><b>A licensed physician decides</b><p>An independent medical group makes every prescribing decision. If they say no, you are not charged for the medication.</p></li>
+      <li><b>A licensed US pharmacy sends it</b><p>Discreetly, to your door, in the states where a provider can care for you.</p></li>
+  </ol>
+  <p class="cta-row"><a class="btn" href="https://health.grateful.gg/store">Open the shop</a></p>
+</section>
+
+<section id="partnership" class="wrap">
+  <p class="eye">The partnership</p>
+  <h2>Grateful Health, with Platform Health</h2>
+  <p class="lede">The Grateful Health shop is built by Grateful Labs and Platform Health together. Each side does one job.</p>
+  <div class="who">
+    <div><b>Grateful Health</b><p>Explains each peptide in plain words, like this page, and points you to the right place in the shop.</p></div>
+    <div><b>Platform Health</b><p>Runs the shop and the checkout.</p></div>
+    <div><b>Licensed physicians and pharmacies</b><p>Do the medicine: independent physicians make every prescribing decision, and licensed US pharmacies fill and send it.</p></div>
+  </div>
+</section>
+
+<section id="shop" class="wrap">
+  <p class="eye">Also in the shop</p>
+  <h2>Go straight to the one you want</h2>
+  <div class="tiles">
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-dsip-o1au"><span class="ph"><img src="products/dsip.webp" alt="" width="512" height="512" loading="lazy"></span><b>DSIP</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-epithalon-o0mf"><span class="ph"><img src="products/epithalon.webp" alt="" width="512" height="512" loading="lazy"></span><b>Epithalon</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-pt-141-bremelanotide-rkmz"><span class="ph"><img src="products/bremelanotide.webp" alt="" width="512" height="512" loading="lazy"></span><b>PT-141</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-pt-141-nasal-spray-rjpy"><span class="ph"><img src="products/bremelanotide-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>PT-141 Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-glutathione-injection-rn6m"><span class="ph"><img src="products/glutathione.webp" alt="" width="512" height="512" loading="lazy"></span><b>Glutathione</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-glutathione-nasal-spray-ridl"><span class="ph"><img src="products/glutathione-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>Glutathione Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-nad-nasal-spray-roi7"><span class="ph"><img src="products/nad-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>NAD+ Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-sermorelin-nasal-spray-rl7z"><span class="ph"><img src="products/sermorelin-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>Sermorelin Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-nad-glutathione-stack-rb6q"><span class="ph"><img src="products/reverse-aging-stack.webp" alt="" width="512" height="512" loading="lazy"></span><b>NAD+ and Glutathione</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-methylene-blue-rpw0"><span class="ph"><img src="products/methylene-blue.webp" alt="" width="512" height="512" loading="lazy"></span><b>Methylene Blue</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-vitamin-b12-injection-rgl6"><span class="ph"><img src="products/b12.webp" alt="" width="512" height="512" loading="lazy"></span><b>Vitamin B12</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-lipo-c-injection-rf4j"><span class="ph"><img src="products/lipo-c.webp" alt="" width="512" height="512" loading="lazy"></span><b>Lipo-C</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p>A licensed physician decides what fits you, and some peptides cannot be prescribed at all. Nothing here is medical advice. Grateful Health is powered by Grateful Labs and Platform Health.</p>
+</footer>
+<script src="app.js" defer></script>
 </body>
 </html>
