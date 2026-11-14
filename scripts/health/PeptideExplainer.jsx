@@ -269,7 +269,236 @@ function Ghk({ t, a, b, L }) {
 }
 
 
-const SCENES = { bpc157: Bpc, tb500: Tb, glp1: Glp, nad: Nad, sermorelin: Ser, ghkcu: Ghk };
+// ---- Added for grateful.gg/health (2026-11-13): the rest of the shop, drawn the same way. ----
+
+const Star = ({ x, y, r = 6, rot = 0, fill = C.sun, stroke = C.sunEdge }) => (
+  <path transform={`translate(${x} ${y}) rotate(${rot})`} fill={fill} stroke={stroke} strokeWidth="1"
+    d={`M0 ${-r} L${r * 0.32} ${-r * 0.32} L${r} 0 L${r * 0.32} ${r * 0.32} L0 ${r} L${-r * 0.32} ${r * 0.32} L${-r} 0 L${-r * 0.32} ${-r * 0.32} Z`} />
+);
+const Mito = ({ x, y, w, h, t = 0 }) => (
+  <g>
+    <rect x={x} y={y} width={w} height={h} rx={h / 2} fill={C.cyto} stroke={C.membrane} strokeWidth="2.4" />
+    <path d={Array.from({ length: 31 }, (_, i) => `${i ? 'L' : 'M'}${x + h * 0.4 + (i / 30) * (w - h * 0.8)} ${y + h / 2 + Math.sin((i / 30) * Math.PI * 4 + t) * h * 0.2}`).join(' ')} fill="none" stroke={C.spot} strokeWidth="3" />
+  </g>
+);
+
+// DSIP: it reaches the brain, the fast waves slow down, deep slow-wave sleep.
+function Dsip({ t, a, b, L }) {
+  const x = lerp(-50, 70, ease(a)), y = lerp(26, 70, ease(a));
+  const slow = ease(b);
+  const freq = lerp(0.9, 0.2, slow), amp = lerp(5, 17, slow), speed = lerp(7, 2, slow);
+  const pts = Array.from({ length: 60 }, (_, i) => `${i ? 'L' : 'M'}${178 + i * 2.1} ${92 + Math.sin(i * freq - t * speed) * amp}`).join(' ');
+  const night = ease((b - 0.5) / 0.4);
+  return (
+    <g>
+      <g opacity={L(0)}>
+        <ellipse cx="92" cy="100" rx="56" ry="42" fill={C.cyto} stroke={C.membrane} strokeWidth="2.2" />
+        <path d="M92 60 Q82 100 92 140" fill="none" stroke={C.membrane} strokeWidth="1.6" />
+        <path d="M56 86 Q70 76 82 88 M104 112 Q118 102 132 114 M60 116 Q70 108 80 116" fill="none" stroke={C.organelle} strokeWidth="1.6" strokeLinecap="round" />
+        <Tag x="92" y="160">brain</Tag>
+      </g>
+      <g opacity={L(1, 2)}>
+        <rect x="170" y="62" width="140" height="60" rx="12" fill={C.white} stroke={C.spot} strokeWidth="2" />
+        <path d={pts} fill="none" stroke={C.membrane} strokeWidth="2.4" strokeLinecap="round" />
+        <Tag x="240" y="140">{b > 0.5 ? 'slow, deep waves' : 'brain waves'}</Tag>
+      </g>
+      {night > 0 && (
+        <g opacity={night * L(2)}>
+          <path d="M252 20 a15 15 0 1 0 17 19 a12 12 0 0 1 -17 -19 Z" fill={C.sun} stroke={C.sunEdge} strokeWidth="1.2" />
+          <Star x={288} y={24} r={4 + Math.sin(t * 3) * 0.8} /><Star x={226} y={34} r={3 + Math.cos(t * 2.4) * 0.6} />
+        </g>
+      )}
+      <Chain pts={wave(x - 28, y, 9, 7, 3, t * 3)} r={3.6} />
+    </g>
+  );
+}
+
+// Epithalon: into the nucleus, telomerase switches on, the caps on the chromosome get longer.
+function Epi({ t, a, b, L }) {
+  const x = lerp(-30, 76, ease(a)), y = lerp(22, 92, ease(a));
+  const on = ease(b / 0.45), grow = ease((b - 0.45) / 0.55);
+  const cap = lerp(9, 24, grow);
+  return (
+    <g>
+      <g opacity={L(0)}>
+        <circle cx="88" cy="98" r="58" fill={C.cyto} stroke={C.membrane} strokeWidth="2.2" />
+        <circle cx="88" cy="98" r="30" fill={C.fill} stroke={C.membrane} strokeWidth="1.6" />
+        <path d="M78 86 L98 110 M98 86 L78 110" stroke={C.nucleus} strokeWidth="4" strokeLinecap="round" />
+        <Tag x="88" y="172">cell nucleus</Tag>
+      </g>
+      <g opacity={L(1, 2)}>
+        {[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([sx, sy], i) => {
+          const x1 = 236 + sx * 30, y1 = 92 + sy * 40, ux = (sx * 30) / 50, uy = (sy * 40) / 50;
+          return (
+            <g key={i}>
+              <line x1="236" y1="92" x2={x1} y2={y1} stroke={C.organelle} strokeWidth="13" strokeLinecap="round" />
+              <line x1={x1} y1={y1} x2={x1 + ux * cap} y2={y1 + uy * cap} stroke={C.sun} strokeWidth="13" strokeLinecap="round" />
+            </g>
+          );
+        })}
+        <circle cx="236" cy="92" r="6" fill={C.membrane} />
+        <Tag x="236" y="172">{grow > 0.5 ? 'longer caps' : 'chromosome caps'}</Tag>
+      </g>
+      {on > 0 && (
+        <g opacity={on * L(1, 2)}>
+          <Cell x={lerp(304, 286, on) + Math.sin(t * 3) * 1.5} y={lerp(14, 36, on)} r={9} />
+          <Tag x="250" y="16">telomerase</Tag>
+        </g>
+      )}
+      <Chain pts={wave(x - 12, y, 4, 8, 3, t * 3)} r={4} hi={1} />
+    </g>
+  );
+}
+
+// PT-141: a ring of amino acids travels to the brain, docks on a receptor, the signal goes out.
+function Pt({ t, a, b, L }) {
+  const dock = ease(b / 0.45), sig = ease((b - 0.45) / 0.3);
+  const x = b > 0 ? lerp(84, 160, dock) : lerp(-30, 84, ease(a)), y = b > 0 ? lerp(40, 70, dock) : lerp(16, 40, ease(a));
+  const pts = Array.from({ length: 7 }, (_, i) => { const an = (i / 7) * Math.PI * 2 + (dock < 1 ? t * 1.2 : 0); return [x + Math.cos(an) * 10, y + Math.sin(an) * 10]; });
+  const pulses = sig > 0 ? [0, 1, 2].map((i) => (t / 1.8 + i / 3) % 1) : [];
+  return (
+    <g>
+      <g opacity={L(0, 2)}>
+        <ellipse cx="160" cy="112" rx="78" ry="48" fill={C.cyto} stroke={C.membrane} strokeWidth="2.2" />
+        <path d="M160 66 Q150 112 160 158" fill="none" stroke={C.membrane} strokeWidth="1.4" opacity=".6" />
+        <Tag x="52" y="150">brain</Tag>
+      </g>
+      <g opacity={L(2)}>{pulses.map((p, i) => <circle key={i} cx="160" cy="108" r={14 + p * 44} fill="none" stroke={C.sunEdge} strokeWidth="2" opacity={(1 - p) * 0.9} />)}</g>
+      <g opacity={L(1, 2)}>
+        <path d="M144 76 Q160 104 176 76" fill="none" stroke={C.nucleus} strokeWidth="4" strokeLinecap="round" />
+        <line x1="160" y1="90" x2="160" y2="116" stroke={C.nucleus} strokeWidth="4" strokeLinecap="round" />
+        <Tag x="252" y="46">receptor</Tag>
+      </g>
+      <polygon points={pts.map((p) => p.join(',')).join(' ')} fill="none" stroke={C.membrane} strokeWidth="2.2" />
+      {pts.map(([px, py], i) => <circle key={i} cx={px} cy={py} r="3.8" fill={i === 0 ? C.sun : C.white} stroke={i === 0 ? C.sunEdge : C.membrane} strokeWidth="1.6" />)}
+    </g>
+  );
+}
+
+// Glutathione: free radicals close in on a cell, glutathione meets each one and calms it.
+function Gsh({ t, a, b, L }) {
+  const from = [[30, 30], [292, 34], [34, 156], [290, 150]], near = [[92, 60], [230, 62], [94, 134], [228, 132]];
+  return (
+    <g>
+      <g opacity={L(0, 2)}>
+        <circle cx="160" cy="96" r="42" fill={C.membrane} />
+        <circle cx="160" cy="96" r="38" fill={C.cyto} />
+        <circle cx="166" cy="90" r="13" fill={C.fill} stroke={C.membrane} strokeWidth="1.4" />
+        <Tag x="160" y="160">cell</Tag>
+      </g>
+      {from.map(([fx, fy], i) => {
+        const u = ease(a * 1.3 - i * 0.08), calm = ease((b - i * 0.2) / 0.25);
+        const rx = lerp(fx, near[i][0], u), ry = lerp(fy, near[i][1], u);
+        const gx = lerp(160 + (i % 2 ? 12 : -12), rx + (rx < 160 ? 16 : -16), calm), gy = lerp(96 + (i < 2 ? -10 : 12), ry, calm);
+        return (
+          <g key={i}>
+            {calm < 0.9
+              ? <Star x={rx + Math.sin(t * 9 + i) * 1.5} y={ry + Math.cos(t * 8 + i) * 1.5} r={9} rot={t * 60 + i * 30} />
+              : <circle cx={rx} cy={ry} r="7" fill={C.fill} stroke={C.membrane} strokeWidth="1.6" />}
+            {b > 0 && (
+              <g opacity={L(1, 2)}>
+                <line x1={gx - 6} y1={gy} x2={gx + 6} y2={gy} stroke={C.membrane} strokeWidth="2" />
+                {[-6, 0, 6].map((dx) => <circle key={dx} cx={gx + dx} cy={gy + (dx === 0 ? -3 : 0)} r="3.2" fill={C.white} stroke={C.membrane} strokeWidth="1.5" />)}
+              </g>
+            )}
+          </g>
+        );
+      })}
+      <g opacity={L(0)}><Tag x="246" y="20">free radicals</Tag></g>
+    </g>
+  );
+}
+
+// Methylene blue: a blue dye arrives, sits in a stalled electron chain and carries electrons across, energy flows.
+function Mb({ t, a, b, L }) {
+  const bridge = ease(b / 0.5), flow = ease((b - 0.4) / 0.4);
+  const mx = lerp(-30, 160, ease(a)), my = b > 0 ? lerp(30, 100, bridge) : lerp(14, 30, ease(a));
+  const stops = [64, 112, 208, 256];
+  const hop = (x0, x1, off) => { const p = (t * 0.7 + off) % 1; return [lerp(x0, x1, p), 100 - Math.sin(p * Math.PI) * 10, 1 - Math.abs(p - 0.5) * 0.6]; };
+  const sparks = flow > 0 ? Array.from({ length: 4 }, (_, i) => { const p = (t * 0.5 + i / 4) % 1; return [236 + i * 16, 60 - p * 40, 1 - p]; }) : [];
+  return (
+    <g>
+      <g opacity={L(1, 2)}>
+        <rect x="22" y="66" width="276" height="68" rx="34" fill={C.cyto} stroke={C.membrane} strokeWidth="2.4" />
+        {stops.map((sx) => <rect key={sx} x={sx - 13} y="86" width="26" height="28" rx="8" fill={C.white} stroke={C.spot} strokeWidth="2" />)}
+        {[0, 0.5].map((o) => { const [ex, ey, eo] = hop(64, 112, o); return <circle key={o} cx={ex} cy={ey} r="3.4" fill={C.sun} stroke={C.sunEdge} strokeWidth="1" opacity={eo} />; })}
+        {bridge < 1 && <text x="160" y="106" textAnchor="middle" fontSize="16" fontWeight="800" fill={C.spot} opacity={1 - bridge}>×</text>}
+        {flow > 0 && [[112, 160], [160, 208], [208, 256]].map(([x0, x1], j) => [0, 0.5].map((o) => { const [ex, ey, eo] = hop(x0, x1, o + j * 0.2); return <circle key={`${j}${o}`} cx={ex} cy={ey} r="3.4" fill={C.sun} stroke={C.sunEdge} strokeWidth="1" opacity={eo * flow} />; }))}
+        <Tag x="92" y="152">mitochondrion</Tag>
+      </g>
+      <g opacity={L(2)}>
+        {sparks.map(([sx, sy, o], i) => <g key={i} opacity={o}><Star x={sx} y={sy} r={5} /></g>)}
+        {flow > 0 && <Tag x="262" y="152">energy</Tag>}
+      </g>
+      <g transform={`translate(${mx} ${my})`}>
+        {[-13, 0, 13].map((dx) => <circle key={dx} cx={dx} r="8" fill={C.membrane} stroke={C.nucleus} strokeWidth="1.6" />)}
+        <circle r="3" fill={C.fill} />
+      </g>
+    </g>
+  );
+}
+
+// Vitamin B12: a ring around one cobalt atom, the marrow builds red blood cells, nerves keep their coating.
+function B12({ t, a, b, L }) {
+  const mx = lerp(-30, 160, ease(a)), my = lerp(14, 40, ease(a));
+  const make = ease(b / 0.45), coat = (b - 0.45) / 0.55;
+  const cells = make > 0 ? Array.from({ length: 5 }, (_, i) => { const p = (t * 0.28 + i / 5) % 1; return [lerp(64, 150, p), 112 - Math.sin(p * Math.PI) * 20, Math.min(1, p * 5) * (1 - p)]; }) : [];
+  return (
+    <g>
+      <g opacity={L(1)}>
+        <rect x="14" y="88" width="104" height="50" rx="25" fill={C.cyto} stroke={C.membrane} strokeWidth="2.2" />
+        {[[40, 106], [62, 122], [84, 104], [96, 124]].map(([cx, cy], i) => <circle key={i} cx={cx} cy={cy} r="5" fill={C.white} stroke={C.spot} strokeWidth="1.6" />)}
+        {cells.map(([cx, cy, o], i) => <g key={i} opacity={o * make * 1.4}><ellipse cx={cx} cy={cy} rx="7" ry="5.4" fill={C.sun} stroke={C.sunEdge} strokeWidth="1.2" /><ellipse cx={cx} cy={cy} rx="2.8" ry="1.9" fill={C.sunEdge} opacity=".55" /></g>)}
+        <Tag x="66" y="158">bone marrow</Tag>
+      </g>
+      <g opacity={L(2)}>
+        <line x1="200" y1="112" x2="308" y2="112" stroke={C.organelle} strokeWidth="3" strokeLinecap="round" />
+        {[0, 1, 2, 3].map((i) => { const u = ease(coat * 1.8 - i * 0.22); return u > 0 ? <rect key={i} x={216 + i * 23} y={112 - 7 * u} width="19" height={14 * u} rx={6 * u} fill={C.fill} stroke={C.membrane} strokeWidth="1.6" opacity={u} /> : null; })}
+        <Cell x={196} y={112} r={11} />
+        <Tag x="254" y="146">nerve</Tag>
+      </g>
+      <g transform={`translate(${mx} ${my})`} opacity={L(0)}>
+        <circle r="14" fill={C.white} stroke={C.membrane} strokeWidth="2.2" />
+        {[0, 1, 2, 3].map((i) => <circle key={i} cx={Math.cos(i * Math.PI / 2 + Math.PI / 4) * 14} cy={Math.sin(i * Math.PI / 2 + Math.PI / 4) * 14} r="4" fill={C.fill} stroke={C.membrane} strokeWidth="1.5" />)}
+        <circle r={5 + Math.sin(t * 3) * 0.6} fill={C.sun} stroke={C.sunEdge} strokeWidth="1.2" />
+      </g>
+      <g opacity={L(0)}><Tag x={mx + 44} y={my + 3}>cobalt</Tag></g>
+    </g>
+  );
+}
+
+// Lipo-C: nutrients reach the liver, fat is packaged and moved out, carnitine carries it into mitochondria to burn.
+function Lipo({ t, a, b, L }) {
+  const move = b / 0.6, burn = ease((b - 0.55) / 0.4);
+  const home = [[58, 96], [84, 112], [104, 92], [74, 124], [112, 114]];
+  const sparks = burn > 0 ? Array.from({ length: 4 }, (_, i) => { const p = (t * 0.5 + i / 4) % 1; return [226 + i * 18, 70 - p * 38, 1 - p]; }) : [];
+  return (
+    <g>
+      <g opacity={L(0, 1)}>
+        <path d="M24 100 Q40 62 96 70 Q146 78 142 110 Q136 142 86 142 Q36 138 24 120 Z" fill={C.cyto} stroke={C.membrane} strokeWidth="2.2" />
+        <Tag x="84" y="162">liver</Tag>
+      </g>
+      <g opacity={L(2)}>
+        <Mito x={204} y={82} w={100} h={48} t={t} />
+        {sparks.map(([sx, sy, o], i) => <g key={i} opacity={o}><Star x={sx} y={sy} r={5} /></g>)}
+        <Tag x="254" y="150">mitochondrion</Tag>
+      </g>
+      {home.map(([hx, hy], i) => {
+        const u = ease(move * 1.5 - i * 0.14), gone = burn > 0 ? ease(burn * 1.6 - i * 0.12) : 0;
+        const px = lerp(hx, 224 + i * 14, u), py = lerp(hy, 106, u) - Math.sin(u * Math.PI) * 22;
+        return gone < 1 ? <circle key={i} cx={px} cy={py} r={lerp(7, 3, gone)} fill={C.white} stroke={C.spot} strokeWidth="2" opacity={(1 - gone) * L(1, 2, 0)} /> : null;
+      })}
+      {[[0, -14], [1, 0], [2, 14]].map(([i, dy]) => {
+        const u = ease(a * 1.3 - i * 0.12);
+        return <circle key={i} cx={lerp(-20 - i * 14, 70 + i * 12, u)} cy={lerp(20, 104 + dy, u)} r="5" fill={C.organelle} stroke={C.membrane} strokeWidth="1.6" opacity={L(0) } />;
+      })}
+      <g opacity={L(1)}>{b > 0 && b < 0.6 && <Tag x="176" y="60">fat on the move</Tag>}</g>
+    </g>
+  );
+}
+
+
+const SCENES = { bpc157: Bpc, tb500: Tb, glp1: Glp, nad: Nad, sermorelin: Ser, ghkcu: Ghk, dsip: Dsip, epithalon: Epi, pt141: Pt, glutathione: Gsh, mb: Mb, b12: B12, lipoc: Lipo };
 
 // Where the spotlight sits in each step.
 const FOCUS = {
@@ -279,6 +508,13 @@ const FOCUS = {
   nad: [[110, 93], [268, 96], [262, 118]],
   sermorelin: [[160, 46], [118, 88], [170, 132]],
   ghkcu: [[160, 41], [170, 136], [170, 128]],
+  dsip: [[92, 100], [240, 92], [250, 60]],
+  epithalon: [[88, 98], [276, 44], [236, 92]],
+  pt141: [[110, 60], [160, 80], [160, 108]],
+  glutathione: [[160, 96], [128, 80], [160, 96]],
+  mb: [[160, 34], [160, 100], [250, 76]],
+  b12: [[160, 40], [80, 112], [254, 112]],
+  lipoc: [[84, 104], [170, 96], [254, 100]],
 };
 const HYDRA_FOCUS = [[232, 96], [160, 92], [262, 96], [222, 98]];
 
@@ -289,7 +525,13 @@ const MAP = {
   glp1: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.5] : [1, 0.5 + u * 0.5]),
   nad: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.6] : [1, 0.6 + u * 0.4]),
   sermorelin: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.45] : [1, 0.45 + u * 0.55]),
-  ghkcu: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.3] : [1, 0.3 + u * 0.7]),
+  ghkcu: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.3] : [1, 0.3 + u * 0.7]),  dsip: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.5] : [1, 0.5 + u * 0.5]),
+  epithalon: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.45] : [1, 0.45 + u * 0.55]),
+  pt141: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.45] : [1, 0.45 + u * 0.55]),
+  glutathione: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.4] : [1, 0.4 + u * 0.6]),
+  mb: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.5] : [1, 0.5 + u * 0.5]),
+  b12: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.45] : [1, 0.45 + u * 0.55]),
+  lipoc: (s, u) => (s === 0 ? [u, 0] : s === 1 ? [1, u * 0.55] : [1, 0.55 + u * 0.45]),
 };
 
 // ---- Mount Hydra: how its exosome product is made, in four steps (its own description, mounthydra.com) ----
@@ -495,6 +737,13 @@ export function PeptideExplainer({ k, name, cap, w, children }) {
       <p className="px-tab" role="tabpanel">{w[`x_${k}_${tab}`]}</p>
     </div>
   );
+}
+
+// The animation alone (the hero's lab on grateful.gg/health).
+export function PeptideStage({ k, name, w }) {
+  const Scene = SCENES[k];
+  const captions = [1, 2, 3].map((i) => w[`x_${k}_s${i}`]).filter(Boolean);
+  return <Player label={name} captions={captions} w={w} draw={(step, u, t) => { const [a2, b2] = MAP[k](step, u); return <><Spot pts={FOCUS[k]} s={step} u={u} t={t} /><Scene t={t} a={a2} b={b2} L={lit(step, u)} /><Burst pts={FOCUS[k]} s={step} u={u} /></>; }} />;
 }
 
 // How Mount Hydra makes its exosome product, in four steps.

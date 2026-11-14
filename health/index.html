@@ -49,14 +49,38 @@
   :focus-visible { outline:3px solid var(--pink); outline-offset:3px }
 
   .hero { min-height:100svh; display:flex; flex-direction:column }
-  .top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:16px; padding-bottom:8px }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:12px; padding-bottom:4px }
   .top a { display:inline-flex; align-items:center; min-height:40px; padding:0 18px; border-radius:999px; background:var(--ink); color:#fff; font:500 14px var(--mono); text-decoration:none }
-  .hero main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:clamp(10px, 2.2svh, 22px); padding-bottom:clamp(16px, 4svh, 48px) }
-  .mark { width:auto; height:clamp(96px, 26svh, 250px); aspect-ratio:1 }
-  h1 { font-size:clamp(52px, min(13vw, 13svh), 112px); line-height:.95 }
-  .sub { font:400 clamp(22px, min(5.6vw, 4.4svh), 34px)/1.15 var(--serif); letter-spacing:-.01em; max-width:17em; text-wrap:balance }
-  .hero .lede { margin-top:0; font-size:clamp(14.5px, 2.3svh, 17px); max-width:34em }
+  .brand { display:flex; align-items:center; gap:10px; min-width:0 }
+  .brand img { width:40px; height:40px; flex:none }
+  .brand .eye { font-size:11px; letter-spacing:.1em }
+  .hero main { flex:1; display:grid; grid-template-columns:minmax(0, 1fr); align-content:center; justify-items:center; text-align:center; gap:clamp(8px, 1.8svh, 18px); padding-bottom:clamp(12px, 3svh, 40px) }
+  .word { font-weight:800; letter-spacing:-.035em; text-transform:lowercase; color:var(--blue); font-size:clamp(40px, min(12.5vw, 9svh), 92px); line-height:.92 }
+  .word span { font-style:italic; font-weight:600; text-shadow:.05em .04em 0 var(--pink) }
+  .sub { margin-top:clamp(6px, 1.2svh, 14px); font:400 clamp(18px, min(5vw, 3.4svh), 30px)/1.15 var(--serif); letter-spacing:-.01em; text-wrap:balance }
+  .hero .lede { margin:8px auto 0; font-size:clamp(14px, 2.1svh, 17px); max-width:30em }
+  .lab { width:100%; max-width:min(560px, calc((100svh - 372px) * 1.7778)); min-width:min(100%, 250px); display:flex; flex-direction:column; gap:8px }
+  .lab-hint { font:500 12px/1.3 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--blue) }
+  .lab-chips { display:flex; gap:6px; overflow-x:auto; margin:0 -20px; padding:2px 20px 4px; scrollbar-width:none; -webkit-overflow-scrolling:touch }
+  .lab-chips::-webkit-scrollbar { display:none }
+  .lab-chips button { flex:none; min-height:36px; padding:0 14px; border-radius:999px; border:0; background:rgba(255,255,255,.5); box-shadow:inset 0 0 0 1.5px var(--blue); color:var(--blue); font:500 13.5px var(--mono); cursor:pointer; white-space:nowrap }
+  .lab-chips button[aria-selected="true"] { background:var(--blue); color:#fff; box-shadow:3px 3px 0 var(--pink) }
+  .lab .px-player { display:flex; flex-direction:column; gap:6px; text-align:left }
+  .lab .px-stage { box-shadow:0 0 0 1.5px var(--blue), 6px 6px 0 var(--pink) }
+  .lab .px-cap { min-height:0; padding:8px 12px }
+  .lab .px-cap span { font-size:15px }
+  .lab-more { align-self:center; font:500 13.5px var(--mono); color:var(--blue); text-underline-offset:4px }
+  .go { display:flex; flex-direction:column; align-items:center; gap:10px }
   .more { font:500 14px var(--mono); color:var(--blue); text-underline-offset:4px }
+  @media (max-width:859px) { .hero .lede, .go .more, .brand .eye { display:none } .lab { min-height:0 } }
+  @media (min-width:860px) {
+    .hero main { grid-template-columns:minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas:"pitch lab" "go lab"; column-gap:56px; row-gap:26px; text-align:left; justify-items:start; align-items:center }
+    .pitch { grid-area:pitch; align-self:end } .go { grid-area:go; align-self:start; flex-direction:row; gap:22px } .lab { grid-area:lab; justify-self:end; max-width:min(600px, calc((100svh - 300px) * 1.7778)) }
+    .hero .lede { margin-left:0 }
+    .word { font-size:clamp(56px, min(6.6vw, 15svh), 108px) }
+    .lab-chips { flex-wrap:wrap; margin:0; padding:2px 2px 6px; overflow:visible }
+    .brand .eye { font-size:12.5px; letter-spacing:.14em }
+  }
 
   section.wrap { padding-top:clamp(56px, 8vw, 96px) }
   #peptides { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-top:28px }
@@ -66,8 +90,8 @@
   .pep .px-card small { font-size:12.5px; font-weight:500; letter-spacing:.06em; color:var(--blue) }
   .pep-what { font-size:15px; color:var(--ink-soft) }
   .px-pp, .px-dots button, .px-tabs button { font-family:var(--mono) }
-  .pep-shop { display:flex; align-items:center; justify-content:center; min-height:50px; padding:0 18px; border-radius:999px; background:var(--blue); color:#fff; text-decoration:none; text-align:center;
-    box-shadow:4px 4px 0 var(--pink); font:italic 600 19px/1.1 var(--serif) }
+  .pep-shop { display:flex; align-items:center; justify-content:center; min-height:50px; padding:0 14px; border-radius:999px; background:var(--blue); color:#fff; text-decoration:none; text-align:center;
+    box-shadow:4px 4px 0 var(--pink); font:italic 600 17.5px/1.1 var(--serif) }
   .pep-shop:hover { background:var(--nucleus) }
   .note { max-width:46em; margin-top:18px; font-size:14px; color:var(--ink-soft) }
 
@@ -82,13 +106,12 @@
   .who p { margin-top:6px; font-size:15px; color:rgba(255,255,255,.78) }
   .cta-row { margin-top:28px }
 
-  .tiles { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:16px; margin-top:28px }
-  .tile { display:flex; flex-direction:column; gap:4px; text-decoration:none }
-  .tile .ph { display:block; aspect-ratio:1; border-radius:16px; overflow:hidden; background:rgba(29,26,58,.06); margin-bottom:6px }
-  .tile img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .25s ease }
-  .tile:hover img { transform:scale(1.04) }
-  .tile b { font:500 15.5px/1.3 var(--mono) }
-  .tile i { font-style:normal; font-size:13px; color:var(--blue) }
+  .pep-buy { display:flex; align-items:center; gap:12px }
+  .pep-buy img { width:56px; height:56px; flex:none; border-radius:14px; object-fit:cover; background:rgba(29,26,58,.06) }
+  .pep-buy .pep-shop { flex:1 }
+  .pep-forms { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:-4px; font-size:13.5px }
+  .pep-forms a { color:var(--blue); text-underline-offset:4px }
+  .end { text-align:center } .end .lede { margin-left:auto; margin-right:auto }
   footer { padding:56px 0 40px; font-size:13.5px; color:var(--ink-soft) }
   footer p { max-width:52em }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto } .btn, .tile img { transition:none } }
@@ -97,23 +120,27 @@
 <body>
 <div class="hero">
   <header class="top wrap">
-    <span class="eye">Grateful Health</span>
+    <span class="brand"><img src="mark.webp" alt="" width="40" height="40"><span class="eye">Powered by Grateful Labs &amp; Platform Health</span></span>
     <a href="https://health.grateful.gg/store">Shop</a>
   </header>
   <main class="wrap">
-    <img class="mark" src="mark.webp" alt="Grateful Health: two giraffes on a caduceus inside a cell" width="640" height="640">
-    <h1>Peptides</h1>
-    <p class="sub">prescribed by a licensed physician &amp; pharmacy</p>
-    <p class="lede">See how each one works. When you are ready, ask a physician through our shop.</p>
-    <a class="btn" href="https://health.grateful.gg/store">Open the shop</a>
-    <a class="more" href="#learn">or learn first ↓</a>
+    <div class="pitch">
+      <h1 class="word">grateful <span>health</span></h1>
+      <p class="sub">Peptides, prescribed by a licensed physician &amp; pharmacy.</p>
+      <p class="lede">Learn what each one does in your body before you ask for it.</p>
+    </div>
+    <div id="lab" class="lab"></div>
+    <div class="go">
+      <a class="btn" href="https://health.grateful.gg/store">Open the shop</a>
+      <a class="more" href="#learn">or learn first ↓</a>
+    </div>
   </main>
 </div>
 
 <section id="learn" class="wrap">
   <p class="eye">Learn</p>
-  <h2>How each peptide works</h2>
-  <p class="lede">Peptides are short chains of amino acids. Each card plays a short animation of what it does in the body. Tap the tabs for benefits, risks, dosing and stacking.</p>
+  <h2>How each one works</h2>
+  <p class="lede">Peptides are short chains of amino acids. Each card plays a short animation of what it does in the body. Some of these are not peptides, and the card says so. Tap the tabs for benefits, risks, dosing and stacking.</p>
   <div id="peptides"></div>
   <p class="note">A licensed physician decides what fits you, and some peptides cannot be prescribed at all. Nothing here is medical advice.</p>
 </section>
@@ -142,23 +169,10 @@
   </div>
 </section>
 
-<section id="shop" class="wrap">
-  <p class="eye">Also in the shop</p>
-  <h2>Go straight to the one you want</h2>
-  <div class="tiles">
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-dsip-o1au"><span class="ph"><img src="products/dsip.webp" alt="" width="512" height="512" loading="lazy"></span><b>DSIP</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-epithalon-o0mf"><span class="ph"><img src="products/epithalon.webp" alt="" width="512" height="512" loading="lazy"></span><b>Epithalon</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-pt-141-bremelanotide-rkmz"><span class="ph"><img src="products/bremelanotide.webp" alt="" width="512" height="512" loading="lazy"></span><b>PT-141</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-pt-141-nasal-spray-rjpy"><span class="ph"><img src="products/bremelanotide-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>PT-141 Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-glutathione-injection-rn6m"><span class="ph"><img src="products/glutathione.webp" alt="" width="512" height="512" loading="lazy"></span><b>Glutathione</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-glutathione-nasal-spray-ridl"><span class="ph"><img src="products/glutathione-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>Glutathione Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-nad-nasal-spray-roi7"><span class="ph"><img src="products/nad-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>NAD+ Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-sermorelin-nasal-spray-rl7z"><span class="ph"><img src="products/sermorelin-spray.webp" alt="" width="512" height="512" loading="lazy"></span><b>Sermorelin Nasal Spray</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-nad-glutathione-stack-rb6q"><span class="ph"><img src="products/reverse-aging-stack.webp" alt="" width="512" height="512" loading="lazy"></span><b>NAD+ and Glutathione</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-methylene-blue-rpw0"><span class="ph"><img src="products/methylene-blue.webp" alt="" width="512" height="512" loading="lazy"></span><b>Methylene Blue</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-vitamin-b12-injection-rgl6"><span class="ph"><img src="products/b12.webp" alt="" width="512" height="512" loading="lazy"></span><b>Vitamin B12</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-      <a class="tile" href="https://health.grateful.gg/protocols/proto-gratefulhealth-lipo-c-injection-rf4j"><span class="ph"><img src="products/lipo-c.webp" alt="" width="512" height="512" loading="lazy"></span><b>Lipo-C</b><i>See it in the shop <span aria-hidden="true">→</span></i></a>
-  </div>
+<section id="shop" class="wrap end">
+  <h2>Everything is in the shop</h2>
+  <p class="lede">Every card above opens its own page there. Or see it all at once.</p>
+  <p class="cta-row"><a class="btn" href="https://health.grateful.gg/store">Open the shop</a></p>
 </section>
 
 <footer class="wrap">
