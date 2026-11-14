@@ -6,15 +6,13 @@ NICKNAME:Gigi
 ORG:Grateful Giraffes;
 TITLE:Your guide at Grateful Giraffes
 item1.TEL;type=pref:+1 516 419 7249
-item1.X-ABLabel:iMessage and calls
-item2.TEL:+1 747 529 9177
-item2.X-ABLabel:WhatsApp
+item1.X-ABLabel:iMessage, WhatsApp and calls
 EMAIL;type=INTERNET;type=pref:gigi@grateful.gg
-item3.URL;type=pref:https://app.grateful.gg
-item3.X-ABLabel:The Oasis
-item4.URL:https://wa.me/17475299177
-item4.X-ABLabel:WhatsApp
-NOTE:Text or call Gigi at 516 419 7249. WhatsApp her at 747 529 9177. FaceTime her at gigi@grateful.gg.
+item2.URL;type=pref:https://app.grateful.gg
+item2.X-ABLabel:The Oasis
+item3.URL:https://wa.me/15164197249
+item3.X-ABLabel:WhatsApp
+NOTE:Text\, WhatsApp or call Gigi at 516 419 7249. FaceTime her at gigi@grateful.gg.
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAA
  AAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAABkKADAAQAAAABAA
  ABkAAAAAD/wAARCAGQAZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcI
