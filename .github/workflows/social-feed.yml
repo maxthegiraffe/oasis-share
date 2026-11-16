@@ -1,0 +1,31 @@
+name: social feed
+# Refreshes socialmedia/feed.json (the latest Instagram, Facebook and YouTube posts behind app.grateful.gg/socialmedia)
+# every 6 hours. Instagram and Facebook image links expire after a few days, so the feed has to keep moving.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: social-feed
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch the latest posts
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python3 scripts/social_feed.py
+      - name: Commit if it changed
+        run: |
+          git config user.name "grateful-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add socialmedia/feed.json
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "socialmedia: refresh the latest posts"
+          git pull --rebase origin main
+          git push origin HEAD:main
