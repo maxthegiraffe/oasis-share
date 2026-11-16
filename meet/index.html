@@ -45,10 +45,10 @@ button[disabled]{opacity:.6;cursor:default}
 </main>
 <script>
 (function () {
-  var API = "https://gigi-whatsapp-7909-dev.twil.io/intro";
+  var API = "https://gigi-cloud.gigi-grateful.workers.dev/intro";   // the Worker since 2026-11-16 (was the Twilio fallback)
   var q = new URLSearchParams(location.search);
   var id = (q.get("id") || "").replace(/[^a-f0-9]/g, "").slice(0, 20);
-  var a = q.get("a") === "no" ? "no" : q.get("a") === "yes" ? "yes" : "";
+  var a = ["yes", "no", "text", "email"].indexOf(q.get("a")) >= 0 ? q.get("a") : "";   // text / email: how they want the intro (Max 11-16)
   var t = (q.get("t") || "").replace(/[^a-f0-9]/g, "");
   var $t = document.getElementById("title"), $b = document.getElementById("body"), $go = document.getElementById("go");
 
@@ -56,11 +56,12 @@ button[disabled]{opacity:.6;cursor:default}
   function words(s, d) {
     var o = (d && d.other) || "them";
     switch (s) {
-      case "connected": return show("You're already connected", "Gigi emailed you and " + o + ". Just reply-all there.");
+      case "connected": return show("You're already connected", "You and " + o + " are already connected through Gigi.");
       case "passed": return show("All set", "You passed on this one, and nothing about you was shared.");
       case "closed": return show("This request has closed", "It's been a while, so this one has expired. Nothing about you was shared.");
       case "bad": return show("That link doesn't look right", "It may have been copied incompletely. Reply to Gigi's email and she'll sort it out.");
       case "done_yes": return show("Done, you're connected", "Gigi just emailed you and " + o + ". Keep an eye out for a few times that work for " + o + ".");
+      case "done_text": return show("Done, you're in", "Max is starting a group text with you, " + o + " and Gigi. Keep an eye out for a few times that work for " + o + ".");
       case "done_no": return show("No problem at all", "Nothing about you was shared, and Gigi won't bring it up again.");
       default: return show("Something went wrong on our side", "Reply to Gigi's email with yes or no and she'll take care of it.");
     }
@@ -78,10 +79,14 @@ button[disabled]{opacity:.6;cursor:default}
   call("GET").then(function (d) {
     if (!d || d.state !== "open") return words(d && d.state, d);
     var o = d.other || "them";
-    if (a === "yes") {
+    if (a === "text") {
+      $t.textContent = "Meet " + o + "?";
+      $b.textContent = "Tap below and Max will start a group text with you, " + o + " and Gigi.";
+      $go.textContent = "Yes, in a text thread"; $go.className = "";
+    } else if (a === "yes" || a === "email") {
       $t.textContent = "Meet " + o + "?";
       $b.textContent = "Tap below and Gigi will email you both an introduction.";
-      $go.textContent = "Yes, introduce us"; $go.className = "";
+      $go.textContent = "Yes, by email"; $go.className = "";
     } else {
       $t.textContent = "Pass on meeting " + o + "?";
       $b.textContent = "No pressure at all. Nothing about you is shared.";
