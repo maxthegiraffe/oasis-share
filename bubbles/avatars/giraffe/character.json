@@ -1,0 +1,1794 @@
+{
+ "name": "giraffe",
+ "frame": {
+  "units": "normalized: 2.0 = full height, feet at y=0",
+  "up": "+y",
+  "facing": "+z",
+  "left": "+x is the character's own left"
+ },
+ "files": {
+  "character.glb": {
+   "texture_max": 2048,
+   "bytes": 4394600
+  },
+  "character-1k.glb": {
+   "texture_max": 1024,
+   "bytes": 4036592
+  }
+ },
+ "morphs": [
+  "jawOpen",
+  "mouthClose",
+  "mouthFunnel",
+  "mouthPucker",
+  "mouthSmileLeft",
+  "mouthSmileRight",
+  "mouthStretchLeft",
+  "mouthStretchRight",
+  "eyeBlinkLeft",
+  "eyeSquintLeft",
+  "eyeWideLeft",
+  "eyeBlinkRight",
+  "eyeSquintRight",
+  "eyeWideRight"
+ ],
+ "morph_meshes": {
+  "jawOpen": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthClose": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthFunnel": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthPucker": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthSmileLeft": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthSmileRight": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthStretchLeft": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "mouthStretchRight": [
+   "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "mouth_interior"
+  ],
+  "eyeBlinkLeft": [
+   "eyelid_left"
+  ],
+  "eyeSquintLeft": [
+   "eyelid_left"
+  ],
+  "eyeWideLeft": [
+   "eyelid_left"
+  ],
+  "eyeBlinkRight": [
+   "eyelid_right"
+  ],
+  "eyeSquintRight": [
+   "eyelid_right"
+  ],
+  "eyeWideRight": [
+   "eyelid_right"
+  ]
+ },
+ "meshes": [
+  {
+   "index": 0,
+   "name": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+   "role": "body",
+   "vertices": 44218,
+   "triangles": 80120,
+   "morphs": [
+    "jawOpen",
+    "mouthClose",
+    "mouthFunnel",
+    "mouthPucker",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "mouthStretchLeft",
+    "mouthStretchRight"
+   ],
+   "skinned": true
+  },
+  {
+   "index": 1,
+   "name": "mouth_interior",
+   "role": "mouth_interior",
+   "vertices": 1568,
+   "triangles": 2988,
+   "morphs": [
+    "jawOpen",
+    "mouthClose",
+    "mouthFunnel",
+    "mouthPucker",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "mouthStretchLeft",
+    "mouthStretchRight"
+   ],
+   "skinned": true
+  },
+  {
+   "index": 2,
+   "name": "eyelid_left",
+   "role": "eyelid",
+   "vertices": 1215,
+   "triangles": 2200,
+   "morphs": [
+    "eyeBlinkLeft",
+    "eyeSquintLeft",
+    "eyeWideLeft"
+   ],
+   "skinned": true
+  },
+  {
+   "index": 3,
+   "name": "eyelid_right",
+   "role": "eyelid",
+   "vertices": 1215,
+   "triangles": 2200,
+   "morphs": [
+    "eyeBlinkRight",
+    "eyeSquintRight",
+    "eyeWideRight"
+   ],
+   "skinned": true
+  }
+ ],
+ "joints": [
+  {
+   "name": "root",
+   "node": 4,
+   "parent": null,
+   "head": [
+    0.0,
+    0.05,
+    -0.25
+   ],
+   "tail": [
+    0.0,
+    0.1,
+    -0.24
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "z": [
+     0.0,
+     0.0,
+     1.0
+    ]
+   }
+  },
+  {
+   "name": "neck_0",
+   "node": 5,
+   "parent": "root",
+   "head": [
+    0.0,
+    0.1,
+    -0.24
+   ],
+   "tail": [
+    0.0,
+    0.19741,
+    -0.25157
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     0.99302,
+     -0.11794
+    ],
+    "z": [
+     -0.0,
+     0.11794,
+     0.99302
+    ]
+   }
+  },
+  {
+   "name": "neck_1",
+   "node": 6,
+   "parent": "neck_0",
+   "head": [
+    0.0,
+    0.19741,
+    -0.25157
+   ],
+   "tail": [
+    0.0,
+    0.29512,
+    -0.25985
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     0.99643,
+     -0.08443
+    ],
+    "z": [
+     -0.0,
+     0.08443,
+     0.99643
+    ]
+   }
+  },
+  {
+   "name": "neck_2",
+   "node": 7,
+   "parent": "neck_1",
+   "head": [
+    0.0,
+    0.29512,
+    -0.25985
+   ],
+   "tail": [
+    0.0,
+    0.3932,
+    -0.25982
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     1.0,
+     0.00032
+    ],
+    "z": [
+     0.0,
+     -0.00032,
+     1.0
+    ]
+   }
+  },
+  {
+   "name": "neck_3",
+   "node": 8,
+   "parent": "neck_2",
+   "head": [
+    0.0,
+    0.3932,
+    -0.25982
+   ],
+   "tail": [
+    0.0,
+    0.49089,
+    -0.2514
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     0.99631,
+     0.08581
+    ],
+    "z": [
+     0.0,
+     -0.08581,
+     0.99631
+    ]
+   }
+  },
+  {
+   "name": "neck_4",
+   "node": 9,
+   "parent": "neck_3",
+   "head": [
+    0.0,
+    0.49089,
+    -0.2514
+   ],
+   "tail": [
+    0.0,
+    0.58625,
+    -0.22887
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     0.9732,
+     0.22997
+    ],
+    "z": [
+     0.0,
+     -0.22997,
+     0.9732
+    ]
+   }
+  },
+  {
+   "name": "neck_5",
+   "node": 10,
+   "parent": "neck_4",
+   "head": [
+    0.0,
+    0.58625,
+    -0.22887
+   ],
+   "tail": [
+    0.0,
+    0.68,
+    -0.2
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     0.0,
+     0.95571,
+     0.2943
+    ],
+    "z": [
+     0.0,
+     -0.2943,
+     0.95571
+    ]
+   }
+  },
+  {
+   "name": "head",
+   "node": 11,
+   "parent": "neck_5",
+   "head": [
+    0.0,
+    0.85,
+    -0.15
+   ],
+   "tail": [
+    0.0,
+    1.92633,
+    -0.00961
+   ],
+   "axes": {
+    "x": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "y": [
+     -0.0,
+     0.9916,
+     0.12934
+    ],
+    "z": [
+     0.0,
+     -0.12934,
+     0.9916
+    ]
+   }
+  },
+  {
+   "name": "ear_left",
+   "node": 12,
+   "parent": "head",
+   "head": [
+    0.465,
+    1.42,
+    -0.256
+   ],
+   "tail": [
+    0.98,
+    1.5,
+    -0.4
+   ],
+   "axes": {
+    "x": [
+     0.1535,
+     -0.98815,
+     -0.0
+    ],
+    "y": [
+     0.95246,
+     0.14796,
+     -0.26632
+    ],
+    "z": [
+     0.26316,
+     0.04088,
+     0.96388
+    ]
+   }
+  },
+  {
+   "name": "ear_right",
+   "node": 13,
+   "parent": "head",
+   "head": [
+    -0.465,
+    1.42,
+    -0.256
+   ],
+   "tail": [
+    -0.98,
+    1.5,
+    -0.4
+   ],
+   "axes": {
+    "x": [
+     -0.1535,
+     -0.98815,
+     -0.0
+    ],
+    "y": [
+     -0.95246,
+     0.14796,
+     -0.26632
+    ],
+    "z": [
+     0.26316,
+     -0.04088,
+     -0.96388
+    ]
+   }
+  }
+ ],
+ "rig": {
+  "skin": 0,
+  "root": "root",
+  "axes": {
+   "x": "flex forward / nod down (+)",
+   "y": "twist; head turns toward its own left (+)",
+   "z": "tilt toward its own right (+)",
+   "ears": "+z lifts the tip (both ears); +x swings left tip forward, right tip back"
+  },
+  "note": "joint frames: +Y along the bone; head +Y up the face, +Z down the snout"
+ },
+ "visemes": {
+  "sil": {},
+  "PP": {
+   "jawOpen": 0.06,
+   "mouthClose": 0.2
+  },
+  "FF": {
+   "jawOpen": 0.1,
+   "mouthStretchLeft": 0.15,
+   "mouthStretchRight": 0.15,
+   "mouthClose": 0.1
+  },
+  "TH": {
+   "jawOpen": 0.18,
+   "mouthStretchLeft": 0.1,
+   "mouthStretchRight": 0.1
+  },
+  "DD": {
+   "jawOpen": 0.22,
+   "mouthStretchLeft": 0.2,
+   "mouthStretchRight": 0.2,
+   "mouthSmileLeft": 0.1,
+   "mouthSmileRight": 0.1
+  },
+  "kk": {
+   "jawOpen": 0.28,
+   "mouthStretchLeft": 0.25,
+   "mouthStretchRight": 0.25
+  },
+  "CH": {
+   "jawOpen": 0.2,
+   "mouthFunnel": 0.45,
+   "mouthPucker": 0.25
+  },
+  "SS": {
+   "jawOpen": 0.08,
+   "mouthStretchLeft": 0.35,
+   "mouthStretchRight": 0.35,
+   "mouthSmileLeft": 0.25,
+   "mouthSmileRight": 0.25
+  },
+  "nn": {
+   "jawOpen": 0.16,
+   "mouthStretchLeft": 0.15,
+   "mouthStretchRight": 0.15,
+   "mouthClose": 0.05
+  },
+  "RR": {
+   "jawOpen": 0.2,
+   "mouthFunnel": 0.3,
+   "mouthPucker": 0.3
+  },
+  "aa": {
+   "jawOpen": 0.62,
+   "mouthStretchLeft": 0.1,
+   "mouthStretchRight": 0.1
+  },
+  "E": {
+   "jawOpen": 0.35,
+   "mouthStretchLeft": 0.35,
+   "mouthStretchRight": 0.35,
+   "mouthSmileLeft": 0.15,
+   "mouthSmileRight": 0.15
+  },
+  "I": {
+   "jawOpen": 0.22,
+   "mouthSmileLeft": 0.45,
+   "mouthSmileRight": 0.45,
+   "mouthStretchLeft": 0.25,
+   "mouthStretchRight": 0.25
+  },
+  "O": {
+   "jawOpen": 0.45,
+   "mouthFunnel": 0.6,
+   "mouthPucker": 0.15
+  },
+  "U": {
+   "jawOpen": 0.18,
+   "mouthPucker": 0.75,
+   "mouthFunnel": 0.35
+  }
+ },
+ "camera": {
+  "face": {
+   "position": [
+    -0.003,
+    1.2456,
+    3.8355
+   ],
+   "target": [
+    -0.003,
+    1.2456,
+    0.0
+   ],
+   "fov": 30.0,
+   "aspect": 1.0,
+   "half_size": [
+    0.6861,
+    0.845
+   ],
+   "near": 0.01,
+   "far": 14.52
+  },
+  "head": {
+   "position": [
+    0.0,
+    1.2456,
+    4.657
+   ],
+   "target": [
+    0.0,
+    1.2456,
+    0.0
+   ],
+   "fov": 30.0,
+   "aspect": 1.0,
+   "half_size": [
+    1.0651,
+    0.8148
+   ],
+   "near": 0.01,
+   "far": 15.34
+  },
+  "bust": {
+   "position": [
+    0.0,
+    1.0025,
+    4.6281
+   ],
+   "target": [
+    0.0,
+    1.0025,
+    0.0
+   ],
+   "fov": 30.0,
+   "aspect": 1.0,
+   "half_size": [
+    1.0454,
+    1.0574
+   ],
+   "near": 0.01,
+   "far": 15.31
+  },
+  "full": {
+   "position": [
+    0.0,
+    1.0,
+    4.6007
+   ],
+   "target": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "fov": 30.0,
+   "aspect": 1.0,
+   "half_size": [
+    1.0355,
+    1.05
+   ],
+   "near": 0.01,
+   "far": 15.28
+  }
+ },
+ "landmarks": {
+  "name": "giraffe",
+  "facing": "+z",
+  "mouth": {
+   "corner_left": [
+    0.3,
+    0.79,
+    0.412
+   ],
+   "corner_right": [
+    -0.3,
+    0.79,
+    0.412
+   ],
+   "front": [
+    0.0,
+    0.745,
+    0.655
+   ],
+   "line": [
+    [
+     0.278,
+     0.7943,
+     0.456
+    ],
+    [
+     0.2456,
+     0.7938,
+     0.4864
+    ],
+    [
+     0.2146,
+     0.7861,
+     0.5167
+    ],
+    [
+     0.1837,
+     0.7736,
+     0.5452
+    ],
+    [
+     0.1497,
+     0.7622,
+     0.57
+    ],
+    [
+     0.1117,
+     0.7541,
+     0.5903
+    ],
+    [
+     0.0714,
+     0.7488,
+     0.6061
+    ],
+    [
+     0.0334,
+     0.746,
+     0.6169
+    ],
+    [
+     0.0003,
+     0.745,
+     0.6207
+    ],
+    [
+     -0.0333,
+     0.7457,
+     0.617
+    ],
+    [
+     -0.0721,
+     0.7488,
+     0.6071
+    ],
+    [
+     -0.1127,
+     0.7545,
+     0.5918
+    ],
+    [
+     -0.1511,
+     0.7626,
+     0.5719
+    ],
+    [
+     -0.1855,
+     0.7736,
+     0.5472
+    ],
+    [
+     -0.2164,
+     0.7854,
+     0.5185
+    ],
+    [
+     -0.2469,
+     0.7921,
+     0.4876
+    ],
+    [
+     -0.2792,
+     0.7918,
+     0.457
+    ]
+   ],
+   "hinge": [
+    0,
+    0.82,
+    0.2
+   ],
+   "axis": [
+    1,
+    0,
+    0
+   ],
+   "max_open_deg": 24,
+   "jaw_back": 0.2,
+   "jaw_bottom": 0.5,
+   "falloff": 0.04,
+   "lip_band": 0.05
+  },
+  "eyes": [
+   {
+    "side": "left",
+    "center": [
+     0.268,
+     1.19,
+     0.15
+    ],
+    "half_width": 0.14,
+    "half_height": 0.1,
+    "tilt_deg": 0,
+    "lid_rest": 0.15,
+    "lid_color": null,
+    "opening": "landmarks"
+   },
+   {
+    "side": "right",
+    "center": [
+     -0.262,
+     1.19,
+     0.15
+    ],
+    "half_width": 0.14,
+    "half_height": 0.1,
+    "tilt_deg": 0,
+    "lid_rest": 0.15,
+    "lid_color": null,
+    "opening": "landmarks"
+   }
+  ],
+  "ears": [
+   {
+    "side": "left",
+    "base": [
+     0.465,
+     1.42,
+     -0.256
+    ],
+    "tip": [
+     0.98,
+     1.5,
+     -0.4
+    ]
+   },
+   {
+    "side": "right",
+    "base": [
+     -0.465,
+     1.42,
+     -0.256
+    ],
+    "tip": [
+     -0.98,
+     1.5,
+     -0.4
+    ]
+   }
+  ],
+  "neck": [
+   [
+    0.0,
+    0.1,
+    -0.24
+   ],
+   [
+    0.0,
+    0.3,
+    -0.26
+   ],
+   [
+    0.0,
+    0.5,
+    -0.25
+   ],
+   [
+    0.0,
+    0.68,
+    -0.2
+   ]
+  ],
+  "head": [
+   0.0,
+   0.85,
+   -0.15
+  ],
+  "neck_bones": 6,
+  "body_root": [
+   0,
+   0.05,
+   -0.25
+  ]
+ },
+ "stats": {
+  "source": {
+   "file": "giraffe_src.glb",
+   "bytes": 5050232,
+   "vertices": 43833,
+   "triangles": 79472
+  },
+  "normalize": {
+   "height": 2.0,
+   "facing_in": "+x",
+   "yaw_deg": -90.0,
+   "scale": 2.0440164509712075,
+   "offset": [
+    -0.000481270312395633,
+    0.9996370294087198,
+    -2.1564418782109246e-05
+   ],
+   "bbox_min": [
+    -0.986161,
+    0.0,
+    -0.682043
+   ],
+   "bbox_max": [
+    0.986161,
+    2.0,
+    0.682043
+   ],
+   "vertices": 43833,
+   "meshes": 1
+  },
+  "mouth": {
+   "mouth_width": 0.6,
+   "lip_line_length": 0.77394,
+   "primitives": [
+    {
+     "band_faces_upper": 1226,
+     "band_faces_lower": 1003,
+     "island_faces_flipped": 64,
+     "slit_groups": 55,
+     "duplicated_vertices": 55,
+     "pinched_groups": 0,
+     "slit_s_range": [
+      0.023,
+      0.975
+     ],
+     "slit_edge_snap_max": 0.0085,
+     "edge_median": 0.01416,
+     "r_cut": 0.08,
+     "weld_len": 0.0155,
+     "edge_vertices": 57,
+     "edge_kink_max_deg_before": 179.5,
+     "edge_kink_max_deg_after": 169.1,
+     "edge_kink_p90_deg_before": 133.0,
+     "edge_kink_p90_deg_after": 21.8,
+     "edge_depth_zigzag_before": 0.00529,
+     "edge_depth_zigzag_after": 0.00404,
+     "edge_smooth_shift_max": 0.00416,
+     "edge_smooth_scale_min": [
+      0.49,
+      0.49
+     ],
+     "lip_roll_vertices": 330,
+     "lip_roll_triangles": 648,
+     "lip_roll_radius": 0.00637,
+     "lip_roll_angle_deg": 115.0,
+     "lip_roll_reach_max": 0.000173,
+     "lip_roll_tilt_deg": 35.0,
+     "vertices_after": 44218,
+     "max_delta_outside_support": {
+      "jawOpen": 0.0,
+      "mouthClose": 0.0,
+      "mouthFunnel": 0.0,
+      "mouthPucker": 0.0,
+      "mouthSmileLeft": 0.0,
+      "mouthStretchLeft": 0.0,
+      "mouthSmileRight": 0.0,
+      "mouthStretchRight": 0.0
+     },
+     "morphs": {
+      "jawOpen": {
+       "vertices": 2864,
+       "max": 0.18262,
+       "bbox": [
+        [
+         -0.371,
+         0.59,
+         0.16
+        ],
+        [
+         0.365,
+         0.832,
+         0.626
+        ]
+       ]
+      },
+      "mouthClose": {
+       "vertices": 1057,
+       "max": 0.02718,
+       "bbox": [
+        [
+         -0.315,
+         0.697,
+         0.366
+        ],
+        [
+         0.311,
+         0.838,
+         0.669
+        ]
+       ]
+      },
+      "mouthFunnel": {
+       "vertices": 8269,
+       "max": 0.15562,
+       "bbox": [
+        [
+         -0.469,
+         0.59,
+         0.013
+        ],
+        [
+         0.467,
+         1.14,
+         0.682
+        ]
+       ]
+      },
+      "mouthPucker": {
+       "vertices": 8269,
+       "max": 0.18947,
+       "bbox": [
+        [
+         -0.469,
+         0.59,
+         0.013
+        ],
+        [
+         0.467,
+         1.14,
+         0.682
+        ]
+       ]
+      },
+      "mouthSmileLeft": {
+       "vertices": 12099,
+       "max": 0.11597,
+       "bbox": [
+        [
+         -0.447,
+         0.187,
+         -0.517
+        ],
+        [
+         0.848,
+         1.322,
+         0.682
+        ]
+       ]
+      },
+      "mouthStretchLeft": {
+       "vertices": 12091,
+       "max": 0.10862,
+       "bbox": [
+        [
+         -0.447,
+         0.187,
+         -0.517
+        ],
+        [
+         0.848,
+         1.322,
+         0.682
+        ]
+       ]
+      },
+      "mouthSmileRight": {
+       "vertices": 12466,
+       "max": 0.11644,
+       "bbox": [
+        [
+         -0.856,
+         0.174,
+         -0.532
+        ],
+        [
+         0.446,
+         1.324,
+         0.682
+        ]
+       ]
+      },
+      "mouthStretchRight": {
+       "vertices": 12458,
+       "max": 0.10906,
+       "bbox": [
+        [
+         -0.856,
+         0.174,
+         -0.532
+        ],
+        [
+         0.446,
+         1.324,
+         0.682
+        ]
+       ]
+      }
+     },
+     "gap_front": 0.17837,
+     "gap_front_ratio": 0.297,
+     "gap_front_vertical": 0.1653,
+     "gap_max": 0.17837,
+     "gap_median": 0.16128,
+     "gap_median_ratio": 0.269,
+     "seal_residual_median": 0.0
+    }
+   ],
+   "lip_line_off_surface": {
+    "median": 0.00369,
+    "p90": 0.00668,
+    "max": 0.01214
+   },
+   "interior": {
+    "roof": {
+     "height": 0.19507,
+     "max_sd_rest": -0.01181,
+     "max_sd_open": -0.01571
+    },
+    "floor": {
+     "height": 0.15172,
+     "max_sd_rest": -0.0117,
+     "max_sd_open": -0.01209
+    },
+    "curtain": {
+     "loop_edges_open": 41,
+     "loop_edges_closed": 21,
+     "max_sd_rest": -0.01704,
+     "max_sd_open": -0.02141,
+     "twin_layer_vertices": 110
+    },
+    "rim_lift": {
+     "lip_gap": 0.00637
+    },
+    "tongue": {
+     "length": 0.20905,
+     "width": 0.25862,
+     "thickness": 0.04611,
+     "top_below_limit": 0.01431,
+     "top_below_lower_lip": 0.07431,
+     "vertices": 522,
+     "max_sd_rest": -0.04531,
+     "max_sd_open": -0.04531
+    },
+    "rim_inset": [
+     0.018,
+     0.09112
+    ],
+    "mouth_plane_normal": [
+     0.0,
+     0.9765,
+     0.2155
+    ],
+    "max_sd_per_shape": {
+     "mouthClose": 0.04606,
+     "mouthFunnel": -0.01507,
+     "mouthPucker": -0.01511,
+     "mouthSmileLeft": 0.05443,
+     "mouthSmileRight": 0.09441,
+     "mouthStretchLeft": 0.05432,
+     "mouthStretchRight": 0.09462
+    },
+    "tongue_inside_bag_min": -0.02438,
+    "tongue_inside_bag": {
+     "jawOpen 0.0": -0.01904,
+     "jawOpen 0.3": -0.01896,
+     "jawOpen 0.62": -0.01895,
+     "jawOpen 1.0": -0.01904,
+     "mouthFunnel": -0.02169,
+     "mouthFunnel +jawOpen 0.62": -0.0216,
+     "mouthPucker": -0.02342,
+     "mouthPucker +jawOpen 0.62": -0.02223,
+     "mouthSmileLeft": -0.02167,
+     "mouthSmileLeft +jawOpen 0.62": -0.02164,
+     "mouthSmileRight": 0.0024,
+     "mouthSmileRight +jawOpen 0.62": 0.00235,
+     "mouthStretchLeft": -0.0215,
+     "mouthStretchLeft +jawOpen 0.62": 0.00201,
+     "mouthStretchRight": -0.02059,
+     "mouthStretchRight +jawOpen 0.62": -0.0207,
+     "seal": -0.01896,
+     "smile+stretch both": 0.00167,
+     "smile+stretch both +jawOpen 1": 0.00194,
+     "funnel+pucker": -0.02438,
+     "funnel+pucker +jawOpen 0.45": -0.02331
+    },
+    "parts": {
+     "cavity": {
+      "vertices": 1046,
+      "triangles": 1948
+     },
+     "tongue": {
+      "vertices": 522,
+      "triangles": 1040
+     }
+    }
+   },
+   "lip_separation_min": {
+    "jawOpen 0.0": 0.0,
+    "jawOpen 0.3": 0.00076,
+    "jawOpen 0.62": 0.00157,
+    "jawOpen 1.0": 0.00254,
+    "mouthFunnel": 0.00126,
+    "mouthFunnel +jawOpen 0.62": 0.00283,
+    "mouthPucker": 0.0,
+    "mouthPucker +jawOpen 0.62": 0.00157,
+    "mouthSmileLeft": 0.0,
+    "mouthSmileLeft +jawOpen 0.62": 0.00157,
+    "mouthSmileRight": 0.0,
+    "mouthSmileRight +jawOpen 0.62": 0.00157,
+    "mouthStretchLeft": 0.0,
+    "mouthStretchLeft +jawOpen 0.62": 0.00157,
+    "mouthStretchRight": 0.0,
+    "mouthStretchRight +jawOpen 0.62": 0.00157,
+    "seal": 1e-05,
+    "smile+stretch both": 0.0,
+    "smile+stretch both +jawOpen 1": 0.00254,
+    "funnel+pucker": 0.00126,
+    "funnel+pucker +jawOpen 0.45": 0.0024
+   },
+   "finite": true,
+   "pass": {
+    "finite": true,
+    "zero_outside_support": true,
+    "lip_line_on_surface": true,
+    "gap_ge_25pct_width": true,
+    "no_pinches": true,
+    "interior_inside_skin": false,
+    "lips_never_cross": true,
+    "tongue_inside_bag": false
+   }
+  },
+  "eyes": {
+   "material": 3,
+   "materials": [
+    3
+   ],
+   "offset": 0.008,
+   "eyes": {
+    "left": {
+     "mesh": 2,
+     "node": 2,
+     "targets": [
+      "eyeBlinkLeft",
+      "eyeSquintLeft",
+      "eyeWideLeft"
+     ],
+     "vertices": 1215,
+     "triangles": 2200,
+     "report": {
+      "finite": true,
+      "sphere_clearance_min": 0.00098,
+      "eyeball_clearance_rest": 0.00097,
+      "eyeball_clearance_blink": 0.00085,
+      "eyeball_clearance_squint": 0.00095,
+      "eyeball_clearance_wide": 0.00097,
+      "eyeball_clearance_inbetween_min": 0.00016,
+      "eyeball_clearance_inbetween": {
+       "blink": 0.000609117733321507,
+       "blink_from_expression": 0.00016121290361958973,
+       "expression_blend": 0.0005582878042527106
+      },
+      "eyeball_clearance_direct_chord_min": -0.00635,
+      "closed_covers_opening": true,
+      "closed_rim_above_opening_frac": 0.0,
+      "closed_rim_lift_max_deg": 0.63,
+      "closed_rim_lift_passes": 2,
+      "rest_cover_centre": 0.15,
+      "paint_hidden_closed": 0.93047,
+      "paint_hidden_rest": 0.241,
+      "rest_poke_through": 0.04718,
+      "closed_poke_through": 0.0,
+      "closed_above_skin_max": 0.07133,
+      "closed_above_skin_p95": 0.05208,
+      "closed_above_eyeball_mean": 0.00445,
+      "closed_above_eyeball_max": 0.01,
+      "eyeball_above_skin_max": 0.06916,
+      "normal_length_dev_max": 0.0,
+      "normals_unit": true,
+      "faces_against_normals": 0,
+      "degenerate_faces_dropped": 0,
+      "warnings": [
+       "rest lid shows outside the opening (through lash flaps/shelf); see the debug image"
+      ],
+      "ok": false
+     },
+     "frame": {
+      "opening_source": "landmarks",
+      "snap_distance": 0.0002,
+      "sphere_centre": [
+       -0.0074,
+       1.3052,
+       -0.2329
+      ],
+      "sphere_radius": 0.5307,
+      "fit": {
+       "points": 4734,
+       "paint_points": 1521,
+       "inliers": 412,
+       "rms": 0.00168,
+       "convexity": 0.879,
+       "fallback": false
+      },
+      "outward": [
+       0.567,
+       -0.237,
+       0.789
+      ],
+      "opening_deg": {
+       "half_width": 16.8,
+       "top": 11.9,
+       "bottom": 11.9,
+       "skew_top": 0.0,
+       "skew_bottom": 0.0,
+       "bottom_exponent": 2.0
+      },
+      "eyeball_bulge_max": 0.00479,
+      "rays_missing": 0.0,
+      "offset": 0.008,
+      "max_push": {
+       "rest": 1e-05,
+       "blink": 2e-05,
+       "squint": 0.00106,
+       "wide": 0.00023
+      },
+      "ridge_floor_cells": 892,
+      "ridge_ride_cells": 138,
+      "warnings": [],
+      "texture": {
+       "reason": "no skin patch above the eye is big enough at texel_scale_min",
+       "islands_tried": [
+        {
+         "island": 4,
+         "fits": false
+        }
+       ]
+      },
+      "mode": "vertex_colour",
+      "skin_srgb": [
+       0.86,
+       0.601,
+       0.34
+      ],
+      "lash_srgb": [
+       0.323,
+       0.216,
+       0.108
+      ],
+      "lash_edge_shift_deg": 0.0,
+      "lash_hidden_closed_deg": 0.0,
+      "brightness": {
+       "skin_above_srgb": [
+        0.856,
+        0.601,
+        0.341
+       ],
+       "closed_pixels": 6925,
+       "closed_srgb": [
+        0.844,
+        0.592,
+        0.334
+       ],
+       "closed_delta_E": 0.94,
+       "closed_delta_L": -0.84,
+       "rest_pixels": 645,
+       "rest_srgb": [
+        0.82,
+        0.575,
+        0.323
+       ],
+       "rest_delta_E": 3.03,
+       "rest_delta_L": -2.68
+      }
+     },
+     "suggested_landmarks": {
+      "center": [
+       0.268,
+       1.19,
+       0.1498
+      ],
+      "half_width": 0.14,
+      "half_height": 0.1,
+      "tilt_deg": 0.0
+     }
+    },
+    "right": {
+     "mesh": 3,
+     "node": 3,
+     "targets": [
+      "eyeBlinkRight",
+      "eyeSquintRight",
+      "eyeWideRight"
+     ],
+     "vertices": 1215,
+     "triangles": 2200,
+     "report": {
+      "finite": true,
+      "sphere_clearance_min": 0.00098,
+      "eyeball_clearance_rest": 0.00096,
+      "eyeball_clearance_blink": 0.00095,
+      "eyeball_clearance_squint": 0.00096,
+      "eyeball_clearance_wide": 0.00096,
+      "eyeball_clearance_inbetween_min": 0.00019,
+      "eyeball_clearance_inbetween": {
+       "blink": 0.0006356324807544889,
+       "blink_from_expression": 0.00018525650640666136,
+       "expression_blend": 0.0005090082209153746
+      },
+      "eyeball_clearance_direct_chord_min": -0.00668,
+      "closed_covers_opening": true,
+      "closed_rim_above_opening_frac": 0.0,
+      "closed_rim_lift_max_deg": 0.69,
+      "closed_rim_lift_passes": 2,
+      "rest_cover_centre": 0.15,
+      "paint_hidden_closed": 0.94437,
+      "paint_hidden_rest": 0.24981,
+      "rest_poke_through": 0.05743,
+      "closed_poke_through": 0.0,
+      "closed_above_skin_max": 0.06957,
+      "closed_above_skin_p95": 0.04938,
+      "closed_above_eyeball_mean": 0.00449,
+      "closed_above_eyeball_max": 0.00942,
+      "eyeball_above_skin_max": 0.06743,
+      "normal_length_dev_max": 0.0,
+      "normals_unit": true,
+      "faces_against_normals": 0,
+      "degenerate_faces_dropped": 0,
+      "warnings": [
+       "rest lid shows outside the opening (through lash flaps/shelf); see the debug image"
+      ],
+      "ok": false
+     },
+     "frame": {
+      "opening_source": "landmarks",
+      "snap_distance": 0.0012,
+      "sphere_centre": [
+       0.0184,
+       1.2931,
+       -0.2243
+      ],
+      "sphere_radius": 0.5286,
+      "fit": {
+       "points": 5245,
+       "paint_points": 1818,
+       "inliers": 439,
+       "rms": 0.00169,
+       "convexity": 0.879,
+       "fallback": false
+      },
+      "outward": [
+       -0.584,
+       -0.215,
+       0.783
+      ],
+      "opening_deg": {
+       "half_width": 17.0,
+       "top": 12.0,
+       "bottom": 12.0,
+       "skew_top": 0.0,
+       "skew_bottom": 0.0,
+       "bottom_exponent": 2.0
+      },
+      "eyeball_bulge_max": 0.00478,
+      "rays_missing": 0.0,
+      "offset": 0.008,
+      "max_push": {
+       "rest": 0.0,
+       "blink": 2e-05,
+       "squint": 0.00152,
+       "wide": 0.00052
+      },
+      "ridge_floor_cells": 1027,
+      "ridge_ride_cells": 134,
+      "warnings": [],
+      "texture": {
+       "reason": "no skin patch above the eye is big enough at texel_scale_min",
+       "islands_tried": [
+        {
+         "island": 31,
+         "fits": false
+        },
+        {
+         "island": 58,
+         "fits": false
+        }
+       ]
+      },
+      "mode": "vertex_colour",
+      "skin_srgb": [
+       0.854,
+       0.602,
+       0.343
+      ],
+      "lash_srgb": [
+       0.321,
+       0.216,
+       0.11
+      ],
+      "lash_edge_shift_deg": 0.0,
+      "lash_hidden_closed_deg": 0.0,
+      "brightness": {
+       "skin_above_srgb": [
+        0.869,
+        0.623,
+        0.363
+       ],
+       "closed_pixels": 6928,
+       "closed_srgb": [
+        0.837,
+        0.59,
+        0.335
+       ],
+       "closed_delta_E": 3.13,
+       "closed_delta_L": -3.07,
+       "rest_pixels": 645,
+       "rest_srgb": [
+        0.812,
+        0.572,
+        0.323
+       ],
+       "rest_delta_E": 5.23,
+       "rest_delta_L": -5.04
+      }
+     },
+     "suggested_landmarks": {
+      "center": [
+       -0.262,
+       1.19,
+       0.1512
+      ],
+      "half_width": 0.14,
+      "half_height": 0.1,
+      "tilt_deg": 0.0
+     }
+    }
+   },
+   "ok": false
+  },
+  "rig": {
+   "baked_mesh_transforms": [],
+   "neck_length": 0.5886,
+   "neck_bones": 6,
+   "welded_vertices": 40064,
+   "vertices": 44218,
+   "influences_before_top4_max": 6,
+   "influences_before_top4_hist": {
+    "1": 26600,
+    "2": 7406,
+    "3": 2803,
+    "4": 2490,
+    "5": 655,
+    "6": 110
+   },
+   "dominant_joint_counts": {
+    "root": 4826,
+    "neck_0": 1309,
+    "neck_1": 1088,
+    "neck_2": 774,
+    "neck_3": 633,
+    "neck_4": 595,
+    "neck_5": 949,
+    "head": 25704,
+    "ear_left": 2059,
+    "ear_right": 2127
+   },
+   "deep_head_vertices": 27735,
+   "deep_head_family_weight_min": 0.9493,
+   "protected_vertices": 11583,
+   "protected_head_weight_min": 1.0,
+   "below_neck_start_vertices": 4272,
+   "below_neck_start_root_weight_min": 0.71555,
+   "meshes": {
+    "0": {
+     "name": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160",
+     "vertices": 44218,
+     "max_influences": 4,
+     "weight_sum_min": 1.0,
+     "weight_sum_max": 1.0
+    },
+    "1": {
+     "name": "mouth_interior",
+     "vertices": 1568,
+     "max_influences": 1,
+     "weight_sum_min": 1.0,
+     "weight_sum_max": 1.0
+    },
+    "2": {
+     "name": "eyelid_left",
+     "vertices": 1215,
+     "max_influences": 1,
+     "weight_sum_min": 1.0,
+     "weight_sum_max": 1.0
+    },
+    "3": {
+     "name": "eyelid_right",
+     "vertices": 1215,
+     "max_influences": 1,
+     "weight_sum_min": 1.0,
+     "weight_sum_max": 1.0
+    }
+   }
+  },
+  "pose_check": {
+   "bind_error": 2.693940914788584e-08,
+   "pose": {
+    "neck_*": [
+     "x",
+     4.0
+    ],
+    "head": [
+     "y",
+     20.0
+    ],
+    "ear_left": [
+     "z",
+     30.0
+    ],
+    "ear_right": [
+     "z",
+     30.0
+    ]
+   },
+   "seam_split_max": 0.0,
+   "max_vertex_motion": 0.8952973292821337,
+   "edge_stretch": {
+    "p01": 0.7356618460972429,
+    "p50": 0.9999999876797623,
+    "p99": 1.3439589108717016,
+    "min": 0.1493833825899165,
+    "max": 2.5857130656201908,
+    "frac_outside_0.67_1.5": 0.0074222000332834085
+   }
+  },
+  "sparse_morphs": {
+   "targets_sparse": 11,
+   "morph_bytes_dense": 5119848,
+   "morph_bytes_after": 1360228
+  },
+  "files": {
+   "character.glb": {
+    "texture_max": 2048,
+    "textures": [
+     {
+      "image": 0,
+      "size": [
+       2048,
+       2048
+      ],
+      "mime": "image/jpeg",
+      "bytes": 540642
+     }
+    ],
+    "bytes": 4394600
+   },
+   "character-1k.glb": {
+    "texture_max": 1024,
+    "textures": [
+     {
+      "image": 0,
+      "size": [
+       1024,
+       1024
+      ],
+      "mime": "image/jpeg",
+      "bytes": 182633
+     }
+    ],
+    "bytes": 4036592
+   }
+  },
+  "totals": {
+   "vertices": 48216,
+   "triangles": 87508,
+   "morphs": 14,
+   "joints": 10
+  },
+  "checks": [
+   {
+    "check": "mouth step self-checks",
+    "ok": false,
+    "level": "fail",
+    "detail": "added meshes [1] | pass.interior_inside_skin; pass.tongue_inside_bag (stats.mouth)"
+   },
+   {
+    "check": "eyes step self-checks",
+    "ok": false,
+    "level": "fail",
+    "detail": "added meshes [2, 3] | eyes.left.report: eyeball_clearance_direct_chord_min=-0.00635; eyes.right.report: eyeball_clearance_direct_chord_min=-0.00668 (stats.eyes)"
+   },
+   {
+    "check": "no NaN/Inf in any float accessor",
+    "ok": true,
+    "level": "fail",
+    "detail": "81 accessors finite"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: weights sum to 1",
+    "ok": true,
+    "level": "fail",
+    "detail": "min 1.00000 max 1.00000, <= 4 influences by format"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: jawOpen stays on head-rigid skin",
+    "ok": true,
+    "level": "warn",
+    "detail": "2846 verts move, 0 not 100% head"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthClose stays on head-rigid skin",
+    "ok": true,
+    "level": "warn",
+    "detail": "1055 verts move, 0 not 100% head"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthFunnel stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "8250 verts move, 435 not 100% head (max delta 0.0145)"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthPucker stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "8246 verts move, 433 not 100% head (max delta 0.0113)"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthSmileLeft stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "10930 verts move, 2925 not 100% head (max delta 0.0678)"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthSmileRight stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "11391 verts move, 3059 not 100% head (max delta 0.0688)"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthStretchLeft stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "10911 verts move, 2915 not 100% head (max delta 0.0635)"
+   },
+   {
+    "check": "tripo_mesh_026f8360-bdf3-4974-af3a-bd10a83e9160: mouthStretchRight stays on head-rigid skin",
+    "ok": false,
+    "level": "warn",
+    "detail": "11374 verts move, 3051 not 100% head (max delta 0.0644)"
+   },
+   {
+    "check": "mouth_interior: weights sum to 1",
+    "ok": true,
+    "level": "fail",
+    "detail": "min 1.00000 max 1.00000, <= 4 influences by format"
+   },
+   {
+    "check": "mouth_interior: rides 100% on head",
+    "ok": true,
+    "level": "fail",
+    "detail": "min head weight 1.0000"
+   },
+   {
+    "check": "mouth_interior: weights sum to 1",
+    "ok": true,
+    "level": "fail",
+    "detail": "min 1.00000 max 1.00000, <= 4 influences by format"
+   },
+   {
+    "check": "mouth_interior: rides 100% on head",
+    "ok": true,
+    "level": "fail",
+    "detail": "min head weight 1.0000"
+   },
+   {
+    "check": "eyelid_left: weights sum to 1",
+    "ok": true,
+    "level": "fail",
+    "detail": "min 1.00000 max 1.00000, <= 4 influences by format"
+   },
+   {
+    "check": "eyelid_left: rides 100% on head",
+    "ok": true,
+    "level": "fail",
+    "detail": "min head weight 1.0000"
+   },
+   {
+    "check": "eyelid_right: weights sum to 1",
+    "ok": true,
+    "level": "fail",
+    "detail": "min 1.00000 max 1.00000, <= 4 influences by format"
+   },
+   {
+    "check": "eyelid_right: rides 100% on head",
+    "ok": true,
+    "level": "fail",
+    "detail": "min head weight 1.0000"
+   },
+   {
+    "check": "head vertices ~100% head",
+    "ok": false,
+    "level": "fail",
+    "detail": "min 0.9493 over 27735 head-core verts; mouth/eye zone min 1.0"
+   },
+   {
+    "check": "bind pose consistent (joint x inverse bind = I)",
+    "ok": true,
+    "level": "fail",
+    "detail": "max error 2.69e-08"
+   },
+   {
+    "check": "UV seams / lip cut stay closed when posed",
+    "ok": true,
+    "level": "fail",
+    "detail": "max split 0.00e+00"
+   },
+   {
+    "check": "skin stretch in test pose",
+    "ok": false,
+    "level": "warn",
+    "detail": "edge length ratio 0.15..2.59, 0.742% outside 0.67..1.5"
+   }
+  ]
+ }
+}
