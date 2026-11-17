@@ -184,6 +184,9 @@ export function breathWave(u) {
 
 // ---------------------------------------------------------------- blinks
 export const BLINK = Object.freeze({ close: 0.12, hold: 0.03, open: 0.16, min: 2.5, max: 6, double: 0.18, first: [0.8, 2.5] });
+// Bubbles' smooth Gigi (Max, 2026-11-17: "gigi blinks a bit too much - her animation is a bit too jittery - we want it to
+// be cooler and smoother"): rarer, softer blinks, seldom doubled
+export const SMOOTH_BLINK = Object.freeze({ close: 0.14, hold: 0.04, open: 0.22, min: 5, max: 11, double: 0.06, first: [2, 5] });
 
 // eye openness t s after a blink starts: 1 open .. 0 closed
 export function blinkCurve(t, B = BLINK) {
@@ -785,6 +788,20 @@ export function boxFor(framing, cw, ch) {
   return [(cw - w) / 2, (ch - h) / 2, w, h];
 }
 
+// ---------------------------------------------------------------- moods (Bubbles; Max, 2026-11-17: "the user should be
+// able to choose from joyful, grateful, serene, & loving skins for gigi's personality and her resting face should change")
+// Her resting face in each mood: the eye level she rests at (one of the drawn levels; blinks still close all the way),
+// a resting mouth from the mouth atlas, named by its source frame (telepathic only: her mouth never moves with her words,
+// so it simply holds), the set of her head (degrees: pitch + bows, roll + tilts), how lively her idle motion is, her
+// breath's pace (x her own), her ears (degrees, + perked), and the chakras that glow softly (`glowAt` over the shimmer;
+// a bubble shows her from the crown up to the throat, so those are the ones that tell).
+export const MOODS = Object.freeze({
+  joyful: { eye: 1, mouth: 'solo-closing:169', pitch: -1.6, roll: 0, lively: 1.2, breath: 0.9, ears: 1.8, glow: ['crown', 'brow', 'throat'], glowAt: 0.24 },
+  grateful: { eye: 0.75, mouth: 'welcome-hello:29', pitch: 2.6, roll: 1.2, lively: 0.85, breath: 1.08, ears: 0.4, glow: ['throat', 'heart'], glowAt: 0.34 },
+  serene: { eye: 0.5, mouth: 'welcome-gratitude:404', pitch: 0.6, roll: 0, lively: 0.5, breath: 1.3, ears: -0.6, glow: ['brow'], glowAt: 0.36 },
+  loving: { eye: 0.75, mouth: 'solo-closing:180', pitch: 0.8, roll: 4.5, lively: 0.9, breath: 1.05, ears: 0.9, glow: ['crown', 'heart'], glowAt: 0.38 },
+});
+
 // ---------------------------------------------------------------- the controller: her life, her breath, her lines
 // Everything she does, frame by frame, on an absolute clock (ms) with exact springs: deterministic for a seed, the same
 // at any frame rate. update(now) -> {pose, eye, mouth: {a, b, w, E}, orbs, breath, ...}. No GL: node tests drive it.
@@ -795,14 +812,16 @@ export class Controller {
     this.seed = seed;
     this.L = R.limits;
     this.n = R.orbs.length;
-    this.blinker = new Blinker(seed + 11, {}, R.eyes ? R.eyes.levels.map((l) => l.o) : null);   // drawn blinks: one level a frame
-    this.ears = new EarFlicks(seed + 23);
+    // smooth (Bubbles): rarer blinks and ear flicks, a slower idle drift on softer springs, no quick drift while she talks
+    this.smooth = !!o.smooth;
+    this.blinker = new Blinker(seed + 11, this.smooth ? SMOOTH_BLINK : {}, R.eyes ? R.eyes.levels.map((l) => l.o) : null);   // drawn blinks: one level a frame
+    this.ears = new EarFlicks(seed + 23, this.smooth ? { min: 12, max: 26, first: [4, 12] } : {});
     this.gest = new Gestures(seed + 37);
     const sp = (w) => new Spring(0, w);
     this.s = { yaw: sp(6), pitch: sp(6), roll: sp(5), sway: sp(3), lean: sp(3), earL: sp(8), earR: sp(8),
       listen: sp(3.2), speak: sp(5), amp: new Spring(0.6, 2), period: new Spring(5.2, 1.5), voice: sp(24), accent: sp(16), phase: sp(4),
       sideY: sp(16), sideR: sp(16), lively: sp(2.5) };
-    this.T = { ...TALK, ...(isObj(o.talk) ? o.talk : {}) };
+    this.T = { ...TALK, ...(this.smooth ? { drift_hz: 1.1, omega: 3.5, drift_yaw: 1.6, drift_roll: 0.9 } : {}), ...(isObj(o.talk) ? o.talk : {}) };
     // Bubbles (Max, 2026-11-16: "i dont want moving lips - i want telepathic"): her mouth stays at rest and her head
     // does not beat out the syllables; her voice shows as light in her third eye instead
     this.telepathic = !!o.telepathic;
@@ -811,6 +830,12 @@ export class Controller {
     // until drive() is called (no face found) she lives exactly as she does undriven.
     this.driven = !!o.driven;
     this.drv = null;
+    // her mood (setMood): the face she rests in, reached gently (springs), the mouth cross-faded from the last one
+    this.mood = null;
+    this.ms = { eye: new Spring(1, 3), pitch: sp(2), roll: sp(2), lively: new Spring(1, 2), breath: new Spring(1, 1.5), ears: sp(3) };
+    this.mouthFrom = -1;
+    this.mouthTo = -1;
+    this.mouthMix = new Spring(1, 5);
     this.orbS = Array.from({ length: this.n }, () => new Spring(0.08, 15));
     this.listening = false;
     this.run = null;
@@ -851,6 +876,17 @@ export class Controller {
     return true;
   }
   listen(on = true) { this.listening = !!on; }
+
+  // m: a MOODS entry with its mouth already found in the atlas (mouthIdx, -1: none) and its chakras (glowIdx: [orb]), or null
+  setMood(m) {
+    this.mood = isObj(m) ? m : null;
+    const to = this.mood && Number.isInteger(this.mood.mouthIdx) ? this.mood.mouthIdx : -1;
+    if (to === this.mouthTo) return;
+    // from whatever shows now (the mouth faded in, or the one before it), over to the new one
+    this.mouthFrom = this.mouthMix.x >= 0.5 ? this.mouthTo : this.mouthFrom;
+    this.mouthTo = to;
+    this.mouthMix.set(0);
+  }
 
   // line: {plan (or null: no mouth library), pick(plan, tt) -> {a, b, w, alpha}, env (bytes), dur, takeTime, accents}
   speak(line) { this.line = { ...line, firstAt: 0, stopAt: 0, lastT: 0, lastP: 0, startAt: null }; return true; }
@@ -934,7 +970,9 @@ export class Controller {
     const via = run || (pm > 0 ? ph || this.phLast : null);   // whose lungs and ladder she follows
     const mix = run ? run.mix : via ? pm : 0;
     // her own breath: 4.5-6 s, slower when she listens, shallow while she talks
-    const T = s.period.step((4.5 + 1.5 * (0.5 + 0.5 * noise1(seed + 7, t * 0.05))) * (1 + 0.18 * listen) * (1 - 0.08 * speak), dt);
+    const md = this.mood, ms = this.ms;
+    const mBreath = ms.breath.step(md ? md.breath : 1, dt), mLively = ms.lively.step(md ? md.lively : 1, dt);
+    const T = s.period.step((4.5 + 1.5 * (0.5 + 0.5 * noise1(seed + 7, t * 0.05))) * (1 + 0.18 * listen) * (1 - 0.08 * speak) * mBreath, dt);
     this.bPhase += dt / Math.max(1, T);
     const amp = s.amp.step(0.62 + 0.1 * listen - 0.27 * speak, dt);
     const own = amp * breathWave(this.bPhase);
@@ -945,32 +983,47 @@ export class Controller {
     // syllable, the beats as turns and tilts, a livelier drift with her voice, on quicker springs
     const calm = mix * 0.8;
     const g = this.gest.at(t, listen, calm);
-    const still = 1 - 0.45 * calm;
+    const still = (1 - 0.45 * calm) * mLively;
     const K = this.T, sp = speak * still, loud = 0.55 + 0.45 * lively, ft = t * K.drift_hz;
-    let yawT = still * 1.3 * layered(seed + 101, t) + sp * (K.drift_yaw * loud * layered(seed + 131, ft) + K.beat_yaw * sideY) + g.yaw;
-    let pitchT = still * 0.9 * layered(seed + 211, t) + sp * K.drift_pitch * loud * layered(seed + 151, ft) + K.nod * still * accent
+    const nt = this.smooth ? 0.6 * t : t;   // (smooth: her idle drift slower, with the quickest wobble gone)
+    let yawT = still * 1.3 * layered(seed + 101, nt) + sp * (K.drift_yaw * loud * layered(seed + 131, ft) + K.beat_yaw * sideY) + g.yaw;
+    let pitchT = still * 0.9 * layered(seed + 211, nt) + sp * K.drift_pitch * loud * layered(seed + 151, ft) + K.nod * still * accent
       + g.pitch + 0.6 * listen - K.lift * speak - 0.25 * breath;
-    let rollT = still * 0.8 * layered(seed + 307, t) + sp * (K.drift_roll * loud * layered(seed + 141, ft) + K.beat_roll * sideR) + g.roll + 0.8 * listen;
+    let rollT = still * 0.8 * layered(seed + 307, nt) + sp * (K.drift_roll * loud * layered(seed + 141, ft) + K.beat_roll * sideR) + g.roll + 0.8 * listen;
     // driven: the member's head, with a quarter of her own drift left on it, on quicker springs
+    // her mood's set of the head
+    pitchT += ms.pitch.step(md ? md.pitch : 0, dt);
+    rollT += ms.roll.step(md ? md.roll : 0, dt);
     const dv = this.drv;
     if (dv) { yawT = 0.25 * yawT + dv.yaw; pitchT = 0.25 * pitchT + dv.pitch; rollT = 0.25 * rollT + dv.roll; }
-    const P = o.pose, wq = K.omega * speak + (dv ? 8 : 0);
-    P.yaw = D2R * clamp(s.yaw.step(yawT, dt, 6 + wq), -L.yaw_deg, L.yaw_deg);
-    P.pitch = D2R * clamp(s.pitch.step(pitchT, dt, 6 + wq), -L.pitch_deg, L.pitch_deg);
-    P.roll = D2R * clamp(s.roll.step(rollT, dt, 5 + wq), -L.roll_deg, L.roll_deg);
-    P.sway = D2R * s.sway.step(0.4 * layered(seed + 401, t * 0.8) * (1 - 0.5 * calm), dt);
+    const P = o.pose, wq = K.omega * speak + (dv ? 8 : 0), w6 = this.smooth && !dv ? 3.2 : 6, w5 = this.smooth && !dv ? 2.8 : 5;
+    P.yaw = D2R * clamp(s.yaw.step(yawT, dt, w6 + wq), -L.yaw_deg, L.yaw_deg);
+    P.pitch = D2R * clamp(s.pitch.step(pitchT, dt, w6 + wq), -L.pitch_deg, L.pitch_deg);
+    P.roll = D2R * clamp(s.roll.step(rollT, dt, w5 + wq), -L.roll_deg, L.roll_deg);
+    P.sway = D2R * s.sway.step(0.4 * layered(seed + 401, nt * 0.8) * (1 - 0.5 * calm), dt);
     P.lean = s.lean.step(0.006 * listen, dt);
     P.scale = L.breath_scale * breath;
     P.lift = L.breath_lift_px * breath;
     // ears: flicks (their own smooth curve on the absolute clock: unsprung, so a 90 ms snap is the same at any frame
     // rate), over a little sprung life, perked when she listens
     const [fl, fr] = this.ears.at(t);
-    P.earL = D2R * clamp(L.ear_deg * fl + s.earL.step(1.2 * noise1(seed + 501, t * 0.3) + 2 * listen, dt), -L.ear_down_deg, L.ear_deg);
-    P.earR = D2R * clamp(L.ear_deg * fr + s.earR.step(1.2 * noise1(seed + 503, t * 0.3) + 2 * listen, dt), -L.ear_down_deg, L.ear_deg);
+    const mEars = ms.ears.step(md ? md.ears : 0, dt);
+    P.earL = D2R * clamp(L.ear_deg * fl + s.earL.step(1.2 * noise1(seed + 501, t * 0.3) + 2 * listen + mEars, dt), -L.ear_down_deg, L.ear_deg);
+    P.earR = D2R * clamp(L.ear_deg * fr + s.earR.step(1.2 * noise1(seed + 503, t * 0.3) + 2 * listen + mEars, dt), -L.ear_down_deg, L.ear_deg);
     // blinks: a little rarer as she listens, a little more often as she talks
     this.blinker.rate = 1 + 0.15 * listen - 0.12 * speak;
-    o.eye = this.blinker.at(t);
+    // (her mood's resting lids: a blink still closes them all the way, and opens back to them)
+    o.eye = Math.min(this.blinker.at(t), ms.eye.step(md && !dv ? md.eye : 1, dt));
     o.eyes = dv && dv.eyes ? dv.eyes : null;   // (each lid on its own; her blinker idles meanwhile)
+    // her mood's resting mouth: only while her mouth is otherwise still (telepathic, no line moving it, not driven)
+    o.mouthMove = o.mouth.E;
+    const mm = this.mouthMix.step(1, dt);
+    if (this.telepathic && !dv && o.mouth.E <= 0.003 && (this.mouthTo >= 0 || (this.mouthFrom >= 0 && mm < 0.999))) {
+      const q = o.mouth;
+      if (this.mouthFrom >= 0 && this.mouthTo >= 0) { q.a = this.mouthFrom; q.b = this.mouthTo; q.w = mm; q.E = 1; }
+      else if (this.mouthTo >= 0) { q.a = this.mouthTo; q.b = -1; q.w = 0; q.E = mm; }
+      else { q.a = this.mouthFrom; q.b = -1; q.w = 0; q.E = 1 - mm; }
+    }
     if (o.eyes) o.eye = Math.min(o.eyes[0], o.eyes[1]);
     // driven: the member's mouth, over whatever her line (there is none) left
     if (dv && dv.mouth) { const q = o.mouth; q.a = dv.mouth.a; q.b = dv.mouth.b; q.w = dv.mouth.b >= 0 ? dv.mouth.w : 0; q.E = dv.mouth.E; }
@@ -985,6 +1038,7 @@ export class Controller {
       if (i === crystal) target = shimmer + 0.08 + 0.3 * breath * mix;
       if (i === throat) target += (this.telepathic ? 0.1 : 0.55) * voice;
       if (i === third) target += (this.telepathic ? 0.95 : 0.12) * voice;
+      if (md && md.glowIdx.includes(i)) target += md.glowAt * (0.85 + 0.15 * own);   // her mood's light, breathing with her
       o.orbs[i] = clamp01(this.orbS[i].step(target, dt));
     }
     if (this.driven) o.orbs.fill(0);   // (no chakra light: the painted orbs stay as they are in the master)
@@ -1369,7 +1423,8 @@ export class GigiPortrait {
     this.R = R;
     this.imgs = { master, matte, plate, eyes, stage };
     this.mouth = mouth;
-    this.C = new Controller(R, { seed: this.opts.seed, telepathic: !!this.opts.telepathic, driven: !!this.opts.driven });
+    this.C = new Controller(R, { seed: this.opts.seed, telepathic: !!this.opts.telepathic, driven: !!this.opts.driven, smooth: !!this.opts.smooth });
+    if (this.moodName) this.setMood(this.moodName);
     this.pos = new Float32Array(R.n * 2);
     this.upload();
     live();
@@ -1656,6 +1711,15 @@ export class GigiPortrait {
   breathPhase(b, at = this.now()) { return !!this.C && this.C.breathPhase(b, at); }
   stopBreath() { if (this.C) this.C.stopBreath(); }
   listen(on = true) { if (this.C) this.C.listen(on); }
+  // her mood by name (MOODS); kept, and applied once she is loaded if she is not yet
+  setMood(name) {
+    this.moodName = typeof name === 'string' && MOODS[name] ? name : null;
+    if (!this.C || !this.R) return;
+    const m = this.moodName ? MOODS[this.moodName] : null;
+    // (the decoded atlas lists each patch's source frame by its index: popmouth's decodeMouth)
+    const src = this.mouth && this.mouth.M && Array.isArray(this.mouth.M.src) ? this.mouth.M.src : [];
+    this.C.setMood(m ? { ...m, mouthIdx: src.indexOf(m.mouth), glowIdx: m.glow.map((g) => this.R.orbs.findIndex((o) => o.name === g)).filter((i) => i >= 0) } : null);
+  }
   idle() { this.listen(false); }
   // (opts.driven only) the tracked face of the person wearing her: see Controller.drive. Drawn at the next frame()
   drive(d) { if (this.C) this.C.drive(d); }
