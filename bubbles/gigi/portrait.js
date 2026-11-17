@@ -803,6 +803,9 @@ export class Controller {
       listen: sp(3.2), speak: sp(5), amp: new Spring(0.6, 2), period: new Spring(5.2, 1.5), voice: sp(24), accent: sp(16), phase: sp(4),
       sideY: sp(16), sideR: sp(16), lively: sp(2.5) };
     this.T = { ...TALK, ...(isObj(o.talk) ? o.talk : {}) };
+    // Bubbles (Max, 2026-11-16: "i dont want moving lips - i want telepathic"): her mouth stays at rest and her head
+    // does not beat out the syllables; her voice shows as light in her third eye instead
+    this.telepathic = !!o.telepathic;
     this.orbS = Array.from({ length: this.n }, () => new Spring(0.08, 15));
     this.listening = false;
     this.run = null;
@@ -867,7 +870,7 @@ export class Controller {
     if (!L.stopAt && t > dur + num(L.endS, 0.15)) this.stopSpeaking(true);
     if (!L.firstAt) L.firstAt = now;
     o.take = t;
-    if (L.plan && typeof L.pick === 'function') {
+    if (!this.telepathic && L.plan && typeof L.pick === 'function') {
       const s = L.pick(L.plan, t + AHEAD_S);
       const w = E * s.alpha * smooth((now - L.firstAt) / (EASE_S * 1000));
       if (s.a >= 0 && w > 0.003) { o.mouth.a = s.a; o.mouth.b = s.b; o.mouth.w = s.b !== s.a ? s.w : 0; o.mouth.E = w; }
@@ -884,7 +887,7 @@ export class Controller {
     const ls = this.lineStep(now), line = this.line;
     const env = line && line.env, vt = ls ? ls.t + AHEAD_S : null;
     const voice = s.voice.step(vt !== null && env ? voiceOf(sampleAt(env, vt)) * ls.E : 0, dt);
-    const acc = vt !== null && line.accents ? line.accents : null;
+    const acc = !this.telepathic && vt !== null && line.accents ? line.accents : null;
     const accent = s.accent.step(acc ? accentAt(acc, vt) * ls.E : 0, dt);
     const sideY = s.sideY.step(acc ? accentSide(acc, vt, seed + 701) * ls.E : 0, dt);
     const sideR = s.sideR.step(acc ? accentSide(acc, vt, seed + 709) * ls.E : 0, dt);
@@ -956,8 +959,8 @@ export class Controller {
       const r = ladder.indexOf(i);
       if (lv && r >= 0) target = lerp(shimmer, lv[r], mix);
       if (i === crystal) target = shimmer + 0.08 + 0.3 * breath * mix;
-      if (i === throat) target += 0.55 * voice;
-      if (i === third) target += 0.12 * voice;
+      if (i === throat) target += (this.telepathic ? 0.1 : 0.55) * voice;
+      if (i === third) target += (this.telepathic ? 0.95 : 0.12) * voice;
       o.orbs[i] = clamp01(this.orbS[i].step(target, dt));
     }
     o.voice = voice;
@@ -1333,7 +1336,7 @@ export class GigiPortrait {
     this.R = R;
     this.imgs = { master, matte, plate, eyes, stage };
     this.mouth = mouth;
-    this.C = new Controller(R, { seed: this.opts.seed });
+    this.C = new Controller(R, { seed: this.opts.seed, telepathic: !!this.opts.telepathic });
     this.pos = new Float32Array(R.n * 2);
     this.upload();
     live();
