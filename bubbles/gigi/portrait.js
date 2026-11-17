@@ -796,9 +796,9 @@ export function boxFor(framing, cw, ch) {
 // breath's pace (x her own), her ears (degrees, + perked), and the chakras that glow softly (`glowAt` over the shimmer;
 // a bubble shows her from the crown up to the throat, so those are the ones that tell).
 export const MOODS = Object.freeze({
-  joyful: { eye: 1, mouth: 'solo-closing:169', pitch: -1.6, roll: 0, lively: 1.2, breath: 0.9, ears: 1.8, glow: ['crown', 'brow', 'throat'], glowAt: 0.24 },
+  joyful: { eye: 1, mouth: 'welcome-gratitude:404', pitch: -1.6, roll: 0, lively: 1.2, breath: 0.9, ears: 1.8, glow: ['crown', 'brow', 'throat'], glowAt: 0.24 },
   grateful: { eye: 0.75, mouth: 'welcome-hello:29', pitch: 2.6, roll: 1.2, lively: 0.85, breath: 1.08, ears: 0.4, glow: ['throat', 'heart'], glowAt: 0.34 },
-  serene: { eye: 0.5, mouth: 'welcome-gratitude:404', pitch: 0.6, roll: 0, lively: 0.5, breath: 1.3, ears: -0.6, glow: ['brow'], glowAt: 0.36 },
+  serene: { eye: 0.5, mouth: 'solo-closing:181', pitch: 0.6, roll: 0, lively: 0.5, breath: 1.3, ears: -0.6, glow: ['brow'], glowAt: 0.36 },
   loving: { eye: 0.75, mouth: 'solo-closing:180', pitch: 0.8, roll: 4.5, lively: 0.9, breath: 1.05, ears: 0.9, glow: ['crown', 'heart'], glowAt: 0.38 },
 });
 
