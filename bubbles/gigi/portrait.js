@@ -536,7 +536,7 @@ export function prepareRig(rig, depth = null, on = null) {
   if (E && Array.isArray(E.region) && E.region.length === 4 && E.region.every(Number.isFinite) && E.region[2] > 0 && E.region[3] > 0) {
     const cell = Array.isArray(E.cell) && E.cell.length === 2 && E.cell.every((x) => Number.isFinite(x) && x > 0) ? E.cell.slice() : [E.region[2], E.region[3]];
     const levels = eyeLevels(E.levels);
-    if (levels.length) R.eyes = { region: E.region.slice(), cell, levels };
+    if (levels.length) R.eyes = { region: E.region.slice(), cell, levels, zones: (Array.isArray(E.zones) ? E.zones : []).filter((z) => isObj(z) && Array.isArray(z.center) && z.center.length >= 2 && Number.isFinite(z.center[0])) };
   }
   const F = isObj(rig.framing) ? rig.framing : {};
   const sq = Array.isArray(F.square) && F.square.length === 4 && F.square.every(Number.isFinite) && F.square[2] > 0 && F.square[3] > 0 ? F.square.slice() : [0, 0, size, size];
@@ -806,6 +806,11 @@ export class Controller {
     // Bubbles (Max, 2026-11-16: "i dont want moving lips - i want telepathic"): her mouth stays at rest and her head
     // does not beat out the syllables; her voice shows as light in her third eye instead
     this.telepathic = !!o.telepathic;
+    // Driven (Bubbles' members' giraffe, 2026-11-16): the member's own tracked face sets the head angles, each eye's lid
+    // and the mouth patch, through drive(); her chakras give no light. Nothing here is on unless opts.driven is set, and
+    // until drive() is called (no face found) she lives exactly as she does undriven.
+    this.driven = !!o.driven;
+    this.drv = null;
     this.orbS = Array.from({ length: this.n }, () => new Spring(0.08, 15));
     this.listening = false;
     this.run = null;
@@ -815,7 +820,19 @@ export class Controller {
     this.bPhase = 0.25;
     this.lastT = null;
     this.out = { pose: { yaw: 0, pitch: 0, roll: 0, sway: 0, earL: 0, earR: 0, scale: 0, lift: 0, lean: 0 }, eye: 1,
-      mouth: { a: -1, b: -1, w: 0, E: 0 }, orbs: new Float32Array(this.n), breath: 0, runPart: null, take: null, voice: 0, mode: 'idle' };
+      mouth: { a: -1, b: -1, w: 0, E: 0 }, eyes: null, orbs: new Float32Array(this.n), breath: 0, runPart: null, take: null, voice: 0, mode: 'idle' };
+  }
+
+  // d: {yaw, pitch, roll (degrees; held inside the limits), eyes: [image-left, image-right] openness 0..1 (each lid on its
+  // own), mouth: {a, b, w, E} (patch indexes, b over a at weight w, whole mouth at E)} or null: she lives on her own again
+  drive(d) {
+    if (!this.driven || !isObj(d)) { this.drv = null; return; }
+    const m = isObj(d.mouth) ? d.mouth : null;
+    this.drv = {
+      yaw: num(d.yaw, 0), pitch: num(d.pitch, 0), roll: num(d.roll, 0),
+      eyes: Array.isArray(d.eyes) && d.eyes.length >= 2 ? [clamp01(num(d.eyes[0], 1)), clamp01(num(d.eyes[1], 1))] : null,
+      mouth: m && Number.isInteger(m.a) ? { a: m.a, b: Number.isInteger(m.b) ? m.b : -1, w: clamp01(num(m.w, 0)), E: clamp01(num(m.E, 1)) } : null,
+    };
   }
 
   // the page's solo run (t0: when it arrived, ms on this clock). True: she breathes it (the page needs no pacer)
@@ -930,11 +947,14 @@ export class Controller {
     const g = this.gest.at(t, listen, calm);
     const still = 1 - 0.45 * calm;
     const K = this.T, sp = speak * still, loud = 0.55 + 0.45 * lively, ft = t * K.drift_hz;
-    const yawT = still * 1.3 * layered(seed + 101, t) + sp * (K.drift_yaw * loud * layered(seed + 131, ft) + K.beat_yaw * sideY) + g.yaw;
-    const pitchT = still * 0.9 * layered(seed + 211, t) + sp * K.drift_pitch * loud * layered(seed + 151, ft) + K.nod * still * accent
+    let yawT = still * 1.3 * layered(seed + 101, t) + sp * (K.drift_yaw * loud * layered(seed + 131, ft) + K.beat_yaw * sideY) + g.yaw;
+    let pitchT = still * 0.9 * layered(seed + 211, t) + sp * K.drift_pitch * loud * layered(seed + 151, ft) + K.nod * still * accent
       + g.pitch + 0.6 * listen - K.lift * speak - 0.25 * breath;
-    const rollT = still * 0.8 * layered(seed + 307, t) + sp * (K.drift_roll * loud * layered(seed + 141, ft) + K.beat_roll * sideR) + g.roll + 0.8 * listen;
-    const P = o.pose, wq = K.omega * speak;
+    let rollT = still * 0.8 * layered(seed + 307, t) + sp * (K.drift_roll * loud * layered(seed + 141, ft) + K.beat_roll * sideR) + g.roll + 0.8 * listen;
+    // driven: the member's head, with a quarter of her own drift left on it, on quicker springs
+    const dv = this.drv;
+    if (dv) { yawT = 0.25 * yawT + dv.yaw; pitchT = 0.25 * pitchT + dv.pitch; rollT = 0.25 * rollT + dv.roll; }
+    const P = o.pose, wq = K.omega * speak + (dv ? 8 : 0);
     P.yaw = D2R * clamp(s.yaw.step(yawT, dt, 6 + wq), -L.yaw_deg, L.yaw_deg);
     P.pitch = D2R * clamp(s.pitch.step(pitchT, dt, 6 + wq), -L.pitch_deg, L.pitch_deg);
     P.roll = D2R * clamp(s.roll.step(rollT, dt, 5 + wq), -L.roll_deg, L.roll_deg);
@@ -950,6 +970,10 @@ export class Controller {
     // blinks: a little rarer as she listens, a little more often as she talks
     this.blinker.rate = 1 + 0.15 * listen - 0.12 * speak;
     o.eye = this.blinker.at(t);
+    o.eyes = dv && dv.eyes ? dv.eyes : null;   // (each lid on its own; her blinker idles meanwhile)
+    if (o.eyes) o.eye = Math.min(o.eyes[0], o.eyes[1]);
+    // driven: the member's mouth, over whatever her line (there is none) left
+    if (dv && dv.mouth) { const q = o.mouth; q.a = dv.mouth.a; q.b = dv.mouth.b; q.w = dv.mouth.b >= 0 ? dv.mouth.w : 0; q.E = dv.mouth.E; }
     // her chakras: a soft shimmer, the run's ladder, her throat with her voice
     const { ladder, throat, crystal, third } = this.R;
     const lv = via ? via.lv : null;
@@ -963,6 +987,7 @@ export class Controller {
       if (i === third) target += (this.telepathic ? 0.95 : 0.12) * voice;
       o.orbs[i] = clamp01(this.orbS[i].step(target, dt));
     }
+    if (this.driven) o.orbs.fill(0);   // (no chakra light: the painted orbs stay as they are in the master)
     o.voice = voice;
     o.mode = line && !line.stopAt ? 'speak' : this.listening ? 'listen' : 'idle';
     return o;
@@ -1059,6 +1084,7 @@ uniform vec2 uETex;
 uniform vec4 uEA;
 uniform vec4 uEB;
 uniform vec2 uEW;
+uniform vec2 uESp;
 uniform vec2 uKey;
 out vec4 o;
 vec4 cell(sampler2D t, vec2 m, vec4 reg, vec2 sc, vec2 tsz, vec4 c) {
@@ -1074,8 +1100,15 @@ void main() {
   vec3 c = g.rgb;                       // her own colours: the master's pixels on her, un-mixed from the plate at her edge
   float a = g.a;
   if (inside(m, uEReg)) {
-    if (uEW.x > 0.0) { vec4 p = cell(uEyes, m, uEReg, uESc, uETex, uEA); c = mix(c, p.rgb, uEW.x * p.a); }
-    if (uEW.y > 0.0) { vec4 p = cell(uEyes, m, uEReg, uESc, uETex, uEB); c = mix(c, p.rgb, uEW.y * p.a); }
+    if (uESp.y > 0.5) {
+      // each eye on its own (driven): level A on the image's left of the split, level B on the right
+      bool right = m.x >= uESp.x;
+      float we = right ? uEW.y : uEW.x;
+      if (we > 0.0) { vec4 p = cell(uEyes, m, uEReg, uESc, uETex, right ? uEB : uEA); c = mix(c, p.rgb, we * p.a); }
+    } else {
+      if (uEW.x > 0.0) { vec4 p = cell(uEyes, m, uEReg, uESc, uETex, uEA); c = mix(c, p.rgb, uEW.x * p.a); }
+      if (uEW.y > 0.0) { vec4 p = cell(uEyes, m, uEReg, uESc, uETex, uEB); c = mix(c, p.rgb, uEW.y * p.a); }
+    }
   }
   if (inside(m, uMReg)) {
     if (uMW.x > 0.0) {
@@ -1336,7 +1369,7 @@ export class GigiPortrait {
     this.R = R;
     this.imgs = { master, matte, plate, eyes, stage };
     this.mouth = mouth;
-    this.C = new Controller(R, { seed: this.opts.seed, telepathic: !!this.opts.telepathic });
+    this.C = new Controller(R, { seed: this.opts.seed, telepathic: !!this.opts.telepathic, driven: !!this.opts.driven });
     this.pos = new Float32Array(R.n * 2);
     this.upload();
     live();
@@ -1624,6 +1657,8 @@ export class GigiPortrait {
   stopBreath() { if (this.C) this.C.stopBreath(); }
   listen(on = true) { if (this.C) this.C.listen(on); }
   idle() { this.listen(false); }
+  // (opts.driven only) the tracked face of the person wearing her: see Controller.drive. Drawn at the next frame()
+  drive(d) { if (this.C) this.C.drive(d); }
 
   // line: {id, env, vis, dur} (base64 or bytes; the gigi.lips packet or a manifest clip), takeTime(): the take time heard
   // (s; null while unknown). The mouth path is planned now, cached by id AND content (lineSig: the lab restarts live ids
@@ -1745,8 +1780,15 @@ export class GigiPortrait {
   face(o) {
     const gl = this.gl, R = this.R, T = this.T, F = this.P.face, m = this.mouth, M = m && m.M, mo = o.mouth;
     const eb = R.eyes && this.imgs.eyes ? eyeSnap(R.eyes.levels, o.eye) : { a: -1, wa: 0, b: -1, wb: 0 };   // one level, never two
+    // driven: each eye its own level (a: the image's left eye, b: the right one), split between the two eyes' zones
+    let split = 0;
+    if (o.eyes && R.eyes && this.imgs.eyes) {
+      const l = eyeSnap(R.eyes.levels, o.eyes[0]), r = eyeSnap(R.eyes.levels, o.eyes[1]);
+      eb.a = l.a; eb.wa = l.wa; eb.b = r.a; eb.wb = r.wa;
+      split = 1;
+    }
     const mA = M && mo.a >= 0 && mo.E > 0 ? mo.a : -1, mB = mA >= 0 && mo.b >= 0 && mo.w > 0.003 ? mo.b : -1;
-    const key = `${mA},${mB},${Math.round(mo.E * 255)},${Math.round(mo.w * 255)}|${eb.a},${eb.b},${Math.round(eb.wa * 255)},${Math.round(eb.wb * 255)}`;
+    const key = `${mA},${mB},${Math.round(mo.E * 255)},${Math.round(mo.w * 255)}|${eb.a},${eb.b},${Math.round(eb.wa * 255)},${Math.round(eb.wb * 255)},${split}`;
     this._stats.patch = mA; this._stats.patchB = mB; this._stats.wB = mB >= 0 ? +mo.w.toFixed(2) : 0; this._stats.mouthE = +mo.E.toFixed(2);
     this._stats.eye = +o.eye.toFixed(2); this._stats.eyeA = eb.a; this._stats.eyeB = eb.b;
     if (key === this.faceKey) return;
@@ -1765,7 +1807,15 @@ export class GigiPortrait {
       gl.uniform3f(F.u.uGB, M.gain[3 * gb], M.gain[3 * gb + 1], M.gain[3 * gb + 2]);
       gl.uniform2f(F.u.uMW, mo.E, mB >= 0 ? mo.E * mo.w : 0);
     } else gl.uniform2f(F.u.uMW, 0, 0);
-    if (eb.a >= 0) {
+    // (the split: the middle of the two eye zones, in master px; 0 unless driven)
+    const zs = R.eyes && R.eyes.zones;
+    gl.uniform2f(F.u.uESp, split && zs && zs.length >= 2 ? (zs[0].center[0] + zs[1].center[0]) / 2 : R.size / 2, split);
+    if (split) {
+      const E = R.eyes, [cw, ch] = E.cell, la = E.levels[eb.a >= 0 ? eb.a : 0], lb = E.levels[eb.b >= 0 ? eb.b : 0];
+      gl.uniform4f(F.u.uEA, la.col * cw, la.row * ch, cw, ch);
+      gl.uniform4f(F.u.uEB, lb.col * cw, lb.row * ch, cw, ch);
+      gl.uniform2f(F.u.uEW, eb.a >= 0 ? eb.wa : 0, eb.b >= 0 ? eb.wb : 0);
+    } else if (eb.a >= 0) {
       const E = R.eyes, [cw, ch] = E.cell, la = E.levels[eb.a], lb = eb.b >= 0 ? E.levels[eb.b] : la;
       gl.uniform4f(F.u.uEA, la.col * cw, la.row * ch, cw, ch);
       gl.uniform4f(F.u.uEB, lb.col * cw, lb.row * ch, cw, ch);
