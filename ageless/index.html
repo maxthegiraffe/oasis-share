@@ -2,149 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Ask the Giraffes · for AgelessRx</title>
-<meta name="description" content="A private look at a sponsored survey of the Grateful Giraffes. Passcode required.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask the Giraffes · for AgelessRx · The Oasis</title>
+
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://grateful.gg/ageless/">
+<meta property="og:site_name" content="The Oasis">
 <meta property="og:title" content="Ask the Giraffes · for AgelessRx">
 <meta property="og:description" content="A private look at a sponsored survey of the Grateful Giraffes. Passcode required.">
+<meta property="og:url" content="https://grateful.gg/ageless/">
 <meta property="og:image" content="https://grateful.gg/ageless/cover.jpg">
+<meta property="og:image:secure_url" content="https://grateful.gg/ageless/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ask the Giraffes, a demo for AgelessRx">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ask the Giraffes · for AgelessRx">
+<meta name="twitter:description" content="A private look at a sponsored survey of the Grateful Giraffes. Passcode required.">
 <meta name="twitter:image" content="https://grateful.gg/ageless/cover.jpg">
-<meta name="theme-color" content="#2a1446">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+
+<!-- Humans go to the real page; crawlers read the tags above first. The card
+     below only shows if the redirect is blocked (in-app browsers, JS off). -->
+<!-- Keep the query string (utm_*, fbclid) and hash so ad and campaign links
+     still attribute; the no-JS refresh can't carry them. -->
+<script>location.replace("https://app.grateful.gg/ageless" + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://app.grateful.gg/ageless"></noscript>
+<style>html{visibility:hidden}</style>
+<noscript><style>html{visibility:visible}</style></noscript>
+<script>setTimeout(function(){document.documentElement.style.visibility='visible';},1200);</script>
+<link rel="canonical" href="https://app.grateful.gg/ageless">
 <style>
-:root{--cream:#fff7ed;--card:#fffcf8;--line:#ecd9c6;--ink:#26211b;--soft:#5c5248;--mute:#7a6f64;--pink:#be185d;--plum:#2a1446;--plum2:#3b2163;--gold:#fdba74;
---grad:linear-gradient(120deg,#c2410c,#be185d 60%,#6d28d9);
---cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M8 3c0 6 12 8 12 14S8 19 8 25' fill='none' stroke='%23be185d' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M20 3c0 6-12 8-12 14s12 2 12 8' fill='none' stroke='%236d28d9' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M10 7h8M10 21h8M12 14h4' stroke='%23c2410c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 4 4,auto}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:'Space Grotesk',Arial,sans-serif;color:var(--ink);background:linear-gradient(176deg,#fff7ed 0%,#fff0e3 35%,#ffe6ea 70%,#f6e4ff 100%) fixed;min-height:100svh;cursor:var(--cursor);-webkit-font-smoothing:antialiased}
-a,button,[role=radio]{cursor:var(--cursor)}
-.serif{font-family:'Libre Bodoni',Georgia,serif;font-weight:500}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-
-/* gate */
-.gate{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
-.gate-card{width:100%;max-width:440px;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:28px;padding:40px 28px;box-shadow:0 40px 80px -50px rgba(60,20,120,.45)}
-.eb{font-size:13px;font-weight:600;letter-spacing:4px;color:var(--pink)}
-.gate h1{font-size:clamp(40px,10vw,56px);line-height:1.02;letter-spacing:-1px;margin-top:14px}
-.gate p.sub{color:var(--soft);font-size:17px;line-height:1.45;margin-top:12px}
-.gate form{margin-top:26px;display:flex;flex-direction:column;gap:12px}
-.gate input{font:inherit;font-size:18px;padding:15px 18px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);text-align:center;letter-spacing:1px;outline:none}
-.gate input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(190,24,93,.12)}
-.btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:600;font-size:17px;color:#fff;background:var(--grad);border:0;border-radius:999px;padding:15px 26px;text-decoration:none;box-shadow:0 14px 30px -14px rgba(190,24,93,.7);transition:transform .15s ease,box-shadow .15s ease}
-.btn:hover{transform:translateY(-1px);box-shadow:0 18px 34px -14px rgba(190,24,93,.8)}
-.btn:active{transform:translateY(0)}
-.err{color:var(--pink);font-size:15px;min-height:20px}
-
-/* unlocked */
-.hero{padding:28px 0 18px;text-align:center}
-.hero h1{font-size:clamp(44px,9vw,92px);line-height:1;letter-spacing:-2px;margin-top:10px}
-.hero .sub{color:var(--soft);font-size:clamp(16px,2.4vw,20px);line-height:1.45;max-width:620px;margin:12px auto 18px}
-.film .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--plum);box-shadow:0 40px 80px -45px rgba(60,20,120,.55)}
-.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.fine{font-size:13px;color:var(--mute);text-align:center;margin-top:10px;line-height:1.4}
-.packages{padding:56px 0 24px;text-align:center}
-.packages h2{font-size:clamp(34px,6vw,56px);letter-spacing:-1px;line-height:1.05}
-.lede{color:var(--soft);font-size:18px;margin-top:10px}
-.speeds{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:520px;margin:18px auto 0;padding:6px;border-radius:20px;background:var(--card);border:1.5px solid var(--line)}
-.speed{font:inherit;font-size:16px;font-weight:600;border:0;background:transparent;color:var(--soft);padding:10px 6px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:background .15s ease,color .15s ease}
-.speed small{font-size:12px;font-weight:500;opacity:.75;letter-spacing:.5px}
-.speed[aria-checked=true]{background:var(--plum);color:var(--cream)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;text-align:left}
-.card{background:var(--plum);color:var(--cream);border-radius:24px;padding:26px 24px 24px;display:flex;flex-direction:column;border:2px solid var(--plum2)}
-.card.best{border-color:var(--gold)}
-.card .n{font-size:20px;font-weight:600;color:var(--gold)}
-.card .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--plum);background:var(--gold);border-radius:999px;padding:4px 10px;margin-left:8px;vertical-align:2px}
-.card .p{font-size:clamp(46px,6vw,60px);line-height:1;letter-spacing:-1.5px;margin-top:14px;color:#fff7ed}
-.card .per{color:#efe4fa;font-size:15px;margin-top:8px}
-.card .days{color:#cdbbe6;font-size:15px;margin-top:2px}
-.card .pay{margin-top:22px;width:100%}
-.card .then{color:#cdbbe6;font-size:13px;margin-top:10px;text-align:center}
-.card .soon{margin-top:22px;width:100%;text-align:center;font-size:15px;color:#cdbbe6;border:1.5px dashed #56348a;border-radius:999px;padding:14px}
-.terms{max-width:760px;margin:30px auto 0;text-align:left;display:grid;gap:12px}
-.terms p{font-size:16px;line-height:1.55;color:var(--soft);background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:16px 20px}
-.terms b{color:var(--ink)}
-.foot{text-align:center;font-size:13px;letter-spacing:3px;font-weight:600;color:var(--mute);padding:36px 0 44px}
-@media (max-width:760px){.cards{grid-template-columns:1fr}.hero{padding-top:20px}.packages{padding-top:44px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+  body{margin:0;font-family:Georgia,'Libre Bodoni',serif;color:#26211b;
+    background:linear-gradient(180deg,#fff7ed 0%,#fef2f8 45%,#eef2ff 100%);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{max-width:560px;width:100%;background:#fff;border:1px solid #ece7f1;border-radius:22px;
+    overflow:hidden;box-shadow:0 8px 30px rgba(38,33,27,.08)}
+  .card img{width:100%;height:auto;display:block}
+  .b{padding:22px 26px 26px} h1{font-size:26px;margin:0 0 8px}
+  p{color:#7c7773;font-size:15px;line-height:1.6;margin:0 0 18px}
+  a.btn{display:inline-block;text-decoration:none;color:#fff;font-weight:700;padding:12px 22px;
+    border-radius:999px;background:linear-gradient(135deg,#f97316,#ec4899 45%,#8b5cf6)}
 </style>
 </head>
 <body>
-<main id="gate" class="gate">
-  <div class="gate-card">
-    <p class="eb">FOR AGELESSRX · PRIVATE</p>
-    <h1 class="serif">Ask the Giraffes.</h1>
-    <p class="sub">A sponsored survey of the Grateful Giraffes. Enter your passcode to watch the pitch and see the packages.</p>
-    <form id="f" autocomplete="off">
-      <input id="pw" type="password" inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Passcode" aria-label="Passcode" required>
-      <button class="btn" type="submit">Open</button>
-      <p class="err" id="err" role="alert"></p>
-    </form>
-  </div>
-</main>
-<div id="app" class="wrap" hidden></div>
-
-<script>
-const PL = {"n":250000,"s":"PtbPdy0GKmxkTA/0rVClIw==","i":"8fyHRqPPKuLJpvDx","c":"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"};
-const b = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-async function unlock(pass) {
-  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b(PL.s), iterations: PL.n, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b(PL.i) }, key, b(PL.c));
-  return JSON.parse(new TextDecoder().decode(pt));
-}
-const money = v => '$' + v.toLocaleString('en-US');
-function render(data) {
-  const cfg = data.cfg, app = document.getElementById('app');
-  app.innerHTML = data.html;
-  document.getElementById('gate').remove();
-  app.hidden = false;
-  document.title = 'Ask the Giraffes · for AgelessRx';
-  const u = cfg.stream_uid, h = cfg.stream_host;
-  const poster = `https://${h}/${u}/thumbnails/thumbnail.jpg?time=1.5s&height=720`;
-  document.getElementById('player').src = `https://${h}/${u}/iframe?poster=${encodeURIComponent(poster)}&defaultTextTrack=en&preload=metadata`;
-  let speed = 7;
-  const speedsEl = document.getElementById('speeds'), cardsEl = document.getElementById('cards');
-  speedsEl.innerHTML = cfg.speeds.map(s => `<button type="button" class="speed" role="radio" data-d="${s.days}">${s.label}<small>${s.note}</small></button>`).join('');
-  function draw() {
-    speedsEl.querySelectorAll('.speed').forEach(x => x.setAttribute('aria-checked', String(+x.dataset.d === speed)));
-    cardsEl.innerHTML = cfg.packages.map((p, i) => {
-      const total = p.prices[speed], dep = Math.round(total / 2), link = cfg.deposit_links[`${p.giraffes}-${speed}`];
-      const pay = link
-        ? `<a class="btn pay" href="${link}" target="_blank" rel="noopener">Pay ${money(dep)} deposit</a><p class="then">Then ${money(total - dep)} when your results arrive</p>`
-        : `<p class="soon">Deposit link coming soon</p>`;
-      return `<div class="card${i === cfg.packages.length - 1 ? ' best' : ''}"><p class="n">${p.giraffes} Giraffes${i === cfg.packages.length - 1 ? '<span class="tag">BEST VALUE</span>' : ''}</p>
-        <p class="p serif">${money(total)}</p><p class="per">${money(Math.round(total / p.giraffes))} per Giraffe</p>
-        <p class="days">Results in ${speed} days</p>${pay}</div>`;
-    }).join('');
-  }
-  speedsEl.addEventListener('click', e => { const x = e.target.closest('.speed'); if (x) { speed = +x.dataset.d; draw(); } });
-  draw();
-}
-document.getElementById('f').addEventListener('submit', async e => {
-  e.preventDefault();
-  const pass = document.getElementById('pw').value.trim().toLowerCase();
-  try {
-    const data = await unlock(pass);
-    try { sessionStorage.setItem('ageless-pass', pass); } catch (_) {}
-    render(data);
-  } catch (_) {
-    document.getElementById('err').textContent = "That passcode doesn't match.";
-  }
-});
-(async () => {
-  let saved = null;
-  try { saved = sessionStorage.getItem('ageless-pass'); } catch (_) {}
-  if (saved) { try { render(await unlock(saved)); } catch (_) {} }
-})();
-</script>
+  <main class="card">
+    <img src="https://grateful.gg/ageless/cover.jpg" alt="Ask the Giraffes, a demo for AgelessRx" width="1200" height="630">
+    <div class="b"><h1>Ask the Giraffes · for AgelessRx</h1><p>A private look at a sponsored survey of the Grateful Giraffes. Passcode required.</p>
+    <a class="btn" href="https://app.grateful.gg/ageless">Open the event &rarr;</a></div>
+  </main>
 </body>
 </html>
