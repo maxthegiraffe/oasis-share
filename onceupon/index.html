@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Once Upon a Thank You · A picture book about gratitude</title>
-<meta name="description" content="A picture book that's also a song, for ages 3 to 8. Paperback and Kindle on Amazon.">
+<meta name="description" content="A picture book that's also a song, for ages 3 to 8. Hardcover on Amazon.">
 <link rel="canonical" href="https://app.grateful.gg/onceupon">
 <meta property="og:type" content="book">
 <meta property="og:site_name" content="The Grateful Giraffes">
 <meta property="og:title" content="The story of everything, told as a thank you">
-<meta property="og:description" content="A picture book that's also a song, for ages 3 to 8. Paperback and Kindle on Amazon.">
+<meta property="og:description" content="A picture book that's also a song, for ages 3 to 8. Hardcover on Amazon.">
 <meta property="og:url" content="https://grateful.gg/onceupon/">
 <meta property="og:image" content="https://grateful.gg/onceupon/cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -17,44 +17,15 @@
 <meta property="og:image:alt" content="A giraffe bends over the glowing Earth, with animals and children from around the world">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦒</text></svg>">
-<noscript><meta http-equiv="refresh" content="0; url=https://www.amazon.com/dp/B0HMYHFPXZ"></noscript>
+<noscript><meta http-equiv="refresh" content="0; url=https://www.amazon.com/dp/B0HRJRV8FW"></noscript>
 <script>
-/* grateful.gg/onceupon sends visitors straight to the paperback on Amazon, in their own store (Max, 2026-11-11).
-   The full landing page is kept at /onceupon/landing.html. Store picked as on that page: saved choice, time zone, language. */
-(function () {
-  var ASIN = "B0HMYHFPXZ";
-  var STORES = {US:["www.amazon.com",1],GB:["www.amazon.co.uk",1],CA:["www.amazon.ca",1],AU:["www.amazon.com.au",1],DE:["www.amazon.de",1],
-    FR:["www.amazon.fr",1],ES:["www.amazon.es",1],IT:["www.amazon.it",1],NL:["www.amazon.nl",1],BE:["www.amazon.com.be",1],
-    IE:["www.amazon.ie",1],PL:["www.amazon.pl",1],SE:["www.amazon.se",1],JP:["www.amazon.co.jp",1],IN:["www.amazon.in",0],
-    BR:["www.amazon.com.br",0],MX:["www.amazon.com.mx",0]};
-  var TZ = {"Europe/London":"GB","Europe/Belfast":"GB","Europe/Dublin":"IE","Europe/Berlin":"DE","Europe/Vienna":"DE","Europe/Zurich":"DE",
-    "Europe/Busingen":"DE","Europe/Paris":"FR","Europe/Monaco":"FR","Europe/Luxembourg":"FR","Europe/Madrid":"ES","Atlantic/Canary":"ES",
-    "Africa/Ceuta":"ES","Europe/Rome":"IT","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Warsaw":"PL","Europe/Stockholm":"SE",
-    "Asia/Tokyo":"JP","Asia/Kolkata":"IN","Asia/Calcutta":"IN","America/Sao_Paulo":"BR","America/Mexico_City":"MX","America/Cancun":"MX",
-    "America/Monterrey":"MX","America/Tijuana":"MX"};
-  var code = "", tz = "";
-  try { var saved = localStorage.getItem("ouaty-store"); if (saved && STORES[saved]) code = saved; } catch (e) {}
-  if (!code) {
-    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
-    if (TZ[tz]) code = TZ[tz];
-    else if (/^Australia\//.test(tz)) code = "AU";
-    else if (/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife|Iqaluit|Glace_Bay|Goose_Bay|Swift_Current|Dawson_Creek|Fort_Nelson|Rankin_Inlet|Cambridge_Bay|Inuvik|Atikokan|Thunder_Bay|Nipigon|Rainy_River)$/.test(tz)) code = "CA";
-    else {
-      var lang = (navigator.languages && navigator.languages[0]) || navigator.language || "";
-      var m = lang.match(/[-_]([a-z]{2})$/i);
-      code = m && STORES[m[1].toUpperCase()] ? m[1].toUpperCase() : "US";
-    }
-  }
-  var st = STORES[code] || STORES.US;
-  var url = "https://" + (st[1] ? st[0] : "www.amazon.com") + "/dp/" + ASIN;
-  window.__ouatyUrl = url;
-  location.replace(url);
-})();
+/* grateful.gg/onceupon sends visitors straight to the HARDCOVER on amazon.com, US store for everyone (Max, 2026-11-18).
+   Was: the paperback in the visitor's own store (2026-11-11). The full landing page is kept at /onceupon/landing.html. */
+location.replace("https://www.amazon.com/dp/B0HRJRV8FW");
 </script>
 <style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#fbf6ee;color:#2b2140;font:18px/1.5 system-ui,sans-serif;text-align:center;padding:24px}a{color:#7a3fd1}</style>
 </head>
 <body>
-<p>Taking you to <em>Once Upon a Thank You</em> on Amazon...<br><a id="go" href="https://www.amazon.com/dp/B0HMYHFPXZ">Tap here if it doesn't open</a></p>
-<script>if (window.__ouatyUrl) document.getElementById("go").href = window.__ouatyUrl;</script>
+<p>Taking you to <em>Once Upon a Thank You</em> on Amazon...<br><a id="go" href="https://www.amazon.com/dp/B0HRJRV8FW">Tap here if it doesn't open</a></p>
 </body>
 </html>
