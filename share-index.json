@@ -46,6 +46,10 @@
 "s":"biosafari-tickets"
 },
 {
+"p":"/bubbles/ai",
+"s":"unblocked"
+},
+{
 "p":"/equity",
 "s":"on"
 },
@@ -990,6 +994,10 @@
 {
 "p":"/p/sunday-potluck-nov-22",
 "s":"brunch"
+},
+{
+"p":"/repipe/site",
+"s":"repipe-site"
 }
 ]
 }
