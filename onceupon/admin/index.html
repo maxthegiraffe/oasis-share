@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Book Sales · Once Upon a Thank You</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- The numbers in data.json are encrypted (AES-256-GCM, key from the passphrase by PBKDF2-SHA256); this page decrypts them in
+     your browser. Published daily by abos projects/once-upon-kdp/sales-agent/publish_admin.mjs. -->
+<style>
+:root {
+  --bg: #fbf6ee; --card: #ffffff; --ink: #2b2140; --muted: #6d6380; --line: #eadfce; --accent: #7a3fd1; --accent-soft: #efe6fb;
+  --good: #1f7a4d; --warn: #8a5100; --warn-bg: #fff3dc; --on-accent: #ffffff; --shadow: 0 1px 2px rgba(43,33,64,.06), 0 6px 20px rgba(43,33,64,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17121f; --card: #221b2e; --ink: #f3ecff; --muted: #b3a8c6; --line: #352b45; --accent: #b38cff; --accent-soft: #2e2442;
+    --good: #6fd3a0; --warn: #ffc56b; --warn-bg: #3a2c12; --on-accent: #17121f; --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17121f; --card: #221b2e; --ink: #f3ecff; --muted: #b3a8c6; --line: #352b45; --accent: #b38cff; --accent-soft: #2e2442;
+  --good: #6fd3a0; --warn: #ffc56b; --warn-bg: #3a2c12; --on-accent: #17121f; --shadow: none;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Nunito, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 28px 16px 56px; }
+h1 { font: 400 clamp(28px, 6vw, 40px)/1.1 "DM Serif Display", Georgia, serif; margin: 0; letter-spacing: -.01em; }
+h2 { font: 800 13px/1 Nunito, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 12px; }
+.sub { color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); margin-top: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.chip.good { background: var(--accent-soft); color: var(--good); }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; box-shadow: var(--shadow); }
+.kpi .v { font: 400 clamp(28px, 7vw, 44px)/1 "DM Serif Display", Georgia, serif; font-variant-numeric: tabular-nums; }
+.kpi .l { color: var(--muted); font-size: 14px; margin-top: 8px; font-weight: 600; }
+.note { background: var(--warn-bg); color: var(--warn); border-radius: 12px; padding: 12px 14px; font-weight: 600; font-size: 15px; margin-top: 16px; }
+.headline { color: var(--muted); font-size: 15px; margin: 0; }
+.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 15px; }
+.tbl th, .tbl td { text-align: right; padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl th:first-child, .tbl td:first-child { text-align: left; }
+.tbl th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 800; }
+.tbl tr:last-child td { border-bottom: 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.fmt { font-weight: 800; text-transform: capitalize; }
+.dim { color: var(--muted); }
+a { color: var(--accent); }
+.foot { color: var(--muted); font-size: 13px; margin-top: 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+button { font: 800 16px Nunito, sans-serif; border: 0; border-radius: 12px; padding: 13px 20px; background: var(--accent); color: var(--on-accent); cursor: pointer; }
+button.link { background: none; color: var(--accent); padding: 0; font-size: 13px; }
+.lock { min-height: 100svh; display: grid; place-items: center; padding: 16px; }
+.lock .card { width: 100%; max-width: 400px; text-align: center; padding: 28px 22px; }
+.lock input { width: 100%; font: 600 17px Nunito, sans-serif; padding: 13px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); margin: 18px 0 12px; }
+.lock button { width: 100%; }
+.err { color: #c0392b; font-weight: 700; font-size: 14px; min-height: 20px; margin-top: 10px; }
+.spark { width: 100%; height: 120px; display: block; color: var(--muted); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-top: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 560px) { .kpis { grid-template-columns: 1fr; } .kpi { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .kpi .l { margin: 0; } }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="lock" id="lock">
+  <div class="card">
+    <div style="font-size:40px">🦒</div>
+    <h1 style="font-size:28px;margin-top:6px">Book sales</h1>
+    <p class="sub">Once Upon a Thank You</p>
+    <form id="form" autocomplete="off">
+      <input id="pass" type="password" placeholder="Passphrase" aria-label="Passphrase" autocomplete="current-password">
+      <button type="submit" id="go">Unlock</button>
+    </form>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<main class="wrap" id="app" hidden>
+  <h1>Once Upon a Thank You</h1>
+  <p class="sub" id="updated"></p>
+  <div class="chips" id="chips"></div>
+  <div class="note" id="note" hidden></div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="k-units">0</div><div class="l">Copies sold</div></div>
+    <div class="kpi"><div class="v" id="k-roy">$0</div><div class="l">Royalties earned</div></div>
+    <div class="kpi"><div class="v" id="k-gross">$0</div><div class="l">Sales at list price</div></div>
+  </div>
+
+  <section class="card">
+    <h2>By format</h2>
+    <div class="scroll"><table class="tbl" id="t-formats"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Copies by month</h2>
+    <div class="scroll"><table class="tbl" id="t-months"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Amazon rank by day</h2>
+    <p class="headline" id="headline"></p>
+    <svg class="spark" id="spark" role="img" aria-label="Amazon Best Sellers rank by day"></svg>
+    <div class="legend" id="legend"></div>
+    <div class="scroll" style="margin-top:10px"><table class="tbl" id="t-days"></table></div>
+  </section>
+
+  <section class="card" id="ads-card" hidden>
+    <h2 id="ads-title">Amazon Ads</h2>
+    <div class="scroll"><table class="tbl" id="t-ads"></table></div>
+  </section>
+
+  <div class="foot">
+    <span>Read daily at 8:05 AM PT from KDP Reports and Amazon by the sales agent. Lower rank is better.</span>
+    <button class="link" id="lockbtn" type="button">Lock this device</button>
+  </div>
+</main>
+
+<script>
+(function () {
+  var KEY = 'ouaty-admin-pass';
+  var COLORS = { paperback: '#7a3fd1', hardcover: '#d9822b', kindle: '#2a9d8f' };
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }); };
+  var num = function (n) { return Number(n || 0).toLocaleString('en-US'); };
+  var rank = function (n) { return n ? '#' + num(n) : '<span class="dim">none yet</span>'; };
+  var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
+  var when = function (iso) {
+    if (!iso) return 'never';
+    var d = new Date(iso);
+    return d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + ' PT';
+  };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  async function decrypt(blob, pass) {
+    var enc = new TextEncoder();
+    var base = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(blob.salt), iterations: blob.iter, hash: 'SHA-256' }, base,
+      { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(blob.iv) }, key, b64(blob.ct));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+
+  function spark(days) {
+    var svg = $('spark'), W = 600, H = 120, P = 8;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var fmts = ['paperback', 'hardcover', 'kindle'];
+    var pts = [];
+    days.forEach(function (d) { fmts.forEach(function (f) { if (d['bsr_' + f]) pts.push(d['bsr_' + f]); }); });
+    if (pts.length < 2) { svg.innerHTML = '<text x="' + (W / 2) + '" y="' + (H / 2) + '" text-anchor="middle" fill="currentColor" font-size="15">The line starts once Amazon ranks the book on two days</text>'; $('legend').innerHTML = ''; return; }
+    var lo = Math.log(Math.min.apply(null, pts)), hi = Math.log(Math.max.apply(null, pts));
+    if (hi - lo < 0.2) { lo -= 0.1; hi += 0.1; }
+    var x = function (i) { return P + (W - 2 * P) * (days.length === 1 ? 0.5 : i / (days.length - 1)); };
+    var y = function (v) { return P + (H - 2 * P) * (Math.log(v) - lo) / (hi - lo); };   // better rank (smaller) sits higher
+    var out = '';
+    fmts.forEach(function (f) {
+      var seg = [];
+      days.forEach(function (d, i) { if (d['bsr_' + f]) seg.push([x(i), y(d['bsr_' + f])]); });
+      if (!seg.length) return;
+      out += '<polyline fill="none" stroke="' + COLORS[f] + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="' + seg.map(function (p) { return p.join(','); }).join(' ') + '"/>';
+      seg.forEach(function (p) { out += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3.5" fill="' + COLORS[f] + '"/>'; });
+    });
+    svg.innerHTML = out;
+    $('legend').innerHTML = fmts.map(function (f) { return '<span><i style="background:' + COLORS[f] + '"></i>' + f[0].toUpperCase() + f.slice(1) + '</span>'; }).join('');
+  }
+
+  function render(d) {
+    $('updated').textContent = 'Updated ' + when(d.updated_at);
+    var chips = [];
+    var lastKdp = d.kdp && d.kdp.last_ok;
+    var ageH = lastKdp ? (Date.now() - new Date(lastKdp).getTime()) / 36e5 : 1e9;
+    chips.push('<span class="chip ' + (ageH > 36 ? 'warn' : 'good') + '">KDP sales read ' + esc(when(lastKdp)) + '</span>');
+    chips.push('<span class="chip">On sale since ' + new Date(d.launched + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '</span>');
+    $('chips').innerHTML = chips.join('');
+    if (d.kdp && d.kdp.signed_out) { $('note').hidden = false; $('note').textContent = d.kdp.note; }
+    $('k-units').textContent = num(d.totals.units);
+    $('k-roy').textContent = money(d.totals.royalties);
+    $('k-gross').textContent = money(d.totals.gross);
+    $('headline').textContent = d.headline || '';
+
+    var f = '<tr><th>Format</th><th>Price</th><th>You earn</th><th>Copies</th><th>Royalties</th><th>Amazon rank</th><th>Ratings</th></tr>';
+    d.formats.forEach(function (r) {
+      f += '<tr><td class="fmt"><a href="https://www.amazon.com/dp/' + esc(r.asin) + '" target="_blank" rel="noopener">' + esc(r.format) + '</a></td><td>' + money(r.price) +
+        '</td><td>' + money(r.royalty) + '</td><td>' + num(r.units) + '</td><td>' + money(r.royalties) + '</td><td>' + rank(r.bsr) + '</td><td>' +
+        (r.ratings ? num(r.ratings) + (r.stars ? ' · ' + r.stars + '★' : '') : '<span class="dim">0</span>') + '</td></tr>';
+    });
+    $('t-formats').innerHTML = f;
+
+    var months = Object.keys(d.by_month || {}).sort();
+    var m = '<tr><th>Month</th><th>Paperback</th><th>Hardcover</th><th>Kindle</th><th>Total</th></tr>';
+    months.forEach(function (k) {
+      var r = d.by_month[k], t = (r.paperback || 0) + (r.hardcover || 0) + (r.kindle || 0);
+      var label = new Date(k + '-15T12:00:00').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      m += '<tr><td>' + label + '</td><td>' + num(r.paperback) + '</td><td>' + num(r.hardcover) + '</td><td>' + num(r.kindle) + '</td><td><b>' + num(t) + '</b></td></tr>';
+    });
+    if (!months.length) m += '<tr><td colspan="5" class="dim">No KDP read yet</td></tr>';
+    $('t-months').innerHTML = m;
+
+    var days = (d.days || []).slice(-30);
+    spark(days);
+    var t = '<tr><th>Day</th><th>Copies to date</th><th>Paperback</th><th>Hardcover</th><th>Kindle</th></tr>';
+    days.slice().reverse().forEach(function (r) {
+      var label = new Date(r.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      t += '<tr><td>' + label + '</td><td>' + (r.kdp_ok ? num(r.units) : '<span class="dim">KDP not read</span>') + '</td><td>' + rank(r.bsr_paperback) +
+        '</td><td>' + rank(r.bsr_hardcover) + '</td><td>' + rank(r.bsr_kindle) + '</td></tr>';
+    });
+    $('t-days').innerHTML = t;
+
+    if (d.ads) {
+      $('ads-card').hidden = false;
+      $('ads-title').textContent = d.ads.label + ' · day ' + d.ads.day + ' of ' + d.ads.days + (d.ads.stale ? ' (numbers not refreshed today)' : '');
+      $('t-ads').innerHTML = '<tr><th>Views</th><th>Clicks</th><th>Spent</th><th>Orders</th><th>Ad sales</th></tr><tr><td>' + num(d.ads.impressions) + '</td><td>' +
+        num(d.ads.clicks) + '</td><td>' + money(d.ads.spend) + ' of ' + money(d.ads.cap) + '</td><td>' + num(d.ads.orders) + '</td><td>' + money(d.ads.sales) + '</td></tr>';
+    }
+    $('lock').hidden = true;
+    $('app').hidden = false;
+  }
+
+  var blob = null;
+  async function load() {
+    if (blob) return blob;
+    var r = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error('data');
+    blob = await r.json();
+    return blob;
+  }
+
+  async function unlock(pass, remember) {
+    $('err').textContent = '';
+    $('go').textContent = 'Unlocking...';
+    try {
+      var data = await decrypt(await load(), pass);
+      if (remember) { try { localStorage.setItem(KEY, pass); } catch (e) {} }
+      render(data);
+      return true;
+    } catch (e) {
+      $('err').textContent = e && e.message === 'data' ? 'Could not load the numbers. Try again in a minute.' : 'That passphrase did not work.';
+      $('go').textContent = 'Unlock';
+      return false;
+    }
+  }
+
+  $('form').addEventListener('submit', function (e) { e.preventDefault(); var p = $('pass').value.trim(); if (p) unlock(p, true); });
+  $('lockbtn').addEventListener('click', function () { try { localStorage.removeItem(KEY); } catch (e) {} location.reload(); });
+
+  // a link with the passphrase after # opens straight in (the part after # never leaves the browser)
+  var fromHash = decodeURIComponent((location.hash || '').slice(1));
+  if (fromHash) history.replaceState(null, '', location.pathname);
+  var saved = '';
+  try { saved = localStorage.getItem(KEY) || ''; } catch (e) {}
+  var start = fromHash || saved;
+  if (start) unlock(start, true).then(function (ok) { if (!ok && saved) { try { localStorage.removeItem(KEY); } catch (e) {} } });
+})();
+</script>
+</body>
+</html>
