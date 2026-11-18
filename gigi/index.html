@@ -3,320 +3,533 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Talk with Gigi · Grateful Giraffes</title>
-<meta name="description" content="Tap, say hello, and tell her what's on your mind. No app needed.">
+<title>Gigi · Grateful Giraffes</title>
+<meta name="description" content="Breathe with Gigi, or tell her what you're grateful for. She speaks telepathically. No app needed.">
 <link rel="canonical" href="https://grateful.gg/gigi/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Grateful Giraffes">
-<meta property="og:title" content="Talk with Gigi">
-<meta property="og:description" content="Tap, say hello, and tell her what's on your mind. No app needed.">
+<meta property="og:title" content="Gigi">
+<meta property="og:description" content="Breathe with Gigi, or tell her what you're grateful for. She speaks telepathically.">
 <meta property="og:url" content="https://grateful.gg/gigi/">
 <meta property="og:image" content="https://grateful.gg/gigi/cover.jpg?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Gigi the giraffe at a lantern-lit oasis at dusk">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0c0a18">
+<meta name="theme-color" content="#0b0a17">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!--
-  grateful.gg/gigi (Max, 2026-11-01): "the landing page should just be her welcoming the user and saying hello and asking
-  what they want to talk about. and then you have to create an account / sign in to talk to me further", "just her video
-  avatar background with some text overlays if necessary".
-  Her voice is the ElevenLabs agent "Gigi Welcome (grateful.gg/gigi)" (made by ~/.claude/state/gigi-welcome/agent.py):
-  public but answering only on grateful.gg, 3 minutes a visit, 20 at once, 400 a day. She calls show_signin when it's time
-  for an account. The video is her /withgigi talking loop with its oasis left in (the original is a cut-out). Her mouth is
-  drawn over it from her voice (mouth/: guideMouth.js, popmouth.js, guideVisemes.js, copied from the oasis repo's
-  src/lib/gigiLive, as /ai/setup does it): 252 frames at 30 fps, the same frames the mouth library was built on.
+  grateful.gg/gigi, the telepathic Gigi (2026-11-18): "/gigi on grateful.gg should be the telepathic version and it should
+  be possible for the caller to try breathing or gratitude unless they are a giraffe and then they can speak to their
+  personal version".
+  - Anyone: Breathe (her four tracks in breath/, a pacer on the phase times in breathcues.js) or Gratitude (her voice, the
+    public ElevenLabs agent "Gigi Welcome (grateful.gg/gigi)": answers on grateful.gg only, 6 minutes a visit, a daily cap,
+    started with the gratitude practice's first line, the one override the agent allows).
+  - Giraffes: the door to their own Gigi at app.grateful.gg/gigi (signed in, she greets them by name, 15 minutes).
+  - Telepathic (Max, 2026-11-09, "redo gigi everywhere"): her mouth never moves. Her loop plays on and the light on her brow
+    glows with her voice, its colour following what she says (telepathy.js, the same module the app uses). While you breathe
+    it climbs her seven stones' colours on the in-breath and comes back down on the out-breath.
+  - her.mp4 is media/gigi-live/idle.mp4 (the sharpest copy of her loop) at 1080. gigi.mp4, poster.jpg and mouth/ stay for
+    the app pages that still link them.
 -->
 <style>
   :root {
-    --ink: #fff4e4; --soft: rgba(255, 244, 228, .78); --gold: #ffc878; --night: #0c0a18;
-    --glass: rgba(14, 12, 30, .55); --line: rgba(255, 244, 228, .18);
+    --night: #0b0a17; --indigo: #1b1430; --ink: #fff4e4; --soft: rgba(255, 244, 228, .74); --faint: rgba(255, 244, 228, .5);
+    --gold: #e6c27a; --gold-hi: #f6dca0; --line: rgba(246, 220, 160, .16); --line-hi: rgba(246, 220, 160, .5);
+    --glass: rgba(255, 255, 255, .045); --glass-hi: rgba(255, 255, 255, .08);
     --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, -apple-system, sans-serif;
+    --gut: 16px;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; background: var(--night); color: var(--ink); font-family: var(--sans); }
-  body { overflow: hidden; -webkit-font-smoothing: antialiased; }
-  .stage { position: fixed; inset: 0; overflow: hidden; background: var(--night); }
-  .backdrop { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover;
-    filter: blur(36px) brightness(.5) saturate(1.1); }
-  .her { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-  canvas.her { pointer-events: none; }   /* her mouth, in exactly the video's box */
-  /* Wide screens: the square loop at full height, its sides melting into the blurred oasis. */
-  @media (min-aspect-ratio: 1/1) {
-    .her { left: 50%; width: 100dvh; max-width: 100%; transform: translateX(-50%);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
-              mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
-  }
-  .shade { position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(180deg, rgba(12,10,24,.55) 0%, rgba(12,10,24,0) 22%, rgba(12,10,24,0) 52%, rgba(12,10,24,.82) 100%); }
-
-  header { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;
-    padding: max(16px, env(safe-area-inset-top)) 20px 0; z-index: 3; }
-  .mark { font-family: var(--serif); font-size: 18px; letter-spacing: .01em; color: var(--ink); text-decoration: none; opacity: .92; }
-  .signin-link { font-size: 14px; color: var(--soft); text-decoration: none; padding: 8px 12px; border: 1px solid var(--line);
-    border-radius: 999px; background: rgba(12,10,24,.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-  .signin-link:hover { color: var(--ink); }
-
-  main { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; flex-direction: column; align-items: center;
-    gap: 14px; padding: 0 16px max(22px, env(safe-area-inset-bottom)); text-align: center; }
-  h1 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 56px); line-height: 1.05; }
-  h1 em { font-style: normal; color: var(--gold); }
-  .sub { margin: 0; max-width: 30em; font-size: 16px; line-height: 1.45; color: var(--soft); }
-  .caption { min-height: 2.9em; max-width: 34em; font-family: var(--serif); font-size: clamp(19px, 2.6vw, 24px); line-height: 1.35;
-    color: var(--ink); text-shadow: 0 1px 12px rgba(0,0,0,.6); transition: opacity .3s; }
-  .caption:empty { opacity: 0; }
-  .status { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); display: flex; align-items: center; gap: 8px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--soft); }
-  .speaking .dot { background: var(--gold); box-shadow: 0 0 0 0 rgba(255,200,120,.7); animation: pulse 1.4s infinite; }
-  .listening .dot { background: #8fe3b0; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(255,200,120,0); } 100% { box-shadow: 0 0 0 0 rgba(255,200,120,0); } }
-
-  .btn { appearance: none; border: 0; cursor: pointer; font: 600 17px var(--sans); color: #1b1208; background: var(--gold);
-    padding: 16px 30px; border-radius: 999px; box-shadow: 0 8px 30px rgba(255,200,120,.28); text-decoration: none; display: inline-block; }
-  .btn:hover { filter: brightness(1.05); }
-  .btn:focus-visible, .ghost:focus-visible, .signin-link:focus-visible, .type input:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-  .ghost { appearance: none; cursor: pointer; font: 500 14px var(--sans); color: var(--soft); background: transparent;
-    border: 1px solid var(--line); padding: 10px 18px; border-radius: 999px; }
-  .ghost:hover { color: var(--ink); }
-  .row { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
-  .pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-  .pill { appearance: none; cursor: pointer; font: 500 15px var(--sans); color: var(--ink); background: var(--glass); border: 1px solid var(--line);
-    padding: 10px 16px; border-radius: 999px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .pill:hover { border-color: rgba(255,200,120,.6); }
-  .pill small { display: block; font-size: 12px; color: var(--soft); font-weight: 400; }
-  .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-
-  .type { display: flex; gap: 8px; width: min(100%, 520px); }
-  .type input { flex: 1; min-width: 0; font: 16px var(--sans); color: var(--ink); background: var(--glass); border: 1px solid var(--line);
-    border-radius: 999px; padding: 12px 18px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .type input::placeholder { color: rgba(255,244,228,.55); }
-
-  .card { width: min(100%, 460px); background: var(--glass); border: 1px solid var(--line); border-radius: 22px; padding: 22px 22px 20px;
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 20px 60px rgba(0,0,0,.45); animation: rise .5s ease-out; }
-  .card h2 { margin: 0 0 6px; font-family: var(--serif); font-weight: 600; font-size: 26px; }
-  .card p { margin: 0 0 16px; color: var(--soft); font-size: 15px; line-height: 1.45; }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  .fine { font-size: 12px; color: rgba(255,244,228,.55); max-width: 34em; }
+  html { background: var(--night); }
+  body { margin: 0; min-height: 100svh; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased;
+    background: var(--night); overflow-x: hidden; }
+  button, a, input { -webkit-tap-highlight-color: transparent; }
   [hidden] { display: none !important; }
-  @media (prefers-reduced-motion: reduce) { .card { animation: none; } .speaking .dot { animation: none; } }
+
+  /* The night around her: deep indigo, a few stars, the oasis glow low behind her. */
+  .scene { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(70% 45% at 34% 100%, rgba(255, 160, 80, .13), transparent 70%),
+      radial-gradient(60% 50% at 30% 0%, rgba(84, 70, 190, .28), transparent 72%),
+      linear-gradient(180deg, #100d26 0%, var(--night) 55%, #110b15 100%); }
+  .scene::after { content: ""; position: absolute; inset: 0; opacity: .55;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 78% 12%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 64% 30%, #fff, transparent), radial-gradient(1px 1px at 88% 44%, #fff, transparent),
+      radial-gradient(1px 1px at 52% 8%, #fff, transparent), radial-gradient(1px 1px at 93% 22%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 70% 58%, #fff, transparent), radial-gradient(1px 1px at 8% 64%, #fff, transparent); }
+
+  .app { position: relative; z-index: 1; min-height: 100svh; display: flex; flex-direction: column; }
+
+  header { position: absolute; top: 0; left: 0; right: 0; z-index: 4; display: flex; justify-content: space-between; align-items: center;
+    padding: max(14px, env(safe-area-inset-top)) var(--gut) 0; }
+  .mark { font-family: var(--serif); font-size: 17px; letter-spacing: .01em; color: var(--ink); text-decoration: none;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .55); }
+  .top-link { font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--line); background: rgba(11, 10, 23, .45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .top-link:hover { border-color: var(--line-hi); }
+
+  /* Her. On a phone she fills the top of the screen and melts into the night; on a wide screen she stands on the left. */
+  .portrait { position: relative; margin: 0; width: 100%; height: 60svh; min-height: 380px; max-height: 620px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 64%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 64%, transparent 100%); }
+  .her { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 24% 0%; display: block; }
+  .app.in-session .portrait { height: 64svh; max-height: 680px; }
+
+  /* Her light (telepathy.js EYE_CSS), with rings that travel out from it while she speaks. */
+  .gigi-eye b { position: absolute; inset: 0; opacity: calc(var(--lv, 0) * 1.1); }
+  .gigi-eye i { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--eye); opacity: 0;
+    animation: ring 2.4s cubic-bezier(.2, .6, .3, 1) infinite; }
+  .gigi-eye i:nth-child(2) { animation-delay: .8s; }
+  .gigi-eye i:nth-child(3) { animation-delay: 1.6s; }
+  @keyframes ring { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(4.6); opacity: 0; } }
+
+  main { position: relative; z-index: 3; width: 100%; max-width: 560px; margin: -96px auto 0; padding: 0 var(--gut) max(22px, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; gap: 16px; }
+
+  .eyebrow { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+  h1 { margin: 2px 0 0; font-family: var(--serif); font-weight: 500; font-size: clamp(46px, 11vw, 76px); line-height: .95; letter-spacing: -.01em; }
+  h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.1; }
+  .lead { margin: 0; font-size: 16px; line-height: 1.5; color: var(--soft); max-width: 30em; }
+  .intro { display: flex; flex-direction: column; gap: 8px; }
+
+  .note { display: flex; gap: 10px; align-items: center; margin: 0; font-size: 13px; line-height: 1.4; color: var(--soft); }
+  .note .spark { flex: none; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle, #fff 0 22%, #b28cff 50%, transparent 75%);
+    box-shadow: 0 0 10px #b28cff, 0 0 22px rgba(178, 140, 255, .6); animation: twinkle 3.2s ease-in-out infinite; }
+  @keyframes twinkle { 50% { opacity: .55; transform: scale(.85); } }
+
+  /* The two practices. */
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .choice { appearance: none; text-align: left; cursor: pointer; color: var(--ink); font: inherit; display: flex; flex-direction: column; gap: 6px;
+    padding: 16px 16px 15px; border-radius: 18px; border: 1px solid var(--line); background: var(--glass);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: border-color .2s, background .2s, transform .2s; }
+  .choice:hover { border-color: var(--line-hi); background: var(--glass-hi); transform: translateY(-1px); }
+  .choice svg { width: 26px; height: 26px; color: var(--gold); margin-bottom: 4px; }
+  .choice b { font-family: var(--serif); font-weight: 500; font-size: 22px; line-height: 1.1; }
+  .choice span { font-size: 13px; line-height: 1.4; color: var(--soft); }
+  .choice small { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
+
+  /* The Giraffe door. */
+  .door { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); padding: 14px 16px; border-radius: 16px;
+    border: 1px solid var(--line); background: linear-gradient(100deg, rgba(230, 194, 122, .10), rgba(230, 194, 122, .02)); transition: border-color .2s; }
+  .door:hover { border-color: var(--line-hi); }
+  .door .txt { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .door b { font-size: 15px; font-weight: 600; }
+  .door span { font-size: 13px; color: var(--soft); line-height: 1.35; }
+  .door .arrow { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: #1b1208; }
+  .door .arrow svg { width: 16px; height: 16px; }
+
+  .btn { appearance: none; border: 0; cursor: pointer; font: 600 16px var(--sans); color: #1b1208; text-decoration: none; text-align: center;
+    background: linear-gradient(180deg, var(--gold-hi), var(--gold)); padding: 15px 26px; border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(230, 194, 122, .22); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .ghost { appearance: none; cursor: pointer; font: 500 14px var(--sans); color: var(--ink); text-decoration: none; text-align: center;
+    background: var(--glass); border: 1px solid var(--line); padding: 12px 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .ghost:hover { border-color: var(--line-hi); }
+  .ghost svg, .btn svg { width: 16px; height: 16px; }
+  .back { align-self: flex-start; appearance: none; background: none; border: 0; cursor: pointer; color: var(--soft); font: 500 14px var(--sans);
+    padding: 6px 0; display: inline-flex; gap: 6px; align-items: center; }
+  .back:hover { color: var(--ink); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .row > * { flex: 1 1 auto; }
+  :is(.btn, .ghost, .choice, .door, .back, .top-link, .breath, .type input):focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+  /* The breath list. */
+  .breaths { display: flex; flex-direction: column; gap: 8px; }
+  .breath { appearance: none; cursor: pointer; text-align: left; font: inherit; color: var(--ink); display: grid; grid-template-columns: 1fr auto; align-items: center;
+    gap: 2px 12px; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--glass); transition: border-color .2s, background .2s; }
+  .breath:hover { border-color: var(--line-hi); background: var(--glass-hi); }
+  .breath b { font-family: var(--serif); font-weight: 500; font-size: 19px; }
+  .breath span { grid-column: 1; font-size: 13px; color: var(--soft); }
+  .breath em { grid-row: 1 / span 2; grid-column: 2; font-style: normal; font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+  /* The pacer: an orb that fills on the in-breath and empties on the out-breath, the phase's arc around it. */
+  .pacer { position: relative; width: 176px; height: 176px; margin: 0 auto; --full: .3; --p: 0; }
+  .pacer .track { position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(var(--gold) calc(var(--p) * 1turn), rgba(246, 220, 160, .13) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px)); }
+  .pacer .orb { position: absolute; inset: 16px; border-radius: 50%; transform: scale(calc(.46 + var(--full) * .54));
+    background: radial-gradient(circle at 50% 36%, rgba(255, 244, 228, .34), color-mix(in srgb, var(--eye, #2fd36b) 34%, transparent) 52%, color-mix(in srgb, var(--eye, #2fd36b) 10%, transparent) 72%);
+    border: 1px solid color-mix(in srgb, var(--eye, #2fd36b) 60%, transparent);
+    box-shadow: 0 0 calc(12px + var(--full) * 40px) color-mix(in srgb, var(--eye, #2fd36b) 40%, transparent), inset 0 0 24px color-mix(in srgb, var(--eye, #2fd36b) 30%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: --eye .6s; }
+  .pacer .word { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; pointer-events: none; }
+  .pacer .word b { font-family: var(--serif); font-weight: 500; font-size: 21px; color: var(--ink); text-shadow: 0 1px 14px rgba(0, 0, 0, .65); }
+  .pacer-meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .bar { height: 3px; border-radius: 3px; background: rgba(246, 220, 160, .14); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
+
+  /* A conversation. */
+  .status { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--soft); padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(11, 10, 23, .5); }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .status.listening .dot { background: #8fe3b0; box-shadow: 0 0 8px #8fe3b0; }
+  .status.speaking .dot { background: var(--eye, var(--gold)); box-shadow: 0 0 10px var(--eye, var(--gold)); animation: twinkle 1.2s ease-in-out infinite; }
+  .caption { margin: 0; min-height: 3.6em; font-family: var(--serif); font-size: clamp(20px, 5.4vw, 25px); line-height: 1.35; color: var(--ink); }
+  .caption.fresh { animation: thought .7s ease-out; }
+  @keyframes thought { from { opacity: 0; filter: blur(6px); transform: translateY(4px); } to { opacity: 1; filter: none; transform: none; } }
+  .you { margin: -6px 0 0; font-size: 13px; color: var(--faint); line-height: 1.4; }
+  .you:empty { display: none; }
+  .type { display: flex; gap: 8px; }
+  .type input { flex: 1; min-width: 0; font: 16px var(--sans); color: var(--ink); background: var(--glass); border: 1px solid var(--line);
+    border-radius: 999px; padding: 12px 18px; }
+  .type input::placeholder { color: var(--faint); }
+
+  .card { padding: 20px; border-radius: 20px; border: 1px solid var(--line); background: rgba(20, 16, 40, .72);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 12px; animation: rise .5s ease-out; }
+  .card p { margin: 0; color: var(--soft); font-size: 15px; line-height: 1.5; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .alert { margin: 0; font-size: 14px; line-height: 1.45; color: #ffd9a8; }
+  .alert:empty { display: none; }
+  .fine { margin: 4px 0 0; font-size: 12px; line-height: 1.45; color: var(--faint); }
+
+  /* Wide screens: her on the left at full height, the practices on the right. */
+  @media (min-width: 900px) and (min-aspect-ratio: 5/4) {
+    :root { --gut: 28px; }
+    .app { flex-direction: row; align-items: center; }
+    .portrait, .app.in-session .portrait { position: fixed; left: 0; top: 0; bottom: 0; height: 100svh; max-height: none; width: min(62vw, 106svh);
+      -webkit-mask-image: linear-gradient(90deg, #000 58%, transparent 98%), linear-gradient(180deg, #000 74%, transparent 100%);
+              mask-image: linear-gradient(90deg, #000 58%, transparent 98%), linear-gradient(180deg, #000 74%, transparent 100%);
+      -webkit-mask-composite: source-in; mask-composite: intersect; }
+    .her { object-position: 40% 0%; }
+    main { margin: 0 0 0 auto; width: min(460px, 38vw); max-width: none; padding: 96px clamp(28px, 5vw, 72px) 40px 0; min-height: 100svh; justify-content: center; }
+    .choice { padding: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gigi-eye i, .note .spark, .status.speaking .dot { animation: none; }
+    .caption.fresh, .card { animation: none; }
+    .choice:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
-<div class="stage" aria-hidden="true">
-  <img class="backdrop" src="poster.jpg" alt="">
-  <video class="her" autoplay muted loop playsinline preload="auto" poster="poster.jpg">
-    <source src="gigi.mp4" type="video/mp4">
-  </video>
-  <canvas class="her" id="mouth"></canvas>
-  <div class="shade"></div>
+<div class="scene" aria-hidden="true"></div>
+<div class="app" id="app">
+  <header>
+    <a class="mark" href="https://grateful.gg/">Grateful Giraffes</a>
+    <a class="top-link" id="topDoor" href="#">Giraffe sign in</a>
+  </header>
+
+  <figure class="portrait" aria-hidden="true">
+    <video class="her" id="her" autoplay muted loop playsinline preload="auto" poster="her.jpg">
+      <source src="her.mp4" type="video/mp4">
+    </video>
+    <span class="gigi-eye" id="eye"><b><i></i><i></i><i></i></b></span>
+  </figure>
+
+  <main>
+    <!-- Home: the two practices and the Giraffe door. -->
+    <section id="vHome" class="intro">
+      <p class="eyebrow">The Grateful Giraffe</p>
+      <h1>Gigi</h1>
+      <p class="lead">Take a quiet minute with her. Breathe together, or tell her one thing you're grateful for.</p>
+      <p class="note"><span class="spark" aria-hidden="true"></span>She speaks telepathically. Her lips stay still and the light on her brow carries her voice.</p>
+      <p class="alert" id="homeAlert" role="status"></p>
+      <div class="choices" role="group" aria-label="Practices">
+        <button class="choice" type="button" id="goBreathe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 13h15a3 3 0 1 1-3 3"/><path d="M3 17h6"/></svg>
+          <b>Breathe</b>
+          <span>She guides your breath, one count at a time.</span>
+          <small>1 to 2 minutes</small>
+        </button>
+        <button class="choice" type="button" id="goGratitude">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/><path d="M12 3v1.5M5.6 4.6l1 1M18.4 4.6l-1 1"/></svg>
+          <b>Gratitude</b>
+          <span>Tell her one thing you're grateful for, out loud.</span>
+          <small>Uses your mic</small>
+        </button>
+      </div>
+      <a class="door" id="homeDoor" href="#">
+        <span class="txt"><b>Are you a Giraffe?</b><span>Talk with your own Gigi, about anything on your mind.</span></span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <p class="fine">Gigi is an AI. Gratitude conversations are recorded so she can remember you.</p>
+    </section>
+
+    <!-- Choose a breath. -->
+    <section id="vBreaths" class="intro" hidden>
+      <button class="back" type="button" data-home><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+      <h2>Choose your breath</h2>
+      <div class="breaths" role="group" aria-label="Breathing practices">
+        <button class="breath" type="button" data-breath="box"><b>Box breathing</b><span>4 in, 4 hold, 4 out, 4 hold</span><em>1:54</em></button>
+        <button class="breath" type="button" data-breath="coherent"><b>Slow and even</b><span>5 in, 5 out</span><em>1:37</em></button>
+        <button class="breath" type="button" data-breath="478"><b>4-7-8</b><span>To settle, and to sleep</span><em>1:39</em></button>
+        <button class="breath" type="button" data-breath="sigh"><b>The sigh</b><span>Two breaths in, one long out. A fast reset.</span><em>1:05</em></button>
+      </div>
+    </section>
+
+    <!-- Breathing. -->
+    <section id="vBreathing" class="intro" hidden>
+      <div class="pacer" id="pacer" aria-hidden="true">
+        <div class="track"></div>
+        <div class="orb"></div>
+        <div class="word"><b id="phaseWord">Settle in</b></div>
+      </div>
+      <p class="sr" id="phaseLive" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+      <div class="pacer-meta"><span id="breathName">Box breathing</span><span id="roundText"></span></div>
+      <div class="bar" aria-hidden="true"><i id="breathBar"></i></div>
+      <div class="row">
+        <button class="ghost" type="button" id="pauseBreath">Pause</button>
+        <button class="ghost" type="button" id="endBreath">End</button>
+      </div>
+    </section>
+
+    <!-- After a breath. -->
+    <section id="vBreathed" class="intro" hidden>
+      <h2>Well done.</h2>
+      <p class="lead">Notice how you feel. Gigi would love to hear it.</p>
+      <button class="btn" type="button" id="tellGigi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        Tell Gigi how you feel
+      </button>
+      <div class="row">
+        <button class="ghost" type="button" id="againBreathe">Breathe again</button>
+        <button class="ghost" type="button" id="toGratitude">Gratitude</button>
+      </div>
+    </section>
+
+    <!-- Talking with her (Gratitude, or how a breath felt). -->
+    <section id="vLive" class="intro" hidden>
+      <div class="status" id="status"><span class="dot"></span><span id="statusText">Connecting</span></div>
+      <p class="caption" id="caption" aria-live="polite"></p>
+      <p class="you" id="you"></p>
+      <form class="type" id="typeForm">
+        <input id="typeIn" type="text" autocomplete="off" placeholder="Or type to Gigi" aria-label="Type a message to Gigi" enterkeyhint="send">
+        <button class="ghost" type="submit">Send</button>
+      </form>
+      <div class="row">
+        <button class="ghost" type="button" id="muteBtn" aria-pressed="false">Mute mic</button>
+        <button class="ghost" type="button" id="endTalk">End</button>
+      </div>
+    </section>
+
+    <!-- When the practice is over, or she suggests going deeper: the Giraffe door. -->
+    <section id="vDone" class="intro" hidden>
+      <p class="caption" id="doneCaption"></p>
+      <div class="card" role="dialog" aria-labelledby="doorTitle">
+        <h2 id="doorTitle">Keep talking with Gigi</h2>
+        <p>Giraffes have their own Gigi. She knows your name and has time for whatever is on your mind, up to fifteen minutes at a time.</p>
+        <a class="btn" id="doneDoor" href="#">Giraffe sign in</a>
+        <a class="ghost" href="https://grateful.gg/apply">Become a Giraffe</a>
+      </div>
+      <div class="row">
+        <button class="ghost" type="button" data-again="breathe">Breathe</button>
+        <button class="ghost" type="button" data-again="gratitude">Gratitude</button>
+      </div>
+    </section>
+  </main>
 </div>
 
-<header>
-  <a class="mark" href="https://grateful.gg/">Grateful Giraffes</a>
-  <a class="signin-link" id="topSignin" href="#">Sign in</a>
-</header>
-
-<main>
-  <section id="hello">
-    <h1>Hi, I'm <em>Gigi</em></h1>
-    <p class="sub">Tap below and say hello, or pick a practice to do together.</p>
-  </section>
-
-  <div class="status" id="status" hidden><span class="dot"></span><span id="statusText">Connecting</span></div>
-  <div class="caption" id="caption" aria-live="polite"></div>
-
-  <div class="row" id="startRow">
-    <button class="btn" id="start" type="button">Talk with Gigi</button>
-  </div>
-  <div class="pills" id="practices" role="group" aria-label="Practices">
-    <button class="pill" type="button" data-practice="breath">Breathe</button>
-    <button class="pill" type="button" data-practice="giraffirmation">Giraffirmation</button>
-    <button class="pill" type="button" data-practice="gratitude">Gratitude</button>
-  </div>
-  <div class="pills" id="breaths" role="group" aria-label="Breathing practices" hidden>
-    <button class="pill" type="button" data-breath="box">Box breathing<small>4 in, 4 hold, 4 out, 4 hold</small></button>
-    <button class="pill" type="button" data-breath="coherent">Slow and even<small>5 in, 5 out</small></button>
-    <button class="pill" type="button" data-breath="478">4-7-8<small>to settle and sleep</small></button>
-    <button class="pill" type="button" data-breath="sigh">The sigh<small>a fast reset</small></button>
-  </div>
-
-  <form class="type" id="typeForm" hidden>
-    <input id="typeIn" type="text" autocomplete="off" placeholder="Or type to Gigi" aria-label="Type a message to Gigi">
-    <button class="ghost" type="submit">Send</button>
-  </form>
-  <div class="row" id="liveRow" hidden><button class="ghost" id="end" type="button">End</button></div>
-
-  <div class="card" id="signin" hidden role="dialog" aria-labelledby="signinTitle">
-    <h2 id="signinTitle">Keep talking with Gigi</h2>
-    <p>Make your free account or sign in. It takes a few seconds, and she'll remember you.</p>
-    <a class="btn" id="signinBtn" href="#">Create account / Sign in</a>
-  </div>
-
-  <p class="fine" id="fine">Gigi is an AI. Your conversation is recorded so she can remember you.</p>
-</main>
-
 <script type="module">
-  import { Conversation } from "https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.4.0/+esm";
-  import { attachMouth, preloadMouth, hear, quiet } from "./mouth/guideMouth.js";
+  import { attachEye, EYE_CSS, voice as eyeVoice, say as eyeSay, hush as eyeHush, tint, telepathicIntro } from "./telepathy.js";
+  import { breathAt, rungOf } from "./breathcues.js";
 
-  const AGENT_ID = "agent_3601m6chm18fffcr8jtsgfcn30bs";
-  const MAX_MS = 360000;   // the agent stops at 6 minutes too (a practice runs longer than a hello); this keeps the page honest
-  // A practice starts her voice with its own first line (the agent allows only that override). Breath is her track.
-  const OPENINGS = {
-    gratitude: "Hi, I'm Jee-jee. Let's do a gratitude practice together. What's one thing you're grateful for today?",
-    giraffirmation: "Hi, I'm Jee-jee. Let's write your giraffirmations. Where do you feel held back right now: money, love, your body, being seen, or something else?",
-    breath: "Welcome back. How do you feel now?",
+  const AGENT_ID = "agent_3601m6chm18fffcr8jtsgfcn30bs";   // Gigi Welcome: answers on grateful.gg only
+  const MAX_MS = 360000;   // the agent stops at 6 minutes too; this keeps the page honest
+  // Giraffes talk with their own Gigi in the Oasis. The app sends anyone signed out to sign in first, then back there.
+  const GIRAFFE_GIGI = "https://app.grateful.gg/gigi";
+  const BREATH_NAMES = { box: "Box breathing", coherent: "Slow and even", 478: "4-7-8", sigh: "The sigh" };
+  // Her first lines (the practice rules in her prompt key off them). She is written "Jee-jee" so the voice says it right.
+  const opening = (practice) => {
+    if (practice === "breath") return "Welcome back. How do you feel now?";
+    const why = telepathicIntro();
+    return `Hi, I'm Jee-jee.${why ? ` ${why}` : ""} Let's do a gratitude practice together. What's one thing you're grateful for today?`;
   };
-  // After signing in they land on her own page in the Oasis, app.grateful.gg/gigi (Max, 11-01: not /withgigi).
-  const NEXT = "https://app.grateful.gg/gigi";
-  const SIGNIN = "https://app.grateful.gg/login?from_url=" + encodeURIComponent(NEXT);
+  const shown = (t) => String(t || "").trim().replace(/Jee-jee/gi, "Gigi");
 
   const $ = (id) => document.getElementById(id);
-  const stage = { conv: null, timer: null, unmute: null, ended: false, playEnd: 0, align: null };
-  // Her voice is heard a beat after it reaches the player; each chunk plays when the one before it ends (as /ai/setup).
-  const OUT_LATENCY_MS = 60;
-  const pcmMs = (b64) => { const s = String(b64 || ""); return ((s.length * 3) / 4 - (s.endsWith("==") ? 2 : s.endsWith("=") ? 1 : 0)) / 2 / 16; };
-  attachMouth(document.querySelector("video.her"), $("mouth"));
-  // The mouth library is about 10 MB: fetched once the page has settled, or the moment they reach for the button.
-  const warm = () => preloadMouth();
-  (window.requestIdleCallback || ((f) => setTimeout(f, 1500)))(warm);
-  $("start").addEventListener("pointerdown", warm, { once: true });
-  $("signinBtn").href = SIGNIN;
-  $("topSignin").href = SIGNIN;
+  const app = $("app");
+  for (const id of ["topDoor", "homeDoor", "doneDoor"]) $(id).href = GIRAFFE_GIGI;
 
-  const setStatus = (mode, text) => {
-    const s = $("status");
-    s.hidden = false; s.className = "status " + (mode || "");
-    $("statusText").textContent = text;
-  };
-  const showSignin = () => {
-    $("signin").hidden = false;
-    $("startRow").hidden = true; $("practices").hidden = true; $("breaths").hidden = true;
-    $("signinBtn").focus({ preventScroll: true });
-  };
-  const finish = async (why) => {
-    if (stage.ended) return;
-    stage.ended = true;
-    clearTimeout(stage.timer); clearTimeout(stage.unmute);
-    const c = stage.conv; stage.conv = null;
-    try { await c?.endSession?.(); } catch { /* already gone */ }
-    $("typeForm").hidden = true; $("liveRow").hidden = true;
-    setStatus("", why === "mic" ? "Microphone needed" : "Conversation ended");
-    showSignin();
-  };
+  // Her light, kept on her brow wherever the video is cropped.
+  document.head.appendChild(Object.assign(document.createElement("style"), { textContent: EYE_CSS }));
+  attachEye($("eye"), $("her"));
 
-  // Breathe: her prerecorded track (breath/<name>.mp3), her mouth on its letter timings (breath/<name>.json, ElevenLabs
-  // Scribe), then the door, or a few words with her about how it felt.
+  const VIEWS = ["vHome", "vBreaths", "vBreathing", "vBreathed", "vLive", "vDone"];
+  const show = (id) => {
+    VIEWS.forEach((v) => { $(v).hidden = v !== id; });
+    app.classList.toggle("in-session", id === "vBreathing" || id === "vLive");
+    const first = $(id).querySelector("h1, h2, .caption, button");
+    if (id !== "vHome" && first) { first.setAttribute("tabindex", "-1"); first.focus({ preventScroll: true }); }
+    if (matchMedia("(max-width: 899px)").matches) $(id).scrollIntoView({ block: "nearest", behavior: "smooth" });
+  };
+  document.querySelectorAll("[data-home]").forEach((b) => b.addEventListener("click", () => show("vHome")));
+
+  /* ---------- Breathe ---------- */
+  // Her track, a pacer on its measured phase times (breathcues.js), and her light climbing her stones' colours as the lungs fill.
   const track = new Audio();
   track.preload = "auto";
-  let breathAlign = null;
-  const fromNow = (a, sec) => {   // the timings still ahead of second `sec`, shifted to start now
-    const ms = sec * 1000, out = { chars: [], char_start_times_ms: [], char_durations_ms: [] };
-    a.chars.forEach((c, i) => { if (a.char_start_times_ms[i] >= ms) { out.chars.push(c); out.char_start_times_ms.push(a.char_start_times_ms[i] - ms); out.char_durations_ms.push(a.char_durations_ms[i]); } });
-    return out;
-  };
-  track.addEventListener("playing", () => { if (breathAlign) hear(fromNow(breathAlign, track.currentTime), performance.now() + 30); setStatus("speaking", "Breathe with Gigi"); });
-  track.addEventListener("pause", () => quiet());
-  track.addEventListener("waiting", () => quiet());
-  track.addEventListener("ended", () => {
-    quiet();
-    $("liveRow").hidden = true;
-    setStatus("", "Done");
-    $("caption").textContent = "";
-    $("start").textContent = "Tell Gigi how you feel";
-    $("start").disabled = false; $("start").dataset.opening = "breath";
-    $("startRow").hidden = false;
-    $("signin").hidden = false;
-  });
-  const playBreath = async (name) => {
-    $("hello").hidden = true; $("practices").hidden = true; $("breaths").hidden = true; $("startRow").hidden = true;
-    setStatus("", "Getting ready");
-    preloadMouth();
-    // play() right in the tap: iPhones refuse audio that starts after an await. The timings join as soon as they load.
-    breathAlign = null;
-    track.src = `breath/${name}.mp3`;
-    $("liveRow").hidden = false;
-    const playing = track.play().catch(() => { setStatus("", "Tap Breathe again to start"); $("breaths").hidden = false; $("liveRow").hidden = true; });
-    try { breathAlign = await (await fetch(`breath/${name}.json`)).json(); } catch { breathAlign = null; }
-    await playing;
-    if (breathAlign && !track.paused) { quiet(); hear(fromNow(breathAlign, track.currentTime), performance.now() + 30); }
-  };
-  $("practices").addEventListener("click", (ev) => {
-    const b = ev.target.closest("[data-practice]"); if (!b) return;
-    warm();
-    if (b.dataset.practice === "breath") { $("practices").hidden = true; $("breaths").hidden = false; return; }
-    talk(OPENINGS[b.dataset.practice]);
-  });
-  $("breaths").addEventListener("click", (ev) => { const b = ev.target.closest("[data-breath]"); if (b) playBreath(b.dataset.breath); });
+  const br = { id: "", raf: 0, word: "", rung: "" };
 
-  $("start").addEventListener("click", () => talk($("start").dataset.opening ? OPENINGS[$("start").dataset.opening] : null));
+  const tickBreath = () => {
+    const t = track.currentTime || 0;
+    const at = breathAt(br.id, t);
+    const pacer = $("pacer");
+    pacer.style.setProperty("--full", at.full.toFixed(3));
+    pacer.style.setProperty("--p", at.p.toFixed(3));
+    if (at.word !== br.word) { br.word = at.word; $("phaseWord").textContent = at.word; $("phaseLive").textContent = at.word; }
+    $("roundText").textContent = at.round ? `Round ${at.round} of ${at.rounds}` : "";
+    const dur = track.duration || 0;
+    $("breathBar").style.width = dur ? `${(t / dur) * 100}%` : "0%";
+    const rung = rungOf(at.full);
+    if (rung !== br.rung) { br.rung = rung; tint(rung); }
+    pacer.style.setProperty("--eye", $("eye").style.getPropertyValue("--eye") || "#2fd36b");
+    br.raf = requestAnimationFrame(tickBreath);
+  };
+  // Her light swells with the breath.
+  const breathLevel = () => (track.paused ? 0 : 0.08 + breathAt(br.id, track.currentTime).full * 0.3);
 
-  async function talk(opening) {
-    $("start").disabled = true;
-    $("hello").hidden = true; $("practices").hidden = true; $("breaths").hidden = true; $("signin").hidden = true;
-    try { track.pause(); } catch { /* not playing */ }
-    setStatus("", "Connecting");
-    try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
-    } catch {
-      $("caption").textContent = "I need your microphone to talk. You can also make an account and talk with me there.";
-      finish("mic");
+  const playBreath = (id) => {
+    br.id = id; br.word = ""; br.rung = "";
+    $("breathName").textContent = BREATH_NAMES[id] || "";
+    $("pauseBreath").textContent = "Pause";
+    $("homeAlert").textContent = "";
+    // play() right in the tap: iPhones refuse audio that starts after an await.
+    track.src = `breath/${id}.mp3`;
+    const playing = track.play();
+    show("vBreathing");
+    eyeVoice(breathLevel);
+    cancelAnimationFrame(br.raf);
+    br.raf = requestAnimationFrame(tickBreath);
+    playing.catch(() => { stopBreath(); show("vBreaths"); });
+  };
+  const stopBreath = () => { cancelAnimationFrame(br.raf); try { track.pause(); } catch { /* not playing */ } eyeVoice(null); };
+  track.addEventListener("ended", () => { stopBreath(); show("vBreathed"); });
+  $("pauseBreath").addEventListener("click", () => {
+    if (track.paused) { track.play().catch(() => {}); $("pauseBreath").textContent = "Pause"; }
+    else { track.pause(); $("pauseBreath").textContent = "Resume"; }
+  });
+  $("endBreath").addEventListener("click", () => { stopBreath(); show("vBreathed"); });
+  $("goBreathe").addEventListener("click", () => show("vBreaths"));
+  $("againBreathe").addEventListener("click", () => show("vBreaths"));
+  document.querySelectorAll("[data-breath]").forEach((b) => b.addEventListener("click", () => playBreath(b.dataset.breath)));
+
+  /* ---------- Gratitude (her voice) ---------- */
+  const talk = { conv: null, timer: 0, unmute: 0, ended: true, muted: false };
+  let Conversation = null;
+  const loadVoice = () => (Conversation ? Promise.resolve(Conversation)
+    : import("https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.4.0/+esm").then((m) => { Conversation = m.Conversation; return Conversation; }));
+  // Fetch the voice library once the page has settled, or the moment they reach for a practice.
+  (window.requestIdleCallback || ((f) => setTimeout(f, 2000)))(() => loadVoice().catch(() => {}));
+  ["goGratitude", "tellGigi", "toGratitude"].forEach((id) => $(id).addEventListener("pointerdown", () => loadVoice().catch(() => {}), { once: true }));
+
+  const setStatus = (mode, text) => { $("status").className = `status ${mode || ""}`; $("statusText").textContent = text; };
+  const setCaption = (text) => {
+    const el = $("caption");
+    if (el.textContent === text) return;
+    el.textContent = text;
+    el.classList.remove("fresh"); void el.offsetWidth; el.classList.add("fresh");
+  };
+
+  const finish = async (why) => {
+    if (talk.ended) return;
+    talk.ended = true;
+    clearTimeout(talk.timer); clearTimeout(talk.unmute);
+    eyeHush(); eyeVoice(null);
+    const c = talk.conv; talk.conv = null;
+    try { await c?.endSession?.(); } catch { /* already gone */ }
+    if (why === "mic") {
+      show("vHome");
+      $("homeAlert").textContent = "Gigi needs your microphone to hear you. Allow it in your browser, then tap Gratitude again.";
       return;
     }
+    if (why === "error") {
+      show("vHome");
+      $("homeAlert").textContent = "Gigi couldn't connect just now. Give it a moment and try again.";
+      return;
+    }
+    $("doneCaption").textContent = $("caption").textContent || "Thank you for sharing that with me.";
+    show("vDone");
+  };
+
+  async function startTalk(practice) {
+    stopBreath();
+    talk.ended = false; talk.muted = false;
+    $("muteBtn").textContent = "Mute mic"; $("muteBtn").setAttribute("aria-pressed", "false");
+    $("caption").textContent = ""; $("you").textContent = ""; $("homeAlert").textContent = "";
+    setStatus("", "Connecting");
+    show("vLive");
     try {
-      stage.conv = await Conversation.startSession({
+      const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+      s.getTracks().forEach((t) => t.stop());
+    } catch { finish("mic"); return; }
+    try {
+      const Conv = await loadVoice();
+      if (talk.ended) return;
+      talk.conv = await Conv.startSession({
         agentId: AGENT_ID,
         connectionType: "websocket",
-        ...(opening ? { overrides: { agent: { firstMessage: opening } } } : {}),
-        clientTools: { show_signin: () => { showSignin(); return "shown"; } },
-        onAudioAlignment: (alignment) => { stage.align = alignment; },
-        onAudio: (b64) => {
-          const at = Math.max(performance.now() + OUT_LATENCY_MS, stage.playEnd || 0);
-          stage.playEnd = at + pcmMs(b64);
-          if (stage.align) hear(stage.align, at);
-          stage.align = null;
-        },
+        overrides: { agent: { firstMessage: opening(practice) } },
+        clientTools: { show_signin: () => { $("doneCaption").textContent = ""; showDoorInline(); return "shown"; } },
         onConnect: () => {
-          setStatus("listening", "Listening");
-          $("startRow").hidden = true; $("typeForm").hidden = false; $("liveRow").hidden = false;
-          stage.timer = setTimeout(() => finish("time"), MAX_MS);
+          setStatus("listening", "Gigi is listening");
+          eyeVoice(() => talk.conv?.getOutputVolume?.() || 0);
+          talk.timer = setTimeout(() => finish("time"), MAX_MS);
         },
         onModeChange: ({ mode } = {}) => {
           const speaking = mode === "speaking";
-          setStatus(speaking ? "speaking" : "listening", speaking ? "Gigi is speaking" : "Listening");
+          setStatus(speaking ? "speaking" : "listening", speaking ? "Gigi is speaking" : "Gigi is listening");
+          if (!speaking) eyeHush();
           // On speakers her own voice comes back through the mic and cuts her off (the /ai/setup lesson, 10-30):
           // the mic rests while she talks and opens again just after.
-          clearTimeout(stage.unmute);
-          if (!speaking) { quiet(); stage.playEnd = 0; }
-          if (speaking) { try { stage.conv?.setMicMuted?.(true); } catch { /* ended */ } }
-          else stage.unmute = setTimeout(() => { try { stage.conv?.setMicMuted?.(false); } catch { /* ended */ } }, 400);
+          clearTimeout(talk.unmute);
+          if (speaking) { try { talk.conv?.setMicMuted?.(true); } catch { /* ended */ } }
+          else talk.unmute = setTimeout(() => { try { talk.conv?.setMicMuted?.(talk.muted); } catch { /* ended */ } }, 400);
         },
         onMessage: (m) => {
           const text = (m && (m.message || (m.agent_response_event && m.agent_response_event.agent_response))) || "";
-          // She is written "Jee-jee" so the voice says it right; on screen she is Gigi.
-          if (m && m.source !== "user" && typeof text === "string" && text.trim()) $("caption").textContent = text.trim().replace(/Jee-jee/gi, "Gigi");
+          if (typeof text !== "string" || !text.trim()) return;
+          if (m.source === "user") { $("you").textContent = `You: ${text.trim()}`; return; }
+          setCaption(shown(text));
+          eyeSay(text);
         },
         onDisconnect: () => finish("ended"),
-        onError: (e) => { console.warn("[gigi] voice error", e); if (stage.conv?.isOpen?.() === false) finish("error"); },
+        onError: (e) => { console.warn("[gigi] voice error", e); if (talk.conv?.isOpen?.() === false) finish("error"); },
       });
     } catch (e) {
       console.warn("[gigi] could not start", e);
-      $("caption").textContent = "I couldn't connect just now. Make an account and we can talk there.";
       finish("error");
     }
   }
+  // She offers the Giraffe door mid-conversation (her show_signin tool): it slides in under her words, the talk goes on.
+  const showDoorInline = () => {
+    if ($("vLive").querySelector(".card")) return;
+    const card = $("vDone").querySelector(".card").cloneNode(true);
+    card.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+    card.removeAttribute("aria-labelledby");
+    $("vLive").appendChild(card);
+    card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  };
 
+  $("goGratitude").addEventListener("click", () => startTalk("gratitude"));
+  $("toGratitude").addEventListener("click", () => startTalk("gratitude"));
+  $("tellGigi").addEventListener("click", () => startTalk("breath"));
+  document.querySelectorAll("[data-again]").forEach((b) => b.addEventListener("click", () => {
+    $("vLive").querySelectorAll(".card").forEach((c) => c.remove());
+    if (b.dataset.again === "breathe") show("vBreaths"); else startTalk("gratitude");
+  }));
+  $("endTalk").addEventListener("click", () => finish("ended"));
+  $("muteBtn").addEventListener("click", () => {
+    talk.muted = !talk.muted;
+    $("muteBtn").textContent = talk.muted ? "Unmute mic" : "Mute mic";
+    $("muteBtn").setAttribute("aria-pressed", String(talk.muted));
+    try { talk.conv?.setMicMuted?.(talk.muted); } catch { /* ended */ }
+  });
   $("typeForm").addEventListener("submit", (ev) => {
     ev.preventDefault();
     const t = $("typeIn").value.trim();
-    if (!t || !stage.conv) return;
-    try { stage.conv.sendUserMessage(t); $("typeIn").value = ""; } catch { /* ended */ }
+    if (!t || !talk.conv) return;
+    try { talk.conv.sendUserMessage(t); $("typeIn").value = ""; $("you").textContent = `You: ${t}`; } catch { /* ended */ }
   });
-  $("end").addEventListener("click", () => { if (!track.paused) { track.pause(); track.dispatchEvent(new Event("ended")); return; } finish("ended"); });
-  addEventListener("pagehide", () => { try { stage.conv?.endSession?.(); } catch { /* gone */ } });
+  addEventListener("pagehide", () => { try { talk.conv?.endSession?.(); } catch { /* gone */ } });
+
+  // A deep link straight into a practice: grateful.gg/gigi#breathe (#gratitude needs a tap for the mic).
+  if (location.hash === "#breathe") show("vBreaths");
 </script>
 </body>
 </html>
