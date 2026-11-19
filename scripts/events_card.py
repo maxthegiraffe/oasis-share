@@ -114,13 +114,16 @@ def main():
     events = next_up()
     if len(events) < 2:
         print('fewer than 2 upcoming gatherings; keeping the current card'); return
-    out = io.BytesIO(); draw(events).save(out, 'JPEG', quality=86, optimize=True, progressive=True)
-    data = out.getvalue()
-    name = f"cover-{hashlib.sha1(data).hexdigest()[:10]}.jpg"
+    # Named after what it shows (the four gatherings and this script), not its bytes: JPEG output differs between
+    # machines, and a new name with the same picture would make chats re-fetch for nothing.
+    what = json.dumps([[c.get('fall_key'), c.get('date'), c.get('title'), c.get('image_url'), c.get('route')] for c in events])
+    name = f"cover-{hashlib.sha1((what + open(__file__, encoding='utf-8').read()).encode()).hexdigest()[:10]}.jpg"
     page = os.path.join(EV, 'index.html')
     html = open(page, encoding='utf-8').read()
     if f'/events/{name}' in html:
         print('no change:', name); return
+    out = io.BytesIO(); draw(events).save(out, 'JPEG', quality=86, optimize=True, progressive=True)
+    data = out.getvalue()
     open(os.path.join(EV, name), 'wb').write(data)
     for old in glob.glob(os.path.join(EV, 'cover-*.jpg')):
         if os.path.basename(old) != name: os.remove(old)
