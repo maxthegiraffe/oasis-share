@@ -1,1034 +1,419 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grateful Labs · Seed Round</title><meta name="robots" content="noindex,nofollow"><style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-:root{--ink:#0f0f0f;--paper:#f5f2ea;--accent:#ec4899;--hair:rgba(15,15,15,.15);--soft:rgba(15,15,15,.05);--ff:'Space Grotesk',sans-serif}
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grateful Labs · Seed Round</title>
+<meta name="description" content="Grateful Labs is a community-owned venture studio: Grateful Giraffes, the Oasis, Gigi, AI School, Grateful Health, Grateful Research, Grateful Media and Acacia.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7; --ink:#121212; --muted:#5E5D57; --line:rgba(18,18,18,.12); --card:#FFFFFF;
+  --accent:#1E5A43; --accent-ink:#FFFFFF; --soft:rgba(30,90,67,.08);
+  --fh:'Inter Tight',system-ui,sans-serif; --fb:'Inter',system-ui,sans-serif;
+  --r:10px; --hw:600; --track:-.025em; --img-filter:none;
+}
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--paper);color:var(--ink);font-family:var(--ff);line-height:1.5}
-.w{max-width:980px;margin:0 auto;padding:0 clamp(28px,6vw,76px)}
-.top{position:sticky;top:0;background:var(--paper);z-index:9;display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--hair);font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
-.top .r{color:var(--accent)}
-section{padding:54px 0;border-bottom:1px solid var(--hair)}
-.k{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-h1{font-size:clamp(46px,7.6vw,88px);font-weight:700;line-height:.95;letter-spacing:-.02em}
-h2{font-size:clamp(26px,4.1vw,41px);font-weight:700;line-height:1.06;letter-spacing:-.015em}
-h3{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:26px;padding-bottom:7px;border-bottom:2px solid var(--ink)}
-.glow{color:var(--accent)}
-.lead{font-size:clamp(18px,2.2vw,23px);font-weight:500;max-width:800px;margin-top:15px;line-height:1.35}
-p{font-size:16px;max-width:770px;margin-top:12px}
-b{font-weight:700}
-.n{display:flex;flex-wrap:wrap;margin-top:26px;border-top:1px solid var(--hair)}
-.n div{flex:1 1 170px;padding:16px 20px 16px 0;border-bottom:1px solid var(--hair)}
-.n b{display:block;font-size:33px;line-height:1.05;letter-spacing:-.02em}
-.n span{font-size:11.5px;text-transform:uppercase;letter-spacing:.11em;opacity:.75}
-.rows div{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--hair);align-items:baseline}
-.rows i{font-style:normal;font-weight:700;color:var(--accent);font-size:13px;min-width:20px}
-.rows span{font-size:16px}
-.q{font-size:clamp(20px,2.9vw,28px);font-weight:600;line-height:1.28;max-width:850px;margin-top:16px}
-table{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
-td,th{padding:11px 8px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:baseline}
-th{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;opacity:.7;font-weight:700}
-td.big{font-size:24px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
-.note{font-size:12.5px;opacity:.62;margin-top:12px}
-.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:24px}
-.tile{position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:var(--soft)}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
-.tile img.on{opacity:1}
-.founders{display:block;margin-top:0}
-.fcard{display:flex;gap:20px;align-items:flex-start}
-.fcard img{width:132px;height:158px;object-fit:cover;object-position:top;flex:0 0 132px;background:var(--soft)}
-.fmeta h4{font-size:22px;font-weight:700}
-.frole{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-top:3px}
-.fmeta ul{list-style:none;margin-top:11px}
-.fmeta li{font-size:14px;line-height:1.45;padding:4px 0 4px 14px;position:relative;opacity:.92}
-.fmeta li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;background:var(--accent)}
-.tgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:20px}
-.gcard{margin:0;position:relative;cursor:pointer;aspect-ratio:3/4;overflow:hidden;background:#0a1018;border-radius:6px}
-.gcard img,.gcard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.gcard .veil,.tcard .veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,12,20,.85) 0%,rgba(8,12,20,.4) 26%,rgba(8,12,20,0) 55%)}
-.gcard .pill{position:absolute;bottom:34px;right:8px;z-index:4;pointer-events:none;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);color:#fff;font-size:9.5px;padding:4px 9px;border-radius:99px;opacity:0;transition:opacity .3s}
-.gcard:hover .pill,.gcard.on .pill{opacity:1}
-.gcard figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:6px 8px 8px;color:#fff;font-size:10.5px;font-weight:600;text-align:center}
-.gcard.on{grid-column:span 2;grid-row:span 2;aspect-ratio:9/16;cursor:pointer}
-.gcard .cc{position:absolute;left:10px;right:10px;bottom:36px;z-index:3;pointer-events:none;color:#fff;font-size:12px;line-height:1.35;font-weight:600;text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.9)}
-.gcard .cls{position:absolute;top:6px;right:6px;z-index:5;background:rgba(0,0,0,.55);color:#fff;border:0;width:24px;height:24px;font-size:16px;line-height:1;cursor:pointer;border-radius:50%}
-.mtitle{font-size:17px;font-weight:700;margin-top:20px;max-width:none}
-.mtitle b{color:var(--accent)}
-.mtitle span{font-weight:400;font-size:15.5px;opacity:.9}
-.mgal{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:13px}
-.mgal figure{margin:0}
-.mgal img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;display:block;background:var(--soft)}
-.mgal figcaption{font-size:9.5px;margin-top:4px;opacity:.65;line-height:1.25}
-.cap{margin-top:20px}
-.cap .row{display:flex;align-items:center;gap:13px;padding:8px 0;border-bottom:1px solid var(--hair);cursor:pointer}
-.cap .lbl{flex:0 0 165px;font-size:13px;font-weight:600}
-.cap .track{flex:1;height:13px;background:var(--soft)}
-.cap .track i{display:block;height:100%;background:var(--ink)}
-.cap .row.hot .track i,.cap .row.sel .track i{background:var(--accent)}
-.cap .row.hot .lbl,.cap .row.sel .lbl{color:var(--accent);font-weight:700}
-.cap .pct{flex:0 0 56px;text-align:right;font-size:15px;font-weight:700}
-.segbox{margin-top:15px;padding:15px 17px;background:var(--soft);border-left:3px solid var(--accent);font-size:14.5px}
-.segbox b{color:var(--accent)}
-.safe{margin-top:20px;border:1px solid var(--hair);padding:22px 22px 16px}
-.safehead{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:16px}
-.safehead div{flex:1 1 150px}
-.safehead em,.safefoot em,.sl span{display:block;font-style:normal;font-size:10px;letter-spacing:.13em;text-transform:uppercase;opacity:.62;font-weight:700}
-.safehead strong{display:block;font-size:29px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-.safehead .hot strong,.safefoot .hot b{color:var(--accent)}
-.sl{display:block;margin-top:13px}
-.sl span{margin-bottom:5px}
-.sl input{width:100%;accent-color:var(--accent);height:24px;cursor:pointer}
-.safefoot{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid var(--hair)}
-.safefoot div{flex:1 1 140px}
-.safefoot b{display:block;font-size:24px;font-weight:700}
-.ask{padding:64px 0;border-bottom:0}
-.ask .askgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:28px}
-.ask .askgrid img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.cta{display:inline-block;margin-top:28px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;letter-spacing:.04em;padding:16px 34px;text-decoration:none;text-transform:uppercase}
-.cta:hover{opacity:.92}
-.ask .fine{margin-top:18px;font-size:13px;opacity:.7}
-footer{padding:24px 0 54px;font-size:11.5px;opacity:.6}
-@media(max-width:760px){.strip,.ask .askgrid{grid-template-columns:repeat(3,1fr)}
-.founders{grid-template-columns:1fr}.fcard img{width:104px;height:126px;flex:0 0 104px}
-.tgrid{grid-template-columns:repeat(3,1fr)}.gcard.on{grid-column:span 3;grid-row:span 3}
-.mgal{grid-template-columns:repeat(2,1fr)}.cap .lbl{flex:0 0 110px;font-size:12px}}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+img{display:block;max-width:100%}
+a{color:inherit}
 
-.mgal figure{cursor:pointer;border:2px solid transparent;transition:border-color .2s}
-.mgal figure.sel{border-color:var(--accent)}
-.mstory{font-size:15px;margin-top:12px;max-width:770px;padding:12px 15px;background:var(--soft);border-left:3px solid var(--accent)}
-p{text-wrap:pretty}
-h2{text-wrap:balance}
-.aistrip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
-.aistrip figure{margin:0}
-.aistrip img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--soft)}
-.aistrip figcaption{font-size:9.5px;margin-top:4px;opacity:.65;line-height:1.25}
-.mgal video{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;display:block;background:var(--soft)}
-.bq{font-size:14.5px;margin-top:9px;opacity:.94}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.pill2{border:1.5px solid var(--hair);background:none;color:var(--ink);font-family:var(--ff);font-size:12.5px;font-weight:600;padding:8px 15px;border-radius:99px;cursor:pointer;transition:all .2s}
-.pill2:hover{border-color:var(--accent)}
-.pill2.sel{background:var(--accent);border-color:var(--accent);color:#fff}
-.bqq{font-size:15px;font-weight:700;margin-bottom:4px}
-.bqq span{font-weight:400;font-size:12px;opacity:.65}
-.pills.sub{margin-top:10px;align-items:center}
-.pill2.mini{padding:5px 11px;font-size:11px}
-.subq{font-size:12.5px;opacity:.75;font-weight:600;margin-left:4px}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
 
-.gvu{margin-top:24px}
-.gvu th{font-size:14px;text-transform:none;letter-spacing:0;opacity:1}
-.gvu td:first-child{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:700;white-space:nowrap}
-.gvu td{font-size:14.5px}
-.gvu td:nth-child(3){opacity:.62}
-.chartwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.chartwrap svg{min-width:640px}
-.facewall{margin-top:28px}
-.abar{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:13.5px;cursor:help}
-.abar span{flex:0 0 240px;text-align:right;opacity:.85;line-height:1.25}
-.atrack{flex:1;height:12px;background:var(--soft);border-radius:0 4px 4px 0;overflow:hidden}
-.atrack i{display:block;height:100%;background:var(--accent);min-width:3px;border-radius:0 4px 4px 0}
-.abar b{flex:0 0 34px;font-size:12.5px}
-@media(max-width:760px){.abar span{flex:0 0 45%;font-size:11.5px}}
-@media(max-width:760px){.gvu td,.gvu th{font-size:12.5px;padding:8px 5px}.abar span{flex:0 0 52%;font-size:12px}}
+/* top bar */
+.bar{position:fixed;inset:0 0 auto 0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.mark{font-family:var(--fh);font-weight:var(--hw);letter-spacing:var(--track);font-size:17px;text-decoration:none}
+.mark span{color:var(--muted);font-weight:500;margin-left:10px;letter-spacing:0;font-size:14px}
+.count{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* slides */
+section{min-height:100svh;display:flex;align-items:center;padding:96px 0 56px;scroll-snap-align:start;border-bottom:1px solid var(--line)}
+section > .wrap{width:100%}
+.kick{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+.kick .n{font-variant-numeric:tabular-nums;color:var(--muted)}
+.kick .pill{letter-spacing:.06em;text-transform:none;font-weight:600;font-size:12.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line);padding:5px 12px;border-radius:99px}
+h1,h2,h3{font-family:var(--fh);font-weight:var(--hw);letter-spacing:var(--track);line-height:1.02;text-wrap:balance}
+h1{font-size:clamp(46px,6.6vw,100px)}
+h2{font-size:clamp(36px,4.6vw,66px);margin-bottom:20px}
+h3{font-size:clamp(20px,1.8vw,24px);line-height:1.2;letter-spacing:-.01em}
+.lede{font-size:clamp(18px,1.55vw,21px);line-height:1.5;color:var(--ink);max-width:36ch;text-wrap:pretty}
+.body{color:var(--muted);max-width:52ch;margin-top:18px;text-wrap:pretty}
+.body strong{color:var(--ink);font-weight:600}
+
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,80px);align-items:center}
+.split.flip > .media{order:-1}
+.media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--card);aspect-ratio:4/5}
+.media.wide{aspect-ratio:4/3}
+.media.sq{aspect-ratio:1/1}
+.media img{width:100%;height:100%;object-fit:cover;filter:var(--img-filter);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.media:hover img{transform:scale(1.025)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line)}
+.stats.four{grid-template-columns:repeat(4,1fr)}
+.stat{padding:18px 18px 0 0}
+.stat + .stat{padding-left:18px;border-left:1px solid var(--line)}
+.stat b{display:block;font-family:var(--fh);font-weight:var(--hw);font-size:clamp(26px,2.7vw,38px);letter-spacing:var(--track);line-height:1.05;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+
+.next{margin-top:30px;padding:18px 20px;background:var(--soft);border-radius:var(--r);border:1px solid var(--line);max-width:56ch}
+.next .nl{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.next p{font-size:15.5px;color:var(--ink)}
+
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px;border-radius:calc(var(--r) * .8 + 4px);font-weight:600;font-size:15.5px;text-decoration:none;border:1px solid var(--ink);transition:transform .15s,background .2s,color .2s}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn svg{width:16px;height:16px}
+
+/* cover */
+.cover h1 .sub{display:block;color:var(--muted);font-weight:500;font-size:.42em;letter-spacing:-.01em;margin-top:18px;line-height:1.2}
+
+/* index of ventures */
+.ix{list-style:none;border-top:1px solid var(--ink);margin-top:10px}
+.ix li a{display:grid;grid-template-columns:56px 1.1fr 2fr auto;gap:20px;align-items:baseline;padding:10px 4px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .2s,padding .2s}
+.ix li a:hover{background:var(--soft);padding-left:12px}
+.ix .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
+.ix .t{font-family:var(--fh);font-weight:var(--hw);font-size:clamp(20px,2vw,26px);letter-spacing:-.015em}
+.ix .d{color:var(--muted);font-size:15.5px}
+.ix .s{font-size:12.5px;font-weight:600;color:var(--accent);white-space:nowrap}
+
+/* oasis product frame */
+.device{position:relative;aspect-ratio:auto;background:none;overflow:visible}
+.browser{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.browser .chrome{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line)}
+.browser .chrome i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.browser .chrome em{font-style:normal;font-size:12px;color:var(--muted);margin-left:10px}
+.browser img{aspect-ratio:1440/900;object-fit:cover;object-position:top}
+.phone{position:absolute;right:-4%;bottom:-10%;width:30%;border-radius:22px;overflow:hidden;border:6px solid #111;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+.phone img{aspect-ratio:390/760;object-fit:cover;object-position:top}
+
+/* traction bars */
+.chart{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,2vw,28px);align-items:end;height:min(46svh,380px);border-bottom:1px solid var(--ink);margin-top:10px}
+.col{display:flex;flex-direction:column;justify-content:flex-end;height:100%;text-align:center}
+.col .v{font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:8px}
+.col .b{background:var(--line);border-radius:calc(var(--r)*.5) calc(var(--r)*.5) 0 0}
+.col.now .b{background:var(--accent)}
+.years{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,2vw,28px);text-align:center;font-size:13.5px;color:var(--muted);margin-top:10px;font-variant-numeric:tabular-nums}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,32px);margin-top:16px}
+.person{border-top:2px solid var(--ink);padding-top:18px}
+.person .role{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:6px 0 12px}
+.person ul{list-style:none;color:var(--muted);font-size:15px}
+.person li{padding:6px 0;border-bottom:1px solid var(--line)}
+
+/* round */
+.terms{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,24px);margin-top:30px}
+.term{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.term .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.term b{display:block;font-family:var(--fh);font-weight:var(--hw);font-size:clamp(26px,2.6vw,36px);letter-spacing:var(--track);margin:8px 0 6px}
+.term p{font-size:15px;color:var(--muted)}
+.term.open{border-color:var(--accent)}
+.term.open .lbl{color:var(--accent)}
+.fine{font-size:12.5px;color:var(--muted);margin-top:22px;max-width:70ch}
+
+footer{padding:28px 0 40px;font-size:12.5px;color:var(--muted)}
 
 
-.brandline{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-top:10px}
-.catdef{font-size:17px;margin-top:18px;max-width:720px;line-height:1.5}
-.thesis{margin-top:26px;padding:24px 26px;background:color-mix(in srgb,var(--accent) 9%,var(--paper));border-left:4px solid var(--accent);font-size:17px;line-height:1.5;max-width:none}
-.thesis b{display:block;font-size:20px;margin-bottom:8px}
-@keyframes wflow{to{stroke-dashoffset:-320}}
-.wflow{animation:wflow 9s linear infinite}
-@media(prefers-reduced-motion:reduce){.wflow{animation:none}}
-
-.pl{margin-top:20px}
-.plrow{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:14px}
-.plrow span{flex:0 0 130px;text-align:right;opacity:.85}
-.plrow span em{font-style:normal;font-size:10.5px;opacity:.6}
-.plrow b{flex:0 0 84px;font-size:14px}
-.plnet{display:flex;align-items:baseline;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
-.plnet span{flex:0 0 130px;text-align:right;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;font-weight:700}
-.plnet b{font-size:30px;font-weight:700;letter-spacing:-.02em}
-.plnet.good b{color:var(--accent)}
-.effwrap{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px}
-.eff{flex:1 1 200px;border-top:2px solid var(--hair);padding-top:12px}
-.eff.good{border-top-color:var(--accent)}
-.eff em{display:block;font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;font-weight:700}
-.eff b{display:block;font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-top:5px}
-.eff.good b{color:var(--accent)}
-.eff span{font-size:11.5px;opacity:.7}
-h4.ylab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;font-weight:700;margin-top:26px}
-
-.qrow{display:flex;align-items:flex-end;gap:14px;height:190px;margin-top:14px;max-width:520px}
-.qb{flex:1;display:flex;flex-direction:column;justify-content:flex-end;text-align:center}
-.qb i{display:block;background:var(--accent);border-radius:3px 3px 0 0;min-height:3px}
-.qb b{font-size:13px;font-weight:700;margin-bottom:6px}
-.qb em{font-style:normal;font-size:11px;font-weight:700;margin-top:7px;opacity:.7}
-
-.twall figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:12px 10px;color:#fff;text-align:center;line-height:1.2}
-.twall figcaption b{display:block;font-size:14px;font-weight:700}
-.twall figcaption em{display:block;font-style:normal;font-size:11px;opacity:.88;margin-top:3px}
-.twall .tq{position:absolute;left:14px;right:14px;bottom:62px;z-index:3;color:#fff;font-size:12px;line-height:1.35;font-weight:600;text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.9)}
-
-.twall{grid-template-columns:repeat(3,1fr);max-height:none}
-.twall.collapsed .tcard:nth-child(n+4){display:none}
-.morebtn{margin-top:14px;background:none;border:1.5px solid var(--hair);color:var(--ink);font-family:var(--ff);
- font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:99px;cursor:pointer}
-.morebtn:hover{border-color:var(--accent);color:var(--accent)}
-@media(max-width:760px){.twall{grid-template-columns:repeat(3,1fr)}.twall.collapsed .tcard:nth-child(n+4){display:none}}
-.wf{transition:opacity 1.1s ease}
-.bstamp{opacity:.55;font-weight:400;letter-spacing:.06em;margin-left:10px}
-.angwall{display:grid;grid-template-columns:repeat(10,1fr);gap:12px;margin-top:20px}
-.ang{margin:0;text-align:center}
-.ang img,.ang .mono{width:100%;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;object-fit:cover;background:var(--soft)}
-.ang .mono{font-size:19px;font-weight:700;color:var(--paper);background:var(--ink);letter-spacing:.02em}
-.ang .mono.co{background:var(--accent)}
-.ang figcaption{font-size:9.5px;margin-top:7px;line-height:1.25;opacity:.8}
-.angdrop{border-top:1px solid var(--hair);margin-top:22px}
-.angdrop>summary{cursor:pointer;list-style:none;padding:12px 0;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between}
-.angdrop>summary::-webkit-details-marker{display:none}
-.angdrop>summary::after{content:"+";font-size:17px;font-weight:400}
-.angdrop[open]>summary::after{content:"\2013"}
-@media(max-width:760px){.angwall{grid-template-columns:repeat(5,1fr)}}
-
-.claimbox{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
-.cb{border-top:2px solid var(--ink);padding-top:13px}
-.cb em{display:block;font-style:normal;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}
-.cb b{display:block;font-size:17px;font-weight:700;margin-top:6px;line-height:1.25}
-.cb span{display:block;font-size:13.5px;opacity:.8;margin-top:5px;line-height:1.4}
-@media(max-width:760px){.claimbox{grid-template-columns:1fr}}
-
-.prod{border-top:2px solid var(--ink);margin-top:0}
-.prod>summary{cursor:pointer;list-style:none;padding:15px 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;justify-content:space-between}
-.prod>summary::-webkit-details-marker{display:none}
-.prod>summary b{font-size:20px;font-weight:700}
-.prod>summary em{font-style:normal;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-right:auto}
-.prod>summary::after{content:"+";font-size:19px;font-weight:400;color:var(--accent)}
-.prod[open]>summary::after{content:"\2013"}
-.prod[open]{padding-bottom:16px}
-.prod .n{margin-top:4px}
-.prod .n b{font-size:25px}
-
-.ecbar{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
-.ecgo .ecbar{animation:ecgrow .75s cubic-bezier(.2,.85,.25,1) forwards}
-@keyframes ecgrow{to{transform:scaleY(1)}}
-.ecgo .ecline{animation:ecdraw 1.5s ease-out .55s forwards}
-@keyframes ecdraw{to{stroke-dashoffset:0}}
-.ecdot,.eclab,.ecbl{opacity:0}
-.ecgo .ecdot,.ecgo .eclab{animation:ecfade .45s ease forwards}
-.ecgo .ecbl{animation:ecfade .5s ease .15s forwards}
-@keyframes ecfade{to{opacity:1}}
-.ecgo .eclast{animation:ecfade .45s ease forwards,ecpulse 1.6s ease-out 1.9s}
-@keyframes ecpulse{0%{filter:drop-shadow(0 0 0 var(--accent))}35%{filter:drop-shadow(0 0 16px var(--accent))}100%{filter:drop-shadow(0 0 0 var(--accent))}}
-.eckey{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:12px}
-.eckey span{display:inline-flex;align-items:center;gap:7px}
-.eckey .kb{width:13px;height:13px;border-radius:3px;background:var(--accent);display:inline-block}
-.eckey .kl{width:20px;height:0;border-top:3.5px solid var(--accent);border-radius:2px;display:inline-block}
-
-#gflash{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;background:none}
-#gflash svg{width:100%;height:100%;display:block}
-#gflash.on{animation:gflash 2.1s cubic-bezier(.2,.7,.3,1) forwards}
-@keyframes gflash{0%{opacity:0;transform:scale(1.14)}22%{opacity:.95}60%{opacity:.78}100%{opacity:0;transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){#gflash{display:none}}
-20%{opacity:.92}58%{opacity:.7}100%{opacity:0;transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){.ecbar,.ecline,.ecdot,.eclab,.ecbl,.eclast{animation:none!important;transform:none!important;stroke-dashoffset:0!important;opacity:1!important}#gflash{display:none}}
-
-.prod .what{margin:12px 0 0;font-size:14.5px;line-height:1.6}
-.prod .mkt{margin:12px 0 0;font-size:13.5px;line-height:1.6;opacity:.92}
-table.cases{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
-table.cases th{text-align:left;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;padding:0 8px 6px 0;border-bottom:1px solid var(--hair)}
-table.cases td{padding:10px 8px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
-table.cases td b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-table.cases td span{display:block;opacity:.72;margin-top:3px;line-height:1.45;max-width:26ch}
-table.cases td.v{font-weight:700;text-align:right;white-space:nowrap}
-table.cases tr.cbear td b{color:#8a8a8a}
-table.cases tr.cbase td b{color:var(--ink)}
-table.cases tr.cbull td b{color:var(--accent)}
-table.cases tr.cbull td.v{color:var(--accent)}
-table.sotp{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
-table.sotp th{text-align:right;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;padding:0 0 7px;border-bottom:1px solid var(--hair)}
-table.sotp th:first-child{text-align:left}
-table.sotp td{padding:9px 0;border-bottom:1px solid var(--hair);text-align:right}
-table.sotp td:first-child{text-align:left}
-table.sotp tr.tot td{border-bottom:none;border-top:2px solid var(--ink);font-size:16px;padding-top:12px}
-table.sotp tr.tot td:last-child{color:var(--accent)}
-@media(max-width:700px){table.cases td span{max-width:none}table.cases{font-size:11.5px}}
-
-h5.eh{margin:22px 0 0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.62;font-weight:700}
-table.hist{width:100%;border-collapse:collapse;margin-top:18px;font-size:12.5px}
-table.hist th{text-align:right;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;padding:0 0 7px;border-bottom:1px solid var(--hair);font-weight:700}
-table.hist th:first-child,table.hist th:nth-child(2),table.hist th:last-child{text-align:left}
-table.hist td{padding:9px 10px 9px 0;border-bottom:1px solid var(--hair);text-align:right;white-space:nowrap}
-table.hist td:first-child,table.hist td:nth-child(2),table.hist td.nite{text-align:left}
-table.hist td.nite{white-space:normal;padding-right:0}
-table.hist td.nite i{font-style:normal;opacity:.6;font-size:11px;white-space:nowrap}
-@media(max-width:700px){table.hist{font-size:11px}table.hist td{padding-right:6px}}
-i.thru{font-style:normal;opacity:.55;font-size:10.5px;display:block}
-details.sub{margin-top:10px;border-top:1px solid var(--hair);padding-top:9px}
-details.sub>summary{cursor:pointer;list-style:none;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
-details.sub>summary::-webkit-details-marker{display:none}
-details.sub>summary::before{content:"+ ";font-weight:700}
-details.sub[open]>summary::before{content:"\2212 "}
-details.sub>summary:hover{opacity:1;color:var(--accent)}
-details.sub .mkt,details.sub .note{margin-top:9px}
-
-.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
-.doors>div{border:1px solid var(--hair);border-radius:10px;padding:14px}
-.doors b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
-.doors span{display:block;font-size:12.5px;line-height:1.55;opacity:.9}
-table.ret{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}
-table.ret th{text-align:right;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;padding:0 0 7px;border-bottom:1px solid var(--hair);font-weight:700}
-table.ret th:first-child{text-align:left}
-table.ret td{padding:9px 0;border-bottom:1px solid var(--hair);text-align:right}
-table.ret td:first-child{text-align:left}
-table.ret td i{font-style:normal;opacity:.6}
-table.ret td.v{font-weight:700}
-table.ret tr.cbull td,table.ret tr.cbull td.v{color:var(--accent)}
-@media(max-width:700px){.doors{grid-template-columns:1fr}}
-
-.sim{border:1px solid var(--hair);border-radius:12px;padding:18px;margin-top:16px}
-.simpre{display:flex;gap:8px;margin-bottom:16px}
-.simpre button{font-family:var(--ff);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid var(--hair);background:none;color:var(--ink);cursor:pointer}
-.simpre button.on{border-color:var(--accent);color:var(--accent)}
-label.simrow{display:grid;grid-template-columns:150px 1fr 74px;align-items:center;gap:12px;margin-bottom:9px;font-size:12.5px}
-label.simrow b{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-label.sl2{display:block;margin-top:14px;font-size:12.5px}
-label.sl2 span{display:block;margin-bottom:5px;opacity:.8}
-label.sl2 input,label.simrow input{width:100%;accent-color:var(--accent)}
-.simout{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--hair)}
-.simout em{display:block;font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:5px}
-.simout b{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
-.simout .hot b{color:var(--accent)}
-@media(max-width:700px){label.simrow{grid-template-columns:110px 1fr 64px;font-size:11.5px}.simout{grid-template-columns:repeat(2,1fr)}}
-
-.founder{display:grid;grid-template-columns:190px 1fr;gap:26px;align-items:start;margin-top:22px;padding-top:22px;border-top:1px solid var(--hair)}
-.founder>img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px}
-.founder h4{font-size:26px;line-height:1.1;margin:0}
-.founder .fbody>p{font-size:14px;line-height:1.62;margin-top:11px}
-.founder ul.acc{margin-top:14px;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(210px,1fr));gap:9px 28px}
-.founder ul.acc li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.45;opacity:.9}
-.founder ul.acc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-@media(max-width:700px){.founder{grid-template-columns:1fr}.founder>img{max-width:190px}.founder ul.acc{grid-template-columns:1fr}}
-.hint{font-weight:400;opacity:.6;font-size:.8em}table.hist caption{caption-side:bottom;text-align:left;font-size:10.5px;opacity:.55;padding-top:9px}
-
-/* ---- scroll opener ---- */
-.op-portal{position:relative;height:280vh}
-.op-stick{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
-.op-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity}
-.op-mark{position:absolute;left:0;bottom:0;padding:0 0 5vh 6vw;pointer-events:none;will-change:opacity;z-index:9}
-.op-mark h1{margin:0;font-weight:700;letter-spacing:-.03em;line-height:.84;font-size:clamp(2.2rem,7vw,5.4rem);color:var(--ink)}
-.op-mark h1 .glow{color:var(--accent)}
-.op-mark .op-cue{margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(15,15,15,.5)}
-.op-mark .op-cue i{display:block;font-style:normal;margin-top:10px;font-size:15px;animation:opbob 1.9s ease-in-out infinite}
-@keyframes opbob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
-.op-house{position:absolute;inset:0;background:#07060a;opacity:0;will-change:opacity;z-index:3}
-.op-screenwrap{position:absolute;inset:0;display:grid;place-items:center;padding:6vh 4vw}
-.op-screen{position:relative;width:min(94vw,1180px);aspect-ratio:16/9;background:#000;border-radius:5px;
- box-shadow:0 0 0 8px #14131a,0 0 90px 26px rgba(255,214,150,.18),0 40px 120px rgba(0,0,0,.8);overflow:hidden}
-.op-screen video{width:100%;height:100%;object-fit:cover;display:block}
-.op-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;opacity:0;
- display:flex;align-items:center;gap:12px;padding:15px 26px;border-radius:999px;cursor:pointer;
- background:rgba(10,8,14,.62);border:1px solid rgba(255,255,255,.32);color:#fff;
- font-family:var(--ff);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;backdrop-filter:blur(8px)}
-.op-play:hover{border-color:var(--accent)}
-.op-play .op-tri{width:0;height:0;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
-.op-flash{position:absolute;inset:0;background:#07060a;opacity:0;pointer-events:none;z-index:5;will-change:opacity}
-.op-fade{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none;transition:opacity 1.1s ease;z-index:9}
-.op-skip{position:fixed;right:18px;top:18px;z-index:40;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
- color:rgba(255,255,255,.9);background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);border-radius:999px;
- padding:9px 15px;text-decoration:none;backdrop-filter:blur(6px)}
-.op-skip:hover{border-color:var(--accent)}
-.op-hold{position:absolute;inset:0;background:var(--paper);transition:opacity .45s;z-index:8}
-#opdeckstart{display:block;position:relative}
-@media(max-width:700px){.op-portal{height:460vh}}
-@media (prefers-reduced-motion:reduce){.op-portal{height:100vh}.op-vid{display:none}.op-house{opacity:1}}
-
-/* Testimonial cards never had a base rule. Their figcaption and veil are
-   position:absolute, so with no positioned ancestor they resolved against the
-   page and the white caption ('Marco Hansell') floated over the hero on scroll. */
-.tcard{margin:0;position:relative;cursor:pointer;aspect-ratio:3/4;overflow:hidden;background:#0a1018;border-radius:6px}
-.tcard img{width:100%;height:100%;object-fit:cover;display:block}
-.tcard .pl{margin-top:0}
-</style></head><body>
-<div id="glopener">
-<a class="op-skip" href="#opdeckstart">Skip to the deck</a>
-<section class="op-portal" id="opportal"><div class="op-stick">
-  <video id="opv1" class="op-vid" muted playsinline preload="auto" src="opener.mp4" data-mobile="opener-mobile.mp4"></video>
-  <div class="op-house" id="ophouse"><div class="op-screenwrap"><div class="op-screen" id="opscreen">
-    <video id="opfilm" playsinline preload="metadata" src="sizzler-placeholder.mp4"></video>
-    <button class="op-play" id="opplay"><span class="op-tri"></span>Play the sizzler</button>
-  </div></div></div>
-  <div class="op-mark" id="opmark"><h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
-    <div class="op-cue">Scroll - the reel is yours to pull<i>&#8595;</i></div></div>
-  <div class="op-flash" id="opflash"></div>
-  <div class="op-fade" id="opfade"></div>
-  <div class="op-hold" id="ophold"></div>
-</div></section>
-</div>
-<a id="opdeckstart"></a>
-<div class="w"><div class="top"><span>Grateful Labs</span><span class="r">Seed &middot; Confidential <span class="bstamp">build Aug 17, 10:08AM</span></span></div>
-
-<section><div class="k">Seed round 2026 &middot; Confidential</div>
-<h1>Grateful<br>L<span class="glow">a</span>bs.</h1>
-<div class="lead"><b>Congratulations.</b> If you are reading this, you are already a shareholder in Grateful Labs.</div>
-<div class="claimbox">
-<div class="cb"><em>Claimed your equity?</em><b>You can increase your stake in this round.</b><span>Everything below is what you already own a piece of.</span></div>
-<div class="cb"><em>Not yet claimed?</em><b>Start with the claim.</b><span>Profile, deep dive, agreement - then the round is open to you too.</span></div>
-</div>
-<div class="n"><div><b>$900K+</b><span>revenue since inception</span></div><div><b>1,000</b><span>Giraffes</span></div><div><b>500+</b><span>events &middot; 15,000 people</span></div><div><b>$90K</b><span>AI School, first 70 days</span></div></div>
-<p><b>Raising up to $1M on a rolling SAFE. $250,000 already invested by 20+ investors.</b></p>
-<div class="strip"><div class="tile"><img src="img/77fe5e34c2f2.jpg" class="on" alt=""><img src="img/7d56b1140007.jpg" class="" alt=""><img src="img/2cc12736ad95.jpg" class="" alt=""><img src="img/fb2a95171172.jpg" class="" alt=""></div><div class="tile"><img src="img/a6649bf13f55.jpg" class="on" alt=""><img src="img/657020cec5d2.jpg" class="" alt=""><img src="img/4139dcb91969.jpg" class="" alt=""><img src="img/01087fe1e27c.jpg" class="" alt=""></div><div class="tile"><img src="img/fbf7c75f48a7.jpg" class="on" alt=""><img src="img/bed057cff3d3.jpg" class="" alt=""><img src="img/d444bc11a1f7.jpg" class="" alt=""><img src="img/d6576e3534e4.jpg" class="" alt=""></div><div class="tile"><img src="img/aaf7bb5998d6.jpg" class="on" alt=""><img src="img/d115e5ba78ec.jpg" class="" alt=""><img src="img/bb9ed2349f1b.jpg" class="" alt=""><img src="img/40dae72abab6.jpg" class="" alt=""></div><div class="tile"><img src="img/3ec9b7ba4c64.jpg" class="on" alt=""><img src="img/0a9c20220f39.jpg" class="" alt=""><img src="img/3ac62680fe86.jpg" class="" alt=""><img src="img/be5e1be79e70.jpg" class="" alt=""></div><div class="tile"><img src="img/b275018d5670.jpg" class="on" alt=""><img src="img/3a034aff205c.jpg" class="" alt=""><img src="img/cd5a260e9ccd.jpg" class="" alt=""><img src="img/816db7379126.jpg" class="" alt=""></div></div>
-</section>
-
-<section><div class="k">01 &middot; Who we are</div>
-<h2>(Grateful) <span class="glow">Giraffes</span>, not unicorns.</h2>
-
-<div class="lead" style="color:var(--accent);font-weight:600">Head in the clouds. Feet on the ground. Big hearts.</div>
-<table class="gvu">
-<tr><th></th><th>&#129426; Giraffes</th><th>&#129412; Unicorns</th></tr>
-<tr><td>Capital</td><td>Patient, right-sized capital aligned with the business.</td><td>Large rounds designed around venture-scale returns.</td></tr>
-<tr><td>Growth</td><td>Steady, profitable, compounding.</td><td>Hypergrowth or bust.</td></tr>
-<tr><td>Moat</td><td>Community, trust and long-term relationships.</td><td>Scale, speed and market dominance.</td></tr>
-<tr><td>Ownership</td><td>Founders, employees and community stay in the upside.</td><td>Ownership concentrates as capital compounds.</td></tr>
-</table>
-
-<div class="founders">
-<h3>Why us</h3>
-<div class="founder"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/97873835b_76814065-BDD4-4AF1-BBCA-9CAB1AB87B12.jpeg" alt="Max Marine">
-<div class="fbody"><h4>Max Marine</h4><p class="frole">CEO &amp; co-founder</p><ul class="acc"><li>CFA charterholder, earned in 18 months</li><li>Seven years in Israeli venture capital - iAngels, lool</li><li>Author of <i>Raising Your Seed Round</i> (2017)</li><li>Designed the membership and equity model</li><li>Built the first versions of the Oasis and Gigi himself</li></ul></div></div>
-<div class="founder"><img src="https://springceremony.lovable.app/lovable-uploads/89bed132-6e55-4a7d-a159-491ba64a6ed8.png" alt="Julian Melcer">
-<div class="fbody"><h4>Julian Melcer</h4><p class="frole">Co-founder</p><ul class="acc"><li>Founded Clean the Butts: a profitable ecological business cleaning Israel&rsquo;s beaches and selling the recycled material to municipalities</li><li>Experience designer and somatic facilitator</li><li>Shaped the live-event format the studio still runs</li><li>Salons of 20 to festivals of 700</li></ul></div></div>
-<h3>Somehow we all identify with the Giraffe archetype <span class="hint">(tap any Giraffe to hear them)</span></h3>
-<div class="tgrid"><figure class="gcard" data-uid="0e978f301960d0478a405643307d0690" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0e978f301960d0478a405643307d0690/manifest/video.m3u8" data-name="Alec Joseph" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0e978f301960d0478a405643307d0690/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Alec Joseph</figcaption></figure><figure class="gcard" data-uid="8183adab8169ce17472ba53b3bbfb369" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/8183adab8169ce17472ba53b3bbfb369/manifest/video.m3u8" data-name="Ali Ghadianlou" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/8183adab8169ce17472ba53b3bbfb369/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Ali Ghadianlou</figcaption></figure><figure class="gcard" data-uid="ffe11bf865e07bb5ca747d628c6cd974" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ffe11bf865e07bb5ca747d628c6cd974/manifest/video.m3u8" data-name="Amir Ebrahimi" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ffe11bf865e07bb5ca747d628c6cd974/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Amir Ebrahimi</figcaption></figure><figure class="gcard" data-uid="9610439aa54cd2f381e9c250e9493658" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9610439aa54cd2f381e9c250e9493658/manifest/video.m3u8" data-name="Anna Kolber" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9610439aa54cd2f381e9c250e9493658/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Anna Kolber</figcaption></figure><figure class="gcard" data-uid="b96b3c5be741d330606430a30c9e76fc" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b96b3c5be741d330606430a30c9e76fc/manifest/video.m3u8" data-name="Ariel Pasternak" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b96b3c5be741d330606430a30c9e76fc/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Ariel Pasternak</figcaption></figure><figure class="gcard" data-uid="c945cee165f6777cdd9b7bc940535a20" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/c945cee165f6777cdd9b7bc940535a20/manifest/video.m3u8" data-name="Arye Shabtai" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/c945cee165f6777cdd9b7bc940535a20/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Arye Shabtai</figcaption></figure><figure class="gcard" data-uid="f2fa447632b83ec185f3f14830d2db7f" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f2fa447632b83ec185f3f14830d2db7f/manifest/video.m3u8" data-name="Bradley Kohn" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f2fa447632b83ec185f3f14830d2db7f/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Bradley Kohn</figcaption></figure><figure class="gcard" data-uid="e38b0ed132441041d28bc0f8ca9bd288" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e38b0ed132441041d28bc0f8ca9bd288/manifest/video.m3u8" data-name="Brian Bishop" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e38b0ed132441041d28bc0f8ca9bd288/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Brian Bishop</figcaption></figure><figure class="gcard" data-uid="7d2e8794910baa11c7790b7722193ef1" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/7d2e8794910baa11c7790b7722193ef1/manifest/video.m3u8" data-name="Brian LaGrua" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/7d2e8794910baa11c7790b7722193ef1/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Brian LaGrua</figcaption></figure><figure class="gcard" data-uid="07e8456b95b14f6c10cccf326d091de2" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/07e8456b95b14f6c10cccf326d091de2/manifest/video.m3u8" data-name="Brian Palacios" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/07e8456b95b14f6c10cccf326d091de2/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Brian Palacios</figcaption></figure><figure class="gcard" data-uid="4431c3c4597ce810cc0ae21c07742c2d" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/4431c3c4597ce810cc0ae21c07742c2d/manifest/video.m3u8" data-name="Christine Allee" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/4431c3c4597ce810cc0ae21c07742c2d/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Christine Allee</figcaption></figure><figure class="gcard" data-uid="fbcdf673cad5e8c8c27496f97909505a" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/fbcdf673cad5e8c8c27496f97909505a/manifest/video.m3u8" data-name="Danielle Kaplan" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/fbcdf673cad5e8c8c27496f97909505a/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Danielle Kaplan</figcaption></figure><figure class="gcard" data-uid="29498d081cca886daa45f6f3907e0f1f" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/29498d081cca886daa45f6f3907e0f1f/manifest/video.m3u8" data-name="Danielle Lloyd" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/29498d081cca886daa45f6f3907e0f1f/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Danielle Lloyd</figcaption></figure><figure class="gcard" data-uid="cf5befeb1bfcd7ced9a6fd5d0a88cdd5" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/cf5befeb1bfcd7ced9a6fd5d0a88cdd5/manifest/video.m3u8" data-name="David Gull" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/cf5befeb1bfcd7ced9a6fd5d0a88cdd5/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>David Gull</figcaption></figure><figure class="gcard" data-uid="0ea754430041901dd47fbc5e00c38589" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0ea754430041901dd47fbc5e00c38589/manifest/video.m3u8" data-name="Dayna April" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0ea754430041901dd47fbc5e00c38589/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Dayna April</figcaption></figure><figure class="gcard" data-uid="5b6a38809c05b0a50542c489e79e42fb" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5b6a38809c05b0a50542c489e79e42fb/manifest/video.m3u8" data-name="Dina Kaplan" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5b6a38809c05b0a50542c489e79e42fb/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Dina Kaplan</figcaption></figure><figure class="gcard" data-uid="e515b2b9c33148fe7f11a3314351e2ab" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e515b2b9c33148fe7f11a3314351e2ab/manifest/video.m3u8" data-name="Galia Benartzi" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e515b2b9c33148fe7f11a3314351e2ab/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Galia Benartzi</figcaption></figure><figure class="gcard" data-uid="36386c7bc0df701b65b1c0c1e45a74bf" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/36386c7bc0df701b65b1c0c1e45a74bf/manifest/video.m3u8" data-name="Jake Malott" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/36386c7bc0df701b65b1c0c1e45a74bf/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Jake Malott</figcaption></figure><figure class="gcard" data-uid="dbadcb21a605659cf9d41ed13a5cb70c" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/dbadcb21a605659cf9d41ed13a5cb70c/manifest/video.m3u8" data-name="Jay Patel" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/dbadcb21a605659cf9d41ed13a5cb70c/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Jay Patel</figcaption></figure><figure class="gcard" data-uid="db3b9f2ddd1c4769d7550d4e0006271e" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/db3b9f2ddd1c4769d7550d4e0006271e/manifest/video.m3u8" data-name="John Wolf" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/db3b9f2ddd1c4769d7550d4e0006271e/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>John Wolf</figcaption></figure><figure class="gcard" data-uid="5e0a4df5648071affd3f5ce53af24656" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5e0a4df5648071affd3f5ce53af24656/manifest/video.m3u8" data-name="Jon Reynolds" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5e0a4df5648071affd3f5ce53af24656/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Jon Reynolds</figcaption></figure><figure class="gcard" data-uid="1a58ba36700254948cd834e635cf70ad" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/1a58ba36700254948cd834e635cf70ad/manifest/video.m3u8" data-name="Joseph Corigliano" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/1a58ba36700254948cd834e635cf70ad/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Joseph Corigliano</figcaption></figure><figure class="gcard" data-uid="9d951aa5a8bd19ee5a5e1f3afeb2951b" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9d951aa5a8bd19ee5a5e1f3afeb2951b/manifest/video.m3u8" data-name="Julian Melcer" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9d951aa5a8bd19ee5a5e1f3afeb2951b/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Julian Melcer</figcaption></figure><figure class="gcard" data-uid="393d091a354eda98bc069ff14eef1e68" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/393d091a354eda98bc069ff14eef1e68/manifest/video.m3u8" data-name="Justin Houchin" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/393d091a354eda98bc069ff14eef1e68/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Justin Houchin</figcaption></figure><figure class="gcard" data-uid="b2501a0d60aa8975a16d02cf5f13a957" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b2501a0d60aa8975a16d02cf5f13a957/manifest/video.m3u8" data-name="Marco Hansell" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b2501a0d60aa8975a16d02cf5f13a957/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Marco Hansell</figcaption></figure><figure class="gcard" data-uid="b14d31645270fc6d603cee34cc854818" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b14d31645270fc6d603cee34cc854818/manifest/video.m3u8" data-name="Maura Grace" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b14d31645270fc6d603cee34cc854818/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Maura Grace</figcaption></figure><figure class="gcard" data-uid="3ec46643eccef8b9f3dbdc1bc31f8481" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/3ec46643eccef8b9f3dbdc1bc31f8481/manifest/video.m3u8" data-name="Max Marine" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/3ec46643eccef8b9f3dbdc1bc31f8481/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Max Marine</figcaption></figure><figure class="gcard" data-uid="4938217649782611949aadc36b9308b6" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/4938217649782611949aadc36b9308b6/manifest/video.m3u8" data-name="Omer" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/4938217649782611949aadc36b9308b6/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Omer</figcaption></figure><figure class="gcard" data-uid="6a2bbbcd881f19c8b1401e9eb7f2e204" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6a2bbbcd881f19c8b1401e9eb7f2e204/manifest/video.m3u8" data-name="Paul De Andalucia" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6a2bbbcd881f19c8b1401e9eb7f2e204/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Paul De Andalucia</figcaption></figure><figure class="gcard" data-uid="394cae9a14fa65ec92b4762c0d5fa1ca" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/394cae9a14fa65ec92b4762c0d5fa1ca/manifest/video.m3u8" data-name="Ruby Granillo" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/394cae9a14fa65ec92b4762c0d5fa1ca/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Ruby Granillo</figcaption></figure><figure class="gcard" data-uid="2a6f9621f6735507b44f181f9c4c393f" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/2a6f9621f6735507b44f181f9c4c393f/manifest/video.m3u8" data-name="Scott Clark" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/2a6f9621f6735507b44f181f9c4c393f/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Scott Clark</figcaption></figure><figure class="gcard" data-uid="0134b30e484cba06cf7faa0549af9a0c" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0134b30e484cba06cf7faa0549af9a0c/manifest/video.m3u8" data-name="Serina Bernstein" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0134b30e484cba06cf7faa0549af9a0c/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Serina Bernstein</figcaption></figure><figure class="gcard" data-uid="fb80271af9da6b09eb693876cf9be17d" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/fb80271af9da6b09eb693876cf9be17d/manifest/video.m3u8" data-name="Stefan Angelov" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/fb80271af9da6b09eb693876cf9be17d/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Stefan Angelov</figcaption></figure><figure class="gcard" data-uid="9bb3ecf50ed87928f718a77409d74a40" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9bb3ecf50ed87928f718a77409d74a40/manifest/video.m3u8" data-name="Travis Brewer" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9bb3ecf50ed87928f718a77409d74a40/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Travis Brewer</figcaption></figure><figure class="gcard" data-uid="6137794100607437082dcd4e6560d4f5" data-hls="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6137794100607437082dcd4e6560d4f5/manifest/video.m3u8" data-name="Yossef Sagi" data-cap="" onclick="playv(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6137794100607437082dcd4e6560d4f5/thumbnails/thumbnail.jpg" alt="" loading="lazy"><span class="pill">Tap for sound</span><span class="veil"></span><figcaption>Yossef Sagi</figcaption></figure></div>
-<h3>And we like to answer questions</h3>
-<div class="n"><div><b>6,997</b><span>volunteered answers</span></div><div><b>578</b><span>Giraffes who gave them</span></div><div><b>128</b><span>completed the 25-question deep dive</span></div><div><b>928</b><span>Gigi conversations &middot; 83 hours</span></div></div>
-<p class="note">Every answer, question by question - with the qualitative responses quantified - is in the appendix at the bottom of this deck.</p>
-</section>
-
-<section><div class="k">02 &middot; How we got here</div>
-<h2>THE POWER IS IN THE TOWER. AND WE ARE QUITE A TOWER.</h2>
-<div class="lead">Same community. Every year we were worth more to it. <b>Click a year.</b></div>
-<div class="chartwrap"><svg viewBox="0 0 900 405" style="width:100%;height:auto;margin-top:18px" role="img" aria-label="Top price by category and year">
-<g stroke="rgba(128,128,128,.25)">
-<line x1="74" y1="244.5" x2="700" y2="244.5"/>
-<line x1="74" y1="157.3" x2="700" y2="157.3"/>
-<line x1="74" y1="119.7" x2="700" y2="119.7"/>
-<line x1="74" y1="32.4" x2="700" y2="32.4"/>
-<line x1="74" y1="272.2" x2="700" y2="272.2"/></g>
-<g font-size="11.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="67" y="250.1">$100</text>
-<text x="67" y="163.0">$500</text>
-<text x="67" y="125.4">$1,000</text>
-<text x="67" y="38.1">$5,000</text>
-<text x="67" y="277.8">$0</text></g>
-<polyline fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"  points="74.0,222.4 230.5,184.8 387.0,157.3 543.5,137.4 700.0,119.7"/>
-<circle cx="74.0" cy="222.4" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="184.8" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="157.3" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="137.4" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="119.7" r="5.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/>
-<polyline fill="none" stroke="rgba(128,128,128,.75)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" points="74.0,272.2 230.5,263.7 387.0,244.5 543.5,131.7 700.0,82.1"/>
-<circle cx="74.0" cy="272.2" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="263.7" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="244.5" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="131.7" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="82.1" r="5.5" fill="rgba(128,128,128,.75)" stroke="var(--paper)" stroke-width="2"/>
-<polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"  points="74.0,272.2 230.5,157.3 387.0,119.7 543.5,105.5 700.0,32.4"/>
-<circle cx="74.0" cy="272.2" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="230.5" cy="157.3" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="387.0" cy="119.7" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="543.5" cy="105.5" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<circle cx="700.0" cy="32.4" r="6" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
-<text x="710" y="38.1" font-size="13" font-weight="700" fill="var(--accent)" font-family="var(--ff)">$5,000 &middot; Sponsorship</text>
-<text x="710" y="87.0" font-size="12.5" fill="rgba(128,128,128,.9)" font-family="var(--ff)">$2,000 &middot; Event pass</text>
-<text x="710" y="137.5" font-size="12.5" font-weight="700" font-family="var(--ff)">$999 &middot; Membership</text>
-<g class="yrb" data-y="2022" onclick="mile('2022')" style="cursor:pointer">
-<circle cx="74.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="74.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2022</text>
-<text x="74.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">100 MEMBERS</text></g>
-<g class="yrb" data-y="2023" onclick="mile('2023')" style="cursor:pointer">
-<circle cx="230.5" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="230.5" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2023</text>
-<text x="230.5" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">500 MEMBERS</text></g>
-<g class="yrb" data-y="2024" onclick="mile('2024')" style="cursor:pointer">
-<circle cx="387.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="387.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2024</text>
-<text x="387.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">800 MEMBERS</text></g>
-<g class="yrb" data-y="2025" onclick="mile('2025')" style="cursor:pointer">
-<circle cx="543.5" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="543.5" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2025</text>
-<text x="543.5" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">900 MEMBERS</text></g>
-<g class="yrb" data-y="2026" onclick="mile('2026')" style="cursor:pointer">
-<circle cx="700.0" cy="327.2" r="21" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/>
-<text x="700.0" y="333.7" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--ff)">2026</text>
-<text x="700.0" y="379.1" font-size="11" fill="var(--accent)" font-weight="700" text-anchor="middle" font-family="var(--ff)" letter-spacing=".8">1,000 MEMBERS</text></g>
-<polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,222.4 230.5,184.8 387.0,157.3 543.5,137.4 700.0,119.7" style="cursor:help;pointer-events:stroke"><title>Lifetime membership price: $150 at the founding in 2022, $999 today.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,272.2 230.5,263.7 387.0,244.5 543.5,131.7 700.0,82.1" style="cursor:help;pointer-events:stroke"><title>Top event pass sold that year, including two-day bootcamp passes: free early events to $2,000 in 2026.</title></polyline><polyline fill="none" stroke="#000" stroke-opacity="0" stroke-width="16" points="74.0,272.2 230.5,157.3 387.0,119.7 543.5,105.5 700.0,32.4" style="cursor:help;pointer-events:stroke"><title>Top sponsorship package sold that year: none until 2023, $5,000 Premier AI Partner in 2026.</title></polyline></svg></div>
-<p class="mtitle" id="mtitle"></p>
-<div class="mgal" id="mgal"></div>
-<p class="mstory" id="mstory"></p>
-</section>
-
-<section><div class="k">03 &middot; Case study</div>
-<h2>AI SCHOOL: ZERO TO <span class="glow">$90K</span> IN 70 DAYS.</h2>
-<div class="lead">Look at what happens when we partner with a subject-matter expert on a topic this community actually needs.</div>
-<div class="n"><div><b>$90K</b><span>gross, first 70 days</span></div><div><b>60+</b><span>of 67 students at four figures</span></div><div><b>122</b><span>AI Safari attendees</span></div><div><b>72%</b><span>Safari net margin</span></div></div>
-<div class="aistrip"><figure><img src="img/b81b8d6c1ba8.jpg" alt=""><figcaption>We get by with a little bit of help from our A</figcaption></figure><figure><img src="img/4139dcb91969.jpg" alt=""><figcaption>Some say AI will take your job. We think someo</figcaption></figure><figure><img src="img/a0128409eb2c.jpg" alt=""><figcaption>Bootcamp #3 was epic ❤️🙏</figcaption></figure><figure><img src="img/1e927e15c404.jpg" alt=""><figcaption>Deep gratitude to all the amazing people who m</figcaption></figure></div>
-<div class="fcard" style="margin-top:26px"><img src="https://media.base44.com/images/public/69dbe78c1361c71621da531d/5f13435a6_BENZA-76copy.jpg" alt="Benza Maman">
-<div class="fmeta"><h4>Benza Maman</h4><p class="frole">AI School partner &middot; a Giraffe</p>
-<ul><li>Udemy&rsquo;s #1 AI instructor, 500,000+ students taught</li><li>Co-built and taught all four cohorts</li><li>Revenue-share partner today; an equity swap converting that share into ownership is in negotiation</li></ul></div></div>
-<h3>What graduates said, on camera</h3>
-<div class="tgrid twall collapsed" data-rows="1"><figure class="tcard" data-uid="325845e782acb4acdad8d47ce436345b" data-name="Marco Hansell" data-role="Founder, Satori Media" data-q="I received all of the value in the first two hours, times one hundred." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/325845e782acb4acdad8d47ce436345b/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Marco Hansell</b><em>Founder, Satori Media</em></figcaption></figure><figure class="tcard" data-uid="80c4ec4f34e7487344b6d81f25053a08" data-name="Silke" data-role="Digital Business Strategist" data-q="You will not believe this, but you learn so much in two days." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/80c4ec4f34e7487344b6d81f25053a08/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Silke</b><em>Digital Business Strategist</em></figcaption></figure><figure class="tcard" data-uid="ddd02c6864eed3b658106c39cc742a34" data-name="Dom" data-role="Founder, Happy Hoots" data-q="Benza just did a really good job of making it approachable and having it work for each individual person." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ddd02c6864eed3b658106c39cc742a34/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Dom</b><em>Founder, Happy Hoots</em></figcaption></figure><figure class="tcard" data-uid="0bca733dee65c74320068f3d3b091b54" data-name="Alexis" data-role="Medical Reflexologist" data-q="Our agents are now working for us. So heck yeah." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0bca733dee65c74320068f3d3b091b54/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alexis</b><em>Medical Reflexologist</em></figcaption></figure><figure class="tcard" data-uid="65a9e7aa07e07ca5e62a682ecd9b42db" data-name="Alex Chan" data-role="Co-Founder, Human Wellness Center" data-q="This is not something you could do by yourself. Once you get it installed, it's pretty freaking amazing." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/65a9e7aa07e07ca5e62a682ecd9b42db/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alex Chan</b><em>Co-Founder, Human Wellness Center</em></figcaption></figure><figure class="tcard" data-uid="ca28b860893db4ab66dc664720537791" data-name="Jamie" data-role="Founder, Rewild Breathwork" data-q="Claude is the structure, and within structure is freedom." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/ca28b860893db4ab66dc664720537791/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Jamie</b><em>Founder, Rewild Breathwork</em></figcaption></figure><figure class="tcard" data-uid="782b8ae76bb11d3eee7d722598f7c5c9" data-name="Mike" data-role="Real Estate" data-q="Benza is a real pro - super patient, got everyone customized and dialed in with what they were building." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/782b8ae76bb11d3eee7d722598f7c5c9/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Mike</b><em>Real Estate</em></figcaption></figure><figure class="tcard" data-uid="f18fa96531f4e6981027bab61c0f1d59" data-name="Joey" data-role="Gastroenterologist" data-q="The AI Bootcamp has been pivotal. Benza is an incredible instructor." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f18fa96531f4e6981027bab61c0f1d59/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Joey</b><em>Gastroenterologist</em></figcaption></figure><figure class="tcard" data-uid="eb8394d1416901f8b4a85bfe03b0e9b4" data-name="Ryan Seaman" data-role="Entrepreneur" data-q="I've done things this weekend I didn't know were possible. I wouldn't know how to do eighty percent of what I just figured out." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/eb8394d1416901f8b4a85bfe03b0e9b4/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Ryan Seaman</b><em>Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="260971671a4def38b5c1a4f9594880e0" data-name="Mary" data-role="Healthcare Practitioner" data-q="I was so intimidated and scared of AI. Claude is tracking everything for me. It's been so easy. I'm shocked, actually." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/260971671a4def38b5c1a4f9594880e0/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Mary</b><em>Healthcare Practitioner</em></figcaption></figure><figure class="tcard" data-uid="d3da5e9401114c14c249d4c866fcb046" data-name="Alexis Adam" data-role="Luxury Photographer" data-q="It's amazing how much it's opened up my mind. Honestly, I'd recommend it to everyone." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/d3da5e9401114c14c249d4c866fcb046/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alexis Adam</b><em>Luxury Photographer</em></figcaption></figure><figure class="tcard" data-uid="052863bc5d3d77f1f0fbf76bf1cf60cf" data-name="Maya" data-role="Nonprofit Founder" data-q="What are you afraid of? It can only get better from here." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/052863bc5d3d77f1f0fbf76bf1cf60cf/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Maya</b><em>Nonprofit Founder</em></figcaption></figure><figure class="tcard" data-uid="08dc976d9c1a1cb67a5b9800e0123c3b" data-name="Brian Palacios" data-role="Entrepreneur" data-q="My friend said: oh, that's a REAL bootcamp. You're actually learning how to do real stuff." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/08dc976d9c1a1cb67a5b9800e0123c3b/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Brian Palacios</b><em>Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="5efd95037fa3b8f0e2345f5f2cd059e7" data-name="Brianna Rhue" data-role="Co-Founder, Dr. Contact Lens" data-q="I'm already looking back at my own business and saying: wow, I had a human doing that?" onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5efd95037fa3b8f0e2345f5f2cd059e7/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Brianna Rhue</b><em>Co-Founder, Dr. Contact Lens</em></figcaption></figure><figure class="tcard" data-uid="af2c750b568bca5707c9faa383eacc8a" data-name="Yonatan" data-role="Breathwork & Healing Practitioner" data-q="I have a three-month-old now. I want the business to run itself so I can spend more time with my family." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/af2c750b568bca5707c9faa383eacc8a/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Yonatan</b><em>Breathwork & Healing Practitioner</em></figcaption></figure><figure class="tcard" data-uid="27ccb61365e877c3fa2cc787754d0670" data-name="Awais Spall" data-role="Founder, Integrative Oasis" data-q="The amount of parts of my life that can become integrated into this, almost like a life operating system." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/27ccb61365e877c3fa2cc787754d0670/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Awais Spall</b><em>Founder, Integrative Oasis</em></figcaption></figure><figure class="tcard" data-uid="e446d67024ae79e7a945c11ebe8560ba" data-name="Amir" data-role="Founder, Digital Marketing Agency" data-q="I was surprised by how much I didn't know, although I consider myself to be quite technical." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e446d67024ae79e7a945c11ebe8560ba/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Amir</b><em>Founder, Digital Marketing Agency</em></figcaption></figure><figure class="tcard" data-uid="349a3a959022dae80c2045f9e6733125" data-name="Alan Corvalla" data-role="Actor & Creative Entrepreneur" data-q="I honestly think it's for everyone, and I'm not even trying to sell the product." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/349a3a959022dae80c2045f9e6733125/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Alan Corvalla</b><em>Actor & Creative Entrepreneur</em></figcaption></figure><figure class="tcard" data-uid="16b649c6dbb950d927a10393b87238ec" data-name="Tommy Sobel" data-role="Limiting-Belief Coach" data-q="I really feel like this collapsed time, and it's going to allow me to buy back a lot of time." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/16b649c6dbb950d927a10393b87238ec/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Tommy Sobel</b><em>Limiting-Belief Coach</em></figcaption></figure><figure class="tcard" data-uid="f0d4fad9c6662a99d84f5be5ab0e0bd2" data-name="Dewey Arpinar" data-role="Wellness & Jewelry Founder" data-q="I got over my fear of AI and feel so empowered." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/f0d4fad9c6662a99d84f5be5ab0e0bd2/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Dewey Arpinar</b><em>Wellness & Jewelry Founder</em></figcaption></figure><figure class="tcard" data-uid="31847968e81b0b483c9a7017f05fee53" data-name="Samantha Coker" data-role="CEO, Rich Nuts" data-q="I'm astonished at how much I can really just ask Claude to tell me." onclick="playt(this)"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/31847968e81b0b483c9a7017f05fee53/thumbnails/thumbnail.jpg?time=2s&height=400" alt="" loading="lazy"><span class="pl"></span><span class="veil"></span><figcaption><b>Samantha Coker</b><em>CEO, Rich Nuts</em></figcaption></figure></div>
-<button class="morebtn" onclick="tmore3(this)">See more</button>
-</section>
-
-<section><div class="k">04 &middot; Traction</div>
-<h2>WE CROSSED INTO PROFIT THIS YEAR.</h2>
-<h4 class="ylab">Revenue per month, and revenue per $1 spent</h4>
-<div class="chartwrap ecwrap"><svg viewBox="0 0 790 300" style="width:100%;height:auto;margin-top:22px" role="img" aria-label="Revenue per month and revenue per dollar spent, by year">
-<g stroke="rgba(128,128,128,.2)">
-<line x1="92" y1="250.0" x2="690" y2="250.0"/>
-<line x1="92" y1="204.3" x2="690" y2="204.3"/>
-<line x1="92" y1="158.6" x2="690" y2="158.6"/>
-<line x1="92" y1="112.9" x2="690" y2="112.9"/>
-</g>
-<g font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="83" y="253.5">$0K</text>
-<text x="83" y="207.8">$10K</text>
-<text x="83" y="162.1">$20K</text>
-<text x="83" y="116.4">$30K</text>
-</g>
-<rect class="ecbar" style="animation-delay:0.00s" x="114.8" y="167.7" width="74" height="82.3" rx="4" fill="rgba(128,128,128,.32)"><title>2022 &middot; $17,990 revenue per month</title></rect>
-<text class="eclab" style="animation-delay:0.45s" x="151.8" y="158.7" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$18.0K</text>
-<rect class="ecbar" style="animation-delay:0.08s" x="234.4" y="183.4" width="74" height="66.6" rx="4" fill="rgba(128,128,128,.32)"><title>2023 &middot; $14,560 revenue per month</title></rect>
-<text class="eclab" style="animation-delay:0.53s" x="271.4" y="174.4" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$14.6K</text>
-<rect class="ecbar" style="animation-delay:0.16s" x="354.0" y="174.3" width="74" height="75.7" rx="4" fill="rgba(128,128,128,.32)"><title>2024 &middot; $16,560 revenue per month</title></rect>
-<text class="eclab" style="animation-delay:0.61s" x="391.0" y="165.3" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$16.6K</text>
-<rect class="ecbar" style="animation-delay:0.24s" x="473.6" y="186.5" width="74" height="63.5" rx="4" fill="rgba(128,128,128,.32)"><title>2025 &middot; $13,900 revenue per month</title></rect>
-<text class="eclab" style="animation-delay:0.69s" x="510.6" y="177.5" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$13.9K</text>
-<rect class="ecbar" style="animation-delay:0.32s" x="593.2" y="135.1" width="74" height="114.9" rx="4" fill="var(--accent)"><title>2026 &middot; $25,130 revenue per month</title></rect>
-<text class="eclab" style="animation-delay:0.77s" x="630.2" y="126.1" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$25.1K</text>
-<line class="ecbl" x1="92" y1="82.5" x2="690" y2="82.5" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 4"/>
-<text class="ecbl" x="698" y="86.5" font-size="10" font-weight="700" font-family="var(--ff)" fill="var(--ink)">BREAK-EVEN</text>
-<polyline class="ecline" style="stroke-dasharray:501;stroke-dashoffset:501" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="151.8,114.2 271.4,118.4 391.0,123.6 510.6,100.2 630.2,45.7"/>
-<circle class="ecdot" style="animation-delay:1.00s" cx="151.8" cy="114.2" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text class="ecdot" style="animation-delay:1.00s" x="151.8" y="100.2" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.70</text>
-<text x="151.8" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2022</text>
-<circle class="ecdot" style="animation-delay:1.22s" cx="271.4" cy="118.4" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text class="ecdot" style="animation-delay:1.22s" x="271.4" y="104.4" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.66</text>
-<text x="271.4" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2023</text>
-<circle class="ecdot" style="animation-delay:1.44s" cx="391.0" cy="123.6" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text class="ecdot" style="animation-delay:1.44s" x="391.0" y="109.6" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.61</text>
-<text x="391.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2024</text>
-<circle class="ecdot" style="animation-delay:1.66s" cx="510.6" cy="100.2" r="5.5" fill="var(--paper)" stroke="var(--accent)" stroke-width="3"/>
-<text class="ecdot" style="animation-delay:1.66s" x="510.6" y="86.2" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--ink)">$0.83</text>
-<text x="510.6" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2025</text>
-<circle class="ecdot eclast" style="animation-delay:1.88s" cx="630.2" cy="45.7" r="7" fill="var(--accent)" stroke="var(--accent)" stroke-width="3"/>
-<text class="ecdot" style="animation-delay:1.88s" x="630.2" y="31.7" font-size="14" font-weight="700" font-family="var(--ff)" text-anchor="middle" fill="var(--accent)">$1.35</text>
-<text x="630.2" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2026</text>
-<text x="630.2" y="288" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">7.5 months</text>
-<text class="ecdot" style="animation-delay:1.9s" x="630.2" y="15.3" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1">PROFITABLE</text>
-</svg></div>
-<div class="eckey"><span><i class="kb"></i>Revenue per month</span><span><i class="kl"></i>Revenue per $1 spent</span></div>
-<p class="note">Bars are revenue per month. The line is revenue generated per $1 of expense - below it the company consumes capital, above it the company funds itself. We crossed in 2026, the year we launched our first joint venture.</p>
-<h4 class="ylab">The climb, quarter by quarter</h4>
-<div id="y2026"><div class="chartwrap"><svg viewBox="0 0 760 400" style="width:100%;height:auto;margin-top:26px" role="img" aria-label="2026 revenue by season, composed by line">
-<defs><pattern id="nvh" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><rect width="6" height="6" fill="#ec4899" opacity=".28"/><line x1="0" y1="0" x2="0" y2="6" stroke="#ec4899" stroke-width="2.4"/></pattern></defs>
-<g stroke="rgba(128,128,128,.22)" stroke-width="1">
-<line x1="86" y1="340" x2="712" y2="340"/>
-<line x1="86" y1="265" x2="712" y2="265"/>
-<line x1="86" y1="190" x2="712" y2="190"/>
-<line x1="86" y1="115" x2="712" y2="115"/>
-<line x1="86" y1="40" x2="712" y2="40"/>
-</g><g font-size="11" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="78" y="344">$0K</text>
-<text x="78" y="269">$100K</text>
-<text x="78" y="194">$200K</text>
-<text x="78" y="119">$300K</text>
-<text x="78" y="44">$400K</text>
-</g>
-<rect x="116" y="333.7" width="88" height="5.3" fill="#6d5bb8" style="cursor:help"><title>Winter &middot; Membership &middot; $8K</title></rect>
-<rect x="116" y="330.5" width="88" height="2.2" fill="#b8862e" style="cursor:help"><title>Winter &middot; Sponsorship &middot; $6K</title></rect>
-<rect x="116" y="325.6" width="88" height="2.9" fill="#2e9e6f" rx="3" style="cursor:help"><title>Winter &middot; Events &middot; $7K</title></rect>
-<text x="160.0" y="315.6" font-size="15" font-weight="700" font-family="var(--ff)" text-anchor="middle">$21K</text>
-<text x="160.0" y="361" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">WINTER</text>
-<text x="160.0" y="377" font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Dec 21 - Mar 21</text>
-<text x="160.0" y="392" font-size="10" fill="rgba(128,128,128,.8)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1.1">ACTUAL</text>
-<rect x="272" y="332.3" width="88" height="6.7" fill="#ec4899" style="cursor:help"><title>Spring &middot; AI education &middot; $10K</title></rect>
-<rect x="272" y="315.8" width="88" height="15.5" fill="#6d5bb8" style="cursor:help"><title>Spring &middot; Membership &middot; $23K</title></rect>
-<rect x="272" y="305.7" width="88" height="8.1" fill="#b8862e" style="cursor:help"><title>Spring &middot; Sponsorship &middot; $13K</title></rect>
-<rect x="272" y="287.6" width="88" height="16.1" fill="#2e9e6f" rx="3" style="cursor:help"><title>Spring &middot; Events &middot; $24K</title></rect>
-<text x="316.0" y="277.6" font-size="15" font-weight="700" font-family="var(--ff)" text-anchor="middle">$71K</text>
-<text x="316.0" y="361" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">SPRING</text>
-<text x="316.0" y="377" font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Mar 21 - Jun 21</text>
-<text x="316.0" y="392" font-size="10" fill="rgba(128,128,128,.8)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1.1">ACTUAL</text>
-<rect x="428" y="277.1" width="88" height="61.9" fill="#ec4899" style="cursor:help"><title>Summer &middot; AI education &middot; $84K</title></rect>
-<rect x="428" y="268.2" width="88" height="7.9" fill="#6d5bb8" style="cursor:help"><title>Summer &middot; Membership &middot; $13K</title></rect>
-<rect x="428" y="260.3" width="88" height="5.9" fill="#b8862e" style="cursor:help"><title>Summer &middot; Sponsorship &middot; $10K</title></rect>
-<rect x="428" y="246.8" width="88" height="11.5" fill="#2e9e6f" rx="3" style="cursor:help"><title>Summer &middot; Events &middot; $18K</title></rect>
-<line x1="424" y1="267.4" x2="520" y2="267.4" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 3"/>
-<text x="472.0" y="281.4" font-size="9.5" font-weight="600" font-family="var(--ff)" fill="#ffffff" text-anchor="middle">$97K collected</text>
-<text x="472.0" y="236.8" font-size="15" font-weight="700" font-family="var(--ff)" text-anchor="middle">$126K</text>
-<text x="472.0" y="361" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">SUMMER</text>
-<text x="472.0" y="377" font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Jun 21 - Sep 21</text>
-<text x="472.0" y="392" font-size="10" fill="rgba(128,128,128,.8)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1.1">5 WKS LEFT</text>
-<rect x="584" y="102.2" width="88" height="236.8" fill="#ec4899" style="cursor:help"><title>Fall &middot; AI education &middot; $317K</title></rect>
-<rect x="584" y="95.8" width="88" height="5.5" fill="#6d5bb8" style="cursor:help"><title>Fall &middot; Membership &middot; $10K</title></rect>
-<rect x="584" y="89.8" width="88" height="4.0" fill="#b8862e" style="cursor:help"><title>Fall &middot; Sponsorship &middot; $8K</title></rect>
-<rect x="584" y="83.8" width="88" height="4.0" fill="#2e9e6f" style="cursor:help"><title>Fall &middot; Events &middot; $8K</title></rect>
-<rect x="584" y="71.0" width="88" height="10.8" fill="url(#nvh)" rx="3" style="cursor:help"><title>Fall &middot; New ventures &middot; $17K</title></rect>
-<text x="628.0" y="61.0" font-size="15" font-weight="700" font-family="var(--ff)" text-anchor="middle">$360K</text>
-<text x="628.0" y="361" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">FALL</text>
-<text x="628.0" y="377" font-size="10.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Sep 21 - Dec 21</text>
-<text x="628.0" y="392" font-size="10" fill="rgba(128,128,128,.8)" font-family="var(--ff)" text-anchor="middle" letter-spacing="1.1">PROJECTED</text>
-</svg></div>
-<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:12px"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#ec4899;display:inline-block;border-radius:3px"></i>AI education</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#6d5bb8;display:inline-block;border-radius:3px"></i>Membership</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#b8862e;display:inline-block;border-radius:3px"></i>Sponsorship</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;background:#2e9e6f;display:inline-block;border-radius:3px"></i>Events</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:12px;height:12px;display:inline-block;border-radius:3px;background:repeating-linear-gradient(45deg,#ec4899 0 2px,rgba(236,72,153,.25) 2px 6px)"></i>New ventures</span></div></div>
+.charts{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(28px,4vw,56px);margin-top:8px}
+.charts h3{font-size:15px;letter-spacing:.02em;margin-bottom:6px}
+.chart{grid-template-columns:repeat(var(--n,5),1fr)}
+.years{grid-template-columns:repeat(var(--n,5),1fr)}
+.chart.sm{height:min(34svh,280px)}
+.col.part .b{background:repeating-linear-gradient(135deg,var(--accent) 0 6px,transparent 6px 11px);opacity:.8}
+.mix{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:14px;color:var(--muted)}
+.mix b{color:var(--ink);font-weight:600}
+.plats{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(14px,1.8vw,22px);margin-top:26px}
+.plat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 20px;display:flex;flex-direction:column}
+.plat .who{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.plat .big{font-family:var(--fh);font-weight:var(--hw);font-size:clamp(34px,3.4vw,48px);letter-spacing:var(--track);line-height:1;margin:12px 0 4px;font-variant-numeric:tabular-nums}
+.plat .up{color:var(--accent);font-weight:600;font-size:15px}
+.plat ul{list-style:none;margin-top:14px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.plat li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.plat li b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.spark{width:100%;height:64px;margin-top:14px}
+.spark .sl{fill:none;stroke:var(--accent);stroke-width:2.5;vector-effect:non-scaling-stroke}
+.spark .sa{fill:var(--soft)}
+@media (max-width:900px){.charts,.plats{grid-template-columns:1fr}}
+@media (max-width:600px){.chart.m .v{display:none}.chart.m .col.peak .v{display:block}}
 
 
-
-</section>
-
-
-
-<section><div class="k">05 &middot; The studio</div>
-<h2>THE FIRST COMMUNITY-OWNED, AI-NATIVE VENTURE STUDIO FOR <span class="glow">GIRAFFES</span>, BY <span class="glow">GIRAFFES</span>.</h2>
-<h3>Five divisions. What each could be worth.</h3>
-
-<details class="prod"><summary><b>AI School</b><em>live &middot; $90K in 70 days</em></summary>
-<p class="what">Cohort AI training built and taught with <b>Benza Maman</b> - Udemy&rsquo;s #1 AI instructor, 500,000+ students. Four cohorts, four sell-outs, no ad spend.</p>
-<div class="n"><div><b>67</b><span>students, 4 cohorts</span></div><div><b>60+</b><span>at four-figure tuition</span></div><div><b>$22.6K</b><span>average cohort, best $29K</span></div><div><b>6</b><span>fall cohorts booked</span></div></div>
-<table class="cases"><tr><th></th><th>2028 revenue</th><th>FCF margin</th><th>Free cash flow</th></tr><tr class="cbear"><td><b>Bear</b><span>12 cohorts &times; $22.6K average</span></td><td>$271K</td><td>20%</td><td class="v">$54K</td></tr><tr class="cbase"><td><b>Base</b><span>40 cohorts &times; $22.6K (virtual + on-demand)</span></td><td>$904K</td><td>30%</td><td class="v">$271K</td></tr><tr class="cbull"><td><b>Bull</b><span>60 cohorts &times; $22.6K + 20 company builds &times; $80K</span></td><td>$2.96M</td><td>35%</td><td class="v">$1.04M</td></tr></table>
-<details class="sub"><summary>The market and what the raise funds</summary><p class="mkt">Every company is being told to adopt AI and almost none know how. The fall moves the format virtual and multi-track: live cohorts, an on-demand library, and an agent-build track where students leave with working agents. The raise funds those agents - we are building our own company&rsquo;s agents with Benza right now, and each one becomes curriculum, then a product.</p></details>
-<details class="sub"><summary>What it returns to Grateful Labs</summary><p class="mkt">Revenue is shared with Benza today. The equity swap under negotiation converts that share into a permanent ownership position - which turns a revenue line into a balance-sheet asset.</p></details>
-</details>
-
-<details class="prod"><summary><b>The Oasis</b><em>the rail &middot; live since February</em></summary>
-<p class="what">Ticketing, payments, profiles, matching, the feed and the equity layer. Live since February, and every dollar we have collected since has run through it.</p>
-<div class="n"><div><b>$174,664</b><span>processed through its own checkout since February</span></div><div><b>762</b><span>checkouts</span></div><div><b>1,189</b><span>accounts</span></div><div><b>524,571</b><span>lines of code we own outright</span></div></div>
-<table class="cases"><tr><th></th><th>2028 revenue</th><th>FCF margin</th><th>Free cash flow</th></tr><tr class="cbear"><td><b>Bear</b><span>Internal rail only; no outside communities</span></td><td>&mdash;</td><td>&mdash;</td><td class="v">avoided cost</td></tr><tr class="cbase"><td><b>Base</b><span>150 communities &times; $500/mo</span></td><td>$900K</td><td>25%</td><td class="v">$225K</td></tr><tr class="cbull"><td><b>Bull</b><span>1,000 communities &times; $500/mo</span></td><td>$6.0M</td><td>45%</td><td class="v">$2.70M</td></tr></table>
-<details class="sub"><summary>Why it wins</summary><p class="mkt">Circle, Skool and Mighty all make a community fit their shape. Ours is vibe-codeable - a community customizes its own instance instead of bending around someone else&rsquo;s product.</p></details>
-<details class="sub"><summary>What it returns to Grateful Labs</summary><p class="mkt">Avoided cost first: every venture launched here skips building ticketing, payments, profiles, an equity layer and a feed - a year and a team each time. The take rate on outside communities is the second line, and we have not booked a dollar of it.</p></details>
-</details>
-
-<details class="prod"><summary><b>Gigi</b><em>infrastructure today, subscription next</em></summary>
-<p class="what">Phone, WhatsApp, onboarding, matching, intros. She replaces headcount today. Next she is what members pay for.</p>
-<div class="n"><div><b>58,014</b><span>emails sent as Gigi</span></div><div><b>941</b><span>voice conversations &middot; 85 hours</span></div><div><b>814</b><span>phone calls routed</span></div><div><b>930</b><span>humans who wrote back</span></div></div>
-<table class="cases"><tr><th></th><th>2028 revenue</th><th>FCF margin</th><th>Free cash flow</th></tr><tr class="cbear"><td><b>Bear</b><span>200 members &times; $20/mo</span></td><td>$48K</td><td>25%</td><td class="v">$12K</td></tr><tr class="cbase"><td><b>Base</b><span>500 members &times; $50/mo + 50 communities &times; $200/mo</span></td><td>$420K</td><td>30%</td><td class="v">$126K</td></tr><tr class="cbull"><td><b>Bull</b><span>1,000 Oasis communities &times; $250/mo</span></td><td>$3.0M</td><td>50%</td><td class="v">$1.50M</td></tr></table>
-<details class="sub"><summary>The market</summary><p class="mkt">Two of them. Our own Grateful Giraffes, who are beginning to talk to her. And every community that runs on the Oasis - each one can use Gigi, or stand up its own avatar.</p></details>
-</details>
-
-<details class="prod"><summary><b>Grateful Giraffes Events</b><em>500+ produced since 2022 &middot; ~70% margins</em></summary>
-<p class="what"><b>500+ events since 2022.</b> Fewer rooms every year, and more money in each one. Safari Fest returns December 13.</p>
-<div class="n"><div><b>500+</b><span>events produced since 2022</span></div><div><b>12,101</b><span>RSVPs on Luma alone</span></div><div><b>15,000</b><span>people through the door</span></div><div><b>72%</b><span>AI Safari net margin, verified</span></div></div>
-<div class="chartwrap ehwrap"><svg viewBox="0 0 800 320" style="width:100%;height:auto;margin-top:20px" role="img" aria-label="Ticket revenue per event by year, and verified profit on the flagship format">
-<text x="70" y="30" font-size="10.5" font-weight="700" letter-spacing="1.4" font-family="var(--ff)" fill="rgba(128,128,128,.85)">TICKET REVENUE PER EVENT</text>
-<text x="500" y="30" font-size="10.5" font-weight="700" letter-spacing="1.4" font-family="var(--ff)" fill="var(--accent)">PROFIT ON THE FLAGSHIP</text>
-<line x1="465" y1="20" x2="465" y2="286" stroke="var(--hair)" stroke-width="1"/>
-<g stroke="rgba(128,128,128,.2)">
-<line x1="70" y1="250.0" x2="430" y2="250.0"/>
-<line x1="70" y1="175.0" x2="430" y2="175.0"/>
-<line x1="70" y1="100.0" x2="430" y2="100.0"/>
-</g><g font-size="10" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="62" y="253.5">$0</text>
-<text x="62" y="178.5">$500</text>
-<text x="62" y="103.5">$1,000</text>
-</g>
-<rect class="ecbar" style="animation-delay:0.00s" x="86.0" y="169.2" width="58" height="80.8" rx="4" fill="rgba(128,128,128,.32)"><title>2023 &middot; 147 events &middot; $79,191 ticket revenue &middot; $539 per event</title></rect>
-<text class="eclab" style="animation-delay:0.45s" x="115.0" y="160.2" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$539</text>
-<text x="115.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2023</text>
-<text x="115.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">147 events</text>
-<rect class="ecbar" style="animation-delay:0.08s" x="176.0" y="143.0" width="58" height="107.0" rx="4" fill="rgba(128,128,128,.32)"><title>2024 &middot; 166 events &middot; $118,389 ticket revenue &middot; $713 per event</title></rect>
-<text class="eclab" style="animation-delay:0.53s" x="205.0" y="134.0" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$713</text>
-<text x="205.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2024</text>
-<text x="205.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">166 events</text>
-<rect class="ecbar" style="animation-delay:0.16s" x="266.0" y="106.2" width="58" height="143.8" rx="4" fill="rgba(128,128,128,.32)"><title>2025 &middot; 99 events &middot; $94,901 ticket revenue &middot; $959 per event</title></rect>
-<text class="eclab" style="animation-delay:0.61s" x="295.0" y="97.2" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$959</text>
-<text x="295.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2025</text>
-<text x="295.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">99 events</text>
-<rect class="ecbar" style="animation-delay:0.24s" x="356.0" y="112.5" width="58" height="137.5" rx="4" fill="var(--accent)"><title>2026 &middot; 46 events &middot; $42,163 ticket revenue &middot; $917 per event</title></rect>
-<text class="eclab" style="animation-delay:0.69s" x="385.0" y="103.5" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$917</text>
-<text x="385.0" y="272" font-size="12" font-weight="700" font-family="var(--ff)" text-anchor="middle">2026</text>
-<text x="385.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">46 events</text>
-<g stroke="rgba(128,128,128,.2)">
-<line x1="500" y1="250.0" x2="770" y2="250.0"/>
-<line x1="500" y1="175.0" x2="770" y2="175.0"/>
-<line x1="500" y1="100.0" x2="770" y2="100.0"/>
-</g><g font-size="10" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="end">
-<text x="492" y="253.5">$0K</text>
-<text x="492" y="178.5">$10K</text>
-<text x="492" y="103.5">$20K</text>
-</g>
-<rect class="ecbar" style="animation-delay:0.00s" x="516.0" y="160.0" width="58" height="90.0" rx="4" fill="rgba(128,128,128,.32)"><title>Safari Fest, Dec 2023 &middot; $12,000 profit</title></rect>
-<text class="eclab" style="animation-delay:0.45s" x="545.0" y="151.0" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$12.0K</text>
-<text x="545.0" y="272" font-size="11.5" font-weight="700" font-family="var(--ff)" text-anchor="middle">Safari Fest</text>
-<text x="545.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Dec 2023</text>
-<rect class="ecbar" style="animation-delay:0.08s" x="606.0" y="111.8" width="58" height="138.2" rx="4" fill="var(--accent)"><title>AI Safari, Apr 2026 &middot; $18,427 profit</title></rect>
-<text class="eclab" style="animation-delay:0.53s" x="635.0" y="102.8" font-size="13" font-weight="700" font-family="var(--ff)" text-anchor="middle">$18.4K</text>
-<text class="eclab" style="animation-delay:0.68s" x="635.0" y="86.8" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle" letter-spacing=".8">72% MARGIN</text>
-<text x="635.0" y="272" font-size="11.5" font-weight="700" font-family="var(--ff)" text-anchor="middle">AI Safari</text>
-<text x="635.0" y="287" font-size="9.5" fill="rgba(128,128,128,.85)" font-family="var(--ff)" text-anchor="middle">Apr 2026</text>
-<rect class="ecbar" style="animation-delay:.3s" x="696.0" y="160.0" width="58" height="90.0" rx="4" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
-<text class="eclab" style="animation-delay:.75s" x="725.0" y="151.0" font-size="11" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle">BOOKED</text>
-<text x="725.0" y="272" font-size="11.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle">Safari Fest</text>
-<text x="725.0" y="287" font-size="9.5" font-weight="700" fill="var(--accent)" font-family="var(--ff)" text-anchor="middle">Dec 13, 2026</text>
-</svg></div>
-<table class="cases"><tr><th></th><th>2028 revenue</th><th>FCF margin</th><th>Free cash flow</th></tr><tr class="cbear"><td><b>Bear</b><span>Current cadence, LA only</span></td><td>$100K</td><td>30%</td><td class="v">$30K</td></tr><tr class="cbase"><td><b>Base</b><span>Safari Fest + Giraffest + a second city</span></td><td>$300K</td><td>35%</td><td class="v">$105K</td></tr><tr class="cbull"><td><b>Bull</b><span>Licensed format in three cities</span></td><td>$800K</td><td>40%</td><td class="v">$320K</td></tr></table>
-<details class="sub"><summary>The entire history, year by year</summary><table class="hist"><caption>The Luma calendar only - early and off-platform events are not in this table.</caption><tr><th>Year</th><th>Home</th><th>Events</th><th>RSVPs</th><th>Ticket revenue</th><th>The night of the year</th></tr><tr><td><b>2022</b></td><td>Tel Aviv</td><td>30</td><td>239</td><td>&mdash;</td><td class="nite">Giraffes on the Roof</td></tr><tr><td><b>2023</b></td><td>Tower House, Venice</td><td>147</td><td>4,649</td><td>$79,191</td><td class="nite">Safari Fest: 33 Rooms of Magic <i>490 RSVPs</i></td></tr><tr><td><b>2024</b></td><td>Los Angeles</td><td>166</td><td>4,206</td><td>$118,389</td><td class="nite">Olympus: Connect to Your Highest Self <i>675 RSVPs</i></td></tr><tr><td><b>2025</b></td><td>Los Angeles</td><td>99</td><td>1,989</td><td>$94,901</td><td class="nite">GIZA CELESTIA: New Year&rsquo;s Eve <i>195 RSVPs</i></td></tr><tr><td><b>2026</b></td><td>Los Angeles <i class="thru">through Aug 15</i></td><td>46</td><td>1,018</td><td>$42,163</td><td class="nite">Biohacking Safari: Primal Edition <i>225 RSVPs</i></td></tr></table></details>
-</details>
-
-<details class="prod"><summary><b>Grateful Research</b><em>forming &middot; syndicated reports</em></summary>
-<p class="what">Field a study once, sell it to everyone doing R&amp;D in that category. One piece of work, many buyers.</p>
-<div class="n"><div><b>$153B</b><span>global insights industry, 2025</span></div><div><b>578</b><span>members who have answered us in depth</span></div><div><b>6,997</b><span>survey answers on file</span></div><div><b>Q4</b><span>first syndicated report</span></div></div>
-<table class="cases"><tr><th></th><th>2028 revenue</th><th>FCF margin</th><th>Free cash flow</th></tr><tr class="cbear"><td><b>Bear</b><span>A marketing cost, not a business</span></td><td>$0</td><td>&mdash;</td><td class="v">$0</td></tr><tr class="cbase"><td><b>Base</b><span>4 reports &times; 30 buyers &times; $5K</span></td><td>$600K</td><td>35%</td><td class="v">$210K</td></tr><tr class="cbull"><td><b>Bull</b><span>8 reports &times; 75 buyers &times; $5K, plus retainers</span></td><td>$3.0M</td><td>45%</td><td class="v">$1.35M</td></tr></table>
-<details class="sub"><summary>The verticals</summary><table class="hist"><tr><th>Vertical</th><th>The market our buyers operate in</th><th>Why us</th></tr>
-<tr><td><b>Health &amp; wellness</b></td><td class="nite">$6.8T wellness economy in 2024, forecast $9.8T by 2029 <i>Global Wellness Institute</i></td><td class="nite">Our community is the consumer these brands are trying to understand - biohacking, longevity, breathwork, supplements.</td></tr>
-<tr><td><b>AI consumer interest</b></td><td class="nite">Consumer brands deciding what to build with AI, buying from a $56B market-research services sector <i>ESOMAR</i></td><td class="nite">We run an AI-native business in public and can put a question in front of a room that actually uses this stuff.</td></tr>
-<tr><td><b>Community &amp; ownership</b></td><td class="nite">Community platforms and membership brands, inside a $62B research-software sector <i>ESOMAR</i></td><td class="nite">We are the experiment - what equity does to retention, what makes a member pay.</td></tr>
-</table>
-<p class="note">Market sizes are the categories our buyers operate in, not our addressable revenue. The wallet we sell into is the insights industry: $153B in 2025, of which $56B is market-research services.</p></details>
-<details class="sub"><summary>Why we can field it cheaply</summary><p class="mkt">We already generate primary research as a by-product of operating - a community that answers us, an AI-native studio building in public, and events where a question reaches a room in a night. Fielding costs a message, not a recruitment budget.</p></details>
-</details>
-
-<h3>Sum of the parts</h3>
-<p class="what">Five divisions on the same 2028 horizon. <b>We are not putting a valuation on these</b> - this is the cash they throw off. Apply your own multiple.</p>
-<table class="sotp"><tr><th>Division</th><th>Bear</th><th>Base</th><th>Bull</th></tr>
-<tr><td>AI School</td><td>$54K</td><td>$271K</td><td>$1.04M</td></tr>
-<tr><td>The Oasis</td><td>&mdash;</td><td>$225K</td><td>$2.70M</td></tr>
-<tr><td>Gigi</td><td>$12K</td><td>$126K</td><td>$1.50M</td></tr>
-<tr><td>Grateful Giraffes Events</td><td>$30K</td><td>$105K</td><td>$320K</td></tr>
-<tr><td>Grateful Research</td><td>&mdash;</td><td>$210K</td><td>$1.35M</td></tr>
-<tr class="tot"><td><b>Free cash flow, 2028</b></td><td><b>$96K</b></td><td><b>$937K</b></td><td><b>$6.91M</b></td></tr>
-</table>
-<h3>Play with it yourself</h3>
-<p class="what">Drag any division to any number between its bear and bull case. Set your own multiple. Put in your own ticket. <b>Scenario only - not a projection.</b></p>
-<div class="sim">
-  <div class="simpre"><button type="button" data-p="0">Bear</button><button type="button" data-p="1" class="on">Base</button><button type="button" data-p="2">Bull</button></div>
-  <div id="simrows"></div>
-  <label class="sl sl2"><span>Multiple on free cash flow &mdash; <b id="mVal">12x</b></span><input id="mRange" type="range" min="6" max="20" step="1" value="12"></label>
-  <label class="sl sl2"><span>Your ticket at the $6M cap &mdash; <b id="tVal">$18,000</b> for <b id="pVal">0.300%</b></span><input id="tRange" type="range" min="1800" max="18000" step="1800" value="18000"></label>
-  <div class="simout">
-    <div><em>Free cash flow, 2028</em><b id="oFcf">&mdash;</b></div>
-    <div><em>Company worth</em><b id="oVal">&mdash;</b></div>
-    <div><em>Your stake</em><b id="oStake">&mdash;</b></div>
-    <div class="hot"><em>Return</em><b id="oRet">&mdash;</b></div>
-  </div>
-</div>
-<p class="note">* Scenario only, not a projection. Nothing here is a promise of a return, and every number moves when the assumptions move.</p>
-</section>
-
-<section><div class="k">07 &middot; The machine</div>
-<h2>WE TURN DEMAND INTO SUPPLY.</h2>
-<svg viewBox="0 0 700 640" style="width:100%;max-width:640px;height:auto;margin:24px auto 8px;display:block" role="img" aria-label="Listen, build, scale, own - the loop">
-<defs><clipPath id="wclip"><circle cx="350" cy="310" r="96"/></clipPath></defs>
-<circle cx="350" cy="310" r="200" fill="none" stroke="var(--soft)" stroke-width="30"/>
-<circle class="wflow" cx="350" cy="310" r="200" fill="none" stroke="var(--accent)" stroke-width="5" stroke-dasharray="14 18" stroke-linecap="round" opacity=".85"/>
-<g transform="translate(491.4 451.4) rotate(135)"><path d="M -7 -9 L 7 0 L -7 9" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g transform="translate(208.6 451.4) rotate(225)"><path d="M -7 -9 L 7 0 L -7 9" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g transform="translate(208.6 168.6) rotate(315)"><path d="M -7 -9 L 7 0 L -7 9" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g transform="translate(491.4 168.6) rotate(405)"><path d="M -7 -9 L 7 0 L -7 9" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<image class="wf" href="img/b275018d5670.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="1"/><image class="wf" href="img/77fe5e34c2f2.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/d115e5ba78ec.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/aaf7bb5998d6.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/d444bc11a1f7.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/657020cec5d2.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/3a034aff205c.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/><image class="wf" href="img/fb2a95171172.jpg" x="254" y="214" width="192" height="192" clip-path="url(#wclip)" preserveAspectRatio="xMidYMid slice" opacity="0"/>
-<circle cx="350" cy="310" r="96" fill="rgba(10,14,20,.46)"/>
-<circle cx="350" cy="310" r="96" fill="none" stroke="var(--accent)" stroke-width="3.5"/>
-<g font-family="var(--ff)" text-anchor="middle" fill="#fff">
-<text x="350" y="294" font-size="15.5" font-weight="700" letter-spacing="2.5">THE COMMUNITY</text>
-<text x="350" y="316" font-size="11" opacity=".95"><tspan x="350" dy="0">the product, the distribution</tspan><tspan x="350" dy="14">and the cap table,</tspan><tspan x="350" dy="14">at the same time</tspan></text></g>
-<g font-family="var(--ff)" text-anchor="middle">
-<circle cx="350.0" cy="110.0" r="50" fill="var(--ink)"/>
-<circle cx="350.0" cy="60.0" r="13" fill="var(--accent)"/>
-<text x="350.0" y="64.0" font-size="11" font-weight="700" fill="#fff">01</text>
-<text x="350.0" y="115.0" font-size="16.5" font-weight="700" fill="#fff" letter-spacing="1">LISTEN</text>
-<text x="350.0" y="26.0" font-size="10.5" fill="rgba(128,128,128,.95)"><tspan x="350.0" dy="0">1,000 owners write down</tspan><tspan x="350.0" dy="13">what they need</tspan></text></g>
-<g font-family="var(--ff)" text-anchor="middle">
-<circle cx="550.0" cy="310.0" r="50" fill="var(--ink)"/>
-<circle cx="550.0" cy="260.0" r="13" fill="var(--accent)"/>
-<text x="550.0" y="264.0" font-size="11" font-weight="700" fill="#fff">02</text>
-<text x="550.0" y="315.0" font-size="16.5" font-weight="700" fill="#fff" letter-spacing="1">BUILD</text>
-<text x="550.0" y="382.0" font-size="10.5" fill="rgba(128,128,128,.95)"><tspan x="550.0" dy="0">with a Giraffe who</tspan><tspan x="550.0" dy="13">already knows how</tspan></text></g>
-<g font-family="var(--ff)" text-anchor="middle">
-<circle cx="350.0" cy="510.0" r="50" fill="var(--ink)"/>
-<circle cx="350.0" cy="460.0" r="13" fill="var(--accent)"/>
-<text x="350.0" y="464.0" font-size="11" font-weight="700" fill="#fff">03</text>
-<text x="350.0" y="515.0" font-size="16.5" font-weight="700" fill="#fff" letter-spacing="1">SCALE</text>
-<text x="350.0" y="588.0" font-size="10.5" fill="rgba(128,128,128,.95)"><tspan x="350.0" dy="0">community, distribution,</tspan><tspan x="350.0" dy="13">platform, AI</tspan></text></g>
-<g font-family="var(--ff)" text-anchor="middle">
-<circle cx="150.0" cy="310.0" r="50" fill="var(--ink)"/>
-<circle cx="150.0" cy="260.0" r="13" fill="var(--accent)"/>
-<text x="150.0" y="264.0" font-size="11" font-weight="700" fill="#fff">04</text>
-<text x="150.0" y="315.0" font-size="16.5" font-weight="700" fill="#fff" letter-spacing="1">OWN</text>
-<text x="150.0" y="382.0" font-size="10.5" fill="rgba(128,128,128,.95)"><tspan x="150.0" dy="0">equity or revenue</tspan><tspan x="150.0" dy="13">share, held permanently</tspan></text></g>
-</svg>
-<p class="note" style="text-align:center">What took twelve people now takes two - then we listen again.</p>
-</section>
-
-<section><div class="k">08 &middot; Terms</div>
-<h2>THE $6M CAP IS OPEN UNTIL THE END OF THE MONTH.</h2>
-<div class="lead">The $6M cap stays open through <b>August 31</b>. It reopens on <b>September 21 - World Gratitude Day</b> at a new valuation based on our revised projections. Same company, higher price.</div>
-<div class="safe">
-  <div class="safehead">
-    <div><em>Your ticket</em><strong id="sTicket">$18,000</strong></div>
-    <div><em>Cap, this tranche</em><strong>$6M</strong></div>
-    <div class="hot"><em>You own</em><strong id="sOwn">0.300%</strong></div>
-    <div><em>Open until</em><strong>Aug 31</strong></div>
-  </div>
-  <label class="sl"><span>Your ticket &mdash; $1,800 to $18,000</span>
-    <input id="rTicket" type="range" min="1800" max="18000" step="1800" value="18000"></label>
-  <div class="safefoot">
-    <div><em>If we are worth $18M</em><b id="r3">$54,000</b><em>3x</em></div>
-    <div><em>If we are worth $60M</em><b id="r10">$180,000</b><em>10x</em></div>
-    <div class="hot"><em>If we are worth $120M</em><b id="r20">$360,000</b><em>20x</em></div>
-  </div>
-</div>
-<h3>Use of funds</h3>
-<table>
-<tr><td>The education engine</td><td class="big">30%</td><td>bootcamps, mastermind, the fall series</td></tr>
-<tr><td>Gigi and the AI layer</td><td class="big">25%</td><td>what lets two people do twenty people's work</td></tr>
-<tr><td>Platform and the next room</td><td class="big">25%</td><td>the Oasis, and a second city with a local host</td></tr>
-<tr><td>Positions in Giraffe ventures</td><td class="big">20%</td><td>JVs, convertible revenue shares, control where it fits</td></tr>
-</table>
-<p class="note">SAFE converts at the cap on the next priced round or a liquidity event.</p>
-
-</section>
-
-
-
-<section class="ask"><div class="w2"><div class="k">The ask</div>
-<h2>THE COMMUNITY OWNS IT.<br>THAT IS THE WHOLE IDEA.</h2>
-<div class="q">We are not pitching VCs. We are inviting the people who helped build this to own a piece of what they created.</div>
-<a class="cta" href="mailto:max@gratefulgiraffes.com?subject=Increasing%20my%20stake%20-%20Grateful%20Labs">Increase my stake</a>
-<p class="fine"><b>$253,300 already invested by 16 investors.</b> 895,160 shares already claimed by 957 community members. Join 957 other Giraffes in shared ownership - the kind you earned by contributing to this ecosystem.</p>
-<p class="fine">Up to $1M &middot; SAFE &middot; $6M cap, open through Aug 31 &middot; $1,800 to $18,000</p>
-<div class="strip facewall"><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/b70ae69d8_IMG_2596.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/2dd4a2efe_Yaronanimationhead.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6137794100607437082dcd4e6560d4f5/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/aa340e127_Galia_Headshot.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/6b5f325b2_IMG_08672.JPG" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9d951aa5a8bd19ee5a5e1f3afeb2951b/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/09bcc81b0_IMG_5215.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/2747f8001_000045740026.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/7d2e8794910baa11c7790b7722193ef1/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/59facb857_IMG_07462.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/a1e19a24a_30e1723c-455b-4442-a326-9428c4cb7f7e.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0e978f301960d0478a405643307d0690/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/3f6e925c3_Aurawave-BusinessCasual-5.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/38989ccfb_Facetune_09-03-2026-11-50-15.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e38b0ed132441041d28bc0f8ca9bd288/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/fd2942939_Gina.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/a956e93fb_Minlingheadshot-Square.png" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9bb3ecf50ed87928f718a77409d74a40/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/e080c2828_IMG_0598.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/c6416f504_20230915_152423.jpg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/9610439aa54cd2f381e9c250e9493658/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/c0cb4f53d_Recent.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/8b7d60ccc_JosephYehsBiographyPhoto-casual.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/29498d081cca886daa45f6f3907e0f1f/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/579026a56_IMG_8634.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/8bc18fcf3_profile.png" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/5e0a4df5648071affd3f5ce53af24656/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/b99867cb7_BF07E52A-4B52-44A9-98FC-C828138184C4.png" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/357a40e2d_JustinWenckProfileBioPic.jpg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/394cae9a14fa65ec92b4762c0d5fa1ca/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/15a3bb256_IMG_7754.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/7d8a2f4fb_Viewrecentphotos.png" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/8183adab8169ce17472ba53b3bbfb369/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/7eac3ae1e_headshot-2.png" class="on" alt="" loading="lazy"><img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69882c256690d6f8c4ce18bf/4b64e1858_image.png" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/b96b3c5be741d330606430a30c9e76fc/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/61966cf71_SamWorek-Headshot1.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/84bf52620_88977D81-E22B-4972-8E18-B020E5FAE5F2.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/cf5befeb1bfcd7ced9a6fd5d0a88cdd5/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/d4394084a_IMG_5007.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/51af7e6b3_IMG_6834.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/fbcdf673cad5e8c8c27496f97909505a/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/3db59e186_gs202421-copy.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/dafbaeef1_IMG_0001.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/0ea754430041901dd47fbc5e00c38589/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/72dd50284_AvivaHeadshot-cropped.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/082460312_2025Marrakech_BobinBrownJacket1.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/6a2bbbcd881f19c8b1401e9eb7f2e204/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/7220c6bcb_WhatsAppImage2026-04-12at1430066.jpg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/a03018774_imariai.jpeg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/db3b9f2ddd1c4769d7550d4e0006271e/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/e8c01cda4_d.jpeg" class="on" alt="" loading="lazy"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/d132121af_HarryHeadshots_2026.jpg" class="" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/3ec46643eccef8b9f3dbdc1bc31f8481/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/34438f78d_Screenshot2026-01-30at20953PM.png" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/c945cee165f6777cdd9b7bc940535a20/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/b3dfc8b8a_robert-avatar.png" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/28904d22a0c53892e00919328996e7b9/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/36386c7bc0df701b65b1c0c1e45a74bf/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/6c595ef38_DtalHeadshotLensa.JPG" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/e515b2b9c33148fe7f11a3314351e2ab/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/public/69882c256690d6f8c4ce18bf/0dc337964_Edited1.jpeg" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/393d091a354eda98bc069ff14eef1e68/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div><div class="tile"><img src="https://base44.app/api/apps/69882c256690d6f8c4ce18bf/files/mp/public/69882c256690d6f8c4ce18bf/77a1179ba_IMG_1956.jpeg" class="on" alt="" loading="lazy"><img src="https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/4431c3c4597ce810cc0ae21c07742c2d/thumbnails/thumbnail.jpg" class="" alt="" loading="lazy"></div></div>
-</div></section>
-
-<section><div class="k">Appendix &middot; The deep dive, question by question</div>
-<h2>25 QUESTIONS. FIVE SECTIONS. EVERY ANSWER.</h2>
-<div class="lead">Volunteered, by name, by people who own equity. Choice questions quantified; open questions in their own words.</div>
-<div class="pills" id="blk">
-<button class="pill2" onclick="dd(0,0,true)">Current state</button>
-<button class="pill2" onclick="dd(1,0,true)">Roadblocks</button>
-<button class="pill2" onclick="dd(2,0,true)">Joy &amp; flow</button>
-<button class="pill2" onclick="dd(3,0,true)">Connections</button>
-<button class="pill2" onclick="dd(4,0,true)">Contribution</button>
-</div>
-<div class="pills sub" id="blksub"></div>
-<div class="segbox" id="blkbox"></div>
-</section>
-<footer class="w">Internal draft &middot; figures reconciled against Stripe (both accounts), the Oasis and the cap table &middot; 2026-08-14</footer>
-</div><script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
-<script>
-var G={"2022": {"n": "100 members", "h": "The Gratitude Wall, then the founding.", "d": "It starts with a wall in Tel Aviv: the Gratitude Wall brings more than 2,000 people together. Grateful Giraffes is founded in February; the first Evening of Gratitude runs June 2.", "g": [{"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2022_0.mp4", "t": "Most walls divide us.  The Gratitude Wall brou", "s": "Most walls divide us.  The Gratitude Wall brought more than 2,000 people together to practice gratitude, sing, dance, and reconnect.   The Gratitude Wall was an interactive street-art installation in Tel Aviv created by "}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2022_1.mp4", "t": "First week of the wall was very special for us", "s": "First week of the wall was very special for us.  Seeing how much people\u2019s energy was shifted by the simple question of what they are grateful for has really moved us and motivated us. So simple yet so powerful.  We are g"}, {"t": "Wow, what a night! A huge thank you to all the", "u": "img/d444bc11a1f7.jpg", "s": "Wow, what a night! A huge thank you to all the Grateful Giraffes that came out and celebrated with us. To the vendors who brought their own creativity and magic. To the GG team that made this all possible. And to everyon"}, {"t": "Have you seen The Grateful Bus rolling through", "u": "img/d6576e3534e4.jpg", "s": "Have you seen The Grateful Bus rolling through your city yet?  If not, check The Grateful Bus highlight on our page to see when we'll be in your area \ud83e\udd92\ud83d\ude90  #thegratefulbus #bustour #spreadgratitude"}]}, "2023": {"n": "500 members", "h": "Tower House opens in Venice.", "d": "A room of our own on Main Street, Feb 1. Forty events and 800 guests in two months. Safari Fest sells out 550 in December.", "g": [{"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2023_0.mp4", "t": "SAFARI FEST  December 16th  Hollywood", "s": "SAFARI FEST  December 16th  Hollywood"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2023_1.mp4", "t": "What a celebration! Thanks to all the magical ", "s": "What a celebration! Thanks to all the magical people who came out to yesterday\u2019s Giraffes in the House: Pool Party Decompression Edition \ud83e\udd92\u2764\ufe0f  A huge thanks to @reevecollins for graciously hosting us and providing the spa"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2023_2.mp4", "t": "Last night a Tower of 30 Giraffes came togethe", "s": "Last night a Tower of 30 Giraffes came together in Santa Monica for a beautiful dinner party. We sang songs \ud83c\udfb5, lit candles that cast a warm glow \ud83d\udd6f, and shared blessings over food and drink that warmed our hearts and soul"}, {"t": "Thank you beautiful souls for bringing so much", "u": "img/fb2a95171172.jpg", "s": "Thank you beautiful souls for bringing so much light and good vibes to Tower House yesterday \ud83e\udd92 \ud83e\udd0d\ud83e\udd92\ud83e\udd0d\ud83e\udd92\ud83e\udd0d\ud83e\udd92\ud83e\udd0d\ud83e\udd92\ud83e\udd0d  Giraffes In The House #2 Tower House, Venice  26.02.23  \ud83d\udc47\ud83c\udffc We are currently looking for artists, wellness practici"}]}, "2024": {"n": "800 members", "h": "Olympus draws 700.", "d": "A rooftop festival downtown, and the first-ever Oxytocin sells out. The Gratitude Mastermind becomes the first offering that travels.", "g": [{"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2024_0.mp4", "t": "A huge thank you to everyone who supported our", "s": "A huge thank you to everyone who supported our first-ever Oxytocin event this past Saturday \ud83d\udc93  From the fire spinners and mermaids to the artists, musicians, comedians, facilitators, healers, DJs, and wellness brands tha"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2024_1.mp4", "t": "To everyone who contributed to the magic of Ol", "s": "To everyone who contributed to the magic of Olympus we want to express our deepest gratitude \ud83d\ude4f\ud83c\udffc   Thank you to @tentenwilshire, @tentendowntown for hosting us, to @love for sponsoring us, and to all the beautiful souls t"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2024_2.mp4", "t": "We love moments like these \u2728\ud83d\ude0d  Full Olympus re", "s": "We love moments like these \u2728\ud83d\ude0d  Full Olympus recap video coming soon \u2728\ud83d\udd25"}, {"t": "We gathered yesterday in Topanga to begin the ", "u": "img/40dae72abab6.jpg", "s": "We gathered yesterday in Topanga to begin the year with a workshop designed to help our beloved Giraffes clarify their mission and purpose for 2024 \u2764\ufe0f   Check out upcoming event calendar to see what\u2019s in store for Q1\ud83e\udd92\ud83d\ude0a\ud83d\ude4f"}]}, "2025": {"n": "900 members", "h": "Two cities, and the ceremonies.", "d": "The Flourish Accelerator and the Human Flourishing Floor at Frontier Tower in SF. In LA the Safari compounds and the ceremonies deepen. June is the first profitable month.", "g": [{"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2025_0.mp4", "t": "Deep gratitude to all the founders who are joi", "s": "Deep gratitude to all the founders who are joining us for the first-ever Flourish Accelerator at The Frontier Tower in San Francisco \ud83e\udd92\u2728\ud83d\ude4f\ud83c\udffc  We are playing around with a more aligned name for accelerator - stay tuned \ud83d\ude0a\u2764\ufe0f\ud83e\udd92"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2025_1.mp4", "t": "Grateful for today\u2019s incredible Art of Gratitu", "s": "Grateful for today\u2019s incredible Art of Gratitude event at The Frontier Tower \ud83d\ude42\ud83e\udd92\u2764\ufe0f"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2025_2.mp4", "t": "Deep gratitude to the healers, facilitators, g", "s": "Deep gratitude to the healers, facilitators, giraffes, and friends who have come together the last few weeks at the frontier tower in SF \u2728\ud83e\udd92\u267e\ufe0f  We\u2019re just getting started!"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2025_3.mp4", "t": "Tomorrow - Biohacking Safari \u2764\ufe0f\ud83e\udd92 Club Joyful -", "s": "Tomorrow - Biohacking Safari \u2764\ufe0f\ud83e\udd92 Club Joyful - 2pm-8pm \u2728\u26a1\ufe0f"}]}, "2026": {"n": "1,000 members", "h": "The Oasis, Gigi, and AI School.", "d": "Our platform goes live. Gigi answers the phone. AI School opens at $1,440 to $2,000 with Benza Maman, a Giraffe - four cohorts and a 123-person AI Safari.", "g": [{"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2026_0.mp4", "t": "Biohacking Safari #7 - More fun moments from th", "s": "More fun moments from the @gratefulgiraffes event!  Great seeing everyone and connecting with such an incredible group of humans. @themaxmarine @dr_joy_kong @biogena.us @puorilife @almacacao.us  There\u2019s something really "}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2026_4.mp4", "t": "Oxytocin is back after two years \ud83c\udf39\ud83e\udd92", "s": "Oxytocin is back after two years \ud83c\udf39\ud83e\udd92"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2026_5.mp4", "t": "Our evening of gratitude last Friday was so ma", "s": "Our evening of gratitude last Friday was so magical! So grateful for @natan.rabin.music @padma.plum @chi_matt @primalmovesvenice   \ud83c\udfa5: @betheenergysteve"}, {"v": "https://maxthegiraffe.github.io/seedround-media/deck-media/2026_6.mp4", "t": "Deep gratitude to all the amazing people who m", "s": "Deep gratitude to all the amazing people who made this possible! And special thanks to @anew.alchemy !!  Our first AI Safari was epic \ud83d\udd25\ud83e\udd92\ud83e\udd16  \ud83d\udcf9: amazing video by @betheenergysteve"}]}};
-var CURY='2026';
-function mile(y){CURY=y;var d=G[y];
- document.getElementById('mtitle').innerHTML='<b>'+y+'</b> &middot; '+d.h+' <span>'+d.d+'</span>';
- document.getElementById('mgal').innerHTML=d.g.map(function(p,i){
-  var m=p.v?'<video src="'+p.v+'" muted autoplay loop playsinline></video>':'<img src="'+p.u+'" alt="">';
-  return '<figure onclick="pick('+i+')">'+m+'<figcaption>'+p.t+'</figcaption></figure>'}).join('');
- document.querySelectorAll('#mgal video').forEach(function(v){var q=v.play();if(q&&q.catch)q.catch(function(){});});
- document.querySelectorAll('.yrb circle').forEach(function(c){c.setAttribute('fill','var(--paper)')});
- document.querySelector('.yrb[data-y="'+y+'"] circle').setAttribute('fill','var(--accent)');
- pick(0);}
-function pick(i){var d=G[CURY];if(!d.g[i])return;
- document.querySelectorAll('#mgal figure').forEach(function(f,j){f.classList.toggle('sel',j===i)});
- var st=document.getElementById('mstory'); if(st) st.textContent=d.g[i].s||d.g[i].t;}
-var DD=[["Current state", [{"q": "What do you do professionally, and how long have you been doing it?", "n": 117, "sum": "Operators with real mileage: hedge funds, a small VC fund, chiropractic, science, design - many measuring in decades.", "quotes": ["Running a small VC fund since 2020.", "Chiropractor, 18+ years", "Entrepreneur, lifetimes", "Community builder for last 15 years"]}, {"q": "Are you employed, self-employed, building something on the side, or in transition?", "n": 129, "sum": "A community of builders - and many wear more than one hat.", "bars": [["Self-employed / freelance", 69], ["Building a startup or side project", 56], ["Employed full-time", 47], ["Multiple of the above", 33]]}, {"q": "What stage is your work at right now?", "n": 130, "sum": "Mid-flight, not dreaming: 90 are actively building and 49 already scaling.", "bars": [["Active building", 90], ["Scaling", 49], ["Optimizing", 42], ["Early exploration", 35]]}, {"q": "Where are you in life right now - what chapter would you call this?", "n": 116, "sum": "Almost nobody said 'stable'. They name their chapters like book titles - people mid-transformation, not mid-career.", "quotes": ["Warzone", "The 4th quarter, approaching overtime.", "Almost end of the Lonely Chapter... hopefully", "The 2nd mountain", "I just had a child, so whatever you would call that"]}, {"q": "On a scale of 1-10, how aligned do you feel between what you do and who you are?", "n": 130, "sum": "91% say what they do and who they are are mostly or deeply aligned - rare in any professional community.", "bars": [["9-10 (Deeply aligned)", 50], ["7-8 (Mostly aligned)", 68], ["5-6 (Neutral)", 12], ["3-4 (Somewhat misaligned)", 11]]}]], ["Roadblocks", [{"q": "What is the single biggest obstacle standing between you and your next level?", "n": 115, "sum": "The same five walls again and again: systems, focus, doing it alone, being unseen, and money.", "quotes": ["Marketing and visibility. I'm very good at what I do, but not a lot of people know I exist.", "Scaling myself. Doing everything alone isn't sustainable.", "Money, honestly. I'd love to downshift and spend more time playing music."]}, {"q": "Is your current challenge primarily about...", "n": 127, "sum": "Resources first, relationships close behind - the two things a studio is.", "bars": [["Resources (money, tools, time)", 80], ["Relationships (network, team)", 67], ["Skills (knowledge, execution)", 40]]}, {"q": "What is a pattern you keep running into that you haven't fully solved?", "n": 114, "sum": "Inner loops more than outer ones.", "quotes": ["Scarcity mindset", "Closing up when things get hard", "Negative thinking and ruminating", "Follow through"]}, {"q": "Where do you tend to self-sabotage or hold yourself back?", "n": 114, "sum": "Radically honest self-diagnosis.", "quotes": ["I bring chaos", "Being married to stories that no longer serve me", "I am not good at selling myself or my services.", "I can be too much of a perfectionist at times"]}, {"q": "What drains your energy most consistently?", "n": 127, "sum": "The number one drain is admin and logistics - precisely the thing an AI operating layer removes.", "bars": [["Admin & logistics", 83], ["Financial stress", 58], ["My own inner critic", 44], ["Difficult relationships", 43]]}]], ["Joy & flow", [{"q": "What do you do purely for fun - no productivity, no agenda?", "n": 112, "sum": "Overwhelmingly physical and outdoors - a community that plays in person, not on screens.", "quotes": ["Bikes and runs and watches and wine", "Active sports, sailing, dance, music", "Get outside and be off the tech.", "Drums"]}, {"q": "What activity makes you completely lose track of time?", "n": 112, "sum": "Flow lives in creation and connection.", "quotes": ["Playing guitar and writing music", "Deep vulnerability in conversations", "Journeying with plant medicines!", "Cooking"]}, {"q": "What kinds of social experiences energize rather than drain you?", "n": 125, "sum": "Intimate 1:1s and small groups - the exact shape of an Evening of Gratitude.", "bars": [["Intimate 1:1 conversations", 109], ["Small group gatherings (4-10)", 106], ["Adventure & outdoor activities", 100], ["Collaborative work sessions", 57]]}, {"q": "What kind of art, music, food, or culture genuinely moves you?", "n": 112, "sum": "Omnivores with a live-and-embodied bias.", "quotes": ["Salsa Music. Afrohouse. Live festivals.", "Immersive experiential art, Asian food", "Anything deeply connected to the earth", "Persian"]}, {"q": "What is the most fun you have had in a group setting in the last year?", "n": 111, "sum": "Peak moments are shared and unplugged - mountains, oceans, dance floors, births.", "quotes": ["Giving birth", "Hiking 60 miles with a crew to Mount Whitney.", "Dancing in Ibiza", "A sailing trip in the British Virgin Islands."]}]], ["Connections", [{"q": "What introduction would most meaningfully change your trajectory right now?", "n": 111, "sum": "Half business, half heart. This is Gigi's work queue.", "quotes": ["A Series A investor", "Future husband", "LPs haha", "A business partner who knows AI and how to create structure", "An agent or publisher interested in my writing"]}, {"q": "Are you looking for...", "n": 123, "sum": "They come for work AND belonging, in almost equal measure.", "bars": [["Collaborators", 85], ["Advisors / mentors", 83], ["Clients / customers", 77], ["Friends", 61]]}, {"q": "What resource would unlock the most for you right now?", "n": 122, "sum": "Network access beats capital - what a community-studio hands over on day one.", "bars": [["Access to a network or industry", 82], ["Capital or funding", 56], ["Specific knowledge or expertise", 48], ["Time or bandwidth", 44]]}, {"q": "What kinds of conversations do you rarely get to have but deeply crave?", "n": 111, "sum": "A hunger for depth: less small talk, more reality.", "quotes": ["Playful or deep, less small talk", "Conversations about our reality.", "Geopolitics", "Sharing about life and inner work"]}, {"q": "What would make you feel like this community was one of the best decisions you ever made?", "n": 111, "sum": "Belonging with proof - and a striking number already answered 'it already did.'", "quotes": ["It already did!", "Soul Tribe", "Leveling up in all areas of life", "I get published"]}]], ["Contribution", [{"q": "What is something you know exceptionally well that others come to you for?", "n": 110, "sum": "A faculty hiding in a community.", "quotes": ["Startup advice, go to market, AI tech", "Wisdom. Groundedness. Good Vibes.", "Women's health", "Video production, and cooking advise."]}, {"q": "What could you teach, facilitate, or lead that would genuinely move people?", "n": 110, "sum": "Enough workshops to fill a year's calendar without hiring anyone.", "quotes": ["Breathwork and mindfulness workshops", "Building teams, growing a product", "How to find your joy and live in joy", "Torah"]}, {"q": "What network, world, or community do you have meaningful access to that others might not?", "n": 110, "sum": "Distribution the studio did not have to buy.", "quotes": ["VCs and entrepreneurs in the US and Israel", "The comedy world", "Google employees. Kaizen Dojo men's circle.", "Soho House network"]}, {"q": "How do people generally feel after spending time with you?", "n": 122, "sum": "Seen and understood, first - the community's own definition of its value.", "bars": [["Seen and understood", 94], ["Energized and inspired", 86], ["Calm and grounded", 81], ["Entertained and joyful", 63]]}, {"q": "What is the gift you most want to be known for giving within this community?", "n": 109, "sum": "Almost nobody said a product. They want to be known for listening, connecting, transforming.", "quotes": ["Deep listening and understanding.", "Helping make meaningful connections", "The gift of inner transformation", "Unlimited conversational energy."]}]]];
-var ddS=0,ddQ=0,blkT=null;
-function dd(s,q,manual){ddS=s;ddQ=q;var sec=DD[s],qs=sec[1],d=qs[q];
- document.querySelectorAll('#blk .pill2').forEach(function(r,j){r.classList.toggle('sel',j===s)});
- document.getElementById('blksub').innerHTML=qs.map(function(x,j){
-  return '<button class="pill2 mini'+(j===q?' sel':'')+'" onclick="dd('+s+','+j+',true)">Q'+(j+1)+'</button>'}).join('')+
-  '<span class="subq">'+d.q+'</span>';
- var body='<p class="bqq">'+d.sum+' <span>&middot; '+d.n+' answered</span></p>';
- if(d.bars){var mx=d.bars[0][1];
-  body+=d.bars.map(function(b){var pct=Math.round(b[1]/d.n*100);
-   return '<div class="abar" title="'+b[0]+': '+b[1]+' of '+d.n+' ('+pct+'%)"><span>'+b[0]+'</span>'+
-   '<div class="atrack"><i style="width:'+(b[1]/mx*100)+'%"></i></div><b>'+b[1]+'</b></div>'}).join('');}
- if(d.quotes){body+=d.quotes.map(function(x){return '<p class="bq">&ldquo;'+x+'&rdquo;</p>'}).join('');}
- document.getElementById('blkbox').innerHTML=body;
- if(manual&&blkT){clearInterval(blkT);blkT=null;}}
-var SEG=[["Founder", 45.5, "Max Marine holds 5,000,000 shares. Sole director and shareholder at incorporation, March 2022."], ["Co-founders", 20.0, "Two people at 10% each on four-year vests. Julian Melcer, active. Adar Weinreb, departed 2024, position unchanged."], ["Community Trust", 20.0, "2,200,000 shares committed to members. 957 hold allocations, 89 agreements signed, the rest in flight."], ["Investors", 8.1, "888,439 shares. $253,300 invested in our SAFE across 20 investors."], ["Advisors", 6.5, "711,561 shares issued for advisory work across four years."]];
-function seg(i){var d=SEG[i];
- document.getElementById('segbox').innerHTML='<b>'+d[0]+' &middot; '+d[1]+'%</b> '+d[2];
- document.querySelectorAll('.cap .row').forEach(function(r,j){r.classList.toggle('sel',j===i)});}
-function closev(f){
- var v=f.querySelector('video'); if(v){try{v.pause()}catch(e){}}
- if(f._hls){try{f._hls.destroy()}catch(e){} f._hls=null;}
- f.classList.remove('on'); f.innerHTML=f.dataset.snap;}
-function playv(f){
- if(f.classList.contains('on')){ // second tap toggles sound
-  var v=f.querySelector('video'); if(v){v.muted=!v.muted;
-   var p=f.querySelector('.pill'); if(p)p.textContent=v.muted?'Tap for sound':'Sound on';
-   if(!v.muted){var pr=v.play(); if(pr&&pr.catch)pr.catch(function(){});}}
-  return;}
- var src=f.dataset.hls; if(!src)return;
- document.querySelectorAll('.gcard.on').forEach(closev);
- f.dataset.snap=f.innerHTML; f.classList.add('on');
- f.innerHTML='<video playsinline loop preload="auto"></video>'+
-  '<span class="veil"></span>'+
-  '<span class="pill" style="opacity:1">Sound on</span>'+
-  '<div class="cc">'+(f.dataset.cap||'')+'</div>'+
-  '<figcaption>'+f.dataset.name+'</figcaption>'+
-  '<button class="cls" onclick="event.stopPropagation();closev(this.parentNode)">&times;</button>';
- var v=f.querySelector('video');
- v.muted=false;
- function go(){var p=v.play(); if(p&&p.catch)p.catch(function(){v.muted=true;var pl=f.querySelector('.pill');if(pl)pl.textContent='Tap for sound';v.play().catch(function(){});});}
- if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=src;v.addEventListener('loadedmetadata',go,{once:true});}
- else if(window.Hls&&Hls.isSupported()){var h=new Hls();f._hls=h;h.loadSource(src);h.attachMedia(v);h.on(Hls.Events.MANIFEST_PARSED,go);}
+/* tablet and phone */
+@media (max-width:900px){
+  section{padding:84px 0 48px;align-items:flex-start}
+  .split{grid-template-columns:1fr;gap:28px}
+  .split.flip > .media{order:0}
+  .media{aspect-ratio:16/11}
+  .media.sq{aspect-ratio:16/11}
+  .device{padding-bottom:12%}
+  .ix li a{grid-template-columns:36px 1fr;gap:4px 12px}
+  .ix .d{grid-column:2}
+  .ix .s{grid-column:2}
+  .team{grid-template-columns:1fr}
+  .terms{grid-template-columns:1fr}
 }
+@media (max-width:600px){
+  body{font-size:16px}
+  .stats,.stats.four{grid-template-columns:1fr 1fr}
+  .stat{padding:14px 12px 14px 0 !important;border-left:0 !important;border-bottom:1px solid var(--line)}
+  .stat:nth-child(even){padding-left:14px !important;border-left:1px solid var(--line) !important}
+  .btn{width:100%;justify-content:center}
+  .mark span{display:none}
+  .cover h1{font-size:clamp(42px,12vw,56px)}
+  .cover .stats{margin-top:22px}
+  .cover .btns{margin-top:22px}
+  .chart{height:240px}
+  .col .v{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
+</style>
+</head>
+<body>
 
-(function(){document.querySelectorAll('.strip .tile').forEach(function(t,i){
-  var im=t.querySelectorAll('img'); if(im.length<2)return; var n=0;
-  setTimeout(function(){setInterval(function(){im[n].classList.remove('on');n=(n+1)%im.length;im[n].classList.add('on');},4200);},i*700);});
- mile('2026');seg(2);dd(0,0);blkT=setInterval(function(){var q=ddQ+1,s2=ddS;if(q>=DD[s2][1].length){q=0;s2=(s2+1)%DD.length;}dd(s2,q);},7000);})();
-</script><script>
+<header class="bar"><div class="wrap">
+  <a class="mark" href="#top">Grateful Labs<span>Seed round · 2026</span></a>
+  <div class="count" id="count">01 / 13</div>
+</div></header>
+
+<main>
+
+<!-- 01 · Cover -->
+<section id="top" class="cover"><div class="wrap split">
+  <div>
+    <h1>Grateful Labs<span class="sub">A community-owned venture studio. Eight ventures, built with 1,005 members who own a piece of it.</span></h1>
+    <div class="stats four">
+      <div class="stat"><b>$1.04M</b><span>revenue since 2022</span></div>
+      <div class="stat"><b>1,005</b><span>Giraffes on the cap table</span></div>
+      <div class="stat"><b>500+</b><span>events, 15,000 people</span></div>
+      <div class="stat"><b>1.7x</b><span>2026 revenue vs all of 2025</span></div>
+    </div>
+    <div class="btns">
+      <a class="btn primary" href="#studio">Read the deck <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a class="btn" target="_top" href="sms:+15164197249?&body=I'd%20like%20the%20seed%20round%20details">Ask Gigi about the round</a>
+    </div>
+  </div>
+  <div class="media wide"><img src="img/cover.jpg" alt="Grateful Giraffes members together at a gathering" fetchpriority="high"></div>
+</div></section>
+
+<!-- 02 · Revenue -->
+<section id="traction"><div class="wrap">
+  <div class="kick">Traction</div>
+  <h2>2026 is already 1.7x all of 2025.</h2>
+  <p class="lede" style="max-width:64ch;margin-bottom:26px">$285K so far this year, $1.04M since we started in 2022. AI School took revenue to a new level in May, and it has held there since.</p>
+  <div class="charts">
+    <div><h3>Revenue by year</h3>
+      <div class="chart sm" style="--n:5" role="img" aria-label="Revenue by year: 2022 $215,939; 2023 $174,757; 2024 $198,741; 2025 $166,794; 2026 $285,172 through Nov 18"><div class="col"><span class="v">$216K</span><div class="b" style="height:69.7%"></div></div><div class="col"><span class="v">$175K</span><div class="b" style="height:56.4%"></div></div><div class="col"><span class="v">$199K</span><div class="b" style="height:64.1%"></div></div><div class="col"><span class="v">$167K</span><div class="b" style="height:53.8%"></div></div><div class="col now peak part"><span class="v">$285K</span><div class="b" style="height:92.0%"></div></div></div>
+      <div class="years" style="--n:5"><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div></div>
+    <div><h3>2026 by month</h3>
+      <div class="chart sm m" style="--n:11" role="img" aria-label="2026 revenue by month: Jan $4,041; Feb $8,038; Mar $16,720; Apr $16,886; May $28,874; Jun $61,476; Jul $41,419; Aug $25,989; Sep $27,375; Oct $32,824; Nov $21,531 through Nov 18"><div class="col"><span class="v">$4K</span><div class="b" style="height:6.0%"></div></div><div class="col"><span class="v">$8K</span><div class="b" style="height:12.0%"></div></div><div class="col"><span class="v">$17K</span><div class="b" style="height:25.0%"></div></div><div class="col"><span class="v">$17K</span><div class="b" style="height:25.3%"></div></div><div class="col"><span class="v">$29K</span><div class="b" style="height:43.2%"></div></div><div class="col peak"><span class="v">$61K</span><div class="b" style="height:92.0%"></div></div><div class="col"><span class="v">$41K</span><div class="b" style="height:62.0%"></div></div><div class="col"><span class="v">$26K</span><div class="b" style="height:38.9%"></div></div><div class="col"><span class="v">$27K</span><div class="b" style="height:41.0%"></div></div><div class="col"><span class="v">$33K</span><div class="b" style="height:49.1%"></div></div><div class="col part"><span class="v">$22K</span><div class="b" style="height:32.2%"></div></div></div>
+      <div class="years" style="--n:11"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span></div></div>
+  </div>
+  <div class="mix"><span>2026 mix:</span><span><b>44%</b> AI School</span><span><b>19%</b> membership</span><span><b>13%</b> tickets</span><span><b>10%</b> sponsorship</span><span><b>14%</b> other</span></div>
+</div></section>
+
+
+<!-- 02 · The studio -->
+<section id="studio"><div class="wrap">
+  <div class="kick">The studio</div>
+  <h2>One community. Eight ventures on shared rails.</h2>
+  <p class="lede" style="max-width:60ch;margin-bottom:20px">Each venture starts with a need our members already have, runs on the same platform and agent, and sells to a community that already trusts us.</p>
+  <ol class="ix">
+    <li><a href="#giraffes"><span class="n">01</span><span class="t">Grateful Giraffes</span><span class="d">The member community and its gatherings</span><span class="s">Since 2022</span></a></li>
+    <li><a href="#oasis"><span class="n">02</span><span class="t">The Oasis</span><span class="d">Our own platform: tickets, payments, rooms, equity</span><span class="s">Live</span></a></li>
+    <li><a href="#gigi"><span class="n">03</span><span class="t">Gigi</span><span class="d">Chief of staff and community agent</span><span class="s">Live</span></a></li>
+    <li><a href="#aischool"><span class="n">04</span><span class="t">AI School</span><span class="d">Claude Code training for entrepreneurs</span><span class="s">Live</span></a></li>
+    <li><a href="#health"><span class="n">05</span><span class="t">Grateful Health</span><span class="d">Quality care at member rates</span><span class="s">Launched Nov 2026</span></a></li>
+    <li><a href="#research"><span class="n">06</span><span class="t">Grateful Research</span><span class="d">Syndicated studies from a community that answers</span><span class="s">Forming</span></a></li>
+    <li><a href="#media"><span class="n">07</span><span class="t">Grateful Media</span><span class="d">Reels that grow the audience every venture sells to</span><span class="s">Growing fast</span></a></li>
+    <li><a href="#acacia"><span class="n">08</span><span class="t">Acacia</span><span class="d">Our accelerator for founders in the community</span><span class="s">Forming</span></a></li>
+  </ol>
+</div></section>
+
+<!-- 03 · Grateful Giraffes -->
+<section id="giraffes"><div class="wrap split">
+  <div>
+    <div class="kick"><span class="n">01</span> Grateful Giraffes <span class="pill">Since 2022</span></div>
+    <h2>The community everything is built on.</h2>
+    <p class="lede">1,005 members, each of them a co-owner of Grateful Labs. Head in the clouds, feet on the ground.</p>
+    <div class="stats">
+      <div class="stat"><b>500+</b><span>events since 2022</span></div>
+      <div class="stat"><b>15,000</b><span>people through the door</span></div>
+      <div class="stat"><b>1,005</b><span>Giraffes on the cap table</span></div>
+    </div>
+    <p class="body">Salons of 20 to festivals of 700 in Los Angeles. <strong>Olympus</strong> drew 675 RSVPs, <strong>Safari Fest</strong> 490. Fewer rooms each year, and more revenue in each one.</p>
+  </div>
+  <div class="media"><img src="img/giraffes.jpg" alt="A Grateful Giraffes gathering in a warehouse space" loading="lazy"></div>
+</div></section>
+
+<!-- 04 · The Oasis -->
+<section id="oasis"><div class="wrap split flip">
+  <div class="media device">
+    <div class="browser"><div class="chrome"><i></i><i></i><i></i><em>app.grateful.gg</em></div><img src="img/oasis-web.jpg" alt="The Oasis web app" loading="lazy"></div>
+    <div class="phone"><img src="img/oasis-phone.jpg" alt="The Oasis on a phone" loading="lazy"></div>
+  </div>
+  <div>
+    <div class="kick"><span class="n">02</span> The Oasis <span class="pill">Live since Feb 2026</span></div>
+    <h2>Our own platform, owned outright.</h2>
+    <p class="lede">Ticketing, payments, profiles, live rooms and the equity layer, in one app every venture runs on.</p>
+    <div class="stats four">
+      <div class="stat"><b>$179K</b><span>through its own checkout since Feb</span></div>
+      <div class="stat"><b>1,553</b><span>accounts, up from 1,189 in Aug</span></div>
+      <div class="stat"><b>2,244</b><span>RSVPs across 77 events in 2026</span></div>
+      <div class="stat"><b>1,340</b><span>updates shipped</span></div>
+    </div>
+    <p class="body">About <strong>640,000 lines of code</strong> we own, built with AI by a team of two. Since Nov 2 it runs on our own infrastructure.</p>
+    <div class="next"><p class="nl">Next</p><p>Open the Oasis to other communities, so they can host their own events and offerings on it.</p></div>
+  </div>
+</div></section>
+
+<!-- 05 · Gigi -->
+<section id="gigi"><div class="wrap split">
+  <div>
+    <div class="kick"><span class="n">03</span> Gigi <span class="pill">Live</span></div>
+    <h2>A chief of staff who never sleeps.</h2>
+    <p class="lede">Our own agent with 87 tools and a 3D avatar. Members reach her by text, phone and video.</p>
+    <div class="stats four">
+      <div class="stat"><b>1,587</b><span>voice conversations</span></div>
+      <div class="stat"><b>271</b><span>hours on calls</span></div>
+      <div class="stat"><b>6,800</b><span>texts with 169 people since Oct 11</span></div>
+      <div class="stat"><b>18,843</b><span>emails sent in the last 30 days</span></div>
+    </div>
+    <p class="body">In the last 30 days alone she held <strong>552 calls, 170 hours</strong>. She onboards members, books calls, makes introductions and follows up with every lead.</p>
+    <div class="next"><p class="nl">Next</p><p>A Gigi for every community on the Oasis, and a subscription members pay for.</p></div>
+  </div>
+  <div class="media sq"><img src="img/gigi.jpg" alt="Gigi, the Grateful Giraffes agent" loading="lazy"></div>
+</div></section>
+
+<!-- 06 · AI School -->
+<section id="aischool"><div class="wrap split flip">
+  <div class="media"><img src="img/aischool.jpg" alt="An AI School bootcamp session in Venice" loading="lazy" style="object-position:40% center"></div>
+  <div>
+    <div class="kick"><span class="n">04</span> AI School <span class="pill">Live</span></div>
+    <h2>$134K in six months.</h2>
+    <p class="lede">Claude Code training for entrepreneurs, built with Benza Maman, Udemy's #1 AI instructor with 500,000+ students.</p>
+    <div class="stats four">
+      <div class="stat"><b>$134K</b><span>bootcamp revenue since May</span></div>
+      <div class="stat"><b>100</b><span>paid seats</span></div>
+      <div class="stat"><b>8</b><span>bootcamps run, #7 this weekend</span></div>
+      <div class="stat"><b>44%</b><span>of 2026 revenue</span></div>
+    </div>
+    <p class="body">The first <strong>$90K came in 70 days</strong>, with no ad spend.</p>
+    <div class="next"><p class="nl">Next</p><p>AI School is now a monthly membership in the Oasis, with live sessions every Thursday. 22 members are in their free month.</p></div>
+  </div>
+</div></section>
+
+<!-- 07 · Grateful Health -->
+<section id="health"><div class="wrap split">
+  <div>
+    <div class="kick"><span class="n">05</span> Grateful Health <span class="pill">Launched Nov 2026</span></div>
+    <h2>Quality care at member rates.</h2>
+    <p class="lede">Health and longevity care our members already want, at rates Gigi negotiates for the whole community.</p>
+    <div class="stats">
+      <div class="stat"><b>Live</b><span>physician-led store with Platform Health</span></div>
+      <div class="stat"><b>Nov 14</b><span>Biohacking Safari, our launch event</span></div>
+      <div class="stat"><b>9</b><span>partner offers for members</span></div>
+    </div>
+    <p class="body">More members means better prices, and better prices bring more members. Every partner gets a room of buyers who trust the recommendation.</p>
+  </div>
+  <div class="media"><img src="img/health.jpg" alt="A treatment at the Biohacking Safari" loading="lazy"></div>
+</div></section>
+
+<!-- 08 · Grateful Research -->
+<section id="research"><div class="wrap split flip">
+  <div class="media"><img src="img/research.jpg" alt="A member writing on the gratitude wall" loading="lazy"></div>
+  <div>
+    <div class="kick"><span class="n">06</span> Grateful Research <span class="pill">Forming</span></div>
+    <h2>Field a study once. Sell it to many.</h2>
+    <p class="lede">Our members answer us in depth. Brands in wellness, AI and community pay to understand exactly these people.</p>
+    <div class="stats">
+      <div class="stat"><b>6,997</b><span>survey answers on file</span></div>
+      <div class="stat"><b>578</b><span>members who answered in depth</span></div>
+      <div class="stat"><b>$153B</b><span>global insights industry, 2025</span></div>
+    </div>
+    <p class="body">Research is a by-product of how we already operate. Fielding a question costs a message, not a recruiting budget.</p>
+  </div>
+</div></section>
+
+<section id="media"><div class="wrap">
+  <div class="kick"><span class="n">07</span> Grateful Media <span class="pill">Last two weeks</span></div>
+  <h2>Reels that grow the herd.</h2>
+  <p class="lede" style="max-width:62ch">Short breath and sound Reels with animals, made in-house with AI. They bring the audience every venture sells to.</p>
+  <div class="plats">
+    <div class="plat"><span class="who">Instagram · @gratefulgiraffes</span><span class="big">7,908</span><span class="up">+1,903 followers in 14 days, +32%</span><svg class="spark" viewBox="0 0 280 60" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,60 0,54.3 20,44.5 40,41.3 60,39.7 80,37.9 100,36.4 120,35.4 180,24.1 220,11.6 240,9.0 260,6.2 280,5.4 280,60" class="sa"/><polyline points="0,54.3 20,44.5 40,41.3 60,39.7 80,37.9 100,36.4 120,35.4 180,24.1 220,11.6 240,9.0 260,6.2 280,5.4" class="sl"/></svg>
+      <ul><li>Views, Nov 5 to 19<b>706,949</b></li><li>Accounts reached<b>394,270</b></li><li>Shares and saves<b>30,123</b></li><li>Top Reel, Nov 13<b>138,555 views</b></li></ul></div>
+    <div class="plat"><span class="who">Facebook · Grateful Giraffes</span><span class="big">17,853</span><span class="up">from 293 followers on Oct 30</span>
+      <ul><li>Views, Nov 1 to 8<b>2.53M</b></li><li>Engagements<b>69,378</b></li><li>New followers<b>17,538</b></li></ul></div>
+    <div class="plat"><span class="who">YouTube · The Oasis is now</span><span class="big">New</span><span class="up">channel opened Nov 2026</span>
+      <ul><li>Videos<b>3</b></li><li>Next<b>every Reel, also on Shorts</b></li></ul></div>
+  </div>
+</div></section>
+
+<!-- 09 · Acacia -->
+<section id="acacia"><div class="wrap split">
+  <div>
+    <div class="kick"><span class="n">08</span> Acacia <span class="pill">Forming</span></div>
+    <h2>The accelerator for founders in the herd.</h2>
+    <p class="lede">Our members are founders. Acacia gives them the community, the platform and the agent we built for ourselves.</p>
+    <div class="stats">
+      <div class="stat"><b>8</b><span>founders per pod</span></div>
+      <div class="stat"><b>30%</b><span>of members hold founder or CEO titles</span></div>
+      <div class="stat"><b>1st</b><span>proof: AI School, a member's expertise</span></div>
+    </div>
+    <p class="body">AI School began as a partnership with one member. Acacia makes that repeatable: we back member ventures with launch, distribution and the Oasis, and take a <strong>position in each one</strong>.</p>
+  </div>
+  <div class="media wide"><img src="img/acacia.jpg" alt="Founders working together at a session" loading="lazy"></div>
+</div></section>
+
+<!-- 11 · Team -->
+<section id="team"><div class="wrap">
+  <div class="kick">Team</div>
+  <h2>Builders who are also members.</h2>
+  <div class="team">
+    <div class="person"><h3>Max Marine</h3><div class="role">CEO &amp; co-founder</div><ul><li>CFA charterholder</li><li>Seven years in Israeli venture capital: iAngels, lool</li><li>Author of <em>Raising Your Seed Round</em> (2017)</li><li>Built the first versions of the Oasis and Gigi</li></ul></div>
+    <div class="person"><h3>Julian Melcer</h3><div class="role">Co-founder</div><ul><li>Founded Clean the Butts, a profitable beach-recycling business in Israel</li><li>Experience designer and somatic facilitator</li><li>Shaped the event format the studio still runs</li></ul></div>
+    <div class="person"><h3>Benza Maman</h3><div class="role">AI School partner</div><ul><li>Udemy's #1 AI instructor</li><li>500,000+ students taught</li><li>Co-built and teaches every AI School cohort</li></ul></div>
+  </div>
+</div></section>
+
+<!-- 12 · The round -->
+<section id="round"><div class="wrap split flip">
+  <div class="media"><img src="img/round.jpg" alt="Grateful Giraffes members together at home" loading="lazy"></div>
+  <div>
+    <div class="kick">The round</div>
+    <h2>The community owns it. That is the whole idea.</h2>
+    <p class="lede">We are inviting the people who helped build this to own more of what comes next.</p>
+    <div class="terms">
+      <div class="term"><span class="lbl">Pre-seed · closed</span><b>$360K</b><p>Led by Mindfulness Capital, with 25+ Giraffes participating.</p></div>
+      <div class="term open"><span class="lbl">Seed · opening soon</span><b>8 ventures</b><p>Funds the Oasis, Gigi, AI School, Grateful Health, Grateful Research, Grateful Media and Acacia.</p></div>
+    </div>
+    <div class="btns"><a class="btn primary" target="_top" href="sms:+15164197249?&body=I'd%20like%20the%20seed%20round%20details">Ask Gigi for the terms</a></div>
+    <p class="fine">Confidential. For Grateful Labs shareholders and people we know. This is not an offer to sell securities; terms are shared one to one.</p>
+  </div>
+</div></section>
+
+</main>
+<footer><div class="wrap">Grateful Labs · figures as of Nov 19, 2026 · revenue from Stripe and Venmo, net of fees · 2026 and November are partial</div></footer>
+
+
+<script>
 (function(){
- var svg=document.querySelector('svg[aria-label*="Top price"]');
- if(!svg)return;
- var DUR=10000;
- var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
- var polys=[].slice.call(svg.querySelectorAll('polyline'));
- var dots=[].slice.call(svg.querySelectorAll('circle')).filter(function(c){return !c.closest('.yrb')});
- var yrs=[].slice.call(svg.querySelectorAll('.yrb'));
- var ends=[].slice.call(svg.querySelectorAll('text')).filter(function(t){return +t.getAttribute('x')>706});
- function prep(){
-  polys.forEach(function(p){var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;});
-  dots.concat(ends).forEach(function(e){e.style.opacity=0;e.style.transition='opacity .45s ease'});
-  yrs.forEach(function(g){g.style.opacity=0;g.style.transition='opacity .55s ease, transform .55s ease';g.style.transform='translateY(10px)'});
- }
- function run(){
-  polys.forEach(function(p){p.style.transition='stroke-dashoffset '+DUR+'ms cubic-bezier(.45,0,.25,1)';});
-  requestAnimationFrame(function(){requestAnimationFrame(function(){
-   polys.forEach(function(p){p.style.strokeDashoffset=0;});});});
-  dots.forEach(function(c){
-   var f=(+c.getAttribute('cx')-74)/(700-74);
-   setTimeout(function(){c.style.opacity=1},Math.max(0,f*DUR-150));});
-  yrs.forEach(function(g,i){
-   var y=g.getAttribute('data-y');
-   setTimeout(function(){g.style.opacity=1;g.style.transform='translateY(0)';
-    if(typeof mile==='function')mile(y);},i*(DUR/4)*0.98+250);});
-  ends.forEach(function(t){setTimeout(function(){t.style.opacity=1},DUR-100);});
- }
- if(reduce)return;
- var fired=false;
- var io=new IntersectionObserver(function(en){
-  en.forEach(function(e){if(e.isIntersecting&&!fired){fired=true;prep();
-   requestAnimationFrame(function(){run()});io.disconnect();}});
- },{threshold:0.45});
- io.observe(svg);
+  var secs=[].slice.call(document.querySelectorAll('main > section')), c=document.getElementById('count'), tot=String(secs.length).padStart(2,'0');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.textContent=String(secs.indexOf(e.target)+1).padStart(2,'0')+' / '+tot}})},{threshold:.5});
+  secs.forEach(function(s){io.observe(s)});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest('input,textarea'))return;
+    var i=secs.findIndex(function(s){return s.getBoundingClientRect().top>-innerHeight/2});
+    if(e.key==='ArrowRight'){e.preventDefault();(secs[i+1]||secs[i]).scrollIntoView()}
+    if(e.key==='ArrowLeft'){e.preventDefault();(secs[i-1]||secs[0]).scrollIntoView()}
+  });
 })();
-</script><script>var QTRS={"2022": null, "2023": {"q": [36999, 36590, 36208, 63127], "partial": [0], "note": "Q1 covers Jan-Mar only; the Dec 2022 tail is unrecoverable from the books."}, "2024": {"q": [55466, 65771, 31537, 38304], "partial": [], "note": ""}, "2025": {"q": [38764, 48779, 43129, 39635], "partial": [], "note": ""}, "2026": {"q": [20569, 71147, 96758, null], "partial": [2], "note": "Q3 still has five weeks to run; Q4 has not started."}};
-function qchart(y){
- var d=QTRS[y];
- if(!d) return '<h4 class="ylab">By quarter</h4><p class="note">2022 revenue exists in the books as a single ETH-denominated line with no transaction dates - it cannot be split by quarter.</p>';
- var vals=d.q.filter(function(v){return v!==null}),mx=Math.max.apply(null,vals);
- var bars=d.q.map(function(v,i){
-  if(v===null) return '<div class="qb"><i style="height:2px;background:var(--hair)"></i><em>Q'+(i+1)+'</em><b>&mdash;</b></div>';
-  var part=d.partial.indexOf(i)>-1;
-  return '<div class="qb"><b>$'+Math.round(v/1000)+'K</b><i style="height:'+Math.max(3,v/mx*130)+'px'+
-   (part?';background:repeating-linear-gradient(45deg,var(--accent) 0 5px,rgba(236,72,153,.35) 5px 10px)':'')+'"></i><em>Q'+(i+1)+(part?'*':'')+'</em></div>';}).join('');
- return '<h4 class="ylab">By quarter &middot; equinox to equinox</h4><div class="qrow">'+bars+'</div>'+
-  (d.note?'<p class="note">* '+d.note+'</p>':'');
-}
-</script><script>function playt(f){
- if(f.classList.contains('on')){var v=f.querySelector('video');if(v){v.muted=!v.muted;}return;}
- document.querySelectorAll('.twall .tcard.on').forEach(function(o){o.classList.remove('on');o.innerHTML=o.dataset.snap;});
- f.dataset.snap=f.innerHTML; f.classList.add('on');
- f.innerHTML='<video playsinline loop preload="auto"></video><span class="veil"></span>'+
-  '<div class="tq">&ldquo;'+f.dataset.q+'&rdquo;</div>'+
-  '<figcaption><b>'+f.dataset.name+'</b><em>'+f.dataset.role+'</em></figcaption>'+
-  '<button class="cls" onclick="event.stopPropagation();var p=this.closest(\'figure\');p.classList.remove(\'on\');p.innerHTML=p.dataset.snap;">&times;</button>';
- var v=f.querySelector('video'),src='https://customer-w6qpet4v0sgyynjp.cloudflarestream.com/'+f.dataset.uid+'/manifest/video.m3u8';
- v.muted=false;
- function go(){var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=true;v.play().catch(function(){})})}
- if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=src;v.addEventListener('loadedmetadata',go,{once:true});}
- else if(window.Hls&&Hls.isSupported()){var h=new Hls();h.loadSource(src);h.attachMedia(v);h.on(Hls.Events.MANIFEST_PARSED,go);}
-}</script><script>
-</script><script>(function(){
- var im=document.querySelectorAll('.wf'); if(im.length<2) return; var n=0;
- setInterval(function(){im[n].style.opacity=0;n=(n+1)%im.length;im[n].style.opacity=1;},3400);
-})();</script><script></script><script>
-function tmore3(b){var g=b.previousElementSibling;g.classList.remove('collapsed');
-var c=g.querySelectorAll('.tcard');var n=(parseInt(g.dataset.show||'3',10))+3;g.dataset.show=n;
-for(var i=0;i<c.length;i++){c[i].style.display=(i<n)?'':'none';}
-if(n>=c.length){b.style.display='none';}}
-(function(){var ws=document.querySelectorAll('.ecwrap,.ehwrap');if(!ws.length)return;var w=ws[0];
-ws.forEach(function(el){if(el===w)return;var o2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){el.classList.add('ecgo');o2.disconnect();}});},{threshold:.25});o2.observe(el);el.closest('details')&&el.closest('details').addEventListener('toggle',function(){if(this.open)el.classList.add('ecgo');});});
-var fired=false;
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!fired){fired=true;w.classList.add('ecgo');
-if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){setTimeout(function(){var g=document.getElementById('gflash');g.classList.add('on');setTimeout(function(){g.classList.remove('on');},2100);},2050);}
-io.disconnect();}});},{threshold:.35});
-io.observe(w);})();
 </script>
-<script>
-(function(){var a=document.getElementById('rTicket');if(!a)return;
-function m(n){return '$'+n.toLocaleString('en-US',{maximumFractionDigits:0});}
-function upd(){var t=+a.value,pct=t/6000000;
- document.getElementById('sTicket').textContent=m(t);
- document.getElementById('sOwn').textContent=(pct*100).toFixed(3)+'%';
- document.getElementById('r3').textContent=m(Math.round(pct*18000000));
- document.getElementById('r10').textContent=m(Math.round(pct*60000000));
- document.getElementById('r20').textContent=m(Math.round(pct*120000000));}
-a.addEventListener('input',upd);upd();})();
-</script>
-<script>
-(function(){var host=document.getElementById('simrows');if(!host)return;
-var D=[['AI School',54000,271000,1040000],['The Oasis',0,225000,2700000],['Gigi',12000,126000,1500000],
-       ['Grateful Giraffes Events',30000,105000,320000],['Grateful Research',0,210000,1350000]];
-function m(n){return '$'+Math.round(n).toLocaleString('en-US');}
-function k(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':'$'+Math.round(n/1000)+'K';}
-D.forEach(function(d,i){
- var row=document.createElement('label');row.className='simrow';
- row.innerHTML='<span>'+d[0]+'</span><input type="range" data-i="'+i+'" min="'+d[1]+'" max="'+d[3]+'" step="'+Math.max(1000,Math.round((d[3]-d[1])/100))+'" value="'+d[2]+'"><b></b>';
- host.appendChild(row);});
-var rs=[].slice.call(host.querySelectorAll('input')),mr=document.getElementById('mRange'),tr=document.getElementById('tRange');
-function upd(){var tot=0;
- rs.forEach(function(r,i){var v=+r.value;tot+=v;r.parentNode.querySelector('b').textContent=k(v);});
- var mult=+mr.value,t=+tr.value,pct=t/6000000,val=tot*mult,stake=val*pct;
- document.getElementById('mVal').textContent=mult+'x';
- document.getElementById('tVal').textContent=m(t);
- document.getElementById('pVal').textContent=(pct*100).toFixed(3)+'%';
- document.getElementById('oFcf').textContent=k(tot);
- document.getElementById('oVal').textContent=k(val);
- document.getElementById('oStake').textContent=m(stake);
- document.getElementById('oRet').textContent=(stake/t).toFixed(1)+'x';}
-rs.concat([mr,tr]).forEach(function(r){r.addEventListener('input',upd);});
-[].slice.call(document.querySelectorAll('.simpre button')).forEach(function(b){
- b.addEventListener('click',function(){
-  var p=+b.dataset.p;
-  document.querySelectorAll('.simpre button').forEach(function(x){x.classList.remove('on');});
-  b.classList.add('on');
-  rs.forEach(function(r,i){r.value=D[i][p===0?1:(p===1?2:3)];});upd();});});
-upd();})();
-</script>
-<div id="gflash" aria-hidden="true"><svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="gfCoat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eec68d"/><stop offset=".5" stop-color="#dda869"/><stop offset="1" stop-color="#c78d4c"/></linearGradient><linearGradient id="gfPatch" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#c1703a"/><stop offset="1" stop-color="#994f24"/></linearGradient><radialGradient id="gfFade" cx="50%" cy="46%" r="62%"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".55" stop-color="#fff" stop-opacity=".72"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="gfM"><rect width="1200" height="900" fill="url(#gfFade)"/></mask><path id="gp1" d="M0,0 q26,-10 44,4 q14,12 8,32 q-6,18 -28,20 q-24,2 -32,-16 q-8,-22 8,-40 Z"/><path id="gp2" d="M0,0 q30,-4 40,14 q8,20 -6,34 q-18,12 -36,2 q-16,-10 -12,-30 q4,-16 14,-20 Z"/><path id="gp3" d="M0,0 q20,-14 38,-4 q16,10 12,30 q-4,22 -26,24 q-22,2 -28,-18 q-4,-20 4,-32 Z"/></defs><g mask="url(#gfM)"><rect width="1200" height="900" fill="url(#gfCoat)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-123,-120) rotate(38) scale(1.36)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-0,-108) rotate(92) scale(1.13)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(145,-125) rotate(232) scale(1.07)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(282,-100) rotate(194) scale(1.20)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(378,-104) rotate(353) scale(1.39)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(517,-104) rotate(62) scale(1.40)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(663,-130) rotate(88) scale(1.30)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(781,-116) rotate(233) scale(0.99)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(901,-93) rotate(140) scale(1.48)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(1023,-108) rotate(252) scale(1.26)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1165,-99) rotate(6) scale(1.31)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-148,2) rotate(54) scale(1.13)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-20,-17) rotate(323) scale(1.00)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(129,-5) rotate(163) scale(0.92)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(254,-15) rotate(285) scale(1.56)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(393,-19) rotate(57) scale(1.57)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(531,9) rotate(66) scale(1.47)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(629,20) rotate(58) scale(0.87)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(788,-18) rotate(230) scale(1.03)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(929,-2) rotate(179) scale(1.50)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1053,-20) rotate(106) scale(1.45)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(1157,-2) rotate(267) scale(1.03)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-140,100) rotate(216) scale(1.35)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-13,97) rotate(356) scale(1.27)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(124,94) rotate(261) scale(1.06)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(253,109) rotate(284) scale(1.13)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(396,111) rotate(224) scale(1.28)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(538,108) rotate(18) scale(1.11)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(648,99) rotate(332) scale(1.34)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(801,129) rotate(238) scale(1.55)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(916,131) rotate(10) scale(0.89)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1045,118) rotate(215) scale(0.94)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1180,128) rotate(101) scale(1.47)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(-119,241) rotate(327) scale(1.29)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(11,229) rotate(121) scale(1.48)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(118,205) rotate(245) scale(1.52)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(242,206) rotate(99) scale(0.87)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(371,222) rotate(92) scale(1.53)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(503,235) rotate(297) scale(1.54)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(640,235) rotate(306) scale(0.96)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(774,234) rotate(278) scale(1.15)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(907,208) rotate(307) scale(1.53)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1027,236) rotate(228) scale(1.16)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1190,209) rotate(263) scale(0.93)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-114,335) rotate(53) scale(1.07)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-6,329) rotate(6) scale(1.35)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(149,341) rotate(284) scale(0.95)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(250,350) rotate(266) scale(1.52)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(386,342) rotate(105) scale(1.57)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(536,346) rotate(66) scale(1.24)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(650,355) rotate(345) scale(1.13)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(798,317) rotate(161) scale(1.58)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(907,320) rotate(33) scale(1.08)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1023,344) rotate(103) scale(0.89)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1184,316) rotate(115) scale(1.12)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-144,456) rotate(189) scale(1.26)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-23,440) rotate(179) scale(1.24)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(119,466) rotate(101) scale(0.98)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(250,452) rotate(121) scale(1.35)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(408,459) rotate(282) scale(1.21)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(500,460) rotate(268) scale(0.97)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(639,443) rotate(12) scale(1.47)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(800,451) rotate(302) scale(1.15)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(933,440) rotate(79) scale(1.12)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1045,452) rotate(309) scale(1.29)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1157,438) rotate(109) scale(1.25)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-122,550) rotate(77) scale(1.11)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(-4,550) rotate(213) scale(1.01)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(146,573) rotate(4) scale(1.07)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(244,571) rotate(3) scale(0.87)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(401,569) rotate(25) scale(1.36)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(538,567) rotate(165) scale(1.32)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(643,561) rotate(292) scale(1.58)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(801,565) rotate(192) scale(1.31)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(891,543) rotate(72) scale(1.24)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1031,546) rotate(62) scale(1.38)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(1158,541) rotate(58) scale(0.85)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-132,669) rotate(95) scale(1.02)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(-8,654) rotate(78) scale(1.03)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(147,671) rotate(272) scale(1.26)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(280,674) rotate(269) scale(1.59)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(394,670) rotate(32) scale(1.52)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(501,662) rotate(240) scale(1.13)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(646,681) rotate(76) scale(1.45)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(768,680) rotate(273) scale(1.07)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(927,682) rotate(25) scale(1.34)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(1027,678) rotate(1) scale(0.95)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(1158,674) rotate(41) scale(1.55)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-117,770) rotate(334) scale(1.58)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-12,765) rotate(5) scale(1.19)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(153,772) rotate(83) scale(1.40)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(279,790) rotate(33) scale(1.43)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(400,786) rotate(180) scale(0.97)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(520,774) rotate(62) scale(1.04)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(650,778) rotate(213) scale(0.88)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(759,779) rotate(10) scale(1.49)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(919,802) rotate(79) scale(1.05)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(1018,784) rotate(268) scale(1.50)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1173,792) rotate(40) scale(0.85)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(-115,895) rotate(207) scale(1.13)"/><use href="#gp1" fill="url(#gfPatch)" transform="translate(-15,890) rotate(326) scale(0.96)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(128,879) rotate(167) scale(1.25)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(248,907) rotate(135) scale(1.18)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(381,886) rotate(306) scale(0.91)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(533,879) rotate(269) scale(1.20)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(667,879) rotate(340) scale(0.90)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(769,915) rotate(128) scale(1.16)"/><use href="#gp3" fill="url(#gfPatch)" transform="translate(889,886) rotate(309) scale(1.45)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1061,899) rotate(322) scale(1.16)"/><use href="#gp2" fill="url(#gfPatch)" transform="translate(1193,913) rotate(2) scale(1.11)"/></g></svg></div>
-<script>(function(){
-var P=document.getElementById('opportal');if(!P)return;
-var v1=document.getElementById('opv1'),house=document.getElementById('ophouse'),
-    film=document.getElementById('opfilm'),play=document.getElementById('opplay'),
-    flash=document.getElementById('opflash'),mark=document.getElementById('opmark'),fade=document.getElementById('opfade'),hold=document.getElementById('ophold');
-var seg=function(p,a,b){return Math.min(1,Math.max(0,(p-a)/(b-a)));};
-var ss=function(t){return t*t*(3-2*t);};
-var reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(matchMedia('(max-width:768px)').matches && v1.dataset.mobile) v1.src=v1.dataset.mobile;
-function uncover(){hold.style.opacity=0;setTimeout(function(){hold.style.display='none';},480);paint();}
-v1.addEventListener('loadedmetadata',uncover);
-setTimeout(uncover,2500);
-try{v1.load();}catch(e){}
-v1.addEventListener('loadeddata',function(){hold.style.opacity=0;
-  setTimeout(function(){hold.style.display='none';},480);paint();});
-var raf=0;
-function paint(){
-  var r=P.getBoundingClientRect(), s=P.offsetHeight-window.innerHeight;
-  var p=s<=0?0:Math.min(.999,Math.max(0,-r.top/s));
-  if(!reduced && v1.duration){var q=seg(p,0,.78); q=q<.45?q*.78:(.351+(q-.45)*1.667); if(q>1)q=1; var t=q*v1.duration;
-    if(Math.abs(v1.currentTime-t)>0.008) v1.currentTime=t;}
-  mark.style.opacity=(1-seg(p,0,.16)).toFixed(3);
-  var open=ss(seg(p,.78,.93));
-  flash.style.opacity=(ss(seg(p,.68,.80))*(1-seg(p,.82,.94))).toFixed(3);
-  house.style.opacity=open.toFixed(3);
-  play.style.opacity=ss(seg(p,.88,.98)).toFixed(3);
-  play.style.pointerEvents=p>.88?'auto':'none';
-}
-window.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(paint);},{passive:true});
-window.addEventListener('resize',paint);
-play.addEventListener('click',function(){play.style.display='none';film.muted=false;film.play();});
-film.addEventListener('ended',function(){fade.style.opacity=1;
-  setTimeout(function(){document.getElementById('opdeckstart').scrollIntoView({behavior:'smooth'});},900);});
-paint();
-})();</script>
-</body></html>
+</body>
+</html>
