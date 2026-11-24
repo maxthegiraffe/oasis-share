@@ -5,7 +5,7 @@
 #   curl -fsSL https://grateful.gg/oasis/install.sh | sh
 # It never asks for a password: /Applications if this account can write there, else ~/Applications.
 set -e
-VERSION="0.4.1"
+VERSION="0.4.2"
 BASE="https://axysrawypndwfzruqkdh.supabase.co/storage/v1/object/public/public/oasis"
 case "$(uname -m)" in arm64) ARCH=arm64 ;; *) ARCH=x64 ;; esac
 ZIP_URL="${OASIS_ZIP_URL:-$BASE/The-Oasis-$VERSION-$ARCH.zip}"
