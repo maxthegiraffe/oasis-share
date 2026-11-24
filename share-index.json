@@ -18,6 +18,13 @@
 }
 },
 {
+"p":"/ai/school",
+"s":"oasis",
+"q":{
+"install":"1"
+}
+},
+{
 "p":"/ai/setup",
 "s":"aisetup"
 },
@@ -52,10 +59,6 @@
 {
 "p":"/bubbles/ai",
 "s":"unblocked"
-},
-{
-"p":"/equity",
-"s":"on"
 },
 {
 "p":"/gratefulhealth",
@@ -1006,6 +1009,10 @@
 {
 "p":"/repipe/site",
 "s":"repipe-site"
+},
+{
+"p":"/wallet",
+"s":"on"
 }
 ]
 }
