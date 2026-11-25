@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Oasis</title>
+<style>html,body{margin:0;background:#fff}</style>
+</head>
+<body>
+<script>
+// A team page's frame inside the Oasis (app.grateful.gg, src/components/SitePageGate.jsx). The page runs here, on
+// grateful.gg, so it has an origin of its own: Stripe's checkout form can open inside the page (it can't in a frame
+// with no origin), and the page still can't reach the Oasis's account, cookies or storage on app.grateful.gg.
+// Only the Oasis that framed this page can hand it the page's HTML. Opened on its own, it goes to the Oasis.
+(function () {
+  var APP = 'https://app.grateful.gg';
+  var DEV = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+  if (window.parent === window) { location.replace(APP); return; }
+  function onMessage(e) {
+    var d = e.data;
+    if (e.source !== window.parent || (e.origin !== APP && !DEV.test(e.origin))) return;
+    if (!d || d.type !== 'oasis:frame:html' || typeof d.html !== 'string') return;
+    window.removeEventListener('message', onMessage);
+    document.open();
+    document.write(d.html);
+    document.close();
+  }
+  window.addEventListener('message', onMessage);
+  window.parent.postMessage({ type: 'oasis:frame:ready' }, '*');
+})();
+</script>
+</body>
+</html>
